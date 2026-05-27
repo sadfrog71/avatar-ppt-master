@@ -94,6 +94,7 @@ export default {
 | `s06` | `S06` | KPI Tower |
 | `s07` | `S07` | H-Bar Chart |
 | `s08` | `S08` | Duo Compare |
+| `s08Map` | `S08` | S08 + Swiss Map Component |
 | `s09` | `S09` | Dot Matrix Statement |
 | `s10` | `S10` | Split Closing |
 | `s11` | `S11` | Horizontal Timeline |
@@ -116,7 +117,7 @@ export default {
 | `imageHero` | `S22` | 21:9 图片主视觉 |
 | `closing` | `SWISS-CLOSING-ASCII` | 收尾页 |
 
-`s01`-`s22` 是原始 Swiss 正文布局的 canonical key;`cover`、`closing` 和旧的语义 key 保留给示例兼容。
+`s01`-`s22` 是原始 Swiss 正文布局的 canonical key;`s08Map` 是原项目登记的 S08 地图插槽扩展,不是新 S 编号。`cover`、`closing` 和旧的语义 key 保留给示例兼容。
 
 ### 3. 复制示例并改内容
 
@@ -143,6 +144,7 @@ npm run render:deck -- examples/component-decks/ai-ops-review.jsx output/my-deck
 - 注入 React 静态 HTML
 - 替换主题和字体 CSS 变量
 - 复制 `assets/motion.min.js`
+- 复制 `assets/screenshot-backgrounds/` 截图背景资源
 - 创建 `images/placeholder-21x9.svg`
 
 ### 5. 校验
@@ -160,7 +162,7 @@ npm run showcase:update
 - SVG 不承载文字标签
 - 顶部标题不做瑞士风禁用的居中 hack
 
-提交前 hook 会运行 `npm run showcase:update`,确保 `examples/component-decks/all-layouts-showcase.jsx` 穷举全部 canonical `s01`-`s22` 布局,并刷新当前总览 demo HTML。
+提交前 hook 会运行 `npm run showcase:update`,确保 `examples/component-decks/all-layouts-showcase.jsx` 穷举全部 canonical `s01`-`s22` 布局和 Style B 登记扩展,并刷新当前总览 demo HTML。
 
 ### 6. 视觉检查
 
@@ -190,6 +192,7 @@ guizang-ppt-skill/
 ├── README.md
 ├── package.json
 ├── assets/
+│   ├── screenshot-backgrounds/style-b/
 │   ├── template-swiss.html
 │   └── motion.min.js
 ├── src/
@@ -202,7 +205,14 @@ guizang-ppt-skill/
 ├── examples/
 │   └── component-decks/
 └── references/
-    └── component-workflow.md
+    ├── component-workflow.md
+    ├── themes-swiss.md
+    ├── swiss-layout-lock.md
+    ├── layouts-swiss.md
+    ├── swiss-map-component.md
+    ├── image-prompts.md
+    ├── screenshot-framing.md
+    └── checklist.md
 ```
 
 ## 修改原则
@@ -211,4 +221,4 @@ guizang-ppt-skill/
 - 新字体组合:加到 `FONT_OPTIONS`,不要在单页写散落字体。
 - 新页面类型:按一个布局一个文件放到 `src/components/swiss/`,共享基础件只放 `primitives.jsx`,再从 `index.jsx` 导出并登记到 `LAYOUT_OPTIONS`。
 - 新校验规则:加到 `scripts/validate-swiss-deck.mjs`。
-- 旧的手写模板骨架和截图背景资源已移除;不要重新引入另一套工作流。
+- Style B 的参考资料和截图背景资源保留在 `references/` 与 `assets/screenshot-backgrounds/style-b/`;不要把它们改成另一套自由 HTML 工作流。

@@ -14,16 +14,20 @@ const canonicalLayouts = [...options.matchAll(/^\s*(s\d{2}):\s*\{[\s\S]*?dataLay
 const showcaseKeys = [...showcase.matchAll(/slide\('([^']+)'/g)].map((match) => match[1]);
 const showcaseCanonicalKeys = showcaseKeys.filter((key) => /^s\d{2}$/.test(key));
 const expectedKeys = canonicalLayouts.map((layout) => layout.key);
+const requiredExtensionKeys = ['s08Map'];
 
 const missing = expectedKeys.filter((key) => !showcaseCanonicalKeys.includes(key));
 const extra = showcaseCanonicalKeys.filter((key) => !expectedKeys.includes(key));
 const duplicates = showcaseCanonicalKeys.filter((key, index) => showcaseCanonicalKeys.indexOf(key) !== index);
+const missingExtensions = requiredExtensionKeys.filter((key) => !showcaseKeys.includes(key));
 
-if (missing.length || extra.length || duplicates.length) {
+if (missing.length || extra.length || duplicates.length || missingExtensions.length) {
   if (missing.length) console.error(`Missing layout(s) in ${showcaseFile}: ${missing.join(', ')}`);
   if (extra.length) console.error(`Unknown layout(s) in ${showcaseFile}: ${extra.join(', ')}`);
   if (duplicates.length) console.error(`Duplicate layout(s) in ${showcaseFile}: ${[...new Set(duplicates)].join(', ')}`);
+  if (missingExtensions.length) console.error(`Missing Style B extension(s) in ${showcaseFile}: ${missingExtensions.join(', ')}`);
   process.exit(1);
 }
 
 console.log(`Layout showcase covers ${expectedKeys.length} canonical layout(s): ${expectedKeys.join(', ')}`);
+console.log(`Layout showcase covers Style B extension(s): ${requiredExtensionKeys.join(', ')}`);

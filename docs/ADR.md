@@ -32,4 +32,8 @@
 
 ## ADR-008: 提交前刷新全布局总览
 
-`.githooks/pre-commit` 会运行 `npm run showcase:update`,先确认 `examples/component-decks/all-layouts-showcase.jsx` 覆盖全部 canonical 布局,再重生成并校验 `output/all-components-showcase/ppt/index.html`。
+`.githooks/pre-commit` 会运行 `npm run showcase:update`,先确认 `examples/component-decks/all-layouts-showcase.jsx` 覆盖全部 canonical 布局和 Style B 登记扩展,再重生成并校验 `output/all-components-showcase/ppt/index.html`。
+
+## ADR-009: Style B 参考资源纳入源码
+
+原项目 Style B / Swiss 的主题、布局锁定、地图扩展、图片提示词、截图入版规则和 4 套截图背景资源保留在 `references/` 与 `assets/screenshot-backgrounds/style-b/`。主题是 deck 级多选一,布局仍是每页从 `S01` 到 `S22` 多选一;`s08Map` 只是 S08 插槽扩展,不新增布局编号。

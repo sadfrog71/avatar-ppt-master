@@ -12,7 +12,7 @@ export default {
   style: 'swiss',
   theme: process.env.GUIZANG_THEME || 'ikb',
   fontSet: process.env.GUIZANG_FONT || 'inter',
-  title: 'Swiss S01-S22 布局总览',
+  title: 'Swiss Style B 布局与扩展总览',
   slides: [
     slide('s01', {
       page: '01 / 22',
@@ -116,6 +116,36 @@ export default {
         points: ['每页 n 选 1', '内容参数化', '输出仍是静态 HTML'],
       },
       footer: 'S08 用于对仗、利弊、Before / After。',
+    }),
+    slide('s08Map', {
+      page: '08B / 22',
+      title: '地图关系页仍然归属 S08',
+      kicker: 'S08 · SWISS MAP COMPONENT',
+      summary: {
+        kicker: 'REGISTERED EXTENSION',
+        title: '地点不是新布局,而是 S08 的右侧插槽。',
+        body: '原项目的 Style B 允许地图扩展,但仍保留 data-layout="S08"。',
+      },
+      cards: [
+        { title: '点位', body: '用百分比坐标放置 marker,保证静态 fallback 可读。' },
+        { title: '关系', body: '关系线只负责空间连接,文字解释留在 HTML 卡片。' },
+        { title: '控制', body: '右上角保留 + / - / DRAG 控制,避免误触翻页。' },
+        { title: '边界', body: '这不是新 S 编号,而是 S08 的登记扩展。' },
+      ],
+      mapTitle: '地点 / 人物 / 事件',
+      points: [
+        { id: 'lab', name: '实验室', meta: 'source', x: 62, y: 28, accent: true },
+        { id: 'team', name: '团队', meta: 'ops', x: 30, y: 48 },
+        { id: 'hub', name: '中枢', meta: 'system', x: 51, y: 55, accent: true },
+        { id: 'field', name: '现场', meta: 'proof', x: 72, y: 52 },
+        { id: 'archive', name: '档案', meta: 'memory', x: 44, y: 76 },
+      ],
+      relations: [
+        ['lab', 'hub'],
+        ['team', 'hub'],
+        ['hub', 'field'],
+        ['hub', 'archive'],
+      ],
     }),
     slide('s09', {
       page: '09 / 22',

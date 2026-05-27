@@ -77,6 +77,7 @@ npm run render:examples
 页面版式:
 
 - `s01` 到 `s22`: 原始 Swiss 22 个正文布局
+- `s08Map`: 原项目登记的 S08 地图插槽扩展,仍输出 `data-layout="S08"`
 - `cover`: 特殊 ASCII 封面
 - `closing`: 特殊 ASCII 收尾页
 - `timeline`、`sixCells`、`kpiTower`、`hBar`、`imageHero`: 旧示例兼容 key,分别指向 `S02`、`S04`、`S06`、`S07`、`S22`
@@ -85,6 +86,7 @@ npm run render:examples
 
 ```text
 assets/
+  screenshot-backgrounds/style-b/
   template-swiss.html
   motion.min.js
 src/
@@ -97,6 +99,13 @@ scripts/
 examples/component-decks/
 references/
   component-workflow.md
+  themes-swiss.md
+  swiss-layout-lock.md
+  layouts-swiss.md
+  swiss-map-component.md
+  image-prompts.md
+  screenshot-framing.md
+  checklist.md
 ```
 
 ## 验证方式
@@ -116,8 +125,8 @@ npm run validate:swiss -- output/examples/retail-launch-brief/ppt/index.html
 
 以下文档由 `npm run docs:update` 同步,提交前也会由 `.githooks/pre-commit` 自动更新。
 
-提交前 hook 还会运行 `npm run showcase:update`,确保 `all-layouts-showcase.jsx` 覆盖全部 `S01-S22`,并刷新 `output/all-components-showcase/ppt/index.html`。
+提交前 hook 还会运行 `npm run showcase:update`,确保 `all-layouts-showcase.jsx` 覆盖全部 `S01-S22` 和 Style B 登记扩展,并刷新 `output/all-components-showcase/ppt/index.html`。
 
 - [ADR](docs/ADR.md): 当前架构决策记录
-- [项目文件作用说明](docs/project-files.md): 当前 49 个源码文件的主要作用
+- [项目文件作用说明](docs/project-files.md): 当前 61 个源码文件的主要作用
 <!-- project-docs:end -->

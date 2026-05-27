@@ -11,20 +11,31 @@ const descriptions = {
   'README.md': '项目入口说明,包含快速开始、当前选项和文档索引。',
   'SKILL.md': '给 Agent 使用的 skill 说明,定义 PPT 生成流程和约束。',
   'assets/motion.min.js': '浏览器端 Motion One 动效 runtime,由渲染器复制到最终产物。',
+  'assets/screenshot-backgrounds/style-b/ikb-dot-gradient.webp': 'Style B IKB 蓝截图背景资源。',
+  'assets/screenshot-backgrounds/style-b/lemon-green-dot-shadow.webp': 'Style B 柠檬绿截图背景资源。',
+  'assets/screenshot-backgrounds/style-b/lemon-grid.webp': 'Style B 柠檬黄截图背景资源。',
+  'assets/screenshot-backgrounds/style-b/safety-orange-halftone.webp': 'Style B 安全橙截图背景资源。',
   'assets/template-swiss.html': '静态 PPT HTML 外壳模板,包含 CSS、背景、翻页、导航和动效入口。',
   'docs/ADR.md': '架构决策记录,描述当前生成链路和组件化边界。',
   'docs/project-files.md': '项目文件作用说明,由脚本根据当前文件列表生成。',
   'examples/component-decks/ai-ops-review.jsx': 'AI 运营复盘示例 deck,演示技术/运营复盘主题的页面组合。',
-  'examples/component-decks/all-layouts-showcase.jsx': 'Swiss S01-S22 布局总览示例 deck,顺序渲染全部原始正文布局。',
+  'examples/component-decks/all-layouts-showcase.jsx': 'Swiss S01-S22 布局与 Style B 登记扩展总览示例 deck。',
   'examples/component-decks/climate-field-report.jsx': '城市微气候田野报告示例 deck,演示生态/田野主题的页面组合。',
   'examples/component-decks/retail-launch-brief.jsx': '零售新品上市简报示例 deck,演示消费/上市主题的页面组合。',
   'examples/component-decks/swiss-demo.jsx': '组件选项机制 demo deck,可用环境变量切换主题和字体。',
   'package-lock.json': 'npm 依赖锁定文件。',
   'package.json': 'npm 脚本和 React/tsx 依赖声明。',
+  'references/checklist.md': '原项目执行检查清单,包含 Style B 生成和 QA 约束。',
   'references/component-workflow.md': '组件选项工作流参考,说明新增选项和 subagent 测试要求。',
+  'references/image-prompts.md': '图片生成提示词参考,包含 Style A 与 Style B 的图像槽位要求。',
+  'references/layouts-swiss.md': 'Style B Swiss 原始布局说明,登记 S01-S22 与地图扩展使用方式。',
+  'references/screenshot-framing.md': '截图入版规范,说明不同风格的背景、裁切、阴影和留边规则。',
+  'references/swiss-layout-lock.md': 'Style B Swiss 布局锁定规则,约束只能使用登记布局和扩展。',
+  'references/swiss-map-component.md': 'Style B S08 地图插槽扩展说明,定义点位、关系线和控制区契约。',
+  'references/themes-swiss.md': 'Style B Swiss 主题色参考,定义 4 套主题与使用边界。',
   'scripts/render-deck.jsx': '渲染 CLI 入口,把 deck 配置文件输出成静态 HTML。',
   'scripts/update-project-docs.mjs': '文档同步脚本,更新 README、ADR 和项目文件作用说明。',
-  'scripts/validate-layout-showcase.mjs': '布局总览覆盖校验器,确保 all-layouts-showcase 穷举所有 canonical S01-S22 布局。',
+  'scripts/validate-layout-showcase.mjs': '布局总览覆盖校验器,确保 all-layouts-showcase 穷举 canonical S01-S22 和 Style B 登记扩展。',
   'scripts/validate-swiss-deck.mjs': 'Swiss deck 静态校验器,检查合法 layout、图片槽位和禁用模式。',
   'src/components/swiss/Closing.jsx': '收尾页组件,对应 SWISS-CLOSING-ASCII。',
   'src/components/swiss/Cover.jsx': '封面组件,对应 SWISS-COVER-ASCII。',
@@ -35,6 +46,7 @@ const descriptions = {
   'src/components/swiss/S03SplitStatement.jsx': 'Split Statement 正文布局组件,对应 S03。',
   'src/components/swiss/S05ThreeLayers.jsx': 'Three Layers 正文布局组件,对应 S05。',
   'src/components/swiss/S08DuoCompare.jsx': 'Duo Compare 正文布局组件,对应 S08。',
+  'src/components/swiss/S08Map.jsx': 'Swiss Map Component 地图插槽扩展,仍对应 S08。',
   'src/components/swiss/S09DotMatrixStatement.jsx': 'Dot Matrix Statement 正文布局组件,对应 S09。',
   'src/components/swiss/S10SplitClosing.jsx': 'Split Closing 正文布局组件,对应 S10。',
   'src/components/swiss/S11HorizontalTimeline.jsx': 'Horizontal Timeline 正文布局组件,对应 S11。',
@@ -124,7 +136,11 @@ function renderAdr() {
 
 ## ADR-008: 提交前刷新全布局总览
 
-\`.githooks/pre-commit\` 会运行 \`npm run showcase:update\`,先确认 \`examples/component-decks/all-layouts-showcase.jsx\` 覆盖全部 canonical 布局,再重生成并校验 \`output/all-components-showcase/ppt/index.html\`。
+\`.githooks/pre-commit\` 会运行 \`npm run showcase:update\`,先确认 \`examples/component-decks/all-layouts-showcase.jsx\` 覆盖全部 canonical 布局和 Style B 登记扩展,再重生成并校验 \`output/all-components-showcase/ppt/index.html\`。
+
+## ADR-009: Style B 参考资源纳入源码
+
+原项目 Style B / Swiss 的主题、布局锁定、地图扩展、图片提示词、截图入版规则和 4 套截图背景资源保留在 \`references/\` 与 \`assets/screenshot-backgrounds/style-b/\`。主题是 deck 级多选一,布局仍是每页从 \`S01\` 到 \`S22\` 多选一;\`s08Map\` 只是 S08 插槽扩展,不新增布局编号。
 `;
 }
 
@@ -141,7 +157,7 @@ function renderReadmeSection(fileList) {
 
 以下文档由 \`npm run docs:update\` 同步,提交前也会由 \`.githooks/pre-commit\` 自动更新。
 
-提交前 hook 还会运行 \`npm run showcase:update\`,确保 \`all-layouts-showcase.jsx\` 覆盖全部 \`S01-S22\`,并刷新 \`output/all-components-showcase/ppt/index.html\`。
+提交前 hook 还会运行 \`npm run showcase:update\`,确保 \`all-layouts-showcase.jsx\` 覆盖全部 \`S01-S22\` 和 Style B 登记扩展,并刷新 \`output/all-components-showcase/ppt/index.html\`。
 
 - [ADR](docs/ADR.md): 当前架构决策记录
 - [项目文件作用说明](docs/project-files.md): 当前 ${sourceCount} 个源码文件的主要作用

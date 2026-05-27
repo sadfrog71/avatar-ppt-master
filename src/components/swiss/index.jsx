@@ -7,6 +7,7 @@ export { SwissS01IndexCover } from './S01IndexCover.jsx';
 export { SwissS03SplitStatement } from './S03SplitStatement.jsx';
 export { SwissS05ThreeLayers } from './S05ThreeLayers.jsx';
 export { SwissS08DuoCompare } from './S08DuoCompare.jsx';
+export { SwissS08MapSlide } from './S08Map.jsx';
 export { SwissS09DotMatrixStatement } from './S09DotMatrixStatement.jsx';
 export { SwissS10SplitClosing } from './S10SplitClosing.jsx';
 export { SwissS11HorizontalTimeline } from './S11HorizontalTimeline.jsx';

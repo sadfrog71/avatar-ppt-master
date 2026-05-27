@@ -70,6 +70,8 @@ npm run showcase:update
 
 原始 Swiss 正文布局使用 `s01` 到 `s22` 作为 canonical key。旧示例里的 `timeline`、`sixCells`、`kpiTower`、`hBar`、`imageHero` 只是兼容别名。
 
+Style B / Swiss 还保留原项目登记扩展 `s08Map`:它仍使用 `data-layout="S08"`,用于地点、路线、人物住所、城市关系等地图页。新增 Style B 能力前先读 `themes-swiss.md`、`swiss-layout-lock.md`、`layouts-swiss.md`;涉及图片或截图时读 `image-prompts.md` 和 `screenshot-framing.md`。
+
 ## Subagent 测试
 
 测试不能只换颜色。每个 subagent 需要生成不同内容主题和页面组合:
@@ -77,7 +79,7 @@ npm run showcase:update
 - AI/技术复盘:偏 `timeline`、`kpiTower`、`hBar`
 - 城市/生态报告:偏 `imageHero`、`sixCells`、`timeline`
 - 零售/消费简报:偏 `hBar`、`kpiTower`、`imageHero`
-- 全量布局回归:运行 `npm run render:all-layouts`,检查 `output/all-components-showcase/ppt/index.html` 的 22 页总览
+- 全量布局回归:运行 `npm run showcase:update`,检查 `output/all-components-showcase/ppt/index.html` 的 22 个 canonical 布局和 Style B 登记扩展
 
 比较结果时看:
 

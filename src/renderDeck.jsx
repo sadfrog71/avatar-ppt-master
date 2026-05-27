@@ -68,6 +68,7 @@ function copyRuntimeAssets(outDir) {
   fs.mkdirSync(assetsDir, { recursive: true });
   fs.mkdirSync(imagesDir, { recursive: true });
   fs.copyFileSync(path.join(ROOT, 'assets/motion.min.js'), path.join(assetsDir, 'motion.min.js'));
+  copyDirectoryIfExists(path.join(ROOT, 'assets/screenshot-backgrounds'), path.join(assetsDir, 'screenshot-backgrounds'));
 
   const placeholder = path.join(imagesDir, 'placeholder-21x9.svg');
   if (!fs.existsSync(placeholder)) {
@@ -77,6 +78,12 @@ function copyRuntimeAssets(outDir) {
   <rect x="690" y="250" width="720" height="260" fill="#fafaf8"/>
   <text x="1050" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="72" fill="#737373">21:9 IMAGE SLOT</text>
 </svg>`);
+  }
+}
+
+function copyDirectoryIfExists(from, to) {
+  if (fs.existsSync(from)) {
+    fs.cpSync(from, to, { recursive: true });
   }
 }
 

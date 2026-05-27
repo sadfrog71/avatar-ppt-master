@@ -9,6 +9,7 @@ import {
   SwissS03SplitStatement,
   SwissS05ThreeLayers,
   SwissS08DuoCompare,
+  SwissS08MapSlide,
   SwissS09DotMatrixStatement,
   SwissS10SplitClosing,
   SwissS11HorizontalTimeline,
@@ -160,6 +161,11 @@ export const LAYOUT_OPTIONS = {
     label: 'S08 Duo Compare',
     dataLayout: 'S08',
     component: SwissS08DuoCompare,
+  },
+  s08Map: {
+    label: 'S08 + Swiss Map Component',
+    dataLayout: 'S08',
+    component: SwissS08MapSlide,
   },
   s09: {
     label: 'S09 Dot Matrix Statement',
