@@ -8,7 +8,7 @@ export function SwissS19FourCards({ page = '19', title, kicker, cards }) {
         <Chrome left={`${page} · FOUR CARDS`} right="S19" />
         <div style={{ flex: 1, display: 'grid', gridTemplateRows: 'auto 1fr', gap: '5vh' }}>
           <div data-anim="line">
-            <div style={{ height: 2, background: 'var(--accent)', marginBottom: '2vh' }} />
+            <div style={{ height: 2, background: 'var(--focus-mark)', marginBottom: '2vh' }} />
             <div>
               <div className="t-meta">{kicker}</div>
               <h2 className="h-xl-zh" style={{ fontSize: 'min(5.8vw,10.2vh)', marginTop: '1vh' }}>{title}</h2>

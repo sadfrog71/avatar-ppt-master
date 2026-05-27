@@ -18,13 +18,13 @@ export function SwissS21TechSpec({ page = '21', title, kicker, note, specs, hero
             {specs.map((spec) => (
               <div key={spec.label}>
                 <div style={{ height: 1, background: 'var(--ink)', marginBottom: '2vh' }} />
-                <div className="kpi-num kpi-thin-sm" style={{ color: spec.accent ? 'var(--accent)' : 'var(--ink)' }}>{spec.value}</div>
+                <div className="kpi-num kpi-thin-sm" style={{ color: spec.accent ? 'var(--focus-mark)' : 'var(--ink)' }}>{spec.value}</div>
                 <div className="t-meta" style={{ marginTop: '1vh' }}>{spec.label}</div>
                 <p className="t-body-sm" style={{ marginTop: '.8vh' }}>{spec.body}</p>
               </div>
             ))}
           </div>
-          <div data-anim="hero" style={{ display: 'grid', gridTemplateColumns: '3fr 5fr 3fr', gap: '2vw', alignItems: 'end', borderTop: '2px solid var(--accent)', paddingTop: '2vh' }}>
+          <div data-anim="hero" style={{ display: 'grid', gridTemplateColumns: '3fr 5fr 3fr', gap: '2vw', alignItems: 'end', borderTop: '2px solid var(--focus-mark)', paddingTop: '2vh' }}>
             <div className="bottom-hero kpi-thin accent">{hero.value}</div>
             <div>
               <div style={{ height: 1, background: 'var(--ink)', marginBottom: '1.2vh' }} />
@@ -34,7 +34,7 @@ export function SwissS21TechSpec({ page = '21', title, kicker, note, specs, hero
             <div>
               <div data-anim="bars" style={{ display: 'grid', gridTemplateColumns: 'repeat(9,1fr)', gap: '.3vw', height: '11vh', alignItems: 'end' }}>
                 {[24, 38, 52, 74, 56, 84, 68, 92, 78].map((height, index) => (
-                  <div key={index} className="vbar" style={{ height: `${height}%`, background: index === 7 ? 'var(--accent)' : 'var(--ink)' }} />
+                  <div key={index} className="vbar" style={{ height: `${height}%`, background: index === 7 ? 'var(--focus-mark)' : 'var(--ink)' }} />
                 ))}
               </div>
               <div className="t-meta" style={{ marginTop: '1vh', textAlign: 'right' }}>{hero.label}</div>

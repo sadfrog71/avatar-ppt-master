@@ -19,7 +19,7 @@ export function SwissS18WhyNow({ page = '18', title, kicker, columns }) {
                   <h3 className="t-h-prod" style={{ marginTop: '1.4vh' }}>{column.title}</h3>
                   <p className="t-body-sm" style={{ marginTop: '1vh' }}>{column.body}</p>
                 </div>
-                <div className="kpi-thin" style={{ color: index === 1 ? 'var(--accent)' : 'var(--ink)' }}>{String(index + 1).padStart(2, '0')}</div>
+                <div className="kpi-thin" style={{ color: index === 1 ? 'var(--focus-mark)' : 'var(--ink)' }}>{String(index + 1).padStart(2, '0')}</div>
               </div>
             ))}
           </div>

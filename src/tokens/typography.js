@@ -1,0 +1,55 @@
+export const TYPE_SCALE_OPTIONS = {
+  expressive: {
+    label: 'Expressive display hierarchy',
+    vars: {
+      '--fs-display': '11vw',
+      '--fs-h1': '8.4vw',
+      '--fs-h2': '6vw',
+      '--fs-h3': '5vw',
+      '--fs-h4': '2.6vw',
+      '--fs-subtitle': '2.2vw',
+      '--fs-lead': '1.55vw',
+      '--fs-body': 'max(18px,1.08vw)',
+      '--fs-body-sm': 'max(16px,.92vw)',
+      '--fs-caption': '14px',
+      '--fs-number-lg': '14vw',
+      '--fs-number-md': '5.6vw',
+    },
+  },
+  productive: {
+    label: 'Productive dense hierarchy',
+    vars: {
+      '--fs-display': '7.2vw',
+      '--fs-h1': '5.6vw',
+      '--fs-h2': '4.4vw',
+      '--fs-h3': '3.4vw',
+      '--fs-h4': '1.9vw',
+      '--fs-subtitle': '1.55vw',
+      '--fs-lead': '1.16vw',
+      '--fs-body': 'max(17px,.98vw)',
+      '--fs-body-sm': 'max(15px,.84vw)',
+      '--fs-caption': '12px',
+      '--fs-number-lg': '9vw',
+      '--fs-number-md': '4.4vw',
+    },
+  },
+  editorial: {
+    label: 'Editorial serif hierarchy',
+    vars: {
+      '--fs-display': '10vw',
+      '--fs-h1': '7.6vw',
+      '--fs-h2': '5.4vw',
+      '--fs-h3': '4.6vw',
+      '--fs-h4': '2.4vw',
+      '--fs-subtitle': '2vw',
+      '--fs-lead': '1.7vw',
+      '--fs-body': 'max(18px,1.18vw)',
+      '--fs-body-sm': 'max(16px,.95vw)',
+      '--fs-caption': '13px',
+      '--fs-number-lg': '12vw',
+      '--fs-number-md': '5.2vw',
+    },
+  },
+};
+
+export const DEFAULT_TYPE_SCALE = 'expressive';

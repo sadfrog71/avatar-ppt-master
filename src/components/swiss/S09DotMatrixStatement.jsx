@@ -11,9 +11,9 @@ export function SwissS09DotMatrixStatement({ page = '09', title, kicker, body, l
             <div className="t-meta">{kicker}</div>
             <h2 className="h-xl-zh" style={{ fontSize: 'min(7.2vw,12.5vh)' }}>{title}</h2>
           </div>
-          <div data-anim="up" style={{ position: 'absolute', right: 0, top: '10vh', width: '28vw', height: '44vh', color: 'var(--accent)' }} className="dot-mat xl" />
+          <div data-anim="up" style={{ position: 'absolute', right: 0, top: '10vh', width: '28vw', height: '44vh', color: 'var(--focus-mark)' }} className="dot-mat xl" />
           <p data-anim="up" className="t-body" style={{ alignSelf: 'end', maxWidth: '38ch', fontSize: 'max(18px,1.35vw)' }}>{body}</p>
-          <div data-anim="up" className="t-meta" style={{ borderTop: '2px solid var(--accent)', paddingTop: '2vh' }}>{label}</div>
+          <div data-anim="up" className="t-meta" style={{ borderTop: '2px solid var(--focus-mark)', paddingTop: '2vh' }}>{label}</div>
         </div>
       </CanvasCard>
     </SwissSlide>

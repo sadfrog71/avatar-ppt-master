@@ -27,22 +27,22 @@ export function SwissS14LoopForm({ page = '14', title, kicker, steps, center }) 
               <svg viewBox="0 0 520 360" width="100%" height="100%" aria-hidden="true">
                 <defs>
                   <marker id="arrow-s14" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                    <path d="M0,0 L6,3 L0,6 Z" fill="var(--accent)" />
+                    <path d="M0,0 L6,3 L0,6 Z" fill="var(--focus-mark)" />
                   </marker>
                 </defs>
                 <circle cx="260" cy="180" r="118" fill="none" stroke="var(--ink)" strokeWidth="1" opacity=".25" />
-                <circle cx="260" cy="62" r="12" fill="var(--accent)" />
+                <circle cx="260" cy="62" r="12" fill="var(--focus-mark)" />
                 <circle cx="378" cy="180" r="12" fill="var(--ink)" />
                 <circle cx="260" cy="298" r="12" fill="var(--ink)" />
                 <circle cx="142" cy="180" r="12" fill="var(--ink)" />
-                <path d="M282 69 C340 90 371 124 378 158" fill="none" stroke="var(--accent)" strokeWidth="2" markerEnd="url(#arrow-s14)" />
-                <path d="M371 202 C348 254 314 287 282 294" fill="none" stroke="var(--accent)" strokeWidth="2" markerEnd="url(#arrow-s14)" />
-                <path d="M238 291 C184 268 150 226 143 202" fill="none" stroke="var(--accent)" strokeWidth="2" markerEnd="url(#arrow-s14)" />
-                <path d="M149 158 C170 108 212 70 238 65" fill="none" stroke="var(--accent)" strokeWidth="2" markerEnd="url(#arrow-s14)" />
+                <path d="M282 69 C340 90 371 124 378 158" fill="none" stroke="var(--focus-mark)" strokeWidth="2" markerEnd="url(#arrow-s14)" />
+                <path d="M371 202 C348 254 314 287 282 294" fill="none" stroke="var(--focus-mark)" strokeWidth="2" markerEnd="url(#arrow-s14)" />
+                <path d="M238 291 C184 268 150 226 143 202" fill="none" stroke="var(--focus-mark)" strokeWidth="2" markerEnd="url(#arrow-s14)" />
+                <path d="M149 158 C170 108 212 70 238 65" fill="none" stroke="var(--focus-mark)" strokeWidth="2" markerEnd="url(#arrow-s14)" />
               </svg>
               <div style={{ position: 'absolute', width: '16vw', textAlign: 'left' }}>
                 <div className="t-cat accent">{center.kicker}</div>
-                <div className="kpi-thin-sm" style={{ color: 'var(--accent)', marginTop: '1vh' }}>{center.title}</div>
+                <div className="kpi-thin-sm" style={{ color: 'var(--focus-mark)', marginTop: '1vh' }}>{center.title}</div>
               </div>
             </div>
           </div>

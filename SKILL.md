@@ -73,6 +73,11 @@ export default {
 | `lemon` | 活力、消费、零售、年轻主题 |
 | `green` | 生态、未来、城市、可持续 |
 | `orange` | 工业、警示、风险、决策节点 |
+| `monocle` | 电子杂志默认,墨水经典 |
+| `indigo` | 研究、数据、工程内容 |
+| `forest` | 自然、可持续、文化主题 |
+| `kraft` | 人文、怀旧、手作主题 |
+| `dune` | 艺术、设计、品牌主题 |
 
 当前字体组合:
 
@@ -81,11 +86,22 @@ export default {
 | `inter` | 默认,现代科技和产品汇报 |
 | `system` | 系统字体优先,适合跨机器稳定展示 |
 | `compact` | 更紧凑,适合信息密度稍高的报告 |
+| `editorial` | 电子杂志感,适合引用、叙事和人文内容 |
 
 当前页面版式:
 
 | key | data-layout | 用途 |
 |---|---|---|
+| `a01` | `A01` | Hero Cover |
+| `a02` | `A02` | Act Divider |
+| `a03` | `A03` | Big Numbers Grid |
+| `a04` | `A04` | Quote + Image |
+| `a05` | `A05` | Image Grid |
+| `a06` | `A06` | Pipeline |
+| `a07` | `A07` | Hero Question |
+| `a08` | `A08` | Big Quote |
+| `a09` | `A09` | Before / After |
+| `a10` | `A10` | Lead Image + Side Text |
 | `s01` | `S01` | Index Cover |
 | `s02` | `S02` | Vertical Timeline + KPI |
 | `s03` | `S03` | Split Statement |
@@ -117,7 +133,9 @@ export default {
 | `imageHero` | `S22` | 21:9 图片主视觉 |
 | `closing` | `SWISS-CLOSING-ASCII` | 收尾页 |
 
-`s01`-`s22` 是原始 Swiss 正文布局的 canonical key;`s08Map` 是原项目登记的 S08 地图插槽扩展,不是新 S 编号。`cover`、`closing` 和旧的语义 key 保留给示例兼容。
+`a01`-`a10` 是原始电子杂志风布局补入统一 registry 后的 key;`s01`-`s22` 是原始 Swiss 正文布局的 canonical key;`s08Map` 是原项目登记的 S08 地图插槽扩展,不是新 S 编号。`cover`、`closing` 和旧的语义 key 保留给示例兼容。
+
+token 放在 `src/tokens/`:主题、字体、字号、间距、动效分文件维护。可组合基础组件按职责放在 `src/components/shell/`、`text/`、`media/`、`metrics/`、`charts/`、`timelines/`、`cards/`、`decorations/`、`diagrams/`;`magazine/` 和 `swiss/` 只保留布局 preset。
 
 ### 3. 复制示例并改内容
 
@@ -162,7 +180,7 @@ npm run showcase:update
 - SVG 不承载文字标签
 - 顶部标题不做瑞士风禁用的居中 hack
 
-提交前 hook 会运行 `npm run showcase:update`,确保 `examples/component-decks/all-layouts-showcase.jsx` 穷举全部 canonical `s01`-`s22` 布局和 Style B 登记扩展,并刷新当前总览 demo HTML。
+提交前 hook 会运行 `npm run showcase:update`,确保 `examples/component-decks/all-layouts-showcase.jsx` 穷举全部 `a01`-`a10`、canonical `s01`-`s22` 布局和 Style B 登记扩展,并刷新当前总览 demo HTML。
 
 ### 6. 视觉检查
 
@@ -192,13 +210,16 @@ guizang-ppt-skill/
 ├── README.md
 ├── package.json
 ├── assets/
+│   ├── screenshot-backgrounds/style-a/
 │   ├── screenshot-backgrounds/style-b/
 │   ├── template-swiss.html
 │   └── motion.min.js
 ├── src/
 │   ├── options.jsx
 │   ├── renderDeck.jsx
-│   └── components/swiss/
+│   └── components/
+│       ├── magazine/
+│       └── swiss/
 ├── scripts/
 │   ├── render-deck.jsx
 │   └── validate-swiss-deck.mjs
@@ -206,7 +227,9 @@ guizang-ppt-skill/
 │   └── component-decks/
 └── references/
     ├── component-workflow.md
+    ├── themes.md
     ├── themes-swiss.md
+    ├── layouts.md
     ├── swiss-layout-lock.md
     ├── layouts-swiss.md
     ├── swiss-map-component.md
@@ -219,6 +242,6 @@ guizang-ppt-skill/
 
 - 新主题色:加到 `THEME_OPTIONS`,不要直接改模板变量。
 - 新字体组合:加到 `FONT_OPTIONS`,不要在单页写散落字体。
-- 新页面类型:按一个布局一个文件放到 `src/components/swiss/`,共享基础件只放 `primitives.jsx`,再从 `index.jsx` 导出并登记到 `LAYOUT_OPTIONS`。
+- 新页面类型:按一个布局一个文件放到对应组件目录,共享基础件只放该目录的 `primitives.jsx`,再从 `index.jsx` 导出并登记到 `LAYOUT_OPTIONS`。
 - 新校验规则:加到 `scripts/validate-swiss-deck.mjs`。
-- Style B 的参考资料和截图背景资源保留在 `references/` 与 `assets/screenshot-backgrounds/style-b/`;不要把它们改成另一套自由 HTML 工作流。
+- Style A/Style B 的参考资料和截图背景资源保留在 `references/` 与 `assets/screenshot-backgrounds/`;不要把它们改成另一套自由 HTML 工作流。

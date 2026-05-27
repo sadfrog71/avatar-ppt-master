@@ -26,102 +26,95 @@ import {
   SwissSixCellsSlide,
   SwissTimelineSlide,
 } from './components/swiss/index.jsx';
+import {
+  A01HeroCover,
+  A02ActDivider,
+  A03BigNumbersGrid,
+  A04QuoteImage,
+  A05ImageGrid,
+  A06Pipeline,
+  A07HeroQuestion,
+  A08BigQuote,
+  A09BeforeAfter,
+  A10LeadImageText,
+} from './components/magazine/index.jsx';
+import {
+  DEFAULT_FONT,
+  DEFAULT_MOTION,
+  DEFAULT_SPACING,
+  DEFAULT_THEME,
+  DEFAULT_TYPE_SCALE,
+  FONT_OPTIONS,
+  MOTION_OPTIONS,
+  SPACING_OPTIONS,
+  THEME_OPTIONS,
+  TYPE_SCALE_OPTIONS,
+} from './tokens/index.js';
 
-export const THEME_OPTIONS = {
-  ikb: {
-    label: '克莱因蓝 IKB',
-    vars: {
-      '--paper': '#fafaf8',
-      '--paper-rgb': '250,250,248',
-      '--ink': '#0a0a0a',
-      '--ink-rgb': '10,10,10',
-      '--grey-1': '#f0f0ee',
-      '--grey-2': '#d4d4d2',
-      '--grey-3': '#737373',
-      '--accent': '#002FA7',
-      '--accent-rgb': '0,47,167',
-      '--accent-on': '#ffffff',
-      '--accent-bright': '#5B7BFF',
-    },
-  },
-  lemon: {
-    label: '柠檬黄',
-    vars: {
-      '--paper': '#fafaf8',
-      '--paper-rgb': '250,250,248',
-      '--ink': '#0a0a0a',
-      '--ink-rgb': '10,10,10',
-      '--grey-1': '#f0f0ee',
-      '--grey-2': '#d4d4d2',
-      '--grey-3': '#737373',
-      '--accent': '#FFD500',
-      '--accent-rgb': '255,213,0',
-      '--accent-on': '#0a0a0a',
-      '--accent-bright': '#FFD500',
-    },
-  },
-  green: {
-    label: '柠檬绿',
-    vars: {
-      '--paper': '#fafaf8',
-      '--paper-rgb': '250,250,248',
-      '--ink': '#0a0a0a',
-      '--ink-rgb': '10,10,10',
-      '--grey-1': '#f0f0ee',
-      '--grey-2': '#d4d4d2',
-      '--grey-3': '#737373',
-      '--accent': '#C5E803',
-      '--accent-rgb': '197,232,3',
-      '--accent-on': '#0a0a0a',
-      '--accent-bright': '#C5E803',
-    },
-  },
-  orange: {
-    label: '安全橙',
-    vars: {
-      '--paper': '#fafaf8',
-      '--paper-rgb': '250,250,248',
-      '--ink': '#0a0a0a',
-      '--ink-rgb': '10,10,10',
-      '--grey-1': '#f0f0ee',
-      '--grey-2': '#d4d4d2',
-      '--grey-3': '#737373',
-      '--accent': '#FF6B35',
-      '--accent-rgb': '255,107,53',
-      '--accent-on': '#ffffff',
-      '--accent-bright': '#FF6B35',
-    },
-  },
-};
-
-export const FONT_OPTIONS = {
-  inter: {
-    label: 'Inter / Noto Sans SC / JetBrains Mono',
-    vars: {
-      '--sans': '"Inter","Helvetica Neue","Helvetica","Arial","Segoe UI Variable","Segoe UI",system-ui,-apple-system,sans-serif',
-      '--sans-zh': '"PingFang SC","Hiragino Sans GB","Source Han Sans SC","Noto Sans SC","Microsoft YaHei UI","Microsoft YaHei","微软雅黑",sans-serif',
-      '--mono': '"JetBrains Mono","IBM Plex Mono","SF Mono","Cascadia Code","Consolas","Courier New",ui-monospace,monospace',
-    },
-  },
-  system: {
-    label: 'System UI / Microsoft YaHei / Consolas',
-    vars: {
-      '--sans': '"Helvetica Neue","Arial","Segoe UI Variable","Segoe UI",system-ui,-apple-system,sans-serif',
-      '--sans-zh': '"Microsoft YaHei UI","Microsoft YaHei","Noto Sans SC","PingFang SC",sans-serif',
-      '--mono': '"Consolas","SF Mono","Cascadia Code","Courier New",ui-monospace,monospace',
-    },
-  },
-  compact: {
-    label: 'Helvetica Compact / Noto Sans SC / JetBrains Mono',
-    vars: {
-      '--sans': '"Helvetica Neue","Helvetica","Arial Narrow","Arial",system-ui,-apple-system,sans-serif',
-      '--sans-zh': '"Noto Sans SC","PingFang SC","Microsoft YaHei UI","Microsoft YaHei",sans-serif',
-      '--mono': '"JetBrains Mono","SF Mono","Consolas","Courier New",ui-monospace,monospace',
-    },
-  },
+export {
+  DEFAULT_FONT,
+  DEFAULT_MOTION,
+  DEFAULT_SPACING,
+  DEFAULT_THEME,
+  DEFAULT_TYPE_SCALE,
+  FONT_OPTIONS,
+  MOTION_OPTIONS,
+  SPACING_OPTIONS,
+  THEME_OPTIONS,
+  TYPE_SCALE_OPTIONS,
 };
 
 export const LAYOUT_OPTIONS = {
+  a01: {
+    label: 'A01 Hero Cover',
+    dataLayout: 'A01',
+    component: A01HeroCover,
+  },
+  a02: {
+    label: 'A02 Act Divider',
+    dataLayout: 'A02',
+    component: A02ActDivider,
+  },
+  a03: {
+    label: 'A03 Big Numbers Grid',
+    dataLayout: 'A03',
+    component: A03BigNumbersGrid,
+  },
+  a04: {
+    label: 'A04 Quote + Image',
+    dataLayout: 'A04',
+    component: A04QuoteImage,
+  },
+  a05: {
+    label: 'A05 Image Grid',
+    dataLayout: 'A05',
+    component: A05ImageGrid,
+  },
+  a06: {
+    label: 'A06 Pipeline',
+    dataLayout: 'A06',
+    component: A06Pipeline,
+  },
+  a07: {
+    label: 'A07 Hero Question',
+    dataLayout: 'A07',
+    component: A07HeroQuestion,
+  },
+  a08: {
+    label: 'A08 Big Quote',
+    dataLayout: 'A08',
+    component: A08BigQuote,
+  },
+  a09: {
+    label: 'A09 Before / After',
+    dataLayout: 'A09',
+    component: A09BeforeAfter,
+  },
+  a10: {
+    label: 'A10 Lead Image + Side Text',
+    dataLayout: 'A10',
+    component: A10LeadImageText,
+  },
   s01: {
     label: 'S01 Index Cover',
     dataLayout: 'S01',
@@ -273,9 +266,6 @@ export const LAYOUT_OPTIONS = {
     component: SwissClosing,
   },
 };
-
-export const DEFAULT_THEME = 'ikb';
-export const DEFAULT_FONT = 'inter';
 
 export function slide(layoutName, props) {
   const option = LAYOUT_OPTIONS[layoutName];

@@ -17,6 +17,7 @@ const warnings = [];
 const allowedLayouts = new Set([
   'SWISS-COVER-ASCII',
   'SWISS-CLOSING-ASCII',
+  ...Array.from({ length: 10 }, (_, i) => `A${String(i + 1).padStart(2, '0')}`),
   ...Array.from({ length: 22 }, (_, i) => `S${String(i + 1).padStart(2, '0')}`),
 ]);
 
@@ -31,7 +32,7 @@ slides.forEach((slide) => {
   const layout = slide.tag.match(/\bdata-layout="([^"]+)"/)?.[1];
 
   if (!layout) {
-    errors.push(`Slide ${slide.idx}: missing data-layout. Swiss locked mode requires S01-S22 or SWISS-COVER-ASCII/SWISS-CLOSING-ASCII.`);
+    errors.push(`Slide ${slide.idx}: missing data-layout. Registered mode requires A01-A10, S01-S22, or SWISS-COVER-ASCII/SWISS-CLOSING-ASCII.`);
   } else if (!allowedLayouts.has(layout)) {
     errors.push(`Slide ${slide.idx}: data-layout="${layout}" is not registered in scripts/validate-swiss-deck.mjs.`);
   }
@@ -40,7 +41,8 @@ slides.forEach((slide) => {
     errors.push(`Slide ${slide.idx}: uses experimental P23/P24 image structure. Use S22 or S15/S16 image-grid adaptations instead.`);
   }
 
-  const isStatement = layout === 'S03' || layout === 'S09' || layout === 'S10' || layout === 'SWISS-COVER-ASCII' || layout === 'SWISS-CLOSING-ASCII';
+  const isMagazine = /^A\d{2}$/.test(layout);
+  const isStatement = isMagazine || layout === 'S03' || layout === 'S09' || layout === 'S10' || layout === 'SWISS-COVER-ASCII' || layout === 'SWISS-CLOSING-ASCII';
   const topChunk = slide.html.slice(0, 1800);
 
   if (!isStatement && /text-align\s*:\s*center/i.test(topChunk)) {

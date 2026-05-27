@@ -16,9 +16,9 @@ export function SwissS17SystemDiagram({ page = '17', title, kicker, systems }) {
               {systems.map((system, index) => (
                 <div key={system.title} style={{ display: 'grid', placeItems: 'center', gap: '2vh' }}>
                   <svg viewBox="0 0 220 220" width="100%" height="34vh" aria-hidden="true">
-                    <circle cx="110" cy="110" r={70 + index * 6} fill="none" stroke={system.accent ? 'var(--accent)' : 'var(--ink)'} strokeWidth="2" opacity=".9" />
-                    <circle cx="110" cy="110" r={38 + index * 4} fill="none" stroke={system.accent ? 'var(--accent)' : 'var(--ink)'} strokeWidth="1" opacity=".38" />
-                    <circle cx="110" cy="110" r="12" fill={system.accent ? 'var(--accent)' : 'var(--ink)'} />
+                    <circle cx="110" cy="110" r={70 + index * 6} fill="none" stroke={system.accent ? 'var(--focus-mark)' : 'var(--ink)'} strokeWidth="2" opacity=".9" />
+                    <circle cx="110" cy="110" r={38 + index * 4} fill="none" stroke={system.accent ? 'var(--focus-mark)' : 'var(--ink)'} strokeWidth="1" opacity=".38" />
+                    <circle cx="110" cy="110" r="12" fill={system.accent ? 'var(--focus-mark)' : 'var(--ink)'} />
                   </svg>
                 </div>
               ))}

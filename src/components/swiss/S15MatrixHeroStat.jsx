@@ -19,7 +19,7 @@ export function SwissS15MatrixHeroStat({ page = '15', title, kicker, cells, stat
               </div>
             ))}
           </div>
-          <div data-anim="up" style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'end', borderTop: '2px solid var(--accent)', paddingTop: '2vh' }}>
+          <div data-anim="up" style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'end', borderTop: '2px solid var(--focus-mark)', paddingTop: '2vh' }}>
             <div>
               <div className="t-meta">{stat.kicker}</div>
               <div className="kpi-thin accent">{stat.value}</div>

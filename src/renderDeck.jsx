@@ -4,9 +4,13 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import {
   DEFAULT_FONT,
+  DEFAULT_SPACING,
   DEFAULT_THEME,
+  DEFAULT_TYPE_SCALE,
   FONT_OPTIONS,
+  SPACING_OPTIONS,
   THEME_OPTIONS,
+  TYPE_SCALE_OPTIONS,
   resolveOption,
 } from './options.jsx';
 
@@ -19,12 +23,26 @@ export function renderDeck(deck, { outFile }) {
 
   const { key: themeName, option: theme } = resolveOption(THEME_OPTIONS, deck.theme, DEFAULT_THEME, 'theme');
   const { key: fontName, option: font } = resolveOption(FONT_OPTIONS, deck.fontSet, DEFAULT_FONT, 'fontSet');
+  const { key: typeScaleName, option: typeScale } = resolveOption(TYPE_SCALE_OPTIONS, deck.typeScale, DEFAULT_TYPE_SCALE, 'typeScale');
+  const { key: spacingName, option: spacing } = resolveOption(SPACING_OPTIONS, deck.spacing, DEFAULT_SPACING, 'spacing');
   const template = fs.readFileSync(path.join(ROOT, 'assets/template-swiss.html'), 'utf8');
   const slides = renderToStaticMarkup(<>{React.Children.toArray(deck.slides)}</>);
   let html = insertSlides(template, slides);
   html = html.replace('<title>[必填] 替换为 PPT 标题 · Deck Title</title>', `<title>${escapeHtml(deck.title)}</title>`);
-  html = replaceCssVars(html, { ...theme.vars, ...font.vars });
+  html = replaceCssVars(html, { ...theme.vars, ...font.vars, ...typeScale.vars, ...spacing.vars });
   html = replaceOptionLabels(html, { themeLabel: theme.label, fontLabel: font.label, fontName });
+  html = injectPreviewOptions(html, {
+    themes: serializeOptions(THEME_OPTIONS),
+    fonts: serializeOptions(FONT_OPTIONS),
+    typeScales: serializeOptions(TYPE_SCALE_OPTIONS),
+    spacings: serializeOptions(SPACING_OPTIONS),
+    current: {
+      theme: themeName,
+      font: fontName,
+      typeScale: typeScaleName,
+      spacing: spacingName,
+    },
+  });
   html = html.replace('<link rel="preconnect" href="https://fonts.googleapis.com">', '<link rel="icon" href="data:,">\n<link rel="preconnect" href="https://fonts.googleapis.com">');
 
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
@@ -62,6 +80,28 @@ function replaceCssVars(html, vars) {
   return next;
 }
 
+function serializeOptions(registry) {
+  return Object.fromEntries(
+    Object.entries(registry).map(([key, option]) => [
+      key,
+      {
+        label: option.label,
+        vars: option.vars,
+        classes: option.classes,
+        dataAnimate: option.dataAnimate,
+      },
+    ]),
+  );
+}
+
+function injectPreviewOptions(html, options) {
+  const json = escapeScriptJson(JSON.stringify(options));
+  return html.replace(
+    /<script id="preview-options" type="application\/json">[\s\S]*?<\/script>/,
+    `<script id="preview-options" type="application/json">${json}</script>`,
+  );
+}
+
 function copyRuntimeAssets(outDir) {
   const assetsDir = path.join(outDir, 'assets');
   const imagesDir = path.join(outDir, 'images');
@@ -97,4 +137,11 @@ function escapeHtml(value) {
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;');
+}
+
+function escapeScriptJson(value) {
+  return value
+    .replaceAll('<', '\\u003c')
+    .replaceAll('\u2028', '\\u2028')
+    .replaceAll('\u2029', '\\u2029');
 }

@@ -22,7 +22,7 @@ export function SwissS13ThreeForces({ page = '13', title, kicker, hero, forces }
             <div style={{ display: 'grid', gridTemplateRows: 'repeat(3,1fr)', gap: '1.4vh' }}>
               {forces.map((force, index) => (
                 <div key={force.title} className="card-fill" style={{ padding: '2.2vh 1.6vw', display: 'grid', gridTemplateColumns: '5em 1fr', gap: '1.2vw', alignItems: 'center' }}>
-                  <div className="kpi-thin-sm" style={{ color: force.accent ? 'var(--accent)' : 'var(--ink)' }}>{String(index + 1).padStart(2, '0')}</div>
+                  <div className="kpi-thin-sm" style={{ color: force.accent ? 'var(--focus-mark)' : 'var(--ink)' }}>{String(index + 1).padStart(2, '0')}</div>
                   <div>
                     <h3 className="t-h-prod">{force.title}</h3>
                     <p className="t-body-sm" style={{ marginTop: '.6vh' }}>{force.body}</p>

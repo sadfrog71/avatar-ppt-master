@@ -32,10 +32,10 @@ export function SwissClosing({ title, note, takeaways, author = '', date = '' })
             <Chrome left="TAKEAWAYS" right={`${takeaways.length} RULES`} />
             <div data-anim="rules" style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
               {takeaways.map((item, index) => (
-                <div key={item.title} style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '2vw', alignItems: 'start', padding: '2.6vh 0', borderTop: '1px solid var(--border-subtle)', borderBottom: index === takeaways.length - 1 ? '2px solid var(--accent)' : undefined }}>
-                  <div style={{ fontFamily: 'var(--sans)', fontWeight: 200, fontSize: 'min(4.4vw,7.8vh)', lineHeight: .9, color: index === takeaways.length - 1 ? 'var(--accent)' : 'var(--text-primary)' }}>{String(index + 1).padStart(2, '0')}</div>
+                <div key={item.title} style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '2vw', alignItems: 'start', padding: '2.6vh 0', borderTop: '1px solid var(--border-subtle)', borderBottom: index === takeaways.length - 1 ? '2px solid var(--focus-mark)' : undefined }}>
+                  <div style={{ fontFamily: 'var(--sans)', fontWeight: 200, fontSize: 'min(4.4vw,7.8vh)', lineHeight: .9, color: index === takeaways.length - 1 ? 'var(--focus-mark)' : 'var(--text-primary)' }}>{String(index + 1).padStart(2, '0')}</div>
                   <div>
-                    <h3 style={{ fontFamily: 'var(--sans),var(--sans-zh)', fontWeight: 400, fontSize: 'max(18px,1.8vw)', lineHeight: 1.2, letterSpacing: '-.015em', color: index === takeaways.length - 1 ? 'var(--accent)' : 'var(--text-primary)', marginBottom: '1vh' }}>{item.title}</h3>
+                    <h3 style={{ fontFamily: 'var(--sans),var(--sans-zh)', fontWeight: 400, fontSize: 'max(18px,1.8vw)', lineHeight: 1.2, letterSpacing: '-.015em', color: index === takeaways.length - 1 ? 'var(--focus-mark)' : 'var(--text-primary)', marginBottom: '1vh' }}>{item.title}</h3>
                     <p style={{ fontFamily: 'var(--sans),var(--sans-zh)', fontSize: 'max(16px,.94vw)', lineHeight: 1.6, color: 'var(--text-secondary)', fontWeight: 400 }}>{item.body}</p>
                   </div>
                 </div>

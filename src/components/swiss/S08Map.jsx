@@ -43,7 +43,7 @@ export function SwissS08MapSlide({
             </div>
             {cards.map((card, index) => (
               <div key={card.title} className="card-fill" style={{ padding: '1.5vh 1.1vw', display: 'grid', gridTemplateColumns: '3em 1fr', gap: '.8vw', alignItems: 'start' }}>
-                <div className="t-meta" style={{ color: 'var(--accent)' }}>{String(index + 1).padStart(2, '0')}</div>
+                <div className="t-meta" style={{ color: 'var(--focus-mark)' }}>{String(index + 1).padStart(2, '0')}</div>
                 <div>
                   <div className="t-h-prod" style={{ fontSize: 'max(16px,1vw)' }}>{card.title}</div>
                   <div className="t-body-sm" style={{ marginTop: '.4vh', fontSize: 'max(14px,.82vw)' }}>{card.body}</div>
@@ -82,15 +82,15 @@ function MapGrid({ title, points, relations }) {
           const from = byId.get(fromId);
           const to = byId.get(toId);
           if (!from || !to) return null;
-          return <line key={`${fromId}-${toId}`} x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke="var(--accent)" strokeWidth=".24" strokeDasharray="1.4 1.2" opacity=".68" />;
+          return <line key={`${fromId}-${toId}`} x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke="var(--focus-mark)" strokeWidth=".24" strokeDasharray="1.4 1.2" opacity=".68" />;
         })}
       </svg>
       {points.map((point) => (
         <div key={point.id} style={{ position: 'absolute', left: `${point.x}%`, top: `${point.y}%`, transform: 'translate(-50%,-50%)' }}>
-          <span style={{ position: 'absolute', left: -6, top: -6, width: 12, height: 12, borderRadius: '50%', background: point.accent ? 'var(--accent)' : 'var(--ink)', border: '2px solid var(--paper)', boxShadow: '0 0 0 1px rgba(var(--ink-rgb),.22)' }} />
-          <span style={{ position: 'absolute', left: point.side === 'left' ? 'auto' : 7, right: point.side === 'left' ? 7 : 'auto', top: 0, width: 24, height: 1, background: point.accent ? 'var(--accent)' : 'var(--ink)', opacity: point.accent ? .75 : .45 }} />
+          <span style={{ position: 'absolute', left: -6, top: -6, width: 12, height: 12, borderRadius: '50%', background: point.accent ? 'var(--focus-mark)' : 'var(--ink)', border: '2px solid var(--paper)', boxShadow: '0 0 0 1px rgba(var(--ink-rgb),.22)' }} />
+          <span style={{ position: 'absolute', left: point.side === 'left' ? 'auto' : 7, right: point.side === 'left' ? 7 : 'auto', top: 0, width: 24, height: 1, background: point.accent ? 'var(--focus-mark)' : 'var(--ink)', opacity: point.accent ? .75 : .45 }} />
           <span style={{ position: 'absolute', left: point.side === 'left' ? 'auto' : 31, right: point.side === 'left' ? 31 : 'auto', top: -18, minWidth: 76, background: 'rgba(var(--paper-rgb),.9)', padding: '6px 7px', whiteSpace: 'nowrap' }}>
-            <span style={{ display: 'block', fontFamily: 'var(--sans),var(--sans-zh)', fontSize: 12, lineHeight: 1.05, color: point.accent ? 'var(--accent)' : 'var(--ink)' }}>{point.name}</span>
+            <span style={{ display: 'block', fontFamily: 'var(--sans),var(--sans-zh)', fontSize: 12, lineHeight: 1.05, color: point.accent ? 'var(--focus-mark)' : 'var(--ink)' }}>{point.name}</span>
             <span style={{ display: 'block', fontFamily: 'var(--mono)', fontSize: 9, lineHeight: 1, letterSpacing: '.12em', color: 'var(--text-helper)', marginTop: 4, textTransform: 'uppercase' }}>{point.meta}</span>
           </span>
         </div>

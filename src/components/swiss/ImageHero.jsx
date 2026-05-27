@@ -30,7 +30,7 @@ export function SwissImageHeroSlide({
               <div key={stat.label} style={{ display: 'flex', flexDirection: 'column', gap: '.6vh' }}>
                 <div style={{ height: 1, background: 'var(--ink)' }} />
                 <div className="t-meta">{stat.label}</div>
-                <div style={{ fontFamily: 'var(--sans)', fontWeight: 200, fontSize: 'min(4.6vw,7.6vh)', lineHeight: .95, letterSpacing: '-.04em', color: index === 2 ? 'var(--accent)' : 'var(--text-primary)' }}>{stat.value}</div>
+                <div style={{ fontFamily: 'var(--sans)', fontWeight: 200, fontSize: 'min(4.6vw,7.6vh)', lineHeight: .95, letterSpacing: '-.04em', color: index === 2 ? 'var(--focus-mark)' : 'var(--text-primary)' }}>{stat.value}</div>
                 <div style={{ height: 1, background: 'var(--border-subtle)', marginTop: 'auto' }} />
                 <p className="t-body-sm">{stat.note}</p>
               </div>

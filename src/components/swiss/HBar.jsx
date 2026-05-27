@@ -1,5 +1,6 @@
 import React from 'react';
 import { CanvasCard, Chrome, SwissSlide } from './primitives.jsx';
+import { HBarChart } from '../charts/index.jsx';
 
 export function SwissHBarSlide({ page = '05', title, kicker, label, rows }) {
   return (
@@ -15,15 +16,7 @@ export function SwissHBarSlide({ page = '05', title, kicker, label, rows }) {
             <div className="t-cat">{label}</div>
             <div style={{ height: 1, background: 'var(--border-subtle)' }} />
           </div>
-          <div className="h-bar-chart">
-            {rows.map((row) => (
-              <React.Fragment key={row.label}>
-                <div className="row-lbl">{row.label}</div>
-                <div className="row-track"><div className={`row-fill ${row.accent ? 'accent' : ''}`} style={{ width: row.width }} /></div>
-                <div className="row-val">{row.value}</div>
-              </React.Fragment>
-            ))}
-          </div>
+          <HBarChart rows={rows} />
         </div>
       </CanvasCard>
     </SwissSlide>

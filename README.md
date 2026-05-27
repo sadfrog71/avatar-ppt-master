@@ -21,7 +21,7 @@ output/my-deck/ppt/
 - `fontSet`: 从字体组合中选一个
 - 每一页: 从页面版式选项中选一个
 
-选项集中登记在 [src/options.jsx](/Users/jadon7/Documents/SynologyDrive/code/项目研究/guizang-ppt-skill-main/src/options.jsx),页面组件在 [src/components/swiss/](/Users/jadon7/Documents/SynologyDrive/code/项目研究/guizang-ppt-skill-main/src/components/swiss/index.jsx)。
+主题、字体、字号、间距和动效 token 在 [src/tokens/](/Users/jadon7/Documents/SynologyDrive/code/项目研究/guizang-ppt-skill-main/src/tokens/index.js)。页面版式登记在 [src/options.jsx](/Users/jadon7/Documents/SynologyDrive/code/项目研究/guizang-ppt-skill-main/src/options.jsx)。可组合基础组件按职责放在 [src/components/](/Users/jadon7/Documents/SynologyDrive/code/项目研究/guizang-ppt-skill-main/src/components/index.jsx),历史布局 preset 分别在 `components/magazine/` 和 `components/swiss/`。
 
 ## 快速开始
 
@@ -67,15 +67,22 @@ npm run render:examples
 - `lemon`
 - `green`
 - `orange`
+- `monocle`
+- `indigo`
+- `forest`
+- `kraft`
+- `dune`
 
 字体组合:
 
 - `inter`
 - `system`
 - `compact`
+- `editorial`
 
 页面版式:
 
+- `a01` 到 `a10`: 原始电子杂志风 10 个布局,已补入统一 registry
 - `s01` 到 `s22`: 原始 Swiss 22 个正文布局
 - `s08Map`: 原项目登记的 S08 地图插槽扩展,仍输出 `data-layout="S08"`
 - `cover`: 特殊 ASCII 封面
@@ -86,19 +93,34 @@ npm run render:examples
 
 ```text
 assets/
+  screenshot-backgrounds/style-a/
   screenshot-backgrounds/style-b/
   template-swiss.html
   motion.min.js
 src/
+  tokens/
   options.jsx
   renderDeck.jsx
-  components/swiss/
+  components/
+    shell/
+    text/
+    media/
+    metrics/
+    charts/
+    timelines/
+    cards/
+    decorations/
+    diagrams/
+    magazine/
+    swiss/
 scripts/
   render-deck.jsx
   validate-swiss-deck.mjs
 examples/component-decks/
 references/
   component-workflow.md
+  themes.md
+  layouts.md
   themes-swiss.md
   swiss-layout-lock.md
   layouts-swiss.md
@@ -125,8 +147,8 @@ npm run validate:swiss -- output/examples/retail-launch-brief/ppt/index.html
 
 以下文档由 `npm run docs:update` 同步,提交前也会由 `.githooks/pre-commit` 自动更新。
 
-提交前 hook 还会运行 `npm run showcase:update`,确保 `all-layouts-showcase.jsx` 覆盖全部 `S01-S22` 和 Style B 登记扩展,并刷新 `output/all-components-showcase/ppt/index.html`。
+提交前 hook 还会运行 `npm run showcase:update`,确保 `all-layouts-showcase.jsx` 覆盖全部 `A01-A10`、`S01-S22` 和 Style B 登记扩展,并刷新 `output/all-components-showcase/ppt/index.html`。
 
 - [ADR](docs/ADR.md): 当前架构决策记录
-- [项目文件作用说明](docs/project-files.md): 当前 61 个源码文件的主要作用
+- [项目文件作用说明](docs/project-files.md): 当前 114 个源码文件的主要作用
 <!-- project-docs:end -->

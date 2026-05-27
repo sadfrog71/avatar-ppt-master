@@ -11,15 +11,20 @@ const descriptions = {
   'README.md': '项目入口说明,包含快速开始、当前选项和文档索引。',
   'SKILL.md': '给 Agent 使用的 skill 说明,定义 PPT 生成流程和约束。',
   'assets/motion.min.js': '浏览器端 Motion One 动效 runtime,由渲染器复制到最终产物。',
+  'assets/screenshot-backgrounds/style-a/dune.webp': 'Style A 沙丘截图背景资源。',
+  'assets/screenshot-backgrounds/style-a/forest-ink.webp': 'Style A 森林墨截图背景资源。',
+  'assets/screenshot-backgrounds/style-a/indigo-porcelain.webp': 'Style A 靛蓝瓷截图背景资源。',
+  'assets/screenshot-backgrounds/style-a/kraft-paper.webp': 'Style A 牛皮纸截图背景资源。',
+  'assets/screenshot-backgrounds/style-a/monocle-classic.webp': 'Style A 墨水经典截图背景资源。',
   'assets/screenshot-backgrounds/style-b/ikb-dot-gradient.webp': 'Style B IKB 蓝截图背景资源。',
   'assets/screenshot-backgrounds/style-b/lemon-green-dot-shadow.webp': 'Style B 柠檬绿截图背景资源。',
   'assets/screenshot-backgrounds/style-b/lemon-grid.webp': 'Style B 柠檬黄截图背景资源。',
   'assets/screenshot-backgrounds/style-b/safety-orange-halftone.webp': 'Style B 安全橙截图背景资源。',
-  'assets/template-swiss.html': '静态 PPT HTML 外壳模板,包含 CSS、背景、翻页、导航和动效入口。',
+  'assets/template-swiss.html': '静态 PPT HTML 外壳模板,包含 CSS、背景、翻页、导航、预览控制器和动效入口。',
   'docs/ADR.md': '架构决策记录,描述当前生成链路和组件化边界。',
   'docs/project-files.md': '项目文件作用说明,由脚本根据当前文件列表生成。',
   'examples/component-decks/ai-ops-review.jsx': 'AI 运营复盘示例 deck,演示技术/运营复盘主题的页面组合。',
-  'examples/component-decks/all-layouts-showcase.jsx': 'Swiss S01-S22 布局与 Style B 登记扩展总览示例 deck。',
+  'examples/component-decks/all-layouts-showcase.jsx': '全部布局总览示例 deck,顺序渲染 A01-A10、S01-S22、S08 登记扩展和组件维度展示页。',
   'examples/component-decks/climate-field-report.jsx': '城市微气候田野报告示例 deck,演示生态/田野主题的页面组合。',
   'examples/component-decks/retail-launch-brief.jsx': '零售新品上市简报示例 deck,演示消费/上市主题的页面组合。',
   'examples/component-decks/swiss-demo.jsx': '组件选项机制 demo deck,可用环境变量切换主题和字体。',
@@ -28,15 +33,29 @@ const descriptions = {
   'references/checklist.md': '原项目执行检查清单,包含 Style B 生成和 QA 约束。',
   'references/component-workflow.md': '组件选项工作流参考,说明新增选项和 subagent 测试要求。',
   'references/image-prompts.md': '图片生成提示词参考,包含 Style A 与 Style B 的图像槽位要求。',
+  'references/layouts.md': 'Style A 电子杂志原始布局说明,登记 A01-A10 的历史来源。',
   'references/layouts-swiss.md': 'Style B Swiss 原始布局说明,登记 S01-S22 与地图扩展使用方式。',
   'references/screenshot-framing.md': '截图入版规范,说明不同风格的背景、裁切、阴影和留边规则。',
   'references/swiss-layout-lock.md': 'Style B Swiss 布局锁定规则,约束只能使用登记布局和扩展。',
   'references/swiss-map-component.md': 'Style B S08 地图插槽扩展说明,定义点位、关系线和控制区契约。',
+  'references/themes.md': 'Style A 电子杂志主题色参考。',
   'references/themes-swiss.md': 'Style B Swiss 主题色参考,定义 4 套主题与使用边界。',
   'scripts/render-deck.jsx': '渲染 CLI 入口,把 deck 配置文件输出成静态 HTML。',
   'scripts/update-project-docs.mjs': '文档同步脚本,更新 README、ADR 和项目文件作用说明。',
-  'scripts/validate-layout-showcase.mjs': '布局总览覆盖校验器,确保 all-layouts-showcase 穷举 canonical S01-S22 和 Style B 登记扩展。',
-  'scripts/validate-swiss-deck.mjs': 'Swiss deck 静态校验器,检查合法 layout、图片槽位和禁用模式。',
+  'scripts/validate-layout-showcase.mjs': '布局总览覆盖校验器,确保 all-layouts-showcase 穷举 A01-A10、canonical S01-S22 和 Style B 登记扩展。',
+  'scripts/validate-swiss-deck.mjs': '静态 deck 校验器,检查合法 layout、图片槽位和禁用模式。',
+  'src/components/magazine/A01HeroCover.jsx': 'Hero Cover 页面布局组件,对应 A01。',
+  'src/components/magazine/A02ActDivider.jsx': 'Act Divider 页面布局组件,对应 A02。',
+  'src/components/magazine/A03BigNumbersGrid.jsx': 'Big Numbers Grid 页面布局组件,对应 A03。',
+  'src/components/magazine/A04QuoteImage.jsx': 'Quote + Image 页面布局组件,对应 A04。',
+  'src/components/magazine/A05ImageGrid.jsx': 'Image Grid 页面布局组件,对应 A05。',
+  'src/components/magazine/A06Pipeline.jsx': 'Pipeline 页面布局组件,对应 A06。',
+  'src/components/magazine/A07HeroQuestion.jsx': 'Hero Question 页面布局组件,对应 A07。',
+  'src/components/magazine/A08BigQuote.jsx': 'Big Quote 页面布局组件,对应 A08。',
+  'src/components/magazine/A09BeforeAfter.jsx': 'Before / After 页面布局组件,对应 A09。',
+  'src/components/magazine/A10LeadImageText.jsx': 'Lead Image + Side Text 页面布局组件,对应 A10。',
+  'src/components/magazine/index.jsx': 'A01-A10 组件统一导出口,供 LAYOUT_OPTIONS 引用。',
+  'src/components/magazine/primitives.jsx': '电子杂志布局共享基础件,包含 slide 外壳、页眉、页脚、图片框和标题块。',
   'src/components/swiss/Closing.jsx': '收尾页组件,对应 SWISS-CLOSING-ASCII。',
   'src/components/swiss/Cover.jsx': '封面组件,对应 SWISS-COVER-ASCII。',
   'src/components/swiss/HBar.jsx': '横向柱状排行组件,对应 S07。',
@@ -64,8 +83,8 @@ const descriptions = {
   'src/components/swiss/Timeline.jsx': '纵向时间线 + KPI 组件,对应 S02。',
   'src/components/swiss/index.jsx': 'Swiss 组件统一导出口,供 LAYOUT_OPTIONS 引用。',
   'src/components/swiss/primitives.jsx': 'Swiss 组件共享基础件,包含 slide 外壳、画布卡、页眉、图标和 KPI 行。',
-  'src/options.jsx': '选项注册表,集中登记主题色、字体组合和页面版式。',
-  'src/renderDeck.jsx': '核心渲染器,把 React slides 注入模板并替换主题/字体变量。',
+  'src/options.jsx': '选项注册表,集中登记主题色、字体组合、字号、间距、动效和页面版式。',
+  'src/renderDeck.jsx': '核心渲染器,把 React slides 注入模板并替换 CSS 变量、注入预览控制器选项。',
 };
 
 const generatedFiles = ['docs/ADR.md', 'docs/project-files.md'];
@@ -116,7 +135,7 @@ function renderAdr() {
 
 ## ADR-003: 模板负责浏览器运行时
 
-\`assets/template-swiss.html\` 负责 CSS 视觉系统、背景、翻页、导航和动效入口。React 组件只生成注入到 \`#deck\` 内的 slide markup。
+\`assets/template-swiss.html\` 负责 CSS 视觉系统、背景、翻页、导航、预览控制器和动效入口。React 组件只生成注入到 \`#deck\` 内的 slide markup。
 
 ## ADR-004: 输出目录是生成物
 
@@ -141,6 +160,18 @@ function renderAdr() {
 ## ADR-009: Style B 参考资源纳入源码
 
 原项目 Style B / Swiss 的主题、布局锁定、地图扩展、图片提示词、截图入版规则和 4 套截图背景资源保留在 \`references/\` 与 \`assets/screenshot-backgrounds/style-b/\`。主题是 deck 级多选一,布局仍是每页从 \`S01\` 到 \`S22\` 多选一;\`s08Map\` 只是 S08 插槽扩展,不新增布局编号。
+
+## ADR-010: Style A 原始布局补入统一 registry
+
+原项目 Style A / 电子杂志风的 10 个原始布局登记为 \`a01\` 到 \`a10\`,输出 \`data-layout="A01"\` 到 \`A10\`。这些布局和 Swiss \`s01\` 到 \`s22\` 使用同一个 \`LAYOUT_OPTIONS\` 与同一个静态模板渲染,当前不再恢复第二套 HTML 运行时。
+
+## ADR-011: token 与组件按组合维度分类
+
+\`src/tokens/\` 存放主题、字体、字号、间距和动效选项。\`src/components/\` 下按组合职责分为 \`shell/\`、\`text/\`、\`media/\`、\`metrics/\`、\`charts/\`、\`timelines/\`、\`cards/\`、\`decorations/\`、\`diagrams/\`。历史布局目录 \`magazine/\` 与 \`swiss/\` 继续保留为 layout preset,但内部优先复用这些分类组件。
+
+## ADR-012: demo 同时覆盖布局穷举和运行时切换
+
+\`examples/component-decks/all-layouts-showcase.jsx\` 负责穷举全部登记布局,并追加组件维度展示页。主题、字体、字号、间距这类全局 token 由 \`assets/template-swiss.html\` 的预览侧边栏切换。明暗底色不再作为单独预览选项,而是归入 theme 的 \`surface\` / \`inverse\` 角色;布局内被高亮的 item 统一使用 theme 的 \`focus-*\` 角色。动效跟随布局组件,不作为预览选项。
 `;
 }
 
@@ -157,7 +188,7 @@ function renderReadmeSection(fileList) {
 
 以下文档由 \`npm run docs:update\` 同步,提交前也会由 \`.githooks/pre-commit\` 自动更新。
 
-提交前 hook 还会运行 \`npm run showcase:update\`,确保 \`all-layouts-showcase.jsx\` 覆盖全部 \`S01-S22\` 和 Style B 登记扩展,并刷新 \`output/all-components-showcase/ppt/index.html\`。
+提交前 hook 还会运行 \`npm run showcase:update\`,确保 \`all-layouts-showcase.jsx\` 覆盖全部 \`A01-A10\`、\`S01-S22\` 和 Style B 登记扩展,并刷新 \`output/all-components-showcase/ppt/index.html\`。
 
 - [ADR](docs/ADR.md): 当前架构决策记录
 - [项目文件作用说明](docs/project-files.md): 当前 ${sourceCount} 个源码文件的主要作用
@@ -184,6 +215,16 @@ function describe(file) {
   if (file.startsWith('examples/component-decks/')) return '组件化 deck 示例配置。';
   if (file.startsWith('references/')) return 'Agent 或开发者参考资料。';
   if (file.startsWith('scripts/')) return '本地命令脚本。';
+  if (file.startsWith('src/tokens/')) return '组件生成层 token 选项。';
+  if (file.startsWith('src/components/shell/')) return '页面外壳组件,负责 slide、画布、页眉、页脚和背景装饰。';
+  if (file.startsWith('src/components/text/')) return '文本表达组件,负责 kicker、标题、引用和 meta 信息。';
+  if (file.startsWith('src/components/media/')) return '媒体组件,负责图片框、截图槽位和图片网格。';
+  if (file.startsWith('src/components/metrics/')) return '指标组件,负责 KPI 行、数据卡和数字网格。';
+  if (file.startsWith('src/components/charts/')) return '图表组件,负责条形图等数据可视化块。';
+  if (file.startsWith('src/components/timelines/')) return '时间线与流程组件。';
+  if (file.startsWith('src/components/cards/')) return '卡片组件。';
+  if (file.startsWith('src/components/decorations/')) return '装饰组件,包含图标和分割线等视觉元素。';
+  if (file.startsWith('src/components/diagrams/')) return '图解组件,负责地图、关系图和系统图等结构表达。';
   if (file.startsWith('src/')) return 'React 生成层源码。';
   return '项目源码或配置文件。';
 }

@@ -1,5 +1,20 @@
 import React from 'react';
-import { slide } from '../../src/options.jsx';
+import {
+  FONT_OPTIONS,
+  SPACING_OPTIONS,
+  THEME_OPTIONS,
+  TYPE_SCALE_OPTIONS,
+  slide,
+} from '../../src/options.jsx';
+
+const componentFeaturePages = 3;
+const totalShowcasePages = 10 + 22 + 1 + componentFeaturePages;
+const tokenCounts = {
+  themes: Object.keys(THEME_OPTIONS).length,
+  fonts: Object.keys(FONT_OPTIONS).length,
+  typeScales: Object.keys(TYPE_SCALE_OPTIONS).length,
+  spacings: Object.keys(SPACING_OPTIONS).length,
+};
 
 const metrics = [
   { label: 'ARR', value: '¥48M', note: '同比增长 92%' },
@@ -8,11 +23,29 @@ const metrics = [
   { label: 'CSAT', value: '4.6', note: '企业客户平均评分' },
 ];
 
+const magazineStats = [
+  { label: 'Deck Systems', value: '02', note: '电子杂志与 Swiss 原始体系' },
+  { label: 'Layouts Added', value: '10', note: '补齐 Style A 原始布局' },
+  { label: 'React Files', value: '10', note: '一个布局一个组件文件' },
+  { label: 'Showcase Pages', value: String(totalShowcasePages).padStart(2, '0'), note: '全部布局和组件维度集中预览' },
+  { label: 'Image Slots', value: '08', note: '媒体页槽位带 data-image-slot' },
+  { label: 'Runtime', value: '01', note: '仍使用同一静态 HTML 模板' },
+];
+
+const magazineImages = [
+  { caption: 'Prototype · 16:10' },
+  { caption: 'Research · 16:10' },
+  { caption: 'Dashboard · 16:10' },
+  { caption: 'Field Note · 16:10' },
+  { caption: 'Archive · 16:10' },
+  { caption: 'UI State · 16:10' },
+];
+
 export default {
   style: 'swiss',
   theme: process.env.GUIZANG_THEME || 'ikb',
-  fontSet: process.env.GUIZANG_FONT || 'inter',
-  title: 'Swiss Style B 布局与扩展总览',
+  fontSet: process.env.GUIZANG_FONT || 'editorial',
+  title: '全部布局与扩展总览',
   slides: [
     slide('s01', {
       page: '01 / 22',
@@ -292,6 +325,172 @@ export default {
       title: '图片页锁住 21:9 主视觉槽位',
       kicker: 'S22 · IMAGE HERO',
       stats: metrics,
+    }),
+    slide('a01', {
+      page: 'A01 / 10',
+      title: 'Editorial Layouts',
+      subtitle: '补齐电子杂志风的原始布局',
+      kicker: 'A01 · HERO COVER',
+      lead: '这组页面来自原项目 Style A,现在作为统一 registry 的布局组件存在。',
+      meta: ['Guizang PPT', 'Layout Pool', '2026'],
+      issue: 'A01',
+      footerLeft: 'A01 · Hero Cover',
+      footerRight: 'Magazine',
+    }),
+    slide('a02', {
+      page: 'A02 / 10',
+      title: '章节幕封',
+      kicker: 'A02 · ACT DIVIDER',
+      lead: '用于章节切换、节奏换气和主题转场。',
+      tone: 'light',
+      footerLeft: 'A02 · Act Divider',
+      footerRight: 'Transition',
+    }),
+    slide('a03', {
+      page: 'A03 / 10',
+      title: '数据大字报',
+      kicker: 'A03 · BIG NUMBERS GRID',
+      lead: '六个数据点组成一页,适合先抛出事实密度。',
+      stats: magazineStats,
+      footerLeft: 'A03 · Big Numbers Grid',
+      footerRight: 'Data',
+    }),
+    slide('a04', {
+      page: 'A04 / 10',
+      title: '不是换色。',
+      kicker: 'A04 · QUOTE + IMAGE',
+      lead: '左侧用一句判断建立叙事,右侧用 16:10 图像承接证据。',
+      callout: '布局池补齐以后,再谈组件维度才有完整样本。',
+      calloutSource: '— Layout registry note',
+      tone: 'dark',
+      image: { caption: 'Evidence · 16:10' },
+      footerLeft: 'A04 · Quote + Image',
+      footerRight: 'Story',
+    }),
+    slide('a05', {
+      page: 'A05 / 10',
+      title: '图片网格用于多图对比',
+      kicker: 'A05 · IMAGE GRID',
+      images: magazineImages,
+      footerLeft: 'A05 · Image Grid',
+      footerRight: 'Proof',
+    }),
+    slide('a06', {
+      page: 'A06 / 10',
+      title: '两条流水线',
+      kicker: 'A06 · PIPELINE',
+      sections: [
+        {
+          label: 'Content Pipeline',
+          steps: [
+            { number: '01', title: 'Topic', body: '确定内容主题' },
+            { number: '02', title: 'Outline', body: '拆成页面段落' },
+            { number: '03', title: 'Draft', body: '生成初稿' },
+            { number: '04', title: 'Polish', body: '压缩文字密度' },
+            { number: '05', title: 'Ship', body: '输出静态 HTML', accent: true },
+          ],
+        },
+        {
+          label: 'Visual Pipeline',
+          steps: [
+            { number: '06', title: 'Theme', body: '选择主题 token' },
+            { number: '07', title: 'Media', body: '匹配图片槽位' },
+            { number: '08', title: 'Motion', body: '绑定动效 recipe' },
+          ],
+        },
+      ],
+      footerLeft: 'A06 · Pipeline',
+      footerRight: 'Workflow',
+    }),
+    slide('a07', {
+      page: 'A07 / 10',
+      kicker: 'A07 · HERO QUESTION',
+      lines: ['如果不分 A/B,', '页面到底由哪些', '组件组合出来?'],
+      lead: '先把所有历史布局补全,再从完整样本里拆维度。',
+      footerLeft: 'A07 · Hero Question',
+      footerRight: 'Question',
+    }),
+    slide('a08', {
+      page: 'A08 / 10',
+      kicker: 'A08 · BIG QUOTE',
+      lines: ['“布局不是终点,', '只是组件组合的证据。”'],
+      lead: 'The preset is only a starting point. The component pool is the real product.',
+      source: ['Guizang PPT', 'Component workflow'],
+      tone: 'dark',
+      footerLeft: 'A08 · Big Quote',
+      footerRight: 'Quote',
+    }),
+    slide('a09', {
+      page: 'A09 / 10',
+      title: '从模板到组件池',
+      kicker: 'A09 · BEFORE / AFTER',
+      left: {
+        kicker: 'Before',
+        title: '按风格分支',
+        points: ['Style A 单独一套 HTML', 'Style B 单独一套 Swiss', 'Agent 先选风格再选布局'],
+      },
+      right: {
+        kicker: 'After',
+        title: '统一布局池',
+        points: ['所有布局进入 registry', '主题和字体作为 token', '页面从组件组合开始'],
+      },
+      footerLeft: 'A09 · Before / After',
+      footerRight: 'Compare',
+    }),
+    slide('a10', {
+      page: 'A10 / 10',
+      title: '图文混排承载高信息量页面',
+      kicker: 'A10 · LEAD IMAGE + SIDE TEXT',
+      lead: '左侧用多层文字讲清上下文,右侧用竖图或方图提供视觉锚点。',
+      body: '这个布局比 A04 信息密度更高,适合阶段复盘、设计过程、方法拆解和案例说明。',
+      callout: `补齐后当前展示页包含 10 个 A 系布局、22 个 S 系布局、1 个 S08 扩展和 ${componentFeaturePages} 个组件维度页。`,
+      calloutSource: '— Showcase coverage',
+      image: { caption: 'Side Image · 3:4' },
+      footerLeft: 'A10 · Lead Image + Side Text',
+      footerRight: 'Feature',
+    }),
+    slide('sixCells', {
+      page: 'C01 / 03',
+      title: '组件维度池用于组合页面',
+      kicker: 'COMPONENT DIMENSIONS',
+      cells: [
+        { icon: 'layout-grid', title: 'Shell', body: 'Slide、背景、页眉、页脚。' },
+        { icon: 'type', title: 'Text', body: 'Kicker、标题、引用、Meta。' },
+        { icon: 'image', title: 'Media', body: '图片框、截图槽位、图片网格。' },
+        { icon: 'trending-up', title: 'Metrics / Charts', body: 'KPI、统计网格、横条图。', accent: true },
+        { icon: 'route', title: 'Timeline / Diagram', body: '流程、时间线、关系图。' },
+        { icon: 'sparkles', title: 'Decoration', body: '图标、分割线、装饰元素。' },
+      ],
+    }),
+    slide('hBar', {
+      page: 'C02 / 03',
+      title: '主题同时约束明暗与焦点色',
+      kicker: 'RUNTIME TOKEN SWITCHES',
+      label: 'REGISTERED OPTIONS',
+      rows: [
+        { label: '主题方案', width: '100%', value: `${tokenCounts.themes}`, accent: true },
+        { label: '主题角色', width: '76%', value: '3' },
+        { label: '字体组合', width: '70%', value: `${tokenCounts.fonts}` },
+        { label: '字号体系', width: '54%', value: `${tokenCounts.typeScales}` },
+        { label: '间距体系', width: '42%', value: `${tokenCounts.spacings}` },
+      ],
+    }),
+    slide('timeline', {
+      page: 'C03 / 03',
+      title: '从布局穷举到运行时查看',
+      kicker: 'SHOWCASE WORKFLOW',
+      nodes: [
+        { label: '01', value: 'Layout', body: 'A01-A10、S01-S22 和 S08 扩展全部列出。' },
+        { label: '02', value: 'Token', body: '主题内置 surface、inverse、focus 角色,侧边栏只切换主题方案。', accent: true },
+        { label: '03', value: 'Component', body: 'shell/text/media/metrics/chart 等维度在 demo 页体现。' },
+        { label: '04', value: 'Preview', body: '不适合铺满页面的维度在侧边栏切换。' },
+      ],
+      metrics: [
+        { label: 'Layouts', value: '33', note: '10 A + 22 S + S08 map' },
+        { label: 'Features', value: `${componentFeaturePages}`, note: '组件维度展示页' },
+        { label: 'Tokens', value: `${tokenCounts.themes + tokenCounts.fonts + tokenCounts.typeScales + tokenCounts.spacings}`, note: '全局 token 选项总数' },
+        { label: 'Runtime', value: '1', note: '同一 HTML 预览控制器' },
+      ],
     }),
   ],
 };
