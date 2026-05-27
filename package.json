@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "docs:update": "node scripts/update-project-docs.mjs",
     "render:deck": "tsx scripts/render-deck.jsx",
     "render:demo": "tsx scripts/render-deck.jsx examples/component-decks/swiss-demo.jsx output/component-demo/ppt/index.html",
     "render:examples": "tsx scripts/render-deck.jsx examples/component-decks/ai-ops-review.jsx output/examples/ai-ops-review/ppt/index.html && tsx scripts/render-deck.jsx examples/component-decks/climate-field-report.jsx output/examples/climate-field-report/ppt/index.html && tsx scripts/render-deck.jsx examples/component-decks/retail-launch-brief.jsx output/examples/retail-launch-brief/ppt/index.html",
