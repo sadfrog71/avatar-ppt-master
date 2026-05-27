@@ -21,3 +21,7 @@
 ## ADR-005: 提交前同步项目文档
 
 `.githooks/pre-commit` 会运行 `scripts/update-project-docs.mjs`,并 stage `README.md`、`docs/ADR.md`、`docs/project-files.md`。
+
+## ADR-006: Swiss 布局组件按文件拆分
+
+每个 Swiss 页面布局组件独立放在 `src/components/swiss/*.jsx`,共享基础件放在 `src/components/swiss/primitives.jsx`,统一导出放在 `src/components/swiss/index.jsx`。`src/options.jsx` 只负责把 layout key 登记到组件。

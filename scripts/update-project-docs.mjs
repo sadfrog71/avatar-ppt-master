@@ -23,7 +23,15 @@ const descriptions = {
   'scripts/render-deck.jsx': '渲染 CLI 入口,把 deck 配置文件输出成静态 HTML。',
   'scripts/update-project-docs.mjs': '文档同步脚本,更新 README、ADR 和项目文件作用说明。',
   'scripts/validate-swiss-deck.mjs': 'Swiss deck 静态校验器,检查合法 layout、图片槽位和禁用模式。',
-  'src/components/swiss.jsx': 'React 页面组件库,包含封面、时间线、六宫格、KPI、横条图、图片页和收尾页。',
+  'src/components/swiss/Closing.jsx': '收尾页组件,对应 SWISS-CLOSING-ASCII。',
+  'src/components/swiss/Cover.jsx': '封面组件,对应 SWISS-COVER-ASCII。',
+  'src/components/swiss/HBar.jsx': '横向柱状排行组件,对应 S07。',
+  'src/components/swiss/ImageHero.jsx': '图片主视觉页组件,对应 S22。',
+  'src/components/swiss/KpiTower.jsx': 'KPI 塔组件,对应 S06。',
+  'src/components/swiss/SixCells.jsx': '六宫格组件,对应 S04。',
+  'src/components/swiss/Timeline.jsx': '纵向时间线 + KPI 组件,对应 S02。',
+  'src/components/swiss/index.jsx': 'Swiss 组件统一导出口,供 LAYOUT_OPTIONS 引用。',
+  'src/components/swiss/primitives.jsx': 'Swiss 组件共享基础件,包含 slide 外壳、画布卡、页眉、图标和 KPI 行。',
   'src/options.jsx': '选项注册表,集中登记主题色、字体组合和页面版式。',
   'src/renderDeck.jsx': '核心渲染器,把 React slides 注入模板并替换主题/字体变量。',
 };
@@ -49,14 +57,15 @@ writeFile('docs/ADR.md', renderAdr());
 updateReadme(files);
 
 function renderProjectFiles(fileList) {
-  const rows = fileList.map((file) => `| \`${file}\` | ${describe(file)} |`).join('\n');
+  const tree = renderTree(fileList);
   return `# 项目文件作用说明
 
-本文件由 \`scripts/update-project-docs.mjs\` 生成,用于快速理解当前项目目录下每个源码文件的主要作用。\`output/\` 是生成产物目录,不纳入源码文件清单。
+本文件由 \`scripts/update-project-docs.mjs\` 生成,用于快速理解当前项目工作树下每个源码文件的主要作用。\`output/\` 是生成产物目录,不纳入源码文件清单。
 
-| 文件 | 主要作用 |
-|---|---|
-${rows}
+\`\`\`text
+.
+${tree}
+\`\`\`
 `;
 }
 
@@ -84,6 +93,10 @@ function renderAdr() {
 ## ADR-005: 提交前同步项目文档
 
 \`.githooks/pre-commit\` 会运行 \`scripts/update-project-docs.mjs\`,并 stage \`README.md\`、\`docs/ADR.md\`、\`docs/project-files.md\`。
+
+## ADR-006: Swiss 布局组件按文件拆分
+
+每个 Swiss 页面布局组件独立放在 \`src/components/swiss/*.jsx\`,共享基础件放在 \`src/components/swiss/primitives.jsx\`,统一导出放在 \`src/components/swiss/index.jsx\`。\`src/options.jsx\` 只负责把 layout key 登记到组件。
 `;
 }
 
@@ -127,6 +140,51 @@ function describe(file) {
   if (file.startsWith('scripts/')) return '本地命令脚本。';
   if (file.startsWith('src/')) return 'React 生成层源码。';
   return '项目源码或配置文件。';
+}
+
+function renderTree(fileList) {
+  const root = { children: new Map() };
+
+  for (const file of fileList) {
+    let cursor = root;
+    const parts = file.split('/');
+
+    parts.forEach((part, index) => {
+      if (!cursor.children.has(part)) {
+        cursor.children.set(part, {
+          name: part,
+          path: parts.slice(0, index + 1).join('/'),
+          children: new Map(),
+          isFile: index === parts.length - 1,
+        });
+      }
+      cursor = cursor.children.get(part);
+    });
+  }
+
+  return renderTreeNode(root).join('\n');
+}
+
+function renderTreeNode(node, prefix = '') {
+  const entries = [...node.children.values()].sort((a, b) => {
+    if (a.isFile !== b.isFile) return a.isFile ? 1 : -1;
+    return a.name.localeCompare(b.name);
+  });
+
+  return entries.flatMap((entry, index) => {
+    const isLast = index === entries.length - 1;
+    const marker = isLast ? '`-- ' : '|-- ';
+    const nextPrefix = `${prefix}${isLast ? '    ' : '|   '}`;
+
+    if (entry.isFile) {
+      return [`${prefix}${marker}${entry.name} - ${describe(entry.path)}`];
+    }
+
+    return [
+      `${prefix}${marker}${entry.name}/`,
+      ...renderTreeNode(entry, nextPrefix),
+    ];
+  });
 }
 
 function writeFile(relativePath, content) {

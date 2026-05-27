@@ -7,7 +7,7 @@ import {
   SwissKpiTowerSlide,
   SwissSixCellsSlide,
   SwissTimelineSlide,
-} from './components/swiss.jsx';
+} from './components/swiss/index.jsx';
 
 export const THEME_OPTIONS = {
   ikb: {

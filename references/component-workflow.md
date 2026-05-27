@@ -61,10 +61,11 @@ npm run validate:swiss -- output/ai-ops/ppt/index.html
 
 新增版式:
 
-1. 在 `src/components/swiss.jsx` 写组件。
+1. 按一个布局一个文件在 `src/components/swiss/` 写组件。
 2. 组件输出合法 `data-layout`。
-3. 在 `LAYOUT_OPTIONS` 登记 key。
-4. 必要时更新 `scripts/validate-swiss-deck.mjs`。
+3. 从 `src/components/swiss/index.jsx` 导出。
+4. 在 `LAYOUT_OPTIONS` 登记 key。
+5. 必要时更新 `scripts/validate-swiss-deck.mjs`。
 
 ## Subagent 测试
 

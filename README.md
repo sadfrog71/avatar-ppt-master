@@ -21,7 +21,7 @@ output/my-deck/ppt/
 - `fontSet`: 从字体组合中选一个
 - 每一页: 从页面版式选项中选一个
 
-选项集中登记在 [src/options.jsx](/Users/jadon7/Documents/SynologyDrive/code/项目研究/guizang-ppt-skill-main/src/options.jsx),页面组件在 [src/components/swiss.jsx](/Users/jadon7/Documents/SynologyDrive/code/项目研究/guizang-ppt-skill-main/src/components/swiss.jsx)。
+选项集中登记在 [src/options.jsx](/Users/jadon7/Documents/SynologyDrive/code/项目研究/guizang-ppt-skill-main/src/options.jsx),页面组件在 [src/components/swiss/](/Users/jadon7/Documents/SynologyDrive/code/项目研究/guizang-ppt-skill-main/src/components/swiss/index.jsx)。
 
 ## 快速开始
 
@@ -86,7 +86,7 @@ assets/
 src/
   options.jsx
   renderDeck.jsx
-  components/swiss.jsx
+  components/swiss/
 scripts/
   render-deck.jsx
   validate-swiss-deck.mjs
@@ -113,5 +113,5 @@ npm run validate:swiss -- output/examples/retail-launch-brief/ppt/index.html
 以下文档由 `npm run docs:update` 同步,提交前也会由 `.githooks/pre-commit` 自动更新。
 
 - [ADR](docs/ADR.md): 当前架构决策记录
-- [项目文件作用说明](docs/project-files.md): 当前 21 个源码文件的主要作用
+- [项目文件作用说明](docs/project-files.md): 当前 29 个源码文件的主要作用
 <!-- project-docs:end -->

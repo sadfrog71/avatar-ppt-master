@@ -16,7 +16,7 @@ description: 通过登记选项生成静态 HTML 横向翻页 PPT，使用 React
 | 主题色 | `theme` | `THEME_OPTIONS` | 一个 deck 只能选一个 |
 | 字体组合 | `fontSet` | `FONT_OPTIONS` | 一个 deck 只能选一个 |
 | 页面版式 | `slide(layoutKey, props)` | `LAYOUT_OPTIONS` | 每一页从版式列表 n 选 1 |
-| 动效 | 版式组件内部声明 | `src/components/swiss.jsx` | 不在 deck 配置里自造运行时 |
+| 动效 | 版式组件内部声明 | `src/components/swiss/*.jsx` | 不在 deck 配置里自造运行时 |
 
 选项登记在 [src/options.jsx](/Users/jadon7/Documents/SynologyDrive/code/项目研究/guizang-ppt-skill-main/src/options.jsx)。不要临时发明 theme/font/layout key;需要新增能力时先登记选项,再使用。
 
@@ -167,7 +167,7 @@ guizang-ppt-skill/
 ├── src/
 │   ├── options.jsx
 │   ├── renderDeck.jsx
-│   └── components/swiss.jsx
+│   └── components/swiss/
 ├── scripts/
 │   ├── render-deck.jsx
 │   └── validate-swiss-deck.mjs
@@ -181,6 +181,6 @@ guizang-ppt-skill/
 
 - 新主题色:加到 `THEME_OPTIONS`,不要直接改模板变量。
 - 新字体组合:加到 `FONT_OPTIONS`,不要在单页写散落字体。
-- 新页面类型:先在 `src/components/swiss.jsx` 做组件,再登记到 `LAYOUT_OPTIONS`。
+- 新页面类型:按一个布局一个文件放到 `src/components/swiss/`,共享基础件只放 `primitives.jsx`,再从 `index.jsx` 导出并登记到 `LAYOUT_OPTIONS`。
 - 新校验规则:加到 `scripts/validate-swiss-deck.mjs`。
 - 旧的手写模板骨架和截图背景资源已移除;不要重新引入另一套工作流。
