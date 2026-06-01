@@ -1903,6 +1903,7 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       html: "WORK",
       text: "WORK",
       fontSizeToken: null,
+      colorToken: "--ink",
     },
     "text:xhs3_23:9": {
       id: "text:xhs3_23:9",
@@ -1913,6 +1914,7 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       html: "AGENDA",
       text: "AGENDA",
       fontSizeToken: "--fs-h2",
+      colorToken: "--ink",
     },
     "text:xhs3_23:11": {
       id: "text:xhs3_23:11",
@@ -1923,6 +1925,27 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       html: "EXER",
       text: "EXER",
       fontSizeToken: "--fs-h2",
+      colorToken: "--ink",
+    },
+    "text:style1_04:5": {
+      id: "text:style1_04:5",
+      slide: 81,
+      slideId: "style1_04-81",
+      slideKey: "style1_04",
+      layout: "ST1-04",
+      html: "BRIEF",
+      text: "BRIEF",
+      colorToken: "--ink",
+    },
+    "text:style1_04:13": {
+      id: "text:style1_04:13",
+      slide: 81,
+      slideId: "style1_04-81",
+      slideKey: "style1_04",
+      layout: "ST1-04",
+      html: "负责",
+      text: "负责",
+      colorToken: "--ink",
     },
     "text:xhs3_24:5": {
       id: "text:xhs3_24:5",
