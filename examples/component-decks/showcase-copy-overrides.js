@@ -3726,7 +3726,7 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       layout: "ST1-04",
       html: "FIELD",
       text: "FIELD",
-      backgroundColorToken: "--grey-2",
+      backgroundColorToken: "--grey-1",
       colorToken: "--theme-st1-shader-paper",
       scope: "theme",
       theme: "light",
@@ -3742,7 +3742,7 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       backgroundColorToken: "--grey-1",
       colorToken: "--theme-backdrop",
       scope: "theme",
-      theme: "dark",
+      theme: "light",
     },
     "text:style1_04:14": {
       id: "text:style1_04:14",
