@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#FFFFFF" />
+
+  
+  <rect width="1280" height="4" fill="#1E5AA8" />
+  <rect x="0" y="4" width="5" height="716" fill="#1E5AA8" />
+
+  
+  <rect x="0" y="4" width="1280" height="76" fill="#F4F8FF" />
+  <path fill="#1E5AA8" d="M52,50 H53 A2,2 0 0 1 55,52 V72 A2,2 0 0 1 53,74 H52 A2,2 0 0 1 50,72 V52 A2,2 0 0 1 52,50 Z" />
+  <text x="68" y="72" font-family="Microsoft YaHei, Arial, sans-serif" font-size="28" font-weight="800" fill="#0F2D5E">安全漏洞概述</text>
+
+  
+  <path fill="#F0F4FF" stroke="#C5D9F5" stroke-width="1" d="M60,100 H1220 A10,10 0 0 1 1230,110 V190 A10,10 0 0 1 1220,200 H60 A10,10 0 0 1 50,190 V110 A10,10 0 0 1 60,100 Z" />
+  <path fill="#1E5AA8" d="M52,100 H53 A2,2 0 0 1 55,102 V198 A2,2 0 0 1 53,200 H52 A2,2 0 0 1 50,198 V102 A2,2 0 0 1 52,100 Z" />
+  <text x="76" y="130" font-family="Microsoft YaHei, Arial, sans-serif" font-size="14" font-weight="700" fill="#1E5AA8">漏洞共性</text>
+  <text x="76" y="154" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#3D6FA0">管理员登录页面 / 管理端口暴露于互联网，存在被恶意扫描和攻击的风险</text>
+  
+  <path fill="#DBEAFE" d="M88,170 H152 A12,12 0 0 1 164,182 V182 A12,12 0 0 1 152,194 H88 A12,12 0 0 1 76,182 V182 A12,12 0 0 1 88,170 Z" />
+  <text x="120" y="186" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="600" fill="#1E5AA8" text-anchor="middle">外网开放</text>
+  <path fill="#DBEAFE" d="M188,170 H252 A12,12 0 0 1 264,182 V182 A12,12 0 0 1 252,194 H188 A12,12 0 0 1 176,182 V182 A12,12 0 0 1 188,170 Z" />
+  <text x="220" y="186" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="600" fill="#1E5AA8" text-anchor="middle">无法限IP</text>
+  <path fill="#DBEAFE" d="M288,170 H352 A12,12 0 0 1 364,182 V182 A12,12 0 0 1 352,194 H288 A12,12 0 0 1 276,182 V182 A12,12 0 0 1 288,170 Z" />
+  <text x="320" y="186" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="600" fill="#1E5AA8" text-anchor="middle">HTTPS加密</text>
+  <path fill="#DBEAFE" d="M388,170 H474 A12,12 0 0 1 486,182 V182 A12,12 0 0 1 474,194 H388 A12,12 0 0 1 376,182 V182 A12,12 0 0 1 388,170 Z" />
+  <text x="431" y="186" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="600" fill="#1E5AA8" text-anchor="middle">已第三方测试</text>
+
+  
+  
+  <path fill="#FFFFFF" stroke="#C5D9F5" stroke-width="1.5" d="M60,220 H420 A10,10 0 0 1 430,230 V340 A10,10 0 0 1 420,350 H60 A10,10 0 0 1 50,340 V230 A10,10 0 0 1 60,220 Z" />
+  <path fill="#1E5AA8" d="M53,220 H427 A3,3 0 0 1 430,223 V223 A3,3 0 0 1 427,226 H53 A3,3 0 0 1 50,223 V223 A3,3 0 0 1 53,220 Z" />
+  <circle cx="80" cy="272" r="18" fill="#1E5AA8" />
+  <text x="80" y="278" font-family="Arial, sans-serif" font-size="13" font-weight="900" fill="#FFFFFF" text-anchor="middle">1</text>
+  <text x="110" y="268" font-family="Microsoft YaHei, Arial, sans-serif" font-size="14" font-weight="800" fill="#0F2D5E">系统一 · 共享资源管理平台</text>
+  <text x="110" y="288" font-family="Consolas, monospace" font-size="11" fill="#6B95BE">rsp.towngas.com.cn</text>
+  <text x="80" y="322" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#1E5AA8">暴露端口：</text>
+  <path fill="#DBEAFE" d="M162,307 H206 A4,4 0 0 1 210,311 V325 A4,4 0 0 1 206,329 H162 A4,4 0 0 1 158,325 V311 A4,4 0 0 1 162,307 Z" />
+  <text x="184" y="322" font-family="Consolas, monospace" font-size="12" font-weight="700" fill="#1E5AA8" text-anchor="middle">3389</text>
+  <path fill="#DBEAFE" d="M222,307 H266 A4,4 0 0 1 270,311 V325 A4,4 0 0 1 266,329 H222 A4,4 0 0 1 218,325 V311 A4,4 0 0 1 222,307 Z" />
+  <text x="244" y="322" font-family="Consolas, monospace" font-size="12" font-weight="700" fill="#1E5AA8" text-anchor="middle">5985</text>
+  <path fill="#DBEAFE" d="M282,307 H326 A4,4 0 0 1 330,311 V325 A4,4 0 0 1 326,329 H282 A4,4 0 0 1 278,325 V311 A4,4 0 0 1 282,307 Z" />
+  <text x="304" y="322" font-family="Consolas, monospace" font-size="12" font-weight="700" fill="#1E5AA8" text-anchor="middle">5986</text>
+
+  
+  <path fill="#FFFFFF" stroke="#C5D9F5" stroke-width="1.5" d="M460,220 H820 A10,10 0 0 1 830,230 V340 A10,10 0 0 1 820,350 H460 A10,10 0 0 1 450,340 V230 A10,10 0 0 1 460,220 Z" />
+  <path fill="#2B7BD8" d="M453,220 H827 A3,3 0 0 1 830,223 V223 A3,3 0 0 1 827,226 H453 A3,3 0 0 1 450,223 V223 A3,3 0 0 1 453,220 Z" />
+  <circle cx="480" cy="272" r="18" fill="#2B7BD8" />
+  <text x="480" y="278" font-family="Arial, sans-serif" font-size="13" font-weight="900" fill="#FFFFFF" text-anchor="middle">2</text>
+  <text x="510" y="268" font-family="Microsoft YaHei, Arial, sans-serif" font-size="14" font-weight="800" fill="#0F2D5E">系统二 · 电子卡系统</text>
+  <text x="510" y="288" font-family="Consolas, monospace" font-size="11" fill="#6B95BE">ecard.towngas.com.cn</text>
+  <text x="480" y="322" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#2B7BD8">暴露端口：</text>
+  <path fill="#DBEAFE" d="M562,307 H606 A4,4 0 0 1 610,311 V325 A4,4 0 0 1 606,329 H562 A4,4 0 0 1 558,325 V311 A4,4 0 0 1 562,307 Z" />
+  <text x="584" y="322" font-family="Consolas, monospace" font-size="12" font-weight="700" fill="#2B7BD8" text-anchor="middle">3389</text>
+
+  
+  <path fill="#FFFFFF" stroke="#C5D9F5" stroke-width="1.5" d="M860,220 H1220 A10,10 0 0 1 1230,230 V340 A10,10 0 0 1 1220,350 H860 A10,10 0 0 1 850,340 V230 A10,10 0 0 1 860,220 Z" />
+  <path fill="#2B7BD8" d="M853,220 H1227 A3,3 0 0 1 1230,223 V223 A3,3 0 0 1 1227,226 H853 A3,3 0 0 1 850,223 V223 A3,3 0 0 1 853,220 Z" />
+  <circle cx="880" cy="272" r="18" fill="#2B7BD8" />
+  <text x="880" y="278" font-family="Arial, sans-serif" font-size="13" font-weight="900" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="910" y="268" font-family="Microsoft YaHei, Arial, sans-serif" font-size="14" font-weight="800" fill="#0F2D5E">系统三 · 后台管理系统</text>
+  <text x="910" y="288" font-family="Consolas, monospace" font-size="11" fill="#6B95BE">houtai.towngas.com.cn</text>
+  <text x="880" y="322" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#2B7BD8">暴露路径：</text>
+  <path fill="#DBEAFE" d="M954,307 H1076 A4,4 0 0 1 1080,311 V325 A4,4 0 0 1 1076,329 H954 A4,4 0 0 1 950,325 V311 A4,4 0 0 1 954,307 Z" />
+  <text x="1015" y="322" font-family="Consolas, monospace" font-size="11" font-weight="700" fill="#2B7BD8" text-anchor="middle">/cmsLogin</text>
+
+  
+  <path fill="#EBF3FF" stroke="#C5D9F5" stroke-width="1" d="M58,375 H1222 A8,8 0 0 1 1230,383 V417 A8,8 0 0 1 1222,425 H58 A8,8 0 0 1 50,417 V383 A8,8 0 0 1 58,375 Z" />
+  <text x="70" y="405" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#1E5AA8">ℹ 以上三个系统均面向外网开放，无法限定访问IP，经香港红队评估确认存在安全风险</text>
+
+  
+  <text x="640" y="700" font-family="Arial, sans-serif" font-size="11" fill="#A0BDD8" text-anchor="middle">2 / 6</text>
+</svg>

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#FFFFFF"/>
+
+  <!-- 顶部蓝条 -->
+  <rect width="1280" height="4" fill="#1E5AA8"/>
+  <rect x="0" y="4" width="5" height="716" fill="#1E5AA8"/>
+
+  <!-- 页面标题区 -->
+  <rect x="0" y="4" width="1280" height="76" fill="#F4F8FF"/>
+  <rect x="50" y="50" width="5" height="24" rx="2" fill="#1E5AA8"/>
+  <text x="68" y="72" font-family="Microsoft YaHei, Arial, sans-serif" font-size="28" font-weight="800" fill="#0F2D5E">系统三 · 后台管理系统</text>
+  <text x="1200" y="72" font-family="Consolas, monospace" font-size="13" fill="#6B95BE" text-anchor="end">houtai.towngas.com.cn</text>
+
+  <!-- ===== 左侧：漏洞卡片 ===== -->
+  <rect x="50" y="110" width="560" height="250" rx="12" fill="#F0F4FF" stroke="#C5D9F5" stroke-width="1.5"/>
+  <rect x="50" y="110" width="560" height="7" rx="3" fill="#1E5AA8"/>
+
+  <rect x="80" y="138" width="80" height="28" rx="14" fill="#1E5AA8"/>
+  <text x="120" y="157" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">风险说明</text>
+
+  <!-- 漏洞图标 -->
+  <rect x="80" y="184" width="52" height="52" rx="10" fill="#DBEAFE"/>
+  <text x="106" y="220" font-family="Arial, sans-serif" font-size="28" fill="#1E5AA8" text-anchor="middle" font-weight="900">!</text>
+
+  <text x="150" y="205" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" font-weight="800" fill="#0F2D5E">管理登录页暴露于公网</text>
+  <text x="150" y="228" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#4A7BB5">/cmsLogin 后台管理登录路径直接暴露，存在被扫描和攻击风险</text>
+
+  <!-- 路径标签 -->
+  <rect x="80" y="260" width="220" height="28" rx="6" fill="#1E5AA8" opacity="0.1"/>
+  <rect x="84" y="264" width="212" height="20" rx="4" fill="#FFFFFF" stroke="#1E5AA8" stroke-width="1"/>
+  <text x="190" y="279" font-family="Consolas, monospace" font-size="12" font-weight="600" fill="#1E5AA8" text-anchor="middle">/cmsLogin?redirect=%2F</text>
+
+  <!-- 说明文字 -->
+  <text x="80" y="318" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#5A8FC0">攻击者可利用该路径直接访问后台管理登录页面，</text>
+  <text x="80" y="338" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#5A8FC0">通过弱口令或社工手段获取管理权限</text>
+
+  <!-- 高风险标签 -->
+  <rect x="80" y="356" width="68" height="24" rx="12" fill="#1E5AA8"/>
+  <text x="114" y="372" font-family="Microsoft YaHei, Arial, sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">高风险</text>
+
+  <!-- ===== 右侧：策略卡片 ===== -->
+  <rect x="630" y="110" width="600" height="560" rx="12" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5"/>
+  <rect x="630" y="110" width="600" height="7" rx="3" fill="#16A34A"/>
+
+  <rect x="660" y="138" width="80" height="28" rx="14" fill="#16A34A"/>
+  <text x="700" y="157" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">应对策略</text>
+
+  <!-- 策略图标 -->
+  <rect x="660" y="184" width="52" height="52" rx="10" fill="#DCFCE7"/>
+  <text x="686" y="220" font-family="Arial, sans-serif" font-size="26" fill="#16A34A" text-anchor="middle" font-weight="900">✓</text>
+
+  <text x="730" y="205" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" font-weight="800" fill="#14532D">分阶段消除公网暴露</text>
+  <text x="730" y="228" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#4A7A60">从临时止血到长期治本，层层递进</text>
+
+  <!-- 临时 -->
+  <rect x="660" y="262" width="550" height="120" rx="8" fill="#FFFFFF" stroke="#D1FAE5" stroke-width="1"/>
+  <rect x="660" y="262" width="5" height="120" rx="2" fill="#F59E0B"/>
+  <rect x="680" y="280" width="64" height="24" rx="4" fill="#FEF3C7"/>
+  <text x="712" y="297" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#D97706" text-anchor="middle">临时</text>
+  <text x="756" y="297" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="700" fill="#1C2A1C">后台路径随机化 + 强制强认证</text>
+  <text x="680" y="325" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#4A7A60">将 /cmsLogin 路径改为随机化路径（如 /admin-a7x2），</text>
+  <text x="680" y="344" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#4A7A60">降低被自动化扫描工具发现的概率</text>
+
+  <!-- 中期 -->
+  <rect x="660" y="394" width="550" height="120" rx="8" fill="#FFFFFF" stroke="#D1FAE5" stroke-width="1"/>
+  <rect x="660" y="394" width="5" height="120" rx="2" fill="#3B82F6"/>
+  <rect x="680" y="412" width="64" height="24" rx="4" fill="#DBEAFE"/>
+  <text x="712" y="429" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#1A56DB" text-anchor="middle">中期</text>
+  <text x="756" y="429" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="700" fill="#1C2A1C">接入双因素认证（2FA）</text>
+  <text x="680" y="457" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#4A7A60">所有管理后台账户强制启用短信或邮箱 2FA 验证，</text>
+  <text x="680" y="476" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#4A7A60">即使密码泄露也能防止账户被接管</text>
+
+  <!-- 长期 -->
+  <rect x="660" y="526" width="550" height="120" rx="8" fill="#FFFFFF" stroke="#D1FAE5" stroke-width="1"/>
+  <rect x="660" y="526" width="5" height="120" rx="2" fill="#16A34A"/>
+  <rect x="680" y="544" width="64" height="24" rx="4" fill="#DCFCE7"/>
+  <text x="712" y="561" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#16A34A" text-anchor="middle">长期</text>
+  <text x="756" y="561" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="700" fill="#1C2A1C">VPN 内网访问，移除公网登录入口</text>
+  <text x="680" y="589" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#4A7A60">VPN 打通后，将后台登录页面从公网完全移除，</text>
+  <text x="680" y="608" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#4A7A60">仅允许通过 VPN 隧道从内网访问</text>
+
+  <!-- 页码 -->
+  <text x="640" y="700" font-family="Arial, sans-serif" font-size="11" fill="#A0BDD8" text-anchor="middle">5 / 6</text>
+</svg>

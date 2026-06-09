@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#FFFFFF"/>
+
+  <!-- 顶部蓝条 -->
+  <rect width="1280" height="4" fill="#1E5AA8"/>
+  <rect x="0" y="4" width="5" height="716" fill="#1E5AA8"/>
+
+  <!-- 页面标题区 -->
+  <rect x="0" y="4" width="1280" height="76" fill="#F4F8FF"/>
+  <rect x="50" y="50" width="5" height="24" rx="2" fill="#1E5AA8"/>
+  <text x="68" y="72" font-family="Microsoft YaHei, Arial, sans-serif" font-size="28" font-weight="800" fill="#0F2D5E">安全漏洞概述</text>
+
+  <!-- 共性问题 -->
+  <rect x="50" y="100" width="1180" height="100" rx="10" fill="#F0F4FF" stroke="#C5D9F5" stroke-width="1"/>
+  <rect x="50" y="100" width="5" height="100" rx="2" fill="#1E5AA8"/>
+  <text x="76" y="130" font-family="Microsoft YaHei, Arial, sans-serif" font-size="14" font-weight="700" fill="#1E5AA8">漏洞共性</text>
+  <text x="76" y="154" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#3D6FA0">管理员登录页面 / 管理端口暴露于互联网，存在被恶意扫描和攻击的风险</text>
+  <!-- 四个约束标签 -->
+  <rect x="76" y="170" width="88" height="24" rx="12" fill="#DBEAFE"/>
+  <text x="120" y="186" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="600" fill="#1E5AA8" text-anchor="middle">外网开放</text>
+  <rect x="176" y="170" width="88" height="24" rx="12" fill="#DBEAFE"/>
+  <text x="220" y="186" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="600" fill="#1E5AA8" text-anchor="middle">无法限IP</text>
+  <rect x="276" y="170" width="88" height="24" rx="12" fill="#DBEAFE"/>
+  <text x="320" y="186" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="600" fill="#1E5AA8" text-anchor="middle">HTTPS加密</text>
+  <rect x="376" y="170" width="110" height="24" rx="12" fill="#DBEAFE"/>
+  <text x="431" y="186" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="600" fill="#1E5AA8" text-anchor="middle">已第三方测试</text>
+
+  <!-- 三系统卡片 -->
+  <!-- 系统1 -->
+  <rect x="50" y="220" width="380" height="130" rx="10" fill="#FFFFFF" stroke="#C5D9F5" stroke-width="1.5"/>
+  <rect x="50" y="220" width="380" height="6" rx="3" fill="#1E5AA8"/>
+  <circle cx="80" cy="272" r="18" fill="#1E5AA8"/>
+  <text x="80" y="278" font-family="Arial, sans-serif" font-size="13" font-weight="900" fill="#FFFFFF" text-anchor="middle">1</text>
+  <text x="110" y="268" font-family="Microsoft YaHei, Arial, sans-serif" font-size="14" font-weight="800" fill="#0F2D5E">系统一 · 共享资源管理平台</text>
+  <text x="110" y="288" font-family="Consolas, monospace" font-size="11" fill="#6B95BE">rsp.towngas.com.cn</text>
+  <text x="80" y="322" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#1E5AA8">暴露端口：</text>
+  <rect x="158" y="307" width="52" height="22" rx="4" fill="#DBEAFE"/>
+  <text x="184" y="322" font-family="Consolas, monospace" font-size="12" font-weight="700" fill="#1E5AA8" text-anchor="middle">3389</text>
+  <rect x="218" y="307" width="52" height="22" rx="4" fill="#DBEAFE"/>
+  <text x="244" y="322" font-family="Consolas, monospace" font-size="12" font-weight="700" fill="#1E5AA8" text-anchor="middle">5985</text>
+  <rect x="278" y="307" width="52" height="22" rx="4" fill="#DBEAFE"/>
+  <text x="304" y="322" font-family="Consolas, monospace" font-size="12" font-weight="700" fill="#1E5AA8" text-anchor="middle">5986</text>
+
+  <!-- 系统2 -->
+  <rect x="450" y="220" width="380" height="130" rx="10" fill="#FFFFFF" stroke="#C5D9F5" stroke-width="1.5"/>
+  <rect x="450" y="220" width="380" height="6" rx="3" fill="#2B7BD8"/>
+  <circle cx="480" cy="272" r="18" fill="#2B7BD8"/>
+  <text x="480" y="278" font-family="Arial, sans-serif" font-size="13" font-weight="900" fill="#FFFFFF" text-anchor="middle">2</text>
+  <text x="510" y="268" font-family="Microsoft YaHei, Arial, sans-serif" font-size="14" font-weight="800" fill="#0F2D5E">系统二 · 电子卡系统</text>
+  <text x="510" y="288" font-family="Consolas, monospace" font-size="11" fill="#6B95BE">ecard.towngas.com.cn</text>
+  <text x="480" y="322" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#2B7BD8">暴露端口：</text>
+  <rect x="558" y="307" width="52" height="22" rx="4" fill="#DBEAFE"/>
+  <text x="584" y="322" font-family="Consolas, monospace" font-size="12" font-weight="700" fill="#2B7BD8" text-anchor="middle">3389</text>
+
+  <!-- 系统3 -->
+  <rect x="850" y="220" width="380" height="130" rx="10" fill="#FFFFFF" stroke="#C5D9F5" stroke-width="1.5"/>
+  <rect x="850" y="220" width="380" height="6" rx="3" fill="#2B7BD8"/>
+  <circle cx="880" cy="272" r="18" fill="#2B7BD8"/>
+  <text x="880" y="278" font-family="Arial, sans-serif" font-size="13" font-weight="900" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="910" y="268" font-family="Microsoft YaHei, Arial, sans-serif" font-size="14" font-weight="800" fill="#0F2D5E">系统三 · 后台管理系统</text>
+  <text x="910" y="288" font-family="Consolas, monospace" font-size="11" fill="#6B95BE">houtai.towngas.com.cn</text>
+  <text x="880" y="322" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#2B7BD8">暴露路径：</text>
+  <rect x="950" y="307" width="130" height="22" rx="4" fill="#DBEAFE"/>
+  <text x="1015" y="322" font-family="Consolas, monospace" font-size="11" font-weight="700" fill="#2B7BD8" text-anchor="middle">/cmsLogin</text>
+
+  <!-- 底部说明 -->
+  <rect x="50" y="375" width="1180" height="50" rx="8" fill="#EBF3FF" stroke="#C5D9F5" stroke-width="1"/>
+  <text x="70" y="405" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#1E5AA8">ℹ 以上三个系统均面向外网开放，无法限定访问IP，经香港红队评估确认存在安全风险</text>
+
+  <!-- 页码 -->
+  <text x="640" y="700" font-family="Arial, sans-serif" font-size="11" fill="#A0BDD8" text-anchor="middle">2 / 6</text>
+</svg>

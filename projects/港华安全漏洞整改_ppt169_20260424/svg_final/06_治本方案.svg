@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#FFFFFF" />
+
+  
+  <rect width="1280" height="4" fill="#1E5AA8" />
+  <rect x="0" y="4" width="5" height="716" fill="#1E5AA8" />
+
+  
+  <rect x="0" y="4" width="1280" height="76" fill="#F4F8FF" />
+  <path fill="#1E5AA8" d="M52,50 H53 A2,2 0 0 1 55,52 V72 A2,2 0 0 1 53,74 H52 A2,2 0 0 1 50,72 V52 A2,2 0 0 1 52,50 Z" />
+  <text x="68" y="72" font-family="Microsoft YaHei, Arial, sans-serif" font-size="28" font-weight="800" fill="#0F2D5E">治本方案</text>
+
+  
+  <path fill="#F0F4FF" stroke="#C5D9F5" stroke-width="1.5" d="M62,100 H578 A12,12 0 0 1 590,112 V288 A12,12 0 0 1 578,300 H62 A12,12 0 0 1 50,288 V112 A12,12 0 0 1 62,100 Z" />
+  <path fill="#1E5AA8" d="M53,100 H587 A3,3 0 0 1 590,103 V104 A3,3 0 0 1 587,107 H53 A3,3 0 0 1 50,104 V103 A3,3 0 0 1 53,100 Z" />
+
+  <path fill="#1E5AA8" d="M94,128 H162 A14,14 0 0 1 176,142 V142 A14,14 0 0 1 162,156 H94 A14,14 0 0 1 80,142 V142 A14,14 0 0 1 94,128 Z" />
+  <text x="128" y="147" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">根本原因</text>
+
+  
+  <path fill="#DBEAFE" d="M90,174 H122 A10,10 0 0 1 132,184 V216 A10,10 0 0 1 122,226 H90 A10,10 0 0 1 80,216 V184 A10,10 0 0 1 90,174 Z" />
+  <text x="106" y="210" font-family="Arial, sans-serif" font-size="28" fill="#1E5AA8" text-anchor="middle" font-weight="900">!</text>
+
+  <text x="150" y="195" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15" font-weight="800" fill="#0F2D5E">管理端口与业务端口共用公网出口</text>
+  <text x="150" y="218" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#4A7BB5">缺乏分层防御架构</text>
+
+  
+  <path fill="#FFFFFF" stroke="#C5D9F5" stroke-width="1" d="M86,246 H564 A6,6 0 0 1 570,252 V278 A6,6 0 0 1 564,284 H86 A6,6 0 0 1 80,278 V252 A6,6 0 0 1 86,246 Z" />
+  <circle cx="100" cy="265" r="5" fill="#1E5AA8" />
+  <text x="116" y="270" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#3D6FA0">管理端口与用户业务端口共用同一公网出口</text>
+
+  <path fill="#FFFFFF" stroke="#C5D9F5" stroke-width="1" d="M86,290 H564 A6,6 0 0 1 570,296 V322 A6,6 0 0 1 564,328 H86 A6,6 0 0 1 80,322 V296 A6,6 0 0 1 86,290 Z" />
+  <circle cx="100" cy="309" r="5" fill="#1E5AA8" />
+  <text x="116" y="314" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#3D6FA0">缺乏分层防御，管理后台未做网络层隔离</text>
+
+  <path fill="#FFFFFF" stroke="#C5D9F5" stroke-width="1" d="M86,334 H564 A6,6 0 0 1 570,340 V366 A6,6 0 0 1 564,372 H86 A6,6 0 0 1 80,366 V340 A6,6 0 0 1 86,334 Z" />
+  <circle cx="100" cy="353" r="5" fill="#1E5AA8" />
+  <text x="116" y="358" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#3D6FA0">三个系统均面向互联网，无 IP 限制</text>
+
+  
+  <path fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5" d="M622,100 H1218 A12,12 0 0 1 1230,112 V668 A12,12 0 0 1 1218,680 H622 A12,12 0 0 1 610,668 V112 A12,12 0 0 1 622,100 Z" />
+  <path fill="#16A34A" d="M613,100 H1227 A3,3 0 0 1 1230,103 V104 A3,3 0 0 1 1227,107 H613 A3,3 0 0 1 610,104 V103 A3,3 0 0 1 613,100 Z" />
+
+  <path fill="#16A34A" d="M654,128 H722 A14,14 0 0 1 736,142 V142 A14,14 0 0 1 722,156 H654 A14,14 0 0 1 640,142 V142 A14,14 0 0 1 654,128 Z" />
+  <text x="688" y="147" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">核心方案</text>
+
+  
+  <path fill="#DCFCE7" d="M650,174 H682 A10,10 0 0 1 692,184 V216 A10,10 0 0 1 682,226 H650 A10,10 0 0 1 640,216 V184 A10,10 0 0 1 650,174 Z" />
+  <path fill="#16A34A" d="M650,185 H660 A2,2 0 0 1 662,187 V192 A2,2 0 0 1 660,194 H650 A2,2 0 0 1 648,192 V187 A2,2 0 0 1 650,185 Z" />
+  <path fill="#16A34A" d="M672,185 H682 A2,2 0 0 1 684,187 V192 A2,2 0 0 1 682,194 H672 A2,2 0 0 1 670,192 V187 A2,2 0 0 1 672,185 Z" />
+  <line x1="662" y1="189" x2="670" y2="189" stroke="#16A34A" stroke-width="2" />
+  <line x1="648" y1="194" x2="648" y2="200" stroke="#16A34A" stroke-width="2" />
+  <line x1="684" y1="194" x2="684" y2="200" stroke="#16A34A" stroke-width="2" />
+  <line x1="648" y1="200" x2="684" y2="200" stroke="#16A34A" stroke-width="2" />
+
+  <text x="710" y="196" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" font-weight="800" fill="#14532D">华为云 ↔ 港华内网 VPN 打通</text>
+  <text x="710" y="220" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#4A7A60">彻底解决公网暴露问题，构建零信任访问体系</text>
+
+  
+  <path fill="#FFFFFF" stroke="#D1FAE5" stroke-width="1" d="M648,254 H1202 A8,8 0 0 1 1210,262 V316 A8,8 0 0 1 1202,324 H648 A8,8 0 0 1 640,316 V262 A8,8 0 0 1 648,254 Z" />
+  <path fill="#16A34A" d="M642,254 H643 A2,2 0 0 1 645,256 V322 A2,2 0 0 1 643,324 H642 A2,2 0 0 1 640,322 V256 A2,2 0 0 1 642,254 Z" />
+  <circle cx="666" cy="289" r="5" fill="#16A34A" />
+  <text x="680" y="293" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="600" fill="#14532D">关闭所有系统公网管理端口暴露</text>
+  <circle cx="666" cy="310" r="5" fill="#16A34A" />
+  <text x="680" y="314" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="600" fill="#14532D">保留公网业务访问，管理员统一走 VPN 隧道</text>
+
+  <path fill="#FFFFFF" stroke="#D1FAE5" stroke-width="1" d="M648,330 H1202 A8,8 0 0 1 1210,338 V372 A8,8 0 0 1 1202,380 H648 A8,8 0 0 1 640,372 V338 A8,8 0 0 1 648,330 Z" />
+  <path fill="#16A34A" d="M642,330 H643 A2,2 0 0 1 645,332 V378 A2,2 0 0 1 643,380 H642 A2,2 0 0 1 640,378 V332 A2,2 0 0 1 642,330 Z" />
+  <circle cx="666" cy="355" r="5" fill="#16A34A" />
+  <text x="680" y="359" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="600" fill="#14532D">结合 MFA 多因素认证，构建零信任访问体系</text>
+
+  
+  <text x="640" y="420" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="700" fill="#14532D">架构示意</text>
+
+  
+  <path fill="#EBF3FF" stroke="#C5D9F5" stroke-width="1.5" d="M650,438 H850 A10,10 0 0 1 860,448 V548 A10,10 0 0 1 850,558 H650 A10,10 0 0 1 640,548 V448 A10,10 0 0 1 650,438 Z" />
+  <text x="750" y="468" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="800" fill="#1E5AA8" text-anchor="middle">华为云</text>
+  <path fill="#FFFFFF" stroke="#1E5AA8" stroke-width="1" d="M665,482 H835 A5,5 0 0 1 840,487 V503 A5,5 0 0 1 835,508 H665 A5,5 0 0 1 660,503 V487 A5,5 0 0 1 665,482 Z" />
+  <text x="750" y="500" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" fill="#3D6FA0" text-anchor="middle">三个系统 · 公网业务入口</text>
+  <path fill="#DBEAFE" d="M665,516 H835 A5,5 0 0 1 840,521 V537 A5,5 0 0 1 835,542 H665 A5,5 0 0 1 660,537 V521 A5,5 0 0 1 665,516 Z" />
+  <text x="750" y="534" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#1E5AA8" text-anchor="middle">3389 / 5985 / 5986</text>
+
+  
+  <path fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5" d="M896,472 H924 A26,26 0 0 1 950,498 V498 A26,26 0 0 1 924,524 H896 A26,26 0 0 1 870,498 V498 A26,26 0 0 1 896,472 Z" />
+  <text x="910" y="494" font-family="Microsoft YaHei, Arial, sans-serif" font-size="10" font-weight="700" fill="#D97706" text-anchor="middle">VPN</text>
+  <text x="910" y="510" font-family="Microsoft YaHei, Arial, sans-serif" font-size="9" fill="#D97706" text-anchor="middle">加密隧道</text>
+
+  
+  <line x1="860" y1="498" x2="870" y2="498" stroke="#9CA3AF" stroke-width="2" />
+  <line x1="950" y1="498" x2="960" y2="498" stroke="#9CA3AF" stroke-width="2" />
+  <line x1="956" y1="494" x2="960" y2="498" stroke="#9CA3AF" stroke-width="2" />
+  <line x1="956" y1="502" x2="960" y2="498" stroke="#9CA3AF" stroke-width="2" />
+  <line x1="870" y1="494" x2="866" y2="498" stroke="#9CA3AF" stroke-width="2" />
+  <line x1="870" y1="502" x2="866" y2="498" stroke="#9CA3AF" stroke-width="2" />
+
+  
+  <path fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5" d="M970,438 H1170 A10,10 0 0 1 1180,448 V548 A10,10 0 0 1 1170,558 H970 A10,10 0 0 1 960,548 V448 A10,10 0 0 1 970,438 Z" />
+  <text x="1070" y="468" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="800" fill="#16A34A" text-anchor="middle">港华内网</text>
+  <path fill="#FFFFFF" stroke="#16A34A" stroke-width="1" d="M985,482 H1155 A5,5 0 0 1 1160,487 V503 A5,5 0 0 1 1155,508 H985 A5,5 0 0 1 980,503 V487 A5,5 0 0 1 985,482 Z" />
+  <text x="1070" y="500" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" fill="#4A7A60" text-anchor="middle">管理员 · VPN 认证接入</text>
+  <path fill="#DCFCE7" d="M985,516 H1155 A5,5 0 0 1 1160,521 V537 A5,5 0 0 1 1155,542 H985 A5,5 0 0 1 980,537 V521 A5,5 0 0 1 985,516 Z" />
+  <text x="1070" y="534" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#16A34A" text-anchor="middle">管理后台 · 内网访问</text>
+
+  
+  <path fill="#EBF3FF" stroke="#C5D9F5" stroke-width="1" d="M58,590 H1222 A8,8 0 0 1 1230,598 V632 A8,8 0 0 1 1222,640 H58 A8,8 0 0 1 50,632 V598 A8,8 0 0 1 58,590 Z" />
+  <text x="70" y="620" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#1E5AA8">ℹ 请各方确认整改时间节点，我们将在各阶段完成后提供进度更新报告</text>
+
+  
+  <text x="640" y="700" font-family="Arial, sans-serif" font-size="11" fill="#A0BDD8" text-anchor="middle">6 / 6</text>
+</svg>

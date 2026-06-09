@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#FFFFFF"/>
+
+  <!-- 顶部蓝条 -->
+  <rect width="1280" height="4" fill="#1E5AA8"/>
+  <rect x="0" y="4" width="5" height="716" fill="#1E5AA8"/>
+
+  <!-- 页面标题区 -->
+  <rect x="0" y="4" width="1280" height="76" fill="#F4F8FF"/>
+  <rect x="50" y="50" width="5" height="24" rx="2" fill="#1E5AA8"/>
+  <text x="68" y="72" font-family="Microsoft YaHei, Arial, sans-serif" font-size="28" font-weight="800" fill="#0F2D5E">治本方案</text>
+
+  <!-- ===== 左侧：根本原因 ===== -->
+  <rect x="50" y="100" width="540" height="200" rx="12" fill="#F0F4FF" stroke="#C5D9F5" stroke-width="1.5"/>
+  <rect x="50" y="100" width="540" height="7" rx="3" fill="#1E5AA8"/>
+
+  <rect x="80" y="128" width="96" height="28" rx="14" fill="#1E5AA8"/>
+  <text x="128" y="147" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">根本原因</text>
+
+  <!-- 根本原因图标 -->
+  <rect x="80" y="174" width="52" height="52" rx="10" fill="#DBEAFE"/>
+  <text x="106" y="210" font-family="Arial, sans-serif" font-size="28" fill="#1E5AA8" text-anchor="middle" font-weight="900">!</text>
+
+  <text x="150" y="195" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15" font-weight="800" fill="#0F2D5E">管理端口与业务端口共用公网出口</text>
+  <text x="150" y="218" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#4A7BB5">缺乏分层防御架构</text>
+
+  <!-- 三个原因点 -->
+  <rect x="80" y="246" width="490" height="38" rx="6" fill="#FFFFFF" stroke="#C5D9F5" stroke-width="1"/>
+  <circle cx="100" cy="265" r="5" fill="#1E5AA8"/>
+  <text x="116" y="270" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#3D6FA0">管理端口与用户业务端口共用同一公网出口</text>
+
+  <rect x="80" y="290" width="490" height="38" rx="6" fill="#FFFFFF" stroke="#C5D9F5" stroke-width="1"/>
+  <circle cx="100" cy="309" r="5" fill="#1E5AA8"/>
+  <text x="116" y="314" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#3D6FA0">缺乏分层防御，管理后台未做网络层隔离</text>
+
+  <rect x="80" y="334" width="490" height="38" rx="6" fill="#FFFFFF" stroke="#C5D9F5" stroke-width="1"/>
+  <circle cx="100" cy="353" r="5" fill="#1E5AA8"/>
+  <text x="116" y="358" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#3D6FA0">三个系统均面向互联网，无 IP 限制</text>
+
+  <!-- ===== 右侧：VPN 核心方案 ===== -->
+  <rect x="610" y="100" width="620" height="580" rx="12" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5"/>
+  <rect x="610" y="100" width="620" height="7" rx="3" fill="#16A34A"/>
+
+  <rect x="640" y="128" width="96" height="28" rx="14" fill="#16A34A"/>
+  <text x="688" y="147" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">核心方案</text>
+
+  <!-- VPN 图标 -->
+  <rect x="640" y="174" width="52" height="52" rx="10" fill="#DCFCE7"/>
+  <rect x="648" y="185" width="14" height="9" rx="2" fill="#16A34A"/>
+  <rect x="670" y="185" width="14" height="9" rx="2" fill="#16A34A"/>
+  <line x1="662" y1="189" x2="670" y2="189" stroke="#16A34A" stroke-width="2"/>
+  <line x1="648" y1="194" x2="648" y2="200" stroke="#16A34A" stroke-width="2"/>
+  <line x1="684" y1="194" x2="684" y2="200" stroke="#16A34A" stroke-width="2"/>
+  <line x1="648" y1="200" x2="684" y2="200" stroke="#16A34A" stroke-width="2"/>
+
+  <text x="710" y="196" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" font-weight="800" fill="#14532D">华为云 ↔ 港华内网 VPN 打通</text>
+  <text x="710" y="220" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#4A7A60">彻底解决公网暴露问题，构建零信任访问体系</text>
+
+  <!-- 方案要点卡片 -->
+  <rect x="640" y="254" width="570" height="70" rx="8" fill="#FFFFFF" stroke="#D1FAE5" stroke-width="1"/>
+  <rect x="640" y="254" width="5" height="70" rx="2" fill="#16A34A"/>
+  <circle cx="666" cy="289" r="5" fill="#16A34A"/>
+  <text x="680" y="293" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="600" fill="#14532D">关闭所有系统公网管理端口暴露</text>
+  <circle cx="666" cy="310" r="5" fill="#16A34A"/>
+  <text x="680" y="314" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="600" fill="#14532D">保留公网业务访问，管理员统一走 VPN 隧道</text>
+
+  <rect x="640" y="330" width="570" height="50" rx="8" fill="#FFFFFF" stroke="#D1FAE5" stroke-width="1"/>
+  <rect x="640" y="330" width="5" height="50" rx="2" fill="#16A34A"/>
+  <circle cx="666" cy="355" r="5" fill="#16A34A"/>
+  <text x="680" y="359" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="600" fill="#14532D">结合 MFA 多因素认证，构建零信任访问体系</text>
+
+  <!-- ===== 架构示意图 ===== -->
+  <text x="640" y="420" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="700" fill="#14532D">架构示意</text>
+
+  <!-- 华为云区块 -->
+  <rect x="640" y="438" width="220" height="120" rx="10" fill="#EBF3FF" stroke="#C5D9F5" stroke-width="1.5"/>
+  <text x="750" y="468" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="800" fill="#1E5AA8" text-anchor="middle">华为云</text>
+  <rect x="660" y="482" width="180" height="26" rx="5" fill="#FFFFFF" stroke="#1E5AA8" stroke-width="1"/>
+  <text x="750" y="500" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" fill="#3D6FA0" text-anchor="middle">三个系统 · 公网业务入口</text>
+  <rect x="660" y="516" width="180" height="26" rx="5" fill="#DBEAFE"/>
+  <text x="750" y="534" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#1E5AA8" text-anchor="middle">3389 / 5985 / 5986</text>
+
+  <!-- VPN 隧道 -->
+  <rect x="870" y="472" width="80" height="52" rx="26" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="910" y="494" font-family="Microsoft YaHei, Arial, sans-serif" font-size="10" font-weight="700" fill="#D97706" text-anchor="middle">VPN</text>
+  <text x="910" y="510" font-family="Microsoft YaHei, Arial, sans-serif" font-size="9" fill="#D97706" text-anchor="middle">加密隧道</text>
+
+  <!-- 箭头 -->
+  <line x1="860" y1="498" x2="870" y2="498" stroke="#9CA3AF" stroke-width="2"/>
+  <line x1="950" y1="498" x2="960" y2="498" stroke="#9CA3AF" stroke-width="2"/>
+  <line x1="956" y1="494" x2="960" y2="498" stroke="#9CA3AF" stroke-width="2"/>
+  <line x1="956" y1="502" x2="960" y2="498" stroke="#9CA3AF" stroke-width="2"/>
+  <line x1="870" y1="494" x2="866" y2="498" stroke="#9CA3AF" stroke-width="2"/>
+  <line x1="870" y1="502" x2="866" y2="498" stroke="#9CA3AF" stroke-width="2"/>
+
+  <!-- 港华内网区块 -->
+  <rect x="960" y="438" width="220" height="120" rx="10" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5"/>
+  <text x="1070" y="468" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="800" fill="#16A34A" text-anchor="middle">港华内网</text>
+  <rect x="980" y="482" width="180" height="26" rx="5" fill="#FFFFFF" stroke="#16A34A" stroke-width="1"/>
+  <text x="1070" y="500" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" fill="#4A7A60" text-anchor="middle">管理员 · VPN 认证接入</text>
+  <rect x="980" y="516" width="180" height="26" rx="5" fill="#DCFCE7"/>
+  <text x="1070" y="534" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#16A34A" text-anchor="middle">管理后台 · 内网访问</text>
+
+  <!-- 底部 -->
+  <rect x="50" y="590" width="1180" height="50" rx="8" fill="#EBF3FF" stroke="#C5D9F5" stroke-width="1"/>
+  <text x="70" y="620" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#1E5AA8">ℹ 请各方确认整改时间节点，我们将在各阶段完成后提供进度更新报告</text>
+
+  <!-- 页码 -->
+  <text x="640" y="700" font-family="Arial, sans-serif" font-size="11" fill="#A0BDD8" text-anchor="middle">6 / 6</text>
+</svg>
