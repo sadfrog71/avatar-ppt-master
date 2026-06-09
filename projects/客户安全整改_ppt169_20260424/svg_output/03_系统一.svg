@@ -87,7 +87,7 @@
   <rect x="680" y="544" width="64" height="24" rx="4" fill="#DCFCE7"/>
   <text x="712" y="561" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" font-weight="700" fill="#16A34A" text-anchor="middle">长期</text>
   <text x="756" y="561" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="700" fill="#1C2A1C">VPN 内网访问，彻底切断公网暴露</text>
-  <text x="680" y="589" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#4A7A60">华为云与港华内网 VPN 打通后，关闭所有公网管理端口，</text>
+  <text x="680" y="589" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#4A7A60">华为云与客户内网 VPN 打通后，关闭所有公网管理端口，</text>
   <text x="680" y="608" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" fill="#4A7A60">管理员统一通过 VPN 隧道访问</text>
 
   <!-- 页码 -->

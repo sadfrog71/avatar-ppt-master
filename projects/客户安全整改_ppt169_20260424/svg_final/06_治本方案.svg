@@ -53,7 +53,7 @@
   <line x1="684" y1="194" x2="684" y2="200" stroke="#16A34A" stroke-width="2" />
   <line x1="648" y1="200" x2="684" y2="200" stroke="#16A34A" stroke-width="2" />
 
-  <text x="710" y="196" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" font-weight="800" fill="#14532D">华为云 ↔ 港华内网 VPN 打通</text>
+  <text x="710" y="196" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" font-weight="800" fill="#14532D">华为云 ↔ 客户内网 VPN 打通</text>
   <text x="710" y="220" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" fill="#4A7A60">彻底解决公网暴露问题，构建零信任访问体系</text>
 
   
@@ -95,7 +95,7 @@
 
   
   <path fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5" d="M970,438 H1170 A10,10 0 0 1 1180,448 V548 A10,10 0 0 1 1170,558 H970 A10,10 0 0 1 960,548 V448 A10,10 0 0 1 970,438 Z" />
-  <text x="1070" y="468" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="800" fill="#16A34A" text-anchor="middle">港华内网</text>
+  <text x="1070" y="468" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="800" fill="#16A34A" text-anchor="middle">客户内网</text>
   <path fill="#FFFFFF" stroke="#16A34A" stroke-width="1" d="M985,482 H1155 A5,5 0 0 1 1160,487 V503 A5,5 0 0 1 1155,508 H985 A5,5 0 0 1 980,503 V487 A5,5 0 0 1 985,482 Z" />
   <text x="1070" y="500" font-family="Microsoft YaHei, Arial, sans-serif" font-size="11" fill="#4A7A60" text-anchor="middle">管理员 · VPN 认证接入</text>
   <path fill="#DCFCE7" d="M985,516 H1155 A5,5 0 0 1 1160,521 V537 A5,5 0 0 1 1155,542 H985 A5,5 0 0 1 980,537 V521 A5,5 0 0 1 985,516 Z" />

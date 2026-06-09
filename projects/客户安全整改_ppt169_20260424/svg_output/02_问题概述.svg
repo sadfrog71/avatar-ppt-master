@@ -8,7 +8,7 @@
   <!-- 页面标题区 -->
   <rect x="0" y="4" width="1280" height="76" fill="#F4F8FF"/>
   <rect x="50" y="50" width="5" height="24" rx="2" fill="#1E5AA8"/>
-  <text x="68" y="72" font-family="Microsoft YaHei, Arial, sans-serif" font-size="28" font-weight="800" fill="#0F2D5E">安全漏洞概述</text>
+  <text x="68" y="72" font-family="Microsoft YaHei, Arial, sans-serif" font-size="28" font-weight="800" fill="#0F2D5E">安全整改概述</text>
 
   <!-- 共性问题 -->
   <rect x="50" y="100" width="1180" height="100" rx="10" fill="#F0F4FF" stroke="#C5D9F5" stroke-width="1"/>

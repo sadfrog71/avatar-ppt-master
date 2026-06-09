@@ -8,7 +8,7 @@
   
   <rect x="0" y="4" width="1280" height="76" fill="#F4F8FF" />
   <path fill="#1E5AA8" d="M52,50 H53 A2,2 0 0 1 55,52 V72 A2,2 0 0 1 53,74 H52 A2,2 0 0 1 50,72 V52 A2,2 0 0 1 52,50 Z" />
-  <text x="68" y="72" font-family="Microsoft YaHei, Arial, sans-serif" font-size="28" font-weight="800" fill="#0F2D5E">安全漏洞概述</text>
+  <text x="68" y="72" font-family="Microsoft YaHei, Arial, sans-serif" font-size="28" font-weight="800" fill="#0F2D5E">安全整改概述</text>
 
   
   <path fill="#F0F4FF" stroke="#C5D9F5" stroke-width="1" d="M60,100 H1220 A10,10 0 0 1 1230,110 V190 A10,10 0 0 1 1220,200 H60 A10,10 0 0 1 50,190 V110 A10,10 0 0 1 60,100 Z" />
