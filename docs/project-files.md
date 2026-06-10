@@ -19,6 +19,7 @@
 |       |-- annual-review.json - 按用户目标组合组件的 JSON 计划示例。
 |       `-- portfolio.json - 按用户目标组合组件的 JSON 计划示例。
 |-- scripts/
+|   |-- check_latest_version.mjs - 本地命令脚本。
 |   |-- import-claude-themes.jsx - 本地命令脚本。
 |   |-- render-deck.jsx - 本地命令脚本。
 |   |-- render-goal-deck.jsx - 本地命令脚本。

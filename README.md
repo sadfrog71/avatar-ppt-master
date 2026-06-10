@@ -2,6 +2,8 @@
 
 一个用 React 组件生成静态 HTML 横向翻页 PPT 的本地 skill。当前只暴露已通过接入验收的 Claude Design 主题。
 
+当前版本: `0.1.1`
+
 最终产物是普通静态文件:
 
 ```text
@@ -13,7 +15,7 @@ output/my-deck/ppt/
 
 ## 当前结构
 
-- `themePack`: 当前支持 `theme01`、`theme02`、`theme08`,默认 `theme01`
+- `themePack`: 当前支持 `theme01`、`theme02`、`theme03`、`theme04`、`theme07`、`theme08`、`theme09`、`theme10`、`theme11`、`theme12`
 - 页面组件: `src/components/themes/theme*/`,页面 key 使用 `theme01_page001` 这类格式
 - 主题登记: `src/components/themes/generated-metadata.js`
 - 布局登记: `src/options.jsx`
@@ -47,6 +49,16 @@ npm run render:themes
 npm run render:goal -- examples/goal-decks/annual-review.json output/goal-demo/ppt/index.html
 ```
 
+## 版本检查
+
+安装版 Skill 每次完成用户请求后会运行:
+
+```bash
+node scripts/check_latest_version.mjs
+```
+
+脚本会对比本地版本和 GitHub 最新版本。有新版本时输出更新提醒;无新版本或网络不可用时不输出。
+
 ## 示例 Deck
 
 | 文件 | 内容主题 | 说明 |
@@ -69,5 +81,5 @@ npm run validate:goal-copy -- output/my-deck/goal.json output/my-deck/ppt/index.
 以下文档由 `npm run docs:update` 同步。
 
 - [ADR](docs/ADR.md): 当前架构决策记录
-- [项目文件作用说明](docs/project-files.md): 当前 952 个源码文件的主要作用
+- [项目文件作用说明](docs/project-files.md): 当前 953 个源码文件的主要作用
 <!-- project-docs:end -->

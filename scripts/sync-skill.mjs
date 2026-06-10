@@ -16,6 +16,7 @@ fs.rmSync(SKILL_ROOT, { recursive: true, force: true });
 syncProjectFiles();
 syncReferences();
 syncRunnerScript();
+syncVersionCheckScript();
 syncDistributionFiles();
 writeIfChanged(rootSkillPath, renderInstalledSkill(source));
 
@@ -184,7 +185,9 @@ function renderExampleGoal({ title, goal, audience, owner, themePack, layouts })
 }
 
 function renderInstalledSkill(content) {
+  const version = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')).version;
   let output = content
+    .replace(/\n## 版本\n[\s\S]*?(?=\n## 生成原则)/, '\n')
     .replace(/^name: .+$/m, 'name: dashi-ppt-skill')
     .replace(
       '生成静态 HTML 横向翻页 PPT。根据用户输入先整理 JSON 计划,再调用本地生成器输出 `index.html` 和 `assets/`。',
@@ -193,7 +196,7 @@ function renderInstalledSkill(content) {
 
   output = output.replace(
     '\n## 生成原则',
-    `\n## Skill 目录\n\n当前 \`SKILL.md\` 所在目录就是 Skill 根目录,下文记为 \`<skill-root>\`。\n\n内置生成器目录:\n\n\`<skill-root>/project\`\n\n渲染脚本:\n\n\`<skill-root>/scripts/render_goal_deck.sh\`\n\n## 生成原则`
+    `\n## 版本\n\n当前版本: \`${version}\`\n\n每次完成用户请求、准备最终回复前,运行:\n\n\`\`\`bash\nnode <skill-root>/scripts/check_latest_version.mjs\n\`\`\`\n\n如果脚本有输出,把输出内容附在最终回复末尾提醒用户更新;如果脚本无输出或检查失败,保持静默,不要提版本检查。\n\n## Skill 目录\n\n当前 \`SKILL.md\` 所在目录就是 Skill 根目录,下文记为 \`<skill-root>\`。\n\n内置生成器目录:\n\n\`<skill-root>/project\`\n\n渲染脚本:\n\n\`<skill-root>/scripts/render_goal_deck.sh\`\n\n版本检查脚本:\n\n\`<skill-root>/scripts/check_latest_version.mjs\`\n\n## 生成原则`
   );
 
   output = output.replace(
@@ -206,7 +209,8 @@ function renderInstalledSkill(content) {
     [
       '7. 运行渲染脚本输出 `output/<deck-name>/ppt/index.html`;脚本会使用 Skill 内置生成器,不要切回外部项目目录。',
       '8. 确认脚本完成 `validate:swiss` 和 `validate:goal-copy`。',
-      '9. 两项校验通过后把本地 HTML 路径或预览地址返回给用户。',
+      '9. 运行 `node <skill-root>/scripts/check_latest_version.mjs` 做静默版本检查。',
+      '10. 两项校验通过后把本地 HTML 路径或预览地址返回给用户;只有版本检查脚本有输出时才附加更新提醒。',
     ].join('\n')
   );
 
@@ -224,10 +228,13 @@ function syncDistributionFiles() {
 }
 
 function renderReadme({ packs }) {
+  const version = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')).version;
   const themes = packs.map(theme => `- \`${theme.key}\`: ${theme.label} (${theme.pageCount} 页)`).join('\n');
   return `# Dashi PPT Skill
 
 根据用户目标组合已接入主题页面,生成可离线打开和导出的静态 HTML PPT。
+
+当前版本: \`${version}\`
 
 ## 安装
 
@@ -245,6 +252,16 @@ function renderReadme({ packs }) {
 - npm
 
 第一次生成时脚本会在 \`project/\` 内执行 \`npm install\`,依赖版本由 \`project/package-lock.json\` 锁定。
+
+## 版本检查
+
+Skill 每次完成用户请求后会运行:
+
+\`\`\`bash
+node scripts/check_latest_version.mjs
+\`\`\`
+
+脚本会对比本地版本和 GitHub 最新版本。有新版本时输出更新提醒;无新版本或网络不可用时不输出。
 
 ## 生成方式
 
@@ -349,6 +366,12 @@ npm run render:goal -- "$SPEC_PATH" "$OUT_PATH"
 npm run validate:swiss -- "$OUT_PATH"
 npm run validate:goal-copy -- "$SPEC_PATH" "$OUT_PATH"
 `);
+  fs.chmodSync(scriptPath, 0o755);
+}
+
+function syncVersionCheckScript() {
+  const scriptPath = path.join(SKILL_ROOT, 'scripts/check_latest_version.mjs');
+  copyPath(path.join(ROOT, 'scripts/check_latest_version.mjs'), scriptPath);
   fs.chmodSync(scriptPath, 0o755);
 }
 
