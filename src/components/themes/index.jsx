@@ -15,6 +15,7 @@ export const THEME_PACK_OPTIONS = Object.fromEntries(
 );
 
 const PAGES_BY_KEY = new Map(THEME_PAGES.map(page => [page.key, page]));
+const REMOVED_CONTROL_TYPES = new Set(['icons', 'text', 'string', 'input', 'url', 'email', 'textarea', 'multiline']);
 
 function applyThemePageDefaults(page) {
   if (page.themeKey !== 'theme03') return page;
@@ -64,15 +65,16 @@ function normalizeControls(controls, defaults) {
       const key = control.key || control.prop;
       if (!key) return null;
       const type = normalizeType(control.type);
+      if (REMOVED_CONTROL_TYPES.has(String(control.type || type || '').toLowerCase())) return null;
       const next = {
         key,
-        label: control.label || key,
+        label: genericControlText(control.label || key),
         type,
         default: serializeValue(control.default ?? control.def ?? defaults[key]),
         min: serializeValue(resolveValue(control.min, defaults)),
         max: serializeValue(resolveValue(control.max, defaults)),
         step: serializeValue(control.step),
-        options: serializeValue(control.options),
+        options: genericControlValue(serializeValue(control.options)),
       };
       if (type === 'select' && (control.type === 'color' || control.type === 'palette')) {
         next.display = 'color';
@@ -87,6 +89,28 @@ function normalizeType(type) {
   if (['enum', 'radio', 'select', 'segment', 'color', 'palette', 'labelType'].includes(type)) return 'select';
   if (['toggle', 'boolean', 'focus'].includes(type)) return 'toggle';
   return type || 'range';
+}
+
+function genericControlText(value) {
+  if (typeof value !== 'string') return value;
+  return value
+    .replaceAll('联系方式数量', '信息条目数量')
+    .replaceAll('联系方式', '次级文案')
+    .replaceAll('投资人类型占比', '分类占比')
+    .replaceAll('投资人类型数', '分类数量')
+    .replaceAll('投资人类型', '分类类型')
+    .replaceAll('平均单笔融资金额', '平均指标')
+    .replaceAll('融资金额', '数值指标')
+    .replaceAll('投资人', '角色')
+    .replaceAll('AI Capital Lab', '研究机构')
+    .replaceAll('AI Capital', '研究机构');
+}
+
+function genericControlValue(value) {
+  if (typeof value === 'string') return genericControlText(value);
+  if (Array.isArray(value)) return value.map(genericControlValue);
+  if (!value || typeof value !== 'object') return value;
+  return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, genericControlValue(item)]));
 }
 
 function resolveValue(value, defaults) {

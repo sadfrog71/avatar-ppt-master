@@ -24,8 +24,6 @@ export const controls = [
       { value: "spiral", label: "螺旋" },
       { value: "constellation", label: "星座" },
     ], help: "生成式节点图的视觉样式（auto 按序轮换）" },
-  { key: "diagramArt", label: "替换为元素", type: "icons", default: null,
-    help: "选中后用 3D 元素替换全部卡片的节点图（选项由预览提供）" },
   { key: "focusEnabled", label: "重点突出", type: "toggle", default: false,
     help: "弱化其它卡片以突出某一张" },
   { key: "focusIndex", label: "突出项", type: "slider", default: 0, min: 0, max: 2, step: 1,
@@ -38,7 +36,6 @@ export const defaultProps = {
   cardCount: 2,
   showDiagram: true,
   diagramStyle: "auto",
-  diagramArt: null,
   focusEnabled: false,
   focusIndex: 0,
   // —— visible content (override per deck) ——
@@ -213,13 +210,7 @@ export default function MethodSlide(props) {
 
                   {p.showDiagram && (
                     <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", margin: "18px 0", minHeight: 200 }}>
-                      {p.diagramArt ? (
-                        <img src={p.diagramArt} alt="" aria-hidden="true"
-                          style={{ maxWidth: 220, maxHeight: 220, width: "auto", height: "auto", objectFit: "contain",
-                            filter: "drop-shadow(0 16px 20px rgba(22,21,19,0.24))" }} />
-                      ) : (
-                        <MethodDiagram kind={styleFor(i)} color={accent} size={230} />
-                      )}
+                      <MethodDiagram kind={styleFor(i)} color={accent} size={230} />
                     </div>
                   )}
 

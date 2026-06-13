@@ -62,18 +62,32 @@ function stripRuntimeProps(props) {
   return next;
 }
 
-function readImageFile(file) {
+function readMediaFile(file) {
   return new Promise(resolve => {
-    if (!file || !file.type?.startsWith?.('image/')) {
+    if (!file || !/^(image|video)\//.test(file.type || '')) {
       resolve(null);
       return;
     }
     const reader = new FileReader();
     reader.onload = () => {
       const src = reader.result;
+      if (file.type.startsWith('video/')) {
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+        video.muted = true;
+        video.onloadedmetadata = () => resolve({
+          src,
+          type: file.type,
+          kind: 'video',
+          ratio: video.videoWidth && video.videoHeight ? video.videoWidth / video.videoHeight : null,
+        });
+        video.onerror = () => resolve({ src, type: file.type, kind: 'video', ratio: null });
+        video.src = src;
+        return;
+      }
       const img = new Image();
-      img.onload = () => resolve({ src, ratio: img.naturalWidth / img.naturalHeight });
-      img.onerror = () => resolve({ src, ratio: null });
+      img.onload = () => resolve({ src, type: file.type, kind: 'image', ratio: img.naturalWidth / img.naturalHeight });
+      img.onerror = () => resolve({ src, type: file.type, kind: 'image', ratio: null });
       img.src = src;
     };
     reader.onerror = () => resolve(null);
@@ -81,26 +95,61 @@ function readImageFile(file) {
   });
 }
 
+function mediaItem(value) {
+  if (!value) return null;
+  if (typeof value === 'string') return { src: value, kind: value.startsWith('data:video/') ? 'video' : 'image' };
+  if (typeof value === 'object' && value.src) {
+    const kind = value.kind || (String(value.type || value.src).startsWith('video/') || String(value.src).startsWith('data:video/') ? 'video' : 'image');
+    return { ...value, kind };
+  }
+  return null;
+}
+
+function mediaSrc(value) {
+  return mediaItem(value)?.src || '';
+}
+
+function mediaKind(value) {
+  return mediaItem(value)?.kind || 'image';
+}
+
+function renderMedia(value, props = {}) {
+  const item = mediaItem(value);
+  if (!item?.src) return null;
+  if (item.kind === 'video') {
+    return <video src={item.src} muted playsInline loop autoPlay preload="metadata" {...props} />;
+  }
+  return <img src={item.src} alt="" {...props} />;
+}
+
 function createMediaApi(slide, baseProps) {
   function updateList(key, index, value) {
-    const nextList = toArray(baseProps[key]);
+    const slideId = slide.dataset.vmSlideId;
+    const currentProps = window.__deckViewModel?.getState?.().props?.[slideId] || {};
+    const sourceProps = { ...baseProps, ...currentProps };
+    const nextList = toArray(sourceProps[key]);
+    const previousValue = nextList[index] || null;
     nextList[index] = value || null;
-    const nextProps = stripRuntimeProps({ ...baseProps, [key]: nextList });
-    window.__deckViewModel?.setProps?.(slide.dataset.vmSlideId, nextProps);
+    const nextProps = stripRuntimeProps({ ...sourceProps, [key]: nextList });
+    window.__dashiUndo?.push?.({
+      label: 'media',
+      undo: () => updateList(key, index, previousValue),
+    });
+    window.__deckViewModel?.setProps?.(slideId, nextProps);
     renderImportedThemeSlide(slide, nextProps);
     window.__initEditableText?.(slide);
     window.__syncActiveEffects?.(slide);
   }
 
   async function acceptFile(key, index, file) {
-    const data = await readImageFile(file);
-    if (data?.src) updateList(key, index, data.src);
+    const data = await readMediaFile(file);
+    if (data?.src) updateList(key, index, data);
   }
 
   function pick(key, index) {
     const input = document.createElement('input');
     input.type = 'file';
-    input.accept = 'image/*';
+    input.accept = 'image/*,video/mp4,video/webm,video/quicktime,video/*';
     input.style.display = 'none';
     input.addEventListener('change', () => {
       acceptFile(key, index, input.files && input.files[0]).finally(() => input.remove());
@@ -120,6 +169,7 @@ function createMediaApi(slide, baseProps) {
 function HostImageSlot({ mediaApi, index, options = {} }) {
   const [over, setOver] = React.useState(false);
   const value = mediaApi.get('images', index);
+  const filled = !!mediaSrc(value);
   const aspectRatio = options.ratioAR || (options.ratio ? String(options.ratio) : undefined);
   const drop = (event) => {
     event.preventDefault();
@@ -139,7 +189,7 @@ function HostImageSlot({ mediaApi, index, options = {} }) {
         aspectRatio,
         overflow: 'hidden',
         cursor: 'pointer',
-        background: value
+        background: filled
           ? 'transparent'
           : 'repeating-linear-gradient(135deg, rgba(0,0,0,.08) 0 12px, rgba(0,0,0,.03) 12px 24px)',
         outline: over ? '3px solid rgba(143,227,39,.85)' : '1px dashed rgba(0,0,0,.25)',
@@ -156,12 +206,14 @@ function HostImageSlot({ mediaApi, index, options = {} }) {
       onDragLeave={() => setOver(false)}
       onDrop={drop}
     >
-      {value ? (
+      {filled ? (
         <>
-          <img src={value} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          {renderMedia(value, {
+            style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' },
+          })}
           <button
             type="button"
-            aria-label="Clear image"
+            aria-label="Clear media"
             onClick={(event) => {
               event.stopPropagation();
               mediaApi.set('images', index, null);
@@ -195,7 +247,7 @@ function HostImageSlot({ mediaApi, index, options = {} }) {
           textAlign: 'center',
           padding: 18,
         }}>
-          DROP IMAGE
+          DROP MEDIA
         </div>
       )}
     </div>

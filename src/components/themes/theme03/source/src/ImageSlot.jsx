@@ -28,18 +28,27 @@ export function ImageSlot({
   caption = "图片 / IMAGE",
   index,
   editable = true,
+  kind = src && String(src).startsWith("data:video/") ? "video" : "image",
   onUpload,          // (dataUrl, naturalRatio) => void
 }) {
   const [hover, setHover] = React.useState(false);
   const inputRef = React.useRef(null);
 
   const readFile = (file) => {
-    if (!file || !file.type.startsWith("image/")) return;
+    if (!file || !/^(image|video)\//.test(file.type || "")) return;
     const reader = new FileReader();
     reader.onload = () => {
       const url = reader.result;
+      if (file.type.startsWith("video/")) {
+        const video = document.createElement("video");
+        video.preload = "metadata";
+        video.onloadedmetadata = () => onUpload && onUpload(url, video.videoWidth && video.videoHeight ? video.videoWidth / video.videoHeight : EMPTY_RATIO, { kind: "video", type: file.type });
+        video.onerror = () => onUpload && onUpload(url, EMPTY_RATIO, { kind: "video", type: file.type });
+        video.src = url;
+        return;
+      }
       const img = new Image();
-      img.onload = () => onUpload && onUpload(url, img.naturalWidth / img.naturalHeight);
+      img.onload = () => onUpload && onUpload(url, img.naturalWidth / img.naturalHeight, { kind: "image", type: file.type });
       img.src = url;
     };
     reader.readAsDataURL(file);
@@ -74,11 +83,22 @@ export function ImageSlot({
       onDrop={onDrop}
     >
       {src ? (
-        <img
-          src={src}
-          alt=""
-          style={{ width: "100%", height: "100%", objectFit: fit, display: "block" }}
-        />
+        kind === "video" ? (
+          <video
+            src={src}
+            muted
+            playsInline
+            loop
+            preload="metadata"
+            style={{ width: "100%", height: "100%", objectFit: fit, display: "block" }}
+          />
+        ) : (
+          <img
+            src={src}
+            alt=""
+            style={{ width: "100%", height: "100%", objectFit: fit, display: "block" }}
+          />
+        )
       ) : (
         <div
           style={{
@@ -118,7 +138,7 @@ export function ImageSlot({
         <input
           ref={inputRef}
           type="file"
-          accept="image/*"
+          accept="image/*,video/mp4,video/webm,video/quicktime,video/*"
           style={{ display: "none" }}
           onChange={(e) => readFile(e.target.files && e.target.files[0])}
         />
@@ -180,7 +200,8 @@ export function ImageGallery({
           <ImageSlot key={i} index={i} src={(data[i] && data[i].src) || null} ratio={r}
             width={Math.round(w)} height={Math.round(heights[i])} radius={radius}
             caption={caption} editable={editable}
-            onUpload={(src, ratio) => setAt(i, { src, ratio })} />
+            kind={(data[i] && data[i].kind) || (data[i]?.src && String(data[i].src).startsWith("data:video/") ? "video" : "image")}
+            onUpload={(src, ratio, meta) => setAt(i, { src, ratio, ...(meta || {}) })} />
         ))}
       </div>
     );
@@ -197,13 +218,14 @@ export function ImageGallery({
           key={i}
           index={i}
           src={(data[i] && data[i].src) || null}
+          kind={(data[i] && data[i].kind) || (data[i]?.src && String(data[i].src).startsWith("data:video/") ? "video" : "image")}
           ratio={r}
           width={Math.round(h * r)}
           height={Math.round(h)}
           radius={radius}
           caption={caption}
           editable={editable}
-          onUpload={(src, ratio) => setAt(i, { src, ratio })}
+          onUpload={(src, ratio, meta) => setAt(i, { src, ratio, ...(meta || {}) })}
         />
       ))}
     </div>

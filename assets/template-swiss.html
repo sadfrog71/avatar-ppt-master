@@ -118,13 +118,6 @@
   .preview-prop-choice-group.is-color .preview-prop-choice{width:26px;height:26px;min-width:0;flex:0 0 auto;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14);transition:transform .12s}
   .preview-prop-choice-group.is-color .preview-prop-choice:hover{transform:scale(1.06)}
   .preview-prop-choice-group.is-color .preview-prop-choice.is-active{box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),0 0 0 2px var(--pp-bg),0 0 0 4px var(--pp-blue)}
-  .preview-prop-row.is-icons{grid-template-columns:1fr;gap:9px}
-  .preview-prop-icon-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-  .preview-prop-icon-choice{min-height:72px;display:grid;grid-template-rows:46px auto;place-items:center;gap:5px;padding:6px 4px;border:1px solid transparent;border-radius:7px;background:var(--pp-chip);color:var(--pp-fg2);font:500 10px/1.15 var(--sans-zh);cursor:pointer;text-align:center}
-  .preview-prop-icon-choice:hover{background:var(--pp-chip-h);color:var(--pp-fg)}
-  .preview-prop-icon-choice.is-active{background:var(--pp-sel-bg);border-color:var(--pp-blue);box-shadow:0 0 0 1px var(--pp-blue-soft);color:var(--pp-fg);font-weight:600}
-  .preview-prop-icon-choice img{max-width:46px;max-height:46px;width:auto;height:auto;object-fit:contain;display:block}
-  .preview-prop-icon-empty{width:34px;height:34px;border-radius:8px;border:1px dashed var(--pp-muted);display:grid;place-items:center;color:var(--pp-muted);font:600 11px/1 var(--sans)}
   .pp-text{width:100%;height:34px;border:1px solid transparent;border-radius:7px;background:var(--pp-chip);color:var(--pp-fg);padding:0 10px;font:500 12.5px/1 var(--sans-zh);outline:none}
   .pp-textarea{width:100%;min-height:74px;max-height:150px;resize:vertical;border:1px solid transparent;border-radius:7px;background:var(--pp-chip);color:var(--pp-fg);padding:9px 10px;font:500 12.5px/1.45 var(--sans-zh);outline:none}
   .pp-text:focus,.pp-textarea:focus{border-color:var(--pp-blue);background:var(--pp-bg)}
@@ -149,6 +142,19 @@
   .pp-export-menu button kbd{font:500 10px/1 var(--sans);color:var(--pp-fg2);padding:3px 6px;border-radius:4px;background:var(--pp-chip)}
   .pp-export-menu button:hover{background:var(--pp-blue-soft)}
   .pp-export-menu button:hover svg{color:var(--pp-blue)}
+  .overview-context-menu{position:fixed;z-index:130;min-width:138px;display:none;padding:5px;background:var(--pp-bg);border:1px solid var(--pp-border);border-radius:8px;box-shadow:0 14px 36px rgba(0,0,0,.22);color:var(--pp-fg)}
+  .overview-context-menu button{display:flex;align-items:center;justify-content:space-between;width:100%;height:34px;padding:0 9px;border:0;border-radius:6px;background:transparent;color:var(--pp-fg);font:500 12.5px/1 var(--sans-zh);text-align:left;cursor:pointer}
+  .overview-context-menu button:hover{background:var(--pp-blue-soft)}
+  .overview-context-menu button[disabled]{opacity:.42;cursor:not-allowed}
+  .overview-context-menu button[disabled]:hover{background:transparent}
+  .overview-skip-badge{position:absolute;right:8px;top:8px;z-index:3;padding:5px 8px;border-radius:999px;background:rgba(10,10,10,.72);color:#fff;font:600 11px/1 var(--sans-zh);letter-spacing:0;pointer-events:none}
+  .deck-export-overlay{position:fixed;inset:0;z-index:220;display:none;align-items:center;justify-content:center;background:rgba(6,7,10,.78);backdrop-filter:blur(16px);color:#fff;pointer-events:auto}
+  body.exporting-deck .deck-export-overlay{display:flex}
+  .deck-export-card{width:min(360px,calc(100vw - 48px));display:grid;gap:16px;padding:22px 24px;border:1px solid rgba(255,255,255,.18);border-radius:10px;background:rgba(20,22,27,.9);box-shadow:0 22px 70px rgba(0,0,0,.42)}
+  .deck-export-title{font:700 15px/1.2 var(--sans-zh)}
+  .deck-export-detail{font:500 12px/1.5 var(--sans-zh);color:rgba(255,255,255,.68)}
+  .deck-export-bar{height:8px;border-radius:999px;background:rgba(255,255,255,.16);overflow:hidden}
+  .deck-export-fill{height:100%;width:0%;border-radius:inherit;background:var(--focus-mark);transition:width .18s var(--ease-prod)}
   #preview-reset{display:flex;align-items:center;justify-content:center;gap:6px;height:36px;padding:0 14px;border:1px solid var(--pp-border);border-radius:6px;background:var(--pp-bg);color:var(--pp-fg2);cursor:pointer;font:500 12.5px/1 var(--sans-zh)}
   #preview-reset:hover{background:var(--pp-chip);color:var(--pp-fg)}
   #preview-reset svg{width:15px;height:15px}
@@ -268,6 +274,8 @@
   const deckSignature = createDeckSignature(vm, {...(vm.state?.text || {}), ...embeddedText});
   const saved = readSaved(deckSignature);
   vm.state.slideOrder = saved.slideOrder || vm.state.slideOrder || (vm.slides || []).map(slide => slide.id);
+  vm.state.skippedSlides = saved.skippedSlides || vm.state.skippedSlides || [];
+  vm.state.deletedSlides = saved.deletedSlides || vm.state.deletedSlides || [];
   vm.state.text = {...(vm.state.text || {}), ...embeddedText, ...(saved.text || {})};
   vm.state.props = {...(vm.state.props || {}), ...(saved.props || {})};
   vm.state.__deckSignature = deckSignature;
@@ -280,6 +288,8 @@
     getState,
     setTextState,
     setSlideOrder,
+    setSkippedSlides,
+    setDeletedSlides,
     setProps,
     syncFromDom,
     write: writeVm,
@@ -306,6 +316,18 @@
     persist();
   }
 
+  function setSkippedSlides(ids){
+    vm.state.skippedSlides = uniqueIds(ids);
+    writeVm();
+    persist();
+  }
+
+  function setDeletedSlides(ids){
+    vm.state.deletedSlides = uniqueIds(ids);
+    writeVm();
+    persist();
+  }
+
   function setProps(slideId, props){
     if(!slideId) return;
     vm.state.props[slideId] = {...(props || {})};
@@ -314,7 +336,7 @@
   }
 
   function syncFromDom(){
-    const slides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck .slide:not([hidden])')];
+    const slides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck > .slide:not([hidden])')];
     setSlideOrder(slides.map((slide, index) => slide.dataset.vmSlideId || vm.slides?.[index]?.id || `slide-${index + 1}`));
     return getState();
   }
@@ -339,6 +361,10 @@
 
   function writeVm(){
     writeJson(vmEl, vm);
+  }
+
+  function uniqueIds(ids){
+    return [...new Set((ids || []).filter(Boolean).map(String))];
   }
 
   function readJson(el, fallback){
@@ -372,7 +398,10 @@
 <script>
 /* =============== 导航 =============== */
 const deck=document.getElementById('deck');
-let allSlides=[...deck.querySelectorAll('.slide')];
+function collectDeckSlides(root=deck){
+  return [...(root?.children || [])].filter(el => el.classList?.contains('slide'));
+}
+let allSlides=collectDeckSlides();
 let slides=[...allSlides];
 const nav=document.getElementById('nav');
 let idx=0,total=0,lock=false;
@@ -423,16 +452,53 @@ function previewStoreKey(){
 }
 window.__previewStoreKey = previewStoreKey;
 
+function getSlideVmId(slide, index=allSlides.indexOf(slide)){
+  return slide?.dataset?.vmSlideId || slide?.id || slide?.dataset?.layout || `slide-${Math.max(0, index) + 1}`;
+}
+
+function getSlideStateSet(key){
+  return new Set((window.__deckViewModel?.getState?.()?.[key] || []).filter(Boolean).map(String));
+}
+
+function isSlideHiddenByThemePack(slide){
+  return !!(activeThemePack && slide?.dataset.themePack && slide.dataset.themePack !== activeThemePack);
+}
+
+function isSlideDeleted(slide, index=allSlides.indexOf(slide)){
+  return getSlideStateSet('deletedSlides').has(getSlideVmId(slide, index));
+}
+
+function isSlideSkipped(slide, index=allSlides.indexOf(slide)){
+  return getSlideStateSet('skippedSlides').has(getSlideVmId(slide, index));
+}
+
+function getCatalogSlides(){
+  allSlides=collectDeckSlides();
+  return allSlides.filter((slide, index) => !isSlideHiddenByThemePack(slide) && !isSlideDeleted(slide, index));
+}
+
+function persistCatalogSlideOrder(){
+  window.__deckViewModel?.setSlideOrder?.(getCatalogSlides().map((slide, index) => getSlideVmId(slide, index)));
+}
+
 function refreshSlideList(){
-  allSlides=[...deck.querySelectorAll('.slide')];
-  allSlides.forEach(slide => {
-    const hiddenByPack = activeThemePack && slide.dataset.themePack && slide.dataset.themePack !== activeThemePack;
-    slide.hidden = hiddenByPack;
-    if(hiddenByPack) slide.setAttribute('aria-hidden', 'true');
+  allSlides=collectDeckSlides();
+  const skipped = getSlideStateSet('skippedSlides');
+  const deleted = getSlideStateSet('deletedSlides');
+  allSlides.forEach((slide, index) => {
+    const slideId = getSlideVmId(slide, index);
+    const hiddenByPack = isSlideHiddenByThemePack(slide);
+    const hiddenByState = deleted.has(slideId) || skipped.has(slideId);
+    const hidden = hiddenByPack || hiddenByState;
+    slide.hidden = hidden;
+    if(skipped.has(slideId)) slide.dataset.slideSkipped = 'true';
+    else delete slide.dataset.slideSkipped;
+    if(hidden) slide.setAttribute('aria-hidden', 'true');
     else slide.removeAttribute('aria-hidden');
   });
   slides=allSlides.filter(slide => !slide.hidden);
   total=slides.length;
+  if(total === 0) idx=0;
   if(idx >= total) idx=Math.max(0,total-1);
 }
 
@@ -456,6 +522,7 @@ function setActiveThemePack(themePack, opts={}){
   renderNav();
   layoutDeck();
   if(opts.navigate !== false) go(0, {animate:false});
+  else commitSlideIndex(idx);
 }
 window.__setActiveThemePack=setActiveThemePack;
 
@@ -546,7 +613,7 @@ function getActiveSlide(){
 
 function isDeckFileSlotTarget(target){
   if(!(target instanceof Element)) return false;
-  if(target.closest('[data-dashi-host-image-slot],[role="button"],.gxn-slot,.acl-slot,.kx-imgslot,.dslot')) return true;
+  if(target.closest('[data-dashi-host-image-slot],image-slot,[role="button"],.gxn-slot,.pulse-imgframe,.acl-slot,.kx-imgslot,.dslot')) return true;
   const slide = target.closest('.slide');
   let el = target;
   while(el && el !== slide && el !== deck){
@@ -663,6 +730,19 @@ function blurActiveEditableText(){
 window.__blurActiveEditableText=blurActiveEditableText;
 
 function commitSlideIndex(nextIndex){
+  if(total <= 0){
+    idx=0;
+    window.__currentSlideIndex = idx;
+    deck.style.transform='translateX(0px)';
+    allSlides.forEach(slide => {
+      slide.classList.remove('active');
+      slide.removeAttribute('data-deck-active');
+    });
+    syncNav();
+    writeStoredSlideIndex(idx);
+    dispatchEvent(new CustomEvent('swiss-slide-change', {detail:{index:idx, slide:null}}));
+    return;
+  }
   idx=nextIndex;
   window.__currentSlideIndex = idx;
   applyDeckTransform();
@@ -685,8 +765,15 @@ function commitSlideIndex(nextIndex){
 
 function go(n, opts={}){
   blurActiveEditableText();
+  if(window.__deckExportLocked && !opts.force) return;
   if(lock)return;
   refreshSlideList();
+  if(total <= 0){
+    lock=true;
+    commitSlideIndex(0);
+    requestAnimationFrame(()=>lock=false);
+    return;
+  }
   const nextIndex=Math.max(0,Math.min(total-1,n));
   const currentSlide=slides[idx];
   const nextSlide=slides[nextIndex];
@@ -739,9 +826,77 @@ function moveSlide(fromIndex, insertIndex){
   syncSlideTone(active);
   syncActiveEffects(active);
   window.__deckViewModel?.setSlideOrder?.(slides.map((item, index) => item.dataset.vmSlideId || `slide-${index + 1}`));
+  persistCatalogSlideOrder();
   dispatchEvent(new CustomEvent('swiss-slide-reorder', {detail:{from:fromIndex, to:insertIndex, index:idx}}));
   dispatchEvent(new CustomEvent('swiss-slide-change', {detail:{index:idx, slide:active}}));
   if(window.__playSlide) window.__playSlide(idx);
+  return true;
+}
+
+function updateAfterCatalogMutation(previousActiveSlide, preferredIndex, detail={}){
+  refreshSlideList();
+  const activeIndex = slides.indexOf(previousActiveSlide);
+  idx = total > 0
+    ? (activeIndex >= 0 ? activeIndex : Math.max(0, Math.min(total - 1, preferredIndex || 0)))
+    : 0;
+  renderNav();
+  layoutDeck();
+  commitSlideIndex(idx);
+  persistCatalogSlideOrder();
+  if(overviewOn && !detail.skipOverviewRebuild) buildOverview();
+  dispatchEvent(new CustomEvent('swiss-slide-catalog-change', {detail}));
+}
+
+function moveCatalogSlide(fromIndex, insertIndex){
+  refreshSlideList();
+  const catalogSlides = getCatalogSlides();
+  if(fromIndex < 0 || fromIndex >= catalogSlides.length) return false;
+  const previousActiveSlide = slides[idx];
+  const [slide] = catalogSlides.splice(fromIndex, 1);
+  if(fromIndex < insertIndex) insertIndex -= 1;
+  insertIndex = Math.max(0, Math.min(catalogSlides.length, insertIndex));
+  catalogSlides.splice(insertIndex, 0, slide);
+  catalogSlides.forEach(item => deck.appendChild(item));
+  updateAfterCatalogMutation(previousActiveSlide, idx, {type:'reorder', from:fromIndex, to:insertIndex, skipOverviewRebuild:true});
+  dispatchEvent(new CustomEvent('swiss-slide-reorder', {detail:{from:fromIndex, to:insertIndex, index:idx}}));
+  return true;
+}
+
+function deleteCatalogSlide(catalogIndex){
+  refreshSlideList();
+  const catalogSlides = getCatalogSlides();
+  if(catalogSlides.length <= 1) return false;
+  const slide = catalogSlides[catalogIndex];
+  if(!slide) return false;
+  const previousActiveSlide = slides[idx];
+  const preferredIndex = Math.max(0, slides.indexOf(slide));
+  const slideId = getSlideVmId(slide, allSlides.indexOf(slide));
+  const deleted = getSlideStateSet('deletedSlides');
+  const skipped = getSlideStateSet('skippedSlides');
+  deleted.add(slideId);
+  skipped.delete(slideId);
+  window.__deckViewModel?.setDeletedSlides?.([...deleted]);
+  window.__deckViewModel?.setSkippedSlides?.([...skipped]);
+  slide.remove();
+  updateAfterCatalogMutation(previousActiveSlide === slide ? null : previousActiveSlide, preferredIndex, {type:'delete', slideId});
+  return true;
+}
+
+function toggleCatalogSlideSkipped(catalogIndex){
+  refreshSlideList();
+  const catalogSlides = getCatalogSlides();
+  const slide = catalogSlides[catalogIndex];
+  if(!slide) return false;
+  const slideId = getSlideVmId(slide, allSlides.indexOf(slide));
+  const skipped = getSlideStateSet('skippedSlides');
+  const currentlySkipped = skipped.has(slideId);
+  if(!currentlySkipped && slides.length <= 1) return false;
+  const previousActiveSlide = slides[idx];
+  const preferredIndex = Math.max(0, slides.indexOf(slide));
+  if(currentlySkipped) skipped.delete(slideId);
+  else skipped.add(slideId);
+  window.__deckViewModel?.setSkippedSlides?.([...skipped]);
+  updateAfterCatalogMutation(previousActiveSlide === slide ? null : previousActiveSlide, preferredIndex, {type:currentlySkipped ? 'unskip' : 'skip', slideId});
   return true;
 }
 
@@ -752,91 +907,141 @@ let overviewThumbObserver=null;
 let overviewThumbQueue=[];
 let overviewThumbScheduled=false;
 let overviewScrollQueued=false;
+let overviewCardUid=0;
 const OVERVIEW_ASPECT_W=16;
 const OVERVIEW_ASPECT_H=9;
 const ov=document.createElement('div');
 ov.id='overview';
 ov.style.cssText='position:fixed;inset:0;z-index:100;background:rgba(250,250,248,.96);backdrop-filter:blur(12px);display:none;overflow-y:auto;padding:4vh 4vw';
 document.body.appendChild(ov);
+const overviewMenu=document.createElement('div');
+overviewMenu.className='overview-context-menu';
+document.body.appendChild(overviewMenu);
+
+overviewMenu.addEventListener('mousedown', e => e.stopPropagation());
+overviewMenu.addEventListener('click', e => e.stopPropagation());
+document.addEventListener('click', hideOverviewContextMenu);
+addEventListener('keydown', event => {
+  if(event.key === 'Escape') hideOverviewContextMenu();
+});
+
+function hideOverviewContextMenu(){
+  overviewMenu.style.display='none';
+  overviewMenu.replaceChildren();
+}
+
+function showOverviewContextMenu(event, catalogIndex){
+  const catalogSlides = getCatalogSlides();
+  const slide = catalogSlides[catalogIndex];
+  if(!slide) return;
+  event.preventDefault();
+  event.stopPropagation();
+  hideOverviewContextMenu();
+
+  const skipped = isSlideSkipped(slide, allSlides.indexOf(slide));
+  const skipButton = document.createElement('button');
+  skipButton.type='button';
+  skipButton.textContent = skipped ? '取消跳过' : '跳过页面';
+  skipButton.disabled = !skipped && slides.length <= 1;
+  skipButton.onclick=()=>{
+    if(toggleCatalogSlideSkipped(catalogIndex)) hideOverviewContextMenu();
+  };
+
+  const deleteButton = document.createElement('button');
+  deleteButton.type='button';
+  deleteButton.textContent='删除页面';
+  deleteButton.disabled = catalogSlides.length <= 1;
+  deleteButton.onclick=()=>{
+    if(deleteCatalogSlide(catalogIndex)) hideOverviewContextMenu();
+  };
+
+  overviewMenu.append(skipButton, deleteButton);
+  overviewMenu.style.display='block';
+  const rect = overviewMenu.getBoundingClientRect();
+  overviewMenu.style.left = Math.min(event.clientX, innerWidth - rect.width - 8) + 'px';
+  overviewMenu.style.top = Math.min(event.clientY, innerHeight - rect.height - 8) + 'px';
+}
 
 function getOverviewCards(grid){
   return Array.from(grid.querySelectorAll('[data-overview-card="true"]'));
 }
 
+function getOverviewSlideKey(slide){
+  if(!slide) return '';
+  if(!slide.dataset.overviewId) slide.dataset.overviewId = 'overview-' + (++overviewCardUid);
+  return slide.dataset.overviewId;
+}
+
+function captureOverviewCardRects(grid){
+  const rects = {};
+  getOverviewCards(grid).forEach(card => {
+    rects[card.dataset.slideKey || card.dataset.index] = card.getBoundingClientRect();
+  });
+  return rects;
+}
+
+function captureOverviewThumbs(grid){
+  const thumbs = {};
+  getOverviewCards(grid).forEach(card => {
+    const key = card.dataset.slideKey || card.dataset.index;
+    const wrap = card.querySelector('[data-overview-thumb="true"]');
+    if(key && wrap?.dataset.overviewRendered === 'true') thumbs[key] = wrap.cloneNode(true);
+  });
+  return thumbs;
+}
+
+function animateOverviewFlow(grid, fromRects){
+  if(!fromRects) return;
+  requestAnimationFrame(() => {
+    getOverviewCards(grid).forEach(card => {
+      const from = fromRects[card.dataset.slideKey || card.dataset.index];
+      if(!from) return;
+      const to = card.getBoundingClientRect();
+      const dx = from.left - to.left;
+      const dy = from.top - to.top;
+      if(Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+      card.style.transition = 'none';
+      card.style.transform = `translate(${dx}px, ${dy}px)`;
+      requestAnimationFrame(() => {
+        card.style.transition = 'outline-color .2s,opacity .2s,transform .32s cubic-bezier(.2,.8,.2,1)';
+        card.style.transform = 'translate(0, 0)';
+      });
+    });
+  });
+}
+
 function getOverviewDropSlot(e, grid){
   const cards = getOverviewCards(grid);
   if(!cards.length) return null;
-  const gridRect = grid.getBoundingClientRect();
   const x = e.clientX;
   const y = e.clientY;
-  const pad = 18;
-  const zones = [];
-  const first = cards[0].getBoundingClientRect();
-  zones.push({
-    index: 0,
+  let best = null;
+  cards.forEach((card, index) => {
+    const rect = card.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = Math.max(rect.left - x, 0, x - rect.right);
+    const dy = Math.max(rect.top - y, 0, y - rect.bottom);
+    const distance = dx * dx + dy * dy;
+    if(!best || distance < best.distance) best = {card, index, rect, distance, before:x < cx, cy};
+  });
+  if(!best) return null;
+  return {
+    index: best.before ? best.index : best.index + 1,
     kind: 'vertical',
-    x: first.left,
-    y: first.top,
-    h: first.height,
-    hit: {left: gridRect.left, right: first.left + pad, top: first.top, bottom: first.bottom}
-  });
-
-  for(let i = 1; i < cards.length; i++){
-    const prev = cards[i - 1].getBoundingClientRect();
-    const next = cards[i].getBoundingClientRect();
-    const sameRow = Math.abs(prev.top - next.top) < Math.min(prev.height, next.height) / 2;
-    if(sameRow){
-      const markerX = (prev.right + next.left) / 2;
-      const top = Math.min(prev.top, next.top);
-      const bottom = Math.max(prev.bottom, next.bottom);
-      zones.push({
-        index: i,
-        kind: 'vertical',
-        x: markerX,
-        y: top,
-        h: bottom - top,
-        hit: {left: prev.right - pad / 2, right: next.left + pad / 2, top, bottom}
-      });
-    }else{
-      const markerY = (prev.bottom + next.top) / 2;
-      zones.push({
-        index: i,
-        kind: 'horizontal',
-        x: gridRect.left,
-        y: markerY,
-        w: gridRect.width,
-        hit: {left: gridRect.left, right: gridRect.right, top: prev.bottom - pad / 2, bottom: next.top + pad / 2}
-      });
-    }
-  }
-
-  const last = cards[cards.length - 1].getBoundingClientRect();
-  zones.push({
-    index: cards.length,
-    kind: 'horizontal',
-    x: gridRect.left,
-    y: last.bottom + 18,
-    w: gridRect.width,
-    hit: {left: gridRect.left, right: gridRect.right, top: last.bottom, bottom: gridRect.bottom}
-  });
-
-  return zones.find(zone => x >= zone.hit.left && x <= zone.hit.right && y >= zone.hit.top && y <= zone.hit.bottom) || null;
+    x: best.before ? best.rect.left : best.rect.right,
+    y: best.rect.top,
+    h: best.rect.height,
+  };
 }
 
 function showOverviewDropMarker(marker, slot, grid){
   const gridRect = grid.getBoundingClientRect();
   marker.style.display = 'block';
-  if(slot.kind === 'vertical'){
-    marker.style.left = (slot.x - gridRect.left - 2) + 'px';
-    marker.style.top = (slot.y - gridRect.top) + 'px';
-    marker.style.width = '4px';
-    marker.style.height = slot.h + 'px';
-  }else{
-    marker.style.left = '0';
-    marker.style.top = (slot.y - gridRect.top - 2) + 'px';
-    marker.style.width = '100%';
-    marker.style.height = '4px';
-  }
+  marker.style.left = (slot.x - gridRect.left - 2) + 'px';
+  marker.style.top = (slot.y - gridRect.top) + 'px';
+  marker.style.width = '4px';
+  marker.style.height = slot.h + 'px';
 }
 
 function hideOverviewDropMarker(marker){
@@ -889,7 +1094,7 @@ function teardownOverviewThumbs(){
 function renderOverviewThumb(wrap){
   if(!overviewOn || !wrap?.isConnected || wrap.dataset.overviewRendered === 'true') return;
   const card = wrap.closest('[data-overview-card="true"]');
-  const slide = slides[Number(card?.dataset.index)];
+  const slide = getCatalogSlides()[Number(card?.dataset.index)];
   if(!slide) return;
   ensureRuntimeSlideRendered(slide);
   wrap.replaceChildren();
@@ -958,28 +1163,37 @@ function observeOverviewThumbs(grid){
 
 function scrollOverviewToCurrent(){
   requestAnimationFrame(() => {
-    const card = ov.querySelector(`[data-overview-card="true"][data-index="${idx}"]`);
+    const activeSlide = slides[idx];
+    const catalogIndex = getCatalogSlides().indexOf(activeSlide);
+    const card = catalogIndex >= 0 ? ov.querySelector(`[data-overview-card="true"][data-index="${catalogIndex}"]`) : null;
     card?.scrollIntoView({block:'center', inline:'nearest'});
     queueVisibleOverviewThumbs();
   });
 }
 
-function buildOverview(){
+function buildOverview(fromRects=null, fromThumbs=null){
   refreshSlideList();
+  const catalogSlides = getCatalogSlides();
+  const catalogTotal = catalogSlides.length;
   teardownOverviewThumbs();
   ov.innerHTML='';
+  hideOverviewContextMenu();
   const grid=document.createElement('div');
   grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:2vh 1.6vw;max-width:90vw;margin:0 auto;padding-bottom:4vh;position:relative';
   const dropMarker=document.createElement('div');
   dropMarker.style.cssText='position:absolute;z-index:5;display:none;pointer-events:none;background:var(--focus-mark);border-radius:999px;box-shadow:0 0 0 4px rgba(0,0,0,.08)';
-  slides.forEach((s,i)=>{
+  catalogSlides.forEach((s,i)=>{
+    const skipped = isSlideSkipped(s, allSlides.indexOf(s));
+    const playableIndex = slides.indexOf(s);
     const card=document.createElement('div');
     card.draggable=true;
     card.dataset.index=i;
     card.dataset.overviewCard='true';
-    card.style.cssText='cursor:grab;overflow:hidden;position:relative;aspect-ratio:'+OVERVIEW_ASPECT_W+'/'+OVERVIEW_ASPECT_H+';outline:2px solid '+(i===idx?'var(--focus-mark)':'rgba(0,0,0,.12)')+';outline-offset:0;transition:outline-color .2s,opacity .2s,transform .2s;background:var(--paper)';
+    card.dataset.slideKey=getOverviewSlideKey(s);
+    card.style.cssText='cursor:grab;overflow:hidden;position:relative;aspect-ratio:'+OVERVIEW_ASPECT_W+'/'+OVERVIEW_ASPECT_H+';outline:2px solid '+(playableIndex===idx?'var(--focus-mark)':'rgba(0,0,0,.12)')+';outline-offset:0;transition:outline-color .2s,opacity .2s,transform .2s,filter .2s;background:var(--paper);opacity:'+(skipped?'.56':'1')+';filter:'+(skipped?'saturate(.62)':'none');
     card.onmouseenter=()=>card.style.outlineColor='rgba(0,0,0,.4)';
-    card.onmouseleave=()=>card.style.outlineColor=i===idx?'var(--focus-mark)':'rgba(0,0,0,.12)';
+    card.onmouseleave=()=>card.style.outlineColor=playableIndex===idx?'var(--focus-mark)':'rgba(0,0,0,.12)';
+    card.addEventListener('contextmenu', e => showOverviewContextMenu(e, Number(card.dataset.index)));
     card.addEventListener('dragstart', e=>{
       overviewDragFrom=i;
       overviewDidDrag=true;
@@ -999,18 +1213,33 @@ function buildOverview(){
     const isDark = slideUsesDarkChrome(s);
     wrap.dataset.overviewThumb='true';
     wrap.style.cssText='position:absolute;inset:0;width:100%;height:100%;aspect-ratio:'+OVERVIEW_ASPECT_W+'/'+OVERVIEW_ASPECT_H+';overflow:hidden;pointer-events:none;background:'+(isDark?'var(--ink)':'var(--paper)');
-    const placeholder=document.createElement('div');
-    placeholder.style.cssText='position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(0,0,0,.08)),repeating-linear-gradient(135deg,rgba(0,0,0,.08) 0 1px,transparent 1px 12px);opacity:.55';
-    wrap.appendChild(placeholder);
+    const cachedThumb = fromThumbs?.[card.dataset.slideKey];
+    if(cachedThumb?.firstElementChild){
+      wrap.replaceChildren(...[...cachedThumb.children].map(child => child.cloneNode(true)));
+      wrap.dataset.overviewRendered='true';
+    }else{
+      const placeholder=document.createElement('div');
+      placeholder.style.cssText='position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(0,0,0,.08)),repeating-linear-gradient(135deg,rgba(0,0,0,.08) 0 1px,transparent 1px 12px);opacity:.55';
+      wrap.appendChild(placeholder);
+    }
     const label=document.createElement('div');
     /* overview card label */
     label.style.cssText='position:absolute;left:0;bottom:0;z-index:2;padding:6px 10px;font-family:var(--mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:color-mix(in srgb,var(--paper) 84%,transparent);pointer-events:none';
-    label.textContent=String(i+1).padStart(2,'0')+'/'+String(total).padStart(2,'0');
+    label.textContent=String(i+1).padStart(2,'0')+'/'+String(catalogTotal).padStart(2,'0');
     card.appendChild(wrap);
     card.appendChild(label);
+    if(skipped){
+      const badge=document.createElement('div');
+      badge.className='overview-skip-badge';
+      badge.textContent='已跳过';
+      card.appendChild(badge);
+    }
     card.onclick=()=>{
       if(overviewDidDrag){overviewDidDrag=false;return;}
-      toggleOverview();go(Number(card.dataset.index));
+      const targetSlide = getCatalogSlides()[Number(card.dataset.index)];
+      const targetIndex = slides.indexOf(targetSlide);
+      if(targetIndex < 0) return;
+      toggleOverview();go(targetIndex);
     };
     grid.appendChild(card);
   });
@@ -1035,14 +1264,17 @@ function buildOverview(){
     if(overviewDragFrom===null || !slot) return;
     e.preventDefault();
     e.stopPropagation();
-    overviewDidDrag=moveSlide(overviewDragFrom, slot.index);
+    const beforeRects = captureOverviewCardRects(grid);
+    const beforeThumbs = captureOverviewThumbs(grid);
+    overviewDidDrag=moveCatalogSlide(overviewDragFrom, slot.index);
     overviewDragFrom=null;
     overviewDropIndex=null;
-    buildOverview();
+    buildOverview(overviewDidDrag ? beforeRects : null, overviewDidDrag ? beforeThumbs : null);
   });
   ov.appendChild(grid);
   observeOverviewThumbs(grid);
   scheduleOverviewFit();
+  animateOverviewFlow(grid, fromRects);
   requestAnimationFrame(queueVisibleOverviewThumbs);
 }
 
@@ -1050,7 +1282,7 @@ function toggleOverview(){
   overviewOn=!overviewOn;
   document.body.classList.toggle('overview-on', overviewOn);
   if(overviewOn){ov.style.display='block';buildOverview();fitOverviewThumbnails();scrollOverviewToCurrent();}
-  else{teardownOverviewThumbs();ov.style.display='none';}
+  else{teardownOverviewThumbs();hideOverviewContextMenu();ov.style.display='none';}
 }
 window.__toggleOverview = toggleOverview;
 
@@ -1072,6 +1304,7 @@ const DECK_PREV_KEYS=new Set(['ArrowLeft','PageUp','ArrowUp']);
 
 
 function handleDeckKeyNavigation(e,{allowSpace=true}={}){
+  if(window.__deckExportLocked){e.preventDefault();return;}
   if(e.key==='Escape'){e.preventDefault();toggleOverview();return;}
   if(overviewOn)return;
   if(DECK_NEXT_KEYS.has(e.key)||(allowSpace&&e.key===' ')){
@@ -1114,6 +1347,38 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
 
 </script>
 <script>
+/* =============== Preview Undo =============== */
+(function(){
+  const stack = [];
+  let applying = false;
+  window.__dashiUndo = {
+    get applying(){ return applying; },
+    push(action){
+      if(applying || !action || typeof action.undo !== 'function') return;
+      stack.push(action);
+      if(stack.length > 80) stack.shift();
+    },
+    undo(){
+      const action = stack.pop();
+      if(!action) return false;
+      applying = true;
+      try { action.undo(); }
+      finally { applying = false; }
+      return true;
+    }
+  };
+  addEventListener('keydown', event => {
+    const key = String(event.key || '').toLowerCase();
+    if(key !== 'z' || !(event.metaKey || event.ctrlKey) || event.shiftKey || event.altKey) return;
+    if(isDeckTypingTarget(event.target)) return;
+    if(window.__dashiUndo.undo()){
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+  }, true);
+})();
+</script>
+<script>
 /* =============== Preview Controller =============== */
 (function(){
   const optionsEl = document.getElementById('preview-options');
@@ -1131,7 +1396,7 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
 
   const STORE = 'dashi-ppt-preview';
   const viewModel = window.__deckViewModel;
-  let deckSlides = [...document.querySelectorAll('#deck .slide')];
+  let deckSlides = [...document.querySelectorAll('#deck > .slide')];
   const propsField = document.getElementById('preview-props-field');
   const propsPanel = document.getElementById('preview-props');
   const themePackField = document.getElementById('preview-theme-field');
@@ -1175,7 +1440,7 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
   }
 
   function refreshDeckSlides(){
-    deckSlides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck .slide:not([hidden])')];
+    deckSlides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck > .slide:not([hidden])')];
     if(count) count.textContent = `${Math.min(deckSlides.length, Math.max(1, (window.__currentSlideIndex || 0) + 1))}/${deckSlides.length}页`;
   }
 
@@ -1199,11 +1464,11 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
     const nextThemePack = counts[state.themePack] ? state.themePack : entries.find(([key]) => counts[key])?.[0] || state.themePack;
     if(nextThemePack) state.themePack = nextThemePack;
     themePackSelect.value = state.themePack;
-    themePackField.classList.toggle('is-hidden', entries.length < 2);
+    themePackField.classList.remove('is-hidden');
   }
 
   function countSlidesByThemePack(){
-    return [...document.querySelectorAll('#deck .slide')].reduce((acc, slide) => {
+    return [...document.querySelectorAll('#deck > .slide')].reduce((acc, slide) => {
       const key = slide.dataset.themePack || '';
       if(key) acc[key] = (acc[key] || 0) + 1;
       return acc;
@@ -1274,7 +1539,7 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
   function getSlidePropValues(slide, vmState = viewModel?.getState?.() || {}){
     const root = slide?.querySelector('[data-prop-controls]');
     if(!root) return {};
-    const controls = parsePropControls(root);
+    const controls = parsePropControls(root).filter(control => !isHiddenPropControl(control));
     const defaults = parsePropDefaults(root);
     const sourceProps = getSlideSourceProps(slide);
     const savedProps = vmState.props?.[slide.dataset.vmSlideId] || {};
@@ -1351,44 +1616,6 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
         });
         syncSelectionButtons(group, values[control.key]);
         row.appendChild(group);
-      } else if(controlType === 'icons'){
-        row.classList.add('is-icons');
-        const group = document.createElement('div');
-        group.className = 'preview-prop-icon-grid';
-        group.setAttribute('role', 'group');
-        group.setAttribute('aria-label', control.label || control.key);
-        [{value:'', label:'无'}, ...normalizePropOptions(control.options)].forEach(item => {
-          const button = document.createElement('button');
-          button.type = 'button';
-          button.className = 'preview-prop-icon-choice';
-          button.dataset.propValue = String(item.value ?? '');
-          button.title = item.label;
-          button.setAttribute('aria-label', item.label);
-          if(item.image){
-            const img = document.createElement('img');
-            img.src = item.image;
-            img.alt = '';
-            button.appendChild(img);
-          } else {
-            const empty = document.createElement('span');
-            empty.className = 'preview-prop-icon-empty';
-            empty.textContent = '无';
-            button.appendChild(empty);
-          }
-          const text = document.createElement('span');
-          text.textContent = item.label;
-          button.appendChild(text);
-          button.addEventListener('click', () => {
-            const nextValue = item.value || null;
-            updateCurrentProp(control, nextValue, {
-              extra: control.key === 'decorSrc' && nextValue ? {showDecor: true} : {},
-            });
-            syncIconButtons(group, nextValue);
-          });
-          group.appendChild(button);
-        });
-        syncIconButtons(group, values[control.key]);
-        row.appendChild(group);
       } else if(controlType === 'text' || controlType === 'textarea'){
         if(controlType === 'textarea') row.classList.add('is-textarea');
         const input = document.createElement(controlType === 'textarea' ? 'textarea' : 'input');
@@ -1457,11 +1684,15 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
 
   function normalizePropControlType(type){
     if(type === 'select' || type === 'selection' || type === 'segment' || type === 'color') return 'selection';
-    if(type === 'icons') return 'icons';
     if(type === 'text' || type === 'string' || type === 'input' || type === 'url' || type === 'email') return 'text';
     if(type === 'textarea' || type === 'multiline') return 'textarea';
     if(type === 'list' || type === 'array' || type === 'object') return 'list';
     return type || 'range';
+  }
+
+  function isHiddenPropControl(control){
+    const type = normalizePropControlType(control?.type);
+    return type === 'text' || type === 'textarea';
   }
 
   function propTypeIcon(controlType, isColor){
@@ -1470,7 +1701,6 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
     if(controlType === 'selection') return isColor
       ? a + '<path d="M12 3c-3.6 3.2-6 6.3-6 9a6 6 0 0 0 12 0c0-2.7-2.4-5.8-6-9Z"/></svg>'
       : a + '<rect x="3" y="5" width="18" height="6" rx="1.6"/><rect x="3" y="14" width="11" height="5" rx="1.6"/></svg>';
-    if(controlType === 'icons') return a + '<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8" cy="10" r="1.5"/><path d="m21 16-5.2-5.2a2 2 0 0 0-2.8 0L6 18"/></svg>';
     if(controlType === 'text' || controlType === 'textarea') return a + '<path d="M4 6h16"/><path d="M8 6v12"/><path d="M6 18h4"/><path d="M14 11h6"/><path d="M14 16h5"/></svg>';
     if(controlType === 'list') return a + '<path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg>';
     return a + '<line x1="3" y1="12" x2="21" y2="12"/><circle cx="9" cy="12" r="3" fill="var(--pp-bg)"/></svg>';
@@ -1479,15 +1709,6 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
   function syncSelectionButtons(group, value){
     const current = String(value ?? '');
     group.querySelectorAll('.preview-prop-choice').forEach(button => {
-      const active = button.dataset.propValue === current;
-      button.classList.toggle('is-active', active);
-      button.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-  }
-
-  function syncIconButtons(group, value){
-    const current = String(value ?? '');
-    group.querySelectorAll('.preview-prop-icon-choice').forEach(button => {
       const active = button.dataset.propValue === current;
       button.classList.toggle('is-active', active);
       button.setAttribute('aria-pressed', active ? 'true' : 'false');
@@ -1527,11 +1748,6 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
     if(controlType === 'selection'){
       const match = normalizePropOptions(control.options).find(item => String(item.value) === String(value));
       if(match) return match.value;
-    }
-    if(controlType === 'icons'){
-      if(value == null || value === '') return null;
-      const match = normalizePropOptions(control.options).find(item => String(item.value) === String(value));
-      return match ? match.value : String(value);
     }
     if(controlType === 'text' || controlType === 'textarea') return value == null ? '' : String(value);
     return value == null ? '' : String(value);
@@ -1602,16 +1818,84 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
 (function(){
   const deck = document.getElementById('deck');
   if(!deck) return;
+  window.__deckExportLocked = false;
 
-  window.__exportDeckPdf = async function(){
-    window.__syncDeckPageNumbers?.();
-    window.__flushEditableTextState?.();
-    window.__syncDeckViewModelFromDom?.();
-    document.body.classList.remove('preview-panel-open');
-    window.__layoutDeck?.();
-    window.print();
-    setTimeout(() => window.__syncActiveEffects?.(), 0);
-  };
+	  window.__exportDeckPdf = async function(){
+	    if(window.__deckExportLocked) return;
+	    const button = document.getElementById('preview-export-pdf');
+	    const buttonLabel = button?.textContent;
+	    let restoreState = null;
+	    let exportUi = null;
+	    try {
+	      exportUi = beginDeckExport('PDF');
+	      if(button){
+	        button.disabled = true;
+	        button.textContent = '导出中...';
+	      }
+	      updateDeckExport(exportUi, 0, 1, '准备页面状态...');
+	      window.__syncDeckPageNumbers?.();
+	      window.__flushEditableTextState?.();
+	      window.__syncDeckViewModelFromDom?.();
+	      await loadExportScript('assets/vendor/html-to-image.js', () => window.htmlToImage);
+
+	      const overview = document.getElementById('overview');
+	      restoreState = {
+	        index: window.__currentSlideIndex || 0,
+	        panelOpen: document.body.classList.contains('preview-panel-open'),
+	        overviewOn: document.body.classList.contains('overview-on'),
+	        overviewDisplay: overview?.style.display || '',
+	      };
+
+	      document.body.classList.remove('preview-panel-open', 'overview-on');
+	      if(overview) overview.style.display = 'none';
+	      window.__layoutDeck?.();
+	      window.__restoreEffectIframes?.(document);
+	      await window.__initUnicornScenes?.(document, {force:true});
+	      await waitForUnicornFrames(document, 6000);
+
+	      const slides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck > .slide:not([hidden])')];
+	      const images = [];
+	      for(let i = 0; i < slides.length; i++){
+	        if(button) button.textContent = `PDF ${i + 1}/${slides.length}`;
+	        updateDeckExport(exportUi, i, slides.length, `正在截取第 ${i + 1} / ${slides.length} 页`);
+	        go(i, {animate:false, force:true});
+	        await nextFrame();
+	        await nextFrame();
+	        const slideEl = slides[i];
+	        await waitForSlideCaptureReady(slideEl);
+	        document.body.classList.add('pptx-export-capturing');
+	        await nextFrame();
+	        const data = await captureSlideJpeg(slideEl, {
+	          cacheBust: true,
+	          skipFonts: true,
+	          quality: 0.92,
+	          pixelRatio: Math.min(2, Math.max(1.35, window.devicePixelRatio || 1.5)),
+	          backgroundColor: getCaptureBackground(slideEl),
+	        });
+	        document.body.classList.remove('pptx-export-capturing');
+	        images.push({data, ...(await getImageSize(data))});
+	      }
+
+	      updateDeckExport(exportUi, slides.length, slides.length, '正在生成 PDF 文件...');
+	      await nextFrame();
+	      const blob = buildPdfFromJpegs(images);
+	      updateDeckExport(exportUi, slides.length, slides.length, '正在下载 PDF...');
+	      restorePptxExportState(restoreState);
+	      await downloadBlob(blob, `${getDeckFileName()}.pdf`);
+	    } catch (error) {
+	      console.error('[export pdf]', error);
+	      alert('PDF 导出失败，请在浏览器控制台查看错误。');
+	    } finally {
+	      document.body.classList.remove('pptx-export-capturing');
+	      restorePptxExportState(restoreState);
+	      endDeckExport(exportUi);
+	      if(button){
+	        button.disabled = false;
+	        button.textContent = buttonLabel;
+	      }
+	      window.__syncActiveEffects?.();
+	    }
+	  };
 
   window.__exportDeckPptx = async function(){
     const button = document.getElementById('preview-export-pptx');
@@ -1655,9 +1939,9 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
       await window.__initUnicornScenes?.(document, {force:true});
       await waitForUnicornFrames(document, 6000);
 
-      const slides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck .slide:not([hidden])')];
+      const slides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck > .slide:not([hidden])')];
       for(let i = 0; i < slides.length; i++){
-        go(i, {animate:false});
+        go(i, {animate:false, force:true});
         await nextFrame();
         await nextFrame();
         const slideEl = slides[i];
@@ -1692,11 +1976,12 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
     }
   };
 
-  window.__exportDeckHtml = function(){
+  window.__exportDeckHtml = async function(){
     window.__syncDeckPageNumbers?.();
     window.__flushEditableTextState?.();
     window.__syncDeckViewModelFromDom?.();
     window.__renderRuntimeSlides?.();
+    await nextFrame();
     window.__initEditableText?.(document);
     const blob = new Blob([buildCleanExportHtml()], {type: 'text/html;charset=utf-8'});
     const url = URL.createObjectURL(blob);
@@ -1770,16 +2055,17 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
         'preview-panel-open',
         'overview-on',
         'pptx-export-capturing',
+        'exporting-deck',
       ].includes(name))
       .join(' ');
   }
 
   function sanitizeDeckForExport(deckClone){
-    const visibleIds = new Set((window.__getVisibleSlides?.() || [...deck.querySelectorAll('.slide:not([hidden])')])
+    const visibleIds = new Set((window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck > .slide:not([hidden])')])
       .map(slide => slide.dataset.vmSlideId || slide.id || slide.dataset.layout)
       .filter(Boolean));
 
-    [...deckClone.querySelectorAll('.slide')].forEach(slide => {
+    collectDeckSlides(deckClone).forEach(slide => {
       const key = slide.dataset.vmSlideId || slide.id || slide.dataset.layout;
       if(visibleIds.size && key && !visibleIds.has(key)){
         slide.remove();
@@ -1789,7 +2075,7 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
       slide.removeAttribute('aria-hidden');
     });
 
-    const slides = [...deckClone.querySelectorAll('.slide')];
+    const slides = collectDeckSlides(deckClone);
     slides.forEach((slide, index) => {
       const active = index === 0;
       slide.classList.toggle('active', active);
@@ -1833,7 +2119,7 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
 
   function cleanExportRuntime(){
     const deck = document.getElementById('deck');
-    const slides = [...deck.querySelectorAll('.slide')];
+    const slides = [...(deck?.children || [])].filter(el => el.classList?.contains('slide'));
     let idx = 0;
     let deckW = innerWidth;
     let deckH = innerHeight;
@@ -1905,7 +2191,7 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
       else if(event.key === 'End'){ event.preventDefault(); go(slides.length - 1); }
     });
     deck.addEventListener('mousedown', event => {
-      if(event.target.closest('button,input,textarea,select,a,[data-dashi-host-image-slot],[role="button"],.gxn-slot,.acl-slot,.kx-imgslot,.dslot')) return;
+      if(event.target.closest('button,input,textarea,select,a,[data-dashi-host-image-slot],image-slot,[role="button"],.gxn-slot,.pulse-imgframe,.acl-slot,.kx-imgslot,.dslot')) return;
       if(event.button === 0){ event.preventDefault(); go(idx + 1); }
       else if(event.button === 2){ event.preventDefault(); go(idx - 1); }
     });
@@ -1916,12 +2202,160 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
   }
 
 
-  function captureSlideImage(slideEl, options){
-    const image = window.htmlToImage.toPng(slideEl, options);
-    const timeout = new Promise((_, reject) => {
-      setTimeout(() => reject(new Error('Slide image capture timed out')), 20000);
+	  function captureSlideImage(slideEl, options){
+	    const image = window.htmlToImage.toPng(slideEl, options);
+	    const timeout = new Promise((_, reject) => {
+	      setTimeout(() => reject(new Error('Slide image capture timed out')), 20000);
+	    });
+	    return Promise.race([image, timeout]);
+	  }
+
+	  function captureSlideJpeg(slideEl, options){
+	    const image = window.htmlToImage.toJpeg(slideEl, options);
+	    const timeout = new Promise((_, reject) => {
+	      setTimeout(() => reject(new Error('Slide image capture timed out')), 20000);
+	    });
+	    return Promise.race([image, timeout]);
+	  }
+
+	  function getImageSize(dataUrl){
+	    return new Promise((resolve, reject) => {
+	      const img = new Image();
+	      img.onload = () => resolve({width: img.naturalWidth || 1920, height: img.naturalHeight || 1080});
+	      img.onerror = () => reject(new Error('Could not read captured image size'));
+	      img.src = dataUrl;
+	    });
+	  }
+
+  async function waitForSlideCaptureReady(slide){
+    if(document.fonts?.ready) await document.fonts.ready.catch(() => {});
+    const images = [...(slide?.querySelectorAll?.('img') || [])].filter(img => !img.complete);
+    await Promise.race([
+      Promise.all(images.map(img => new Promise(resolve => {
+        img.addEventListener('load', resolve, {once:true});
+        img.addEventListener('error', resolve, {once:true});
+      }))),
+      new Promise(resolve => setTimeout(resolve, 1800)),
+    ]);
+    slide?.querySelectorAll?.('video').forEach(video => {
+      if(video.readyState < 2) video.load?.();
     });
-    return Promise.race([image, timeout]);
+    await nextFrame();
+    finishSlideCaptureMotion(slide);
+    await nextFrame();
+  }
+
+  function finishSlideCaptureMotion(slide){
+    if(!slide?.getAnimations) return;
+    slide.getAnimations({subtree:true}).forEach(animation => {
+      const timing = animation.effect?.getComputedTiming?.();
+      const endTime = Number(timing?.endTime);
+      if(!Number.isFinite(endTime) || endTime <= 0) return;
+      try { animation.finish(); } catch {}
+    });
+  }
+
+	  function buildPdfFromJpegs(images){
+	    const pageW = 960;
+	    const pageH = 540;
+	    const objects = [];
+	    const pages = [];
+	    objects[1] = '<< /Type /Catalog /Pages 2 0 R >>';
+	    objects[2] = '';
+	    const addObject = body => {
+	      const id = objects.length;
+	      objects[id] = body;
+	      return id;
+	    };
+	    images.forEach((image, index) => {
+	      const binary = dataUrlToBinary(image.data);
+	      const imageId = addObject('<< /Type /XObject /Subtype /Image /Width ' + image.width + ' /Height ' + image.height + ' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + binary.length + ' >>\nstream\n' + binary + '\nendstream');
+	      const content = 'q\n' + pageW + ' 0 0 ' + pageH + ' 0 0 cm\n/Im' + (index + 1) + ' Do\nQ';
+	      const contentId = addObject('<< /Length ' + content.length + ' >>\nstream\n' + content + '\nendstream');
+	      const pageId = addObject('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ' + pageW + ' ' + pageH + '] /Resources << /XObject << /Im' + (index + 1) + ' ' + imageId + ' 0 R >> >> /Contents ' + contentId + ' 0 R >>');
+	      pages.push(pageId + ' 0 R');
+	    });
+	    objects[2] = '<< /Type /Pages /Count ' + pages.length + ' /Kids [' + pages.join(' ') + '] >>';
+	    let pdf = '%PDF-1.4\n%\xE2\xE3\xCF\xD3\n';
+	    const offsets = [0];
+	    for(let id = 1; id < objects.length; id++){
+	      offsets[id] = pdf.length;
+	      pdf += id + ' 0 obj\n' + objects[id] + '\nendobj\n';
+	    }
+	    const xref = pdf.length;
+	    pdf += 'xref\n0 ' + objects.length + '\n0000000000 65535 f \n';
+	    for(let id = 1; id < objects.length; id++){
+	      pdf += String(offsets[id]).padStart(10, '0') + ' 00000 n \n';
+	    }
+	    pdf += 'trailer\n<< /Size ' + objects.length + ' /Root 1 0 R >>\nstartxref\n' + xref + '\n%%EOF';
+	    return new Blob([binaryStringToUint8Array(pdf)], {type: 'application/pdf'});
+	  }
+
+	  function dataUrlToBinary(dataUrl){
+	    return atob(String(dataUrl).split(',')[1] || '');
+	  }
+
+	  function binaryStringToUint8Array(value){
+	    const bytes = new Uint8Array(value.length);
+	    for(let i = 0; i < value.length; i++) bytes[i] = value.charCodeAt(i) & 255;
+	    return bytes;
+	  }
+
+	  function downloadBlob(blob, filename){
+	    const file = typeof File === 'function'
+	      ? new File([blob], filename, {type: blob.type || 'application/pdf'})
+	      : blob;
+	    const url = URL.createObjectURL(file);
+	    const link = document.createElement('a');
+	    link.href = url;
+	    link.download = filename;
+	    link.rel = 'noopener';
+	    link.style.display = 'none';
+	    document.body.appendChild(link);
+	    const revokeDelay = isLoopbackHost() ? 1200 : 5000;
+	    return new Promise(resolve => {
+	      setTimeout(() => link.click(), 0);
+	      setTimeout(() => {
+	        URL.revokeObjectURL(url);
+	        link.remove();
+	        resolve();
+	      }, revokeDelay);
+	    });
+	  }
+
+  function isLoopbackHost(){
+    return ['localhost', '127.0.0.1', '::1'].includes(location.hostname);
+  }
+
+  function beginDeckExport(label){
+    window.__deckExportLocked = true;
+    document.body.classList.add('exporting-deck');
+    const overlay = document.createElement('div');
+    overlay.className = 'deck-export-overlay';
+    overlay.innerHTML = `
+      <div class="deck-export-card" role="status" aria-live="polite">
+        <div class="deck-export-title">${label} 导出中</div>
+        <div class="deck-export-detail">准备中...</div>
+        <div class="deck-export-bar"><div class="deck-export-fill"></div></div>
+      </div>`;
+    overlay.addEventListener('mousedown', event => event.preventDefault());
+    overlay.addEventListener('click', event => event.preventDefault());
+    document.body.appendChild(overlay);
+    return overlay;
+  }
+
+  function updateDeckExport(overlay, current, total, detail){
+    if(!overlay) return;
+    const pct = total > 0 ? Math.min(100, Math.max(0, Math.round((current / total) * 100))) : 0;
+    const text = detail || `导出进度 ${pct}%`;
+    overlay.querySelector('.deck-export-detail').textContent = `${text} · ${pct}%`;
+    overlay.querySelector('.deck-export-fill').style.width = pct + '%';
+  }
+
+  function endDeckExport(overlay){
+    window.__deckExportLocked = false;
+    document.body.classList.remove('exporting-deck');
+    overlay?.remove();
   }
 
 
@@ -1944,7 +2378,7 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
 
   function restorePptxExportState(state){
     if(!state) return;
-    go(state.index, {animate:false});
+    go(state.index, {animate:false, force:true});
     document.body.classList.toggle('preview-panel-open', state.panelOpen);
     document.body.classList.toggle('overview-on', state.overviewOn);
     const overview = document.getElementById('overview');
@@ -1958,9 +2392,18 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
     return value && value !== 'rgba(0, 0, 0, 0)' ? value : getComputedStyle(document.documentElement).getPropertyValue('--paper').trim() || '#fff';
   }
 
-  function nextFrame(){
-    return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-  }
+	  function nextFrame(){
+	    return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+	  }
+
+	  async function waitForUnicornFrames(scope=document, timeout=6000){
+	    const start = performance.now();
+	    do {
+	      await nextFrame();
+	      const pending = scope.querySelector?.('[data-unicorn-loading="true"]');
+	      if(!pending) return;
+	    } while(performance.now() - start < timeout);
+	  }
 
   function getDeckFileName(){
     return (document.title || 'presentation')
@@ -2045,15 +2488,16 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
     });
   }
 
-  function handleFocusIn(e){
-    const el = e.target.closest('[data-editable-id]');
-    if(!el || !deck.contains(el)) return;
-    if(!document.body.classList.contains('preview-panel-open')){
-      el.blur();
-      return;
-    }
-    el.dataset.editing = 'true';
-  }
+	  function handleFocusIn(e){
+	    const el = e.target.closest('[data-editable-id]');
+	    if(!el || !deck.contains(el)) return;
+	    if(!document.body.classList.contains('preview-panel-open')){
+	      el.blur();
+	      return;
+	    }
+	    el.dataset.editing = 'true';
+	    el.dataset.editBefore = el.innerHTML;
+	  }
 
   function handleInput(e){
     const el = e.target.closest('[data-editable-id]');
@@ -2061,12 +2505,23 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
     saveTextElement(el);
   }
 
-  function handleBlur(e){
-    const el = e.target.closest('[data-editable-id]');
-    if(!el || !deck.contains(el)) return;
-    delete el.dataset.editing;
-    saveTextElement(el);
-  }
+	  function handleBlur(e){
+	    const el = e.target.closest('[data-editable-id]');
+	    if(!el || !deck.contains(el)) return;
+	    const before = el.dataset.editBefore;
+	    const after = el.innerHTML;
+	    delete el.dataset.editing;
+	    delete el.dataset.editBefore;
+	    saveTextElement(el);
+	    if(before !== undefined && before !== after && !window.__dashiUndo?.applying){
+	      const key = el.dataset.editableId;
+	      const syncName = el.dataset.syncText || '';
+	      window.__dashiUndo?.push?.({
+	        label: 'text',
+	        undo: () => restoreTextElement(key, syncName, before),
+	      });
+	    }
+	  }
 
   function saveTextElement(el){
     const key = el.dataset.editableId;
@@ -2076,10 +2531,22 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
     writeTextState();
   }
 
-  function flushTextState(){
-    deck.querySelectorAll('[data-editable-id]').forEach(saveTextElement);
-    writeTextState();
-  }
+	  function flushTextState(){
+	    deck.querySelectorAll('[data-editable-id]').forEach(saveTextElement);
+	    writeTextState();
+	  }
+
+	  function restoreTextElement(key, syncName, value){
+	    if(!key) return;
+	    textState[key] = value;
+	    if(syncName) textState[`sync:${syncName}`] = value;
+	    deck.querySelectorAll('[data-editable-id]').forEach(el => {
+	      if(el.dataset.editableId === key || (syncName && el.dataset.syncText === syncName)){
+	        el.innerHTML = value;
+	      }
+	    });
+	    writeTextState();
+	  }
 
   function writeTextState(){
     if(stateEl) stateEl.textContent = JSON.stringify(textState).replace(/</g, '\\u003c');
@@ -2122,7 +2589,7 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
 <script>
 (function(){
   window.__playSlide = function(index){
-    const visibleSlides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck .slide:not([hidden])')];
+    const visibleSlides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck > .slide:not([hidden])')];
     const slide = visibleSlides[index ?? window.__currentSlideIndex ?? 0];
     if(!slide) return;
     slide.removeAttribute('data-deck-active');
@@ -2130,35 +2597,40 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
     slide.setAttribute('data-deck-active', '');
     window.__syncTheme10Motion?.(slide);
   };
-  window.__playPageTransition = function(mode, currentSlide, nextSlide, direction, commit){
-    if(!window.gsap || mode === 'none') { commit?.(); return Promise.resolve(); }
-    const stage = document.createElement('div');
-    stage.className = 'page-transition-stage is-active';
-    const current = currentSlide.cloneNode(true);
-    const next = nextSlide.cloneNode(true);
-    current.classList.add('active');
-    next.classList.add('active');
-    current.setAttribute('data-deck-active', '');
-    next.setAttribute('data-deck-active', '');
-    stage.append(current, next);
-    document.body.appendChild(stage);
-    const x = direction >= 0 ? 80 : -80;
-    let tl = gsap.timeline({defaults:{ease:'power3.inOut'}, onComplete(){ commit?.(); stage.remove(); }});
-    if(mode === 'fullscreenScroll'){
-      gsap.set(next, {x:x, autoAlpha:0});
-      tl.to(current, {x:-x, autoAlpha:0, duration:.42}, 0).to(next, {x:0, autoAlpha:1, duration:.42}, 0);
-    } else if(mode === 'liquidMorph'){
-      gsap.set(next, {scale:.985, filter:'blur(16px)', autoAlpha:0});
-      tl.to(current, {scale:1.015, filter:'blur(16px)', autoAlpha:0, duration:.38}, 0).to(next, {scale:1, filter:'blur(0px)', autoAlpha:1, duration:.44}, .04);
-    } else if(mode === 'sectionWrap'){
-      gsap.set(next, {y:direction >= 0 ? 48 : -48, autoAlpha:0});
-      tl.to(current, {y:direction >= 0 ? -48 : 48, autoAlpha:0, duration:.36}, 0).to(next, {y:0, autoAlpha:1, duration:.42}, 0);
-    } else {
-      gsap.set(next, {clipPath:'inset(0 100% 0 0)', autoAlpha:1});
-      tl.to(next, {clipPath:'inset(0 0% 0 0)', duration:.46}, 0).to(current, {autoAlpha:.2, duration:.46}, 0);
-    }
-    return new Promise(resolve => tl.eventCallback('onComplete', () => { commit?.(); stage.remove(); resolve(); }));
-  };
+	  window.__playPageTransition = function(mode, currentSlide, nextSlide, direction, commit){
+	    if(!window.gsap || mode === 'none') { commit?.(); return Promise.resolve(); }
+	    const stage = document.createElement('div');
+	    stage.className = 'page-transition-stage is-active';
+	    const current = currentSlide.cloneNode(true);
+	    const next = nextSlide.cloneNode(true);
+	    current.classList.add('active');
+	    next.classList.add('active');
+	    current.setAttribute('data-deck-active', '');
+	    next.setAttribute('data-deck-active', '');
+	    stage.append(current, next);
+	    document.body.appendChild(stage);
+	    const x = direction >= 0 ? 80 : -80;
+	    gsap.set([current, next], {position:'absolute', inset:0});
+	    let tl = gsap.timeline({defaults:{ease:'power3.inOut'}});
+	    if(mode === 'fullscreenScroll'){
+	      gsap.set(next, {xPercent:direction >= 0 ? 100 : -100, scale:.985, autoAlpha:1});
+	      tl.to(current, {xPercent:direction >= 0 ? -36 : 36, scale:.985, autoAlpha:.35, duration:.5}, 0)
+	        .to(next, {xPercent:0, scale:1, duration:.5}, 0);
+	    } else if(mode === 'liquidMorph'){
+	      gsap.set(next, {scale:1.02, filter:'blur(18px)', clipPath:'circle(0% at 50% 52%)', autoAlpha:1});
+	      tl.to(current, {scale:.985, filter:'blur(12px)', autoAlpha:.18, duration:.45}, 0)
+	        .to(next, {clipPath:'circle(142% at 50% 52%)', filter:'blur(0px)', scale:1, duration:.58, ease:'power4.inOut'}, 0);
+	    } else if(mode === 'sectionWrap'){
+	      gsap.set(next, {y:direction >= 0 ? 70 : -70, scale:.98, autoAlpha:0});
+	      tl.to(current, {y:direction >= 0 ? -44 : 44, scale:.985, autoAlpha:0, duration:.36}, 0)
+	        .to(next, {y:0, scale:1, autoAlpha:1, duration:.46}, .04);
+	    } else {
+	      gsap.set(next, {clipPath: direction >= 0 ? 'inset(0 100% 0 0)' : 'inset(0 0 0 100%)', filter:'contrast(1.08)', autoAlpha:1});
+	      tl.to(next, {clipPath:'inset(0 0% 0 0%)', duration:.48, ease:'steps(12)'}, 0)
+	        .to(current, {autoAlpha:.16, duration:.48}, 0);
+	    }
+	    return new Promise(resolve => tl.eventCallback('onComplete', () => { commit?.(); stage.remove(); resolve(); }));
+	  };
 })();
 </script>
 </body>

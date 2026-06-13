@@ -142,10 +142,19 @@ function CoverSlot({ idPrefix, placeholder, accent }){
 
   const save = (d)=>{ setData(d); try{ d?localStorage.setItem(key, JSON.stringify(d)):localStorage.removeItem(key); }catch(e){} };
   const ingest = (file)=>{
-    if(!file || !file.type.startsWith('image/')) return;
+    if(!file || !/^(image|video)\//.test(file.type || '')) return;
     const reader = new FileReader();
-    reader.onload = (e)=>{ const url = e.target.result; const im = new Image();
-      im.onload = ()=> save({ url, aspect: im.naturalWidth/im.naturalHeight }); im.src = url; };
+    reader.onload = (e)=>{ const url = e.target.result;
+      if(file.type.startsWith('video/')){
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+        video.onloadedmetadata = ()=> save({ url, aspect: (video.videoWidth && video.videoHeight) ? video.videoWidth/video.videoHeight : 16/9, kind:'video', type:file.type });
+        video.onerror = ()=> save({ url, aspect: 16/9, kind:'video', type:file.type });
+        video.src = url;
+        return;
+      }
+      const im = new Image();
+      im.onload = ()=> save({ url, aspect: im.naturalWidth/im.naturalHeight, kind:'image', type:file.type }); im.src = url; };
     reader.readAsDataURL(file);
   };
 
@@ -159,10 +168,12 @@ function CoverSlot({ idPrefix, placeholder, accent }){
         background: data ? '#03081e'
           : 'repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 18px, rgba(255,255,255,.02) 18px 36px)',
         boxShadow: drag ? `inset 0 0 0 3px ${accent}` : 'none'}}>
-      <input ref={inputRef} type="file" accept="image/*" style={{display:'none'}}
+      <input ref={inputRef} type="file" accept="image/*,video/mp4,video/webm,video/quicktime,video/*" style={{display:'none'}}
              onChange={(e)=> ingest(e.target.files[0])} onClick={(e)=>e.stopPropagation()} />
       {data ? (
-        <img src={data.url} alt="" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
+        data.kind === 'video'
+          ? <video src={data.url} muted playsInline loop autoPlay preload="metadata" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
+          : <img src={data.url} alt="" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
       ) : (
         <div style={{position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center',
               justifyContent:'center', gap:16, textAlign:'center'}}>

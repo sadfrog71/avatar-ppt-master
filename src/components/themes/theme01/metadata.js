@@ -2331,7 +2331,7 @@ export const pages = [
         "label": "数值标签",
         "type": "boolean",
         "default": true,
-        "desc": "是否在条形末端显示融资金额。"
+        "desc": "是否在条形末端显示数值指标。"
       },
       {
         "key": "showCaption",

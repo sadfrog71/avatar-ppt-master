@@ -187,12 +187,15 @@ function MetaTag({ k, v }) {
 function AdaptiveImageSlot({ id, box = 300, ratio = 0.8, placeholder = '拖入图片',
   sticker, rotate = 0, accent = 'var(--acl-paper)' }) {
   const key = 'acl-slot-' + id;
-  const [data, setData] = React.useState(null);
+  const readStored = () => {
+    try { const s = localStorage.getItem(key); return s ? JSON.parse(s) : null; } catch (e) { return null; }
+  };
+  const [data, setData] = React.useState(readStored);
   const [drag, setDrag] = React.useState(false);
   const inputRef = React.useRef(null);
 
   React.useEffect(() => {
-    try { const s = localStorage.getItem(key); if (s) setData(JSON.parse(s)); } catch (e) {}
+    setData(readStored());
   }, [key]);
 
   const save = (d) => {
@@ -200,17 +203,28 @@ function AdaptiveImageSlot({ id, box = 300, ratio = 0.8, placeholder = '拖入�
     try { d ? localStorage.setItem(key, JSON.stringify(d)) : localStorage.removeItem(key); } catch (e) {}
   };
   const readFile = (file) => {
-    if (!file || !file.type || file.type.indexOf('image/') !== 0) return;
+    if (!file || !/^(image|video)\//.test(file.type || '')) return;
     const r = new FileReader();
     r.onload = () => {
+      if (file.type.startsWith('video/')) {
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+        video.onloadedmetadata = () => save({ src: r.result, w: video.videoWidth || box, h: video.videoHeight || box, kind: 'video', type: file.type });
+        video.onerror = () => save({ src: r.result, w: box, h: box, kind: 'video', type: file.type });
+        video.src = r.result;
+        return;
+      }
       const img = new Image();
-      img.onload = () => save({ src: r.result, w: img.naturalWidth, h: img.naturalHeight });
+      img.onload = () => save({ src: r.result, w: img.naturalWidth, h: img.naturalHeight, kind: 'image', type: file.type });
       img.src = r.result;
     };
     r.readAsDataURL(file);
   };
 
-  const aspect = data ? data.w / data.h : ratio;
+  const stopSlotNavigation = (e) => { e.stopPropagation(); };
+
+  const currentData = data || readStored();
+  const aspect = currentData ? currentData.w / currentData.h : ratio;
   let w, h;
   if (aspect >= 1) { w = box; h = Math.round(box / aspect); }
   else { h = box; w = Math.round(box * aspect); }
@@ -218,27 +232,32 @@ function AdaptiveImageSlot({ id, box = 300, ratio = 0.8, placeholder = '拖入�
   return (
     <div className={'acl-slot' + (drag ? ' acl-slot--drag' : '')}
          style={{ width: w, height: h, transform: `rotate(${rotate}deg)` }}
-         onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
+         onPointerDown={stopSlotNavigation}
+         onMouseDown={stopSlotNavigation}
+         onClick={stopSlotNavigation}
+         onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); setDrag(true); }}
          onDragLeave={() => setDrag(false)}
-         onDrop={(e) => { e.preventDefault(); setDrag(false);
+         onDrop={(e) => { e.preventDefault(); e.stopPropagation(); setDrag(false);
            readFile(e.dataTransfer.files && e.dataTransfer.files[0]); }}>
       <div className="acl-slot__frame" style={{ borderColor: accent }}>
-        {data
-          ? <img className="acl-slot__img" src={data.src} alt="" />
+        {currentData
+          ? (currentData.kind === 'video'
+            ? <video className="acl-slot__img" src={currentData.src} muted playsInline loop autoPlay preload="metadata" />
+            : <img className="acl-slot__img" src={currentData.src} alt="" />)
           : (
             <div className="acl-slot__empty" onClick={() => inputRef.current && inputRef.current.click()}>
               <div className="acl-slot__plus">+</div>
               <div className="acl-slot__cap">{placeholder}</div>
             </div>
           )}
-        {data && <div className="acl-slot__hint" onClick={() => save(null)}>清除 ✕</div>}
+        {currentData && <div className="acl-slot__hint" onClick={() => save(null)}>清除 ✕</div>}
       </div>
       {sticker && (
         <div className="acl-slot__sticker">
           <Sticker {...sticker} />
         </div>
       )}
-      <input ref={inputRef} type="file" accept="image/*" style={{ display: 'none' }}
+      <input ref={inputRef} type="file" accept="image/*,video/mp4,video/webm,video/quicktime,video/*" style={{ display: 'none' }}
              onChange={(e) => readFile(e.target.files && e.target.files[0])} />
     </div>
   );

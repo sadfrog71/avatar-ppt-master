@@ -10,7 +10,7 @@
 import React from 'react';
 import { swTheme } from './swTheme.js';
 import { SlideRoot, Hl, renderSwText } from './swBase.jsx';
-import SwImageSlot from './SwImageSlot.jsx';
+import { SwBackgroundLayer, SW_UNICORN_BACKGROUND_CONTROL } from './SwUnicornBackground.jsx';
 
 const C = swTheme.color, F = swTheme.font;
 
@@ -18,6 +18,7 @@ export const meta = { id: 'hero', index: 16, label: '整版大图 / On Stage' };
 
 export const defaultProps = {
   accent: C.orange,
+  backgroundMode: 'unicorn',
   mediaFit: 'cover',
   overlayPosition: 'bottom-left', // 'bottom-left' | 'bottom-right' | 'left'
   scrim: 'dark',                  // 'dark' | 'light'
@@ -42,6 +43,7 @@ export const defaultProps = {
 };
 
 export const controls = [
+  SW_UNICORN_BACKGROUND_CONTROL,
   { key: 'overlayPosition', label: '文案位置', type: 'segment', def: 'bottom-left',
     options: [{ value: 'bottom-left', label: '左下' }, { value: 'bottom-right', label: '右下' }, { value: 'left', label: '左侧' }],
     desc: '叠加文案面板的位置' },
@@ -81,9 +83,8 @@ export default function SwSlideHero(props) {
     <SlideRoot bg={C.dark} color={fg} style={{ padding: 0 }}>
       {/* full-bleed image */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-        <SwImageSlot value={p.media[0] || null} onChange={(s) => p.onMediaChange(0, s)}
-          fit={p.mediaFit} accent={accent} radius={0} tone="dark"
-          placeholder={p.mediaPlaceholder} />
+        <SwBackgroundLayer mode={p.backgroundMode} media={p.media} onMediaChange={p.onMediaChange}
+          fit={p.mediaFit} accent={accent} placeholder={p.mediaPlaceholder} />
       </div>
       {/* scrim */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: scrimGrad, pointerEvents: 'none' }} />

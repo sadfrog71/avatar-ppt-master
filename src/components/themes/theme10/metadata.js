@@ -7761,10 +7761,10 @@ export const pages = [
       },
       {
         "key": "showContact",
-        "label": "联系方式",
+        "label": "次级文案",
         "type": "toggle",
         "default": true,
-        "desc": "底部联系方式列表。"
+        "desc": "底部次级文案列表。"
       },
       {
         "key": "showQR",

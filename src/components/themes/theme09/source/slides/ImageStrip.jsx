@@ -55,12 +55,20 @@ function ImageStrip(props){
   };
 
   const ingest = (i, file)=>{
-    if(!file || !file.type.startsWith('image/')) return;
+    if(!file || !/^(image|video)\//.test(file.type || '')) return;
     const reader = new FileReader();
     reader.onload = (e)=>{
       const url = e.target.result;
+      if(file.type.startsWith('video/')){
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+        video.onloadedmetadata = ()=> setSlot(i, { url, aspect: (video.videoWidth && video.videoHeight) ? video.videoWidth/video.videoHeight : 16/9, kind:'video', type:file.type });
+        video.onerror = ()=> setSlot(i, { url, aspect: 16/9, kind:'video', type:file.type });
+        video.src = url;
+        return;
+      }
       const im = new Image();
-      im.onload = ()=> setSlot(i, { url, aspect: im.naturalWidth/im.naturalHeight });
+      im.onload = ()=> setSlot(i, { url, aspect: im.naturalWidth/im.naturalHeight, kind:'image', type:file.type });
       im.src = url;
     };
     reader.readAsDataURL(file);
@@ -120,11 +128,13 @@ function ImageSlotCell({ data, aspect, height, placeholder, onFile, onClear }){
         transition:'border-color .15s, box-shadow .15s',
       }}
     >
-      <input ref={inputRef} type="file" accept="image/*" style={{display:'none'}}
+      <input ref={inputRef} type="file" accept="image/*,video/mp4,video/webm,video/quicktime,video/*" style={{display:'none'}}
              onChange={(e)=> onFile(e.target.files[0])} onClick={(e)=>e.stopPropagation()} />
 
       {data ? (
-        <img src={data.url} alt="" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
+        data.kind === 'video'
+          ? <video src={data.url} muted playsInline loop autoPlay preload="metadata" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
+          : <img src={data.url} alt="" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
       ) : (
         <div style={{position:'absolute', inset:0, display:'flex', flexDirection:'column',
                      alignItems:'center', justifyContent:'center', gap:14, padding:18, textAlign:'center'}}>
@@ -166,10 +176,19 @@ export function FillSlot({ idPrefix='fill', idx=0, placeholder='图片 / image',
   const inputRef = React.useRef(null);
   const save = (d)=>{ setData(d); try{ d?localStorage.setItem(key, JSON.stringify(d)):localStorage.removeItem(key); }catch(e){} };
   const ingest = (file)=>{
-    if(!file || !file.type.startsWith('image/')) return;
+    if(!file || !/^(image|video)\//.test(file.type || '')) return;
     const reader = new FileReader();
-    reader.onload = (e)=>{ const url = e.target.result; const im = new Image();
-      im.onload = ()=> save({ url, aspect: im.naturalWidth/im.naturalHeight }); im.src = url; };
+    reader.onload = (e)=>{ const url = e.target.result;
+      if(file.type.startsWith('video/')){
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+        video.onloadedmetadata = ()=> save({ url, aspect: (video.videoWidth && video.videoHeight) ? video.videoWidth/video.videoHeight : 16/9, kind:'video', type:file.type });
+        video.onerror = ()=> save({ url, aspect: 16/9, kind:'video', type:file.type });
+        video.src = url;
+        return;
+      }
+      const im = new Image();
+      im.onload = ()=> save({ url, aspect: im.naturalWidth/im.naturalHeight, kind:'image', type:file.type }); im.src = url; };
     reader.readAsDataURL(file);
   };
   return (
@@ -181,9 +200,11 @@ export function FillSlot({ idPrefix='fill', idx=0, placeholder='图片 / image',
       style={{position:'absolute', inset:0, cursor:'pointer', overflow:'hidden', borderRadius:radius,
         background: data ? '#03081e' : 'repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 16px, rgba(255,255,255,.02) 16px 32px)',
         boxShadow: drag ? `inset 0 0 0 3px ${accent}` : 'none'}}>
-      <input ref={inputRef} type="file" accept="image/*" style={{display:'none'}} onChange={(e)=> ingest(e.target.files[0])} onClick={(e)=>e.stopPropagation()} />
+      <input ref={inputRef} type="file" accept="image/*,video/mp4,video/webm,video/quicktime,video/*" style={{display:'none'}} onChange={(e)=> ingest(e.target.files[0])} onClick={(e)=>e.stopPropagation()} />
       {data ? (
-        <img src={data.url} alt="" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
+        data.kind === 'video'
+          ? <video src={data.url} muted playsInline loop autoPlay preload="metadata" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
+          : <img src={data.url} alt="" style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}} />
       ) : (
         <div style={{position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:10, padding:14, textAlign:'center'}}>
           <span style={{width:42, height:42, borderRadius:12, display:'inline-flex', alignItems:'center', justifyContent:'center',

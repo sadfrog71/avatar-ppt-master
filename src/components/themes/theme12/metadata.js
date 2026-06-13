@@ -260,6 +260,24 @@ export const pages = [
     "bgClass": "",
     "controls": [
       {
+        "key": "backgroundMode",
+        "label": "背景替换",
+        "type": "segment",
+        "default": "unicorn",
+        "def": "unicorn",
+        "options": [
+          {
+            "value": "unicorn",
+            "label": "动态"
+          },
+          {
+            "value": "media",
+            "label": "上传"
+          }
+        ],
+        "desc": "动态 shader 或自定义背景媒体"
+      },
+      {
         "key": "mediaFit",
         "label": "图片填充",
         "type": "segment",
@@ -355,6 +373,7 @@ export const pages = [
     ],
     "defaultProps": {
       "accent": "#f15a29",
+      "backgroundMode": "unicorn",
       "mediaFit": "cover",
       "scrim": "dark",
       "showSpine": true,
@@ -2377,6 +2396,24 @@ export const pages = [
     "bgClass": "",
     "controls": [
       {
+        "key": "backgroundMode",
+        "label": "背景替换",
+        "type": "segment",
+        "default": "unicorn",
+        "def": "unicorn",
+        "options": [
+          {
+            "value": "unicorn",
+            "label": "动态"
+          },
+          {
+            "value": "media",
+            "label": "上传"
+          }
+        ],
+        "desc": "动态 shader 或自定义背景媒体"
+      },
+      {
         "key": "overlayPosition",
         "label": "文案位置",
         "type": "segment",
@@ -2470,6 +2507,7 @@ export const pages = [
     ],
     "defaultProps": {
       "accent": "#f15a29",
+      "backgroundMode": "unicorn",
       "mediaFit": "cover",
       "overlayPosition": "bottom-left",
       "scrim": "dark",
@@ -2509,6 +2547,24 @@ export const pages = [
     "label": "杂志封面 / Cover",
     "bgClass": "",
     "controls": [
+      {
+        "key": "backgroundMode",
+        "label": "背景替换",
+        "type": "segment",
+        "default": "unicorn",
+        "def": "unicorn",
+        "options": [
+          {
+            "value": "unicorn",
+            "label": "动态"
+          },
+          {
+            "value": "media",
+            "label": "上传"
+          }
+        ],
+        "desc": "动态 shader 或自定义背景媒体"
+      },
       {
         "key": "mediaFit",
         "label": "图片填充",
@@ -2568,6 +2624,7 @@ export const pages = [
     ],
     "defaultProps": {
       "accent": "#f15a29",
+      "backgroundMode": "unicorn",
       "mediaFit": "cover",
       "showCoverLines": true,
       "showBarcode": true,
@@ -2607,6 +2664,24 @@ export const pages = [
     "label": "满版出血 / Full Bleed",
     "bgClass": "",
     "controls": [
+      {
+        "key": "backgroundMode",
+        "label": "背景替换",
+        "type": "segment",
+        "default": "unicorn",
+        "def": "unicorn",
+        "options": [
+          {
+            "value": "unicorn",
+            "label": "动态"
+          },
+          {
+            "value": "media",
+            "label": "上传"
+          }
+        ],
+        "desc": "动态 shader 或自定义背景媒体"
+      },
       {
         "key": "cardCorner",
         "label": "文字卡位置",
@@ -2696,6 +2771,7 @@ export const pages = [
       "showScrim": true,
       "showCaption": true,
       "showShapes": true,
+      "backgroundMode": "unicorn",
       "mediaFit": "cover",
       "media": [],
       "brand": "声浪 SOUNDWAVE",
@@ -9452,6 +9528,24 @@ export const pages = [
     "bgClass": "",
     "controls": [
       {
+        "key": "backgroundMode",
+        "label": "背景替换",
+        "type": "segment",
+        "default": "unicorn",
+        "def": "unicorn",
+        "options": [
+          {
+            "value": "unicorn",
+            "label": "动态"
+          },
+          {
+            "value": "media",
+            "label": "上传"
+          }
+        ],
+        "desc": "动态 shader 或自定义背景媒体"
+      },
+      {
         "key": "tint",
         "label": "蒙版色调",
         "type": "segment",
@@ -9520,6 +9614,7 @@ export const pages = [
     ],
     "defaultProps": {
       "accent": "#f15a29",
+      "backgroundMode": "unicorn",
       "tint": "dark",
       "quotePos": "bottom",
       "showMark": true,

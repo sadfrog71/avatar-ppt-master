@@ -107,6 +107,8 @@ function copyRuntimeAssets(outDir) {
   copyFileIfExists(path.join(ROOT, 'node_modules/html-to-image/dist/html-to-image.js'), path.join(assetsDir, 'vendor/html-to-image.js'));
   copyImportedThemeAssets(outDir);
   buildImportedThemeRuntime(path.join(assetsDir, 'imported-theme-runtime.js'));
+  const imageSlotStateFile = path.join(outDir, '.image-slots.state.json');
+  if (!fs.existsSync(imageSlotStateFile)) fs.writeFileSync(imageSlotStateFile, '{}\n');
 }
 
 function buildImportedThemeRuntime(outFile) {

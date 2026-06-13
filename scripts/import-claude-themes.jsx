@@ -9,6 +9,7 @@ const DEFAULT_GOAL = path.join(ROOT, 'theme-import-goal.json');
 const THEMES_DIR = path.join(ROOT, 'src/components/themes');
 const OUTPUT_DIR = path.join(ROOT, 'output');
 const MIGRATION_ONLY_DIRS = new Set(['uploads', 'screens', 'screenshots', 'shots', 'scratch', 'scraps']);
+const REMOVED_CONTROL_TYPES = new Set(['icons', 'text', 'string', 'input', 'url', 'email', 'textarea', 'multiline']);
 
 const STRUCTURAL_BLOCKS = {};
 
@@ -59,8 +60,15 @@ for (const theme of goal.themes) {
     copyThemeSource(audit.sourceDir, copiedSourceDir, theme.key);
     if (theme.key === 'theme05') pruneTheme05Source(copiedSourceDir);
     if (theme.key === 'theme01') patchTheme01Source(copiedSourceDir);
+    if (theme.key === 'theme06') patchTheme06Source(copiedSourceDir);
+    if (theme.key === 'theme08') patchTheme08Source(copiedSourceDir);
     if (theme.key === 'theme12') patchTheme12Source(copiedSourceDir);
-    generateRuntime(theme, audit.sourceDir, themeDir);
+    const runtimeSourceDir = theme.key === 'theme05' || theme.key === 'theme06'
+      ? copiedSourceDir
+      : audit.sourceDir;
+    generateRuntime(theme, runtimeSourceDir, themeDir);
+    if (theme.key === 'theme05') cleanupTheme05Source(copiedSourceDir);
+    if (theme.key === 'theme06') cleanupTheme06Source(copiedSourceDir);
     const runtimeModule = await import(`${pathToFileURL(path.join(themeDir, 'runtime.jsx')).href}?t=${Date.now()}`);
     const pages = serializePages(runtimeModule.runtimePages || [], theme);
     if (!pages.length) throw new Error('没有识别到任何页面');
@@ -169,10 +177,15 @@ function copyThemeSource(fromDir, toDir, themeKey) {
 function pruneTheme05Source(sourceDir) {
   const componentsDir = path.join(sourceDir, 'components');
   if (!fs.existsSync(componentsDir)) return;
+  const esmDir = path.join(componentsDir, 'esm');
+  if (!fs.existsSync(esmDir)) {
+    generateTheme05EsmComponents(sourceDir);
+    return;
+  }
   for (const name of fs.readdirSync(componentsDir)) {
     if (name !== 'esm') fs.rmSync(path.join(componentsDir, name), { recursive: true, force: true });
   }
-  for (const file of walk(path.join(componentsDir, 'esm')).filter(file => file.endsWith('.jsx'))) {
+  for (const file of walk(esmDir).filter(file => file.endsWith('.jsx'))) {
     replaceInFile(file, text => {
       let next = text;
       if (/^const controls\b/m.test(next)) {
@@ -186,6 +199,216 @@ function pruneTheme05Source(sourceDir) {
   }
 }
 
+function generateTheme05EsmComponents(sourceDir) {
+  const componentsDir = path.join(sourceDir, 'components');
+  const esmDir = path.join(componentsDir, 'esm');
+  fs.mkdirSync(esmDir, { recursive: true });
+
+  const appText = fs.readFileSync(path.join(componentsDir, 'pulse-app.jsx'), 'utf8');
+  const slides = [
+    'PulseImageFrame',
+    ...[...appText.matchAll(/\{\s*id:\s*["'][^"']+["'],\s*label:\s*["'][^"']+["'],\s*Comp:\s*window\.([A-Za-z0-9_]+)\s*\}/g)]
+      .map(match => match[1]),
+  ];
+  const exCoverText = fs.readFileSync(path.join(componentsDir, 'PulseExCovers.jsx'), 'utf8');
+
+  for (const componentName of slides) {
+    const sourceFile = path.join(componentsDir, `${componentName}.jsx`);
+    const sourceText = fs.existsSync(sourceFile)
+      ? fs.readFileSync(sourceFile, 'utf8')
+      : componentName.startsWith('PulseExCover')
+        ? exCoverText
+        : null;
+    if (!sourceText) continue;
+
+    const isImageFrame = componentName === 'PulseImageFrame';
+    const patchedSourceText = isImageFrame ? sourceText : attachTheme05CopyDefaults(sourceText, componentName);
+    const wrapper = [
+      "import React from 'react';",
+      isImageFrame ? '' : "import './PulseImageFrame.jsx';",
+      "const window = globalThis.__theme05Window || (globalThis.__theme05Window = {});",
+      'globalThis.React = React;',
+      isImageFrame ? '' : theme05CopyWrapperSource(),
+      '',
+      patchedSourceText,
+      '',
+      `const Component = window.${componentName};`,
+      `if (!Component) throw new Error('Missing theme05 component ${componentName}');`,
+      isImageFrame
+        ? 'export const controls = Component.controls || [];\nexport const defaults = Component.defaults || Component.defaultProps || {};\nexport default Component;'
+        : 'const WrappedComponent = withTheme05Copy(Component);\nexport const controls = WrappedComponent.controls || [];\nexport const defaults = WrappedComponent.defaults || {};\nexport default WrappedComponent;',
+      '',
+    ].filter(line => line !== '').join('\n');
+    fs.writeFileSync(path.join(esmDir, `${componentName}.jsx`), wrapper);
+  }
+}
+
+function attachTheme05CopyDefaults(sourceText, componentName) {
+  const fallbackCopy = theme05FallbackCopy(componentName);
+  const copyExpr = /const\s+COPY\s*=/.test(sourceText)
+    ? 'COPY'
+    : fallbackCopy
+      ? JSON.stringify(fallbackCopy, null, 2)
+      : '';
+  if (!copyExpr) return sourceText;
+
+  const assignment = [
+    `${componentName}.copyDefaults = ${copyExpr};`,
+    `${componentName}.defaults = { ...(${componentName}.defaults || {}), copy: ${copyExpr} };`,
+    '',
+  ].join('\n  ');
+  const direct = `window.${componentName} = ${componentName};`;
+  if (sourceText.includes(direct)) {
+    return sourceText.replace(direct, `${assignment}${direct}`);
+  }
+  const guarded = `if (typeof window !== "undefined") window.${componentName} = ${componentName};`;
+  if (sourceText.includes(guarded)) {
+    return sourceText.replace(guarded, `${assignment}${guarded}`);
+  }
+  return sourceText;
+}
+
+function theme05FallbackCopy(componentName) {
+  const copies = {
+    PulseExCover1: {
+      brand: '智造',
+      brandEn: 'SMARTWORKS',
+      meta: ['INDUSTRY 4.0', '2026 — 2027', 'COMPUTER INTEGRATED'],
+      kicker: '智能化改造实施方案 · Implementation Plan',
+      titleTop: '精益智造',
+      titleBottom: '提质增效',
+      subtitle: '2026 生产基地智能化改造实施方案',
+      subtitleEn: 'Lean Manufacturing · Quality & Efficiency Upgrade',
+      railHead: 'PROGRAM',
+      specs: [
+        { k: '指标 01', v: '降本', vn: 'Cost Down' },
+        { k: '指标 02', v: '提效', vn: 'Efficiency' },
+        { k: '指标 03', v: '革新', vn: 'Innovation' },
+        { k: '指标 04', v: '突围', vn: 'Breakthrough' },
+      ],
+      footer: 'FILE · LEAN-2026 / REV.A',
+    },
+    PulseExCover2: {
+      top: 'PULSE® BRAND LAB · FULL-FUNNEL MARKETING',
+      number: 'NO. 02',
+      caption: '2026 年度全平台品牌整合营销方案',
+      titleTop: '创意破圈',
+      titleBottom: '流量赋能',
+      banner: '内容驱动传播 · 创意引爆市场',
+      bannerEn: 'Content Drives Reach · Idea Ignites Market',
+    },
+    PulseExCover3: {
+      brand: '链网',
+      brandEn: 'SUPPLY-NET',
+      meta: 'GROUP SUPPLY CHAIN · STRATEGY 03 / 04',
+      year: '2026—2028',
+      summary: '打通物流脉络 构筑产业护城河',
+      summaryEn: 'Connect The Network · Build The Moat',
+      kicker: '集团供应链体系三年发展战略',
+      titleTop: '链通全国',
+      titleBottom: '高效履约',
+      subtitle: 'Three-Year Supply Chain Development Strategy',
+    },
+    PulseExCover4: {
+      setup: 'SETUP · RETAIL OPS',
+      cornerLeft: '门店运营培训',
+      cornerRight: 'SHEET 04 / 04',
+      titleTop: '把握消费趋势',
+      titleBottom: '激活终端潜力',
+      subtitle: '全国零售门店运营管理暨营销实战培训',
+      menu: [
+        { label: '消费趋势 TREND SENSING', tag: 'ON' },
+        { label: '终端潜力 STORE POTENTIAL', tag: 'ON' },
+        { label: '运营管理 OPS MANAGEMENT', tag: '16TH' },
+        { label: '营销实战 FIELD MARKETING', tag: '+6 DB' },
+      ],
+      slogan: '用心服务客户，实干创造业绩',
+      foot: 'PRESS (MENU) TO BEGIN · SERVE WITH HEART, ACHIEVE BY ACTION',
+    },
+  };
+  return copies[componentName] || null;
+}
+
+function theme05CopyWrapperSource() {
+  return `function withTheme05Copy(Component) {
+  const defaultCopy = Component.copyDefaults || Component.defaults?.copy || null;
+  function Theme05CopyWrapped(props = {}) {
+    const copy = mergeTheme05Copy(defaultCopy, props.copy);
+    const element = Component({ ...props, copy });
+    return replaceTheme05Text(element, theme05ReplacementMap(defaultCopy, copy));
+  }
+  Theme05CopyWrapped.controls = Component.controls || [];
+  Theme05CopyWrapped.defaults = { ...(Component.defaults || {}), ...(defaultCopy ? { copy: defaultCopy } : {}) };
+  return Theme05CopyWrapped;
+}
+
+function mergeTheme05Copy(base, override) {
+  if (!base || typeof base !== 'object') return override || base;
+  if (!override || typeof override !== 'object') return base;
+  if (Array.isArray(base)) return Array.isArray(override) ? override : base;
+  const next = { ...base };
+  for (const [key, value] of Object.entries(override)) {
+    next[key] = base[key] && typeof base[key] === 'object' && value && typeof value === 'object'
+      ? mergeTheme05Copy(base[key], value)
+      : value;
+  }
+  return next;
+}
+
+function theme05ReplacementMap(base, copy, map = new Map()) {
+  if (!base || !copy) return map;
+  if (typeof base === 'string' || typeof base === 'number') {
+    const from = String(base).replace(/\\u00a0/g, ' ');
+    const to = typeof copy === 'string' || typeof copy === 'number' ? String(copy) : copy;
+    if (from && to !== undefined && to !== null && (!map.has(from) || String(to) !== from)) map.set(from, to);
+    return map;
+  }
+  if (Array.isArray(base) && Array.isArray(copy)) {
+    base.forEach((item, index) => theme05ReplacementMap(item, copy[index], map));
+    return map;
+  }
+  if (typeof base === 'object' && typeof copy === 'object') {
+    Object.keys(base).forEach(key => theme05ReplacementMap(base[key], copy[key], map));
+  }
+  return map;
+}
+
+function replaceTheme05Text(node, replacements) {
+  if (!replacements?.size) return node;
+  if (typeof node === 'string' || typeof node === 'number') {
+    return replacements.get(String(node).replace(/\\u00a0/g, ' ')) ?? node;
+  }
+  if (Array.isArray(node)) return node.map(child => replaceTheme05Text(child, replacements));
+  if (!React.isValidElement(node)) return node;
+  const nextProps = {};
+  let changed = false;
+  for (const key of ['children', 'label', 'placeholder', 'title', 'alt', 'aria-label']) {
+    if (!(key in node.props)) continue;
+    const next = replaceTheme05Text(node.props[key], replacements);
+    if (next !== node.props[key]) {
+      nextProps[key] = next;
+      changed = true;
+    }
+  }
+  return changed ? React.cloneElement(node, nextProps) : node;
+}
+`;
+}
+
+function cleanupTheme05Source(sourceDir) {
+  const componentsDir = path.join(sourceDir, 'components');
+  if (!fs.existsSync(componentsDir)) return;
+  for (const name of fs.readdirSync(componentsDir)) {
+    if (name !== 'esm') fs.rmSync(path.join(componentsDir, name), { recursive: true, force: true });
+  }
+}
+
+function cleanupTheme06Source(sourceDir) {
+  fs.rmSync(path.join(sourceDir, 'index.html'), { force: true });
+  fs.rmSync(path.join(sourceDir, 'preview.html'), { force: true });
+  fs.rmSync(path.join(sourceDir, 'slides/_preview.jsx'), { force: true });
+}
+
 function shouldSkipSourceFile(rel, themeKey) {
   const parts = rel.split(path.sep);
   if (parts.some(part => part.startsWith('.'))) return true;
@@ -193,10 +416,11 @@ function shouldSkipSourceFile(rel, themeKey) {
   const base = path.basename(rel);
   if (base === 'audit-offenders.txt') return true;
   if (base.toLowerCase().endsWith('.identifier')) return true;
-  if (/\.(md|html)$/i.test(base)) return true;
+  if (/\.html$/i.test(base)) return themeKey !== 'theme06';
+  if (/\.md$/i.test(base)) return true;
   if (['deck-stage.js', 'tweaks-panel.jsx', 'preview-loader.js', 'preview.jsx', 'DeckApp.jsx', 'Tweaks.jsx', 'ignDemo.jsx'].includes(base)) return true;
-  if (base === 'image-slot.js' && themeKey !== 'theme04') return true;
-  if (base === 'app.jsx' || base === '_preview.jsx') return true;
+  if (base === 'image-slot.js' && themeKey !== 'theme04' && themeKey !== 'theme08') return true;
+  if (base === 'app.jsx' || (base === '_preview.jsx' && themeKey !== 'theme06')) return true;
   return false;
 }
 
@@ -304,6 +528,60 @@ function patchTheme12Source(sourceDir) {
   });
 }
 
+function patchTheme06Source(sourceDir) {
+  replaceInFile(path.join(sourceDir, 'slides/kit.jsx'), text => {
+    if (text.includes('const readStored = () =>')) return text;
+    return text
+      .replace(
+        "  const key = 'kx-img-' + id;\n  const [data, setData] = React.useState(null);\n",
+        "  const key = 'kx-img-' + id;\n  const readStored = () => {\n    try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : null; } catch (e) { return null; }\n  };\n  const [data, setData] = React.useState(readStored);\n",
+      )
+      .replace(
+        "  React.useEffect(() => {\n    try { const raw = localStorage.getItem(key); if (raw) setData(JSON.parse(raw)); } catch (e) {}\n  }, [key]);\n",
+        "  React.useEffect(() => {\n    setData(readStored());\n  }, [key]);\n",
+      )
+      .replace(
+        '  // adaptive aspect-ratio: container follows the image\'s natural ratio (clamped)\n  const ar = data ? data.ratio : 1.6;\n',
+        '  // adaptive aspect-ratio: container follows the image\'s natural ratio (clamped)\n  const stopSlotNavigation = (e) => { e.stopPropagation(); };\n  const currentData = data || readStored();\n  const ar = currentData ? currentData.ratio : 1.6;\n',
+      )
+      .replace(
+        "    onClick: () => inputRef.current && inputRef.current.click(),\n    onDragOver: (e) => { e.preventDefault(); setDrag(true); },\n    onDragLeave: () => setDrag(false),\n    onDrop: (e) => { e.preventDefault(); setDrag(false); accept(e.dataTransfer.files[0]); },\n  },\n    data ? h('img', { src: data.src, alt: '' })\n",
+        "    onPointerDown: stopSlotNavigation,\n    onMouseDown: stopSlotNavigation,\n    onClick: (e) => { e.stopPropagation(); inputRef.current && inputRef.current.click(); },\n    onDragOver: (e) => { e.preventDefault(); e.stopPropagation(); setDrag(true); },\n    onDragLeave: () => setDrag(false),\n    onDrop: (e) => { e.preventDefault(); e.stopPropagation(); setDrag(false); accept(e.dataTransfer.files[0]); },\n  },\n    currentData ? h('img', { src: currentData.src, alt: '' })\n",
+      );
+  });
+}
+
+function patchTheme08Source(sourceDir) {
+  replaceInFile(path.join(sourceDir, 'components/AclPrimitives.jsx'), text => {
+    if (text.includes('const readStored = () =>')) return text;
+    return text
+      .replace(
+        '  const key = \'acl-slot-\' + id;\n  const [data, setData] = React.useState(null);\n',
+        '  const key = \'acl-slot-\' + id;\n  const readStored = () => {\n    try { const s = localStorage.getItem(key); return s ? JSON.parse(s) : null; } catch (e) { return null; }\n  };\n  const [data, setData] = React.useState(readStored);\n',
+      )
+      .replace(
+        '  React.useEffect(() => {\n    try { const s = localStorage.getItem(key); if (s) setData(JSON.parse(s)); } catch (e) {}\n  }, [key]);\n',
+        '  React.useEffect(() => {\n    setData(readStored());\n  }, [key]);\n',
+      )
+      .replace(
+        '  const aspect = data ? data.w / data.h : ratio;\n',
+        '  const stopSlotNavigation = (e) => { e.stopPropagation(); };\n\n  const currentData = data || readStored();\n  const aspect = currentData ? currentData.w / currentData.h : ratio;\n',
+      )
+      .replace(
+        '         style={{ width: w, height: h, transform: `rotate(${rotate}deg)` }}\n         onDragOver={(e) => { e.preventDefault(); setDrag(true); }}\n         onDragLeave={() => setDrag(false)}\n         onDrop={(e) => { e.preventDefault(); setDrag(false);\n',
+        '         style={{ width: w, height: h, transform: `rotate(${rotate}deg)` }}\n         onPointerDown={stopSlotNavigation}\n         onMouseDown={stopSlotNavigation}\n         onClick={stopSlotNavigation}\n         onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); setDrag(true); }}\n         onDragLeave={() => setDrag(false)}\n         onDrop={(e) => { e.preventDefault(); e.stopPropagation(); setDrag(false);\n',
+      )
+      .replace(
+        '        {data\n          ? <img className="acl-slot__img" src={data.src} alt="" />\n',
+        '        {currentData\n          ? <img className="acl-slot__img" src={currentData.src} alt="" />\n',
+      )
+      .replace(
+        '        {data && <div className="acl-slot__hint" onClick={() => save(null)}>清除 ✕</div>}\n',
+        '        {currentData && <div className="acl-slot__hint" onClick={() => save(null)}>清除 ✕</div>}\n',
+      );
+  });
+}
+
 function replaceInFile(file, replacer) {
   if (!fs.existsSync(file)) return;
   const before = fs.readFileSync(file, 'utf8');
@@ -400,16 +678,10 @@ html[data-theme-vt="active"]::view-transition-group(root) { animation-duration:v
   return `import React from 'react';
 import { normalizeRuntimePages } from '../runtime-helpers.jsx';
 import { SLIDES as sourcePages } from './source/src/registry.js';
-import ICONS from './source/src/icons.js';
 import { setRDDark } from './source/src/theme.js';
 
 const THEME03_BASE_CSS = ${JSON.stringify(css)};
 const THEME03_FORCE_DARK_CSS = ${JSON.stringify(forceDarkCss)};
-const THEME03_ICON_OPTIONS = ICONS.map(icon => ({
-  value: icon.src,
-  label: icon.label || icon.id,
-  image: icon.src,
-}));
 const THEME03_FORCE_DARK_CONTROL = {
   key: 'forceDark',
   type: 'toggle',
@@ -423,17 +695,11 @@ const theme03GlobalListeners = new Set();
 const rawPages = sourcePages.map(entry => ({
   ...entry,
   Component: withTheme03Base(entry.Component),
-  controls: [THEME03_FORCE_DARK_CONTROL, ...theme03Controls(entry.controls || [])],
+  controls: [THEME03_FORCE_DARK_CONTROL, ...(entry.controls || [])],
   defaultProps: { ...(entry.defaultProps || entry.defaults || {}), forceDark: true },
 }));
 
 export const runtimePages = normalizeRuntimePages(rawPages, { themeKey: '${theme.key}', layoutPrefix: '${layoutPrefix}' });
-
-function theme03Controls(controls) {
-  return controls.map(control => control.type === 'icons'
-    ? { ...control, options: THEME03_ICON_OPTIONS }
-    : control);
-}
 
 function withTheme03Base(Component) {
   return function Theme03Page(props = {}) {
@@ -723,9 +989,10 @@ function pageFilesRuntime(theme, layoutPrefix, sourceDir) {
     .map(match => ({ key: match[1], label: match[2] }));
   const imports = [
     "import React from 'react';",
+    fs.existsSync(path.join(sourceDir, 'image-slot.js')) ? "import './source/image-slot.js';" : '',
     "import { AclTheme } from './source/components/AclPrimitives.jsx';",
     ...files.map((file, index) => `import * as M${index} from './source/${file}';`),
-  ];
+  ].filter(Boolean);
   const items = files.map((file, index) => {
     const meta = labels[index] || { key: `p${index + 1}`, label: path.basename(file, '.jsx') };
     return `  { id: '${meta.key}', label: ${JSON.stringify(meta.label)}, module: M${index} }`;
@@ -928,25 +1195,51 @@ function serializePages(runtimePages, theme) {
 }
 
 function serializeControls(controls) {
-  return (controls || []).map(control => {
+  return (controls || []).filter(control => !isRemovedControl(control)).map(control => {
     const key = control.key || control.prop;
     if (!key) return null;
     return {
       key,
       prop: control.prop,
-      label: control.label || key,
+      label: genericControlText(control.label || key),
       type: control.type,
       default: serializeValue(control.default ?? control.def),
       def: serializeValue(control.def),
       min: serializeValue(control.min),
       max: serializeValue(control.max),
       step: serializeValue(control.step),
-      options: serializeValue(controlOptions(control)),
+      options: genericControlValue(serializeValue(controlOptions(control))),
       countKey: control.countKey,
       maxFromKey: control.maxFromKey,
-      desc: control.desc || control.describe || control.description,
+      desc: genericControlText(control.desc || control.describe || control.description),
     };
   }).filter(Boolean);
+}
+
+function isRemovedControl(control) {
+  return REMOVED_CONTROL_TYPES.has(String(control?.type || '').toLowerCase());
+}
+
+function genericControlText(value) {
+  if (typeof value !== 'string') return value;
+  return value
+    .replaceAll('联系方式数量', '信息条目数量')
+    .replaceAll('联系方式', '次级文案')
+    .replaceAll('投资人类型占比', '分类占比')
+    .replaceAll('投资人类型数', '分类数量')
+    .replaceAll('投资人类型', '分类类型')
+    .replaceAll('平均单笔融资金额', '平均指标')
+    .replaceAll('融资金额', '数值指标')
+    .replaceAll('投资人', '角色')
+    .replaceAll('AI Capital Lab', '研究机构')
+    .replaceAll('AI Capital', '研究机构');
+}
+
+function genericControlValue(value) {
+  if (typeof value === 'string') return genericControlText(value);
+  if (Array.isArray(value)) return value.map(genericControlValue);
+  if (!value || typeof value !== 'object') return value;
+  return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, genericControlValue(item)]));
 }
 
 function controlOptions(control) {
@@ -1093,18 +1386,32 @@ function stripRuntimeProps(props) {
   return next;
 }
 
-function readImageFile(file) {
+function readMediaFile(file) {
   return new Promise(resolve => {
-    if (!file || !file.type?.startsWith?.('image/')) {
+    if (!file || !/^(image|video)\//.test(file.type || '')) {
       resolve(null);
       return;
     }
     const reader = new FileReader();
     reader.onload = () => {
       const src = reader.result;
+      if (file.type.startsWith('video/')) {
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+        video.muted = true;
+        video.onloadedmetadata = () => resolve({
+          src,
+          type: file.type,
+          kind: 'video',
+          ratio: video.videoWidth && video.videoHeight ? video.videoWidth / video.videoHeight : null,
+        });
+        video.onerror = () => resolve({ src, type: file.type, kind: 'video', ratio: null });
+        video.src = src;
+        return;
+      }
       const img = new Image();
-      img.onload = () => resolve({ src, ratio: img.naturalWidth / img.naturalHeight });
-      img.onerror = () => resolve({ src, ratio: null });
+      img.onload = () => resolve({ src, type: file.type, kind: 'image', ratio: img.naturalWidth / img.naturalHeight });
+      img.onerror = () => resolve({ src, type: file.type, kind: 'image', ratio: null });
       img.src = src;
     };
     reader.onerror = () => resolve(null);
@@ -1112,26 +1419,57 @@ function readImageFile(file) {
   });
 }
 
+function mediaItem(value) {
+  if (!value) return null;
+  if (typeof value === 'string') return { src: value, kind: value.startsWith('data:video/') ? 'video' : 'image' };
+  if (typeof value === 'object' && value.src) {
+    const kind = value.kind || (String(value.type || value.src).startsWith('video/') || String(value.src).startsWith('data:video/') ? 'video' : 'image');
+    return { ...value, kind };
+  }
+  return null;
+}
+
+function mediaSrc(value) {
+  return mediaItem(value)?.src || '';
+}
+
+function renderMedia(value, props = {}) {
+  const item = mediaItem(value);
+  if (!item?.src) return null;
+  if (item.kind === 'video') {
+    return <video src={item.src} muted playsInline loop autoPlay preload="metadata" {...props} />;
+  }
+  return <img src={item.src} alt="" {...props} />;
+}
+
 function createMediaApi(slide, baseProps) {
   function updateList(key, index, value) {
-    const nextList = toArray(baseProps[key]);
+    const slideId = slide.dataset.vmSlideId;
+    const currentProps = window.__deckViewModel?.getState?.().props?.[slideId] || {};
+    const sourceProps = { ...baseProps, ...currentProps };
+    const nextList = toArray(sourceProps[key]);
+    const previousValue = nextList[index] || null;
     nextList[index] = value || null;
-    const nextProps = stripRuntimeProps({ ...baseProps, [key]: nextList });
-    window.__deckViewModel?.setProps?.(slide.dataset.vmSlideId, nextProps);
+    const nextProps = stripRuntimeProps({ ...sourceProps, [key]: nextList });
+    window.__dashiUndo?.push?.({
+      label: 'media',
+      undo: () => updateList(key, index, previousValue),
+    });
+    window.__deckViewModel?.setProps?.(slideId, nextProps);
     renderImportedThemeSlide(slide, nextProps);
     window.__initEditableText?.(slide);
     window.__syncActiveEffects?.(slide);
   }
 
   async function acceptFile(key, index, file) {
-    const data = await readImageFile(file);
-    if (data?.src) updateList(key, index, data.src);
+    const data = await readMediaFile(file);
+    if (data?.src) updateList(key, index, data);
   }
 
   function pick(key, index) {
     const input = document.createElement('input');
     input.type = 'file';
-    input.accept = 'image/*';
+    input.accept = 'image/*,video/mp4,video/webm,video/quicktime,video/*';
     input.style.display = 'none';
     input.addEventListener('change', () => {
       acceptFile(key, index, input.files && input.files[0]).finally(() => input.remove());
@@ -1151,6 +1489,7 @@ function createMediaApi(slide, baseProps) {
 function HostImageSlot({ mediaApi, index, options = {} }) {
   const [over, setOver] = React.useState(false);
   const value = mediaApi.get('images', index);
+  const filled = !!mediaSrc(value);
   const aspectRatio = options.ratioAR || (options.ratio ? String(options.ratio) : undefined);
   const drop = (event) => {
     event.preventDefault();
@@ -1170,7 +1509,7 @@ function HostImageSlot({ mediaApi, index, options = {} }) {
         aspectRatio,
         overflow: 'hidden',
         cursor: 'pointer',
-        background: value
+        background: filled
           ? 'transparent'
           : 'repeating-linear-gradient(135deg, rgba(0,0,0,.08) 0 12px, rgba(0,0,0,.03) 12px 24px)',
         outline: over ? '3px solid rgba(143,227,39,.85)' : '1px dashed rgba(0,0,0,.25)',
@@ -1187,12 +1526,14 @@ function HostImageSlot({ mediaApi, index, options = {} }) {
       onDragLeave={() => setOver(false)}
       onDrop={drop}
     >
-      {value ? (
+      {filled ? (
         <>
-          <img src={value} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          {renderMedia(value, {
+            style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' },
+          })}
           <button
             type="button"
-            aria-label="Clear image"
+            aria-label="Clear media"
             onClick={(event) => {
               event.stopPropagation();
               mediaApi.set('images', index, null);
@@ -1226,7 +1567,7 @@ function HostImageSlot({ mediaApi, index, options = {} }) {
           textAlign: 'center',
           padding: 18,
         }}>
-          DROP IMAGE
+          DROP MEDIA
         </div>
       )}
     </div>

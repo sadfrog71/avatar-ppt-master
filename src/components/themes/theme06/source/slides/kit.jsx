@@ -127,7 +127,7 @@ const CSS = `
   .kx-light .kx-imgslot{background:
       repeating-linear-gradient(45deg,rgba(0,0,0,.05) 0 10px,rgba(0,0,0,.02) 10px 20px);
     border-color:var(--kx-line-d);}
-  .kx-imgslot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .kx-imgslot img,.kx-imgslot video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
   .kx-imgslot .kx-slot-ph{font-family:var(--kx-mono);font-size:24px;color:var(--kx-mute-2);
     text-transform:uppercase;letter-spacing:.05em;text-align:center;padding:0 18px;z-index:1;}
   .kx-imgslot.kx-drag{outline:2px solid var(--kx-accent);outline-offset:-2px;}
@@ -207,23 +207,43 @@ export function KxStatusBar({ wordmark = 'AI CAPITAL LAB', center, right, menu }
 // -- Adaptive image slot (self-contained, localStorage, ratio-aware) ------
 export function KxImageSlot({ id, placeholder = 'DROP IMAGE', badge, minRatio = 0.6, maxRatio = 2.4, style }) {
   const key = 'kx-img-' + id;
-  const [data, setData] = React.useState(null);
+  const readStored = () => {
+    try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : null; } catch (e) { return null; }
+  };
+  const [data, setData] = React.useState(readStored);
   const [drag, setDrag] = React.useState(false);
   const inputRef = React.useRef(null);
 
   React.useEffect(() => {
-    try { const raw = localStorage.getItem(key); if (raw) setData(JSON.parse(raw)); } catch (e) {}
+    setData(readStored());
   }, [key]);
 
   const accept = (file) => {
-    if (!file || !file.type.startsWith('image/')) return;
+    if (!file || !/^(image|video)\//.test(file.type || '')) return;
     const reader = new FileReader();
     reader.onload = (e) => {
       const src = e.target.result;
+      if (file.type.startsWith('video/')) {
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+        video.onloadedmetadata = () => {
+          const ratio = Math.min(maxRatio, Math.max(minRatio, video.videoWidth && video.videoHeight ? video.videoWidth / video.videoHeight : 1.6));
+          const next = { src, ratio, kind: 'video', type: file.type };
+          setData(next);
+          try { localStorage.setItem(key, JSON.stringify(next)); } catch (er) {}
+        };
+        video.onerror = () => {
+          const next = { src, ratio: 1.6, kind: 'video', type: file.type };
+          setData(next);
+          try { localStorage.setItem(key, JSON.stringify(next)); } catch (er) {}
+        };
+        video.src = src;
+        return;
+      }
       const img = new Image();
       img.onload = () => {
         const ratio = Math.min(maxRatio, Math.max(minRatio, img.naturalWidth / img.naturalHeight));
-        const next = { src, ratio };
+        const next = { src, ratio, kind: 'image', type: file.type };
         setData(next);
         try { localStorage.setItem(key, JSON.stringify(next)); } catch (er) {}
       };
@@ -233,20 +253,26 @@ export function KxImageSlot({ id, placeholder = 'DROP IMAGE', badge, minRatio = 
   };
 
   // adaptive aspect-ratio: container follows the image's natural ratio (clamped)
-  const ar = data ? data.ratio : 1.6;
+  const stopSlotNavigation = (e) => { e.stopPropagation(); };
+  const currentData = data || readStored();
+  const ar = currentData ? currentData.ratio : 1.6;
   return h('div', {
     className: 'kx-imgslot' + (drag ? ' kx-drag' : ''),
     style: { aspectRatio: String(ar), ...style },
-    onClick: () => inputRef.current && inputRef.current.click(),
-    onDragOver: (e) => { e.preventDefault(); setDrag(true); },
+    onPointerDown: stopSlotNavigation,
+    onMouseDown: stopSlotNavigation,
+    onClick: (e) => { e.stopPropagation(); inputRef.current && inputRef.current.click(); },
+    onDragOver: (e) => { e.preventDefault(); e.stopPropagation(); setDrag(true); },
     onDragLeave: () => setDrag(false),
-    onDrop: (e) => { e.preventDefault(); setDrag(false); accept(e.dataTransfer.files[0]); },
+    onDrop: (e) => { e.preventDefault(); e.stopPropagation(); setDrag(false); accept(e.dataTransfer.files[0]); },
   },
-    data ? h('img', { src: data.src, alt: '' })
+    currentData ? (currentData.kind === 'video'
+      ? h('video', { src: currentData.src, muted: true, playsInline: true, loop: true, preload: 'metadata' })
+      : h('img', { src: currentData.src, alt: '' }))
          : h('div', { className: 'kx-slot-ph' }, placeholder),
     badge ? h('div', { className: 'kx-slot-badge' }, badge) : null,
     h('input', {
-      ref: inputRef, type: 'file', accept: 'image/*', style: { display: 'none' },
+      ref: inputRef, type: 'file', accept: 'image/*,video/mp4,video/webm,video/quicktime,video/*', style: { display: 'none' },
       onChange: (e) => accept(e.target.files[0]),
     }));
 }

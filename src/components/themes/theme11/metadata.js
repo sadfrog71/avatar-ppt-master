@@ -4533,20 +4533,20 @@ export const pages = [
       },
       {
         "key": "showChannels",
-        "label": "联系方式",
+        "label": "次级文案",
         "type": "toggle",
         "default": true,
         "desc": "邮箱 / 电话 / 地点等联系信息组。"
       },
       {
         "key": "channelCount",
-        "label": "联系方式数量",
+        "label": "信息条目数量",
         "type": "slider",
         "default": 3,
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "展示的联系方式条目数量。"
+        "desc": "展示的次级文案条目数量。"
       },
       {
         "key": "showBigMark",
@@ -13955,10 +13955,10 @@ export const pages = [
       },
       {
         "key": "showContact",
-        "label": "联系方式",
+        "label": "次级文案",
         "type": "toggle",
         "default": true,
-        "desc": "排版化的联系方式清单（非按钮控件）。"
+        "desc": "排版化的次级文案清单（非按钮控件）。"
       },
       {
         "key": "contactCount",
@@ -13968,7 +13968,7 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "联系方式的条目数量。"
+        "desc": "次级文案的条目数量。"
       },
       {
         "key": "showKicker",

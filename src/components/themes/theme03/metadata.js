@@ -62,88 +62,6 @@ export const pages = [
         "label": "页脚信息",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -169,9 +87,6 @@ export const pages = [
         "横纵分析法",
         "仅供研究参考"
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -243,88 +158,6 @@ export const pages = [
         "label": "页脚信息",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -368,9 +201,6 @@ export const pages = [
         "样本 · 2,400+",
         "仅供研究参考"
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -445,88 +275,6 @@ export const pages = [
         "label": "页脚信息",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -579,9 +327,6 @@ export const pages = [
         "口径 · 公开市场数据",
         "样本 · 2,400+"
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -656,88 +401,6 @@ export const pages = [
         "label": "元数据块",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -771,9 +434,6 @@ export const pages = [
         "样本 · 2,400+",
         "仅供研究参考"
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -851,88 +511,6 @@ export const pages = [
         "label": "底部数据",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -967,9 +545,6 @@ export const pages = [
           "k": "头部厂商样本"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -1056,88 +631,6 @@ export const pages = [
             "label": "荧光绿"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -1189,9 +682,6 @@ export const pages = [
           "en": "CONCLUSION"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -1269,73 +759,6 @@ export const pages = [
         ]
       },
       {
-        "key": "diagramArt",
-        "label": "替换为元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
@@ -1349,88 +772,6 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -1438,7 +779,6 @@ export const pages = [
       "cardCount": 2,
       "showDiagram": true,
       "diagramStyle": "auto",
-      "diagramArt": null,
       "focusEnabled": false,
       "focusIndex": 0,
       "eyebrow": "研究方法 / METHOD",
@@ -1466,9 +806,6 @@ export const pages = [
           "desc": "两个维度交叉后，识别产业链的层级结构与因果传导关系，定位结构性机会所在。"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -1546,88 +883,6 @@ export const pages = [
         "label": "装饰解读",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -1670,9 +925,6 @@ export const pages = [
           "count": 22
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -1755,88 +1007,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -1900,9 +1070,6 @@ export const pages = [
           "unit": "亿 · 97 笔"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -1986,88 +1153,6 @@ export const pages = [
         "label": "装饰解读",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -2121,9 +1206,6 @@ export const pages = [
       "copy": {
         "t001": "亿"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -2194,88 +1276,6 @@ export const pages = [
         "label": "装饰解读",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -2343,9 +1343,6 @@ export const pages = [
           "sector": "垂直应用"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -2412,88 +1409,6 @@ export const pages = [
         "label": "装饰解读",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -2578,9 +1493,6 @@ export const pages = [
           "layer": "下游"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -2654,88 +1566,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -2812,9 +1642,6 @@ export const pages = [
           "s": 2
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -2866,88 +1693,6 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -3008,9 +1753,6 @@ export const pages = [
           ]
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -3065,88 +1807,6 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -3232,9 +1892,6 @@ export const pages = [
           ]
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -3314,88 +1971,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -3517,9 +2092,6 @@ export const pages = [
       "copy": {
         "t001": "亿"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -3606,88 +2178,6 @@ export const pages = [
             "label": "荧光绿"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -3721,9 +2211,6 @@ export const pages = [
         "看付费留存与客户续约",
         "嵌入刚性业务流程"
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -3784,88 +2271,6 @@ export const pages = [
         "label": "装饰引言",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -3905,9 +2310,6 @@ export const pages = [
           "detail": "预计年内上市"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -4003,88 +2405,6 @@ export const pages = [
             "label": "荧光绿"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -4127,9 +2447,6 @@ export const pages = [
           "note": "从成立到头部梯队"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -4231,88 +2548,6 @@ export const pages = [
             "label": "荧光绿"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -4357,9 +2592,6 @@ export const pages = [
           "note": "矿场 → 算力云"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -4426,88 +2658,6 @@ export const pages = [
         "label": "装饰解读",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -4592,9 +2742,6 @@ export const pages = [
           "edge": true
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -4672,88 +2819,6 @@ export const pages = [
         "label": "页脚信息",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -4782,9 +2847,6 @@ export const pages = [
         "轮次结构",
         "核心数据"
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -4858,88 +2920,6 @@ export const pages = [
         "label": "装饰解读",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -4997,9 +2977,6 @@ export const pages = [
           "avg": 18.6
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -5082,88 +3059,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -5244,9 +3139,6 @@ export const pages = [
         "t002": "均",
         "t003": "亿"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -5304,88 +3196,6 @@ export const pages = [
         "label": "侧栏汇总",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -5437,9 +3247,6 @@ export const pages = [
           206
         ]
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -5520,88 +3327,6 @@ export const pages = [
         "label": "次峰标记",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -5691,9 +3416,6 @@ export const pages = [
       "copy": {
         "t001": "月"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -5783,88 +3505,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -5931,9 +3571,6 @@ export const pages = [
       "copy": {
         "t001": "累计 · +"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -6011,88 +3648,6 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -6129,9 +3684,6 @@ export const pages = [
           "label": "平均单笔融资额"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -6211,88 +3763,6 @@ export const pages = [
         "label": "装饰解读",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -6350,9 +3820,6 @@ export const pages = [
           "pct": 6.2
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -6430,88 +3897,6 @@ export const pages = [
             "label": "荧光绿"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -6559,9 +3944,6 @@ export const pages = [
           "pct": 6.2
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -6639,88 +4021,6 @@ export const pages = [
         "label": "装饰解读",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -6761,9 +4061,6 @@ export const pages = [
           "raise": 190
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -6838,88 +4135,6 @@ export const pages = [
         "label": "辅助说明",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -6970,9 +4185,6 @@ export const pages = [
           "mag": 0.0008290155440414508
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -7049,88 +4261,6 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -7176,9 +4306,6 @@ export const pages = [
           "desc": "NVIDIA GPU 供应紧张，叠加出口管制加码，算力成本居高不下，中小公司难以承受长期烧钱。"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -7239,88 +4366,6 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -7370,9 +4415,6 @@ export const pages = [
           ]
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -7438,88 +4480,6 @@ export const pages = [
         "label": "装饰解读",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -7565,9 +4525,6 @@ export const pages = [
           "desc": "用户迁移成本低，易被大厂复制。"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -7644,88 +4601,6 @@ export const pages = [
         "label": "页脚说明",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -7766,9 +4641,6 @@ export const pages = [
           "cue": "窗口：行业洗牌期"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -7848,88 +4720,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -8018,9 +4808,6 @@ export const pages = [
         "3–5 年",
         "未来"
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -8097,88 +4884,6 @@ export const pages = [
         "label": "底部口径",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -8220,9 +4925,6 @@ export const pages = [
           "desc": "上游基础设施确定性最强，中游模型层竞争最激烈，下游应用层潜力最大但尚需时间验证。"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -8307,88 +5009,6 @@ export const pages = [
         "label": "署名出处",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -8413,9 +5033,6 @@ export const pages = [
         "t012": "《2024 美国大额融资 AI 公司调研报告》",
         "t013": "横向看集中 · 纵向看节奏 · 结构看分层"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -8498,88 +5115,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -8646,9 +5181,6 @@ export const pages = [
           "note": "产品内置分享激励，用口碑摊薄获客成本。"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -8728,88 +5260,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -8912,9 +5362,6 @@ export const pages = [
           "act": "低优先级 · 接受自然淘汰"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -9003,88 +5450,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -9181,9 +5546,6 @@ export const pages = [
           "strat": "控制投入，收获或退出"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -9278,88 +5640,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -9456,9 +5736,6 @@ export const pages = [
           "phase": 2
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -9538,88 +5815,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -9677,9 +5872,6 @@ export const pages = [
           "accent": "#7ba80c"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -9762,88 +5954,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -9933,9 +6043,6 @@ export const pages = [
         "#9ccb3a",
         "#e07a5a"
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -10009,88 +6116,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -10148,9 +6173,6 @@ export const pages = [
         "中",
         "高"
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -10230,88 +6252,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -10424,9 +6364,6 @@ export const pages = [
       "copy": {
         "t001": "0"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -10509,88 +6446,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -10654,9 +6509,6 @@ export const pages = [
           "opp": "会员体系 · 裂变激励"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -10739,88 +6591,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -10872,9 +6642,6 @@ export const pages = [
           "note": "人才、资本、数据与技术底座"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -10963,88 +6730,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -11151,9 +6836,6 @@ export const pages = [
           "q": 3
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -11242,88 +6924,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -11378,9 +6978,6 @@ export const pages = [
           "note": "成本与价格持续优化"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -11466,88 +7063,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -11643,9 +7158,6 @@ export const pages = [
           ]
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -11741,88 +7253,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -11901,9 +7331,6 @@ export const pages = [
           "pct": 5.1
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -11983,88 +7410,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -12124,9 +7469,6 @@ export const pages = [
         "高",
         "极高"
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -12209,88 +7551,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -12346,9 +7606,6 @@ export const pages = [
           "impact": "合规成本激增"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -12427,88 +7684,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -12578,9 +7753,6 @@ export const pages = [
           "v": "是否嵌入刚性业务流程"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -12660,88 +7832,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -12852,9 +7942,6 @@ export const pages = [
           "b": 1
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -12934,88 +8021,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -13118,9 +8123,6 @@ export const pages = [
           "w": 0.52
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -13204,88 +8206,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -13337,9 +8257,6 @@ export const pages = [
           "k": "平均单笔融资额（美元）"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -13425,88 +8342,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -13568,9 +8403,6 @@ export const pages = [
       "copy": {
         "t001": "笔"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -13644,88 +8476,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -13780,9 +8530,6 @@ export const pages = [
           "firms": "工具链 · 安全"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -13868,88 +8615,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -14006,9 +8671,6 @@ export const pages = [
       "copy": {
         "t001": "笔 ·"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -14104,88 +8766,6 @@ export const pages = [
             "label": "荧光绿"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -14235,9 +8815,6 @@ export const pages = [
           "note": "欧洲 · 开源专用"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -14311,88 +8888,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -14483,9 +8978,6 @@ export const pages = [
         "t001": "亿 ·",
         "t002": "亿 ·"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -14568,88 +9060,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -14756,9 +9166,6 @@ export const pages = [
           "c": "#5c5b57"
         }
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -14839,88 +9246,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -14982,9 +9307,6 @@ export const pages = [
           "note": "P/S 市销率"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -15071,88 +9393,6 @@ export const pages = [
             "label": "荧光绿"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -15186,9 +9426,6 @@ export const pages = [
         "长周期硬科技壁垒",
         "与自动驾驶协同感知"
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -15268,88 +9505,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -15408,9 +9563,6 @@ export const pages = [
       "copy": {
         "t001": "月"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -15484,88 +9636,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -15633,9 +9703,6 @@ export const pages = [
       "copy": {
         "t001": "亿 ·"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -15728,88 +9795,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -15848,9 +9833,6 @@ export const pages = [
           "sub": "占 AI 大额融资 · 地理集中"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -15944,88 +9926,6 @@ export const pages = [
             "label": "浅色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -16061,9 +9961,6 @@ export const pages = [
           "k": "通用大模型占 AI 大额融资"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -16153,88 +10050,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -16288,9 +10103,6 @@ export const pages = [
           "avg": 18.6
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -16389,88 +10201,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -16531,9 +10261,6 @@ export const pages = [
           ]
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -16616,88 +10343,6 @@ export const pages = [
             "label": "深色"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -16743,9 +10388,6 @@ export const pages = [
           "note": "长期烧钱被迫退出"
         }
       ],
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -16832,88 +10474,6 @@ export const pages = [
             "label": "荧光绿"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -16944,9 +10504,6 @@ export const pages = [
       "galleryCaption": "芯片 / 硬件配图 / DROP IMAGE",
       "galleryNote": "↗ 晶圆 · 推理芯片 · 算力机柜",
       "emptyText": "纯文字版式 · 无配图",
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -17033,88 +10590,6 @@ export const pages = [
             "label": "荧光绿"
           }
         ]
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -17145,9 +10620,6 @@ export const pages = [
       "galleryCaption": "数据中心 / GPU 机柜 / DROP IMAGE",
       "galleryNote": "↗ 机房 · GPU 机柜 · 算力集群",
       "emptyText": "纯文字版式 · 无配图",
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   },
@@ -17225,88 +10697,6 @@ export const pages = [
         "label": "页脚信息",
         "type": "toggle",
         "default": true
-      },
-      {
-        "key": "showDecor",
-        "label": "3D 装饰",
-        "type": "toggle",
-        "default": false
-      },
-      {
-        "key": "decorSrc",
-        "label": "选择元素",
-        "type": "icons",
-        "options": [
-          {
-            "value": "assets/3d/01.png",
-            "label": "胜利手势",
-            "image": "assets/3d/01.png"
-          },
-          {
-            "value": "assets/3d/02.png",
-            "label": "YES 按键",
-            "image": "assets/3d/02.png"
-          },
-          {
-            "value": "assets/3d/03.png",
-            "label": "404 方块",
-            "image": "assets/3d/03.png"
-          },
-          {
-            "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
-            "image": "assets/3d/04.png"
-          },
-          {
-            "value": "assets/3d/05.png",
-            "label": "YES 气泡",
-            "image": "assets/3d/05.png"
-          },
-          {
-            "value": "assets/3d/06.png",
-            "label": "掌机图表",
-            "image": "assets/3d/06.png"
-          },
-          {
-            "value": "assets/3d/07.png",
-            "label": "像素显示器",
-            "image": "assets/3d/07.png"
-          },
-          {
-            "value": "assets/3d/08.png",
-            "label": "复古电脑",
-            "image": "assets/3d/08.png"
-          },
-          {
-            "value": "assets/3d/09.png",
-            "label": "拍立得",
-            "image": "assets/3d/09.png"
-          },
-          {
-            "value": "assets/3d/10.png",
-            "label": "奖杯",
-            "image": "assets/3d/10.png"
-          },
-          {
-            "value": "assets/3d/11.png",
-            "label": "文件夹",
-            "image": "assets/3d/11.png"
-          },
-          {
-            "value": "assets/3d/12.png",
-            "label": "番茄箱",
-            "image": "assets/3d/12.png"
-          }
-        ]
-      },
-      {
-        "key": "decorScale",
-        "label": "元素大小",
-        "type": "slider",
-        "default": 1,
-        "min": 0.6,
-        "max": 1.6,
-        "step": 0.05
       }
     ],
     "defaultProps": {
@@ -17353,9 +10743,6 @@ export const pages = [
       "copy": {
         "t001": "从"
       },
-      "showDecor": false,
-      "decorSrc": null,
-      "decorScale": 1,
       "forceDark": true
     }
   }
