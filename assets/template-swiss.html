@@ -266,6 +266,7 @@
     <div class="preview-field">
       <label for="preview-transition">切换动画</label>
       <select id="preview-transition">
+        <option value="none">无动画</option>
         <option value="liquidMorph">液态形变</option>
       </select>
     </div>
@@ -300,7 +301,7 @@
 <script>
 (function(){
   window.__pageTransitionMode = 'liquidMorph';
-  window.__setPageTransition = () => { window.__pageTransitionMode = 'liquidMorph'; };
+  window.__setPageTransition = value => { window.__pageTransitionMode = value === 'none' ? 'none' : 'liquidMorph'; };
   window.__getPageTransition = () => window.__pageTransitionMode || 'liquidMorph';
   function updateHint(){
     const hint = document.getElementById('hint');
@@ -1537,7 +1538,7 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0, {animate:false});
   const transitionSelect = document.getElementById('preview-transition');
 
   const saved = readSaved();
-  const transitionModes = ['liquidMorph'];
+  const transitionModes = ['none', 'liquidMorph'];
   const themePacks = options.themePacks || {};
   const initialThemePack = normalizeThemePack(saved.themePack)
     || normalizeThemePack(options.current?.themePack)
