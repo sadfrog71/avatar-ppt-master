@@ -33,6 +33,7 @@
 |   |-- update-layout-manifest.jsx - 本地命令脚本。
 |   |-- update-project-docs.mjs - 本地命令脚本。
 |   |-- validate-editor-presenter-modes.mjs - 本地命令脚本。
+|   |-- validate-editor-ui-polish.mjs - 本地命令脚本。
 |   |-- validate-goal-copy.mjs - 本地命令脚本。
 |   |-- validate-layout-showcase.mjs - 本地命令脚本。
 |   |-- validate-overview-performance.mjs - 本地命令脚本。

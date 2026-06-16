@@ -26,6 +26,8 @@
     --ease-prod:cubic-bezier(.2,0,.38,.9);
     --preview-panel-w:min(380px,92vw);
     --slide-rail-w:184px;
+    --slide-rail-min-w:156px;
+    --slide-rail-max-w:320px;
     --deck-w:100vw;
     --deck-h:56.25vw;
     --deck-left:0px;
@@ -35,6 +37,7 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;color:#fff;font-family:var(--sans-zh);letter-spacing:0}
   body{user-select:none}
+  body.is-rail-resizing{cursor:col-resize;user-select:none}
   body[data-mode="present"]{background:#000}
   #deck-viewport{position:fixed;left:var(--deck-left);top:var(--deck-top);z-index:1;width:var(--deck-w);height:var(--deck-h);overflow:hidden;background:#000}
   #deck{position:absolute;left:0;top:0;z-index:1;display:flex;will-change:transform}
@@ -65,11 +68,15 @@
   #preview-toggle svg{width:19px;height:19px}
   body.preview-panel-open #preview-toggle{opacity:0;transform:scale(.85);pointer-events:none}
   body[data-mode="present"] #preview-toggle{display:none}
-  #slide-rail{position:fixed;left:0;top:0;z-index:24;width:var(--slide-rail-w);height:100vh;display:flex;flex-direction:column;background:var(--pp-bg);color:var(--pp-fg);border-right:1px solid var(--pp-divider);box-shadow:18px 0 50px rgba(0,0,0,.12);font-family:var(--sans);overflow:hidden}
+  #slide-rail{position:fixed;left:0;top:0;z-index:24;width:var(--slide-rail-w);min-width:var(--slide-rail-min-w);max-width:var(--slide-rail-max-w);height:100vh;display:flex;flex-direction:column;background:var(--pp-bg);color:var(--pp-fg);border-right:1px solid var(--pp-divider);box-shadow:none;font-family:var(--sans);overflow:hidden}
   body[data-mode="present"] #slide-rail{display:none}
   .slide-rail-head{height:52px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 10px 0 12px;border-bottom:1px solid var(--pp-divider)}
   .slide-rail-title{font:650 13px/1 var(--sans-zh);color:var(--pp-fg)}
   .slide-rail-count{font:600 11px/1 var(--mono);color:var(--pp-fg2);letter-spacing:.02em}
+  .slide-rail-resize{position:absolute;right:0;top:0;z-index:5;width:8px;height:100%;border:0;background:transparent;cursor:col-resize;touch-action:none}
+  .slide-rail-resize::after{content:"";position:absolute;right:2px;top:0;width:1px;height:100%;background:transparent;transition:background .16s}
+  .slide-rail-resize:hover::after,.slide-rail-resize:focus-visible::after,body.is-rail-resizing .slide-rail-resize::after{background:var(--pp-blue)}
+  .slide-rail-resize:focus-visible{outline:2px solid var(--pp-blue);outline-offset:-3px}
   #slide-rail-list{flex:1;overflow-y:auto;overflow-x:hidden;padding:12px 12px 18px;scrollbar-width:thin;scrollbar-color:var(--pp-rail) transparent}
   #slide-rail-list::-webkit-scrollbar{width:8px}
   #slide-rail-list::-webkit-scrollbar-track{background:transparent}
@@ -77,11 +84,13 @@
   .rail-grid{position:relative;display:grid;grid-template-columns:1fr;gap:12px;align-items:start}
   .rail-card{position:relative;display:grid;gap:5px;width:100%;padding:5px;border:0;border-radius:8px;background:transparent;color:var(--pp-fg);cursor:pointer;text-align:left;outline:1px solid transparent;transition:outline-color .16s,background .16s,opacity .16s,transform .2s}
   .rail-card:hover{background:var(--pp-chip)}
-  .rail-card[aria-current="true"]{background:var(--pp-blue-soft);outline-color:var(--pp-blue)}
+  .rail-card[aria-current="true"]{background:#111827;color:#fff;outline-color:rgba(255,255,255,.32)}
+  .rail-card[aria-current="true"]:hover{background:#1f2937}
   .rail-card.is-dragging{opacity:.45;cursor:grabbing}
   .rail-thumb-frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:5px;background:var(--paper);box-shadow:0 0 0 1px rgba(0,0,0,.12);contain:layout paint style}
   .rail-thumb{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;pointer-events:none;background:var(--paper);contain:layout paint style}
   .rail-label{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:0 1px;font:600 11px/1.1 var(--mono);letter-spacing:.04em;color:var(--pp-fg2)}
+  .rail-card[aria-current="true"] .rail-label{color:#fff}
   .rail-skip-badge{position:absolute;right:10px;top:10px;z-index:3;padding:4px 7px;border-radius:999px;background:rgba(10,10,10,.72);color:#fff;font:600 10px/1 var(--sans-zh);pointer-events:none}
   .rail-drop-marker{position:absolute;z-index:6;left:5px;right:5px;height:4px;display:none;border-radius:999px;background:var(--focus-mark);box-shadow:0 0 0 3px rgba(0,0,0,.08);pointer-events:none}
   .rail-context-menu{position:fixed;z-index:130;min-width:138px;display:none;padding:5px;background:var(--pp-bg);border:1px solid var(--pp-border);border-radius:8px;box-shadow:0 14px 36px rgba(0,0,0,.22);color:var(--pp-fg)}
@@ -91,7 +100,7 @@
   .rail-context-menu button[disabled]:hover{background:transparent}
   body[data-mode="present"] #deck,
   body[data-mode="present"] #deck *{cursor:default!important}
-  #preview-panel{position:fixed;right:0;top:0;z-index:24;width:var(--preview-panel-w);height:100vh;display:flex;flex-direction:column;background:var(--pp-bg);color:var(--pp-fg);border-left:1px solid var(--pp-divider);box-shadow:-20px 0 60px rgba(0,0,0,.18);transform:translateX(100%);transition:transform .24s var(--ease-prod);overflow:hidden;font-family:var(--sans);font-variant-numeric:tabular-nums;letter-spacing:0}
+  #preview-panel{position:fixed;right:0;top:0;z-index:24;width:var(--preview-panel-w);height:100vh;display:flex;flex-direction:column;background:var(--pp-bg);color:var(--pp-fg);border-left:1px solid var(--pp-divider);box-shadow:none;transform:translateX(100%);transition:transform .24s var(--ease-prod);overflow:hidden;font-family:var(--sans);font-variant-numeric:tabular-nums;letter-spacing:0}
   body.preview-panel-open #preview-panel{transform:translateX(0)}
   body[data-mode="present"] #preview-panel{display:none}
   #preview-panel svg{display:block;flex:0 0 auto}
@@ -144,9 +153,10 @@
   .preview-prop-choice:hover:not(.is-active){color:var(--pp-fg)}
   .preview-prop-choice.is-active{background:var(--pp-sel-bg);border-color:var(--pp-sel-bd);box-shadow:var(--pp-sel-sh);color:var(--pp-fg);font-weight:600}
   /* color swatch group (display:color) */
-  .preview-prop-choice-group.is-color{display:flex;gap:9px;padding:0;background:transparent;border-radius:0}
-  .preview-prop-choice-group.is-color .preview-prop-choice{width:26px;height:26px;min-width:0;flex:0 0 auto;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14);transition:transform .12s}
+  .preview-prop-choice-group.is-color{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:row;grid-auto-columns:initial;gap:10px;padding:0;background:transparent;border-radius:0}
+  .preview-prop-choice-group.is-color .preview-prop-choice{width:100%;height:38px;min-width:0;border-radius:7px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.16);transition:transform .12s,box-shadow .12s}
   .preview-prop-choice-group.is-color .preview-prop-choice:hover{transform:scale(1.06)}
+  .preview-prop-choice-group.is-color .preview-prop-choice:focus-visible{outline:2px solid var(--pp-blue);outline-offset:3px}
   .preview-prop-choice-group.is-color .preview-prop-choice.is-active{box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),0 0 0 2px var(--pp-bg),0 0 0 4px var(--pp-blue)}
   .preview-prop-row.is-icons{grid-template-columns:1fr;gap:9px}
   .preview-prop-icon-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
@@ -171,10 +181,13 @@
   .pp-json:focus{border-color:var(--pp-blue);background:var(--pp-bg)}
   .pp-json.is-invalid{border-color:#ef4444;color:#ef4444}
   /* footer actions */
-  .preview-actions{display:flex;align-items:stretch;gap:8px;padding:12px 14px;border-top:1px solid var(--pp-divider)}
-  .pp-export{position:relative;flex:1}
-  #preview-export-main{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:36px;border:0;border-radius:6px;cursor:pointer;background:var(--pp-blue);color:#fff;font:600 13px/1 var(--sans-zh)}
-  #preview-export-main:hover{background:var(--pp-blue-h)}
+  .preview-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;align-items:stretch;gap:8px;padding:12px 14px;border-top:1px solid var(--pp-divider)}
+  #preview-present-btn.pp-present{display:flex;align-items:center;justify-content:center;gap:8px;min-width:0;height:36px;border:0;border-radius:6px;cursor:pointer;background:var(--pp-blue);color:#fff;font:600 13px/1 var(--sans-zh)}
+  #preview-present-btn.pp-present:hover{background:var(--pp-blue-h)}
+  #preview-present-btn.pp-present svg{width:16px;height:16px}
+  .pp-export{position:relative;min-width:0}
+  #preview-export-main{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:36px;border:1px solid var(--pp-border);border-radius:6px;cursor:pointer;background:var(--pp-chip);color:var(--pp-fg);font:500 13px/1 var(--sans-zh)}
+  #preview-export-main:hover{background:var(--pp-chip-h)}
   #preview-export-main svg{width:16px;height:16px}
   #preview-export-main .pp-cap{transition:transform .2s}
   .pp-export.open #preview-export-main .pp-cap{transform:rotate(180deg)}
@@ -259,10 +272,11 @@
 
 <aside id="slide-rail" data-slide-rail="true" aria-label="页面缩略图目录">
   <div class="slide-rail-head">
-    <div class="slide-rail-title">幻灯片</div>
+    <div class="slide-rail-title">目录</div>
     <div class="slide-rail-count" id="slide-rail-count">0</div>
   </div>
   <div id="slide-rail-list" data-rail-scroll="true"></div>
+  <button class="slide-rail-resize" data-rail-resize-handle="true" type="button" aria-label="调整目录宽度" title="调整目录宽度"></button>
 </aside>
 
 <div id="deck-viewport">
@@ -284,9 +298,6 @@
       <div class="preview-count" id="preview-slide-count">0 slides</div>
     </div>
     <div class="preview-head-actions">
-      <button class="pp-ib" id="preview-present-btn" data-present-toggle="true" type="button" aria-label="播放预览" title="播放预览">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.8v12.4c0 .8.9 1.3 1.6.9l9.1-6.2a1 1 0 0 0 0-1.8L9.6 4.9C8.9 4.5 8 5 8 5.8Z"/></svg>
-      </button>
       <button class="pp-ib preview-close" id="preview-close" type="button" aria-label="关闭" title="关闭">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6 18 18"/><path d="M18 6 6 18"/></svg>
       </button>
@@ -310,6 +321,10 @@
     </div>
   </div>
   <div class="preview-actions">
+    <button class="pp-present" id="preview-present-btn" data-present-toggle="true" type="button" aria-label="播放预览" title="播放预览">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.8v12.4c0 .8.9 1.3 1.6.9l9.1-6.2a1 1 0 0 0 0-1.8L9.6 4.9C8.9 4.5 8 5 8 5.8Z"/></svg>
+      <span>播放</span>
+    </button>
     <div class="pp-export" id="preview-export-wrap">
       <button id="preview-export-main" type="button" aria-haspopup="true" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
@@ -830,6 +845,7 @@ const deckViewport=document.getElementById('deck-viewport');
 const slideRail=document.getElementById('slide-rail');
 const slideRailList=document.getElementById('slide-rail-list');
 const slideRailCount=document.getElementById('slide-rail-count');
+const slideRailResizeHandle=document.querySelector('[data-rail-resize-handle="true"]');
 function collectDeckSlides(root=deck){
   return [...(root?.children || [])].filter(el => el.classList?.contains('slide'));
 }
@@ -1164,6 +1180,56 @@ function layoutDeck(){
 }
 window.__layoutDeck=layoutDeck;
 addEventListener('resize',layoutDeck);
+
+let slideRailResizePointerId=null;
+let slideRailResizeFrame=null;
+function readCssPxVar(name, fallback){
+  const value = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue(name));
+  return Number.isFinite(value) ? value : fallback;
+}
+function clampSlideRailWidth(value){
+  const min = readCssPxVar('--slide-rail-min-w', 156);
+  const max = readCssPxVar('--slide-rail-max-w', 320);
+  return Math.max(min, Math.min(max, value));
+}
+function requestSlideRailResizeLayout(){
+  if(slideRailResizeFrame !== null) return;
+  slideRailResizeFrame = requestAnimationFrame(() => {
+    slideRailResizeFrame = null;
+    layoutDeck();
+    if(isEditMode() && overviewGrid){
+      const range = getOverviewThumbRange(overviewGrid, {includeNear:true});
+      fitOverviewThumbnails(range.cards);
+      observeOverviewThumbs(overviewGrid);
+    }
+  });
+}
+function setSlideRailWidth(value){
+  document.documentElement.style.setProperty('--slide-rail-w', `${clampSlideRailWidth(value)}px`);
+  requestSlideRailResizeLayout();
+}
+function endSlideRailResize(event){
+  if(slideRailResizePointerId === null || event.pointerId !== slideRailResizePointerId) return;
+  slideRailResizePointerId = null;
+  document.body.classList.remove('is-rail-resizing');
+  slideRailResizeHandle?.releasePointerCapture?.(event.pointerId);
+  requestSlideRailResizeLayout();
+  if(isEditMode()) requestOverviewThumbRefresh(false, {priority:true});
+}
+slideRailResizeHandle?.addEventListener('pointerdown', event => {
+  if(!isEditMode()) return;
+  event.preventDefault();
+  slideRailResizePointerId = event.pointerId;
+  document.body.classList.add('is-rail-resizing');
+  slideRailResizeHandle.setPointerCapture?.(event.pointerId);
+});
+slideRailResizeHandle?.addEventListener('pointermove', event => {
+  if(slideRailResizePointerId === null || event.pointerId !== slideRailResizePointerId) return;
+  event.preventDefault();
+  setSlideRailWidth(event.clientX);
+});
+slideRailResizeHandle?.addEventListener('pointerup', endSlideRailResize);
+slideRailResizeHandle?.addEventListener('pointercancel', endSlideRailResize);
 
 function isPointInsideDeckStage(event){
   const rect = deckViewport?.getBoundingClientRect?.();
@@ -3321,6 +3387,7 @@ refreshRailCatalog();
             button.textContent = '';
             button.style.background = item.value;
             button.title = item.label;
+            button.dataset.colorLabel = item.label;
             button.setAttribute('aria-label', item.label);
           }
           button.addEventListener('click', () => {
