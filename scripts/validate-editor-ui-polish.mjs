@@ -43,6 +43,8 @@ try {
     shadows: await readPanelShadows(page),
     actions: await readActionPriority(page),
     exportMenu: null,
+    editRailContextMenu: null,
+    presentContextMenu: null,
     present: null,
   };
 
@@ -62,6 +64,8 @@ try {
   result.activeStates.afterDrag = await runActiveDragValidation(page);
   result.colorControls = await findAndReadColorControls(page);
   result.exportMenu = await runExportMenuValidation(page);
+  result.editRailContextMenu = await runEditRailContextMenuValidation(page);
+  result.presentContextMenu = await runPresentContextMenuValidation(page);
   result.present = await runPresentValidation(page);
 
   const failures = validateResult(result);
@@ -130,16 +134,33 @@ async function runRailResizeValidation(page) {
 }
 
 async function readThumbnailFit(page) {
-  await page.evaluate(() => {
-    window.__queueNearbyOverviewThumbs?.();
-    window.__fitOverviewThumbnails?.();
-  });
   await page.waitForFunction(() => {
-    const frames = document.querySelectorAll('[data-rail-frame="true"],[data-overview-frame="true"]');
-    return frames.length >= 3;
+    const scroller = document.querySelector('[data-rail-scroll="true"],#slide-rail-list');
+    const railRect = scroller?.getBoundingClientRect();
+    if (!railRect) return false;
+    const visibleCards = [...document.querySelectorAll('[data-rail-card="true"],[data-slide-rail-card="true"]')]
+      .filter(card => {
+        const rect = card.getBoundingClientRect();
+        return rect.bottom > railRect.top + 1 && rect.top < railRect.bottom - 1;
+      });
+    return visibleCards.filter(card => {
+      const frame = card.querySelector('[data-rail-frame="true"],[data-overview-frame="true"]');
+      const thumb = card.querySelector('[data-rail-thumb="true"],[data-overview-thumb="true"]');
+      const content = thumb?.firstElementChild;
+      const frameRect = frame?.getBoundingClientRect();
+      const contentRect = content?.getBoundingClientRect();
+      return frameRect?.width > 0 && frameRect?.height > 0 && contentRect?.width > 0 && contentRect?.height > 0;
+    }).length >= 3;
   });
+  await settle(page, 360);
   return page.evaluate(() => {
+    const scroller = document.querySelector('[data-rail-scroll="true"],#slide-rail-list');
+    const railRect = scroller?.getBoundingClientRect();
     const samples = [...document.querySelectorAll('[data-rail-card="true"],[data-slide-rail-card="true"]')]
+      .filter(card => {
+        const rect = card.getBoundingClientRect();
+        return railRect && rect.bottom > railRect.top + 1 && rect.top < railRect.bottom - 1;
+      })
       .slice(0, 6)
       .map(card => {
         const frame = card.querySelector('[data-rail-frame="true"],[data-overview-frame="true"]');
@@ -387,6 +408,7 @@ async function runExportMenuValidation(page) {
 }
 
 async function runPresentValidation(page) {
+  await ensureEditMode(page);
   await page.locator('#preview-present-btn').click();
   await settle(page, 420);
   const entered = await page.evaluate(() => {
@@ -410,6 +432,215 @@ async function runPresentValidation(page) {
     hasFullscreenElement: Boolean(document.fullscreenElement),
   }));
   return { entered, exited };
+}
+
+async function runEditRailContextMenuValidation(page) {
+  await ensureEditMode(page);
+  const card = page.locator('[data-rail-card="true"]:not([aria-current="true"]),[data-slide-rail-card="true"]:not([aria-current="true"])').first();
+  if (!(await card.count())) return { hasCard: false };
+  await card.scrollIntoViewIfNeeded();
+  await card.click({ button: 'right' });
+  await settle(page, 120);
+  const state = await page.evaluate(() => {
+    const menu = document.querySelector('.rail-context-menu,.overview-context-menu');
+    const rect = menu?.getBoundingClientRect();
+    const style = menu ? getComputedStyle(menu) : null;
+    return {
+      hasCard: true,
+      visible: Boolean(menu && style?.display !== 'none' && rect && rect.width > 2 && rect.height > 2),
+      buttonCount: menu?.querySelectorAll('button').length || 0,
+    };
+  });
+  await page.keyboard.press('Escape').catch(() => {});
+  await settle(page, 80);
+  return state;
+}
+
+async function runPresentContextMenuValidation(page) {
+  const kinds = ['outsideStage', 'background', 'text', 'slotInner', 'mediaInner'];
+  const targets = {};
+  for (const kind of kinds) {
+    targets[kind] = await runPresentContextMenuTarget(page, kind);
+  }
+  return { targets };
+}
+
+async function runPresentContextMenuTarget(page, kind) {
+  await ensureEditMode(page);
+  const target = await preparePresentContextTarget(page, kind);
+  if (!target.found) return { kind, found: false };
+  await page.locator('#preview-present-btn').click();
+  await settle(page, 360);
+  const box = await readPresentContextTargetBox(page, kind);
+  if (!box.found) {
+    await ensureEditMode(page);
+    return { kind, found: true, targetVisible: false };
+  }
+  const before = await currentIndex(page);
+  await installContextMenuProbe(page, kind);
+  await page.mouse.click(box.x, box.y, { button: 'right' });
+  await settle(page, 260);
+  const after = await currentIndex(page);
+  const probe = await readContextMenuProbe(page);
+  await ensureEditMode(page);
+  return {
+    kind,
+    found: true,
+    targetVisible: true,
+    before,
+    after,
+    consumedEventsProbe: box.consumedEventsProbe || false,
+    contextMenuEvents: probe,
+  };
+}
+
+async function preparePresentContextTarget(page, kind) {
+  const themePacks = await page.evaluate(() => [...new Set([...document.querySelectorAll('#deck > .slide')]
+    .map(slide => slide.dataset.themePack || '')
+    .filter(Boolean))]);
+  if (kind === 'outsideStage' || kind === 'background') {
+    const themePack = themePacks[0] || '';
+    await page.evaluate(themePack => {
+      window.__setActiveThemePack?.(themePack, { navigate: false });
+      window.go?.(1, { animate: false, force: true });
+    }, themePack);
+    await settle(page, 220);
+    const found = await page.evaluate(() => Boolean((window.__getVisibleSlides?.() || [])[1]));
+    return { kind, found, themePack, index: 1 };
+  }
+
+  for (const themePack of themePacks) {
+    await page.evaluate(themePack => window.__setActiveThemePack?.(themePack, { navigate: false }), themePack);
+    await settle(page, 80);
+    const count = await page.evaluate(() => window.__getVisibleSlides?.().length || 0);
+    for (let index = 1; index < count; index += 1) {
+      await page.evaluate(index => window.go?.(index, { animate: false, force: true }), index);
+      await settle(page, 40);
+      const target = await readVisiblePresentContextTarget(page, kind);
+      if (!target.found) continue;
+      return { kind, found: true, themePack, index, ...target };
+    }
+  }
+  return { kind, found: false };
+}
+
+async function readVisiblePresentContextTarget(page, kind) {
+  return page.evaluate(kind => {
+    const selectorMap = {
+      text: '[data-editable-id]',
+      slotInner: '[data-dashi-host-image-slot],image-slot,.gxn-slot,.pulse-imgframe,.acl-slot,.kx-imgslot,.dslot,.bt-image-slot',
+      mediaInner: 'video,iframe,canvas,.bt-unicorn-frame,[data-unicorn-json-file-path],[data-unicorn-project-id]',
+    };
+    const slide = document.querySelector('#deck > .slide.active');
+    const selector = selectorMap[kind] || '';
+    const target = [...(slide?.querySelectorAll(selector) || [])].find(element => {
+      const rect = element.getBoundingClientRect();
+      const style = getComputedStyle(element);
+      return rect.width > 4 && rect.height > 4 && style.display !== 'none' && style.visibility !== 'hidden';
+    });
+    if (!target) return { found: false };
+    return {
+      found: true,
+      slideId: slide?.dataset.vmSlideId || slide?.dataset.slideId || '',
+      targetTag: target.tagName || '',
+      targetClass: String(target.className || ''),
+    };
+  }, kind);
+}
+
+async function readPresentContextTargetBox(page, kind) {
+  return page.evaluate((kind) => {
+    const deck = document.getElementById('deck-viewport');
+    const deckRect = deck?.getBoundingClientRect();
+    if (kind === 'outsideStage') {
+      if (!deckRect) return { found: false };
+      const x = deckRect.left > 24 ? Math.max(8, deckRect.left / 2) : Math.min(innerWidth - 8, deckRect.right + Math.max(8, (innerWidth - deckRect.right) / 2));
+      const y = Math.min(innerHeight - 8, Math.max(8, deckRect.top + 32));
+      return { found: x >= 0 && x <= innerWidth && y >= 0 && y <= innerHeight, x, y };
+    }
+    const slide = document.querySelector('#deck > .slide.active');
+    if (!slide) return { found: false };
+    const selectorMap = {
+      text: '[data-editable-id]',
+      slotInner: '[data-dashi-host-image-slot],image-slot,.gxn-slot,.pulse-imgframe,.acl-slot,.kx-imgslot,.dslot,.bt-image-slot',
+      mediaInner: 'video,iframe,canvas,.bt-unicorn-frame,[data-unicorn-json-file-path],[data-unicorn-project-id]',
+    };
+    let target = kind === 'background' ? slide : [...slide.querySelectorAll(selectorMap[kind] || '')].find(element => {
+      const rect = element.getBoundingClientRect();
+      const style = getComputedStyle(element);
+      return rect.width > 4 && rect.height > 4 && style.display !== 'none' && style.visibility !== 'hidden';
+    });
+    if (!target) return { found: false };
+    let consumedEventsProbe = false;
+    if (kind === 'slotInner' || kind === 'mediaInner') {
+      const visibleChildren = [...target.querySelectorAll('*')].filter(child => {
+        const rect = child.getBoundingClientRect();
+        const style = getComputedStyle(child);
+        return rect.width > 4 && rect.height > 4 && style.display !== 'none' && style.visibility !== 'hidden';
+      });
+      if (visibleChildren.length) target = visibleChildren[visibleChildren.length - 1];
+      if (!target.__presentContextConsumedEventsProbe) {
+        target.addEventListener('contextmenu', event => event.stopPropagation());
+        target.__presentContextConsumedEventsProbe = true;
+      }
+      consumedEventsProbe = true;
+    }
+    const rect = target.getBoundingClientRect();
+    return {
+      found: rect.width > 1 && rect.height > 1,
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+      consumedEventsProbe,
+    };
+  }, kind);
+}
+
+async function installContextMenuProbe(page, kind) {
+  await page.evaluate((kind) => {
+    if (window.__presentContextMenuProbeHandler) {
+      removeEventListener('contextmenu', window.__presentContextMenuProbeHandler, true);
+    }
+    window.__presentContextMenuProbe = [];
+    window.__presentContextMenuProbeHandler = event => {
+      const target = event.target instanceof Element ? event.target : null;
+      const entry = {
+        kind,
+        defaultPreventedAtCapture: event.defaultPrevented,
+        defaultPreventedAfterDispatch: null,
+        targetTag: target?.tagName || '',
+        targetClass: target?.className || '',
+      };
+      window.__presentContextMenuProbe.push(entry);
+      setTimeout(() => {
+        entry.defaultPreventedAfterDispatch = event.defaultPrevented;
+      }, 0);
+    };
+    addEventListener('contextmenu', window.__presentContextMenuProbeHandler, true);
+  }, kind);
+}
+
+async function readContextMenuProbe(page) {
+  await page.waitForTimeout(80);
+  return page.evaluate(() => {
+    if (window.__presentContextMenuProbeHandler) {
+      removeEventListener('contextmenu', window.__presentContextMenuProbeHandler, true);
+      window.__presentContextMenuProbeHandler = null;
+    }
+    return window.__presentContextMenuProbe || [];
+  });
+}
+
+async function ensureEditMode(page) {
+  await page.evaluate(() => {
+    if (document.fullscreenElement) return document.exitFullscreen();
+    if (document.body.dataset.mode === 'present') window.__exitPresentMode?.();
+    return null;
+  }).catch(() => {});
+  await settle(page, 240);
+}
+
+async function currentIndex(page) {
+  return page.evaluate(() => window.__currentSlideIndex || 0);
 }
 
 function validateResult(result) {
@@ -470,6 +701,21 @@ function validateResult(result) {
     failures.push(`Export button should be a secondary action: ${JSON.stringify(actions)}`);
   }
   if (!result.exportMenu?.open || !result.exportMenu?.visible || result.exportMenu?.buttonCount < 3) failures.push(`Export menu should still open: ${JSON.stringify(result.exportMenu)}`);
+  if (!result.editRailContextMenu?.visible || (result.editRailContextMenu?.buttonCount || 0) < 1) {
+    failures.push(`Edit mode rail context menu should still open: ${JSON.stringify(result.editRailContextMenu)}`);
+  }
+  for (const [kind, target] of Object.entries(result.presentContextMenu?.targets || {})) {
+    if (!target.found) {
+      failures.push(`Present contextmenu target not found for ${kind}.`);
+      continue;
+    }
+    if (!target.targetVisible) failures.push(`Present contextmenu target ${kind} was not visible.`);
+    const prevented = (target.contextMenuEvents || []).some(event => event.defaultPreventedAfterDispatch === true);
+    if (!prevented) failures.push(`Present contextmenu on ${kind} should be preventDefault: ${JSON.stringify(target)}`);
+    if (kind !== 'outsideStage' && !(target.after < target.before)) {
+      failures.push(`Present right-click on ${kind} should keep the previous-page behavior: ${JSON.stringify(target)}`);
+    }
+  }
   if (result.present?.entered?.mode !== 'present' || !result.present?.entered?.hasFullscreenElement) failures.push(`Present button should enter fullscreen present mode: ${JSON.stringify(result.present)}`);
   if (result.present?.exited?.mode !== 'edit' || result.present?.exited?.hasFullscreenElement) failures.push(`Escape should exit present mode: ${JSON.stringify(result.present)}`);
   return failures;

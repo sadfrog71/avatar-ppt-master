@@ -181,7 +181,7 @@
   .pp-json:focus{border-color:var(--pp-blue);background:var(--pp-bg)}
   .pp-json.is-invalid{border-color:#ef4444;color:#ef4444}
   /* footer actions */
-  .preview-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;align-items:stretch;gap:8px;padding:12px 14px;border-top:1px solid var(--pp-divider)}
+  .preview-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;gap:8px;padding:12px 14px;border-top:1px solid var(--pp-divider)}
   #preview-present-btn.pp-present{display:flex;align-items:center;justify-content:center;gap:8px;min-width:0;height:36px;border:0;border-radius:6px;cursor:pointer;background:var(--pp-blue);color:#fff;font:600 13px/1 var(--sans-zh)}
   #preview-present-btn.pp-present:hover{background:var(--pp-blue-h)}
   #preview-present-btn.pp-present svg{width:16px;height:16px}
@@ -1255,6 +1255,10 @@ function handlePresentDeckPointerDown(e){
   }
 }
 deckViewport?.addEventListener('mousedown', handlePresentDeckPointerDown, true);
+addEventListener('contextmenu', e=>{
+  if(!isPresentMode()) return;
+  e.preventDefault();
+}, true);
 deckViewport?.addEventListener('contextmenu', e=>{
   if(!isPointInsideDeckStage(e)) return;
   e.preventDefault();
@@ -2387,6 +2391,7 @@ async function renderOverviewThumb(wrap, runId=overviewThumbRunId){
       return;
     }
     await renderOverviewThumbDomPreview(wrap, slide);
+    fitOverviewThumb(wrap);
     recordOverviewStage('dom-preview-thumbnail', previewStartAt, {slideId:getOverviewStableSlideId(slide)});
   } catch (error) {
     if(runId !== overviewThumbRunId || !isEditMode() || !wrap.isConnected) return;
