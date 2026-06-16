@@ -25,6 +25,7 @@
 |       `-- portfolio.json - 按用户目标组合组件的 JSON 计划示例。
 |-- scripts/
 |   |-- check_latest_version.mjs - 本地命令脚本。
+|   |-- export-editable-pptx.mjs - 本地命令脚本。
 |   |-- import-claude-themes.jsx - 本地命令脚本。
 |   |-- render-deck.jsx - 本地命令脚本。
 |   |-- render-goal-deck.jsx - 本地命令脚本。
@@ -32,6 +33,7 @@
 |   |-- sync-skill.mjs - 本地命令脚本。
 |   |-- update-layout-manifest.jsx - 本地命令脚本。
 |   |-- update-project-docs.mjs - 本地命令脚本。
+|   |-- validate-editable-pptx-export.mjs - 本地命令脚本。
 |   |-- validate-editor-presenter-modes.mjs - 本地命令脚本。
 |   |-- validate-goal-copy.mjs - 本地命令脚本。
 |   |-- validate-layout-showcase.mjs - 本地命令脚本。
@@ -1166,6 +1168,8 @@
 |   |   |   |-- runtime-helpers.jsx - Claude Design 导入主题组件、运行时、素材或登记元数据。
 |   |   |   `-- unicorn-background.jsx - Claude Design 导入主题组件、运行时、素材或登记元数据。
 |   |   `-- index.jsx - 项目源码或配置文件。
+|   |-- export-pptx/
+|   |   `-- editable.mjs - 项目源码或配置文件。
 |   |-- view-model/
 |   |   |-- context.jsx - Deck ViewModel 构建层和 React Context。
 |   |   `-- index.jsx - Deck ViewModel 构建层和 React Context。
