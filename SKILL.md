@@ -30,23 +30,11 @@ node scripts/check_latest_version.mjs
 ## 使用规则
 
 - 运行生成器需要 Node.js 18+ 和 npm;首次生成时渲染脚本会在 Skill 内置 `project/` 目录安装依赖。
-- 开始阶段先确认用户想要的风格。用户没有明确指定时,如果当前环境支持图片展示,先发送 `assets/skill/theme-style-grid.png` 作为风格选择参考,再列出全部可选风格并询问;如果不支持图片展示,只列出文字选项。不要直接生成。
-- 当前可选风格:
-  - `theme01`: 轻拟态风 · 适配场景: 产品介绍、企业汇报、方案说明、轻量级发布 · 适配人群: 创业团队、产品经理、销售顾问、企业内部汇报者
-  - `theme02`: 炫光紫绿风 · 适配场景: 科技发布会、AI/自动驾驶/机器人主题、增长故事、创新项目展示 · 适配人群: 科技公司创始人、技术负责人、品牌市场团队、投资路演团队
-  - `theme03`: 深浅代码风 · 适配场景: 技术方案、开发者大会、系统架构、AI 工程实践 · 适配人群: 工程师、技术管理者、架构师、开发者社区
-  - `theme04`: 玻璃糖果风 · 适配场景: 年轻化品牌、消费产品、创意提案、社媒感内容 · 适配人群: 品牌团队、设计师、内容创作者、消费品团队
-  - `theme05`: 色谱图表风 · 适配场景: 数据报告、市场分析、KPI 复盘、行业研究 · 适配人群: 数据分析师、咨询顾问、研究员、业务负责人
-  - `theme06`: 深色图谱风 · 适配场景: 高密度数据展示、战略分析、科技/金融/产业报告 · 适配人群: 战略团队、投资人、产业研究团队、高管汇报者
-  - `theme07`: 冷白调研风 · 适配场景: 调研报告、白皮书、竞品分析、学术/政策型表达 · 适配人群: 研究机构、咨询团队、政府/高校/智库、B2B 团队
-  - `theme08`: 黑金实验风 · 适配场景: 高端发布、品牌提案、实验性概念、奢华科技叙事 · 适配人群: 高端品牌、创意总监、科技品牌、发布会策划团队
-  - `theme09`: 深蓝杂志风 · 适配场景: 品牌故事、人物访谈、企业形象册、深度专题 · 适配人群: 公关团队、媒体编辑、创始人、企业品牌部
-  - `theme10`: 金色指数风 · 适配场景: 金融数据、投资报告、商业指数、年度榜单 · 适配人群: 投资机构、金融分析师、咨询公司、商业媒体
-  - `theme11`: 高能增长风 · 适配场景: 增长复盘、商业计划、融资路演、市场扩张方案 · 适配人群: 创业者、增长团队、销售团队、VC/PE 路演团队
-  - `theme12`: 声波霓虹风 · 适配场景: 音乐娱乐、潮流活动、直播内容、年轻化发布 · 适配人群: 娱乐品牌、活动策划、内容团队、潮流消费品牌
+- 开始阶段先确认用户想要的风格。用户没有明确指定时,如果当前环境支持图片展示,先发送 `assets/skill/theme-style-grid.png` 作为风格选择参考。默认只列风格名让用户选;只有用户需要解释时再读取 `references/options.md` 的适配场景/人群。
+- 当前可选风格: `theme01` 轻拟态风、`theme02` 炫光紫绿风、`theme03` 深浅代码风、`theme04` 玻璃糖果风、`theme05` 色谱图表风、`theme06` 深色图谱风、`theme07` 冷白调研风、`theme08` 黑金实验风、`theme09` 深蓝杂志风、`theme10` 金色指数风、`theme11` 高能增长风、`theme12` 声波霓虹风。
 - 不使用旧 token、旧主题、旧图片 slot、旧风格分支或旧入场动画控制。
-- 普通生成不要直接打开大型 `layout-manifest.json` 或 `generated-metadata.js`。选页先运行 `npm run layout:query -- --theme <themePack> --role <role> --limit 8`;需要图片槽时加 `--needs-media`、`--planned-images <n>`、`--provided-images <n>` 或 `--image-gen`。
-- 选定页面后运行 `npm run inspect:layout -- <layout>` 查看 `copyKeys`、`mediaSlots`、`countBindings` 和 `controlKeys`;写复杂数组或图片 props 前运行 `npm run props:safe -- <layout> '<props-json>' [--images <path...>]`。
+- 普通生成不要直接打开大型 `layout-manifest.json` 或 `generated-metadata.js`。选页先运行 `npm run layout:query -- --theme <themePack> --role <role> --limit 8`;需要图片槽时加 `--needs-media`、`--planned-images <n>`、`--provided-images <n>` 或 `--image-gen`。`layout:query` 已输出候选页的 `copyKeys` 和 `mediaSlots`;不要为每一页机械运行 `inspect:layout`。
+- 只有选中页面字段不清楚、需要数组/count、或要写图片/媒体时,才运行 `npm run inspect:layout -- <layout>`;只有写复杂数组或图片 props 时,才运行 `npm run props:safe -- <layout> '<props-json>' [--images <path...>]`。
 - 图片和视频的真实写入点是页面 `props.images` / `props.media`;不要写顶层 `media` 或 `slides[].media`。用户只提供纯文本但计划后续插图时,用带 media slot 的页面并保留 slot;需要 image-gen 时先询问用户是否同意。
 - 元素出现动画使用 Claude Design 页面组件自带的原生效果。
 - 页面切换动画可以在预览控制面板里调整。
@@ -66,7 +54,7 @@ node scripts/check_latest_version.mjs
 1. 提炼用户目标: `title`、`goal`、`audience`、`owner`、页数和内容重点。
 2. 确认 `themePack`。用户未指定时先询问风格;用户选定后生成 `randomSeed`,例如 `<主题>-<日期>-<3位随机词>`,保证随机选页可复现。
 3. 判断图片意图:用户已给图片用 `--provided-images <n>`;用户计划后续配图用 `--planned-images <n>`;需要生图用 `--image-gen` 并先询问。
-4. 用 `layout:query` 选候选,用 `inspect:layout` 确认可写字段和 media slot,用 `props:safe` 生成安全 props。
+4. 快路径:用 `layout:query` 选候选,直接用其 `copyKeys` 写普通文字 props。只有字段不清楚、数组/count 或图片/媒体时,再用 `inspect:layout` / `props:safe`。
 5. 每页只承载一个主要信息角色。无法安全覆盖的页面优先换 layout,不要改样式字段硬凑。
 6. 把 JSON 写入本次工作目录的 `output/<deck-name>/goal.json`;渲染前必须通过 goal spec 校验。
 7. 运行 `npm run render:goal -- output/<deck-name>/goal.json output/<deck-name>/ppt/index.html`。
@@ -125,7 +113,7 @@ node scripts/check_latest_version.mjs
 
 ## 页面属性契约
 
-普通生成不要读 `layout-manifest.json`。用 `inspect:layout` 看单页契约:
+普通生成不要读 `layout-manifest.json`。先用 `layout:query` 输出的候选摘要。只有需要更细契约时,再用 `inspect:layout` 看单页契约:
 
 - `copyKeys`: 可安全改写的文案/数据字段。
 - `mediaSlots`: 图片/视频写入字段、count key、默认数量和最大数量。

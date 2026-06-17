@@ -327,10 +327,10 @@ scratch/
 }
 
 function renderThemeList(content, { packs }) {
-  const list = packs.map(theme => `  - \`${theme.key}\`: ${themeDisplayName(theme)} · 适配场景: ${theme.scenario} · 适配人群: ${theme.audience}`).join('\n');
+  const list = packs.map(theme => `\`${theme.key}\` ${themeDisplayName(theme)}`).join('、');
   return content.replace(
-    /- 当前可选风格:\n(?:  - `[^`]+`: .+\n)+/,
-    `- 当前可选风格:\n${list}\n`,
+    /- 当前可选风格: .+\n/,
+    `- 当前可选风格: ${list}。\n`,
   );
 }
 
