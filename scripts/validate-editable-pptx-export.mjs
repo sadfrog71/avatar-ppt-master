@@ -241,6 +241,9 @@ async function runJad64FollowupRegressionValidation() {
         checks,
       });
     }
+    const synthetic = await runSyntheticCssTriangleRegression(context, mod, outDir);
+    results.push(synthetic);
+    failures.push(...synthetic.checks.failures);
   } finally {
     await closePage(page);
     await context?.close().catch(() => {});
@@ -263,6 +266,106 @@ async function runJad64FollowupRegressionValidation() {
   }
   console.log(JSON.stringify(result, null, 2));
   process.exit(0);
+}
+
+async function runSyntheticCssTriangleRegression(context, mod, outDir) {
+  const sample = {
+    synthetic: true,
+    label: 'synthetic-css-border-triangle-matrix-translate',
+    coverage: 'real browser CSS ::before width:0;height:0 border triangle with computed matrix translate',
+  };
+  const sampleDir = path.join(outDir, sample.label);
+  rmSync(sampleDir, { recursive: true, force: true });
+  mkdirSync(sampleDir, { recursive: true });
+  const page = await context.newPage();
+  try {
+    page.setDefaultTimeout(45000);
+    await page.setContent(`<!doctype html>
+      <html><head><meta charset="utf-8">
+      <style>
+        body { margin: 0; background: #111827; }
+        #deck { width: 1920px; height: 1080px; }
+        .slide { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #111827; color: #f8fafc; font-family: Arial, sans-serif; }
+        .probe { position: absolute; left: 820px; top: 470px; width: 160px; height: 80px; border-radius: 14px; border: 2px solid #38bdf8; background: rgba(56,189,248,.12); }
+        .probe::before { content: ""; position: absolute; left: 50%; top: 50%; width: 0; height: 0; border-left: 18px solid transparent; border-right: 18px solid transparent; border-bottom: 32px solid #ff3d97; transform: translate(-50%, -50%); }
+        .probe-label { position: absolute; left: 1040px; top: 482px; font-size: 44px; font-weight: 700; }
+      </style></head>
+      <body><div id="deck"><section class="slide active" data-layout-key="synthetic-css-triangle"><div class="probe"></div><div class="probe-label">CSS triangle probe</div></section></div></body></html>`, { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('#deck > .slide.active');
+    const activeSlide = await page.$('#deck > .slide.active');
+    const htmlScreenshot = path.join(sampleDir, 'html-slide.png');
+    await activeSlide.screenshot({ path: htmlScreenshot });
+    const dom = await page.evaluate(() => {
+      const slide = document.querySelector('#deck > .slide.active');
+      const probe = document.querySelector('.probe');
+      const slideRect = slide.getBoundingClientRect();
+      const rect = probe.getBoundingClientRect();
+      const style = getComputedStyle(probe, '::before');
+      const px = value => parseFloat(value || '0') || 0;
+      const matrix = String(style.transform || '').match(/matrix\(([^)]+)\)/);
+      const parts = matrix ? matrix[1].split(',').map(Number) : [];
+      const tx = Number.isFinite(parts[4]) ? parts[4] : 0;
+      const ty = Number.isFinite(parts[5]) ? parts[5] : 0;
+      const visualW = px(style.width) + px(style.borderLeftWidth) + px(style.borderRightWidth);
+      const visualH = px(style.height) + px(style.borderTopWidth) + px(style.borderBottomWidth);
+      const left = px(style.left);
+      const top = px(style.top);
+      const expectedPx = {
+        x: rect.left - slideRect.left + left + tx,
+        y: rect.top - slideRect.top + top + ty,
+        w: visualW,
+        h: visualH,
+      };
+      return {
+        key: slide.dataset.layoutKey,
+        parentRect: { x: rect.left - slideRect.left, y: rect.top - slideRect.top, w: rect.width, h: rect.height },
+        pseudo: {
+          left: style.left,
+          top: style.top,
+          width: style.width,
+          height: style.height,
+          transform: style.transform,
+          borderLeftWidth: style.borderLeftWidth,
+          borderRightWidth: style.borderRightWidth,
+          borderBottomWidth: style.borderBottomWidth,
+          expectedPx,
+          expectedIn: {
+            x: expectedPx.x / slideRect.width * 16,
+            y: expectedPx.y / slideRect.height * 9,
+            w: expectedPx.w / slideRect.width * 16,
+            h: expectedPx.h / slideRect.height * 9,
+          },
+        },
+      };
+    });
+    writeFileSync(path.join(sampleDir, 'dom-probe.json'), JSON.stringify(dom, null, 2) + '\n');
+    const pptxFile = path.join(sampleDir, `${sample.label}.pptx`);
+    const reportFile = path.join(sampleDir, `${sample.label}-report.json`);
+    await mod.exportEditablePptxFromPage(page, {
+      outFile: pptxFile,
+      reportFile,
+      title: 'JAD-64 synthetic CSS triangle regression',
+      slideIndexes: [0],
+    });
+    const pptx = inspectPptx(pptxFile);
+    const visual = runQuickLookVisualComparison(pptxFile, htmlScreenshot, sampleDir);
+    const pairImage = createSamplePairImage(sample, visual, sampleDir);
+    const checks = validateSyntheticCssTriangleSample(sample, dom, pptx);
+    if (!visual?.available || !pairImage) checks.failures.push(`${sample.label} did not produce Quick Look visual evidence (${visual?.reason || 'missing-pair'}).`);
+    return {
+      ...sample,
+      htmlScreenshot,
+      pptxFile,
+      reportFile,
+      pairImage,
+      quickLook: visual,
+      dom,
+      pptx: summarizeInspection(pptx),
+      checks,
+    };
+  } finally {
+    await closePage(page);
+  }
 }
 
 async function runTheme10UserRegressionValidation() {
@@ -1766,6 +1869,31 @@ function validateJad64FollowupSample(sample, dom, pptx) {
     symbolTextBoxes,
     highlightedTextCount: highlightTexts.length,
     duplicatedHighlightTexts,
+    failures,
+  };
+}
+
+function validateSyntheticCssTriangleSample(sample, dom, pptx) {
+  const failures = [];
+  const details = pptx.slides[0]?.shapeDetails || [];
+  const expected = dom?.pseudo?.expectedIn;
+  const triangleShapes = details.filter(shape => ['custGeom', 'triangle', 'rtTriangle'].includes(shape.geom));
+  const matchingTriangle = expected && triangleShapes.find(shape => (
+    Math.abs(shape.x - expected.x) <= 0.05
+    && Math.abs(shape.y - expected.y) <= 0.05
+    && Math.abs(shape.w - expected.w) <= 0.05
+    && Math.abs(shape.h - expected.h) <= 0.05
+  ));
+  if (!triangleShapes.length) failures.push(`${sample.label} did not export the CSS border triangle as PPT geometry.`);
+  if (!matchingTriangle) {
+    failures.push(`${sample.label} did not place the CSS triangle at the browser-computed matrix translate position.`);
+  }
+  return {
+    passed: failures.length === 0,
+    expected,
+    triangleShapeCount: triangleShapes.length,
+    matchingTriangle: matchingTriangle || null,
+    triangleShapes,
     failures,
   };
 }

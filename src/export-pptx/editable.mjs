@@ -619,7 +619,7 @@ function renderBox(slide, node, slideRect, warnings, totals) {
     }
   }
 
-  if (hasBorder && !rotate && !borderTriangle && shapeName !== 'ellipse' && !(uniformBorder && (shapeName === 'roundRect' || polygonPoints))) {
+  if (hasBorder && !uniformBorder && !rotate && !borderTriangle && shapeName !== 'ellipse') {
     renderBorders(slide, c, borders, slideRect, style.opacity, totals);
   }
 }
@@ -1052,6 +1052,12 @@ function pseudoRect(el, style, slideRect) {
   const width = cssLengthPx(style.width, parentWidth);
   const height = cssLengthPx(style.height, parentHeight);
   if (width == null || height == null) return null;
+  const borderLeft = parseFloat(style.borderLeftWidth || '0') || 0;
+  const borderRight = parseFloat(style.borderRightWidth || '0') || 0;
+  const borderTop = parseFloat(style.borderTopWidth || '0') || 0;
+  const borderBottom = parseFloat(style.borderBottomWidth || '0') || 0;
+  const boxWidth = width + borderLeft + borderRight;
+  const boxHeight = height + borderTop + borderBottom;
   const left = cssLengthPx(style.left, parentWidth);
   const top = cssLengthPx(style.top, parentHeight);
   const right = cssLengthPx(style.right, parentWidth);
@@ -1062,20 +1068,20 @@ function pseudoRect(el, style, slideRect) {
     const [originXRaw = '0', originYRaw = '0'] = String(parentStyle.transformOrigin || '').split(/\s+/);
     const originX = cssLengthPx(originXRaw, parentWidth) ?? parentWidth / 2;
     const originY = cssLengthPx(originYRaw, parentHeight) ?? parentHeight / 2;
-    const localX = left != null ? left : parentWidth - (right + width);
-    const localY = top != null ? top : parentHeight - (bottom + height);
-    const translate = translateFromTransform(style.transform, width, height);
-    const dx = (localX + translate.x + width / 2 - originX) * stageScaleX;
-    const dy = (localY + translate.y + height / 2 - originY) * stageScaleY;
+    const localX = left != null ? left : parentWidth - (right + boxWidth);
+    const localY = top != null ? top : parentHeight - (bottom + boxHeight);
+    const translate = translateFromTransform(style.transform, boxWidth, boxHeight);
+    const dx = (localX + translate.x + boxWidth / 2 - originX) * stageScaleX;
+    const dy = (localY + translate.y + boxHeight / 2 - originY) * stageScaleY;
     const angle = parentRotation * Math.PI / 180;
     const cx = parent.left + parent.width / 2 + dx * Math.cos(angle) - dy * Math.sin(angle);
     const cy = parent.top + parent.height / 2 + dx * Math.sin(angle) + dy * Math.cos(angle);
-    return { x: cx - width * stageScaleX / 2, y: cy - height * stageScaleY / 2, w: width * stageScaleX, h: height * stageScaleY };
+    return { x: cx - boxWidth * stageScaleX / 2, y: cy - boxHeight * stageScaleY / 2, w: boxWidth * stageScaleX, h: boxHeight * stageScaleY };
   }
-  const translate = translateFromTransform(style.transform, width, height);
-  const x = (left != null ? parent.left + left * stageScaleX : right != null ? parent.right - (right + width) * stageScaleX : parent.left) + translate.x * stageScaleX;
-  const y = (top != null ? parent.top + top * stageScaleY : bottom != null ? parent.bottom - (bottom + height) * stageScaleY : parent.top) + translate.y * stageScaleY;
-  return { x, y, w: width * stageScaleX, h: height * stageScaleY };
+  const translate = translateFromTransform(style.transform, boxWidth, boxHeight);
+  const x = (left != null ? parent.left + left * stageScaleX : right != null ? parent.right - (right + boxWidth) * stageScaleX : parent.left) + translate.x * stageScaleX;
+  const y = (top != null ? parent.top + top * stageScaleY : bottom != null ? parent.bottom - (bottom + boxHeight) * stageScaleY : parent.top) + translate.y * stageScaleY;
+  return { x, y, w: boxWidth * stageScaleX, h: boxHeight * stageScaleY };
 }
 
 function captureWholeTextElement(el, slideRect, style, slideIndex) {
@@ -2009,6 +2015,22 @@ function cssLengthPx(value, base = 0) {
 function translateFromTransform(value, width = 0, height = 0) {
   const raw = String(value || '');
   if (!raw || raw === 'none') return { x: 0, y: 0 };
+  const matrix3d = raw.match(/matrix3d\(([^)]+)\)/i);
+  if (matrix3d) {
+    const parts = splitCssArgs(matrix3d[1]).map(Number);
+    return {
+      x: Number.isFinite(parts[12]) ? parts[12] : 0,
+      y: Number.isFinite(parts[13]) ? parts[13] : 0,
+    };
+  }
+  const matrix = raw.match(/matrix\(([^)]+)\)/i);
+  if (matrix) {
+    const parts = splitCssArgs(matrix[1]).map(Number);
+    return {
+      x: Number.isFinite(parts[4]) ? parts[4] : 0,
+      y: Number.isFinite(parts[5]) ? parts[5] : 0,
+    };
+  }
   const translate = raw.match(/translate(?:3d)?\(([^)]+)\)/i);
   const translateX = raw.match(/translateX\(([^)]+)\)/i);
   const translateY = raw.match(/translateY\(([^)]+)\)/i);
