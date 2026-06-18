@@ -1472,6 +1472,17 @@ function shouldUseLocalMaterialFallback(el, style, clipped, slideRect) {
   if (['section', 'main', 'article', 'svg', 'canvas', 'img', 'video'].includes(tag)) return false;
   if (/^h[1-6]$/.test(tag) || ['p', 'li', 'td', 'th', 'blockquote'].includes(tag)) return false;
   if (el.querySelector?.('svg, canvas, img, video')) return false;
+  const rawRect = el.getBoundingClientRect();
+  const slideLeft = Number(slideRect.left ?? slideRect.x ?? 0);
+  const slideTop = Number(slideRect.top ?? slideRect.y ?? 0);
+  const slideRight = Number(slideRect.right ?? (slideLeft + Number(slideRect.width ?? slideRect.w ?? 0)));
+  const slideBottom = Number(slideRect.bottom ?? (slideTop + Number(slideRect.height ?? slideRect.h ?? 0)));
+  if (rawRect.left < slideLeft - 1
+    || rawRect.top < slideTop - 1
+    || rawRect.right > slideRight + 1
+    || rawRect.bottom > slideBottom + 1) {
+    return false;
+  }
   const visibleChildren = [...(el.children || [])].filter(child => {
     const childStyle = getComputedStyle(child);
     const rect = child.getBoundingClientRect();
