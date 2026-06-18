@@ -1,8 +1,8 @@
 # {project_name} - Design Spec
 
-> This document is the human-readable design narrative — rationale, audience, style, color choices, content outline. It is read once by downstream roles for context.
+> Human-readable design narrative — rationale, audience, style, color choices, content outline. Read once by downstream roles for context.
 >
-> The machine-readable execution contract lives in `spec_lock.md` (short form of color / typography / icon / image decisions). Executor re-reads `spec_lock.md` before every SVG page to resist context-compression drift. Keep the two files in sync; if they diverge, `spec_lock.md` wins.
+> Machine-readable execution contract: `spec_lock.md` (color / typography / icon / image short form). Executor re-reads `spec_lock.md` before every SVG page to resist context-compression drift. Keep both in sync; on divergence, `spec_lock.md` wins.
 
 ## I. Project Information
 
@@ -11,7 +11,6 @@
 | **Project Name** | {project_name} |
 | **Canvas Format** | {canvas_info['name']} ({canvas_info['dimensions']}) |
 | **Page Count** | [Filled by Strategist] |
-| **Deck Type** | [Analysis / Vision / Training / Marketing — Filled by Strategist] |
 | **Design Style** | {design_style} |
 | **Target Audience** | [Filled by Strategist] |
 | **Use Case** | [Filled by Strategist] |
@@ -35,13 +34,15 @@
 
 ### Theme Style
 
-- **Style**: {design_style}
+- **Mode**: [pyramid / narrative / instructional / showcase / briefing — narrative skeleton, locked at d Layer 1]
+- **Visual style**: [preset name or custom — aesthetic, locked at d Layer 2; carries no HEX]
 - **Theme**: [Light theme / Dark theme]
 - **Tone**: [Filled by Strategist, e.g., tech, professional, modern, innovative]
 
 ### Color Scheme
 
-> Strategist should determine specific color values based on project content, industry, and brand colors
+> Strategist: determine values from project content, industry, brand colors.
+> Step 4 Confirm UI: present a few color candidates, each with a user-facing core `palette` (background / secondary_bg / primary / accent / secondary_accent / body_text), in `confirm_ui/recommendations.json`; the confirmed candidate from `result.json` seeds this table. Strategist derives the remaining text, border, state, and style-neutral colors when writing this full scheme. Schema: [`scripts/docs/confirm_ui.md`](../scripts/docs/confirm_ui.md).
 
 | Role | HEX | Purpose |
 | ---- | --- | ------- |
@@ -59,23 +60,14 @@
 
 > **Reference**: Industry colors in `references/strategist.md` or `scripts/config.py` under `INDUSTRY_COLORS`
 
-### Semantic Badge System
+### AI Image Strategy (fill only when §VIII has `ai` rows)
 
-> Analysis-type decks MUST define semantic badges for skimmable data evaluation. Vision-type decks may skip this section.
+- **Image Rendering**: [one of the 20 names in `references/image-renderings/_index.md` (e.g. `vector-illustration`), or `custom`]
+- **Image Rendering Behavior**: [required when Rendering is `custom`; one-paragraph prose per `image-renderings/_index.md §1.5`]
+- **Image Palette**: [one of the 14 names in `references/image-palettes/_index.md` (e.g. `cool-corporate`), or `custom`]
+- **Image Palette Behavior**: [required when Palette is `custom`; one-paragraph prose per `image-palettes/_index.md §2`]
 
-| Badge Role | HEX | Purpose | Example Label |
-| ---------- | --- | ------- | ------------- |
-| **badge_risk** | `#DC3545` | Risk / lagging / critical | 风险, 落后, 饱和 |
-| **badge_warning** | `#F6AD55` | Warning / medium / observe | 警告, 注意, 待观察 |
-| **badge_leading** | `#38A169` | Leading / advantage /达标 | 领先, 优势, 达标 |
-| **badge_info** | `#3182CE` | Info / neutral / reference | 信息, 正常, 参考 |
-| **badge_highlight** | `[accent]` | Highlight / recommended / core | 重点, 推荐, 最高 |
-
-**Badge usage rules**:
-- Every evaluative data point in tables, cards, or comparisons MUST carry a badge
-- Badge text: 10-11px, bold, white text on colored background
-- Badge shape: rounded rectangle, padding 4-8px horizontally
-- Badge placement: inside table cells (right-aligned), card title area, or matrix quadrants
+> Strategist: lock these once per deck in h.5; every AI image inherits them. Cross-check the rendering × palette compatibility matrix in `image-palettes/_index.md` — avoid `✗` combinations (matrix only covers presets; when either dimension is `custom`, Strategist owns the compatibility judgment). Leave the section out entirely if §VIII has no `ai` rows. Omit the `Behavior` rows whenever the corresponding dimension is a preset name.
 
 ### Gradient Scheme (if needed, using SVG syntax)
 
@@ -99,39 +91,65 @@
 
 ### Font Plan
 
-> Strategist should select a font preset based on content characteristics, or customize the font combination
-> Preset descriptions: P1=Modern business/tech | P2=Government docs | P3=Culture/arts | P4=Traditional/conservative | P5=English-primary
+> **Per-role families are expected, not optional.** Title / Body / Emphasis / Code may each use a different family (e.g., display serif title + geometric sans body). One family throughout is not required. See [strategist.md §g — Font Combinations](../references/strategist.md) for starting directions; you may propose a combination not listed.
+>
+> **⚠️ PPT-safe stack discipline (HARD rule).** PPTX stores a single `typeface` per run — no runtime fallback. Every stack MUST end with a cross-platform pre-installed font: `"Microsoft YaHei", sans-serif` / `SimSun, serif` / `Arial, sans-serif` / `"Times New Roman", serif` / `Consolas, "Courier New", monospace`. Stacks led by a non-preinstalled font (Inter / Google Fonts / brand typefaces) are allowed only when this spec notes the font-install or embedding requirement.
 
-**Recommended preset**: [Fill in preset code]
+**Typography direction**: [Fill in one phrase, e.g., "modern CJK sans" / "academic serif" / "brand-specific: McKinsey Bower (requires font install)"]
 
-| Role | Chinese | English | Fallback |
-| ---- | ------- | ------- | -------- |
-| **Title** | [font name] | [font name] | [font name] |
-| **Body** | [font name] | [font name] | [font name] |
-| **Code** | - | Consolas | Monaco |
-| **Emphasis** | [font name] | [font name] | [font name] |
+> Step 4 Confirm UI: present a few typography candidates, each splitting CJK + Latin for `heading` and `body` (with `css` preview stacks) and declaring `body_size` as the body baseline px, in `confirm_ui/recommendations.json`; the confirmed candidate from `result.json` seeds the plan below. Schema: [`scripts/docs/confirm_ui.md`](../scripts/docs/confirm_ui.md).
 
-**Font stack**: `[Fill in CSS font-family string]`
+Two views on the same font decisions — fill both, keep them consistent:
+
+- **Role breakdown** (table below) — lists the *pieces* per role: CJK font, Latin font, CSS generic fallback. Human-readable design language.
+- **Per-role font stacks** (after the table) — the *ordered* CSS `font-family` strings that actually go into SVG `font-family=""` and `spec_lock.md`'s `*_family` lines. Order controls browser rendering (Latin-led vs. CJK-led), so this is the **actual data** — not derivable from the table alone.
+
+| Role | Chinese | English | Fallback tail |
+| ---- | ------- | ------- | ------------- |
+| **Title** | [e.g., `"Microsoft YaHei"`, or `"Microsoft YaHei", "PingFang SC"` for macOS preview nicety] | [e.g., `Georgia`] | [e.g., `serif`] |
+| **Body** | [e.g., `"Microsoft YaHei", "PingFang SC"`] | [e.g., `Arial`] | [e.g., `sans-serif`] |
+| **Emphasis** | [e.g., `SimSun`, or `—` for Latin-only] | [e.g., `Georgia`] | [e.g., `serif`] |
+| **Code** | — | [e.g., `Consolas, "Courier New"`] | [e.g., `monospace`] |
+
+**Per-role font stacks** (CSS `font-family` strings, one per role — arrange the table's pieces in the order your design intends):
+
+- Title: `[Fill in stack, e.g. Georgia, "Microsoft YaHei", serif for Latin-led; or "Microsoft YaHei", "PingFang SC", Georgia, serif for CJK-led]`
+- Body: `[Fill in stack — may be same as Title]`
+- Emphasis: `[Fill in stack, or write "same as Body" to omit the override]`
+- Code: `[Fill in monospace stack, e.g. Consolas, "Courier New", monospace]`
+
+> **Stack ordering — why it matters**: CSS `font-family` falls back font-by-font (not char-by-char) — the browser uses the **first installed** font for everything it can render, skipping to the next only when a glyph is missing. So:
+> - `Georgia, "Microsoft YaHei", serif` → Latin in Georgia (elegant serif), CJK falls through to Microsoft YaHei. **Use when Latin typography is the primary design statement** (academic / editorial / Latin-heavy covers).
+> - `"Microsoft YaHei", Georgia, serif` → Everything in Microsoft YaHei (Latin uses YaHei's Latin glyphs — a different design tone). **Use when the deck is CJK-primary and Latin is incidental**.
+>
+> The converter (`drawingml_utils.py parse_font_family`) maps these to PPTX `<a:latin>` / `<a:ea>` regardless of order — but browser preview and SVG native rendering reflect stack order. Pick the order matching your design intent.
+
+> **Why two views**: the breakdown shows role assignment at a glance; stacks carry the ordering info the breakdown can't encode. Keep both consistent — table cells should be exactly the fonts in the stacks (any order).
 
 ### Font Size Hierarchy
 
-> **Design principle**: Use body font size as baseline (1x), derive other levels proportionally
-> **Unit convention**: Use px uniformly (SVG native unit) to avoid pt/px conversion errors
-> **Selection principle**: Font size is based on **content density**, not design style
+> **Ramp discipline, not a fixed menu.** `body` is the single anchor; every other size is a ratio of it. Each row below gives the role's allowed ratio band — Executor may pick any px value inside the band (e.g., 40px hero number, 13px chart annotation, 72px cover headline) without pre-declaring intermediates in `spec_lock.md`.
+> **Unit**: px uniformly (SVG native) to avoid pt/px conversion errors.
+> **Baseline selection**: drive by **content density**, not design style.
 
-**Baseline**: Body font size = [fill in]px (choose 18-24px based on content density)
+**Baseline**: Body font size = [fill in]px (any reasonable integer — `18` and `24` are most common; `16` for chart-heavy, `20`/`22` for medium density, `28-32` for poster / cover decks are all valid. Drive by content density.)
 
-| Purpose | Ratio | 24px baseline (relaxed) | 18px baseline (dense) | Weight |
-| ------- | ----- | ---------------------- | -------------------- | ------ |
-| Cover title | 2.5-3x | 60-72px | 45-54px | Bold |
-| Chapter title | 2-2.5x | 48-60px | 36-45px | Bold |
-| Content title | 1.5-2x | 36-48px | 27-36px | Bold |
+| Purpose | Ratio to body | Example @ body=24 (relaxed) | Example @ body=18 (dense) | Weight |
+| ------- | ------------- | --------------------------- | ------------------------- | ------ |
+| Cover title (hero headline) | 2.5-5x | 60-120px | 45-90px | Bold / Heavy |
+| Chapter / section opener | 2-2.5x | 48-60px | 36-45px | Bold |
+| Page title | 1.5-2x | 36-48px | 27-36px | Bold |
+| Hero number (consulting KPIs) | 1.5-2x | 36-48px | 27-36px | Bold |
 | Subtitle | 1.2-1.5x | 29-36px | 22-27px | SemiBold |
 | **Body content** | **1x** | **24px** | **18px** | Regular |
-| Annotation | 0.75-0.85x | 18-20px | 14-15px | Regular |
-| Page number/date | 0.55-0.65x | 13-16px | 10-12px | Regular |
+| Annotation / caption | 0.7-0.85x | 17-20px | 13-15px | Regular |
+| Page number / footnote | 0.5-0.65x | 12-16px | 9-12px | Regular |
 
-> **Tip**: Dense content (6+ points per page) use 18px; relaxed content (3-5 points per page) use 24px
+> The two px columns are illustrations for common baselines. For any other `body` value, multiply by each row's ratio — the checker (`svg_quality_checker._check_spec_lock_drift`) reads the live `body` from `spec_lock.md` and applies the bands, so no code change is needed for a different baseline.
+
+> Sizes outside **every** band remain forbidden — surface the need and extend `spec_lock.md typography` (e.g., `cover_title: 96`) rather than invent a one-off value.
+
+> **Hero in single-focus / breathing pages**: when one element *is* the entire page — a large number, a headline, a key phrase — it is the visual subject, not body content. Such heroes may borrow the cover-title band (2.5–5×); for greater emphasis, declare a hero slot in `spec_lock.md` (e.g., `hero_number` / `hero_headline`) — checker exempts declared slots with no fixed upper limit. The row above "Hero number (consulting KPIs) 1.5–2×" applies only to numeric KPIs in dashboard/data layouts, not to full-page focal elements.
 
 ---
 
@@ -143,69 +161,53 @@
 - **Content area**: [Height and content description]
 - **Footer area**: [Height and content description]
 
-### Common Layout Modes
+### Layout Pattern Library (combine or break as content demands)
 
-| Mode | Suitable Scenarios |
-| ---- | ----------------- |
+> **Principle — proportion follows information weight, not preset ratios.** The table below is a pattern library, not a menu. Combine two patterns on one page, break the grid entirely for a `breathing` page, or propose a pattern not listed when content calls for it. Defaulting every page to a symmetric grid produces the "AI-generated" look — vary intentionally.
+
+| Pattern | Suitable Scenarios |
+| ------- | ----------------- |
 | **Single column centered** | Covers, conclusions, key points |
-| **Left-right split (5:5)** | Comparisons, dual concepts |
-| **Left-right split (4:6)** | Image-text mix |
-| **Top-bottom split** | Processes, timelines |
-| **Three/four column cards** | Feature lists, team introductions |
-| **Matrix grid** | Comparative analysis, classifications |
-
-### Expanded Layout Variants (v1.2)
-
-| Layout Variant | Suitable Scenarios | Key Slots |
-| -------------- | ------------------ | --------- |
-| **executive-summary** | Core findings overview | 3-5 numbered insight cards |
-| **priority-matrix** | Impact × Urgency ranking | P0/P1/P2 quadrants with badge color coding |
-| **era-comparison** | Past→Present→Future stages | 3-column status + bullet list |
-| **risk-quadrant** | Risk factor visualization | 4 risk cards with level badges |
-| **hero-metric-duo** | Side-by-side key numbers | Two large metrics + comparison label |
-| **chapter-nav-table** | Data-dense comparison tables | Table + chapter breadcrumb + cell badges |
-| **action-timeline** | Phased roadmap (short/mid/long) | 3-4 nodes with period, title, actions |
-| **action-checklist** | Action items with timelines | Time badge + action description |
-| **radar-profile** | Multi-dimension capability assessment | Radar chart + dimension labels + summary |
-| **funnel-flow** | Process/conversion stages | 3-5 funnel levels with conversion rates |
-| **data-disclaimer** | Source & limitation declaration | Source + limitations + assumptions + next steps |
-
-### Chrome Components (Mandatory for Analysis Decks)
-
-Every inner page (cover and section-divider excluded) MUST include at least 3 of the following chrome elements:
-
-| Component | Specification | Position |
-| --------- | ------------- | -------- |
-| **Accent line** | Width 24-32px, height 2-3px, accent color | Above page title |
-| **Page counter** | Format: "03 / 26 · Chapter Name", 10-12px, secondary text color | Top-right or bottom-center |
-| **Report title footer** | Full report name, 10-11px, secondary text color | Bottom-right or bottom-left |
-| **Chapter label** | "PART 01 · Chapter Name", 12px, accent color | Subtitle area |
-| **Source caption** | "资料来源: ...", 10px, secondary text color | Below chart/matrix |
-
-### Insight Presentation Variants
-
-Every page MUST contain one "so what" insight element. Choose based on information density:
-
-| Variant | Position | Style | Best For |
-| ------- | -------- | ----- | -------- |
-| **Insight Strip** | Page bottom (距底边 40-50px) | Light background (surface) or accent left-border 3px | Standard pages |
-| **Insight Card** | Content area (below chart/table) | Rounded rect, surface bg, accent left-border 4px, padding 12-16px | High-density data pages |
-| **Inline Highlight** | Within body text | Bold text, accent color | Space-constrained pages |
+| **Symmetric split (5:5)** | Comparisons where two sides carry equal weight |
+| **Asymmetric split (3:7 / 2:8)** | One side dominates — data chart vs. brief takeaway, image vs. caption |
+| **Top-bottom split** | Processes, timelines, ultra-wide image + text |
+| **Three/four column cards** | Feature lists, parallel points, team intros |
+| **Matrix grid (2×2)** | Two-axis classifications, strategic quadrants |
+| **Z-pattern / waterfall** | Storytelling, case studies — content blocks alternate left/right guiding the eye |
+| **Center-radiating** | Core concept + surrounding nodes, ecosystem / stakeholder maps |
+| **Full-bleed + floating text** | `breathing` / feature pages — image fills canvas, text floats with opacity overlay |
+| **Figure-text overlap** | Hero moments — headline / big number sits over or against an image edge instead of beside it |
+| **Negative-space-driven** | A single element in 40-60% whitespace — lets one idea land with weight |
 
 ### Spacing Specification
 
-> Strategist may adjust based on project needs
+> Spacing defaults depend on **container type**. Cards are one option, not the universal default. Tables below split by container type; a page may consult only one set (e.g., a `breathing` page with no cards uses only universal + non-card entries).
+
+**Universal** (any container type):
+
+| Element | Recommended Range | Current Project |
+| ------- | ---------------- | --------------- |
+| Safe margin from canvas edge | 40-60px | [fill in] |
+| Content block gap | 24-40px | [fill in] |
+| Icon-text gap | 8-16px | [fill in] |
+
+**Card-based layouts** (consult only when the page uses cards — typically `dense` pages with parallel containers):
 
 | Element | Recommended Range | Current Project |
 | ------- | ---------------- | --------------- |
 | Card gap | 20-32px | [fill in] |
-| Content block gap | 24-40px | [fill in] |
 | Card padding | 20-32px | [fill in] |
 | Card border radius | 8-16px | [fill in] |
-| Icon-text gap | 8-16px | [fill in] |
 | Single-row card height | 530-600px | [fill in] |
 | Double-row card height | 265-295px each | [fill in] |
 | Three-column card width | 360-380px each | [fill in] |
+
+**Non-card containers** (naked text blocks / full-bleed imagery / divider-separated content — typical for `breathing` pages or minimalist designs):
+
+- Vertical rhythm carried by **whitespace**, not gutters — block gaps run wider than card gaps since there's no container edge to separate content.
+- **Line-height**: ~1.4–1.5× for dense/small-body text (CLReq comfortable minimum); 1.6–2.0× for large-type, sparse, or `breathing` pages.
+- **Full-bleed text placement**: inset text away from the image's focal points; legibility over photographic backgrounds typically needs a gradient or opacity overlay.
+- **Content width** is driven by reading comfort and image composition, not a card grid slot — don't back-compute "column width" when there's no column.
 
 ---
 
@@ -213,73 +215,121 @@ Every page MUST contain one "so what" insight element. Choose based on informati
 
 ### Source
 
-- **Built-in icon library**: `templates/icons/` (6700+ icons across three libraries)
-- **Usage method**: Placeholder format `{{icon:category/icon-name}}`
+- **Built-in icon library**: `templates/icons/` (11,600+ icons across five libraries; see `templates/icons/README.md`)
+- **Usage method**: SVG placeholder `<use data-icon="library/icon-name" .../>`; Design Spec should list approved `library/icon-name` entries for Executor.
 
 ### Recommended Icon List (fill as needed)
 
 | Purpose | Icon Path | Page |
 | ------- | --------- | ---- |
-| [example] | `{{icon:interface/check-circle}}` | Slide XX |
+| [example] | `chunk-filled/circle-checkmark` | Slide XX |
 
 ---
 
-## VII. Visualization Reference List
+## VII. Visualization Reference List (if needed)
 
-> When the presentation includes data visualization or infographic-style structured information design, Strategist selects visualization types from `templates/charts/charts_index.json` and lists them here for the Executor to reference. The path remains under `templates/charts/` for backward compatibility.
+> When pages map to a chart-library template (data charts OR structural patterns — team rosters, agendas, frameworks, etc.), Strategist lists them here for Executor reference. Single combined table — `summary-quote` column is the anti-fabrication audit, `path` + `usage` columns serve Executor lookup.
 
-### Chart Type Guide (v1.2)
+Catalog read: 71 templates
 
-| Chart Type | Best Scenario | Mandatory Elements | Anti-patterns |
-| ---------- | ------------- | ------------------ | ------------- |
-| **Column Clustered** | Multi-entity same-dimension comparison | Data labels on top, consistent bar width, 50% gap | 3D columns, rainbow colors |
-| **Bar Stacked** | Composition + comparison (≤5 categories) | Total label, category limit 5, theme-color order | Too many stacks, no total |
-| **Pie / Doughnut** | Single-entity composition (5-7 slices max) | Percentage + category name, clockwise by size | >7 slices, 3D pie, no labels |
-| **Radar** | Multi-dimension capability assessment | 3-6 dimensions, 20-30% fill opacity, ≤3 series | >8 dimensions, opaque fill |
-| **Line** | Time-series trends | 2-3pt line width, clear markers, ≤3 trend lines | >3 lines, no markers |
-| **Waterfall** | Increment/decrement breakdown | Up=green, down=red, total=primary color | Missing total bar |
-| **Funnel** | Process conversion (3-5 stages) | Conversion rate label,递减色深 | >5 stages |
-| **Scatter / Bubble** | Distribution/correlation analysis | Trend line if applicable, bubble limit 20 | Too many bubbles |
-| **Heatmap** | Matrix density / correlation | Gradient (light→primary), value labels | Rainbow gradient |
-| **Combo (Column + Line)** | Absolute value + rate dual-metric | Column=surface+primary, line=accent | Dual Y-axes (misleading) |
+| Page | Template | Path | Summary-quote (verbatim from `charts_index.json`) | Usage |
+| ---- | -------- | ---- | ------------------------------------------------- | ----- |
+| P05 | grouped_bar_chart | `templates/charts/grouped_bar_chart.svg` | "Pick for 2-4 series side-by-side across the same categories (e.g. YoY/QoQ). Skip if showing composition within each category (use stacked_bar_chart)." | YoY revenue comparison by product line |
 
-**Chart Theming Rules**:
-- Color series order: primary → accent → secondary_accent → badge_info → badge_warning → badge_leading
-- Background: bg (#FFFFFF) or surface (#F7FAFC)
-- Grid lines: border color (#E2E8F0), 0.5pt
-- All charts MUST have: Title, Data Labels (where readable), Axis Labels (with units), Legend, Source Caption
+**Runners-up considered** (3 entries minimum, drawn from real second-best matches in this deck):
 
-### Visualization Assignment Table
+- `<key_A>` | rejected for P05: `<reason citing this deck's specifics>`
+- `<key_B>` | rejected for P##: `<reason>`
+- `<key_C>` | rejected for P##: `<reason>`
 
-| Visualization Type | Reference Template | Used In |
-| ------------------ | ------------------ | ------- |
-| [e.g. grouped_bar_chart] | `templates/charts/grouped_bar_chart.svg` | Slide 05 |
+> **Audit rule**: `Summary-quote` must be copy-pasted verbatim — paraphrasing breaks the audit. Every template name listed must `grep` cleanly inside `charts_index.json` (so misspellings/inventions fail). If fewer than 3 viz pages exist, list what exists and note "fewer than 3 viz pages"; runners-up still required for each page that does exist.
 
 ---
 
 ## VIII. Image Resource List (if needed)
 
-| Filename | Dimensions | Ratio | Purpose | Type | Status | Generation Description |
-| -------- | --------- | ----- | ------- | ---- | ------ | --------------------- |
-| cover_bg.png | {canvas_info['dimensions']} | [ratio] | Cover background | [Background/Photography/Illustration/Diagram/Decorative] | [Pending/Existing/Placeholder] | [AI generation prompt] |
+| Filename | Dimensions | Ratio | Purpose | Type | Layout pattern | Acquire Via | Status | Reference | text_policy | page_role |
+| -------- | --------- | ----- | ------- | ---- | -------------- | ----------- | ------ | --------- | ----------- | --------- |
+| cover_bg.png | {canvas_info['dimensions']} | [ratio] | Atmospheric cover backdrop — SVG title overlays the calm region | Background | #1 full-bleed background with floating title + #29 two-stop scrim | ai | Pending | [subject + intent + composition, no style/HEX] | none | hero_page |
+| comparison_p07.png | {canvas_info['dimensions']} | [ratio] | Three-panel approach comparison — panel labels stay inside the image | Diagram | #44 background image + native network/architecture diagram | ai | Pending | Three side-by-side schematic motifs comparing approach A / B / C, panel labels rendered inside each motif | embedded | local |
+| formula_001.png | [actual dimensions from formula manifest / image_analysis] | [ratio] | Block equation on P03 | Latex Formula | formula-block | formula | Rendered | `E = mc^2` — energy-mass equation | | |
 
-**Status descriptions**:
+> **Layout pattern column is MANDATORY** — for non-formula rows, value is one or more `#<id> <name>` joined by ` + ` drawn verbatim from [`references/image-layout-patterns.md`](../references/image-layout-patterns.md) (Primary + optional Modifiers). Empty cells, paraphrased names, or invented ids invalidate the row. Formula rows are the only exception; use `formula-inline` or `formula-block`. See `strategist.md §h` GATE for the three-layer requirement (read → produce → image-as-canvas coverage).
 
-- **Pending** - Needs AI generation, provide detailed description
-- **Existing** - User already has image, place in `images/`
-- **Placeholder** - Not yet processed, use dashed border placeholder in SVG
+**Type** (free-form category tag; common values):
 
-**Type descriptions** (used by Image_Generator for prompt strategy selection):
+- `Background` — cover / chapter / full-bleed atmosphere
+- `Photography` — real-world photo
+- `Illustration` — vector / flat / painterly art
+- `Diagram` — schematic / architecture / flowchart
+- `Portrait` — single-subject person
+- `Latex Formula` — formula PNG rendered by `latex_render.py`
 
-- **Background** - Full-page background for covers/chapters, reserve text area
-- **Photography** - Real scenes, people, products, architecture
-- **Illustration** - Flat design, vector style, cartoon, concept diagrams
-- **Diagram** - Flowcharts, architecture diagrams, concept maps
-- **Decorative** - Partial decorations, textures, borders, dividers
+**Status**:
+
+- **Pending** — needs AI generation or web sourcing
+- **Rendered** — deterministic formula asset already exists under `images/`
+- **Existing** — user-supplied, place in `images/`
+- **Placeholder** — not yet processed, use dashed border in SVG
+
+**Acquire Via**:
+
+- `ai` — Step 5 Image_Generator
+- `web` — Step 5 Image_Searcher
+- `formula` — already rendered by `latex_render.py` before this spec was written
+- `user` — user-supplied
+- `placeholder` — intentionally deferred
+
+**text_policy** (`ai` rows only; AI judges per row, no global default bias):
+
+- `none` — image carries no text; SVG overlays all labels
+- `embedded` — image contains in-artwork text: decorative lettering, a designed title, hand-lettered keywords, or stable visual identifiers (axis labels, subplot letters, unit symbols). Body copy / data points / long quotes never go inside the image regardless — they must stay editable. Embedded text is frozen into the raster, so the exact characters are named literally in the prompt
+
+**page_role** (`ai` rows only; leave blank for default):
+
+- *blank / `local`* — image is a region block on an SVG page
+- `hero_page` — image is the page's main voice; SVG overlay is minimal or empty. Use on covers, chapter dividers, mood transitions, single-number data heroes, closing quotes. Same rendering and palette as the rest of the deck regardless
+
+**Reference grammar** (`ai` rows): write **subject + intent + composition** only. Do NOT repeat style words ("flat design", "modern") or HEX values — both are already locked deck-wide by `design_spec §III AI Image Strategy` (rendering + palette) and `§III Color Scheme` (HEX triplet). Image_Generator's prompt assembler injects them.
 
 ---
 
 ## IX. Content Outline
+
+### Source Digest Summary
+
+| Item | Summary |
+| ---- | ------- |
+| **Source inventory** | [Files / URLs / chat brief used] |
+| **Core claims** | [2-5 claims distilled from source] |
+| **Key evidence** | [Reusable figures, dates, deltas, thresholds, named entities] |
+| **Structured extraction schema** | [Columns used, e.g., entity / dimension / metric / time_period / pain_point / evidence / recommendation / source_ref] |
+| **Omissions / assumptions** | [What is missing, inferred, or intentionally excluded] |
+| **Density assessment** | [light / normal / heavy; page-count rationale; compression rule] |
+
+### Narrative Plan
+
+| Item | Value |
+| ---- | ----- |
+| **Official mode** | [pyramid / narrative / instructional / showcase / briefing / custom] |
+| **Supporting framework** | [Pyramid / SCQA / STAR / AIDA / hero journey / comparison matrix / custom rationale] |
+| **Executive answer** | [One-sentence answer the deck should leave behind] |
+| **Story arc** | [How the deck moves from opening to decision / action] |
+| **Number hooks** | [Metrics or facts reused across slides] |
+| **Title-track test** | [Can the story be reconstructed from slide titles alone? If not, revise titles before execution.] |
+| **Reusable chrome** | [Footer / page number / accent line / section marker / insight strip treatment to mirror across pages] |
+
+### Information Translation Plan
+
+| Source Form | Target Form | Pages |
+| ----------- | ----------- | ----- |
+| Single critical number | Hero metric | [Pxx] |
+| 3-5 item list | Card grid | [Pxx] |
+| 5-8 step sequence | Timeline / stepped flow | [Pxx] |
+| 9+ items | Categorized matrix or multi-page split | [Pxx] |
+| Comparison data | Table + color coding | [Pxx] |
+| Process / evolution | Timeline / arrows | [Pxx] |
+| Concept relationship | Diagram / hierarchy / quadrant | [Pxx] |
 
 ### Part 1: [Chapter Name]
 
@@ -292,15 +342,20 @@ Every page MUST contain one "so what" insight element. Choose based on informati
 
 #### Slide 02 - [Page Name]
 
-- **Layout**: [Choose layout mode]
+- **Layout**: [Choose a pattern from §V, combine two, or break the grid as the content demands]
 - **Title**: [Page title]
+- **Core message**: [the one thing this page exists to land — its spine, always phrased as one assertion sentence (prose by nature). One per page; can't name it → merge or cut the page.]
+- **Purpose**: [why this page exists in the deck: align / diagnose / compare / prove / decide / inspire / instruct]
 - **Visualization**: [visualization_type] (see VII. Visualization Reference List)
-- **Content**:
-  - [Point 1]
-  - [Point 2]
-  - [Point 3]
+- **Image intent**: [hero / atmosphere / side-by-side / accent / none; include filename or §VIII row when applicable]
+- **Insight strip**: [one-line takeaway shown as page-level conclusion, footer callout, or hero metric interpretation]
+- **Content**: write each block in the phrasing that fits it (prose / bullet / keyword / … any phrasing the content calls for) and write it already in that mode, so the texture itself carries the intent — a prose block reads as a real sentence, not a fragment. One page may mix modes; blocks still sit under the core message, never replace it:
+  - [a connected sentence or two that argues the point]
+  - [parallel fragment] · [parallel fragment] · [parallel fragment]
+  - [label] / [label] / [label]
+- **So What**: [the implication, decision, or transition created by this page]
 
-> **Visualization field**: Only add when the page includes data visualization or structured infographic elements. Visualization type must be listed in section VII.
+> **Visualization field**: add only when the page has data visualization or structured infographic elements. Type must be listed in §VII.
 
 ---
 
@@ -310,10 +365,10 @@ Every page MUST contain one "so what" insight element. Choose based on informati
 
 ## X. Speaker Notes Requirements
 
-Generate corresponding speaker note files for each page, saved to the `notes/` directory:
+One speaker note file per page, saved to `notes/`:
 
-- **File naming**: Match SVG names, e.g., `01_cover.md`
-- **Content includes**: Script key points, timing cues, transition phrases
+- **Filename**: match SVG name (e.g., `01_cover.md`)
+- **Content**: script key points, timing cues, transition phrases
 
 ---
 
@@ -325,34 +380,14 @@ Generate corresponding speaker note files for each page, saved to the `notes/` d
 2. Background uses `<rect>` elements
 3. Text wrapping uses `<tspan>` (`<foreignObject>` FORBIDDEN)
 4. Transparency uses `fill-opacity` / `stroke-opacity`; `rgba()` FORBIDDEN
-5. FORBIDDEN: `clipPath`, `mask`, `<style>`, `class`, `foreignObject`
+5. FORBIDDEN: `mask`, `<style>`, `class`, `foreignObject`
 6. FORBIDDEN: `textPath`, `animate*`, `script`
+7. Text characters: write typography & symbols as raw Unicode (em dash `—`, en dash `–`, `©`, `®`, `→`, NBSP, etc.); HTML named entities (`&nbsp;`, `&mdash;`, `&copy;`, `&reg;` …) are FORBIDDEN. XML reserved chars in text MUST be escaped as `&amp;` `&lt;` `&gt;` `&quot;` `&apos;` (e.g. `R&amp;D`, `error &lt; 5%`). See shared-standards.md §1.0
 7. `marker-start` / `marker-end` conditionally allowed: `<marker>` must be in `<defs>`, `orient="auto"`, shape must be triangle / diamond / circle (see shared-standards.md §1.1)
+8. `clipPath` conditionally allowed **only on `<image>` elements**: `<clipPath>` in `<defs>`, single shape child (circle / ellipse / rect with rx,ry / path / polygon). Do NOT apply to shapes / groups / text — draw the target geometry directly with the matching native element (`<circle>` / `<ellipse>` / `<rect rx>` / `<polygon>` / `<path>`). See shared-standards.md §1.2
 
 ### PPT Compatibility Rules:
 
 - `<g opacity="...">` FORBIDDEN (group opacity); set on each child element individually
 - Image transparency uses overlay mask layer (`<rect fill="bg-color" opacity="0.x"/>`)
 - Inline styles only; external CSS and `@font-face` FORBIDDEN
-
----
-
-## XII. Data Disclaimer (Mandatory for Analysis Decks)
-
-> When source material contains self-reported data, undisclosed fields, or estimated values, a data disclaimer slide or footer MUST be included to maintain consulting credibility.
-
-**Trigger conditions** (include if ANY apply):
-- Source material is self-assessed / questionnaire-based
-- Key financial figures are undisclosed or estimated
-- System counts / personnel numbers are self-reported
-- Comparative benchmarks are industry-generic (not case-validated)
-
-**Standard structure**:
-1. **Data Source**: Explicitly state origin (e.g., "三家水务公司2026年5月填报的信息化现状表")
-2. **Known Limitations**: List gaps (e.g., "清源华衍年度IT预算未披露，部分字段未填写")
-3. **Unverified Assumptions**: State estimates used (e.g., "重复建设浪费按行业基准40-60%估算")
-4. **Next Steps for Validation**: Suggest follow-up research
-
-**Placement options**:
-- **Dedicated slide** (recommended for formal reports): Full-page disclaimer as final slide
-- **Footer annotation** (for concise decks): 9-10px text at bottom of relevant data pages
