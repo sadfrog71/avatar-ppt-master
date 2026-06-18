@@ -154,9 +154,9 @@ async function runModeTransition(page, mode) {
   });
   await page.waitForTimeout(40);
   const earlyStage = await readStageState(page);
-  await page.waitForTimeout(650);
+  await page.waitForTimeout(430);
   const midStage = await readStageState(page);
-  const screenshot = await captureStageScreenshot(page, mode);
+  const screenshot = await captureStageScreenshot(page, mode, midStage.stageRect);
   await waitForStageGone(page, 2600);
   const final = await page.evaluate(() => {
     const commitCount = window.__pageTransitionValidation?.commitCount || 0;
@@ -314,6 +314,7 @@ async function readStageState(page) {
         columns: uniqueCount(pixelCells, 'pixelColumn'),
         phase: stage?.querySelector?.('[data-pixel-cover="true"]')?.dataset.pixelPhase || '',
         axis: stage?.querySelector?.('[data-pixel-cover="true"]')?.dataset.pixelAxis || '',
+        colors: uniqueCssValues(pixelCells, 'backgroundColor'),
         coverage: visibleCoverage(pixelCells, stageRect),
       },
       slice: {
@@ -322,11 +323,13 @@ async function readStageState(page) {
         originShow: stage?.querySelector?.('[data-slice-cover="true"]')?.dataset.sliceOriginShow || '',
         originHide: stage?.querySelector?.('[data-slice-cover="true"]')?.dataset.sliceOriginHide || '',
         variant: stage?.querySelector?.('[data-slice-cover="true"]')?.dataset.sliceVariant || '',
+        colors: uniqueCssValues(sliceCells, 'backgroundColor'),
         coverage: visibleCoverage(sliceCells, stageRect),
       },
       texture: {
         exists: Boolean(textureCanvas),
         effect: textureCanvas?.dataset.transitionEffect || '',
+        source: textureCanvas?.dataset.textureSource || '',
         frames: Number(textureCanvas?.dataset.transitionFrames || 0),
         hasCurrentTexture: textureCanvas?.dataset.currentTexture === 'true',
         hasNextTexture: textureCanvas?.dataset.nextTexture === 'true',
@@ -350,6 +353,9 @@ async function readStageState(page) {
     function uniqueCount(elements, key) {
       return new Set(elements.map(el => el.dataset[key] || '').filter(Boolean)).size;
     }
+    function uniqueCssValues(elements, property) {
+      return [...new Set(elements.map(el => getComputedStyle(el)[property]).filter(Boolean))];
+    }
     function visibleCoverage(elements, rootRect) {
       if (!rootRect?.width || !rootRect?.height || !elements.length) return 0;
       let area = 0;
@@ -367,17 +373,31 @@ async function readStageState(page) {
   });
 }
 
-async function captureStageScreenshot(page, mode) {
+async function captureStageScreenshot(page, mode, stageRect) {
   const safeMode = mode.replace(/[^a-z0-9_-]/gi, '-');
   const file = path.join(ARTIFACT_ROOT, `${safeMode}-mid.png`);
   const stage = page.locator('.page-transition-stage').first();
-  if (!(await stage.count())) return '';
-  try {
-    await stage.screenshot({ path: file });
-    return file;
-  } catch {
-    return '';
+  if (await stage.count()) {
+    try {
+      await stage.screenshot({ path: file });
+      return file;
+    } catch {}
   }
+  if (stageRect?.width && stageRect?.height) {
+    try {
+      await page.screenshot({
+        path: file,
+        clip: {
+          x: Math.max(0, Math.round(stageRect.left)),
+          y: Math.max(0, Math.round(stageRect.top)),
+          width: Math.max(1, Math.round(stageRect.width)),
+          height: Math.max(1, Math.round(stageRect.height)),
+        },
+      });
+      return file;
+    } catch {}
+  }
+  return '';
 }
 
 async function waitForStageGone(page, timeoutMs) {
@@ -443,6 +463,7 @@ function validatePixelMode(state, config, failures) {
   if (state.pixel.coverage < 0.45) failures.push(`${config.value} grid coverage at mid-transition is ${state.pixel.coverage.toFixed(2)}, expected cells to dominate the frame.`);
   if (state.pixel.phase !== 'cover-uncover') failures.push(`${config.value} does not expose a cover/uncover pixel phase.`);
   if (state.pixel.axis !== config.axis) failures.push(`${config.value} pixel axis is "${state.pixel.axis}", expected "${config.axis}".`);
+  if (state.pixel.colors.length !== 1) failures.push(`${config.value} uses mixed pixel colors (${state.pixel.colors.join(', ')}), expected one solid cover color.`);
 }
 
 function validateSliceMode(state, config, failures) {
@@ -450,12 +471,14 @@ function validateSliceMode(state, config, failures) {
   if (config.orientation && state.slice.orientation !== config.orientation) failures.push(`${config.value} orientation is "${state.slice.orientation}", expected "${config.orientation}".`);
   if (state.slice.variant !== config.variant) failures.push(`${config.value} slice variant is "${state.slice.variant}", expected "${config.variant}".`);
   if (!state.slice.orientation || !state.slice.originShow || !state.slice.originHide) failures.push(`${config.value} does not expose orientation/show/hide slice origins.`);
+  if (state.slice.colors.length !== 1) failures.push(`${config.value} uses mixed slice colors (${state.slice.colors.join(', ')}), expected one solid cover color.`);
   if (state.slice.coverage < 0.42) failures.push(`${config.value} slice coverage at mid-transition is ${state.slice.coverage.toFixed(2)}, expected slices to actively cover/reveal the slide.`);
 }
 
 function validateTextureMode(state, config, failures) {
   if (!state.texture.exists) failures.push(`${config.value} does not use a transition texture canvas.`);
   if (state.texture.effect !== config.effect) failures.push(`${config.value} texture effect is "${state.texture.effect}", expected "${config.effect}".`);
+  if (state.texture.source !== 'html-to-image') failures.push(`${config.value} texture source is "${state.texture.source}", expected real html-to-image slide capture.`);
   if (!state.texture.hasCurrentTexture || !state.texture.hasNextTexture) failures.push(`${config.value} does not capture both current and next slide textures.`);
   if (state.texture.frames < 4) failures.push(`${config.value} redrew ${state.texture.frames} texture frame(s), expected repeated shader-style redraw.`);
   if (state.texture.width < 480 || state.texture.height < 270) failures.push(`${config.value} texture canvas is too small (${state.texture.width}x${state.texture.height}).`);

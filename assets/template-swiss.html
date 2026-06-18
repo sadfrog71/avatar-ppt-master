@@ -245,11 +245,7 @@
   .page-transition-stage[data-enter-motion="running"] [data-transition-role="next"] *{animation-play-state:running!important}
   .page-transition-pixel-grid,.page-transition-slice-grid,.page-transition-canvas,.page-transition-container{position:absolute;inset:0;z-index:6;pointer-events:none}
   .page-transition-pixel{position:absolute;background:#05070b;box-shadow:0 0 0 1px rgba(255,255,255,.035);will-change:transform,opacity}
-  .page-transition-pixel:nth-child(4n){background:#111827}
-  .page-transition-pixel:nth-child(7n){background:#46e3c6}
   .page-transition-slice{position:absolute;background:#05070b;will-change:transform,opacity}
-  .page-transition-slice:nth-child(3n){background:#f7f7f2}
-  .page-transition-slice:nth-child(5n){background:#46e3c6}
   .page-transition-canvas{width:100%;height:100%;z-index:7;opacity:1}
   .page-transition-container{overflow:hidden;will-change:transform,opacity,clip-path}
   .page-transition-container .slide{position:absolute;inset:0}
@@ -4714,6 +4710,7 @@ refreshRailCatalog();
 	    });
 	    return Promise.race([image, timeout]);
 	  }
+	  window.__captureSlideImageForTransition = captureSlideImage;
 
   const slideCaptureIgnoredTags = new Set(['STYLE', 'SCRIPT', 'NOSCRIPT', 'TEMPLATE']);
 
@@ -5231,16 +5228,16 @@ refreshRailCatalog();
 		    pixelBarsX: {variant:'demo6-horizontal-bars', rows:6, columns:11, axis:'scaleX', originIn:ctx => ctx.direction > 0 ? '0% 50%' : '100% 50%', originOut:ctx => ctx.direction > 0 ? '100% 50%' : '0% 50%', from:'columns', showDuration:.32, hideDuration:.48, current:{x:-8, opacity:.5}, next:{x:8, scale:1.02}},
 		  };
 		  const sliceTransitionConfigs = {
-		    sliceReveal: {variant:'demo1-mixed-origins', count:9, orientation:'vertical', show:'bottom', hide:'bottom', color:'#111', stagger:'forward', showDuration:.62, hideDuration:.58, nextScale:1.12},
-		    sliceHorizontal: {variant:'demo2-horizontal-sequence', count:11, orientation:'horizontal', show:'left', hide:'right', color:'#f7f7f2', stagger:'forward', showDuration:.6, hideDuration:.6, nextScale:1.08},
-		    sliceGallery: {variant:'demo3-gallery-stagger', count:16, orientation:'vertical', show:'top', hide:'top', color:'#f7f7f2', stagger:'center', showDuration:.72, hideDuration:.5, nextScale:1.16},
+		    sliceReveal: {variant:'demo1-mixed-origins', count:9, orientation:'vertical', show:'bottom', hide:'bottom', color:'#111', stagger:'forward', showDuration:.48, hideDuration:.42, nextScale:1.12},
+		    sliceHorizontal: {variant:'demo2-horizontal-sequence', count:11, orientation:'horizontal', show:'left', hide:'right', color:'#f7f7f2', stagger:'forward', showDuration:.48, hideDuration:.44, nextScale:1.08},
+		    sliceGallery: {variant:'demo3-gallery-stagger', count:16, orientation:'vertical', show:'top', hide:'top', color:'#f7f7f2', stagger:'center', showDuration:.56, hideDuration:.38, nextScale:1.16},
 		  };
 		  const videoTransitionConfigs = {
-		    canvasWipe: {variant:'demo1-circle', effect:'circle', duration:1.55},
-		    videoBands: {variant:'demo2-bands', effect:'bands', duration:1.52},
-		    videoDisplace: {variant:'demo3-displace', effect:'displace', duration:1.52},
-		    videoZoom: {variant:'demo4-cross-zoom', effect:'crossZoom', duration:1.55},
-		    videoRotate: {variant:'demo5-rotate-wipe', effect:'rotateWipe', duration:1.54},
+		    canvasWipe: {variant:'demo1-circle', effect:'circle', duration:1.02},
+		    videoBands: {variant:'demo2-bands', effect:'bands', duration:.98},
+		    videoDisplace: {variant:'demo3-displace', effect:'displace', duration:.98},
+		    videoZoom: {variant:'demo4-cross-zoom', effect:'crossZoom', duration:1.02},
+		    videoRotate: {variant:'demo5-rotate-wipe', effect:'rotateWipe', duration:1},
 		  };
 		  const transitionPlayers = {
 		    liquidMorph: playLiquidMorph,
@@ -5398,18 +5395,18 @@ refreshRailCatalog();
 		          ease:config.axis === 'scale' ? 'power3.inOut' : 'power4.in',
 		          stagger:index => pixelStagger(index, cells, rows, cols, config.from, ctx.direction, false),
 		        }, 0)
-		        .set(ctx.current, {autoAlpha:0}, .58)
-		        .set(ctx.next, {zIndex:2}, .58)
-		        .to(ctx.next, {xPercent:0, yPercent:0, scale:1, scaleX:1, filter:'saturate(1) brightness(1)', duration:.72, ease:'power3.out'}, .48)
-		        .set(cells, {transformOrigin:resolveConfigValue(config.originOut, ctx)}, .72)
+		        .set(ctx.current, {autoAlpha:0}, .5)
+		        .set(ctx.next, {zIndex:2}, .5)
+		        .to(ctx.next, {xPercent:0, yPercent:0, scale:1, scaleX:1, filter:'saturate(1) brightness(1)', duration:.54, ease:'power3.out'}, .42)
+		        .set(cells, {transformOrigin:resolveConfigValue(config.originOut, ctx)}, .58)
 		        .to(cells, {
 		          ...hideVars,
 		          autoAlpha:config.axis === 'scaleX' ? 1 : 0,
 		          duration:config.hideDuration,
 		          ease:'power3.inOut',
 		          stagger:index => pixelStagger(index, cells, rows, cols, config.from, ctx.direction, true),
-		        }, .76)
-		        .add(ctx.startTargetEnter, .58);
+		        }, .62)
+		        .add(ctx.startTargetEnter, .5);
 		    }, opts);
 		  }
 		  function playSliceGrid(ctx, opts, config){
@@ -5429,7 +5426,7 @@ refreshRailCatalog();
 		      slice.className = 'page-transition-slice';
 		      slice.dataset.transitionProbe = 'true';
 		      slice.dataset.sliceIndex = String(index);
-		      slice.style.background = index % 5 === 0 ? '#46e3c6' : config.color;
+		      slice.style.background = config.color;
 		      if(config.orientation === 'vertical'){
 		        slice.style.left = `${index * 100 / config.count}%`;
 		        slice.style.width = `${100 / config.count + .18}%`;
@@ -5459,17 +5456,17 @@ refreshRailCatalog();
 		          ease:'power4.inOut',
 		          stagger:index => sliceStagger(index, config.count, config.stagger, false),
 		        }, 0)
-		        .set(ctx.current, {autoAlpha:0}, .62)
-		        .set(ctx.next, {zIndex:2}, .62)
-		        .to(ctx.next, {scale:1, filter:'brightness(1) saturate(1)', duration:.82, ease:'power3.out'}, .5)
+		        .set(ctx.current, {autoAlpha:0}, .5)
+		        .set(ctx.next, {zIndex:2}, .5)
+		        .to(ctx.next, {scale:1, filter:'brightness(1) saturate(1)', duration:.58, ease:'power3.out'}, .42)
 		        .to(slices, {
 		          xPercent:config.orientation === 'horizontal' ? hideTo : 0,
 		          yPercent:config.orientation === 'vertical' ? hideTo : 0,
 		          duration:config.hideDuration,
 		          ease:'power4.inOut',
 		          stagger:index => sliceStagger(index, config.count, config.stagger, true),
-		        }, .78)
-		        .add(ctx.startTargetEnter, .62);
+		        }, .6)
+		        .add(ctx.startTargetEnter, .5);
 		    }, opts);
 		  }
 		  async function playVideoTexture(ctx, opts, config){
@@ -5482,6 +5479,7 @@ refreshRailCatalog();
 		    canvas.dataset.transitionEffect = config.effect;
 		    canvas.dataset.currentTexture = 'false';
 		    canvas.dataset.nextTexture = 'false';
+		    canvas.dataset.textureSource = 'pending';
 		    canvas.dataset.transitionFrames = '0';
 		    ctx.stage.appendChild(canvas);
 		    const rect = ctx.stage.getBoundingClientRect();
@@ -5491,13 +5489,21 @@ refreshRailCatalog();
 		    canvas.height = Math.max(270, Math.round(rect.height * ratio));
 		    const drawing = canvas.getContext('2d', {willReadFrequently:true});
 		    if(opts.commitEarly || ctx.nonBlocking) requestAnimationFrame(() => ctx.commit?.());
-		    const [currentTexture, nextTexture] = await Promise.all([
-		      captureTransitionTexture(ctx.current, canvas.width, canvas.height),
-		      captureTransitionTexture(ctx.next, canvas.width, canvas.height),
-		    ]);
+		    const restoreStyles = suspendRemoteStyles();
+		    let currentTexture;
+		    let nextTexture;
+		    try {
+		      [currentTexture, nextTexture] = await Promise.all([
+		        captureTransitionTexture(ctx.current, canvas.width, canvas.height),
+		        captureTransitionTexture(ctx.next, canvas.width, canvas.height),
+		      ]);
+		    } finally {
+		      restoreStyles();
+		    }
 		    if(ctx.done) return Promise.resolve();
 		    canvas.dataset.currentTexture = currentTexture.captured ? 'true' : 'false';
 		    canvas.dataset.nextTexture = nextTexture.captured ? 'true' : 'false';
+		    canvas.dataset.textureSource = currentTexture.source === 'html-to-image' && nextTexture.source === 'html-to-image' ? 'html-to-image' : 'fallback';
 		    gsap.set([ctx.current, ctx.next], {autoAlpha:0});
 		    const state = {progress:0};
 		    const render = () => {
@@ -5512,7 +5518,7 @@ refreshRailCatalog();
 		      ctx.resolve = resolve;
 		      ctx.stage.__transitionResolve = resolve;
 		      tl.to(state, {progress:1, duration:config.duration, ease:'power2.inOut', onUpdate:render}, 0)
-		        .add(ctx.startTargetEnter, .54);
+		        .add(ctx.startTargetEnter, .44);
 		      tl.eventCallback('onComplete', ctx.finish);
 		    });
 		  }
@@ -5537,26 +5543,25 @@ refreshRailCatalog();
 		        gsap.set(currentContainer, {zIndex:1, opacity:1, scale:1, x:'0%', force3D:true});
 		        gsap.set(nextContainer, {zIndex:2, opacity:1, x:'100%', force3D:true});
 		        gsap.set(ctx.next, {autoAlpha:1});
-		        tl.to(currentContainer, {x:'-50%', scale:.8, duration:1.5, ease:'power4.inOut', force3D:true}, 0)
-		          .to(currentContainer, {opacity:.38, duration:.62, ease:'power2.out'}, 0)
-		          .to(nextContainer, {x:'0%', duration:1.5, ease:'power4.inOut', force3D:true}, 0)
-		          .add(ctx.startTargetEnter, .74);
+		        tl.to(currentContainer, {x:'-50%', scale:.8, duration:1.05, ease:'power4.inOut', force3D:true}, 0)
+		          .to(currentContainer, {opacity:.38, duration:.42, ease:'power2.out'}, 0)
+		          .to(nextContainer, {x:'0%', duration:1.05, ease:'power4.inOut', force3D:true}, 0)
+		          .add(ctx.startTargetEnter, .5);
 		        return;
 		      }
 		      gsap.set(currentContainer, {zIndex:1, opacity:1, scale:1, y:'0%', force3D:true});
 		      gsap.set(nextContainer, {zIndex:2, opacity:1, clipPath:'inset(100% 0% 0% 0%)', force3D:true});
 		      gsap.set(ctx.next, {autoAlpha:1, scale:1.04});
-		      tl.to(currentContainer, {y:'-30%', scale:.8, opacity:.4, duration:1.28, ease:'power4.inOut', force3D:true}, 0)
-		        .to(nextContainer, {clipPath:'inset(0% 0% 0% 0%)', duration:1.28, ease:'power4.inOut', force3D:true}, 0)
-		        .to(ctx.next, {scale:1, duration:1.28, ease:'power3.out'}, 0)
-		        .add(ctx.startTargetEnter, .68);
+		      tl.to(currentContainer, {y:'-30%', scale:.8, opacity:.4, duration:.86, ease:'power4.inOut', force3D:true}, 0)
+		        .to(nextContainer, {clipPath:'inset(0% 0% 0% 0%)', duration:.86, ease:'power4.inOut', force3D:true}, 0)
+		        .to(ctx.next, {scale:1, duration:.86, ease:'power3.out'}, 0)
+		        .add(ctx.startTargetEnter, .42);
 		    }, opts);
 		  }
 		  async function captureTransitionTexture(element, width, height){
-		    const restoreStyles = suspendRemoteStyles();
 		    try {
-		      if(window.htmlToImage?.toCanvas){
-		        const sourceCanvas = await window.htmlToImage.toCanvas(element, withSlideCaptureFilter({
+		      if(typeof window.__captureSlideImageForTransition === 'function'){
+		        const dataUrl = await window.__captureSlideImageForTransition(element, {
 		          backgroundColor:'#02040c',
 		          cacheBust:false,
 		          pixelRatio:1,
@@ -5564,13 +5569,12 @@ refreshRailCatalog();
 		          fontEmbedCSS:'',
 		          width:element.offsetWidth || Math.round(width),
 		          height:element.offsetHeight || Math.round(height),
-		        }));
-		        return drawTransitionCanvas(sourceCanvas, width, height, true);
+		        });
+		        const image = await loadTransitionImage(dataUrl);
+		        return drawTransitionImage(image, width, height, true, 'html-to-image');
 		      }
 		    } catch {
 		      return drawDomTransitionTexture(element, width, height);
-		    } finally {
-		      restoreStyles();
 		    }
 		    return drawDomTransitionTexture(element, width, height);
 		  }
@@ -5580,13 +5584,21 @@ refreshRailCatalog();
 		    links.forEach(link => { link.disabled = true; });
 		    return () => previous.forEach(([link, disabled]) => { link.disabled = disabled; });
 		  }
-		  function drawTransitionCanvas(sourceCanvas, width, height, captured){
+		  function loadTransitionImage(src){
+		    return new Promise((resolve, reject) => {
+		      const image = new Image();
+		      image.onload = () => resolve(image);
+		      image.onerror = reject;
+		      image.src = src;
+		    });
+		  }
+		  function drawTransitionImage(image, width, height, captured, sourceName){
 		    const source = document.createElement('canvas');
 		    source.width = width;
 		    source.height = height;
 		    const sourceContext = source.getContext('2d', {willReadFrequently:true});
-		    sourceContext.drawImage(sourceCanvas, 0, 0, width, height);
-		    return {captured, data:sourceContext.getImageData(0, 0, width, height)};
+		    sourceContext.drawImage(image, 0, 0, width, height);
+		    return {captured, source:sourceName, data:sourceContext.getImageData(0, 0, width, height)};
 		  }
 		  function drawDomTransitionTexture(element, width, height){
 		    const source = document.createElement('canvas');
@@ -5625,7 +5637,7 @@ refreshRailCatalog();
 		      }
 		    }
 		    sourceContext.globalAlpha = 1;
-		    return {captured:true, data:sourceContext.getImageData(0, 0, width, height)};
+		    return {captured:false, source:'dom-fallback', data:sourceContext.getImageData(0, 0, width, height)};
 		  }
 		  function pixelScaleVars(axis, from, to){
 		    if(axis === 'scaleX') return {scaleX:to, scaleY:1};
