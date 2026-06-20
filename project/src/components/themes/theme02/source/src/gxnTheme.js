@@ -328,6 +328,7 @@ export const GXN_SCHEMES = {
 function ticketFocusCSS(t, breath) {
   const a = Math.max(0, Math.min(100, Number(breath) || 0)) / 100;
   const g = t.glow;
+  const breathName = `gxn-ticket-breath-${g.replace(/[^\d]+/g, '-')}-${Math.round(a * 100)}`;
   // Inner-glow box-shadow at a given intensity k (0 = calm, 1 = full bloom).
   const innerGlow = (k) => `
     inset 0 0 0 1.5px rgba(${g},${(0.5 + 0.18 * k).toFixed(3)}),
@@ -354,10 +355,10 @@ function ticketFocusCSS(t, breath) {
     radial-gradient(135% 135% at 50% 42%, ${t.fillA} 0%, ${t.fillB} 64%, ${t.fillB} 100%),
     ${t.fillB};
   box-shadow:${animate ? hi : innerGlow(0.5)};
-  ${animate ? `animation: gxn-ticket-breath 3.4s ease-in-out infinite alternate;` : ''}
+  ${animate ? `animation: ${breathName} 3.4s ease-in-out infinite alternate;` : ''}
 }
 ${animate ? `
-@keyframes gxn-ticket-breath{
+@keyframes ${breathName}{
   from{ box-shadow:${lo}; }
   to{ box-shadow:${hi}; }
 }` : ''}
