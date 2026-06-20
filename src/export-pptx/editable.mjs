@@ -376,7 +376,7 @@ async function resolveElementScreenshots(page, root, warnings, options = {}) {
         if (!bytes) warnings.push({ slide: node.slideIndex, type: 'alpha-matte-screenshot-failed', tag: node.tag, kind: node.imageKind });
       }
       if (!bytes) bytes = clip ? await page.screenshot({ type: 'png', clip }) : await locator.screenshot({ type: 'png' });
-      if (node.elementScreenshot && !['effect-background', 'masked-element'].includes(node.imageKind)) bytes = applyNodeRadiusAlphaMask(bytes, node);
+      if (node.elementScreenshot && shouldApplyNodeRadiusAlphaMask(node)) bytes = applyNodeRadiusAlphaMask(bytes, node);
       node.imageData = pngBufferToDataUrl(bytes);
       if (hiddenToken) {
         await page.evaluate(token => {
@@ -427,6 +427,10 @@ async function resolveElementScreenshots(page, root, warnings, options = {}) {
 
 function shouldUseAlphaMatteScreenshot(node) {
   return ['material-background', 'unicorn-background', 'effect-background', 'masked-element'].includes(node.imageKind);
+}
+
+function shouldApplyNodeRadiusAlphaMask(node) {
+  return !isBrowserVisualImageKind(node?.imageKind);
 }
 
 async function captureAlphaMatteScreenshot(page, locator, exportId, imageKind, clip = null) {
@@ -533,7 +537,6 @@ function composeAlphaMattePng(blackBytes, whiteBytes) {
     out.data[i + 2] = clampByte(Math.round(bb * scale));
     out.data[i + 3] = alpha;
   }
-  trimLowAlphaEdges(out);
   bleedTransparentRgb(out);
   return PNG.sync.write(out);
 }
@@ -775,6 +778,7 @@ async function installBrowserCollector(page) {
         ${backgroundHasTransparentStop.toString()}
         ${transparentCssPaint.toString()}
         ${hasTextPaintSource.toString()}
+        ${isLowAlphaLinearGradient.toString()}
         ${readStyle.toString()}
         ${summarizeCapturedTree.toString()}
         ${summarizeNode.toString()}
@@ -860,7 +864,7 @@ function renderCapturedNode(slide, node, slideRect, warnings, totals) {
 }
 
 function renderBox(slide, node, slideRect, warnings, totals) {
-  if (node.imageKind === 'material-background') return;
+  if (isBrowserVisualImageKind(node.imageKind)) return;
   const c = coords(node, slideRect);
   if (c.w < 0.003 || c.h < 0.003) return;
   const style = node.style || {};
@@ -891,7 +895,7 @@ function renderBox(slide, node, slideRect, warnings, totals) {
   const isNarrowGradientLine = fill?.gradient && Math.min(c.w, c.h) <= 0.12 && Math.max(c.w, c.h) >= 0.35;
   const isDecorativeGradient = fill?.gradient && !isLargeGradient && !isNarrowGradientLine && !(node.children || []).length;
   const fillAlpha = isDecorativeGradient ? Math.min(fill.alpha, 0.08) : fill?.alpha;
-  const forceRectForThinPill = radius > 0.02 && !hasBorder && Math.min(c.w, c.h) <= 0.1 && Math.max(c.w, c.h) >= 0.35;
+  const forceRectForThinPill = radius > 0.02 && !hasBorder && Math.min(c.w, c.h) <= 0.16 && Math.max(c.w, c.h) >= 0.35;
   const shapeName = polygonPoints ? 'custGeom'
     : isCircleLikeBox(node, radiusPx) ? 'ellipse'
     : forceRectForThinPill ? 'rect'
@@ -1186,7 +1190,9 @@ function renderNodeImage(slide, node, slideRect, warnings, totals) {
   for (const item of items) {
     try {
       slide.addImage({
-        data: normalizeTransparentPngDataUrl(item.data),
+        data: normalizeTransparentPngDataUrl(item.data, {
+          trimLowAlphaEdges: !shouldPreserveTransparentEdges(node, item.kind),
+        }),
         x: c.x,
         y: c.y,
         w: c.w,
@@ -1203,7 +1209,7 @@ function renderNodeImage(slide, node, slideRect, warnings, totals) {
   }
 }
 
-function normalizeTransparentPngDataUrl(dataUrl) {
+function normalizeTransparentPngDataUrl(dataUrl, options = {}) {
   const raw = String(dataUrl || '');
   const match = raw.match(/^data:image\/png;base64,(.+)$/i);
   if (!match) return dataUrl;
@@ -1216,12 +1222,20 @@ function normalizeTransparentPngDataUrl(dataUrl) {
       break;
     }
     if (!hasTransparentPixels) return dataUrl;
-    trimLowAlphaEdges(image);
+    if (options.trimLowAlphaEdges !== false) trimLowAlphaEdges(image);
     bleedTransparentRgb(image);
     return pngBufferToDataUrl(PNG.sync.write(image));
   } catch {
     return dataUrl;
   }
+}
+
+function isBrowserVisualImageKind(kind) {
+  return ['material-background', 'unicorn-background', 'effect-background', 'masked-element'].includes(kind);
+}
+
+function shouldPreserveTransparentEdges(node, kind) {
+  return node?.elementScreenshot && ['material-background', 'unicorn-background', 'effect-background', 'masked-element'].includes(kind);
 }
 
 function localBackgroundShadow(style, kind) {
@@ -1376,16 +1390,25 @@ async function captureElement(el, slideRect, warnings, depth, slideIndex, clipRe
 
   if (shouldUseLocalMaterialFallback(el, style, clipped, slideRect)) {
     const exportId = `editable-pptx-${slideIndex}-${depth}-${Math.random().toString(36).slice(2, 9)}`;
+    const screenshotRect = visualScreenshotRect(rawRect, style, slideRect);
     el.setAttribute('data-editable-pptx-export-id', exportId);
     el.setAttribute('data-editable-pptx-material-background', '');
     node.exportId = exportId;
     node.elementScreenshot = true;
     node.imageKind = 'material-background';
+    node.rect = rectObject(screenshotRect);
+    node.screenshotRect = rectObject(screenshotRect);
+    node.screenshotMode = 'screenshot-rect';
     const materialText = fallbackTextRisk(el, slideRect);
-    const overlayText = visibleTextInScreenshotRect(el, slideRect);
+    const overlayText = visibleTextInScreenshotRect(el, slideRect, screenshotRect);
+    const overlayPaint = visibleOverlayPaintInScreenshotRect(el, slideRect, screenshotRect);
     node.stripTextForScreenshot = materialText.count > 0 || overlayText.count > 0;
+    node.stripOverlayForScreenshot = overlayPaint.count > 0;
     if (materialText.count || overlayText.count) {
       warnings.push({ slide: slideIndex, type: 'node-image-fallback-text-extracted', node: 'material-background', textCount: Math.max(materialText.count, overlayText.count), sample: materialText.sample || overlayText.sample });
+    }
+    if (overlayPaint.count) {
+      warnings.push({ slide: slideIndex, type: 'node-image-fallback-overlay-extracted', node: 'material-background', overlayCount: overlayPaint.count, sample: overlayPaint.sample, scope: 'screenshot-rect' });
     }
     warnings.push({ slide: slideIndex, type: 'node-image-fallback', node: 'material-background', count: 1, source: 'browser-local-material' });
   }
@@ -2901,9 +2924,29 @@ function isTextClippedBackground(style) {
 function shouldUseNativeGradientShape(style = {}, width = 0, height = 0) {
   const background = String(style.backgroundImage || '');
   if (!/linear-gradient/i.test(background) || /repeating-linear-gradient/i.test(background)) return false;
+  const gradientLayers = splitCssLayers(background).filter(layer => /(?:linear|radial)-gradient/i.test(layer));
+  if (gradientLayers.length === 1 && isLowAlphaLinearGradient(gradientLayers[0])) return true;
   const minSide = Math.min(Number(width) || 0, Number(height) || 0);
   const maxSide = Math.max(Number(width) || 0, Number(height) || 0);
   return minSide > 0 && minSide <= 16 && maxSide >= 24;
+}
+
+function isLowAlphaLinearGradient(layer) {
+  if (!/linear-gradient/i.test(String(layer || '')) || /radial-gradient/i.test(String(layer || ''))) return false;
+  const body = String(layer).replace(/^.*?linear-gradient\(/i, '').replace(/\)\s*$/, '');
+  const args = splitCssArgs(body);
+  let startIndex = 0;
+  if (/([-\d.]+deg|to\s+)/i.test(String(args[0] || ''))) startIndex = 1;
+  const stops = parseGradientColorStops(args.slice(startIndex));
+  if (stops.length < 2) return false;
+  if (!stops.every(stop => stop.color && stop.color.a > 0 && stop.color.a <= 0.28)) return false;
+  const [first] = stops;
+  return stops.every(stop => {
+    const color = stop.color;
+    return Math.abs(color.r - first.color.r) <= 24
+      && Math.abs(color.g - first.color.g) <= 24
+      && Math.abs(color.b - first.color.b) <= 24;
+  });
 }
 
 function cssBorderTriangle(style = {}, c) {
