@@ -278,6 +278,10 @@ function theme02SchemeProps(deck) {
   };
 }
 
+function hasTheme02SchemeOverride(value) {
+  return value && typeof value === 'object' && Object.keys(value).length > 0;
+}
+
 function scopedDeckCss(css, scopeClass) {
   return css.replaceAll('.gxn-theme', '.' + scopeClass + ' .gxn-theme');
 }
@@ -385,7 +389,7 @@ function withTheme02Deck(Component) {
       React.createElement(
         'div',
         { ref: rootRef, className: scopeClass, style: { position: 'absolute', inset: 0, width: '100%', height: '100%' } },
-        React.createElement(Component, { ...componentProps, gxnScheme: gxnScheme || theme02SchemeProps(deck) }),
+        React.createElement(Component, { ...componentProps, gxnScheme: hasTheme02SchemeOverride(gxnScheme) ? gxnScheme : theme02SchemeProps(deck) }),
       ),
     );
   };

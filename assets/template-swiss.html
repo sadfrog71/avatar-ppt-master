@@ -239,7 +239,7 @@
   .preview-prop-icon-choice img{max-width:46px;max-height:46px;width:auto;height:auto;object-fit:contain;display:block}
   .preview-prop-icon-empty{width:34px;height:34px;border-radius:8px;border:1px dashed var(--pp-muted);display:grid;place-items:center;color:var(--pp-muted);font:600 11px/1 var(--sans)}
   /* footer actions */
-  .preview-author{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px 0;border-top:1px solid var(--pp-divider)}
+  .preview-author{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px 12px;border-top:1px solid var(--pp-divider)}
   .preview-author-name{min-width:0;color:var(--pp-fg2);font:650 12px/1 var(--sans-zh);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .preview-author-links{display:flex;align-items:center;gap:6px;flex:none}
   .preview-author-links a{width:28px;height:28px;display:grid;place-items:center;border:1px solid transparent;border-radius:6px;color:var(--pp-icon);text-decoration:none;transition:background .15s,color .15s,border-color .15s}
@@ -3466,6 +3466,21 @@ function handleDeckKeyNavigation(e,{allowSpace=true}={}){
 }
 window.__handleDeckKeyNavigation=handleDeckKeyNavigation;
 
+function isPreviewPanelNavigationTarget(target){
+  if(!target?.closest?.('#preview-panel')) return false;
+  return !target.closest?.('select,textarea,input[type="text"],input[type="search"],input[type="url"],input[type="email"],input[type="number"],[contenteditable="true"],[contenteditable="plaintext-only"],[role="textbox"]');
+}
+
+addEventListener('keydown',e=>{
+  if(!isPreviewPanelNavigationTarget(e.target)) return;
+  const isDeckKey = DECK_NEXT_KEYS.has(e.key) || DECK_PREV_KEYS.has(e.key) || e.key === 'Home' || e.key === 'End';
+  if(!isDeckKey) return;
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  e.target?.blur?.();
+  handleDeckKeyNavigation(e);
+}, true);
+
 addEventListener('keydown',e=>{
   if(isDeckTypingTarget(e.target)) return;
   handleDeckKeyNavigation(e);
@@ -3573,6 +3588,8 @@ refreshRailCatalog();
     pageTransitionColors: sanitizeTransitionColors(saved.pageTransitionColors || options.current?.pageTransitionColors || {}),
   };
   window.__getPreviewState = () => ({...state});
+  makePreviewControlKeyboardNeutral(themePackSelect, {blurOnPointer:false});
+  makePreviewControlKeyboardNeutral(transitionSelect, {blurOnPointer:false});
 
   const count = document.getElementById('preview-slide-count');
   renderThemePackControl();
@@ -3637,6 +3654,20 @@ refreshRailCatalog();
   function writeSaved(){
     localStorage.setItem(window.__previewStoreKey?.() || STORE, JSON.stringify(state));
     window.__scheduleDeckUrlStateWrite?.();
+  }
+
+  function releasePreviewControlFocus(control){
+    requestAnimationFrame(() => control?.blur?.());
+  }
+
+  function makePreviewControlKeyboardNeutral(control, opts={}){
+    if(!control) return control;
+    control.tabIndex = -1;
+    if(opts.blurOnPointer !== false){
+      control.addEventListener('pointerup', () => releasePreviewControlFocus(control));
+      control.addEventListener('touchend', () => releasePreviewControlFocus(control), {passive:true});
+    }
+    return control;
   }
 
   function refreshDeckSlides(){
@@ -3716,6 +3747,7 @@ refreshRailCatalog();
     applyStoredSlideControls();
     renderPropControls();
     writeSaved();
+    releasePreviewControlFocus(themePackSelect);
   });
 
   addEventListener('swiss-slide-change', refreshSlideControls);
@@ -3748,6 +3780,7 @@ refreshRailCatalog();
     range.id = 'preview-transition-color-range';
     range.setAttribute('data-transition-color-range', 'true');
     range.setAttribute('aria-label', '切换色块颜色');
+    makePreviewControlKeyboardNeutral(range);
     const readout = document.createElement('span');
     readout.className = 'preview-transition-color-readout';
     readout.setAttribute('data-transition-color-readout', 'true');
@@ -3758,7 +3791,7 @@ refreshRailCatalog();
       updateTransitionColor(color, {persist, syncControl:false});
     };
     range.addEventListener('input', () => apply(false));
-    range.addEventListener('change', () => apply(true));
+    range.addEventListener('change', () => { apply(true); releasePreviewControlFocus(range); });
     wrap.appendChild(range);
     transitionColorOptions.appendChild(wrap);
     transitionColorOptions.appendChild(readout);
@@ -3879,7 +3912,11 @@ refreshRailCatalog();
         const input = document.createElement('input');
         input.type = 'checkbox';
         input.checked = !!values[control.key];
-        input.addEventListener('change', () => updateCurrentProp(control, input.checked));
+        makePreviewControlKeyboardNeutral(input);
+        input.addEventListener('change', () => {
+          updateCurrentProp(control, input.checked);
+          releasePreviewControlFocus(input);
+        });
         const track = document.createElement('span'); track.className = 'pp-track';
         const knob = document.createElement('span'); knob.className = 'pp-knob';
         sw.appendChild(input); sw.appendChild(track); sw.appendChild(knob);
@@ -3907,6 +3944,7 @@ refreshRailCatalog();
           button.className = 'preview-prop-choice';
           button.dataset.propValue = String(item.value);
           button.textContent = item.label;
+          makePreviewControlKeyboardNeutral(button);
           if(isColor){
             button.textContent = '';
             button.style.background = propSwatchColor(control, item);
@@ -3918,6 +3956,7 @@ refreshRailCatalog();
             updateCurrentProp(control, item.value, {render:false});
             syncSelectionButtons(group, item.value);
             if(!isColor) window.setTimeout(renderPropControls, 420);
+            releasePreviewControlFocus(button);
           });
           group.appendChild(button);
         });
@@ -3926,6 +3965,7 @@ refreshRailCatalog();
       } else if(controlType === 'select'){
         const select = document.createElement('select');
         select.setAttribute('aria-label', control.label || control.key);
+        makePreviewControlKeyboardNeutral(select, {blurOnPointer:false});
         normalizePropOptions(control.options).forEach(item => {
           const option = document.createElement('option');
           option.value = String(item.value);
@@ -3933,7 +3973,10 @@ refreshRailCatalog();
           select.appendChild(option);
         });
         select.value = String(values[control.key] ?? '');
-        select.addEventListener('change', () => updateCurrentProp(control, select.value));
+        select.addEventListener('change', () => {
+          updateCurrentProp(control, select.value);
+          releasePreviewControlFocus(select);
+        });
         row.appendChild(select);
       } else if(controlType === 'icons'){
         row.classList.add('is-icons');
@@ -3948,6 +3991,7 @@ refreshRailCatalog();
           button.dataset.propValue = String(item.value ?? '');
           button.title = item.label;
           button.setAttribute('aria-label', item.label);
+          makePreviewControlKeyboardNeutral(button);
           if(item.image){
             const img = document.createElement('img');
             img.src = item.image;
@@ -3968,6 +4012,7 @@ refreshRailCatalog();
               extra: control.key === 'decorSrc' && nextValue ? {showDecor: true} : {},
             });
             syncIconButtons(group, nextValue);
+            releasePreviewControlFocus(button);
           });
           group.appendChild(button);
         });
@@ -3986,6 +4031,7 @@ refreshRailCatalog();
         input.type = 'range';
         input.min = min; input.max = max; input.step = step;
         input.value = values[control.key];
+        makePreviewControlKeyboardNeutral(input);
         track.appendChild(input);
         let ticks = null;
         if(stepped){
@@ -4008,7 +4054,10 @@ refreshRailCatalog();
         };
         sync();
         input.addEventListener('input', () => { sync(); updateCurrentProp(control, Number(input.value), {render:false}); });
-        input.addEventListener('change', () => updateCurrentProp(control, Number(input.value)));
+        input.addEventListener('change', () => {
+          updateCurrentProp(control, Number(input.value));
+          releasePreviewControlFocus(input);
+        });
         wrap.appendChild(track);
         wrap.appendChild(output);
         row.appendChild(wrap);
@@ -4099,6 +4148,11 @@ refreshRailCatalog();
       if(opts.render !== false) renderPropControls();
       return;
     }
+    if(slide.dataset.themePack === 'theme02' && control.key === 'scheme'){
+      applyTheme02GlobalScheme(values[control.key], opts);
+      if(opts.render !== false) renderPropControls();
+      return;
+    }
     applyPropValues(slide, values, {unicornRefresh});
     if(opts.render !== false) renderPropControls();
   }
@@ -4156,6 +4210,26 @@ refreshRailCatalog();
       }
     });
     window.dispatchEvent(new CustomEvent('rd-accentchange', { detail: { accent } }));
+  }
+
+  function applyTheme02GlobalScheme(scheme, opts = {}){
+    const nextScheme = String(scheme) === 'violet' ? 'violet' : 'green';
+    const vmState = viewModel?.getState?.() || {};
+    document.querySelectorAll('#deck > .slide[data-theme-pack="theme02"]').forEach(target => {
+      const root = target.querySelector('[data-prop-controls]');
+      const controls = parsePropControls(root);
+      if(!controls.some(item => item.key === 'scheme')) return;
+      const values = getSlidePropValues(target, vmState);
+      values.scheme = nextScheme;
+      if(target === getCurrentSlide()){
+        applyPropValues(target, values);
+      } else {
+        const next = {...parsePropDefaults(root), ...getSlideSourceProps(target), ...values};
+        viewModel?.setProps?.(target.dataset.vmSlideId, next);
+        window.__markOverviewThumbDirty?.(target);
+        if(opts.renderAll) applyPropValues(target, values);
+      }
+    });
   }
 
   function normalizePropOptions(options){
