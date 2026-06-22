@@ -52,7 +52,9 @@ node scripts/check_latest_version.mjs
 - 不使用旧 token、旧主题、旧图片 slot、旧风格分支或旧入场动画控制。
 - 选页先用 `npm run layout:query -- --theme <themePack> --role <role> --limit 8`;需要图片槽时加 `--needs-media`、`--planned-images <n>`、`--provided-images <n>` 或 `--image-gen`。
 - 字段不清楚、对象/数组/count、图片/媒体:运行 `inspect:layout`;写对象、数组、数量或图片 props:运行 `props:safe` 并按 `propShapes` 填 key。
+- 文案长度:大字号字段只写短词/短句;长结论拆到 `subtitle` / `lead` / 列表或换高密度 layout;同页字段长度差异不要过大。
 - 图片/视频只写 `props.images` / `props.media`。视觉素材任务先问是否预留图片槽;不能默认图片槽为 0。用户同意用 `--planned-images <n>`,用户给图用 `--provided-images <n>`,Codex 环境 image-gen 生成图片前先询问并用 `--image-gen`。
+- 用户提供的图片/视频素材每个最多使用一次。素材用完后,媒体插槽留空或改选无媒体插槽页面;除非用户明确要求,不要重复填充同一素材。
 - 元素出现动画使用 Claude Design 页面组件自带的原生效果。
 - 页面切换动画可以在预览控制面板里调整。
 - 面向用户交付的 deck 默认不显示风格/主题切换选项;风格切换只保留在内部调试 demo 页面。用户明确要求保留主题切换时,在 goal 顶层写 `preview: {"themeSwitcher": true}`。

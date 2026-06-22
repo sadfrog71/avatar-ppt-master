@@ -283,6 +283,9 @@ function testSkillPromptGuidance() {
   if (!/不能只在.*进度/.test(skill)) missing.push('progress-only style image warning');
   if (!(/视觉素材任务/.test(skill) && /先问/.test(skill) && /预留图片槽/.test(skill))) missing.push('ask-to-reserve-image-slots rule');
   if (!(/不能默认.*图片 slot.*0/.test(skill) || /不能默认.*图片槽.*0/.test(skill))) missing.push('do-not-default-image-slot-count-to-0 rule');
+  if (!(/大字号字段/.test(skill) && /短词\/短句/.test(skill) && /字段长度差异/.test(skill))) missing.push('large-type copy length guidance');
+  if (!(/图片\/视频素材每个最多使用一次/.test(skill) && /不要重复填充同一素材/.test(skill))) missing.push('provided media one-time-use guidance');
+  if (!(/素材用完/.test(skill) && /媒体插槽留空/.test(skill) && /无媒体插槽页面/.test(skill))) missing.push('media exhausted empty-or-no-media guidance');
   if (!skill.includes('--planned-images <n>')) missing.push('planned-images workflow guidance');
   if (!skill.includes('--provided-images <n>')) missing.push('provided-images workflow guidance');
   if (!skill.includes('--image-gen')) missing.push('image-gen workflow guidance');
