@@ -263,13 +263,13 @@ SlideRoadmap.presetSignals = {
 };
 
 SlideRoadmap.controls = [
-  { key: 'phaseCount', label: '阶段数量', type: 'number', default: 4, min: 3, max: 5, desc: '时间轴阶段节点数量' },
+  { key: 'phaseCount', label: '阶段数量', type: 'number', default: 4, min: 3, max: 4, desc: '时间轴阶段节点数量' },
   { key: 'layout', label: '时间轴形态', type: 'select', default: 'timeline',
     options: [['timeline', '横向轴'], ['stack', '纵向步骤']], desc: '同一组阶段：横向时间轴 / 纵向编号步骤' },
   { key: 'watchCount', label: '观察对象数量', type: 'number', default: 4, min: 0, max: 4, desc: '底部观察对象芯片数量（0 隐藏整列）' },
   { key: 'metricCount', label: '观察指标数量', type: 'number', default: 4, min: 0, max: 4, desc: '底部观察指标标签数量（0 隐藏整列）' },
   { key: 'focusEnabled', label: '重点阶段高亮', type: 'toggle', default: true, desc: '是否把某一阶段拉成 lime 强调' },
-  { key: 'focusIndex', label: '高亮第几个', type: 'number', default: 2, min: 0, max: 4, desc: '被突出的阶段序号', showIf: (p) => p.focusEnabled },
+  { key: 'focusIndex', label: '高亮第几个', type: 'number', default: 2, min: 0, max: 3, desc: '被突出的阶段序号', showIf: (p) => p.focusEnabled },
   { key: 'showAxis', label: '连接轴线', type: 'toggle', default: true, desc: '显示/隐藏连接轴线与节点圆点（装饰，仅横向轴）', showIf: (p) => p.layout === 'timeline' },
   { key: 'showMarkers', label: '阶段大号编号', type: 'toggle', default: true, desc: '显示/隐藏每个阶段背景的大号编号（装饰，仅横向轴）', showIf: (p) => p.layout === 'timeline' },
   { key: 'accent', label: '强调色', type: 'color', default: '#c8f135',

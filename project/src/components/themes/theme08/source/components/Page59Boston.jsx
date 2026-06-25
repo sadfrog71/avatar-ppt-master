@@ -28,7 +28,7 @@ export default function Page59Boston(props) {
 
   const stubs = tags.slice(0, Math.max(2, tagCount));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
-  const fIdx = Math.min(focusIndex, stubs.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, stubs.length - 1));
   const slots = hero[mediaCount] || [];
 
   return (
@@ -251,7 +251,7 @@ Page59Boston.controls = [
     label: '占比印章', desc: '特写上的圆形占比印章 显隐' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否突出某一个方向票根' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, maxFrom: 'tagCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 3, maxFrom: 'tagCount', step: 1,
     label: '重点对象', desc: '被突出的票根序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘装饰与贴纸标签 显隐' },

@@ -23,14 +23,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -43,14 +47,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -217,14 +225,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -237,14 +249,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -407,14 +423,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -427,14 +447,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -657,14 +681,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -677,14 +705,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -877,14 +909,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -897,14 +933,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -1082,14 +1122,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -1102,14 +1146,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -1267,14 +1315,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -1287,14 +1339,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -1487,14 +1543,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -1507,14 +1567,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -1722,14 +1786,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -1742,14 +1810,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -1966,14 +2038,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -1986,14 +2062,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -2189,14 +2269,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -2209,14 +2293,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -2439,14 +2527,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -2459,14 +2551,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -2666,14 +2762,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -2686,14 +2786,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -2874,14 +2978,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -2894,14 +3002,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -3055,14 +3167,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -3075,14 +3191,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -3268,14 +3388,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -3288,14 +3412,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -3537,14 +3665,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -3557,14 +3689,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -3787,14 +3923,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -3807,14 +3947,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -4037,14 +4181,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -4057,14 +4205,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -4253,14 +4405,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -4273,14 +4429,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -4468,14 +4628,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -4488,14 +4652,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -4663,14 +4831,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -4683,14 +4855,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -4874,14 +5050,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -4894,14 +5074,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -5107,14 +5291,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -5127,14 +5315,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -5324,14 +5516,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -5344,14 +5540,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -5582,14 +5782,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -5602,14 +5806,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -5815,14 +6023,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -5835,14 +6047,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -6028,14 +6244,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -6048,14 +6268,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -6269,14 +6493,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -6289,14 +6517,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -6467,14 +6699,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -6487,14 +6723,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -6678,14 +6918,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -6698,14 +6942,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -6894,14 +7142,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -6914,14 +7166,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -7126,14 +7382,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -7146,14 +7406,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -7336,14 +7600,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -7356,14 +7624,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -7580,14 +7852,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -7600,14 +7876,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -7793,14 +8073,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -7813,14 +8097,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -8025,14 +8313,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -8045,14 +8337,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -8231,14 +8527,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -8251,14 +8551,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -8474,14 +8778,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -8494,14 +8802,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -8687,14 +8999,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -8707,14 +9023,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -8921,14 +9241,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -8941,14 +9265,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -9133,14 +9461,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -9153,14 +9485,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -9326,14 +9662,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -9346,14 +9686,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -9528,14 +9872,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -9548,14 +9896,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -9746,14 +10098,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -9766,14 +10122,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -9954,14 +10314,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -9974,14 +10338,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -10175,14 +10543,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -10195,14 +10567,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -10351,14 +10727,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -10371,14 +10751,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -10628,14 +11012,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -10648,14 +11036,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -10841,14 +11233,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -10861,14 +11257,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -11107,14 +11507,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -11127,14 +11531,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -11298,14 +11706,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -11318,14 +11730,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -11525,14 +11941,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -11545,14 +11965,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -11719,14 +12143,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -11739,14 +12167,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -11954,14 +12386,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -11974,14 +12410,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -12152,14 +12592,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -12172,14 +12616,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -12338,14 +12786,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -12358,14 +12810,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -12545,14 +13001,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -12565,14 +13025,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -12768,14 +13232,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -12788,14 +13256,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -12976,14 +13448,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -12996,14 +13472,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -13210,14 +13690,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -13230,14 +13714,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -13462,14 +13950,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -13482,14 +13974,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -13670,14 +14166,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -13690,14 +14190,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -13901,14 +14405,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -13921,14 +14429,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -14116,14 +14628,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -14136,14 +14652,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -14343,14 +14863,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -14363,14 +14887,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -14553,14 +15081,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -14573,14 +15105,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -14817,14 +15353,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -14837,14 +15377,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -15048,14 +15592,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -15068,14 +15616,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -15281,14 +15833,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -15301,14 +15857,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -15487,14 +16047,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -15507,14 +16071,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -15695,14 +16263,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -15715,14 +16287,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -16036,14 +16612,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -16056,14 +16636,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",
@@ -16265,14 +16849,18 @@ export const pages = [
         "type": "enum",
         "default": "green",
         "options": [
-          [
-            "green",
-            "霓虹绿"
-          ],
-          [
-            "violet",
-            "炫光紫"
-          ]
+          {
+            "value": "green",
+            "label": "霓虹绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "violet",
+            "label": "炫光紫",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换整页炫光配色。",
         "publicKey": "scheme",
@@ -16285,14 +16873,18 @@ export const pages = [
         "type": "enum",
         "default": "ticket",
         "options": [
-          [
-            "default",
-            "默认发光"
-          ],
-          [
-            "ticket",
-            "炫光票卡"
-          ]
+          {
+            "value": "default",
+            "label": "默认发光",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ticket",
+            "label": "炫光票卡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "切换焦点卡片的发光质感。",
         "publicKey": "emphasis",

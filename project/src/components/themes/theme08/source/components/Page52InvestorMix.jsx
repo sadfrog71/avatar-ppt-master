@@ -26,7 +26,7 @@ export default function Page52InvestorMix(props) {
 
   const segs = segments.slice(0, Math.max(3, segmentCount));
   const total = segs.reduce((s, d) => s + d.pct, 0);
-  const fIdx = Math.min(focusIndex, segs.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, segs.length - 1));
   const focus = segs[fIdx] || segs[0];
   const steps = stages.slice(0, Math.max(2, stageCount));
 
@@ -252,7 +252,7 @@ Page52InvestorMix.controls = [
     label: '分段数量', desc: '投资人类型分段的数量(3–4)' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否高亮某一个分段' },
-  { key: 'focusIndex', type: 'number', default: 1, min: 0, maxFrom: 'segmentCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 1, min: 0, max: 3, maxFrom: 'segmentCount', step: 1,
     label: '重点对象', desc: '被高亮的分段序号(从 0 起)' },
   { key: 'showValueLabels', type: 'boolean', default: true,
     label: '数值标签', desc: '各分段百分比标签的显示/隐藏' },

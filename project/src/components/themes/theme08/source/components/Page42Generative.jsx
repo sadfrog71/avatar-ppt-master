@@ -25,7 +25,7 @@ export default function Page42Generative(props) {
 
   const tiles = metrics.slice(0, Math.max(2, metricCount));
   const segs = segments.slice(0, Math.max(2, segmentCount));
-  const fIdx = Math.min(focusIndex, segs.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, segs.length - 1));
   const totalV = segs.reduce((a, s) => a + s.v, 0);
   const maxV = Math.max(...segs.map((s) => s.v));
   const palette = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-ink)', 'var(--acl-yellow)'];
@@ -79,9 +79,9 @@ export default function Page42Generative(props) {
           font-family:var(--acl-font-hand); font-size:34px; color:rgba(255,255,255,.4); transform:rotate(-3deg); }
 
         /* ── bottom row ── */
-        .acl-gc__row{ flex:0 0 auto; margin-top:22px; display:flex; gap:24px; align-items:stretch; }
-        .acl-gc__hero{ flex:0 0 430px; background:var(--acl-paper); border:3px solid var(--acl-ink);
-          box-shadow:6px 8px 0 rgba(22,21,15,.14); padding:18px 30px 20px; display:flex; align-items:center; gap:28px; }
+        .acl-gc__row{ flex:0 0 auto; margin-top:22px; display:flex; gap:32px; align-items:stretch; }
+        .acl-gc__hero{ flex:0 0 470px; background:var(--acl-paper); border:3px solid var(--acl-ink);
+          box-shadow:6px 8px 0 rgba(22,21,15,.14); padding:18px 32px 20px; display:flex; align-items:center; gap:28px; }
         .acl-gc__herobox{ flex:0 0 auto; }
         .acl-gc__herolabel{ font-family:var(--acl-font-mono); font-size:13px; letter-spacing:.06em;
           text-transform:uppercase; color:rgba(22,21,15,.55); }
@@ -96,7 +96,7 @@ export default function Page42Generative(props) {
           margin-left:3px; opacity:.6; }
 
         .acl-gc__split{ flex:1; background:var(--acl-paper); border:3px solid var(--acl-ink);
-          box-shadow:6px 8px 0 rgba(22,21,15,.14); padding:16px 30px 16px; display:flex; flex-direction:column; min-width:0; }
+          box-shadow:6px 8px 0 rgba(22,21,15,.14); padding:18px 34px 18px; display:flex; flex-direction:column; min-width:0; }
         .acl-gc__splithd{ display:flex; align-items:baseline; justify-content:space-between; gap:14px; }
         .acl-gc__splitt{ font-family:var(--acl-font-mono); font-weight:700; font-size:16px;
           letter-spacing:.1em; text-transform:uppercase; color:rgba(22,21,15,.45); }
@@ -113,8 +113,9 @@ export default function Page42Generative(props) {
         .acl-gc__bname small{ display:block; font-family:var(--acl-font-mono); font-weight:400; font-size:13px;
           letter-spacing:.03em; text-transform:uppercase; color:rgba(22,21,15,.5); }
         /* donut */
-        .acl-gc__donutwrap{ flex:1; display:flex; align-items:center; gap:26px; margin-top:6px; }
-        .acl-gc__donut{ flex:0 0 auto; width:150px; height:150px; border-radius:50%; position:relative;
+        .acl-gc__donutwrap{ flex:1; display:flex; align-items:center; justify-content:center; gap:42px;
+          margin-top:6px; padding:4px 34px 0; min-height:178px; }
+        .acl-gc__donut{ flex:0 0 auto; width:178px; height:178px; border-radius:50%; position:relative;
           border:3px solid var(--acl-ink); }
         .acl-gc__donut::after{ content:''; position:absolute; inset:31%; background:var(--acl-paper);
           border:3px solid var(--acl-ink); border-radius:50%; }
@@ -123,8 +124,8 @@ export default function Page42Generative(props) {
         .acl-gc__dcenter .dn{ font-family:var(--acl-font-num); font-size:34px; line-height:.8; }
         .acl-gc__dcenter .dl{ font-family:var(--acl-font-mono); font-size:10px; letter-spacing:.06em;
           text-transform:uppercase; color:rgba(22,21,15,.5); }
-        .acl-gc__keys{ flex:1; display:flex; flex-direction:column; gap:9px; }
-        .acl-gc__key{ display:flex; align-items:center; gap:10px; transition:.25s; }
+        .acl-gc__keys{ flex:0 1 360px; display:flex; flex-direction:column; gap:10px; }
+        .acl-gc__key{ display:grid; grid-template-columns:18px minmax(0,1fr) auto; align-items:center; gap:10px; transition:.25s; }
         .acl-gc__sw{ width:18px; height:18px; border:2px solid var(--acl-ink); flex:0 0 auto; }
         .acl-gc__key .kn{ font-weight:900; font-size:20px; }
         .acl-gc__key .kv{ font-family:var(--acl-font-num); font-size:23px; margin-left:auto; }

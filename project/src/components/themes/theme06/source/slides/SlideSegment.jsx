@@ -32,7 +32,7 @@
 //   accent (color)
 // ============================================================================
 import React from 'react';
-import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
+import { KxEyebrow, KxGrid, KxMediaSlotColumn } from './kit.jsx';
 
   if (!document.getElementById('kx-seg-css')) {
     const css = `
@@ -63,8 +63,9 @@ import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
     .kx-seg-mcard.kx-on .kx-mv{color:var(--kx-accent);}
     .kx-seg-mcard .kx-mk{font-family:var(--kx-mono);font-size:22px;color:var(--kx-mute-2);text-transform:uppercase;letter-spacing:.03em;}
     /* right: media column */
-    .kx-seg-media{display:flex;flex-direction:column;gap:22px;min-height:0;justify-content:center;}
-    .kx-seg-media .kx-imgslot{flex:none;}
+    .kx-seg-media{display:flex;flex-direction:column;gap:22px;height:100%;min-height:0;max-height:100%;
+      justify-content:stretch;overflow:hidden;}
+    .kx-seg-media .kx-imgslot{flex:1 1 0;min-height:0;max-height:100%;aspect-ratio:auto;}
     /* right: split table / zero-slot panel */
     .kx-seg-splitwrap{display:flex;flex-direction:column;min-height:0;justify-content:center;}
     .kx-seg-splitcap{font-family:var(--kx-mono);font-size:23px;color:var(--kx-mute-2);letter-spacing:.05em;
@@ -90,11 +91,11 @@ import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
 
   function SlideSegment(props) {
     const p = { ...SlideSegment.defaults, ...props };
-    const metrics = p.metrics.slice(0, clamp(p.metricCount, 2, p.metrics.length));
+    const metrics = p.metrics.slice(0, clamp(Number(p.metricCount) || 2, 2, Math.min(4, p.metrics.length)));
     const fi = clamp(p.focusIndex, 0, metrics.length - 1);
     const slots = p.layout === 'media' ? clamp(p.mediaSlotCount, 0, 2) : 0;
     const showSplit = p.layout === 'table' || (p.layout === 'media' && slots === 0);
-    const splits = p.splits.slice(0, clamp(p.splitCount, 2, p.splits.length));
+    const splits = p.splits.slice(0, clamp(Number(p.splitCount) || 2, 2, Math.min(4, p.splits.length)));
     const maxSplit = Math.max(...splits.map((s) => s.value));
     // grid rebalances with the right column's content
     const mainCols = p.layout === 'table' ? '0.96fr 1.04fr'
@@ -128,15 +129,17 @@ import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
       }));
 
     const media = showSplit ? splitBlock
-      : h('div', { className: 'kx-seg-media' },
-          Array.from({ length: slots }, (_, i) =>
-            h(KxImageSlot, {
-              key: i, id: 'segment-' + (p.eyebrowId || 'x') + '-' + i,
-              placeholder: p.mediaPlaceholder || '主视觉 / DROP IMAGE',
-              badge: slots === 1 ? p.segTag : ('IMG ' + String(i + 1).padStart(2, '0')),
-              minRatio: slots === 1 ? 0.82 : 1.3, maxRatio: slots === 1 ? 1.5 : 2.3,
-              style: { width: '100%' },
-            })));
+      : h(KxMediaSlotColumn, {
+          className: 'kx-seg-media',
+          slots,
+          idBase: 'segment-' + (p.eyebrowId || 'x'),
+          placeholder: p.mediaPlaceholder || '主视觉 / DROP IMAGE',
+          badge: p.segTag,
+          minRatio: 0.82,
+          maxRatio: 1.5,
+          multiMinRatio: 1.3,
+          multiMaxRatio: 2.3,
+        });
 
     const footRt = p.layout === 'table' ? splits.length + ' SEG / TABLE'
       : slots === 0 ? splits.length + ' SEG / SPLIT' : slots + ' IMG / MEDIA';
@@ -248,11 +251,13 @@ import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
       { k: '事件数 / DEALS', v: '6 笔' },
       { k: '企业客户中位数 / CLIENTS', v: '430 家' },
       { k: '净收入留存 / NRR', v: '118%' },
+      { k: '自动化流程 / FLOWS', v: '128 个' },
     ],
     splits: [
-      { name: '流程编排', en: 'ORCHESTRATION', value: 41, unit: '%' },
-      { name: '模型接入', en: 'MODEL CONNECT', value: 33, unit: '%' },
-      { name: '治理审计', en: 'GOVERNANCE', value: 26, unit: '%' },
+      { name: '流程编排', en: 'ORCHESTRATION', value: 36, unit: '%' },
+      { name: '模型接入', en: 'MODEL CONNECT', value: 28, unit: '%' },
+      { name: '治理审计', en: 'GOVERNANCE', value: 21, unit: '%' },
+      { name: '应用搭建', en: 'APP BUILDING', value: 16, unit: '%' },
     ],
     mediaPlaceholder: '流程编排图 / DROP IMAGE',
     layout: 'media', mediaSlotCount: 1, metricCount: 3, splitCount: 3,

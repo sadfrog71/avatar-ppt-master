@@ -8,7 +8,7 @@
  *
  * ── Image slots (migration note) ───────────────────────────────────────────
  * Host-agnostic. The fillable slot is supplied by the host via the
- * `renderSlot(i, { ratio, ratioAR }) => ReactNode` prop. When omitted a striped
+ * `renderSlot(i, { ratio, ratioAR, preserveVideoRatio }) => ReactNode` prop. When omitted a striped
  * placeholder renders, so the page works (and exports) standalone. The hero
  * area count is prop-driven (0–2) and the composition re-flows to stay balanced
  * at every count / aspect ratio; at 0 it falls back to the brand lens graphic.
@@ -53,7 +53,7 @@ export const defaultProps = {
   showProgress: true,      // authored penetration bar
   showDecorations: true,   // glow + heat strip + image badge
   accentColor: THEME.accent,
-  renderSlot: null,        // host hook: (i, { ratio, ratioAR }) => ReactNode
+  renderSlot: null,        // host hook: (i, { ratio, ratioAR, preserveVideoRatio }) => ReactNode
 };
 
 export const controls = [
@@ -254,7 +254,7 @@ export default function KnowledgePage(props) {
             <div className={'kw-cell ' + (isAuto ? 'auto' : 'fixed')} key={i}>
               {p.showDecorations && i === 0 && <span className="kw-badge">{copy.badge}</span>}
               <div className="kw-frame" style={isAuto ? null : { '--ar': String(ratioAR) }}>
-                {p.renderSlot ? p.renderSlot(i, { ratio, ratioAR }) : <Placeholder i={i} />}
+                {p.renderSlot ? p.renderSlot(i, { ratio, ratioAR, preserveVideoRatio: true }) : <Placeholder i={i} />}
               </div>
             </div>
           ))

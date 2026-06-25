@@ -63,10 +63,10 @@ export default function Page36Supply(props) {
         .acl-sp__node--focus .ni, .acl-sp__node--focus .ne{ color:rgba(255,255,255,.6); }
         .acl-sp__node--dim{ opacity:.5; }
 
-        .acl-sp__body{ flex:1; display:flex; gap:44px; margin-top:30px; min-height:0; }
+        .acl-sp__body{ flex:1; display:flex; gap:34px; margin-top:30px; min-height:0; }
 
         /* share ring cards (left) */
-        .acl-sp__shares{ flex:0 0 560px; display:flex; flex-direction:column; gap:18px; }
+        .acl-sp__shares{ flex:0 0 520px; display:flex; flex-direction:column; gap:18px; }
         .acl-sp__card{ flex:1; display:flex; align-items:center; gap:26px; background:var(--acl-paper);
           border:3px solid var(--acl-ink); box-shadow:6px 8px 0 rgba(22,21,15,.14); padding:18px 28px; }
         .acl-sp__ring{ flex:0 0 132px; position:relative; }
@@ -210,20 +210,20 @@ Page36Supply.defaults = {
     { k: '人类反馈数据', en: 'Human Feedback', v: 35, desc: 'RLHF 对齐与质量校准的核心来源。' },
     { k: '第三方采购', en: 'Third-party', v: 23, desc: '行业语料与许可数据补充。' },
   ],
-  // count-driven collage presets — stage ≈ 760×500; slot resizes to image ratio.
+  // count-driven collage presets — stage ≈ 900×500; slot resizes to image ratio.
   collage: {
     0: [],
     1: [
-      { l: 120, t: 24, box: 440, r: -3, ratio: 1.3, sr: -4, color: 'var(--acl-yellow)', label: '标注场景', sub: 'LABEL' },
+      { l: 270, t: 24, box: 440, r: -3, ratio: 1.3, sr: -4, color: 'var(--acl-yellow)', label: '标注场景', sub: 'LABEL' },
     ],
     2: [
-      { l: 6, t: 0, box: 380, r: -4, ratio: 1.22, sr: -4, color: 'var(--acl-yellow)', label: '标注场景', sub: 'LABEL' },
-      { l: 360, t: 138, box: 372, r: 4, ratio: 0.86, sr: 3, color: 'var(--acl-blue)', label: '合成流水', sub: 'SYNTH' },
+      { l: 24, t: 0, box: 386, r: -4, ratio: 1.22, sr: -4, color: 'var(--acl-yellow)', label: '标注场景', sub: 'LABEL' },
+      { l: 520, t: 128, box: 380, r: 4, ratio: 0.86, sr: 3, color: 'var(--acl-blue)', label: '合成流水', sub: 'SYNTH' },
     ],
     3: [
-      { l: 178, t: 0, box: 332, r: 3, ratio: 0.94, sr: -4, color: 'var(--acl-yellow)', label: '标注场景', sub: 'LABEL' },
-      { l: 0, t: 168, box: 300, r: -5, ratio: 1.22, sr: 4, color: 'var(--acl-blue)', label: '合成流水', sub: 'SYNTH' },
-      { l: 350, t: 196, box: 300, r: 5, ratio: 0.84, sr: -3, color: 'var(--acl-pink)', label: '反馈回流', sub: 'RLHF' },
+      { l: 270, t: 0, box: 338, r: 3, ratio: 0.94, sr: -4, color: 'var(--acl-yellow)', label: '标注场景', sub: 'LABEL' },
+      { l: 0, t: 164, box: 306, r: -5, ratio: 1.22, sr: 4, color: 'var(--acl-blue)', label: '合成流水', sub: 'SYNTH' },
+      { l: 610, t: 182, box: 306, r: 5, ratio: 0.84, sr: -3, color: 'var(--acl-pink)', label: '反馈回流', sub: 'RLHF' },
     ],
   },
   closingLine: '数据越稀缺，数据基础设施越有价值。',

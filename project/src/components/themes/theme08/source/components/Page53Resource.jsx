@@ -25,7 +25,7 @@ export default function Page53Resource(props) {
 
   const slots = collage[mediaCount] || [];
   const items = cards.slice(0, Math.max(2, cardCount));
-  const fIdx = Math.min(focusIndex, items.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, items.length - 1));
 
   return (
     <div className="acl-root acl-rs" style={{ background: bg }}>
@@ -203,7 +203,7 @@ Page53Resource.controls = [
     label: '卡片数量', desc: '资源绑定卡的数量(2–4)' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否高亮某一张资源卡' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, maxFrom: 'cardCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 3, maxFrom: 'cardCount', step: 1,
     label: '重点对象', desc: '被高亮的资源卡序号(从 0 起)' },
   { key: 'showValueLabels', type: 'boolean', default: true,
     label: '数值标签', desc: '各资源卡的数量数值 显隐' },

@@ -1,5 +1,5 @@
 import React from 'react';
-import './PulseImageFrame.jsx';
+import { getTheme05MediaRatio, normalizeTheme05Media } from './PulseImageFrame.jsx';
 import UnicornBackground, { UNICORN_BACKGROUND_CONTROL, createUnicornSceneControl } from '../../../../unicorn-background.jsx';
 const window = globalThis.__theme05Window || (globalThis.__theme05Window = {});
 globalThis.React = React;
@@ -111,12 +111,9 @@ function replaceTheme05Text(node, replacements) {
     { key: "imageCount", type: "slider", label: "图片槽数量", default: 1, min: 0, max: 3, step: 1,
       dependsOn: "backgroundMode", dependsOnValue: "media",
       description: "全幅图片槽数量（0–3）。1 张铺满整幅；多张按比例自适应分列；为 0 时显示色谱占位。" },
-    { key: "panelPosition", type: "radio", label: "标题位置", default: "tl",
-      options: [{ value: "tl", label: "左上" }, { value: "tr", label: "右上" }, { value: "bl", label: "左下" }],
-      description: "标题面板的锚定位置（左下时自动隐藏底部指标条以避免重叠）。" },
-    { key: "panelTheme", type: "radio", label: "面板主题", default: "ink",
-      options: [{ value: "ink", label: "墨色" }, { value: "paper", label: "纸色" }, { value: "color", label: "色块" }],
-      description: "标题面板背景：墨色 / 纸色 / 强调色块（保证压在图片上的可读性）。" },
+    { key: "textColor", type: "radio", label: "文字颜色", default: "white",
+      options: [{ value: "white", label: "纯白" }, { value: "black", label: "纯黑" }],
+      description: "标题文字颜色：纯白 / 纯黑。" },
     { key: "showKicker", type: "toggle", label: "引导文案", default: true,
       description: "标题面板内的一句引导说明。" },
     { key: "showTicker", type: "toggle", label: "指标条", default: true,
@@ -145,11 +142,9 @@ function replaceTheme05Text(node, replacements) {
     const hasMedia = !useUnicorn && nImg > 0 && Frame;
     const nTick = Math.max(1, Math.min(COPY.ticker.length, p.tickerCount));
     const ticker = COPY.ticker.slice(0, nTick);
-    const tickerOn = p.showTicker && p.panelPosition !== "bl";
-
-    const panelCls = "pulse-plate__panel pulse-plate__panel--" + p.panelPosition +
-      " pulse-plate__panel--" + p.panelTheme;
-    const panelStyle = p.panelTheme === "color" ? { background: accent } : {};
+    const tickerOn = p.showTicker;
+    const textTone = p.textColor === "black" ? "black" : "white";
+    const panelCls = "pulse-plate__panel pulse-plate__panel--center pulse-plate__panel--text-" + textTone;
 
     return (
       <div className="pulse-slide pulse-plate" style={{ "--pulse-accent": accent }}>
@@ -159,10 +154,12 @@ function replaceTheme05Text(node, replacements) {
           ) : hasMedia ? (
             Array.from({ length: nImg }).map((_, i) => {
               const im = images[i] || {};
-              const grow = clampAR(im.ar);
+              const media = normalizeTheme05Media(im);
+              const mediaAR = getTheme05MediaRatio(media);
+              const grow = clampAR(mediaAR);
               return (
                 <div key={i} className="pulse-plate__cell" style={{ flex: `${grow} 1 0`, minWidth: 0 }}>
-                  <Frame src={im.src || null} ar={im.ar || null} fill={true}
+                  <Frame src={media} ar={mediaAR} fill={true}
                     editable={p.editable !== false} label={"0" + (i + 1)} placeholder="拖入现场影像"
                     onChange={(src, ar) => p.onImageChange && p.onImageChange(i, src, ar)} />
                 </div>
@@ -176,10 +173,10 @@ function replaceTheme05Text(node, replacements) {
           )}
         </div>
 
-        {p.showScrim && (useUnicorn || hasMedia) && <div className={"pulse-plate__scrim pulse-plate__scrim--" + p.panelPosition} aria-hidden="true" />}
+        {p.showScrim && (useUnicorn || hasMedia) && <div className={"pulse-plate__scrim pulse-plate__scrim--center pulse-plate__scrim--text-" + textTone} aria-hidden="true" />}
 
-        <div className={panelCls} style={panelStyle}>
-          <div className="pulse-eyebrow pulse-plate__eyebrow" style={p.panelTheme === "color" ? null : { color: accent }}>{COPY.eyebrow}</div>
+        <div className={panelCls}>
+          <div className="pulse-eyebrow pulse-plate__eyebrow">{COPY.eyebrow}</div>
           <h1 className="pulse-plate__title">{COPY.title}</h1>
           {p.showKicker && <div className="pulse-plate__kicker">{COPY.kicker}</div>}
         </div>
@@ -204,7 +201,7 @@ function replaceTheme05Text(node, replacements) {
           </div>
         )}
 
-        {p.showSheetLabel && <div className={"pulse-plate__sheet pulse-plate__sheet--" + (p.panelPosition === "tr" ? "left" : "right")}>{COPY.sheet}</div>}
+        {p.showSheetLabel && <div className="pulse-plate__sheet pulse-plate__sheet--right">{COPY.sheet}</div>}
       </div>
     );
   }

@@ -9,7 +9,7 @@
  *
  * ── Image slots (migration note) ───────────────────────────────────────────
  * Host-agnostic. The fillable slot is supplied by the host via the
- * `renderSlot(i, { ratio, ratioAR }) => ReactNode` prop. When omitted a striped
+ * `renderSlot(i, { ratio, ratioAR, adaptiveMedia, fallbackRatio }) => ReactNode` prop. When omitted a striped
  * placeholder renders, so the page works (and exports) standalone. Image count
  * is prop-driven (0–2); at 0 the hero falls back to the brand lens graphic.
  *
@@ -46,14 +46,14 @@ const RATIO_AR = { portrait: 3 / 4, landscape: 4 / 3, square: 1, auto: null };
 export const defaultProps = {
   ...COPY,
   imageCount: 1,           // hero image slots (0–2)
-  imageRatio: 'landscape', // 'portrait' | 'landscape' | 'square' | 'auto'
+  imageRatio: 'auto',      // 'portrait' | 'landscape' | 'square' | 'auto'
   cardCount: 4,            // resource cards (2–4)
   focusEnabled: true,      // highlight one card
   focusIndex: 0,           // which card is the focus (0-based)
   showMeter: true,         // resource-strength meter under each card
   showDecorations: true,   // glow + heat strip + image badge
   accentColor: THEME.accent,
-  renderSlot: null,        // host hook: (i, { ratio, ratioAR }) => ReactNode
+  renderSlot: null,        // host hook: (i, { ratio, ratioAR, adaptiveMedia, fallbackRatio }) => ReactNode
 };
 
 export const controls = [
@@ -68,7 +68,7 @@ export const controls = [
   { key: 'panelTitle', label: 'panelTitle', type: 'text', default: '战略资源构成' },
   { key: 'imageCount', label: '图片数量', type: 'slider', default: 1, min: 0, max: 2, step: 1,
     description: '主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。' },
-  { key: 'imageRatio', label: '图片比例', type: 'radio', default: 'landscape',
+  { key: 'imageRatio', label: '图片比例', type: 'radio', default: 'auto',
     options: [
       { value: 'landscape', label: '横图' },
       { value: 'portrait', label: '竖图' },
@@ -159,7 +159,8 @@ const CSS = `
 .aic-res .rs-frame { position: relative; width: 100%; height: 100%; overflow: hidden; }
 .aic-res .rs-cell.fixed .rs-frame { aspect-ratio: var(--ar); height: auto; max-height: 100%; width: 100%; }
 .aic-res .rs-frame > * { position: absolute; inset: 0; width: 100%; height: 100%; }
-.aic-res .rs-cell.auto .rs-frame { height: auto; }
+.aic-res .rs-cell.auto { align-items: center; justify-items: stretch; }
+.aic-res .rs-cell.auto .rs-frame { height: auto; width: 100%; }
 .aic-res .rs-cell.auto .rs-frame > * { position: static; width: 100%; height: auto; display: block; }
 .aic-res .rs-badge { position: absolute; top: 16px; left: 16px; z-index: 4; font-family: var(--aic-font-display);
   font-weight: 600; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--aic-ink);
@@ -213,7 +214,7 @@ export default function ResourcePage(props) {
   const focus = Math.max(0, Math.min(n - 1, p.focusIndex));
 
   const imgN = Math.max(0, Math.min(2, p.imageCount));
-  const ratio = RATIO_AR.hasOwnProperty(p.imageRatio) ? p.imageRatio : 'landscape';
+  const ratio = RATIO_AR.hasOwnProperty(p.imageRatio) ? p.imageRatio : 'auto';
   const ratioAR = RATIO_AR[ratio];
   const isAuto = ratioAR == null;
   const heroAR = isAuto ? (4 / 3) : ratioAR;
@@ -269,7 +270,7 @@ export default function ResourcePage(props) {
               <div className={'rs-cell ' + (isAuto ? 'auto' : 'fixed')} key={i}>
                 {p.showDecorations && i === 0 && <span className="rs-badge">{copy.badge}</span>}
                 <div className="rs-frame" style={isAuto ? null : { '--ar': String(ratioAR) }}>
-                  {p.renderSlot ? p.renderSlot(i, { ratio, ratioAR }) : <Placeholder i={i} />}
+                  {p.renderSlot ? p.renderSlot(i, { ratio, ratioAR, adaptiveMedia: isAuto, fallbackRatio: heroAR }) : <Placeholder i={i} />}
                 </div>
               </div>
             ))

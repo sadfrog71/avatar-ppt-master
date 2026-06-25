@@ -16,23 +16,30 @@
 //   accent (color)    VISUAL
 // ============================================================================
 import React from 'react';
-import { KxEyebrow, KxGrid } from './kit.jsx';
+import { KxEyebrow, KxGrid, KxMediaSlotColumn } from './kit.jsx';
 
   if (!document.getElementById('kx-big-css')) {
     const css = `
     .kx-big-pad{display:flex;flex-direction:column;height:100%;padding-top:44px;padding-bottom:40px;}
     .kx-big-top{display:flex;justify-content:space-between;align-items:flex-start;}
     .kx-big-kicker{font-family:var(--kx-disp);font-weight:800;font-size:34px;max-width:560px;line-height:1.25;}
+    .kx-big-mainwrap{flex:1;min-height:0;display:grid;column-gap:54px;align-items:stretch;}
+    .kx-big-mainwrap.kx-solo{display:flex;flex-direction:column;}
     .kx-big-main{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;}
     .kx-big-main.kx-center{align-items:center;text-align:center;}
+    .kx-big-mainwrap.kx-withmedia .kx-big-main{min-width:0;}
     .kx-big-fig{font-family:var(--kx-disp);font-weight:900;line-height:.82;letter-spacing:-.04em;
       color:var(--kx-accent);font-size:380px;display:flex;align-items:flex-start;gap:18px;}
+    .kx-big-mainwrap.kx-withmedia .kx-big-fig{font-size:270px;}
     .kx-big-fig .kx-unit{font-size:96px;font-weight:800;color:var(--kx-ink);align-self:flex-end;
       margin-bottom:40px;letter-spacing:0;white-space:nowrap;}
+    .kx-big-mainwrap.kx-withmedia .kx-big-fig .kx-unit{font-size:76px;margin-bottom:28px;}
     .kx-light .kx-big-fig .kx-unit{color:var(--kx-ink);}
     .kx-big-explain{font-family:var(--kx-disp);font-weight:800;font-size:46px;line-height:1.2;
       max-width:1100px;margin-top:8px;}
+    .kx-big-mainwrap.kx-withmedia .kx-big-explain{font-size:38px;max-width:780px;}
     .kx-big-explain b{background:var(--kx-accent);padding:0 .12em;}
+    .kx-big-media{--kx-media-gap:18px;padding:4px 0;}
     .kx-big-metrics{display:grid;gap:0;border-top:1px solid var(--kx-line-d);margin-top:42px;}
     .kx-big-mcard{padding:26px 30px 6px 0;border-right:1px solid var(--kx-line-d);display:flex;flex-direction:column;gap:8px;}
     .kx-big-mcard:last-child{border-right:none;}
@@ -50,6 +57,23 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
     const p = { ...SlideBigNumber.defaults, ...props };
     const metrics = p.metrics.slice(0, Math.max(0, Math.min(p.metricCount, p.metrics.length)));
     const center = p.align === 'center';
+    const slots = Math.max(0, Math.min(Number(p.mediaSlotCount) || 0, 2));
+
+    const main = h('div', { className: 'kx-big-main' + (center ? ' kx-center' : '') },
+      h('div', { className: 'kx-big-fig' }, p.figure, p.unit ? h('span', { className: 'kx-unit' }, p.unit) : null),
+      h('div', { className: 'kx-big-explain', dangerouslySetInnerHTML: { __html: p.explain } }));
+
+    const media = h(KxMediaSlotColumn, {
+      className: 'kx-big-media',
+      slots,
+      idBase: 'big-' + (p.eyebrowId || 'x'),
+      placeholder: p.mediaPlaceholder || '主视觉 / DROP IMAGE',
+      badge: p.eyebrowLabel,
+      minRatio: 0.78,
+      maxRatio: 1.48,
+      multiMinRatio: 1.2,
+      multiMaxRatio: 2.1,
+    });
 
     return h('div', { className: 'kx-slide kx-light', style: { '--kx-accent': p.accent } },
       h(KxGrid, { cols: 6 }),
@@ -58,9 +82,10 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
         h('div', { className: 'kx-big-top' },
           h(KxEyebrow, { id: p.eyebrowId, label: p.eyebrowLabel }),
           h('div', { className: 'kx-big-kicker', style: { textAlign: 'right' } }, p.kicker)),
-        h('div', { className: 'kx-big-main' + (center ? ' kx-center' : '') },
-          h('div', { className: 'kx-big-fig' }, p.figure, p.unit ? h('span', { className: 'kx-unit' }, p.unit) : null),
-          h('div', { className: 'kx-big-explain', dangerouslySetInnerHTML: { __html: p.explain } })),
+        h('div', {
+          className: 'kx-big-mainwrap' + (slots ? ' kx-withmedia' : ' kx-solo'),
+          style: slots ? { gridTemplateColumns: 'minmax(0,1fr) minmax(360px,.58fr)' } : null,
+        }, main, media),
         metrics.length
           ? h('div', { className: 'kx-big-metrics', style: { gridTemplateColumns: `repeat(${metrics.length},1fr)` } },
               metrics.map((m, i) => h('div', { key: i, className: 'kx-big-mcard' },
@@ -84,11 +109,14 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       { k: '大额事件 / DEALS', v: '97' },
       { k: '湾区占比 / BAY AREA', v: '63.9%' },
     ],
-    metricCount: 3, align: 'left', showWatermark: true, accent: '#c8f135',
+    mediaPlaceholder: '主视觉 / DROP IMAGE',
+    metricCount: 3, mediaSlotCount: 0, align: 'left', showWatermark: true, accent: '#c8f135',
   };
 
   SlideBigNumber.controls = [
     { key: 'metricCount', label: '辅助指标数量', type: 'number', default: 3, min: 0, max: 3, desc: '大数字下方的辅助指标数量（0 隐藏）' },
+    { key: 'mediaSlotCount', label: '图片槽数量', type: 'number', default: 0, min: 0, max: 2,
+      desc: '右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）' },
     { key: 'align', label: '对齐方式', type: 'select', default: 'left',
       options: [['left', '左对齐'], ['center', '居中']], desc: '主数字区域的对齐方式' },
     { key: 'showWatermark', label: '背景大字', type: 'toggle', default: true, desc: '显示/隐藏背景水印字（装饰）' },
@@ -144,7 +172,8 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       { k: '方向 / FOCUS', v: '具身智能' },
       { k: '关键 / KEY', v: '量产成本' },
     ],
-    metricCount: 3, align: 'center', showWatermark: true, accent: '#c8f135',
+    mediaPlaceholder: '人形机器人量产主视觉 / DROP IMAGE',
+    metricCount: 3, mediaSlotCount: 1, align: 'center', showWatermark: true, accent: '#c8f135',
   };
 
   // P75 毛利天花板 / 算力成本风险 — reuse this big-number via a preset passed as props.
@@ -161,7 +190,8 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       { k: '推理成本占收入 / COST', v: '31%' },
       { k: '风险 / RISK', v: '算力成本' },
     ],
-    metricCount: 3, align: 'center', showWatermark: true, accent: '#c8f135',
+    mediaPlaceholder: '算力成本曲线主视觉 / DROP IMAGE',
+    metricCount: 3, mediaSlotCount: 1, align: 'center', showWatermark: true, accent: '#c8f135',
   };
 
   // P86 超级交易均值 — reuse this big-number via a preset passed as props.

@@ -26,12 +26,35 @@ export default function Page84Gauge(props) {
 
   const outline = numberStyle === 'outline';
   const tiles = metrics.slice(0, Math.max(2, metricCount));
-  // ring sweep is COUPLED to the big number when it's a percentage, so the
-  // yellow arc length always matches the figure shown in the center; falls back
-  // to the explicit gaugePct otherwise.
   const numVal = parseFloat(bigNumber);
-  const coupled = bigUnit === '%' && isFinite(numVal);
-  const pct = Math.max(0, Math.min(100, coupled ? numVal : gaugePct));
+  const gaugeVal = Number(gaugePct);
+  const numericPercent = bigUnit === '%' && Number.isFinite(numVal);
+  const defaultNumVal = parseFloat(Page84Gauge.defaults.bigNumber);
+  const defaultGaugeVal = Number(Page84Gauge.defaults.gaugePct);
+  const initialSyncSource = numericPercent && numVal !== defaultNumVal && gaugeVal === defaultGaugeVal
+    ? 'number'
+    : 'gauge';
+  const [syncSource, setSyncSource] = React.useState(initialSyncSource);
+  const previousSync = React.useRef({ bigNumber, bigUnit, gaugePct });
+
+  React.useEffect(() => {
+    const previous = previousSync.current;
+    const numberChanged = String(previous.bigNumber) !== String(bigNumber) || previous.bigUnit !== bigUnit;
+    const gaugeChanged = Number(previous.gaugePct) !== Number(gaugePct);
+    if (numberChanged && !gaugeChanged && numericPercent) {
+      setSyncSource('number');
+    } else if (gaugeChanged) {
+      setSyncSource('gauge');
+    }
+    previousSync.current = { bigNumber, bigUnit, gaugePct };
+  }, [bigNumber, bigUnit, gaugePct, numericPercent]);
+
+  const useNumberValue = numericPercent && syncSource === 'number';
+  const pctSource = useNumberValue ? numVal : (Number.isFinite(gaugeVal) ? gaugeVal : numVal);
+  const pct = Math.max(0, Math.min(100, Number.isFinite(pctSource) ? pctSource : 0));
+  const displayNumber = numericPercent
+    ? (useNumberValue ? bigNumber : String(Math.round(pct)))
+    : bigNumber;
   // ring geometry
   const R = 360, SW = 30, C = 2 * Math.PI * R;
   const accent = isInk ? 'var(--acl-yellow)' : 'var(--acl-pink)';
@@ -139,7 +162,7 @@ export default function Page84Gauge(props) {
           <div className="acl-gg__center">
             <div className="acl-gg__label">{label}</div>
             <div className="acl-gg__numrow">
-              <span className={'acl-gg__num' + (outline ? ' acl-gg__num--outline' : '')}>{bigNumber}</span>
+              <span className={'acl-gg__num' + (outline ? ' acl-gg__num--outline' : '')}>{displayNumber}</span>
               <span className="acl-gg__unit">{bigUnit}</span>
             </div>
             <div className="acl-gg__cap" dangerouslySetInnerHTML={{ __html: caption }} />
@@ -174,7 +197,7 @@ Page84Gauge.defaults = {
   backgroundTheme: 'ink',      // 'primary' | 'muted' | 'ink'
   numberStyle: 'solid',        // 'solid' | 'outline'
   showRing: true,              // circular progress-ring gauge around the number
-  gaugePct: 67,                // 0–100 sweep of the ring (usually == big number)
+  gaugePct: 67,                // 0–100 sweep of the ring; syncs with percent big number
   metricCount: 3,              // 2–3 supporting metric tiles
   showDecor: true,
   // text content (edit in code; not exposed to Tweaks)
@@ -201,7 +224,7 @@ Page84Gauge.controls = [
   { key: 'showRing', type: 'boolean', default: true,
     label: '环形仪表', desc: '数字外圈的环形进度仪表 显隐' },
   { key: 'gaugePct', type: 'number', default: 67, min: 0, max: 100, step: 1, showIf: 'showRing',
-    label: '仪表百分比', desc: '环形仪表扫过的百分比（主数字带 % 时会自动跟随主数字，此值作为后备）' },
+    label: '仪表百分比', desc: '中心数字与环形仪表共用的百分比；拖动会同步中心数字，编辑中心百分比也会带动圆环' },
   { key: 'metricCount', type: 'number', default: 3, min: 2, max: 3, step: 1,
     label: '指标数量', desc: '底部支撑指标格数量(2–3)' },
   { key: 'showDecor', type: 'boolean', default: true,

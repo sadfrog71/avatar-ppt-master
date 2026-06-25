@@ -24,7 +24,7 @@ export default function Page39Embodied(props) {
 
   const tiles = metrics.slice(0, Math.max(2, metricCount));
   const segs = segments.slice(0, Math.max(2, segmentCount));
-  const fIdx = Math.min(focusIndex, segs.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, segs.length - 1));
   const slots = collage[mediaCount] || [];
   const totalV = segs.reduce((a, s) => a + s.v, 0);
   const maxV = Math.max(...segs.map((s) => s.v));
@@ -95,13 +95,16 @@ export default function Page39Embodied(props) {
         .acl-em__key .kv em{ font-style:normal; font-family:var(--acl-font-cn); font-weight:700; font-size:13px;
           margin-left:2px; opacity:.6; }
         .acl-em__key--dim{ opacity:.4; }
-        /* grouped bars variant */
-        .acl-em__bars{ display:flex; gap:26px; margin-top:12px; align-items:flex-end; height:118px; }
-        .acl-em__bcol{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
-          height:100%; gap:7px; }
-        .acl-em__bval{ font-family:var(--acl-font-num); font-size:26px; line-height:.8; }
-        .acl-em__bbar{ width:100%; border:2px solid var(--acl-ink); }
-        .acl-em__bname{ font-weight:900; font-size:19px; text-align:center; }
+        /* horizontal bars variant */
+        .acl-em__bars{ display:flex; flex-direction:column; gap:12px; margin-top:12px; height:126px;
+          justify-content:center; }
+        .acl-em__bcol{ display:grid; grid-template-columns:minmax(126px, 174px) minmax(0,1fr) minmax(62px,auto);
+          align-items:center; gap:14px; min-height:30px; transition:.25s; }
+        .acl-em__btrack{ height:28px; background:rgba(22,21,15,.1); border:2px solid var(--acl-ink);
+          position:relative; overflow:hidden; }
+        .acl-em__bbar{ position:absolute; inset:0 auto 0 0; border-right:2px solid var(--acl-ink); }
+        .acl-em__bval{ font-family:var(--acl-font-num); font-size:28px; line-height:1; text-align:right; }
+        .acl-em__bname{ min-width:0; font-weight:900; font-size:19px; text-align:left; line-height:1.05; }
         .acl-em__bname small{ display:block; font-family:var(--acl-font-mono); font-weight:400; font-size:11px;
           letter-spacing:.03em; text-transform:uppercase; color:rgba(22,21,15,.5); }
 
@@ -113,11 +116,11 @@ export default function Page39Embodied(props) {
           [data-deck-active] .acl-em__seg{ animation:acl-em-wipe .6s cubic-bezier(.2,.8,.2,1) both;
             animation-delay:calc(var(--i,0) * .08s + .3s); transform-origin:left; }
           [data-deck-active] .acl-em__bbar{ animation:acl-em-grow .6s cubic-bezier(.2,.8,.2,1) both;
-            animation-delay:calc(var(--i,0) * .08s + .3s); transform-origin:bottom; }
+            animation-delay:calc(var(--i,0) * .08s + .3s); transform-origin:left; }
         }
         @keyframes acl-em-rise{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
         @keyframes acl-em-wipe{ from{ transform:scaleX(0); } to{ transform:none; } }
-        @keyframes acl-em-grow{ from{ transform:scaleY(0); } to{ transform:none; } }
+        @keyframes acl-em-grow{ from{ transform:scaleX(0); } to{ transform:none; } }
       `}</style>
 
       <div className="acl-em__head">
@@ -211,9 +214,11 @@ export default function Page39Embodied(props) {
               const isF = focusEnabled && i === fIdx;
               return (
                 <div key={i} className="acl-em__bcol" style={{ opacity: focusEnabled && !isF ? 0.5 : 1 }}>
-                  {showValueLabels && <div className="acl-em__bval">{s.v}<span style={{ fontSize: 14 }}>{valueUnit}</span></div>}
-                  <div className="acl-em__bbar" style={{ '--i': i, height: `${(s.v / maxV) * 100}%`, background: segColor(i, isF) }} />
                   <div className="acl-em__bname">{s.k}<small>{s.en}</small></div>
+                  <div className="acl-em__btrack">
+                    <div className="acl-em__bbar" style={{ '--i': i, width: `${(s.v / maxV) * 100}%`, background: segColor(i, isF) }} />
+                  </div>
+                  {showValueLabels && <div className="acl-em__bval">{s.v}<span style={{ fontSize: 14 }}>{valueUnit}</span></div>}
                 </div>
               );
             })}
@@ -284,7 +289,7 @@ Page39Embodied.controls = [
   { key: 'mediaCount', type: 'number', default: 2, min: 0, max: 3, step: 1,
     label: '图片数量', desc: '拼贴图片槽数量(0–3)；布局随数量自动平衡，每槽按上传图片比例自适应' },
   { key: 'splitStyle', type: 'enum', default: 'stack', options: ['stack', 'bars'],
-    label: '分布样式', desc: '应用分布呈现：堆叠条 / 分组柱' },
+    label: '分布样式', desc: '应用分布呈现：堆叠条 / 横向条形' },
   { key: 'segmentCount', type: 'number', default: 3, min: 2, max: 4, step: 1,
     label: '应用方向', desc: '应用分布的方向数量(2–4)' },
   { key: 'showValueLabels', type: 'boolean', default: true,

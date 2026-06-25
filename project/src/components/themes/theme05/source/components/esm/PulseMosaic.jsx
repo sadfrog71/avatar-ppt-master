@@ -181,7 +181,7 @@ function replaceTheme05Text(node, replacements) {
                 if (p.heroWeight && i === 0) grow *= 1.6;
                 return (
                   <div key={i} className="pulse-mos__cell" style={{ flex: `${grow} 1 0`, minWidth: 0 }}>
-                    <Frame src={im.src || null} ar={im.ar || null} fill={true}
+                    <Frame src={im || null} ar={im.ar || null} fill={true}
                       editable={p.editable !== false} label={p.showIndex ? "0" + (i + 1) : ""}
                       placeholder="拖入影像" onChange={(src, ar) => p.onImageChange && p.onImageChange(i, src, ar)} />
                   </div>

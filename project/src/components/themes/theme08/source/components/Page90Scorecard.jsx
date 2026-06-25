@@ -2,7 +2,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Independent prop-driven slide. Class prefix `acl-sc-`.
 // A NEW table shape for this deck — TRANSPOSED comparison: OPTIONS are columns
-// (2–3) and CRITERIA are rows (3–5); each cell carries a rating-dot meter plus a
+// (2–4) and CRITERIA are rows (3–5); each cell carries a rating-dot meter plus a
 // short value. One whole column can be highlighted (focus). Distinct from the
 // row-ledger tables (P10/P18/P30/P38/P44/P50/P66/P74). Toggle rating dots and
 // value text independently. Pure ESM — no Tweaks dependency; CSS scoped + prefixed.
@@ -22,8 +22,9 @@ export default function Page90Scorecard(props) {
     ? 'linear-gradient(165deg, #EFEFF6 0%, #E7E6EE 58%, #DEDCEA 100%)'
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
-  const accents = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-red)'];
-  const cols = options.slice(0, Math.max(2, columnCount)).map((o, i) => ({ ...o, accent: accents[i % accents.length] }));
+  const accents = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-red)', 'var(--acl-yellow)'];
+  const desiredCols = Math.min(4, Math.max(2, Number(columnCount) || 2));
+  const cols = options.slice(0, desiredCols).map((o, i) => ({ ...o, accent: accents[i % accents.length] }));
   const nc = cols.length;
   const rows = criteria.slice(0, Math.max(3, rowCount));
   const fIdx = Math.min(focusIndex, nc - 1);
@@ -180,7 +181,7 @@ export default function Page90Scorecard(props) {
 // ── default content + adjustable params ──────────────────────────────────────
 Page90Scorecard.defaults = {
   backgroundTheme: 'muted',    // 'primary' | 'muted'
-  columnCount: 3,              // 2–3 compared options (columns)
+  columnCount: 4,              // 2–4 compared options (columns)
   rowCount: 4,                 // 3–5 criteria (rows)
   showRating: true,            // rating-dot meter in each cell
   showValueLabels: true,       // short value under the dots
@@ -190,23 +191,24 @@ Page90Scorecard.defaults = {
   showDecor: true,
   ratingMax: 5,
   // text content (edit in code; not exposed to Tweaks)
-  eyebrow: 'Scorecard · Side by Side',
-  headline: '三条路径对比',
+  eyebrow: '横向记分卡',
+  headline: '四条路径对比',
   subheadline: '同一张记分卡',
   summary: '把不同落地路径放进<b>同一套标准</b>，差距才看得清。',
   // options = columns
   options: [
-    { name: '嵌入工作流', tag: 'Workflow', verdict: '可计费 · 高留存' },
-    { name: '量化降本', tag: 'ROI', verdict: '易验证 · 中壁垒' },
-    { name: '资源绑定', tag: 'Resource', verdict: '高门槛 · 难复制' },
+    { name: '嵌入工作流', tag: '场景渗透', verdict: '可计费 · 高留存' },
+    { name: '量化降本', tag: '成本回收', verdict: '易验证 · 中壁垒' },
+    { name: '资源绑定', tag: '资源护城河', verdict: '高门槛 · 难复制' },
+    { name: '合规托管', tag: '信任入口', verdict: '慢启动 · 长周期' },
   ],
   // criteria = rows; cells[i] aligns with options[i]
   criteria: [
-    { name: '可计费性', note: 'Billable', cells: [{ rating: 5, value: '高' }, { rating: 3, value: '中' }, { rating: 4, value: '中高' }] },
-    { name: '净留存', note: 'NRR', cells: [{ rating: 5, value: '132', unit: '%' }, { rating: 3, value: '108', unit: '%' }, { rating: 4, value: '121', unit: '%' }] },
-    { name: '壁垒强度', note: 'Moat', cells: [{ rating: 3, value: '中' }, { rating: 2, value: '低' }, { rating: 5, value: '高' }] },
-    { name: '复制成本', note: 'Replicable', cells: [{ rating: 4, value: '低' }, { rating: 5, value: '很低' }, { rating: 2, value: '高' }] },
-    { name: '回报周期', note: 'Payback', cells: [{ rating: 4, value: '12', unit: '月' }, { rating: 5, value: '8', unit: '月' }, { rating: 2, value: '24', unit: '月' }] },
+    { name: '可计费性', note: '收入转化', cells: [{ rating: 5, value: '86', unit: '%' }, { rating: 3, value: '63', unit: '%' }, { rating: 4, value: '78', unit: '%' }, { rating: 4, value: '74', unit: '%' }] },
+    { name: '净留存', note: '续费表现', cells: [{ rating: 5, value: '132', unit: '%' }, { rating: 3, value: '108', unit: '%' }, { rating: 4, value: '121', unit: '%' }, { rating: 4, value: '126', unit: '%' }] },
+    { name: '壁垒强度', note: '护城河', cells: [{ rating: 3, value: '3.6', unit: '分' }, { rating: 2, value: '2.4', unit: '分' }, { rating: 5, value: '4.7', unit: '分' }, { rating: 4, value: '4.1', unit: '分' }] },
+    { name: '复制成本', note: '扩张难度', cells: [{ rating: 4, value: '低' }, { rating: 5, value: '很低' }, { rating: 2, value: '高' }, { rating: 3, value: '中' }] },
+    { name: '回报周期', note: '资金回笼', cells: [{ rating: 4, value: '12', unit: '月' }, { rating: 5, value: '8', unit: '月' }, { rating: 2, value: '24', unit: '月' }, { rating: 3, value: '18', unit: '月' }] },
   ],
   closingLine: '没有最好的路径，只有最适配你资源的那一条。',
 };
@@ -215,8 +217,8 @@ Page90Scorecard.defaults = {
 Page90Scorecard.controls = [
   { key: 'backgroundTheme', type: 'enum', default: 'muted', options: ['primary', 'muted'],
     label: '背景主题', desc: '主色(电光黄) 或 次色(淡紫灰) 底色' },
-  { key: 'columnCount', type: 'number', default: 3, min: 2, max: 3, step: 1,
-    label: '对比项数量', desc: '参与对比的选项(列)数量(2–3)' },
+  { key: 'columnCount', type: 'number', default: 4, min: 2, max: 4, step: 1,
+    label: '对比项数量', desc: '参与对比的选项(列)数量(2–4)' },
   { key: 'rowCount', type: 'number', default: 4, min: 3, max: 5, step: 1,
     label: '评估维度数量', desc: '评估维度(行)数量(3–5)' },
   { key: 'showRating', type: 'boolean', default: true,
@@ -227,7 +229,7 @@ Page90Scorecard.controls = [
     label: '综合判断行', desc: '底部综合判断行 显隐' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否整列高亮某一个对比项' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 2, maxFrom: 'columnCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 3, maxFrom: 'columnCount', step: 1,
     label: '重点对象', desc: '被高亮的对比项序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘装饰与标签的显示/隐藏' },

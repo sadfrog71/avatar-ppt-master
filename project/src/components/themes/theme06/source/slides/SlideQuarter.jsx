@@ -16,7 +16,7 @@
 //   metrics ({k,v}[])                              content — supporting metrics
 //   context ({label,value}[])                      content — peer periods for mini chart
 //   layout (enum)          VISUAL  'chart' | 'table'  (metrics presentation)
-//   metricCount (int 2..4) VISUAL  supporting metrics shown
+//   metricCount (int 2..6) VISUAL  supporting metrics shown
 //   showTrend (bool)       VISUAL  peer-context mini chart
 //   showDelta (bool)       VISUAL  QoQ change pill (decorative data)
 //   focusEnabled (bool)    VISUAL  emphasise one peer period
@@ -92,7 +92,7 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
 
   function SlideQuarter(props) {
     const p = { ...SlideQuarter.defaults, ...props };
-    const metrics = p.metrics.slice(0, Math.max(2, Math.min(p.metricCount, p.metrics.length)));
+    const metrics = p.metrics.slice(0, Math.max(2, Math.min(Number(p.metricCount) || 2, 6, p.metrics.length)));
     const ctx = p.context;
     const maxV = Math.max(...ctx.map((c) => c.value));
     const fi = Math.min(p.focusIndex, ctx.length - 1);
@@ -192,12 +192,15 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       { k: '事件数 / DEALS', v: '26 笔' },
       { k: '平均单笔 / AVG', v: '10.9 亿' },
       { k: '环比增长 / QoQ', v: '+75.3%' },
+      { k: '头部集中 / TOP 5', v: '58%' },
+      { k: '新增赛道 / NEW TRACKS', v: '4 个' },
+      { k: '跟投活跃 / FOLLOW-ON', v: '19 家' },
     ],
     context: [
       { label: 'Q1', value: 162 }, { label: 'Q2', value: 284 },
       { label: 'Q3', value: 318 }, { label: 'Q4', value: 206 },
     ],
-    layout: 'table', metricCount: 3, showTrend: true, showDelta: true,
+    layout: 'table', metricCount: 6, showTrend: true, showDelta: true,
     focusEnabled: true, focusIndex: 1, accent: '#c8f135',
   };
 

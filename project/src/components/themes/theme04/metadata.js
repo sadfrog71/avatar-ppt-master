@@ -23,22 +23,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -64,22 +72,30 @@ export const pages = [
         "type": "radio",
         "default": "green",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -230,22 +246,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -271,22 +295,30 @@ export const pages = [
         "type": "radio",
         "default": "blue",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -459,22 +491,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -500,22 +540,30 @@ export const pages = [
         "type": "radio",
         "default": "yellow",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -680,22 +728,30 @@ export const pages = [
         "type": "radio",
         "default": "green",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "标题板主色调(通用命名)",
         "publicKey": "accentTone",
@@ -721,14 +777,18 @@ export const pages = [
         "type": "radio",
         "default": "multi",
         "options": [
-          [
-            "multi",
-            "多彩"
-          ],
-          [
-            "mono",
-            "单色"
-          ]
+          {
+            "value": "multi",
+            "label": "多彩",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "mono",
+            "label": "单色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "瓷砖多彩 / 统一主色",
         "publicKey": "paletteVariant",
@@ -893,22 +953,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -1329,22 +1397,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -1383,14 +1459,18 @@ export const pages = [
         "type": "radio",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左侧"
-          ],
-          [
-            "right",
-            "右侧"
-          ]
+          {
+            "value": "left",
+            "label": "左侧",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "right",
+            "label": "右侧",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "配图在左 / 右(有图时生效)",
         "publicKey": "imageSide",
@@ -1416,22 +1496,30 @@ export const pages = [
         "type": "radio",
         "default": "blue",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -1526,22 +1614,30 @@ export const pages = [
         "type": "radio",
         "default": "blue",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调",
         "publicKey": "accentTone",
@@ -1708,22 +1804,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -1957,22 +2061,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -2011,14 +2123,18 @@ export const pages = [
         "type": "radio",
         "default": "donut",
         "options": [
-          [
-            "donut",
-            "环形"
-          ],
-          [
-            "bar",
-            "柱状"
-          ]
+          {
+            "value": "donut",
+            "label": "环形",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bar",
+            "label": "柱状",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "同心放射环 / 纵向渐变柱",
         "publicKey": "chartVariant",
@@ -2283,22 +2399,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -2337,14 +2461,18 @@ export const pages = [
         "type": "radio",
         "default": "scatter",
         "options": [
-          [
-            "scatter",
-            "散点"
-          ],
-          [
-            "bars",
-            "柱状"
-          ]
+          {
+            "value": "scatter",
+            "label": "散点",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "柱状",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "气泡散点 / 横向柱状",
         "publicKey": "chartVariant",
@@ -2570,22 +2698,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -2624,14 +2760,18 @@ export const pages = [
         "type": "radio",
         "default": "slope",
         "options": [
-          [
-            "slope",
-            "斜率图"
-          ],
-          [
-            "bars",
-            "横向柱"
-          ]
+          {
+            "value": "slope",
+            "label": "斜率图",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "横向柱",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "斜率图 / 横向柱状",
         "publicKey": "chartVariant",
@@ -2843,22 +2983,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -2897,14 +3045,18 @@ export const pages = [
         "type": "radio",
         "default": "treemap",
         "options": [
-          [
-            "treemap",
-            "矩形树图"
-          ],
-          [
-            "bar",
-            "横向柱"
-          ]
+          {
+            "value": "treemap",
+            "label": "矩形树图",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bar",
+            "label": "横向柱",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "矩形树图 / 横向柱状",
         "publicKey": "chartVariant",
@@ -3105,22 +3257,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -3159,14 +3319,18 @@ export const pages = [
         "type": "radio",
         "default": "waterfall",
         "options": [
-          [
-            "waterfall",
-            "瀑布图"
-          ],
-          [
-            "bar",
-            "横向柱"
-          ]
+          {
+            "value": "waterfall",
+            "label": "瀑布图",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bar",
+            "label": "横向柱",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "瀑布累加 / 横向柱状",
         "publicKey": "chartVariant",
@@ -3362,22 +3526,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -3416,14 +3588,18 @@ export const pages = [
         "type": "radio",
         "default": "group",
         "options": [
-          [
-            "group",
-            "双柱"
-          ],
-          [
-            "total",
-            "合计"
-          ]
+          {
+            "value": "group",
+            "label": "双柱",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "total",
+            "label": "合计",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "上下半年双柱 / 合计单柱",
         "publicKey": "chartVariant",
@@ -3640,22 +3816,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -3717,14 +3901,18 @@ export const pages = [
         "type": "radio",
         "default": "multi",
         "options": [
-          [
-            "multi",
-            "多彩"
-          ],
-          [
-            "mono",
-            "单色"
-          ]
+          {
+            "value": "multi",
+            "label": "多彩",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "mono",
+            "label": "单色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "瓷砖多彩 / 统一单色",
         "publicKey": "paletteVariant",
@@ -3855,22 +4043,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -3909,14 +4105,18 @@ export const pages = [
         "type": "radio",
         "default": "bar",
         "options": [
-          [
-            "bar",
-            "柱状"
-          ],
-          [
-            "line",
-            "折线"
-          ]
+          {
+            "value": "bar",
+            "label": "柱状",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "line",
+            "label": "折线",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "柱状图或折线图",
         "publicKey": "chartVariant",
@@ -4104,22 +4304,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -4145,18 +4353,24 @@ export const pages = [
         "type": "radio",
         "default": "area",
         "options": [
-          [
-            "area",
-            "面积"
-          ],
-          [
-            "line",
-            "折线"
-          ],
-          [
-            "bar",
-            "柱状"
-          ]
+          {
+            "value": "area",
+            "label": "面积",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "line",
+            "label": "折线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bar",
+            "label": "柱状",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "面积 / 折线 / 柱状",
         "publicKey": "chartVariant",
@@ -4461,22 +4675,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -4515,14 +4737,18 @@ export const pages = [
         "type": "radio",
         "default": "ratio",
         "options": [
-          [
-            "ratio",
-            "百分比"
-          ],
-          [
-            "absolute",
-            "绝对额"
-          ]
+          {
+            "value": "ratio",
+            "label": "百分比",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "absolute",
+            "label": "绝对额",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "100% 占比 / 绝对额(柱高随总盘)",
         "publicKey": "chartVariant",
@@ -4737,22 +4963,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -4791,14 +5025,18 @@ export const pages = [
         "type": "radio",
         "default": "gauge",
         "options": [
-          [
-            "gauge",
-            "环形盘"
-          ],
-          [
-            "bar",
-            "横向柱"
-          ]
+          {
+            "value": "gauge",
+            "label": "环形盘",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bar",
+            "label": "横向柱",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "环形仪表盘 / 横向柱状",
         "publicKey": "chartVariant",
@@ -5052,22 +5290,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -5119,14 +5365,18 @@ export const pages = [
         "type": "radio",
         "default": "heat",
         "options": [
-          [
-            "heat",
-            "热力格"
-          ],
-          [
-            "bubble",
-            "气泡"
-          ]
+          {
+            "value": "heat",
+            "label": "热力格",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bubble",
+            "label": "气泡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "颜色深浅 / 气泡大小",
         "publicKey": "chartVariant",
@@ -5436,22 +5686,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -5763,22 +6021,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -5981,22 +6247,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -6309,22 +6583,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -6587,22 +6869,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -6859,22 +7149,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -7188,22 +7486,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -7630,22 +7936,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -7852,22 +8166,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -7893,22 +8215,30 @@ export const pages = [
         "type": "radio",
         "default": "green",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -8139,22 +8469,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -8193,14 +8531,18 @@ export const pages = [
         "type": "radio",
         "default": "grid",
         "options": [
-          [
-            "grid",
-            "2×2 网格"
-          ],
-          [
-            "row",
-            "一行排开"
-          ]
+          {
+            "value": "grid",
+            "label": "2×2 网格",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "row",
+            "label": "一行排开",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "网格 / 一行（2 张自动一行）",
         "publicKey": "layoutVariant",
@@ -8421,22 +8763,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -8475,18 +8825,24 @@ export const pages = [
         "type": "radio",
         "default": "none",
         "options": [
-          [
-            "none",
-            "不高亮"
-          ],
-          [
-            "left",
-            "左侧"
-          ],
-          [
-            "right",
-            "右侧"
-          ]
+          {
+            "value": "none",
+            "label": "不高亮",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "left",
+            "label": "左侧",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "right",
+            "label": "右侧",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "高亮左 / 右某一侧",
         "publicKey": "focusSide",
@@ -8688,22 +9044,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -8742,14 +9106,18 @@ export const pages = [
         "type": "radio",
         "default": "funnel",
         "options": [
-          [
-            "funnel",
-            "漏斗"
-          ],
-          [
-            "bars",
-            "横向柱"
-          ]
+          {
+            "value": "funnel",
+            "label": "漏斗",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "横向柱",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "梯形漏斗 / 横向柱状",
         "publicKey": "chartVariant",
@@ -8940,22 +9308,30 @@ export const pages = [
         "type": "radio",
         "default": "green",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调",
         "publicKey": "accentTone",
@@ -8968,14 +9344,18 @@ export const pages = [
         "type": "radio",
         "default": "center",
         "options": [
-          [
-            "center",
-            "居中"
-          ],
-          [
-            "left",
-            "靠左"
-          ]
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "left",
+            "label": "靠左",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "居中 / 靠左",
         "publicKey": "textAlign",
@@ -9064,22 +9444,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -9142,14 +9530,18 @@ export const pages = [
         "type": "radio",
         "default": "desc",
         "options": [
-          [
-            "desc",
-            "从高到低"
-          ],
-          [
-            "asc",
-            "从低到高"
-          ]
+          {
+            "value": "desc",
+            "label": "从高到低",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "asc",
+            "label": "从低到高",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "展示顺序方向",
         "publicKey": "sortDir",
@@ -9342,22 +9734,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -9725,22 +10125,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -10052,22 +10460,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -10303,22 +10719,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -10357,14 +10781,18 @@ export const pages = [
         "type": "radio",
         "default": "donut",
         "options": [
-          [
-            "donut",
-            "环形"
-          ],
-          [
-            "bar",
-            "柱状"
-          ]
+          {
+            "value": "donut",
+            "label": "环形",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bar",
+            "label": "柱状",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "环形图或柱状图",
         "publicKey": "chartVariant",
@@ -10542,22 +10970,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -10596,14 +11032,18 @@ export const pages = [
         "type": "radio",
         "default": "mosaic",
         "options": [
-          [
-            "mosaic",
-            "特写网格"
-          ],
-          [
-            "grid",
-            "等比网格"
-          ]
+          {
+            "value": "mosaic",
+            "label": "特写网格",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "grid",
+            "label": "等比网格",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "特写网格(首图大) / 等比网格",
         "publicKey": "mediaLayout",
@@ -10811,22 +11251,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -10865,14 +11313,18 @@ export const pages = [
         "type": "radio",
         "default": "landscape",
         "options": [
-          [
-            "landscape",
-            "横构图"
-          ],
-          [
-            "portrait",
-            "竖构图"
-          ]
+          {
+            "value": "landscape",
+            "label": "横构图",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "portrait",
+            "label": "竖构图",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "画框横 / 竖比例",
         "publicKey": "frameRatio",
@@ -10992,22 +11444,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -11328,22 +11788,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -11384,22 +11852,30 @@ export const pages = [
         "type": "radio",
         "default": "green",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -11651,22 +12127,30 @@ export const pages = [
         "type": "radio",
         "default": "pink",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调",
         "publicKey": "accentTone",
@@ -11679,14 +12163,18 @@ export const pages = [
         "type": "radio",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左下"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "左下",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "文案靠左下 / 居中",
         "publicKey": "textAlign",
@@ -11840,22 +12328,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -12071,22 +12567,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -12125,14 +12629,18 @@ export const pages = [
         "type": "radio",
         "default": "right",
         "options": [
-          [
-            "left",
-            "左侧"
-          ],
-          [
-            "right",
-            "右侧"
-          ]
+          {
+            "value": "left",
+            "label": "左侧",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "right",
+            "label": "右侧",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "配图在左 / 右(有图时生效)",
         "publicKey": "imageSide",
@@ -12145,22 +12653,30 @@ export const pages = [
         "type": "radio",
         "default": "blue",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -12499,22 +13015,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -12553,14 +13077,18 @@ export const pages = [
         "type": "radio",
         "default": "radar",
         "options": [
-          [
-            "radar",
-            "雷达"
-          ],
-          [
-            "bars",
-            "分组柱"
-          ]
+          {
+            "value": "radar",
+            "label": "雷达",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "分组柱",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "雷达图 / 分组柱状图",
         "publicKey": "chartVariant",
@@ -12723,14 +13251,18 @@ export const pages = [
         "type": "radio",
         "default": "stack",
         "options": [
-          [
-            "stack",
-            "堆叠"
-          ],
-          [
-            "row",
-            "并排"
-          ]
+          {
+            "value": "stack",
+            "label": "堆叠",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "row",
+            "label": "并排",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "多张图片的排列方式",
         "publicKey": "mediaLayout",
@@ -12940,22 +13472,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -12994,14 +13534,18 @@ export const pages = [
         "type": "radio",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左侧"
-          ],
-          [
-            "right",
-            "右侧"
-          ]
+          {
+            "value": "left",
+            "label": "左侧",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "right",
+            "label": "右侧",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "肖像在左 / 右",
         "publicKey": "imageSide",
@@ -13014,22 +13558,30 @@ export const pages = [
         "type": "radio",
         "default": "blue",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -13192,22 +13744,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -13246,14 +13806,18 @@ export const pages = [
         "type": "radio",
         "default": "area",
         "options": [
-          [
-            "area",
-            "面积"
-          ],
-          [
-            "bar",
-            "柱状"
-          ]
+          {
+            "value": "area",
+            "label": "面积",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bar",
+            "label": "柱状",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "面积折线 / 柱状",
         "publicKey": "chartVariant",
@@ -13435,22 +13999,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -13489,14 +14061,18 @@ export const pages = [
         "type": "radio",
         "default": "dumbbell",
         "options": [
-          [
-            "dumbbell",
-            "哑铃图"
-          ],
-          [
-            "bar",
-            "横向柱"
-          ]
+          {
+            "value": "dumbbell",
+            "label": "哑铃图",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bar",
+            "label": "横向柱",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "哑铃区间 / 横向柱状",
         "publicKey": "chartVariant",
@@ -13725,22 +14301,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -13779,14 +14363,18 @@ export const pages = [
         "type": "radio",
         "default": "pyramid",
         "options": [
-          [
-            "pyramid",
-            "金字塔"
-          ],
-          [
-            "bars",
-            "横向柱"
-          ]
+          {
+            "value": "pyramid",
+            "label": "金字塔",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "横向柱",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "金字塔 / 横向柱状",
         "publicKey": "chartVariant",
@@ -13992,22 +14580,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -14048,14 +14644,18 @@ export const pages = [
         "type": "radio",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左下"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "左下",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "浮层文案对齐方式",
         "publicKey": "textAlign",
@@ -14068,22 +14668,30 @@ export const pages = [
         "type": "radio",
         "default": "blue",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调",
         "publicKey": "accentTone",
@@ -14254,22 +14862,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -14308,14 +14924,18 @@ export const pages = [
         "type": "radio",
         "default": "right",
         "options": [
-          [
-            "left",
-            "左侧"
-          ],
-          [
-            "right",
-            "右侧"
-          ]
+          {
+            "value": "left",
+            "label": "左侧",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "right",
+            "label": "右侧",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "配图在左 / 右(有图时生效)",
         "publicKey": "imageSide",
@@ -14328,22 +14948,30 @@ export const pages = [
         "type": "radio",
         "default": "blue",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -14459,22 +15087,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -14513,14 +15149,18 @@ export const pages = [
         "type": "radio",
         "default": "feature",
         "options": [
-          [
-            "feature",
-            "特写网格"
-          ],
-          [
-            "stack",
-            "等列堆叠"
-          ]
+          {
+            "value": "feature",
+            "label": "特写网格",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "stack",
+            "label": "等列堆叠",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "多张图片的排布构图",
         "publicKey": "mediaLayout",
@@ -14721,22 +15361,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -14775,14 +15423,18 @@ export const pages = [
         "type": "radio",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左侧"
-          ],
-          [
-            "right",
-            "右侧"
-          ]
+          {
+            "value": "left",
+            "label": "左侧",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "right",
+            "label": "右侧",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "配图在左 / 右(有图时生效)",
         "publicKey": "imageSide",
@@ -14795,22 +15447,30 @@ export const pages = [
         "type": "radio",
         "default": "green",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -14991,14 +15651,18 @@ export const pages = [
         "type": "radio",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左侧"
-          ],
-          [
-            "right",
-            "右侧"
-          ]
+          {
+            "value": "left",
+            "label": "左侧",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "right",
+            "label": "右侧",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "主图在左 / 右",
         "publicKey": "imageSide",
@@ -15159,22 +15823,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -15213,14 +15885,18 @@ export const pages = [
         "type": "radio",
         "default": "scatter",
         "options": [
-          [
-            "scatter",
-            "散落"
-          ],
-          [
-            "row",
-            "整齐"
-          ]
+          {
+            "value": "scatter",
+            "label": "散落",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "row",
+            "label": "整齐",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "散落倾斜 / 整齐排列",
         "publicKey": "mediaLayout",
@@ -15414,22 +16090,30 @@ export const pages = [
         "type": "radio",
         "default": "yellow",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调",
         "publicKey": "accentTone",
@@ -15442,14 +16126,18 @@ export const pages = [
         "type": "radio",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左"
-          ],
-          [
-            "right",
-            "右"
-          ]
+          {
+            "value": "left",
+            "label": "左",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "right",
+            "label": "右",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "accent 面板在左 / 右",
         "publicKey": "panelSide",
@@ -15572,22 +16260,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -15649,14 +16345,18 @@ export const pages = [
         "type": "radio",
         "default": "left",
         "options": [
-          [
-            "left",
-            "首列"
-          ],
-          [
-            "right",
-            "次列"
-          ]
+          {
+            "value": "left",
+            "label": "首列",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "right",
+            "label": "次列",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "被高亮的列",
         "publicKey": "focusSide",
@@ -15864,22 +16564,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -15931,18 +16639,24 @@ export const pages = [
         "type": "radio",
         "default": "none",
         "options": [
-          [
-            "none",
-            "不强调"
-          ],
-          [
-            "left",
-            "左侧"
-          ],
-          [
-            "right",
-            "右侧"
-          ]
+          {
+            "value": "none",
+            "label": "不强调",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "left",
+            "label": "左侧",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "right",
+            "label": "右侧",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "高亮左 / 右面板",
         "publicKey": "focusSide",
@@ -16031,22 +16745,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -16296,22 +17018,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -16350,14 +17080,18 @@ export const pages = [
         "type": "radio",
         "default": "ascend",
         "options": [
-          [
-            "ascend",
-            "升阶"
-          ],
-          [
-            "flat",
-            "等高"
-          ]
+          {
+            "value": "ascend",
+            "label": "升阶",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "flat",
+            "label": "等高",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "逐级抬高 / 等高平台",
         "publicKey": "layoutVariant",
@@ -16623,22 +17357,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -16925,22 +17667,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -17110,22 +17860,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -17321,22 +18079,30 @@ export const pages = [
         "type": "radio",
         "default": "pink",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -17478,22 +18244,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -17667,22 +18441,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -17708,22 +18490,30 @@ export const pages = [
         "type": "radio",
         "default": "green",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -17736,14 +18526,18 @@ export const pages = [
         "type": "radio",
         "default": "left",
         "options": [
-          [
-            "left",
-            "靠左"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "靠左",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "文案靠左 / 居中",
         "publicKey": "textAlign",
@@ -17868,22 +18662,30 @@ export const pages = [
         "type": "radio",
         "default": "glass",
         "options": [
-          [
-            "glass",
-            "玻璃糖果"
-          ],
-          [
-            "pill",
-            "扁平药丸"
-          ],
-          [
-            "underline",
-            "下划线"
-          ],
-          [
-            "text",
-            "纯文字"
-          ]
+          {
+            "value": "glass",
+            "label": "玻璃糖果",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pill",
+            "label": "扁平药丸",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "text",
+            "label": "纯文字",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
         "publicKey": "hlStyle",
@@ -17909,22 +18711,30 @@ export const pages = [
         "type": "radio",
         "default": "yellow",
         "options": [
-          [
-            "green",
-            "绿"
-          ],
-          [
-            "yellow",
-            "黄"
-          ],
-          [
-            "blue",
-            "蓝"
-          ],
-          [
-            "pink",
-            "粉"
-          ]
+          {
+            "value": "green",
+            "label": "绿",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "yellow",
+            "label": "黄",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "blue",
+            "label": "蓝",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "pink",
+            "label": "粉",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "页面主色调(通用命名)",
         "publicKey": "accentTone",
@@ -17937,14 +18747,18 @@ export const pages = [
         "type": "radio",
         "default": "left",
         "options": [
-          [
-            "left",
-            "靠左"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "靠左",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "论断靠左(带印章) / 居中(纯文字)",
         "publicKey": "textAlign",
@@ -18070,14 +18884,18 @@ export const pages = [
         "type": "radio",
         "default": "right",
         "options": [
-          [
-            "left",
-            "左侧"
-          ],
-          [
-            "right",
-            "右侧"
-          ]
+          {
+            "value": "left",
+            "label": "左侧",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "right",
+            "label": "右侧",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "配图在左 / 右",
         "publicKey": "imageSide",
@@ -18090,14 +18908,18 @@ export const pages = [
         "type": "radio",
         "default": "box",
         "options": [
-          [
-            "box",
-            "色块"
-          ],
-          [
-            "underline",
-            "下划线"
-          ]
+          {
+            "value": "box",
+            "label": "色块",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词强调方式",
         "publicKey": "highlightStyle",
@@ -18170,14 +18992,18 @@ export const pages = [
         "type": "radio",
         "default": "box",
         "options": [
-          [
-            "box",
-            "色块"
-          ],
-          [
-            "underline",
-            "下划线"
-          ]
+          {
+            "value": "box",
+            "label": "色块",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "underline",
+            "label": "下划线",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "关键词强调方式",
         "publicKey": "highlightStyle",

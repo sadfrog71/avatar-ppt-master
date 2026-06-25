@@ -50,6 +50,10 @@ import SlideGallery from './source/slides/SlideGallery.jsx';
 import SlideTreemap from './source/slides/SlideTreemap.jsx';
 import SlideStatement from './source/slides/SlideStatement.jsx';
 
+const q2Controls = SlideQuarter.controls.map((control) => (
+  control.key === 'metricCount' ? { ...control, default: 6, max: 6 } : control
+));
+
 const sourcePages = [
   // ── 通用封面模板（标准页面组件，非 staticHtml）─────────────────
   { key: 'coverA',   Comp: SlideCoverA,   label: '封面A · 智联万物 / PRODUCT LAUNCH', defaultProps: SlideCoverA.defaults, controls: SlideCoverA.controls },
@@ -65,7 +69,7 @@ const sourcePages = [
   { key: 'chapter',  Comp: SlideChapter,  label: '06 · 市场数据深拆 / CHAPTER', defaultProps: SlideChapter.defaults, controls: SlideChapter.controls },
   { key: 'dealmap',  Comp: SlideDealMap,  label: '07 · 规模分层 / DEAL MAP', defaultProps: SlideDealMap.defaults, controls: SlideDealMap.controls },
   { key: 'q1',       Comp: SlideQuarter,  label: '08 · 冷启动季度 / Q1 BREAKDOWN', defaultProps: SlideQuarter.defaults, controls: SlideQuarter.controls },
-  { key: 'q2',       Comp: SlideQuarter,  label: '09 · 加速季度 / Q2 BREAKDOWN', initial: SlideQuarter.presetQ2, defaultProps: { ...SlideQuarter.defaults, ...SlideQuarter.presetQ2 }, controls: SlideQuarter.controls },
+  { key: 'q2',       Comp: SlideQuarter,  label: '09 · 加速季度 / Q2 BREAKDOWN', initial: SlideQuarter.presetQ2, defaultProps: { ...SlideQuarter.defaults, ...SlideQuarter.presetQ2 }, controls: q2Controls },
   { key: 'q3',       Comp: SlidePeakMedia, label: '10 · 峰值季度 / Q3 PEAK', defaultProps: SlidePeakMedia.defaults, controls: SlidePeakMedia.controls },
   { key: 'q4',       Comp: SlideTimeline, label: '11 · 回落季度 / Q4 PULLBACK', defaultProps: SlideTimeline.defaults, controls: SlideTimeline.controls },
   { key: 'peaktrough', Comp: SlidePeakTrough, label: '12 · 峰值与低位 / PEAK & TROUGH', defaultProps: SlidePeakTrough.defaults, controls: SlidePeakTrough.controls },
@@ -129,7 +133,7 @@ const sourcePages = [
   { key: 'compute',  Comp: SlideBigNumber,  label: '63 · 毛利天花板 / COMPUTE COST', initial: SlideBigNumber.presetCompute, defaultProps: { ...SlideBigNumber.defaults, ...SlideBigNumber.presetCompute }, controls: SlideBigNumber.controls },
   { key: 'openrisk', Comp: SlideMeter,      label: '64 · 壁垒被压缩 / OPEN SOURCE RISK', initial: SlideMeter.presetOpenRisk, defaultProps: { ...SlideMeter.defaults, ...SlideMeter.presetOpenRisk }, controls: SlideMeter.controls },
   { key: 'infra',    Comp: SlideStrategy,   label: '65 · 确定性预算 / INFRA STRATEGY', defaultProps: SlideStrategy.defaults, controls: SlideStrategy.controls },
-  { key: 'vertical', Comp: SlideStrategy,   label: '66 · 嵌入工作流 / VERTICAL STRATEGY', initial: SlideStrategy.presetVertical, defaultProps: { ...SlideStrategy.defaults, ...SlideStrategy.presetVertical }, controls: SlideStrategy.controls },
+  { key: 'vertical', Comp: SlideStrategy,   label: '66 · 嵌入工作流 / VERTICAL STRATEGY', initial: SlideStrategy.presetVertical, defaultProps: { ...SlideStrategy.defaults, ...SlideStrategy.presetVertical }, controls: SlideStrategy.controlsFor({ maxCardCount: 5, defaultCardCount: 5 }) },
   { key: 'quote',    Comp: SlideQuote,    label: '67 · 结论 / CONCLUSION', defaultProps: SlideQuote.defaults, controls: SlideQuote.controls },
   // ── 收尾 ─────────────────
   { key: 'ipowatch', Comp: SlideRoadmap,  label: '68 · 估值锚重定价 / IPO WATCH', defaultProps: SlideRoadmap.defaults, controls: SlideRoadmap.controls },

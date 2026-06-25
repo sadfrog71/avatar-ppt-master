@@ -24,7 +24,7 @@ export default function Page68Platform(props) {
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
   const bands = layers.slice(0, Math.max(2, layerCount));
-  const fIdx = Math.min(focusIndex, bands.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, bands.length - 1));
   const photoBands = Math.min(mediaCount, bands.length);
   const tiles = metrics.slice(0, Math.max(2, metricCount));
   const accents = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-red)', 'var(--acl-ink)', 'var(--acl-yellow)'];
@@ -240,7 +240,7 @@ Page68Platform.controls = [
     label: '指标数量', desc: '左侧大数字下方支撑指标格数量(2–3)' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否突出某一个平台层带' },
-  { key: 'focusIndex', type: 'number', default: 3, min: 0, maxFrom: 'layerCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 3, min: 0, max: 4, maxFrom: 'layerCount', step: 1,
     label: '重点对象', desc: '被突出的层带序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘装饰与贴纸标签的显示/隐藏' },

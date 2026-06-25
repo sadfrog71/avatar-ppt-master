@@ -29,7 +29,7 @@
 //   accent (color)
 // ============================================================================
 import React from 'react';
-import { KxEyebrow, KxGrid } from './kit.jsx';
+import { KxEyebrow, KxGrid, KxMediaSlotColumn } from './kit.jsx';
 
 if (typeof document !== 'undefined' && !document.getElementById('kx-mtr-css')) {
   const css = `
@@ -44,6 +44,7 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-mtr-css')) {
   .kx-mtr-tag b{color:var(--kx-accent);}
 
   .kx-mtr-main{flex:1;min-height:0;display:grid;column-gap:56px;padding:30px 0 6px;}
+  .kx-mtr-main.kx-withmedia{column-gap:38px;}
   /* left thesis column */
   .kx-mtr-left{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--kx-line);padding-right:52px;}
   .kx-mtr-badge{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;
@@ -62,6 +63,7 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-mtr-css')) {
 
   /* right meter column */
   .kx-mtr-right{display:flex;flex-direction:column;min-height:0;justify-content:center;gap:18px;}
+  .kx-mtr-media{--kx-media-gap:18px;min-width:0;}
   /* horizontal meters */
   .kx-mtr-row{border-radius:22px;border:1px solid var(--kx-line);background:rgba(255,255,255,.035);
     padding:22px 28px 24px;display:flex;flex-direction:column;gap:14px;}
@@ -129,6 +131,7 @@ function SlideMeter(props) {
   const max = p.maxValue || 100;
   const pct = (v) => clamp((parseFloat(v) / max) * 100, 0, 100);
   const showThesis = p.showThesis;
+  const slots = clamp(Number(p.mediaSlotCount) || 0, 0, 2);
 
   // ---- left thesis column ----------------------------------------------
   const left = h('div', { className: 'kx-mtr-left' },
@@ -176,7 +179,22 @@ function SlideMeter(props) {
         p.showValueLabels ? h('div', { className: 'kx-mtr-dotval' }, m.value, m.unit ? h('span', { className: 'kx-u', style: { fontSize: '24px', color: 'var(--kx-mute-2)' } }, m.unit) : null) : null); }));
 
   const right = p.chartType === 'columns' ? columnsView : p.chartType === 'dots' ? dotsView : metersView;
-  const mainCols = showThesis ? '0.82fr 1.18fr' : '0fr 1fr';
+  const media = h(KxMediaSlotColumn, {
+    className: 'kx-mtr-media',
+    slots,
+    idBase: 'meter-' + (p.eyebrowId || 'x'),
+    placeholder: p.mediaPlaceholder || '指标主视觉 / DROP IMAGE',
+    badge: p.tagLabel || p.eyebrowLabel,
+    minRatio: 0.78,
+    maxRatio: 1.48,
+    multiMinRatio: 1.2,
+    multiMaxRatio: 2.1,
+  });
+  const mainCols = showThesis
+    ? (slots ? '0.64fr 0.92fr 0.72fr' : '0.82fr 1.18fr')
+    : (slots ? '1fr 0.72fr' : '1fr');
+  const mainChildren = showThesis ? [left, right] : [right];
+  if (slots) mainChildren.push(media);
 
   return h('div', { className: 'kx-slide kx-dark', style: { '--kx-accent': p.accent } },
     h(KxGrid, { cols: 6 }),
@@ -187,9 +205,7 @@ function SlideMeter(props) {
           h('h2', { className: 'kx-h2 kx-cjk kx-mtr-title', style: { marginTop: '16px' } }, p.title),
           h('div', { className: 'kx-mtr-sub' }, p.subhead)),
         h('div', { className: 'kx-mtr-tag' }, p.tagLabel ? h('b', null, p.tagLabel) : p.eyebrowLabel)),
-      showThesis
-        ? h('div', { className: 'kx-mtr-main', style: { gridTemplateColumns: mainCols } }, left, right)
-        : h('div', { className: 'kx-mtr-main', style: { gridTemplateColumns: '1fr' } }, right),
+      h('div', { className: 'kx-mtr-main' + (slots ? ' kx-withmedia' : ''), style: { gridTemplateColumns: mainCols } }, mainChildren),
       h('div', { className: 'kx-mtr-foot' },
         h('div', { className: 'kx-cl' }, '→ ' + p.closing),
         h('div', { className: 'kx-rt' }, p.footRight || (meters.length + ' READINGS / ' + String(p.chartType).toUpperCase())))));
@@ -210,8 +226,9 @@ SlideMeter.defaults = {
   ],
   maxValue: 100,
   footRight: '4 READINGS / METERS',
+  mediaPlaceholder: '指标主视觉 / DROP IMAGE',
   chartType: 'meters', meterCount: 4,
-  showTrack: true, showValueLabels: true, showNote: true, showThesis: true,
+  mediaSlotCount: 0, showTrack: true, showValueLabels: true, showNote: true, showThesis: true,
   focusEnabled: true, focusIndex: 0, accent: '#c8f135',
 };
 
@@ -219,6 +236,8 @@ SlideMeter.controls = [
   { key: 'chartType', label: '图表类型', type: 'select', default: 'meters',
     options: [['meters', '进度条'], ['columns', '纵向柱'], ['dots', '点阵刻度']], desc: '同一组比率的可视化形式' },
   { key: 'meterCount', label: '指标数量', type: 'number', default: 4, min: 2, max: 4, desc: '展示的比率读数数量' },
+  { key: 'mediaSlotCount', label: '图片槽数量', type: 'number', default: 0, min: 0, max: 2,
+    desc: '右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）' },
   { key: 'showThesis', label: '左侧论点栏', type: 'toggle', default: true, desc: '显示/隐藏左侧论点 + 判断栏（装饰框架）' },
   { key: 'showTrack', label: '剩余轨道', type: 'toggle', default: true, desc: '进度条剩余部分的斜纹轨道（装饰，仅进度条）', showIf: (p) => p.chartType === 'meters' },
   { key: 'showValueLabels', label: '数值标签', type: 'toggle', default: true, desc: '各读数的大号数字（装饰数据）' },
@@ -230,7 +249,7 @@ SlideMeter.controls = [
 ];
 
 // P76 壁垒被压缩 / 开源与大厂竞争 — reuse this meter board via a preset passed as props.
-// Three competitive-pressure ratios + a verdict. Migration:
+// Competitive-pressure ratios + a verdict. Migration:
 //   <SlideMeter {...SlideMeter.presetOpenRisk} />.
 SlideMeter.presetOpenRisk = {
   eyebrowId: '76', eyebrowLabel: 'OPEN SOURCE RISK',
@@ -243,11 +262,13 @@ SlideMeter.presetOpenRisk = {
     { name: '开源模型性能逼近', en: 'OSS PARITY', value: '86', unit: '%', note: '开源与闭源能力差距快速收敛' },
     { name: '大厂产品覆盖', en: 'INCUMBENT COVERAGE', value: '72', unit: '%', note: '云与办公巨头已自带同类能力' },
     { name: '企业自建意愿', en: 'BUILD-IN-HOUSE', value: '34', unit: '%', note: '部分大客户转向自建替代采购' },
+    { name: '价格压缩风险', en: 'PRICE PRESSURE', value: '61', unit: '%', note: '同类能力被平台集成后，独立产品定价承压' },
   ],
   maxValue: 100,
-  footRight: '3 READINGS / METERS',
-  chartType: 'meters', meterCount: 3,
-  showTrack: true, showValueLabels: true, showNote: true, showThesis: true,
+  footRight: '',
+  mediaPlaceholder: '开源竞争压力主视觉 / DROP IMAGE',
+  chartType: 'meters', meterCount: 4,
+  mediaSlotCount: 1, showTrack: true, showValueLabels: true, showNote: true, showThesis: true,
   focusEnabled: true, focusIndex: 0, accent: '#c8f135',
 };
 

@@ -12,7 +12,7 @@ const COPY = {
   eyebrow: 'Structure',
   title: '报告结构',
   sub: '从方法到结论的阅读路径',
-  lead: '整份报告按研究方法、市场全景、横向透视、产业链、典型案例、风险展望和结论展开。',
+  lead: '整份报告按研究方法、市场全景、横向透视、产业链、典型案例、风险展望、结论和数据来源展开。',
   closing: '先建立框架，再进入数据和判断。',
   chapters: [
     { no: '01', zh: '研究方法', en: 'Methodology' },
@@ -22,12 +22,13 @@ const COPY = {
     { no: '05', zh: '典型案例', en: 'Case Studies' },
     { no: '06', zh: '风险展望', en: 'Risk & Outlook' },
     { no: '07', zh: '结论判断', en: 'Conclusion' },
+    { no: '08', zh: '数据来源', en: 'Data Sources' },
   ],
 };
 
 export const defaultProps = {
   ...COPY,
-  cardCount: 7,
+  cardCount: 8,
   focusEnabled: true,
   focusIndex: 1,
   columns: 4,
@@ -39,17 +40,18 @@ export const controls = [
   { key: 'eyebrow', label: '眉标', type: 'text', default: 'Structure' },
   { key: 'title', label: '标题', type: 'text', default: '报告结构' },
   { key: 'sub', label: '次标题', type: 'text', default: '从方法到结论的阅读路径' },
-  { key: 'lead', label: '导言', type: 'text', default: '整份报告按研究方法、市场全景、横向透视、产业链、典型案例、风险展望和结论展开。' },
+  { key: 'lead', label: '导言', type: 'text', default: '整份报告按研究方法、市场全景、横向透视、产业链、典型案例、风险展望、结论和数据来源展开。' },
   { key: 'closing', label: '结语', type: 'text', default: '先建立框架，再进入数据和判断。' },
-  { key: 'cardCount', label: '章节卡数量', type: 'slider', default: 7, min: 3, max: 7, step: 1,
-    description: '展示的章节卡数量（3–7）。' },
+  { key: 'cardCount', label: '章节卡数量', type: 'slider', default: 8, min: 3, max: 8, step: 1,
+    description: '展示的章节卡数量（3–8）。' },
   { key: 'columns', label: '每行列数', type: 'radio', default: 4,
     options: [{ value: 3, label: '3 列' }, { value: 4, label: '4 列' }],
-    description: '章节卡的网格列数，影响排布节奏。' },
+    description: '章节卡的网格列数；3 列仅用于 6 张以内。',
+    dependsOn: 'cardCount', dependsOnValues: [3, 4, 5, 6] },
   { key: 'focusEnabled', label: '重点信息', type: 'toggle', default: true,
     description: '是否高亮某一章节卡作为阅读重点。' },
   { key: 'focusIndex', label: '重点元素', type: 'select', default: 1,
-    options: [0,1,2,3,4,5,6].map((i) => ({ value: i, label: '第 ' + (i + 1) + ' 个' })),
+    options: [0,1,2,3,4,5,6,7].map((i) => ({ value: i, label: '第 ' + (i + 1) + ' 个' })),
     description: '选择被高亮的章节卡。', showWhen: (p) => p.focusEnabled },
   { key: 'showDecorations', label: '装饰文案', type: 'toggle', default: true,
     description: '序号水印与条码等装饰的显隐。' },
@@ -116,9 +118,9 @@ export default function ContentsPage(props) {
   injectScopedStyle('aic-toc', CSS);
   const vars = themeVars(p.accentColor);
 
-  const n = Math.max(3, Math.min(7, p.cardCount));
+  const n = Math.max(3, Math.min(8, p.cardCount));
   const chapters = copy.chapters.slice(0, n);
-  const cols = p.columns === 3 ? 3 : 4;
+  const cols = n <= 6 && p.columns === 3 ? 3 : 4;
   const focus = Math.max(0, Math.min(n - 1, p.focusIndex));
 
   return (

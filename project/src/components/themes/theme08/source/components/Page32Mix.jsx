@@ -80,7 +80,8 @@ export default function Page32Mix(props) {
         .acl-mxs__legname{ flex:1; font-weight:700; font-size:25px; }
         .acl-mxs__legname small{ display:block; font-family:var(--acl-font-mono); font-weight:400;
           font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:rgba(22,21,15,.46); margin-top:1px; }
-        .acl-mxs__legval{ font-family:var(--acl-font-num); font-size:46px; line-height:.85; }
+        .acl-mxs__legval{ align-self:stretch; display:inline-flex; align-items:center; justify-content:flex-end;
+          font-family:var(--acl-font-num); font-size:46px; line-height:1; }
         .acl-mxs__legval em{ font-style:normal; font-family:var(--acl-font-cn); font-weight:700; font-size:16px; opacity:.55; }
         .acl-mxs__leg--focus{ background:var(--acl-ink); color:var(--acl-paper); margin:0 -12px; padding:14px 12px; border-bottom-color:transparent; }
         .acl-mxs__leg--focus .acl-mxs__legname small{ color:rgba(255,255,255,.5); }

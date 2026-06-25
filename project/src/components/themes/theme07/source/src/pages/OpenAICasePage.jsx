@@ -53,6 +53,7 @@ export const defaultProps = {
   ...COPY,
   imageCount: 1,           // hero image slots (0–2)
   imageRatio: 'portrait',  // 'portrait' | 'landscape' | 'square' | 'auto'
+  images: [],
   metricCount: 3,          // headline metrics shown (2–4)
   focusEnabled: true,      // highlight one metric
   focusIndex: 0,           // which metric is the focus (0-based)

@@ -24,15 +24,18 @@ export default function Page85HeroSplit(props) {
 
   const chips = tags.slice(0, Math.max(2, tagCount));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
-  const fIdx = Math.min(focusIndex, chips.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, chips.length - 1));
   const slots = collage[mediaCount] || [];
+  const hasMedia = slots.length > 0;
+  const rootClass = ['acl-root', 'acl-hs', !hasMedia ? 'acl-hs--no-media' : ''].filter(Boolean).join(' ');
 
   return (
-    <div className="acl-root acl-hs" style={{ background: bg }}>
+    <div className={rootClass} style={{ background: bg }}>
       <style>{`
         .acl-hs{ position:absolute; inset:0; overflow:hidden; font-family:var(--acl-font-cn);
-          color:var(--acl-ink); padding:74px 96px 58px; display:flex; gap:48px; }
-        .acl-hs__left{ flex:0 0 47%; display:flex; flex-direction:column; min-width:0; z-index:3; }
+          color:var(--acl-ink); padding:74px 96px 58px; display:flex; gap:56px; }
+        .acl-hs__left{ flex:0 0 44%; display:flex; flex-direction:column; min-width:0; z-index:3;
+          padding-bottom:58px; }
         .acl-hs__eyebrow{ font-family:var(--acl-font-mono); font-weight:700; font-size:23px;
           letter-spacing:.16em; text-transform:uppercase; color:rgba(22,21,15,.55);
           display:flex; align-items:center; gap:14px; }
@@ -54,19 +57,27 @@ export default function Page85HeroSplit(props) {
           color:rgba(22,21,15,.5); }
         .acl-hs__chip--focus{ background:var(--acl-pink); color:var(--acl-paper); transform:translateY(-3px) rotate(-2deg); }
         .acl-hs__chip--focus i{ color:rgba(255,255,255,.7); }
-        .acl-hs__tiles{ display:flex; gap:0; margin-top:auto; padding-top:30px; }
-        .acl-hs__tile{ flex:1; padding-right:30px; margin-right:30px; border-right:3px solid rgba(22,21,15,.18); }
-        .acl-hs__tile:last-child{ border-right:0; margin-right:0; padding-right:0; }
+        .acl-hs__tiles{ display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+          gap:10px; margin-top:auto; padding-top:22px; max-width:690px; }
+        .acl-hs__tile{ min-height:86px; padding:13px 16px 12px; border:2.5px solid var(--acl-ink);
+          background:rgba(251,250,244,.82); box-shadow:3px 4px 0 rgba(22,21,15,.14);
+          display:flex; flex-direction:column; justify-content:center; min-width:0; }
         .acl-hs__tk{ font-family:var(--acl-font-mono); font-size:14px; letter-spacing:.06em;
           text-transform:uppercase; color:rgba(22,21,15,.5); }
-        .acl-hs__tv{ font-family:var(--acl-font-num); font-size:58px; line-height:.92; margin-top:4px; }
+        .acl-hs__tv{ font-family:var(--acl-font-num); font-size:50px; line-height:.9; margin-top:4px;
+          display:flex; align-items:flex-end; gap:4px; white-space:nowrap; }
         .acl-hs__tv em{ font-style:normal; font-family:var(--acl-font-cn); font-weight:700; font-size:18px;
-          margin-left:5px; color:rgba(22,21,15,.55); }
+          margin-left:0; line-height:1.1; color:rgba(22,21,15,.55); }
 
         .acl-hs__stage{ flex:1; position:relative; min-width:0; }
         .acl-hs__slot{ position:absolute; }
         .acl-hs__empty{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
           font-family:var(--acl-font-hand); font-size:40px; color:rgba(22,21,15,.4); transform:rotate(-4deg); }
+        .acl-hs--no-media .acl-hs__left{ flex:1 1 auto; max-width:none; padding-right:72px; }
+        .acl-hs--no-media .acl-hs__h{ max-width:1180px; font-size:112px; }
+        .acl-hs--no-media .acl-hs__lead{ max-width:1120px; font-size:29px; }
+        .acl-hs--no-media .acl-hs__chips{ max-width:1120px; }
+        .acl-hs--no-media .acl-hs__tiles{ max-width:860px; }
 
         .acl-hs__foot{ position:absolute; left:96px; bottom:24px; display:flex; align-items:center; gap:14px;
           font-family:var(--acl-font-hand); font-size:27px; z-index:4; }
@@ -109,24 +120,25 @@ export default function Page85HeroSplit(props) {
         </div>
       </div>
 
-      <div className="acl-hs__stage">
-        {slots.length === 0 && <div className="acl-hs__empty">// 图片数量 = 0</div>}
-        {slots.map((s, i) => (
-          <div className="acl-hs__slot" key={i} style={{ left: s.l, top: s.t, '--s': i, zIndex: s.z || 1 }}>
-            <AdaptiveImageSlot id={'hs-' + i} box={s.box} rotate={s.r} ratio={s.ratio}
-              accent={i === 0 ? 'var(--acl-paper)' : s.color}
-              placeholder={s.cap}
-              sticker={i === 0 ? { label: s.cap, color: 'var(--acl-yellow)', subColor: 'var(--acl-ink)', sub: 'A', rotate: -4 } : null} />
-          </div>
-        ))}
-        {showDecor && slots.length > 0 && (
-          <React.Fragment>
-            <Doodle kind="arrow" size={90} rotate={158} color="var(--acl-ink)" style={{ left: -28, top: 30 }} />
-            <Doodle kind="spark" size={40} rotate={10} fill="var(--acl-yellow)" stroke="var(--acl-ink)" style={{ right: 6, top: -6 }} />
-            <Doodle kind="heart" size={38} rotate={-8} fill="var(--acl-pink)" stroke="var(--acl-ink)" style={{ right: 60, bottom: 24 }} />
-          </React.Fragment>
-        )}
-      </div>
+      {hasMedia && (
+        <div className="acl-hs__stage">
+          {slots.map((s, i) => (
+            <div className="acl-hs__slot" key={i} style={{ left: s.l, top: s.t, '--s': i, zIndex: s.z || 1 }}>
+              <AdaptiveImageSlot id={'hs-' + i} box={s.box} rotate={s.r} ratio={s.ratio}
+                accent={i === 0 ? 'var(--acl-paper)' : s.color}
+                placeholder={s.cap}
+                sticker={i === 0 ? { label: s.cap, color: 'var(--acl-yellow)', subColor: 'var(--acl-ink)', sub: 'A', rotate: -4 } : null} />
+            </div>
+          ))}
+          {showDecor && (
+            <React.Fragment>
+              <Doodle kind="arrow" size={90} rotate={158} color="var(--acl-ink)" style={{ left: -28, top: 30 }} />
+              <Doodle kind="spark" size={40} rotate={10} fill="var(--acl-yellow)" stroke="var(--acl-ink)" style={{ right: 6, top: -6 }} />
+              <Doodle kind="heart" size={38} rotate={-8} fill="var(--acl-pink)" stroke="var(--acl-ink)" style={{ right: 60, bottom: 24 }} />
+            </React.Fragment>
+          )}
+        </div>
+      )}
 
       <div className="acl-hs__foot">
         {showDecor && <Doodle kind="loop" size={52} style={{ position: 'static' }} />}
@@ -164,13 +176,13 @@ Page85HeroSplit.defaults = {
       { l: 60, t: 70, box: 600, r: -2, ratio: 0.92, z: 2, cap: '主视觉', color: 'var(--acl-yellow)' },
     ],
     2: [
-      { l: 90, t: 20, box: 540, r: -2, ratio: 0.96, z: 2, cap: '主视觉', color: 'var(--acl-yellow)' },
-      { l: 8, t: 470, box: 300, r: 4, ratio: 1.2, z: 3, cap: '场景', color: 'var(--acl-blue)' },
+      { l: 210, t: 20, box: 460, r: -2, ratio: 0.96, z: 2, cap: '主视觉', color: 'var(--acl-yellow)' },
+      { l: 10, t: 390, box: 380, r: 4, ratio: 1.18, z: 3, cap: '场景', color: 'var(--acl-blue)' },
     ],
     3: [
-      { l: 150, t: 0, box: 520, r: -2, ratio: 0.96, z: 2, cap: '主视觉', color: 'var(--acl-yellow)' },
-      { l: 0, t: 380, box: 290, r: 4, ratio: 1.18, z: 3, cap: '场景', color: 'var(--acl-blue)' },
-      { l: 470, t: 500, box: 250, r: -5, ratio: 0.82, z: 3, cap: '团队', color: 'var(--acl-pink)' },
+      { l: 235, t: 20, box: 410, r: -2, ratio: 0.96, z: 2, cap: '主视觉', color: 'var(--acl-yellow)' },
+      { l: 0, t: 300, box: 350, r: 4, ratio: 1.18, z: 3, cap: '场景', color: 'var(--acl-blue)' },
+      { l: 365, t: 430, box: 340, r: -5, ratio: 0.9, z: 3, cap: '团队', color: 'var(--acl-pink)' },
     ],
   },
   closingLine: '入场方式，本身就是一种判断。',
@@ -181,7 +193,7 @@ Page85HeroSplit.controls = [
   { key: 'backgroundTheme', type: 'enum', default: 'muted', options: ['primary', 'muted'],
     label: '背景主题', desc: '主色(电光黄) 或 次色(淡紫灰) 底色' },
   { key: 'mediaCount', type: 'number', default: 3, min: 0, max: 3, step: 1,
-    label: '图片数量', desc: '主视觉+裁切配图槽数量(0–3)；布局随数量自动平衡，每槽按上传图片比例自适应' },
+    label: '图片数量', desc: '主视觉+裁切配图槽数量(0–3)；为 0 时收起图片区，文字内容全宽自适应；每槽按上传图片比例自适应' },
   { key: 'tagCount', type: 'number', default: 4, min: 2, max: 5, step: 1,
     label: '要点标签数量', desc: '左栏要点标签数量(2–5)' },
   { key: 'metricCount', type: 'number', default: 3, min: 2, max: 4, step: 1,

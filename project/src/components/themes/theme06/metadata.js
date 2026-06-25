@@ -15,7 +15,6 @@ export const pages = [
     "layout": "THEME06-001",
     "slot": "coverA",
     "label": "封面A · 智联万物 / PRODUCT LAUNCH",
-    "bgClass": "",
     "controls": [
       {
         "key": "showMidBtn",
@@ -33,10 +32,22 @@ export const pages = [
         "type": "color",
         "default": "#d2fb30",
         "options": [
-          "#d2fb30",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#d2fb30",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色（影响荧光绿元素）",
         "publicKey": "accent",
@@ -70,7 +81,8 @@ export const pages = [
       ],
       "accent": "#d2fb30",
       "showMidBtn": true
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page002",
@@ -79,7 +91,6 @@ export const pages = [
     "layout": "THEME06-002",
     "slot": "coverB",
     "label": "封面B · 新机遇 / BUSINESS PLAN",
-    "bgClass": "",
     "controls": [
       {
         "key": "showHaze",
@@ -97,10 +108,22 @@ export const pages = [
         "type": "color",
         "default": "#d2fb30",
         "options": [
-          "#d2fb30",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#d2fb30",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色（影响荧光绿元素）",
         "publicKey": "accent",
@@ -131,7 +154,8 @@ export const pages = [
       ],
       "accent": "#d2fb30",
       "showHaze": true
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page003",
@@ -140,7 +164,6 @@ export const pages = [
     "layout": "THEME06-003",
     "slot": "coverC",
     "label": "封面C · 精益智造 / LEAN MFG",
-    "bgClass": "",
     "controls": [
       {
         "key": "activeStep",
@@ -160,10 +183,22 @@ export const pages = [
         "type": "color",
         "default": "#d2fb30",
         "options": [
-          "#d2fb30",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#d2fb30",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色（影响荧光绿元素）",
         "publicKey": "accent",
@@ -207,7 +242,8 @@ export const pages = [
       ],
       "accent": "#d2fb30",
       "activeStep": 2
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page004",
@@ -216,7 +252,6 @@ export const pages = [
     "layout": "THEME06-004",
     "slot": "coverD",
     "label": "封面D · 品牌整合营销 / BRAND MKT",
-    "bgClass": "",
     "controls": [
       {
         "key": "showWatermark",
@@ -244,10 +279,22 @@ export const pages = [
         "type": "color",
         "default": "#d2fb30",
         "options": [
-          "#d2fb30",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#d2fb30",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色（影响荧光绿元素）",
         "publicKey": "accent",
@@ -279,7 +326,8 @@ export const pages = [
       "accent": "#d2fb30",
       "showWatermark": true,
       "showGlow": true
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page005",
@@ -288,7 +336,6 @@ export const pages = [
     "layout": "THEME06-005",
     "slot": "cover",
     "label": "01 · 封面 / COVER",
-    "bgClass": "",
     "controls": [
       {
         "key": "showWatermark",
@@ -340,10 +387,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -389,7 +448,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 1,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page006",
@@ -398,7 +458,6 @@ export const pages = [
     "layout": "THEME06-006",
     "slot": "summary",
     "label": "02 · 报告摘要 / OVERVIEW",
-    "bgClass": "",
     "controls": [
       {
         "key": "metricCount",
@@ -440,18 +499,24 @@ export const pages = [
         "type": "select",
         "default": "bars",
         "options": [
-          [
-            "bars",
-            "条形"
-          ],
-          [
-            "stack",
-            "堆叠条"
-          ],
-          [
-            "dots",
-            "点阵"
-          ]
+          {
+            "value": "bars",
+            "label": "条形",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "stack",
+            "label": "堆叠条",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "dots",
+            "label": "点阵",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "右侧分类占比图表的呈现形式",
         "publicKey": "chartType",
@@ -474,10 +539,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -545,7 +622,8 @@ export const pages = [
       "chartType": "bars",
       "showCaption": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page007",
@@ -554,15 +632,14 @@ export const pages = [
     "layout": "THEME06-007",
     "slot": "contents",
     "label": "03 · 报告结构 / STRUCTURE",
-    "bgClass": "",
     "controls": [
       {
         "key": "cardCount",
         "label": "章节卡数量",
         "type": "number",
-        "default": 7,
+        "default": 6,
         "min": 3,
-        "max": 7,
+        "max": 6,
         "desc": "展示的章节数量",
         "publicKey": "cardCount",
         "publicLabel": "章节卡数量",
@@ -574,14 +651,18 @@ export const pages = [
         "type": "select",
         "default": "rows",
         "options": [
-          [
-            "rows",
-            "列表"
-          ],
-          [
-            "grid",
-            "网格"
-          ]
+          {
+            "value": "rows",
+            "label": "列表",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "grid",
+            "label": "网格",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "章节的排布形式",
         "publicKey": "layout",
@@ -604,7 +685,7 @@ export const pages = [
         "type": "number",
         "default": 1,
         "min": 0,
-        "max": 6,
+        "max": 5,
         "desc": "被突出的章节序号",
         "publicKey": "focusIndex",
         "publicLabel": "高亮第几章",
@@ -626,10 +707,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -680,13 +773,14 @@ export const pages = [
           "scope": "投资策略 · 数据来源"
         }
       ],
-      "cardCount": 7,
+      "cardCount": 6,
       "focusEnabled": true,
       "focusIndex": 1,
       "layout": "rows",
       "showColumnHeaders": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page008",
@@ -695,7 +789,6 @@ export const pages = [
     "layout": "THEME06-008",
     "slot": "method",
     "label": "04 · 研究方法 / METHODOLOGY",
-    "bgClass": "",
     "controls": [
       {
         "key": "cardCount",
@@ -715,14 +808,18 @@ export const pages = [
         "type": "select",
         "default": "stack",
         "options": [
-          [
-            "stack",
-            "堆叠"
-          ],
-          [
-            "list",
-            "列表"
-          ]
+          {
+            "value": "stack",
+            "label": "堆叠",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "list",
+            "label": "列表",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "左侧方法卡的排布形式",
         "publicKey": "stackStyle",
@@ -767,10 +864,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -811,7 +920,8 @@ export const pages = [
       "stackStyle": "stack",
       "showDecor": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page009",
@@ -820,7 +930,6 @@ export const pages = [
     "layout": "THEME06-009",
     "slot": "trend",
     "label": "05 · 市场全景 / TREND",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -828,18 +937,24 @@ export const pages = [
         "type": "select",
         "default": "area",
         "options": [
-          [
-            "area",
-            "面积"
-          ],
-          [
-            "bars",
-            "柱状"
-          ],
-          [
-            "line",
-            "折线"
-          ]
+          {
+            "value": "area",
+            "label": "面积",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "柱状",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "line",
+            "label": "折线",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "主视觉图表的呈现形式",
         "publicKey": "chartType",
@@ -872,13 +987,13 @@ export const pages = [
         "key": "focusIndex",
         "label": "高亮第几个",
         "type": "number",
-        "default": 2,
-        "min": 0,
-        "max": 5,
-        "desc": "被高亮的数据点序号",
+        "default": 3,
+        "min": 1,
+        "max": 6,
+        "desc": "被高亮的数据点序号（从 1 开始）",
         "publicKey": "focusIndex",
         "publicLabel": "高亮第几个",
-        "description": "被高亮的数据点序号"
+        "description": "被高亮的数据点序号（从 1 开始）"
       },
       {
         "key": "showDecor",
@@ -896,10 +1011,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -939,11 +1066,12 @@ export const pages = [
       ],
       "metricCount": 4,
       "focusEnabled": true,
-      "focusIndex": 2,
+      "focusIndex": 3,
       "chartType": "area",
       "showDecor": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page010",
@@ -952,7 +1080,6 @@ export const pages = [
     "layout": "THEME06-010",
     "slot": "chapter",
     "label": "06 · 市场数据深拆 / CHAPTER",
-    "bgClass": "",
     "controls": [
       {
         "key": "background",
@@ -960,18 +1087,24 @@ export const pages = [
         "type": "select",
         "default": "glow",
         "options": [
-          [
-            "glow",
-            "光晕"
-          ],
-          [
-            "solid",
-            "纯色"
-          ],
-          [
-            "panel",
-            "色块"
-          ]
+          {
+            "value": "glow",
+            "label": "光晕",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "solid",
+            "label": "纯色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "panel",
+            "label": "色块",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "分隔页背景的呈现形式",
         "publicKey": "background",
@@ -1038,10 +1171,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -1070,7 +1215,8 @@ export const pages = [
       "background": "glow",
       "showWatermark": false,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page011",
@@ -1079,7 +1225,6 @@ export const pages = [
     "layout": "THEME06-011",
     "slot": "dealmap",
     "label": "07 · 规模分层 / DEAL MAP",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -1087,18 +1232,24 @@ export const pages = [
         "type": "select",
         "default": "bubbles",
         "options": [
-          [
-            "bubbles",
-            "气泡"
-          ],
-          [
-            "dots",
-            "点阵"
-          ],
-          [
-            "bars",
-            "条形"
-          ]
+          {
+            "value": "bubbles",
+            "label": "气泡",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "dots",
+            "label": "点阵",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "条形",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "规模分层的可视化形式",
         "publicKey": "chartType",
@@ -1155,10 +1306,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -1205,7 +1368,8 @@ export const pages = [
       "focusIndex": 3,
       "showValueLabels": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page012",
@@ -1214,7 +1378,6 @@ export const pages = [
     "layout": "THEME06-012",
     "slot": "q1",
     "label": "08 · 冷启动季度 / Q1 BREAKDOWN",
-    "bgClass": "",
     "controls": [
       {
         "key": "layout",
@@ -1222,14 +1385,18 @@ export const pages = [
         "type": "select",
         "default": "chart",
         "options": [
-          [
-            "chart",
-            "图表卡"
-          ],
-          [
-            "table",
-            "表格"
-          ]
+          {
+            "value": "chart",
+            "label": "图表卡",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "table",
+            "label": "表格",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "右侧指标的呈现形式",
         "publicKey": "layout",
@@ -1296,10 +1463,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -1364,7 +1543,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 0,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page013",
@@ -1373,7 +1553,6 @@ export const pages = [
     "layout": "THEME06-013",
     "slot": "q2",
     "label": "09 · 加速季度 / Q2 BREAKDOWN",
-    "bgClass": "",
     "controls": [
       {
         "key": "layout",
@@ -1381,14 +1560,18 @@ export const pages = [
         "type": "select",
         "default": "chart",
         "options": [
-          [
-            "chart",
-            "图表卡"
-          ],
-          [
-            "table",
-            "表格"
-          ]
+          {
+            "value": "chart",
+            "label": "图表卡",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "table",
+            "label": "表格",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "右侧指标的呈现形式",
         "publicKey": "layout",
@@ -1399,9 +1582,9 @@ export const pages = [
         "key": "metricCount",
         "label": "指标数量",
         "type": "number",
-        "default": 3,
+        "default": 6,
         "min": 2,
-        "max": 4,
+        "max": 6,
         "desc": "辅助指标的数量",
         "publicKey": "metricCount",
         "publicLabel": "指标数量",
@@ -1455,10 +1638,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -1496,6 +1691,18 @@ export const pages = [
         {
           "k": "环比增长 / QoQ",
           "v": "+75.3%"
+        },
+        {
+          "k": "头部集中 / TOP 5",
+          "v": "58%"
+        },
+        {
+          "k": "新增赛道 / NEW TRACKS",
+          "v": "4 个"
+        },
+        {
+          "k": "跟投活跃 / FOLLOW-ON",
+          "v": "19 家"
         }
       ],
       "context": [
@@ -1517,13 +1724,14 @@ export const pages = [
         }
       ],
       "layout": "table",
-      "metricCount": 3,
+      "metricCount": 6,
       "showTrend": true,
       "showDelta": true,
       "focusEnabled": true,
       "focusIndex": 1,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page014",
@@ -1532,7 +1740,6 @@ export const pages = [
     "layout": "THEME06-014",
     "slot": "q3",
     "label": "10 · 峰值季度 / Q3 PEAK",
-    "bgClass": "",
     "controls": [
       {
         "key": "mediaSlotCount",
@@ -1596,10 +1803,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -1641,7 +1860,8 @@ export const pages = [
       "focusIndex": 2,
       "showPeakBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page015",
@@ -1650,7 +1870,6 @@ export const pages = [
     "layout": "THEME06-015",
     "slot": "q4",
     "label": "11 · 回落季度 / Q4 PULLBACK",
-    "bgClass": "",
     "controls": [
       {
         "key": "nodeCount",
@@ -1724,10 +1943,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -1796,7 +2027,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 3,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page016",
@@ -1805,7 +2037,6 @@ export const pages = [
     "layout": "THEME06-016",
     "slot": "peaktrough",
     "label": "12 · 峰值与低位 / PEAK & TROUGH",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -1813,18 +2044,24 @@ export const pages = [
         "type": "select",
         "default": "columns",
         "options": [
-          [
-            "columns",
-            "柱状"
-          ],
-          [
-            "lollipop",
-            "棒棒糖"
-          ],
-          [
-            "dots",
-            "点阵"
-          ]
+          {
+            "value": "columns",
+            "label": "柱状",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "lollipop",
+            "label": "棒棒糖",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "dots",
+            "label": "点阵",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "峰谷对比的可视化形式",
         "publicKey": "chartType",
@@ -1901,10 +2138,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -1968,7 +2217,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 0,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page017",
@@ -1977,7 +2227,6 @@ export const pages = [
     "layout": "THEME06-017",
     "slot": "waterfall",
     "label": "13 · 赛道贡献 / WATERFALL",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -1985,18 +2234,24 @@ export const pages = [
         "type": "select",
         "default": "waterfall",
         "options": [
-          [
-            "waterfall",
-            "瀑布"
-          ],
-          [
-            "stack",
-            "堆叠条"
-          ],
-          [
-            "bars",
-            "条形"
-          ]
+          {
+            "value": "waterfall",
+            "label": "瀑布",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "stack",
+            "label": "堆叠条",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "条形",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "贡献拆分的可视化形式",
         "publicKey": "chartType",
@@ -2073,10 +2328,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -2127,7 +2394,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 0,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page018",
@@ -2136,7 +2404,6 @@ export const pages = [
     "layout": "THEME06-018",
     "slot": "sizesplit",
     "label": "14 · 金额区间结构 / SIZE SPLIT",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -2144,18 +2411,24 @@ export const pages = [
         "type": "select",
         "default": "diverging",
         "options": [
-          [
-            "diverging",
-            "双向对比"
-          ],
-          [
-            "grouped",
-            "分组柱"
-          ],
-          [
-            "stacked",
-            "百分比堆叠"
-          ]
+          {
+            "value": "diverging",
+            "label": "双向对比",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "grouped",
+            "label": "分组柱",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "stacked",
+            "label": "百分比堆叠",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "数量×数值双维度的可视化形式",
         "publicKey": "chartType",
@@ -2212,10 +2485,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -2265,7 +2550,8 @@ export const pages = [
       "focusIndex": 3,
       "showValueLabels": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page019",
@@ -2274,7 +2560,6 @@ export const pages = [
     "layout": "THEME06-019",
     "slot": "avgticket",
     "label": "15 · 赛道平均融资额 / AVG TICKET",
-    "bgClass": "",
     "controls": [
       {
         "key": "metricCount",
@@ -2289,19 +2574,35 @@ export const pages = [
         "description": "大数字下方的辅助指标数量（0 隐藏）"
       },
       {
+        "key": "mediaSlotCount",
+        "label": "图片槽数量",
+        "type": "number",
+        "default": 0,
+        "min": 0,
+        "max": 2,
+        "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
+        "publicKey": "mediaSlotCount",
+        "publicLabel": "图片槽数量",
+        "description": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）"
+      },
+      {
         "key": "align",
         "label": "对齐方式",
         "type": "select",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左对齐"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "左对齐",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "主数字区域的对齐方式",
         "publicKey": "align",
@@ -2324,10 +2625,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -2358,11 +2671,14 @@ export const pages = [
           "v": "$50B"
         }
       ],
+      "mediaPlaceholder": "主视觉 / DROP IMAGE",
       "metricCount": 3,
+      "mediaSlotCount": 0,
       "align": "center",
       "showWatermark": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page020",
@@ -2371,7 +2687,6 @@ export const pages = [
     "layout": "THEME06-020",
     "slot": "cumulative",
     "label": "16 · 累计资金分布 / CAPITAL CURVE",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -2379,18 +2694,24 @@ export const pages = [
         "type": "select",
         "default": "area",
         "options": [
-          [
-            "area",
-            "面积"
-          ],
-          [
-            "line",
-            "折线"
-          ],
-          [
-            "steps",
-            "阶梯"
-          ]
+          {
+            "value": "area",
+            "label": "面积",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "line",
+            "label": "折线",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "steps",
+            "label": "阶梯",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "累计曲线的可视化形式",
         "publicKey": "chartType",
@@ -2467,10 +2788,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -2519,7 +2852,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 3,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page021",
@@ -2528,7 +2862,6 @@ export const pages = [
     "layout": "THEME06-021",
     "slot": "ch03",
     "label": "17 · 赛道结构细分 / CHAPTER 03",
-    "bgClass": "",
     "controls": [
       {
         "key": "background",
@@ -2536,18 +2869,24 @@ export const pages = [
         "type": "select",
         "default": "glow",
         "options": [
-          [
-            "glow",
-            "光晕"
-          ],
-          [
-            "solid",
-            "纯色"
-          ],
-          [
-            "panel",
-            "色块"
-          ]
+          {
+            "value": "glow",
+            "label": "光晕",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "solid",
+            "label": "纯色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "panel",
+            "label": "色块",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "分隔页背景的呈现形式",
         "publicKey": "background",
@@ -2614,10 +2953,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -2648,7 +2999,8 @@ export const pages = [
       "background": "glow",
       "showWatermark": false,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page022",
@@ -2657,7 +3009,6 @@ export const pages = [
     "layout": "THEME06-022",
     "slot": "radar",
     "label": "18 · 模型实验室竞争 / MODEL LAB RACE",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -2665,18 +3016,24 @@ export const pages = [
         "type": "select",
         "default": "radar",
         "options": [
-          [
-            "radar",
-            "雷达"
-          ],
-          [
-            "bars",
-            "柱状"
-          ],
-          [
-            "dots",
-            "点阵"
-          ]
+          {
+            "value": "radar",
+            "label": "雷达",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "柱状",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "dots",
+            "label": "点阵",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "多维能力的可视化形式",
         "publicKey": "chartType",
@@ -2753,10 +3110,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -2799,6 +3168,20 @@ export const pages = [
           "v": "-21%",
           "mag": 58,
           "base": 54
+        },
+        {
+          "k": "产品生态 / ECOSYSTEM",
+          "en": "PLATFORM INTEGRATION",
+          "v": "+46%",
+          "mag": 72,
+          "base": 49
+        },
+        {
+          "k": "安全治理 / GOVERNANCE",
+          "en": "SAFETY & COMPLIANCE",
+          "v": "+33%",
+          "mag": 61,
+          "base": 47
         }
       ],
       "chartType": "radar",
@@ -2809,7 +3192,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 0,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page023",
@@ -2818,7 +3202,6 @@ export const pages = [
     "layout": "THEME06-023",
     "slot": "agent",
     "label": "19 · 工作流自动化 / AI AGENTS",
-    "bgClass": "",
     "controls": [
       {
         "key": "layout",
@@ -2826,14 +3209,18 @@ export const pages = [
         "type": "select",
         "default": "media",
         "options": [
-          [
-            "media",
-            "图文"
-          ],
-          [
-            "table",
-            "表格"
-          ]
+          {
+            "value": "media",
+            "label": "图文",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "table",
+            "label": "表格",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "右栏的呈现形式：图片主导 / 场景占比表",
         "publicKey": "layout",
@@ -2914,10 +3301,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -2980,7 +3379,8 @@ export const pages = [
       "focusIndex": 2,
       "showTagBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page024",
@@ -2989,7 +3389,6 @@ export const pages = [
     "layout": "THEME06-024",
     "slot": "search",
     "label": "20 · 知识入口 / ENTERPRISE SEARCH",
-    "bgClass": "",
     "controls": [
       {
         "key": "layout",
@@ -2997,14 +3396,18 @@ export const pages = [
         "type": "select",
         "default": "media",
         "options": [
-          [
-            "media",
-            "图文"
-          ],
-          [
-            "table",
-            "表格"
-          ]
+          {
+            "value": "media",
+            "label": "图文",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "table",
+            "label": "表格",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "右栏的呈现形式：图片主导 / 场景占比表",
         "publicKey": "layout",
@@ -3085,10 +3488,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -3151,7 +3566,8 @@ export const pages = [
       "focusIndex": 2,
       "showTagBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page025",
@@ -3160,7 +3576,6 @@ export const pages = [
     "layout": "THEME06-025",
     "slot": "legal",
     "label": "21 · 专业服务 / LEGAL AI",
-    "bgClass": "",
     "controls": [
       {
         "key": "layout",
@@ -3168,14 +3583,18 @@ export const pages = [
         "type": "select",
         "default": "media",
         "options": [
-          [
-            "media",
-            "图文"
-          ],
-          [
-            "table",
-            "表格"
-          ]
+          {
+            "value": "media",
+            "label": "图文",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "table",
+            "label": "表格",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "右栏的呈现形式：图片主导 / 场景占比表",
         "publicKey": "layout",
@@ -3256,10 +3675,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -3328,7 +3759,8 @@ export const pages = [
       "focusIndex": 2,
       "showTagBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page026",
@@ -3337,7 +3769,6 @@ export const pages = [
     "layout": "THEME06-026",
     "slot": "ranking",
     "label": "22 · 融资排名 / RANKING",
-    "bgClass": "",
     "controls": [
       {
         "key": "rowCount",
@@ -3369,14 +3800,18 @@ export const pages = [
         "type": "select",
         "default": "bars",
         "options": [
-          [
-            "bars",
-            "条形"
-          ],
-          [
-            "dots",
-            "点阵"
-          ]
+          {
+            "value": "bars",
+            "label": "条形",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "dots",
+            "label": "点阵",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "数值的可视化形式",
         "publicKey": "chartType",
@@ -3399,10 +3834,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -3474,7 +3921,8 @@ export const pages = [
       "chartType": "bars",
       "showValueLabels": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page027",
@@ -3483,7 +3931,6 @@ export const pages = [
     "layout": "THEME06-027",
     "slot": "chain",
     "label": "23 · 产业链分层 / VALUE CHAIN",
-    "bgClass": "",
     "controls": [
       {
         "key": "layerCount",
@@ -3503,14 +3950,18 @@ export const pages = [
         "type": "select",
         "default": "stack",
         "options": [
-          [
-            "stack",
-            "堆叠"
-          ],
-          [
-            "columns",
-            "并列"
-          ]
+          {
+            "value": "stack",
+            "label": "堆叠",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "columns",
+            "label": "并列",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "层级的排布形式",
         "publicKey": "layout",
@@ -3555,10 +4006,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -3632,7 +4095,8 @@ export const pages = [
       "layout": "stack",
       "showRegion": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page028",
@@ -3641,7 +4105,6 @@ export const pages = [
     "layout": "THEME06-028",
     "slot": "cases",
     "label": "24 · 典型案例 / CASE STUDIES",
-    "bgClass": "",
     "controls": [
       {
         "key": "cardCount",
@@ -3705,10 +4168,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -3787,7 +4262,8 @@ export const pages = [
       "showImage": true,
       "metricCount": 3,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page029",
@@ -3796,7 +4272,6 @@ export const pages = [
     "layout": "THEME06-029",
     "slot": "quadrant",
     "label": "25 · 机会矩阵 / QUADRANT",
-    "bgClass": "",
     "controls": [
       {
         "key": "focusEnabled",
@@ -3846,10 +4321,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -3913,7 +4400,8 @@ export const pages = [
       "showAxis": true,
       "showDecor": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page030",
@@ -3922,7 +4410,6 @@ export const pages = [
     "layout": "THEME06-030",
     "slot": "risk",
     "label": "26 · 风险研判 / RISK",
-    "bgClass": "",
     "controls": [
       {
         "key": "cardCount",
@@ -3996,10 +4483,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -4054,7 +4553,8 @@ export const pages = [
       "showConnectors": true,
       "showLevel": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page031",
@@ -4063,7 +4563,6 @@ export const pages = [
     "layout": "THEME06-031",
     "slot": "outlook",
     "label": "27 · 投资建议 / OUTLOOK",
-    "bgClass": "",
     "controls": [
       {
         "key": "itemCount",
@@ -4083,18 +4582,24 @@ export const pages = [
         "type": "select",
         "default": "left",
         "options": [
-          [
-            "none",
-            "均衡"
-          ],
-          [
-            "left",
-            "左栏"
-          ],
-          [
-            "right",
-            "右栏"
-          ]
+          {
+            "value": "none",
+            "label": "均衡",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "left",
+            "label": "左栏",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "right",
+            "label": "右栏",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "突出哪一侧对比栏（另一侧弱化）",
         "publicKey": "emphasis",
@@ -4151,10 +4656,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -4253,7 +4770,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 2,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page032",
@@ -4262,7 +4780,6 @@ export const pages = [
     "layout": "THEME06-032",
     "slot": "big",
     "label": "28 · 大数字 / BIG NUMBER",
-    "bgClass": "",
     "controls": [
       {
         "key": "metricCount",
@@ -4277,19 +4794,35 @@ export const pages = [
         "description": "大数字下方的辅助指标数量（0 隐藏）"
       },
       {
+        "key": "mediaSlotCount",
+        "label": "图片槽数量",
+        "type": "number",
+        "default": 0,
+        "min": 0,
+        "max": 2,
+        "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
+        "publicKey": "mediaSlotCount",
+        "publicLabel": "图片槽数量",
+        "description": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）"
+      },
+      {
         "key": "align",
         "label": "对齐方式",
         "type": "select",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左对齐"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "左对齐",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "主数字区域的对齐方式",
         "publicKey": "align",
@@ -4312,10 +4845,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -4346,11 +4891,14 @@ export const pages = [
           "v": "63.9%"
         }
       ],
+      "mediaPlaceholder": "主视觉 / DROP IMAGE",
       "metricCount": 3,
+      "mediaSlotCount": 0,
       "align": "left",
       "showWatermark": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page033",
@@ -4359,7 +4907,6 @@ export const pages = [
     "layout": "THEME06-033",
     "slot": "health",
     "label": "29 · 慢变量高壁垒 / HEALTHCARE AI",
-    "bgClass": "",
     "controls": [
       {
         "key": "branchCount",
@@ -4455,10 +5002,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -4518,7 +5077,8 @@ export const pages = [
       "showValueBars": true,
       "showRootBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page034",
@@ -4527,7 +5087,6 @@ export const pages = [
     "layout": "THEME06-034",
     "slot": "finance",
     "label": "30 · 投研风控合规 / FINANCE AI",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -4535,18 +5094,24 @@ export const pages = [
         "type": "select",
         "default": "donut",
         "options": [
-          [
-            "donut",
-            "环形"
-          ],
-          [
-            "ring",
-            "细环"
-          ],
-          [
-            "bars",
-            "条形"
-          ]
+          {
+            "value": "donut",
+            "label": "环形",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ring",
+            "label": "细环",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "条形",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "占比的可视化形式",
         "publicKey": "chartType",
@@ -4613,10 +5178,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -4675,7 +5252,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 0,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page035",
@@ -4684,7 +5262,6 @@ export const pages = [
     "layout": "THEME06-035",
     "slot": "dev",
     "label": "31 · 研发效率提升 / DEV TOOLS",
-    "bgClass": "",
     "controls": [
       {
         "key": "showMeta",
@@ -4714,14 +5291,18 @@ export const pages = [
         "type": "select",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左对齐"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "左对齐",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "金句区域的对齐方式",
         "publicKey": "align",
@@ -4744,10 +5325,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -4781,7 +5374,8 @@ export const pages = [
       "align": "left",
       "showWatermark": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page036",
@@ -4790,7 +5384,6 @@ export const pages = [
     "layout": "THEME06-036",
     "slot": "datainfra",
     "label": "32 · 企业 AI 底座 / DATA INFRA",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -4798,14 +5391,18 @@ export const pages = [
         "type": "select",
         "default": "flow",
         "options": [
-          [
-            "flow",
-            "横向流程"
-          ],
-          [
-            "steps",
-            "纵向步骤"
-          ]
+          {
+            "value": "flow",
+            "label": "横向流程",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "steps",
+            "label": "纵向步骤",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "数据流的可视化形式",
         "publicKey": "chartType",
@@ -4884,10 +5481,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -4950,7 +5559,8 @@ export const pages = [
       "showConnectors": true,
       "showGrowth": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page037",
@@ -4959,7 +5569,6 @@ export const pages = [
     "layout": "THEME06-037",
     "slot": "growth",
     "label": "33 · 增长效率工具 / GROWTH",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -4967,18 +5576,24 @@ export const pages = [
         "type": "select",
         "default": "funnel",
         "options": [
-          [
-            "funnel",
-            "漏斗"
-          ],
-          [
-            "bars",
-            "条形"
-          ],
-          [
-            "steps",
-            "步骤"
-          ]
+          {
+            "value": "funnel",
+            "label": "漏斗",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "条形",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "steps",
+            "label": "步骤",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "增长场景的可视化形式",
         "publicKey": "chartType",
@@ -5057,10 +5672,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -5114,6 +5741,12 @@ export const pages = [
           "en": "EMAIL OUTREACH",
           "value": 4,
           "unit": " 亿"
+        },
+        {
+          "name": "复购扩张",
+          "en": "EXPANSION",
+          "value": 3,
+          "unit": " 亿"
         }
       ],
       "chartType": "funnel",
@@ -5124,7 +5757,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 0,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page038",
@@ -5133,7 +5767,6 @@ export const pages = [
     "layout": "THEME06-038",
     "slot": "lowcode",
     "label": "34 · 企业流程嵌入 / LOW CODE",
-    "bgClass": "",
     "controls": [
       {
         "key": "layout",
@@ -5141,14 +5774,18 @@ export const pages = [
         "type": "select",
         "default": "media",
         "options": [
-          [
-            "media",
-            "图文"
-          ],
-          [
-            "table",
-            "表格"
-          ]
+          {
+            "value": "media",
+            "label": "图文",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "table",
+            "label": "表格",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "右栏的呈现形式：图片主导 / 场景占比表",
         "publicKey": "layout",
@@ -5229,10 +5866,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -5264,25 +5913,35 @@ export const pages = [
         {
           "k": "净收入留存 / NRR",
           "v": "118%"
+        },
+        {
+          "k": "自动化流程 / FLOWS",
+          "v": "128 个"
         }
       ],
       "splits": [
         {
           "name": "流程编排",
           "en": "ORCHESTRATION",
-          "value": 41,
+          "value": 36,
           "unit": "%"
         },
         {
           "name": "模型接入",
           "en": "MODEL CONNECT",
-          "value": 33,
+          "value": 28,
           "unit": "%"
         },
         {
           "name": "治理审计",
           "en": "GOVERNANCE",
-          "value": 26,
+          "value": 21,
+          "unit": "%"
+        },
+        {
+          "name": "应用搭建",
+          "en": "APP BUILDING",
+          "value": 16,
           "unit": "%"
         }
       ],
@@ -5295,7 +5954,8 @@ export const pages = [
       "focusIndex": 2,
       "showTagBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page039",
@@ -5304,7 +5964,6 @@ export const pages = [
     "layout": "THEME06-039",
     "slot": "opensource",
     "label": "35 · 社区影响力变现 / OPEN SOURCE",
-    "bgClass": "",
     "controls": [
       {
         "key": "mediaSlotCount",
@@ -5388,10 +6047,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -5448,7 +6119,8 @@ export const pages = [
       "showBars": true,
       "showBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page040",
@@ -5457,7 +6129,6 @@ export const pages = [
     "layout": "THEME06-040",
     "slot": "safety",
     "label": "36 · 安全与对齐工具 / ALIGNMENT",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -5465,14 +6136,18 @@ export const pages = [
         "type": "select",
         "default": "flow",
         "options": [
-          [
-            "flow",
-            "横向流程"
-          ],
-          [
-            "steps",
-            "纵向步骤"
-          ]
+          {
+            "value": "flow",
+            "label": "横向流程",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "steps",
+            "label": "纵向步骤",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "数据流的可视化形式",
         "publicKey": "chartType",
@@ -5551,10 +6226,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -5621,7 +6308,8 @@ export const pages = [
       "showConnectors": true,
       "showGrowth": false,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page041",
@@ -5630,7 +6318,6 @@ export const pages = [
     "layout": "THEME06-041",
     "slot": "ch04",
     "label": "37 · 资本与地区结构 / CHAPTER 04",
-    "bgClass": "",
     "controls": [
       {
         "key": "background",
@@ -5638,18 +6325,24 @@ export const pages = [
         "type": "select",
         "default": "glow",
         "options": [
-          [
-            "glow",
-            "光晕"
-          ],
-          [
-            "solid",
-            "纯色"
-          ],
-          [
-            "panel",
-            "色块"
-          ]
+          {
+            "value": "glow",
+            "label": "光晕",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "solid",
+            "label": "纯色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "panel",
+            "label": "色块",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "分隔页背景的呈现形式",
         "publicKey": "background",
@@ -5716,10 +6409,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -5750,7 +6455,8 @@ export const pages = [
       "background": "glow",
       "showWatermark": false,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page042",
@@ -5759,7 +6465,6 @@ export const pages = [
     "layout": "THEME06-042",
     "slot": "rounds",
     "label": "38 · 新主题萌芽 / EARLY-STAGE SIGNAL",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -5767,18 +6472,24 @@ export const pages = [
         "type": "select",
         "default": "bubbles",
         "options": [
-          [
-            "bubbles",
-            "气泡"
-          ],
-          [
-            "bars",
-            "条形"
-          ],
-          [
-            "dots",
-            "点阵"
-          ]
+          {
+            "value": "bubbles",
+            "label": "气泡",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "条形",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "dots",
+            "label": "点阵",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "阶段相对规模的可视化形式",
         "publicKey": "chartType",
@@ -5857,10 +6568,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -5924,7 +6647,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 2,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page043",
@@ -5933,7 +6657,6 @@ export const pages = [
     "layout": "THEME06-043",
     "slot": "dealstruct",
     "label": "39 · 复杂交易结构 / DEAL STRUCTURE",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -5941,18 +6664,24 @@ export const pages = [
         "type": "select",
         "default": "stacked",
         "options": [
-          [
-            "stacked",
-            "堆叠列"
-          ],
-          [
-            "bars",
-            "条形"
-          ],
-          [
-            "segments",
-            "卡片"
-          ]
+          {
+            "value": "stacked",
+            "label": "堆叠列",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "条形",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "segments",
+            "label": "卡片",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "交易结构拆解的可视化形式",
         "publicKey": "chartType",
@@ -6053,10 +6782,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -6124,7 +6865,8 @@ export const pages = [
       "showValueLabels": true,
       "showBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page044",
@@ -6133,7 +6875,6 @@ export const pages = [
     "layout": "THEME06-044",
     "slot": "investor",
     "label": "40 · 资本来源结构 / INVESTOR MIX",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -6141,18 +6882,24 @@ export const pages = [
         "type": "select",
         "default": "donut",
         "options": [
-          [
-            "donut",
-            "环形"
-          ],
-          [
-            "ring",
-            "细环"
-          ],
-          [
-            "bars",
-            "条形"
-          ]
+          {
+            "value": "donut",
+            "label": "环形",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "ring",
+            "label": "细环",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "条形",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "占比的可视化形式",
         "publicKey": "chartType",
@@ -6219,10 +6966,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -6281,7 +7040,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 1,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page045",
@@ -6290,7 +7050,6 @@ export const pages = [
     "layout": "THEME06-045",
     "slot": "resource",
     "label": "41 · 钱以外的资源 / STRATEGIC RESOURCES",
-    "bgClass": "",
     "controls": [
       {
         "key": "cardCount",
@@ -6310,14 +7069,18 @@ export const pages = [
         "type": "select",
         "default": "grid",
         "options": [
-          [
-            "grid",
-            "网格"
-          ],
-          [
-            "rows",
-            "列表"
-          ]
+          {
+            "value": "grid",
+            "label": "网格",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "rows",
+            "label": "列表",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "资源卡的排列方式",
         "publicKey": "layout",
@@ -6384,10 +7147,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -6442,7 +7217,8 @@ export const pages = [
       "showKind": true,
       "showBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page046",
@@ -6451,7 +7227,6 @@ export const pages = [
     "layout": "THEME06-046",
     "slot": "alliance",
     "label": "42 · 投资与算力消费闭环 / CLOUD ALLIANCES",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -6459,18 +7234,24 @@ export const pages = [
         "type": "select",
         "default": "flow",
         "options": [
-          [
-            "flow",
-            "关系流"
-          ],
-          [
-            "bars",
-            "条形"
-          ],
-          [
-            "dots",
-            "点阵"
-          ]
+          {
+            "value": "flow",
+            "label": "关系流",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "条形",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "dots",
+            "label": "点阵",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "云厂商联盟的可视化形式",
         "publicKey": "chartType",
@@ -6547,10 +7328,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -6606,7 +7399,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 0,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page047",
@@ -6615,7 +7409,6 @@ export const pages = [
     "layout": "THEME06-047",
     "slot": "gpu",
     "label": "43 · GPU 资源链条 / NVIDIA ECOSYSTEM",
-    "bgClass": "",
     "controls": [
       {
         "key": "branchCount",
@@ -6711,10 +7504,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -6780,7 +7585,8 @@ export const pages = [
       "showValueBars": true,
       "showRootBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page048",
@@ -6789,7 +7595,6 @@ export const pages = [
     "layout": "THEME06-048",
     "slot": "bay",
     "label": "44 · 最大地理中心 / BAY AREA",
-    "bgClass": "",
     "controls": [
       {
         "key": "metricCount",
@@ -6804,19 +7609,35 @@ export const pages = [
         "description": "大数字下方的辅助指标数量（0 隐藏）"
       },
       {
+        "key": "mediaSlotCount",
+        "label": "图片槽数量",
+        "type": "number",
+        "default": 0,
+        "min": 0,
+        "max": 2,
+        "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
+        "publicKey": "mediaSlotCount",
+        "publicLabel": "图片槽数量",
+        "description": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）"
+      },
+      {
         "key": "align",
         "label": "对齐方式",
         "type": "select",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左对齐"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "左对齐",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "主数字区域的对齐方式",
         "publicKey": "align",
@@ -6839,10 +7660,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -6873,11 +7706,14 @@ export const pages = [
           "v": "12.4%"
         }
       ],
+      "mediaPlaceholder": "主视觉 / DROP IMAGE",
       "metricCount": 3,
+      "mediaSlotCount": 0,
       "align": "center",
       "showWatermark": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page049",
@@ -6886,7 +7722,6 @@ export const pages = [
     "layout": "THEME06-049",
     "slot": "nyc",
     "label": "45 · 行业客户优势 / NEW YORK",
-    "bgClass": "",
     "controls": [
       {
         "key": "layout",
@@ -6894,14 +7729,18 @@ export const pages = [
         "type": "select",
         "default": "media",
         "options": [
-          [
-            "media",
-            "图文"
-          ],
-          [
-            "map",
-            "分布气泡"
-          ]
+          {
+            "value": "media",
+            "label": "图文",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "map",
+            "label": "分布气泡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "右栏的呈现形式：集群图片主导 / 地区占比气泡图",
         "publicKey": "layout",
@@ -7014,10 +7853,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -7098,7 +7949,8 @@ export const pages = [
       "showTagBadge": true,
       "showNote": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page050",
@@ -7107,7 +7959,6 @@ export const pages = [
     "layout": "THEME06-050",
     "slot": "seattle",
     "label": "46 · 云计算人才外溢 / SEATTLE",
-    "bgClass": "",
     "controls": [
       {
         "key": "layout",
@@ -7115,14 +7966,18 @@ export const pages = [
         "type": "select",
         "default": "media",
         "options": [
-          [
-            "media",
-            "图文"
-          ],
-          [
-            "map",
-            "分布气泡"
-          ]
+          {
+            "value": "media",
+            "label": "图文",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "map",
+            "label": "分布气泡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "右栏的呈现形式：集群图片主导 / 地区占比气泡图",
         "publicKey": "layout",
@@ -7235,10 +8090,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -7319,7 +8186,8 @@ export const pages = [
       "showTagBadge": true,
       "showNote": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page051",
@@ -7328,7 +8196,6 @@ export const pages = [
     "layout": "THEME06-051",
     "slot": "boston",
     "label": "47 · 科研与硬科技 / BOSTON",
-    "bgClass": "",
     "controls": [
       {
         "key": "layout",
@@ -7336,14 +8203,18 @@ export const pages = [
         "type": "select",
         "default": "media",
         "options": [
-          [
-            "media",
-            "图文"
-          ],
-          [
-            "map",
-            "分布气泡"
-          ]
+          {
+            "value": "media",
+            "label": "图文",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "map",
+            "label": "分布气泡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "右栏的呈现形式：集群图片主导 / 地区占比气泡图",
         "publicKey": "layout",
@@ -7456,10 +8327,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -7540,7 +8423,8 @@ export const pages = [
       "showTagBadge": true,
       "showNote": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page052",
@@ -7549,7 +8433,6 @@ export const pages = [
     "layout": "THEME06-052",
     "slot": "other",
     "label": "48 · 分散型应用落地 / OTHER REGIONS",
-    "bgClass": "",
     "controls": [
       {
         "key": "layout",
@@ -7557,14 +8440,18 @@ export const pages = [
         "type": "select",
         "default": "media",
         "options": [
-          [
-            "media",
-            "图文"
-          ],
-          [
-            "map",
-            "分布气泡"
-          ]
+          {
+            "value": "media",
+            "label": "图文",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "map",
+            "label": "分布气泡",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "右栏的呈现形式：集群图片主导 / 地区占比气泡图",
         "publicKey": "layout",
@@ -7677,10 +8564,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -7760,7 +8659,8 @@ export const pages = [
       "showTagBadge": true,
       "showNote": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page053",
@@ -7769,7 +8669,6 @@ export const pages = [
     "layout": "THEME06-053",
     "slot": "triad",
     "label": "49 · 三类关键资源 / TALENT·CAPITAL·COMPUTE",
-    "bgClass": "",
     "controls": [
       {
         "key": "showMeta",
@@ -7799,14 +8698,18 @@ export const pages = [
         "type": "select",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左对齐"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "左对齐",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "金句区域的对齐方式",
         "publicKey": "align",
@@ -7829,10 +8732,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -7866,7 +8781,8 @@ export const pages = [
       "align": "center",
       "showWatermark": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page054",
@@ -7875,7 +8791,6 @@ export const pages = [
     "layout": "THEME06-054",
     "slot": "openai",
     "label": "50 · 商业化标杆 / OPENAI",
-    "bgClass": "",
     "controls": [
       {
         "key": "mediaSlotCount",
@@ -7971,10 +8886,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -8027,7 +8954,8 @@ export const pages = [
       "showCaseIndex": true,
       "showTagBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page055",
@@ -8036,7 +8964,6 @@ export const pages = [
     "layout": "THEME06-055",
     "slot": "anthropic",
     "label": "51 · 安全可靠模型 / ANTHROPIC",
-    "bgClass": "",
     "controls": [
       {
         "key": "mediaSlotCount",
@@ -8132,10 +9059,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -8189,7 +9128,8 @@ export const pages = [
       "showCaseIndex": true,
       "showTagBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page056",
@@ -8198,7 +9138,6 @@ export const pages = [
     "layout": "THEME06-056",
     "slot": "xai",
     "label": "52 · 实时数据生态 / XAI",
-    "bgClass": "",
     "controls": [
       {
         "key": "mediaSlotCount",
@@ -8294,10 +9233,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -8351,7 +9302,8 @@ export const pages = [
       "showCaseIndex": true,
       "showTagBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page057",
@@ -8360,7 +9312,6 @@ export const pages = [
     "layout": "THEME06-057",
     "slot": "coreweave",
     "label": "53 · 算力基础设施 / COREWEAVE",
-    "bgClass": "",
     "controls": [
       {
         "key": "mediaSlotCount",
@@ -8456,10 +9407,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -8513,7 +9476,8 @@ export const pages = [
       "showCaseIndex": true,
       "showTagBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page058",
@@ -8522,7 +9486,6 @@ export const pages = [
     "layout": "THEME06-058",
     "slot": "scaleai",
     "label": "54 · 数据基础设施 / SCALE AI · TABLE",
-    "bgClass": "",
     "controls": [
       {
         "key": "rowCount",
@@ -8547,6 +9510,18 @@ export const pages = [
         "publicKey": "columnCount",
         "publicLabel": "列数",
         "description": "展示的列数（维度列恒显，3 时省略中间列）"
+      },
+      {
+        "key": "mediaSlotCount",
+        "label": "图片槽数量",
+        "type": "number",
+        "default": 0,
+        "min": 0,
+        "max": 2,
+        "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
+        "publicKey": "mediaSlotCount",
+        "publicLabel": "图片槽数量",
+        "description": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）"
       },
       {
         "key": "focusEnabled",
@@ -8626,10 +9601,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -8726,8 +9713,10 @@ export const pages = [
         }
       ],
       "footRight": "4 DIM × 4 COL / TABLE",
+      "mediaPlaceholder": "矩阵主视觉 / DROP IMAGE",
       "rowCount": 4,
       "columnCount": 4,
+      "mediaSlotCount": 0,
       "focusEnabled": true,
       "focusIndex": 3,
       "showFigures": true,
@@ -8736,7 +9725,8 @@ export const pages = [
       "showTagBadge": true,
       "zebra": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page059",
@@ -8745,7 +9735,6 @@ export const pages = [
     "layout": "THEME06-059",
     "slot": "perplexity",
     "label": "55 · AI 搜索入口 / PERPLEXITY",
-    "bgClass": "",
     "controls": [
       {
         "key": "mediaSlotCount",
@@ -8841,10 +9830,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -8887,7 +9888,9 @@ export const pages = [
         "AI 搜索 / SEARCH",
         "答案引擎 / ANSWER",
         "信息入口 / GATEWAY",
-        "用户留存 / RETENTION"
+        "用户留存 / RETENTION",
+        "引用溯源 / CITATION",
+        "订阅转化 / PAID CONVERSION"
       ],
       "mediaPlaceholder": "Perplexity 搜索入口主视觉 / DROP IMAGE",
       "mediaSlotCount": 1,
@@ -8899,7 +9902,8 @@ export const pages = [
       "showCaseIndex": true,
       "showTagBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page060",
@@ -8908,7 +9912,6 @@ export const pages = [
     "layout": "THEME06-060",
     "slot": "databricks",
     "label": "56 · 数据平台延展 / DATABRICKS",
-    "bgClass": "",
     "controls": [
       {
         "key": "mediaSlotCount",
@@ -9004,10 +10007,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -9050,7 +10065,9 @@ export const pages = [
         "数据平台 / DATA",
         "AI 平台 / AI PLATFORM",
         "存量客户 / INSTALLED",
-        "高留存 / NRR"
+        "高留存 / NRR",
+        "湖仓架构 / LAKEHOUSE",
+        "企业 AI / ENTERPRISE AI"
       ],
       "mediaPlaceholder": "Databricks 平台架构主视觉 / DROP IMAGE",
       "mediaSlotCount": 0,
@@ -9062,7 +10079,8 @@ export const pages = [
       "showCaseIndex": true,
       "showTagBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page061",
@@ -9071,7 +10089,6 @@ export const pages = [
     "layout": "THEME06-061",
     "slot": "glean",
     "label": "57 · 企业知识入口 / GLEAN",
-    "bgClass": "",
     "controls": [
       {
         "key": "mediaSlotCount",
@@ -9167,10 +10184,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -9213,7 +10242,9 @@ export const pages = [
         "企业搜索 / SEARCH",
         "知识工作流 / WORKFLOW",
         "高频入口 / DAILY",
-        "高续约 / RENEWAL"
+        "高续约 / RENEWAL",
+        "权限索引 / PERMISSION",
+        "Agent 助手 / AGENT"
       ],
       "mediaPlaceholder": "Glean 知识库入口主视觉 / DROP IMAGE",
       "mediaSlotCount": 1,
@@ -9225,7 +10256,8 @@ export const pages = [
       "showCaseIndex": true,
       "showTagBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page062",
@@ -9234,7 +10266,6 @@ export const pages = [
     "layout": "THEME06-062",
     "slot": "figure",
     "label": "58 · 人形机器人 / FIGURE AI",
-    "bgClass": "",
     "controls": [
       {
         "key": "metricCount",
@@ -9249,19 +10280,35 @@ export const pages = [
         "description": "大数字下方的辅助指标数量（0 隐藏）"
       },
       {
+        "key": "mediaSlotCount",
+        "label": "图片槽数量",
+        "type": "number",
+        "default": 0,
+        "min": 0,
+        "max": 2,
+        "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
+        "publicKey": "mediaSlotCount",
+        "publicLabel": "图片槽数量",
+        "description": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）"
+      },
+      {
         "key": "align",
         "label": "对齐方式",
         "type": "select",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左对齐"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "左对齐",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "主数字区域的对齐方式",
         "publicKey": "align",
@@ -9284,10 +10331,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -9318,11 +10377,14 @@ export const pages = [
           "v": "量产成本"
         }
       ],
+      "mediaPlaceholder": "人形机器人量产主视觉 / DROP IMAGE",
       "metricCount": 3,
+      "mediaSlotCount": 1,
       "align": "center",
       "showWatermark": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page063",
@@ -9331,7 +10393,6 @@ export const pages = [
     "layout": "THEME06-063",
     "slot": "ssi",
     "label": "59 · 强叙事模型实验室 / SSI",
-    "bgClass": "",
     "controls": [
       {
         "key": "mediaSlotCount",
@@ -9427,10 +10488,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -9473,7 +10546,9 @@ export const pages = [
         "安全智能 / SAFE SI",
         "强团队 / TEAM",
         "强叙事 / NARRATIVE",
-        "长期兑现 / LONG-TERM"
+        "长期兑现 / LONG-TERM",
+        "对齐研究 / ALIGNMENT",
+        "长期资本 / PATIENT CAPITAL"
       ],
       "mediaPlaceholder": "SSI 抽象技术主视觉 / DROP IMAGE",
       "mediaSlotCount": 1,
@@ -9485,7 +10560,8 @@ export const pages = [
       "showCaseIndex": true,
       "showTagBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page064",
@@ -9494,7 +10570,6 @@ export const pages = [
     "layout": "THEME06-064",
     "slot": "ch05",
     "label": "60 · 风险与策略 / CHAPTER 05",
-    "bgClass": "",
     "controls": [
       {
         "key": "background",
@@ -9502,18 +10577,24 @@ export const pages = [
         "type": "select",
         "default": "glow",
         "options": [
-          [
-            "glow",
-            "光晕"
-          ],
-          [
-            "solid",
-            "纯色"
-          ],
-          [
-            "panel",
-            "色块"
-          ]
+          {
+            "value": "glow",
+            "label": "光晕",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "solid",
+            "label": "纯色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "panel",
+            "label": "色块",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "分隔页背景的呈现形式",
         "publicKey": "background",
@@ -9580,10 +10661,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -9603,7 +10696,8 @@ export const pages = [
         "收入验证",
         "合规",
         "算力成本",
-        "垂直应用筛选"
+        "垂直应用筛选",
+        "现金流纪律"
       ],
       "watermark": "05",
       "showIndex": true,
@@ -9613,7 +10707,8 @@ export const pages = [
       "background": "glow",
       "showWatermark": false,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page065",
@@ -9622,7 +10717,6 @@ export const pages = [
     "layout": "THEME06-065",
     "slot": "revrisk",
     "label": "61 · 从试点到稳定收入 / REVENUE RISK",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -9630,18 +10724,24 @@ export const pages = [
         "type": "select",
         "default": "meters",
         "options": [
-          [
-            "meters",
-            "进度条"
-          ],
-          [
-            "columns",
-            "纵向柱"
-          ],
-          [
-            "dots",
-            "点阵刻度"
-          ]
+          {
+            "value": "meters",
+            "label": "进度条",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "columns",
+            "label": "纵向柱",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "dots",
+            "label": "点阵刻度",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "同一组比率的可视化形式",
         "publicKey": "chartType",
@@ -9659,6 +10759,18 @@ export const pages = [
         "publicKey": "meterCount",
         "publicLabel": "指标数量",
         "description": "展示的比率读数数量"
+      },
+      {
+        "key": "mediaSlotCount",
+        "label": "图片槽数量",
+        "type": "number",
+        "default": 0,
+        "min": 0,
+        "max": 2,
+        "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
+        "publicKey": "mediaSlotCount",
+        "publicLabel": "图片槽数量",
+        "description": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）"
       },
       {
         "key": "showThesis",
@@ -9728,10 +10840,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -9783,8 +10907,10 @@ export const pages = [
       ],
       "maxValue": 100,
       "footRight": "4 READINGS / METERS",
+      "mediaPlaceholder": "指标主视觉 / DROP IMAGE",
       "chartType": "meters",
       "meterCount": 4,
+      "mediaSlotCount": 0,
       "showTrack": true,
       "showValueLabels": true,
       "showNote": true,
@@ -9792,7 +10918,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 0,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page066",
@@ -9801,7 +10928,6 @@ export const pages = [
     "layout": "THEME06-066",
     "slot": "regrisk",
     "label": "62 · 隐私版权与安全 / REGULATION · TABLE",
-    "bgClass": "",
     "controls": [
       {
         "key": "rowCount",
@@ -9826,6 +10952,18 @@ export const pages = [
         "publicKey": "columnCount",
         "publicLabel": "列数",
         "description": "展示的列数（维度列恒显，3 时省略中间列）"
+      },
+      {
+        "key": "mediaSlotCount",
+        "label": "图片槽数量",
+        "type": "number",
+        "default": 0,
+        "min": 0,
+        "max": 2,
+        "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
+        "publicKey": "mediaSlotCount",
+        "publicLabel": "图片槽数量",
+        "description": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）"
       },
       {
         "key": "focusEnabled",
@@ -9905,10 +11043,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -10002,11 +11152,23 @@ export const pages = [
             "内容生成公司",
             "训练数据来源的法律敞口"
           ]
+        },
+        {
+          "no": 5,
+          "dim": "模型安全",
+          "en": "MODEL SAFETY",
+          "cells": [
+            "7 类",
+            "企业 AI 助手",
+            "越权输出与幻觉风险需要审计"
+          ]
         }
       ],
-      "footRight": "4 DIM × 4 COL / TABLE",
+      "footRight": "",
+      "mediaPlaceholder": "合规风险审查主视觉 / DROP IMAGE",
       "rowCount": 4,
       "columnCount": 4,
+      "mediaSlotCount": 1,
       "focusEnabled": true,
       "focusIndex": 2,
       "showFigures": true,
@@ -10015,7 +11177,8 @@ export const pages = [
       "showTagBadge": true,
       "zebra": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page067",
@@ -10024,7 +11187,6 @@ export const pages = [
     "layout": "THEME06-067",
     "slot": "compute",
     "label": "63 · 毛利天花板 / COMPUTE COST",
-    "bgClass": "",
     "controls": [
       {
         "key": "metricCount",
@@ -10039,19 +11201,35 @@ export const pages = [
         "description": "大数字下方的辅助指标数量（0 隐藏）"
       },
       {
+        "key": "mediaSlotCount",
+        "label": "图片槽数量",
+        "type": "number",
+        "default": 0,
+        "min": 0,
+        "max": 2,
+        "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
+        "publicKey": "mediaSlotCount",
+        "publicLabel": "图片槽数量",
+        "description": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）"
+      },
+      {
         "key": "align",
         "label": "对齐方式",
         "type": "select",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左对齐"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "左对齐",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "主数字区域的对齐方式",
         "publicKey": "align",
@@ -10074,10 +11252,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -10108,11 +11298,14 @@ export const pages = [
           "v": "算力成本"
         }
       ],
+      "mediaPlaceholder": "算力成本曲线主视觉 / DROP IMAGE",
       "metricCount": 3,
+      "mediaSlotCount": 1,
       "align": "center",
       "showWatermark": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page068",
@@ -10121,7 +11314,6 @@ export const pages = [
     "layout": "THEME06-068",
     "slot": "openrisk",
     "label": "64 · 壁垒被压缩 / OPEN SOURCE RISK",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -10129,18 +11321,24 @@ export const pages = [
         "type": "select",
         "default": "meters",
         "options": [
-          [
-            "meters",
-            "进度条"
-          ],
-          [
-            "columns",
-            "纵向柱"
-          ],
-          [
-            "dots",
-            "点阵刻度"
-          ]
+          {
+            "value": "meters",
+            "label": "进度条",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "columns",
+            "label": "纵向柱",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "dots",
+            "label": "点阵刻度",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "同一组比率的可视化形式",
         "publicKey": "chartType",
@@ -10158,6 +11356,18 @@ export const pages = [
         "publicKey": "meterCount",
         "publicLabel": "指标数量",
         "description": "展示的比率读数数量"
+      },
+      {
+        "key": "mediaSlotCount",
+        "label": "图片槽数量",
+        "type": "number",
+        "default": 0,
+        "min": 0,
+        "max": 2,
+        "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
+        "publicKey": "mediaSlotCount",
+        "publicLabel": "图片槽数量",
+        "description": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）"
       },
       {
         "key": "showThesis",
@@ -10227,10 +11437,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -10271,12 +11493,21 @@ export const pages = [
           "value": "34",
           "unit": "%",
           "note": "部分大客户转向自建替代采购"
+        },
+        {
+          "name": "价格压缩风险",
+          "en": "PRICE PRESSURE",
+          "value": "61",
+          "unit": "%",
+          "note": "同类能力被平台集成后，独立产品定价承压"
         }
       ],
       "maxValue": 100,
-      "footRight": "3 READINGS / METERS",
+      "footRight": "",
+      "mediaPlaceholder": "开源竞争压力主视觉 / DROP IMAGE",
       "chartType": "meters",
-      "meterCount": 3,
+      "meterCount": 4,
+      "mediaSlotCount": 1,
       "showTrack": true,
       "showValueLabels": true,
       "showNote": true,
@@ -10284,7 +11515,8 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 0,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page069",
@@ -10293,7 +11525,6 @@ export const pages = [
     "layout": "THEME06-069",
     "slot": "infra",
     "label": "65 · 确定性预算 / INFRA STRATEGY",
-    "bgClass": "",
     "controls": [
       {
         "key": "cardCount",
@@ -10301,7 +11532,7 @@ export const pages = [
         "type": "number",
         "default": 4,
         "min": 2,
-        "max": 5,
+        "max": 4,
         "desc": "展示的推荐方向数量",
         "publicKey": "cardCount",
         "publicLabel": "方向数量",
@@ -10313,14 +11544,18 @@ export const pages = [
         "type": "select",
         "default": "cards",
         "options": [
-          [
-            "cards",
-            "方向卡"
-          ],
-          [
-            "rows",
-            "列表行"
-          ]
+          {
+            "value": "cards",
+            "label": "方向卡",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "rows",
+            "label": "列表行",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "推荐方向的呈现形式（有图片时自动转列表行）",
         "publicKey": "layout",
@@ -10367,7 +11602,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "desc": "被突出的方向序号",
         "publicKey": "focusIndex",
         "publicLabel": "高亮第几个",
@@ -10399,10 +11634,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -10472,7 +11719,8 @@ export const pages = [
       "showTag": true,
       "showBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page070",
@@ -10481,13 +11729,12 @@ export const pages = [
     "layout": "THEME06-070",
     "slot": "vertical",
     "label": "66 · 嵌入工作流 / VERTICAL STRATEGY",
-    "bgClass": "",
     "controls": [
       {
         "key": "cardCount",
         "label": "方向数量",
         "type": "number",
-        "default": 4,
+        "default": 5,
         "min": 2,
         "max": 5,
         "desc": "展示的推荐方向数量",
@@ -10501,14 +11748,18 @@ export const pages = [
         "type": "select",
         "default": "cards",
         "options": [
-          [
-            "cards",
-            "方向卡"
-          ],
-          [
-            "rows",
-            "列表行"
-          ]
+          {
+            "value": "cards",
+            "label": "方向卡",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "rows",
+            "label": "列表行",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "推荐方向的呈现形式（有图片时自动转列表行）",
         "publicKey": "layout",
@@ -10587,10 +11838,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -10665,7 +11928,8 @@ export const pages = [
       "showTag": true,
       "showBadge": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page071",
@@ -10674,7 +11938,6 @@ export const pages = [
     "layout": "THEME06-071",
     "slot": "quote",
     "label": "67 · 结论 / CONCLUSION",
-    "bgClass": "",
     "controls": [
       {
         "key": "showMeta",
@@ -10704,14 +11967,18 @@ export const pages = [
         "type": "select",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左对齐"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "左对齐",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "金句区域的对齐方式",
         "publicKey": "align",
@@ -10734,10 +12001,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -10771,7 +12050,8 @@ export const pages = [
       "align": "left",
       "showWatermark": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page072",
@@ -10780,7 +12060,6 @@ export const pages = [
     "layout": "THEME06-072",
     "slot": "ipowatch",
     "label": "68 · 估值锚重定价 / IPO WATCH",
-    "bgClass": "",
     "controls": [
       {
         "key": "phaseCount",
@@ -10788,7 +12067,7 @@ export const pages = [
         "type": "number",
         "default": 4,
         "min": 3,
-        "max": 5,
+        "max": 4,
         "desc": "时间轴阶段节点数量",
         "publicKey": "phaseCount",
         "publicLabel": "阶段数量",
@@ -10800,14 +12079,18 @@ export const pages = [
         "type": "select",
         "default": "timeline",
         "options": [
-          [
-            "timeline",
-            "横向轴"
-          ],
-          [
-            "stack",
-            "纵向步骤"
-          ]
+          {
+            "value": "timeline",
+            "label": "横向轴",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "stack",
+            "label": "纵向步骤",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "同一组阶段：横向时间轴 / 纵向编号步骤",
         "publicKey": "layout",
@@ -10854,7 +12137,7 @@ export const pages = [
         "type": "number",
         "default": 2,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "desc": "被突出的阶段序号",
         "publicKey": "focusIndex",
         "publicLabel": "高亮第几个",
@@ -10886,10 +12169,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -10980,7 +12275,8 @@ export const pages = [
       "showAxis": true,
       "showMarkers": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page073",
@@ -10989,7 +12285,6 @@ export const pages = [
     "layout": "THEME06-073",
     "slot": "ch06",
     "label": "69 · 数据附录精读 / CHAPTER 06",
-    "bgClass": "",
     "controls": [
       {
         "key": "background",
@@ -10997,18 +12292,24 @@ export const pages = [
         "type": "select",
         "default": "glow",
         "options": [
-          [
-            "glow",
-            "光晕"
-          ],
-          [
-            "solid",
-            "纯色"
-          ],
-          [
-            "panel",
-            "色块"
-          ]
+          {
+            "value": "glow",
+            "label": "光晕",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "solid",
+            "label": "纯色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "panel",
+            "label": "色块",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "分隔页背景的呈现形式",
         "publicKey": "background",
@@ -11075,10 +12376,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -11107,7 +12420,8 @@ export const pages = [
       "background": "glow",
       "showWatermark": false,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page074",
@@ -11116,7 +12430,6 @@ export const pages = [
     "layout": "THEME06-074",
     "slot": "heatmap",
     "label": "70 · 全年月度热力 / MONTHLY HEAT",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -11124,18 +12437,24 @@ export const pages = [
         "type": "select",
         "default": "grid",
         "options": [
-          [
-            "grid",
-            "热力格"
-          ],
-          [
-            "columns",
-            "纵向柱"
-          ],
-          [
-            "dots",
-            "点阵"
-          ]
+          {
+            "value": "grid",
+            "label": "热力格",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "columns",
+            "label": "纵向柱",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "dots",
+            "label": "点阵",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "同一组节奏数据的可视化形式",
         "publicKey": "chartType",
@@ -11212,10 +12531,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -11302,7 +12633,8 @@ export const pages = [
       "showValueLabels": true,
       "showPeakMark": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page075",
@@ -11311,7 +12643,6 @@ export const pages = [
     "layout": "THEME06-075",
     "slot": "megadeals",
     "label": "71 · 超级交易画像 / MEGA DEALS",
-    "bgClass": "",
     "controls": [
       {
         "key": "mediaSlotCount",
@@ -11407,10 +12738,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -11491,7 +12834,8 @@ export const pages = [
       "showTagBadge": true,
       "showCaption": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page076",
@@ -11500,7 +12844,6 @@ export const pages = [
     "layout": "THEME06-076",
     "slot": "megabig",
     "label": "72 · 超级交易均值 / MEGA AVG",
-    "bgClass": "",
     "controls": [
       {
         "key": "metricCount",
@@ -11515,19 +12858,35 @@ export const pages = [
         "description": "大数字下方的辅助指标数量（0 隐藏）"
       },
       {
+        "key": "mediaSlotCount",
+        "label": "图片槽数量",
+        "type": "number",
+        "default": 0,
+        "min": 0,
+        "max": 2,
+        "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
+        "publicKey": "mediaSlotCount",
+        "publicLabel": "图片槽数量",
+        "description": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）"
+      },
+      {
         "key": "align",
         "label": "对齐方式",
         "type": "select",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左对齐"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "左对齐",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "主数字区域的对齐方式",
         "publicKey": "align",
@@ -11550,10 +12909,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -11584,11 +12955,14 @@ export const pages = [
           "v": "74%"
         }
       ],
+      "mediaPlaceholder": "主视觉 / DROP IMAGE",
       "metricCount": 3,
+      "mediaSlotCount": 0,
       "align": "center",
       "showWatermark": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page077",
@@ -11597,7 +12971,6 @@ export const pages = [
     "layout": "THEME06-077",
     "slot": "recap",
     "label": "73 · 全景速览 / YEAR IN ONE VIEW",
-    "bgClass": "",
     "controls": [
       {
         "key": "statCount",
@@ -11605,7 +12978,7 @@ export const pages = [
         "type": "number",
         "default": 4,
         "min": 2,
-        "max": 5,
+        "max": 8,
         "desc": "展示的大数字单元数量",
         "publicKey": "statCount",
         "publicLabel": "数字数量",
@@ -11617,18 +12990,24 @@ export const pages = [
         "type": "select",
         "default": "hero",
         "options": [
-          [
-            "hero",
-            "主数字 + 阵列"
-          ],
-          [
-            "grid",
-            "均分网格"
-          ],
-          [
-            "row",
-            "单行数字带"
-          ]
+          {
+            "value": "hero",
+            "label": "主数字 + 阵列",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "grid",
+            "label": "均分网格",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "row",
+            "label": "单行数字带",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "大数字墙的版式",
         "publicKey": "layout",
@@ -11651,7 +13030,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
-        "max": 4,
+        "max": 7,
         "desc": "作为主数字/强调的序号",
         "publicKey": "focusIndex",
         "publicLabel": "主数字第几个",
@@ -11693,10 +13072,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -11737,9 +13128,24 @@ export const pages = [
           "v": "71.2%",
           "k": "Top-50 集中度",
           "en": "CAPITAL CONCENTRATION"
+        },
+        {
+          "v": "718亿$",
+          "k": "超级交易合计",
+          "en": "MEGA-DEAL TOTAL"
+        },
+        {
+          "v": "31%",
+          "k": "推理成本占比",
+          "en": "INFERENCE COST SHARE"
+        },
+        {
+          "v": "4 城",
+          "k": "核心城市集群",
+          "en": "BAY-NYC-SEA-BOS"
         }
       ],
-      "footRight": "4 STATS · RECAP",
+      "footRight": "",
       "statCount": 4,
       "layout": "hero",
       "focusEnabled": true,
@@ -11748,7 +13154,8 @@ export const pages = [
       "showThesis": true,
       "showCaption": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page078",
@@ -11757,7 +13164,6 @@ export const pages = [
     "layout": "THEME06-078",
     "slot": "sources",
     "label": "74 · 数据来源与口径 / SOURCES",
-    "bgClass": "",
     "controls": [
       {
         "key": "rowCount",
@@ -11782,6 +13188,18 @@ export const pages = [
         "publicKey": "columnCount",
         "publicLabel": "列数",
         "description": "展示的列数（维度列恒显，3 时省略中间列）"
+      },
+      {
+        "key": "mediaSlotCount",
+        "label": "图片槽数量",
+        "type": "number",
+        "default": 0,
+        "min": 0,
+        "max": 2,
+        "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
+        "publicKey": "mediaSlotCount",
+        "publicLabel": "图片槽数量",
+        "description": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）"
       },
       {
         "key": "focusEnabled",
@@ -11861,10 +13279,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -11958,11 +13388,23 @@ export const pages = [
             "主流科技与财经媒体",
             "未披露轮次按区间中值估计"
           ]
+        },
+        {
+          "no": 5,
+          "dim": "交叉校验",
+          "en": "CROSS CHECK",
+          "cells": [
+            "3 轮复核",
+            "公告 · 数据库 · 媒体",
+            "冲突数据按披露层级优先校准"
+          ]
         }
       ],
-      "footRight": "4 SRC × 4 COL / APPENDIX",
+      "footRight": "",
+      "mediaPlaceholder": "矩阵主视觉 / DROP IMAGE",
       "rowCount": 4,
       "columnCount": 4,
+      "mediaSlotCount": 0,
       "focusEnabled": true,
       "focusIndex": 0,
       "showFigures": true,
@@ -11971,7 +13413,8 @@ export const pages = [
       "showTagBadge": true,
       "zebra": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page079",
@@ -11980,7 +13423,6 @@ export const pages = [
     "layout": "THEME06-079",
     "slot": "closing",
     "label": "75 · 最终判断 / FINAL VERDICT",
-    "bgClass": "",
     "controls": [
       {
         "key": "showMeta",
@@ -12010,14 +13452,18 @@ export const pages = [
         "type": "select",
         "default": "left",
         "options": [
-          [
-            "left",
-            "左对齐"
-          ],
-          [
-            "center",
-            "居中"
-          ]
+          {
+            "value": "left",
+            "label": "左对齐",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "center",
+            "label": "居中",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "金句区域的对齐方式",
         "publicKey": "align",
@@ -12040,10 +13486,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -12077,7 +13535,8 @@ export const pages = [
       "align": "center",
       "showWatermark": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page080",
@@ -12086,7 +13545,6 @@ export const pages = [
     "layout": "THEME06-080",
     "slot": "ch07",
     "label": "76 · 前瞻信号 / CHAPTER 07",
-    "bgClass": "",
     "controls": [
       {
         "key": "background",
@@ -12094,18 +13552,24 @@ export const pages = [
         "type": "select",
         "default": "glow",
         "options": [
-          [
-            "glow",
-            "光晕"
-          ],
-          [
-            "solid",
-            "纯色"
-          ],
-          [
-            "panel",
-            "色块"
-          ]
+          {
+            "value": "glow",
+            "label": "光晕",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "solid",
+            "label": "纯色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "panel",
+            "label": "色块",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "分隔页背景的呈现形式",
         "publicKey": "background",
@@ -12172,10 +13636,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -12195,7 +13671,8 @@ export const pages = [
         "收入兑现",
         "算力成本",
         "估值重定",
-        "里程碑节奏"
+        "里程碑节奏",
+        "政策窗口"
       ],
       "watermark": "07",
       "showIndex": true,
@@ -12205,7 +13682,8 @@ export const pages = [
       "background": "glow",
       "showWatermark": false,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page081",
@@ -12214,7 +13692,6 @@ export const pages = [
     "layout": "THEME06-081",
     "slot": "capflow",
     "label": "77 · 资本流向预测 / CAPITAL FLOW",
-    "bgClass": "",
     "controls": [
       {
         "key": "chartType",
@@ -12222,18 +13699,24 @@ export const pages = [
         "type": "select",
         "default": "treemap",
         "options": [
-          [
-            "treemap",
-            "面积块"
-          ],
-          [
-            "bars",
-            "条形"
-          ],
-          [
-            "grid",
-            "网格"
-          ]
+          {
+            "value": "treemap",
+            "label": "面积块",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "bars",
+            "label": "条形",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "grid",
+            "label": "网格",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "同一组份额：面积treemap / 条形 / 网格",
         "publicKey": "chartType",
@@ -12310,10 +13793,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -12380,7 +13875,8 @@ export const pages = [
       "showHero": true,
       "showNote": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page082",
@@ -12389,7 +13885,6 @@ export const pages = [
     "layout": "THEME06-082",
     "slot": "statement",
     "label": "78 · 前瞻主题 / FORWARD STATEMENT",
-    "bgClass": "",
     "controls": [
       {
         "key": "mediaSlotCount",
@@ -12483,10 +13978,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -12527,7 +14034,8 @@ export const pages = [
       "showBadge": true,
       "showLead": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   },
   {
     "key": "theme06_page083",
@@ -12536,7 +14044,6 @@ export const pages = [
     "layout": "THEME06-083",
     "slot": "milestones",
     "label": "79 · 里程碑节奏 / MILESTONES 2025",
-    "bgClass": "",
     "controls": [
       {
         "key": "phaseCount",
@@ -12544,7 +14051,7 @@ export const pages = [
         "type": "number",
         "default": 4,
         "min": 3,
-        "max": 5,
+        "max": 4,
         "desc": "时间轴阶段节点数量",
         "publicKey": "phaseCount",
         "publicLabel": "阶段数量",
@@ -12556,14 +14063,18 @@ export const pages = [
         "type": "select",
         "default": "timeline",
         "options": [
-          [
-            "timeline",
-            "横向轴"
-          ],
-          [
-            "stack",
-            "纵向步骤"
-          ]
+          {
+            "value": "timeline",
+            "label": "横向轴",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "stack",
+            "label": "纵向步骤",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "同一组阶段：横向时间轴 / 纵向编号步骤",
         "publicKey": "layout",
@@ -12610,7 +14121,7 @@ export const pages = [
         "type": "number",
         "default": 2,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "desc": "被突出的阶段序号",
         "publicKey": "focusIndex",
         "publicLabel": "高亮第几个",
@@ -12642,10 +14153,22 @@ export const pages = [
         "type": "color",
         "default": "#c8f135",
         "options": [
-          "#c8f135",
-          "#ff5a3c",
-          "#3ca0ff",
-          "#ffd23c"
+          {
+            "value": "#c8f135",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#ff5a3c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3ca0ff",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#ffd23c",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色",
         "publicKey": "accent",
@@ -12736,6 +14259,7 @@ export const pages = [
       "showAxis": true,
       "showMarkers": true,
       "accent": "#c8f135"
-    }
+    },
+    "bgClass": ""
   }
 ];

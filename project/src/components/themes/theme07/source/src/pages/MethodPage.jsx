@@ -106,6 +106,7 @@ const CSS = `
 .aic-mth .mth-card-body { display: flex; flex-direction: column; gap: 7px; }
 .aic-mth .mth-card-zh { font-family: var(--aic-font-text); font-weight: 700; font-size: 32px; color: var(--aic-ink); margin: 0;
   display: flex; align-items: baseline; gap: 14px; }
+.aic-mth .mth-cards[data-layout="row"] .mth-card-zh { flex-direction: column; align-items: flex-start; gap: 10px; line-height: 1.08; }
 .aic-mth .mth-card-zh em { font-style: normal; font-family: var(--aic-font-display); font-weight: 500; font-size: 18px;
   letter-spacing: .12em; text-transform: uppercase; color: var(--aic-muted); }
 .aic-mth .mth-card[data-focus="1"] .mth-card-zh, .aic-mth .mth-card[data-focus="1"] .mth-card-zh em { color: var(--aic-ink); }
@@ -162,7 +163,7 @@ export default function MethodPage(props) {
           <div className="mth-card" key={l.no} data-focus={p.focusEnabled && i === focus ? '1' : '0'}>
             <div className="mth-badge"><span>{l.no}</span></div>
             <div className="mth-card-body">
-              <p className="mth-card-zh">{l.zh}<em>{l.en}</em></p>
+              <p className="mth-card-zh"><span>{l.zh}</span><em>{l.en}</em></p>
               <p className="mth-card-desc">{l.desc}</p>
               <p className="mth-card-q">{l.q}</p>
             </div>

@@ -24,7 +24,7 @@ export default function Page67Search(props) {
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
   const steps = stages.slice(0, Math.max(2, stageCount));
-  const fIdx = Math.min(focusIndex, steps.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, steps.length - 1));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
   const slots = hero[mediaCount] || [];
   const accents = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-red)', 'var(--acl-ink)'];
@@ -250,7 +250,7 @@ Page67Search.controls = [
     label: '高亮徽标', desc: '主视觉上的大号高亮数字徽标 显隐' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否突出某一个漏斗阶段' },
-  { key: 'focusIndex', type: 'number', default: 2, min: 0, maxFrom: 'stageCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 2, min: 0, max: 3, maxFrom: 'stageCount', step: 1,
     label: '重点对象', desc: '被突出的漏斗阶段序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘装饰与贴纸标签的显示/隐藏' },

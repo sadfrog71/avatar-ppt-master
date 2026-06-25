@@ -156,8 +156,14 @@ export const pages = [
         "type": "radio",
         "default": "右",
         "options": [
-          "右",
-          "左"
+          {
+            "value": "右",
+            "label": "右"
+          },
+          {
+            "value": "左",
+            "label": "左"
+          }
         ],
         "publicKey": "splitDir",
         "publicLabel": "斜切方向"
@@ -938,9 +944,18 @@ export const pages = [
         "type": "radio",
         "default": "圆",
         "options": [
-          "圆",
-          "方",
-          "菱"
+          {
+            "value": "圆",
+            "label": "圆"
+          },
+          {
+            "value": "方",
+            "label": "方"
+          },
+          {
+            "value": "菱",
+            "label": "菱"
+          }
         ],
         "publicKey": "dotShape",
         "publicLabel": "颗粒形状"
@@ -1199,8 +1214,14 @@ export const pages = [
         "type": "radio",
         "default": "季度",
         "options": [
-          "时间段",
-          "月度"
+          {
+            "value": "时间段",
+            "label": "时间段"
+          },
+          {
+            "value": "月度",
+            "label": "月度"
+          }
         ],
         "publicKey": "granularity",
         "publicLabel": "数据粒度"
@@ -1212,9 +1233,18 @@ export const pages = [
         "type": "radio",
         "default": "面积",
         "options": [
-          "面积",
-          "折线",
-          "柱状"
+          {
+            "value": "面积",
+            "label": "面积"
+          },
+          {
+            "value": "折线",
+            "label": "折线"
+          },
+          {
+            "value": "柱状",
+            "label": "柱状"
+          }
         ],
         "publicKey": "chartType",
         "publicLabel": "图表类型"
@@ -1381,8 +1411,14 @@ export const pages = [
         "type": "radio",
         "default": "居中",
         "options": [
-          "居中",
-          "基线"
+          {
+            "value": "居中",
+            "label": "居中"
+          },
+          {
+            "value": "基线",
+            "label": "基线"
+          }
         ],
         "publicKey": "offset",
         "publicLabel": "图表类型"
@@ -1787,8 +1823,14 @@ export const pages = [
         "type": "radio",
         "default": "环形",
         "options": [
-          "环形",
-          "饼图"
+          {
+            "value": "环形",
+            "label": "环形"
+          },
+          {
+            "value": "饼图",
+            "label": "饼图"
+          }
         ],
         "publicKey": "shape",
         "publicLabel": "图形"
@@ -2871,8 +2913,14 @@ export const pages = [
         "type": "radio",
         "default": "左下",
         "options": [
-          "左下",
-          "右下"
+          {
+            "value": "左下",
+            "label": "左下"
+          },
+          {
+            "value": "右下",
+            "label": "右下"
+          }
         ],
         "publicKey": "splitDir",
         "publicLabel": "斜切方向"
@@ -3092,8 +3140,14 @@ export const pages = [
         "type": "radio",
         "default": "左",
         "options": [
-          "左",
-          "右"
+          {
+            "value": "左",
+            "label": "左"
+          },
+          {
+            "value": "右",
+            "label": "右"
+          }
         ],
         "publicKey": "imgSide",
         "publicLabel": "图片位置"
@@ -3328,8 +3382,14 @@ export const pages = [
         "type": "radio",
         "default": "网格",
         "options": [
-          "网格",
-          "列表"
+          {
+            "value": "网格",
+            "label": "网格"
+          },
+          {
+            "value": "列表",
+            "label": "列表"
+          }
         ],
         "publicKey": "variant",
         "publicLabel": "布局方式"
@@ -3490,8 +3550,14 @@ export const pages = [
         "type": "radio",
         "default": "左侧",
         "options": [
-          "左侧",
-          "右侧"
+          {
+            "value": "左侧",
+            "label": "左侧"
+          },
+          {
+            "value": "右侧",
+            "label": "右侧"
+          }
         ],
         "publicKey": "focusIndex",
         "publicLabel": "焦点分组",
@@ -3687,8 +3753,14 @@ export const pages = [
         "type": "radio",
         "default": "居左",
         "options": [
-          "居左",
-          "居中"
+          {
+            "value": "居左",
+            "label": "居左"
+          },
+          {
+            "value": "居中",
+            "label": "居中"
+          }
         ],
         "publicKey": "align",
         "publicLabel": "对齐"
@@ -3803,8 +3875,14 @@ export const pages = [
         "type": "radio",
         "default": "居中",
         "options": [
-          "居中",
-          "居左"
+          {
+            "value": "居中",
+            "label": "居中"
+          },
+          {
+            "value": "居左",
+            "label": "居左"
+          }
         ],
         "publicKey": "align",
         "publicLabel": "对齐"
@@ -3903,8 +3981,14 @@ export const pages = [
         "type": "radio",
         "default": "左归右",
         "options": [
-          "左归右",
-          "右归左"
+          {
+            "value": "左归右",
+            "label": "左归右"
+          },
+          {
+            "value": "右归左",
+            "label": "右归左"
+          }
         ],
         "publicKey": "side",
         "publicLabel": "收敛方向"
@@ -4070,8 +4154,14 @@ export const pages = [
         "type": "radio",
         "default": "左",
         "options": [
-          "左",
-          "右"
+          {
+            "value": "左",
+            "label": "左"
+          },
+          {
+            "value": "右",
+            "label": "右"
+          }
         ],
         "publicKey": "textPos",
         "publicLabel": "文字位置"
@@ -4172,9 +4262,18 @@ export const pages = [
         "type": "radio",
         "default": "柱状",
         "options": [
-          "柱状",
-          "折线",
-          "面积"
+          {
+            "value": "柱状",
+            "label": "柱状"
+          },
+          {
+            "value": "折线",
+            "label": "折线"
+          },
+          {
+            "value": "面积",
+            "label": "面积"
+          }
         ],
         "publicKey": "chartType",
         "publicLabel": "图表类型"
@@ -4186,9 +4285,18 @@ export const pages = [
         "type": "radio",
         "default": "双指标",
         "options": [
-          "主指标",
-          "次指标",
-          "双指标"
+          {
+            "value": "主指标",
+            "label": "主指标"
+          },
+          {
+            "value": "次指标",
+            "label": "次指标"
+          },
+          {
+            "value": "双指标",
+            "label": "双指标"
+          }
         ],
         "publicKey": "metric",
         "publicLabel": "展示指标"
@@ -4325,9 +4433,18 @@ export const pages = [
         "type": "radio",
         "default": "降序",
         "options": [
-          "降序",
-          "升序",
-          "原序"
+          {
+            "value": "降序",
+            "label": "降序"
+          },
+          {
+            "value": "升序",
+            "label": "升序"
+          },
+          {
+            "value": "原序",
+            "label": "原序"
+          }
         ],
         "publicKey": "sort",
         "publicLabel": "排序方式"
@@ -4671,9 +4788,18 @@ export const pages = [
         "type": "radio",
         "default": "合计",
         "options": [
-          "合计",
-          "右值",
-          "原序"
+          {
+            "value": "合计",
+            "label": "合计"
+          },
+          {
+            "value": "右值",
+            "label": "右值"
+          },
+          {
+            "value": "原序",
+            "label": "原序"
+          }
         ],
         "publicKey": "sort",
         "publicLabel": "排序"
@@ -5225,10 +5351,22 @@ export const pages = [
         "type": "radio",
         "default": "VS",
         "options": [
-          "VS",
-          "÷",
-          "→",
-          "/"
+          {
+            "value": "VS",
+            "label": "对比"
+          },
+          {
+            "value": "÷",
+            "label": "÷"
+          },
+          {
+            "value": "→",
+            "label": "→"
+          },
+          {
+            "value": "/",
+            "label": "/"
+          }
         ],
         "publicKey": "pivot",
         "publicLabel": "中枢符"
@@ -5331,8 +5469,14 @@ export const pages = [
         "type": "radio",
         "default": "居左",
         "options": [
-          "居左",
-          "居中"
+          {
+            "value": "居左",
+            "label": "居左"
+          },
+          {
+            "value": "居中",
+            "label": "居中"
+          }
         ],
         "publicKey": "align",
         "publicLabel": "对齐"
@@ -5449,8 +5593,14 @@ export const pages = [
         "type": "radio",
         "default": "横向",
         "options": [
-          "横向",
-          "纵向"
+          {
+            "value": "横向",
+            "label": "横向"
+          },
+          {
+            "value": "纵向",
+            "label": "纵向"
+          }
         ],
         "publicKey": "orientation",
         "publicLabel": "方向"
@@ -5915,8 +6065,14 @@ export const pages = [
         "type": "radio",
         "default": "降序",
         "options": [
-          "降序",
-          "原序"
+          {
+            "value": "降序",
+            "label": "降序"
+          },
+          {
+            "value": "原序",
+            "label": "原序"
+          }
         ],
         "publicKey": "sort",
         "publicLabel": "排序"
@@ -6069,8 +6225,14 @@ export const pages = [
         "type": "radio",
         "default": "纵向",
         "options": [
-          "纵向",
-          "横向"
+          {
+            "value": "纵向",
+            "label": "纵向"
+          },
+          {
+            "value": "横向",
+            "label": "横向"
+          }
         ],
         "publicKey": "orientation",
         "publicLabel": "方向"
@@ -6509,10 +6671,22 @@ export const pages = [
         "type": "radio",
         "default": "迷你柱",
         "options": [
-          "无",
-          "迷你环",
-          "迷你柱",
-          "迷你线"
+          {
+            "value": "无",
+            "label": "无"
+          },
+          {
+            "value": "迷你环",
+            "label": "迷你环"
+          },
+          {
+            "value": "迷你柱",
+            "label": "迷你柱"
+          },
+          {
+            "value": "迷你线",
+            "label": "迷你线"
+          }
         ],
         "publicKey": "miniChart",
         "publicLabel": "迷你图"
@@ -6985,8 +7159,14 @@ export const pages = [
         "type": "radio",
         "default": "居中",
         "options": [
-          "居中",
-          "居左"
+          {
+            "value": "居中",
+            "label": "居中"
+          },
+          {
+            "value": "居左",
+            "label": "居左"
+          }
         ],
         "publicKey": "align",
         "publicLabel": "对齐"
@@ -7874,9 +8054,18 @@ export const pages = [
         "type": "radio",
         "default": "降序",
         "options": [
-          "降序",
-          "升序",
-          "原序"
+          {
+            "value": "降序",
+            "label": "降序"
+          },
+          {
+            "value": "升序",
+            "label": "升序"
+          },
+          {
+            "value": "原序",
+            "label": "原序"
+          }
         ],
         "publicKey": "sort",
         "publicLabel": "排序"
@@ -8097,10 +8286,22 @@ export const pages = [
         "type": "radio",
         "default": "对照",
         "options": [
-          "对照",
-          "前后",
-          "VS",
-          "/"
+          {
+            "value": "对照",
+            "label": "对照"
+          },
+          {
+            "value": "前后",
+            "label": "前后"
+          },
+          {
+            "value": "VS",
+            "label": "对比"
+          },
+          {
+            "value": "/",
+            "label": "/"
+          }
         ],
         "publicKey": "pivot",
         "publicLabel": "中缝枢标"
@@ -8474,8 +8675,14 @@ export const pages = [
         "type": "radio",
         "default": "扇形",
         "options": [
-          "扇形",
-          "整环"
+          {
+            "value": "扇形",
+            "label": "扇形"
+          },
+          {
+            "value": "整环",
+            "label": "整环"
+          }
         ],
         "publicKey": "chartType",
         "publicLabel": "图表类型"
@@ -9517,8 +9724,14 @@ export const pages = [
         "type": "radio",
         "default": "双排",
         "options": [
-          "单排",
-          "双排"
+          {
+            "value": "单排",
+            "label": "单排"
+          },
+          {
+            "value": "双排",
+            "label": "双排"
+          }
         ],
         "publicKey": "layout",
         "publicLabel": "排布"
@@ -9631,8 +9844,14 @@ export const pages = [
         "type": "radio",
         "default": "径向条",
         "options": [
-          "径向条",
-          "极柱"
+          {
+            "value": "径向条",
+            "label": "径向条"
+          },
+          {
+            "value": "极柱",
+            "label": "极柱"
+          }
         ],
         "publicKey": "chartType",
         "publicLabel": "图表类型"
@@ -10123,8 +10342,14 @@ export const pages = [
         "type": "radio",
         "default": "浅裱",
         "options": [
-          "浅裱",
-          "深裱"
+          {
+            "value": "浅裱",
+            "label": "浅裱"
+          },
+          {
+            "value": "深裱",
+            "label": "深裱"
+          }
         ],
         "publicKey": "matStyle",
         "publicLabel": "裱衬色"
@@ -10773,8 +10998,14 @@ export const pages = [
         "type": "radio",
         "default": "降序",
         "options": [
-          "降序",
-          "原序"
+          {
+            "value": "降序",
+            "label": "降序"
+          },
+          {
+            "value": "原序",
+            "label": "原序"
+          }
         ],
         "publicKey": "sort",
         "publicLabel": "排序"
@@ -11072,8 +11303,14 @@ export const pages = [
         "type": "radio",
         "default": "季度",
         "options": [
-          "时间段",
-          "月度"
+          {
+            "value": "时间段",
+            "label": "时间段"
+          },
+          {
+            "value": "月度",
+            "label": "月度"
+          }
         ],
         "publicKey": "axis",
         "publicLabel": "图表类型"
@@ -11476,9 +11713,18 @@ export const pages = [
         "type": "radio",
         "default": "跨度",
         "options": [
-          "跨度",
-          "止点",
-          "原序"
+          {
+            "value": "跨度",
+            "label": "跨度"
+          },
+          {
+            "value": "止点",
+            "label": "止点"
+          },
+          {
+            "value": "原序",
+            "label": "原序"
+          }
         ],
         "publicKey": "sort",
         "publicLabel": "排序"
@@ -11627,8 +11873,14 @@ export const pages = [
         "type": "radio",
         "default": "半环",
         "options": [
-          "半环",
-          "整环"
+          {
+            "value": "半环",
+            "label": "半环"
+          },
+          {
+            "value": "整环",
+            "label": "整环"
+          }
         ],
         "publicKey": "gaugeStyle",
         "publicLabel": "图表类型"
@@ -11969,8 +12221,14 @@ export const pages = [
         "type": "radio",
         "default": "左",
         "options": [
-          "左",
-          "居中"
+          {
+            "value": "左",
+            "label": "左"
+          },
+          {
+            "value": "居中",
+            "label": "居中"
+          }
         ],
         "desc": "大图上标题位置",
         "publicKey": "titlePos",
@@ -12079,8 +12337,14 @@ export const pages = [
         "type": "radio",
         "default": "折线",
         "options": [
-          "折线",
-          "面积"
+          {
+            "value": "折线",
+            "label": "折线"
+          },
+          {
+            "value": "面积",
+            "label": "面积"
+          }
         ],
         "publicKey": "chartType",
         "publicLabel": "图表类型"
@@ -12700,8 +12964,14 @@ export const pages = [
         "type": "radio",
         "default": "升序",
         "options": [
-          "升序",
-          "原序"
+          {
+            "value": "升序",
+            "label": "升序"
+          },
+          {
+            "value": "原序",
+            "label": "原序"
+          }
         ],
         "publicKey": "direction",
         "publicLabel": "排序"
@@ -12845,8 +13115,14 @@ export const pages = [
         "type": "radio",
         "default": "占比",
         "options": [
-          "占比",
-          "绝对值"
+          {
+            "value": "占比",
+            "label": "占比"
+          },
+          {
+            "value": "绝对值",
+            "label": "绝对值"
+          }
         ],
         "publicKey": "mode",
         "publicLabel": "图表类型"
@@ -13268,9 +13544,18 @@ export const pages = [
         "type": "radio",
         "default": "左下",
         "options": [
-          "左下",
-          "右下",
-          "居中"
+          {
+            "value": "左下",
+            "label": "左下"
+          },
+          {
+            "value": "右下",
+            "label": "右下"
+          },
+          {
+            "value": "居中",
+            "label": "居中"
+          }
         ],
         "publicKey": "textPos",
         "publicLabel": "图片位置"
@@ -13543,8 +13828,14 @@ export const pages = [
         "type": "radio",
         "default": "降序",
         "options": [
-          "降序",
-          "原序"
+          {
+            "value": "降序",
+            "label": "降序"
+          },
+          {
+            "value": "原序",
+            "label": "原序"
+          }
         ],
         "publicKey": "sort",
         "publicLabel": "排序"
@@ -13697,8 +13988,14 @@ export const pages = [
         "type": "radio",
         "default": "左",
         "options": [
-          "左",
-          "右"
+          {
+            "value": "左",
+            "label": "左"
+          },
+          {
+            "value": "右",
+            "label": "右"
+          }
         ],
         "publicKey": "imgSide",
         "publicLabel": "图片位置"
@@ -14406,8 +14703,14 @@ export const pages = [
         "type": "radio",
         "default": "左",
         "options": [
-          "左",
-          "右"
+          {
+            "value": "左",
+            "label": "左"
+          },
+          {
+            "value": "右",
+            "label": "右"
+          }
         ],
         "publicKey": "imgSide",
         "publicLabel": "图片位置"

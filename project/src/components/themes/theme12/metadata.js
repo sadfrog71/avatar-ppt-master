@@ -115,10 +115,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#d61fb5",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#d61fb5",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主字高亮 / 编号 / 印章强调色",
         "publicKey": "accent",
@@ -264,10 +276,22 @@ export const pages = [
         "default": "#d61fb5",
         "def": "#d61fb5",
         "options": [
-          "#d61fb5",
-          "#f15a29",
-          "#3bb6ec",
-          "#baf04f"
+          {
+            "value": "#d61fb5",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#baf04f",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主高亮 / 频谱主色 / 游标色",
         "publicKey": "accent",
@@ -469,10 +493,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#d61fb5",
-          "#3bb6ec",
-          "#baf04f"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#d61fb5",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#baf04f",
+            "label": "颜色 4"
+          }
         ],
         "desc": "规线 / 导语高亮 / 条码强调色",
         "publicKey": "accent",
@@ -656,10 +692,22 @@ export const pages = [
         "default": "#5a138e",
         "def": "#5a138e",
         "options": [
-          "#5a138e",
-          "#f15a29",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#5a138e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "面板 / 编号 / 高亮强调色",
         "publicKey": "accent",
@@ -763,10 +811,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主强调色，作用于编号、页脚、装饰条",
         "publicKey": "accent",
@@ -1016,10 +1076,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "引号 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -1152,10 +1224,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "焦点 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -1305,10 +1389,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "底色 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -1434,10 +1530,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "页脚等强调色",
         "publicKey": "accent",
@@ -1577,10 +1685,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语 / 焦点 / 页脚强调色",
         "publicKey": "accent",
@@ -1724,10 +1844,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "焦点卡 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -1839,10 +1971,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "中枢 / 连线 / 页脚强调色",
         "publicKey": "accent",
@@ -1946,10 +2090,22 @@ export const pages = [
         "default": "#5a138e",
         "def": "#5a138e",
         "options": [
-          "#5a138e",
-          "#f15a29",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#5a138e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "根节点 / 连线 / 页脚强调色",
         "publicKey": "accent",
@@ -2128,10 +2284,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语 / 图注 / 页脚强调色",
         "publicKey": "accent",
@@ -2283,10 +2451,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "标题面板 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -2432,10 +2612,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "标题 / 角标强调色",
         "publicKey": "accent",
@@ -2564,10 +2756,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "首字 / 引文 / 页脚强调色",
         "publicKey": "accent",
@@ -2668,10 +2872,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语 / 编号 / 页脚强调色",
         "publicKey": "accent",
@@ -2784,10 +3000,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语 / 角标 / 页脚强调色",
         "publicKey": "accent",
@@ -2974,10 +3202,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "高亮 / 标签 / 页码强调色",
         "publicKey": "accent",
@@ -3141,10 +3381,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#d61fb5",
-          "#3bb6ec",
-          "#baf04f"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#d61fb5",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#baf04f",
+            "label": "颜色 4"
+          }
         ],
         "desc": "刊头 / 导语高亮 / 条码强调色",
         "publicKey": "accent",
@@ -3337,10 +3589,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "文字卡 / 高亮 / 角标强调色",
         "publicKey": "accent",
@@ -3438,10 +3702,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "灯箱边框 / 品牌条 / 页脚强调色",
         "publicKey": "accent",
@@ -3553,10 +3829,22 @@ export const pages = [
         "default": "#3bb6ec",
         "def": "#3bb6ec",
         "options": [
-          "#3bb6ec",
-          "#f15a29",
-          "#5a138e",
-          "#1f6b2a"
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "标题侧栏 / 事实 / 页脚强调色",
         "publicKey": "accent",
@@ -3689,10 +3977,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "标题块 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -3817,10 +4117,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "邮戳 / 标记 / 页脚强调色",
         "publicKey": "accent",
@@ -3937,10 +4249,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "票面边条 / 存根 / 页脚强调色",
         "publicKey": "accent",
@@ -4061,10 +4385,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -4187,10 +4523,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -4323,10 +4671,22 @@ export const pages = [
         "default": "#3bb6ec",
         "def": "#3bb6ec",
         "options": [
-          "#3bb6ec",
-          "#f15a29",
-          "#5a138e",
-          "#1f6b2a"
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -4472,10 +4832,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "标签 / 手柄 / 页脚强调色",
         "publicKey": "accent",
@@ -4612,10 +4984,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "高亮列 / 对勾 / 页脚强调色",
         "publicKey": "accent",
@@ -4784,10 +5168,22 @@ export const pages = [
         "default": "#5a138e",
         "def": "#5a138e",
         "options": [
-          "#5a138e",
-          "#f15a29",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#5a138e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "分组标号 / 重点值 / 页脚强调色",
         "publicKey": "accent",
@@ -4973,10 +5369,22 @@ export const pages = [
         "default": "#3bb6ec",
         "def": "#3bb6ec",
         "options": [
-          "#3bb6ec",
-          "#f15a29",
-          "#5a138e",
-          "#1f6b2a"
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "聚焦行 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -5124,10 +5532,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主事件 / 今日 / 页脚强调色",
         "publicKey": "accent",
@@ -5275,10 +5695,22 @@ export const pages = [
         "default": "#3bb6ec",
         "def": "#3bb6ec",
         "options": [
-          "#3bb6ec",
-          "#f15a29",
-          "#5a138e",
-          "#1f6b2a"
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "当前时间段 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -5436,10 +5868,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#1f6b2a",
-          "#5a138e",
-          "#3bb6ec"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 4"
+          }
         ],
         "desc": "热力 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -5547,10 +5991,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "声浪列 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -5707,10 +6163,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "“有声浪”一侧 / 页脚强调色",
         "publicKey": "accent",
@@ -5860,10 +6328,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "焦点 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -5989,10 +6469,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "推荐卡 / 对勾 / 页脚强调色",
         "publicKey": "accent",
@@ -6114,7 +6606,7 @@ export const pages = [
         "options": [
           {
             "value": "arabic",
-            "label": "02"
+            "label": "阿拉伯数字"
           },
           {
             "value": "roman",
@@ -6166,10 +6658,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "高亮 / 编号 / 铺底强调色",
         "publicKey": "accent",
@@ -6296,10 +6800,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语/页脚等强调色",
         "publicKey": "accent",
@@ -6446,10 +6962,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主分段 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -6568,10 +7096,22 @@ export const pages = [
         "default": "#1f6b2a",
         "def": "#1f6b2a",
         "options": [
-          "#1f6b2a",
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec"
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 4"
+          }
         ],
         "desc": "聚焦方块 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -6712,10 +7252,22 @@ export const pages = [
         "default": "#1f6b2a",
         "def": "#1f6b2a",
         "options": [
-          "#1f6b2a",
-          "#f15a29",
-          "#3bb6ec",
-          "#5a138e"
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 4"
+          }
         ],
         "desc": "聚焦流 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -6850,10 +7402,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "到手总额 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -6999,10 +7563,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主系列 / 标注 / 页脚强调色",
         "publicKey": "accent",
@@ -7125,10 +7701,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主系列 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -7285,10 +7873,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "聚焦线 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -7429,10 +8029,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "末段 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -7576,10 +8188,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "高亮行 / 页脚强调色",
         "publicKey": "accent",
@@ -7702,10 +8326,22 @@ export const pages = [
         "default": "#5a138e",
         "def": "#5a138e",
         "options": [
-          "#5a138e",
-          "#f15a29",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#5a138e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "聚焦气泡 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -7898,10 +8534,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主分项 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -8069,10 +8717,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "榜首 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -8213,10 +8873,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "首个仪表 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -8342,10 +9014,22 @@ export const pages = [
         "default": "#1f6b2a",
         "def": "#1f6b2a",
         "options": [
-          "#1f6b2a",
-          "#f15a29",
-          "#3bb6ec",
-          "#5a138e"
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 4"
+          }
         ],
         "desc": "达成条 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -8491,10 +9175,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "左列 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -8623,10 +9319,22 @@ export const pages = [
         "default": "#5a138e",
         "def": "#5a138e",
         "options": [
-          "#5a138e",
-          "#f15a29",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#5a138e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主系列 / 页脚强调色",
         "publicKey": "accent",
@@ -8751,10 +9459,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "声浪点 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -8895,10 +9615,22 @@ export const pages = [
         "default": "#5a138e",
         "def": "#5a138e",
         "options": [
-          "#5a138e",
-          "#f15a29",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#5a138e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "高亮列 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -9086,10 +9818,22 @@ export const pages = [
         "default": "#3bb6ec",
         "def": "#3bb6ec",
         "options": [
-          "#3bb6ec",
-          "#f15a29",
-          "#5a138e",
-          "#1f6b2a"
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主数字 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -9213,10 +9957,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "首个数字 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -9338,10 +10094,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -9506,10 +10274,22 @@ export const pages = [
         "default": "#1f6b2a",
         "def": "#1f6b2a",
         "options": [
-          "#1f6b2a",
-          "#5a138e",
-          "#f15a29",
-          "#3bb6ec"
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 4"
+          }
         ],
         "desc": "文字块 / 角标强调色",
         "publicKey": "accent",
@@ -9608,10 +10388,22 @@ export const pages = [
         "default": "#baf04f",
         "def": "#baf04f",
         "options": [
-          "#baf04f",
-          "#f15a29",
-          "#3bb6ec",
-          "#d61fb5"
+          {
+            "value": "#baf04f",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#d61fb5",
+            "label": "颜色 4"
+          }
         ],
         "desc": "标语高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -9716,10 +10508,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -9879,10 +10683,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "重点 / 序号 / 页脚强调色",
         "publicKey": "accent",
@@ -10079,10 +10895,22 @@ export const pages = [
         "default": "#d61fb5",
         "def": "#d61fb5",
         "options": [
-          "#d61fb5",
-          "#f15a29",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#d61fb5",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "播放进度 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -10259,10 +11087,22 @@ export const pages = [
         "default": "#1f6b2a",
         "def": "#1f6b2a",
         "options": [
-          "#1f6b2a",
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec"
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 4"
+          }
         ],
         "desc": "标题格 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -10371,10 +11211,22 @@ export const pages = [
         "default": "#7a3a18",
         "def": "#7a3a18",
         "options": [
-          "#7a3a18",
-          "#f15a29",
-          "#5a138e",
-          "#1f6b2a"
+          {
+            "value": "#7a3a18",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -10503,10 +11355,22 @@ export const pages = [
         "default": "#baf04f",
         "def": "#baf04f",
         "options": [
-          "#baf04f",
-          "#3bb6ec",
-          "#f15a29",
-          "#f3b8ec"
+          {
+            "value": "#baf04f",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#f3b8ec",
+            "label": "颜色 4"
+          }
         ],
         "desc": "中线 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -10627,10 +11491,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -10731,10 +11607,22 @@ export const pages = [
         "default": "#5a138e",
         "def": "#5a138e",
         "options": [
-          "#5a138e",
-          "#d61fb5",
-          "#f15a29",
-          "#1f6b2a"
+          {
+            "value": "#5a138e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#d61fb5",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -10841,10 +11729,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "标注点 / 编号 / 页脚强调色",
         "publicKey": "accent",
@@ -10984,10 +11884,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "当前节点 / 进度 / 页脚强调色",
         "publicKey": "accent",
@@ -11170,10 +12082,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "蒙版 / 引号 / 页脚强调色",
         "publicKey": "accent",
@@ -11280,10 +12204,22 @@ export const pages = [
         "default": "#c44ee0",
         "def": "#c44ee0",
         "options": [
-          "#c44ee0",
-          "#fbb24d",
-          "#74d2f0",
-          "#bcee54"
+          {
+            "value": "#c44ee0",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#fbb24d",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#74d2f0",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#bcee54",
+            "label": "颜色 4"
+          }
         ],
         "desc": "高亮句 / 页脚强调色",
         "publicKey": "accent",
@@ -11391,7 +12327,7 @@ export const pages = [
           },
           {
             "value": "arabic",
-            "label": "04"
+            "label": "阿拉伯数字"
           }
         ],
         "desc": "大编号的呈现方式",
@@ -11439,10 +12375,22 @@ export const pages = [
         "default": "#5a138e",
         "def": "#5a138e",
         "options": [
-          "#5a138e",
-          "#f15a29",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#5a138e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "编号 / 高亮 / 铺底强调色",
         "publicKey": "accent",
@@ -11567,10 +12515,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "强调色 / 序号 / 页脚强调色",
         "publicKey": "accent",
@@ -11682,10 +12642,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "当前节点 / 进度 / 页脚强调色",
         "publicKey": "accent",
@@ -11830,10 +12802,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "导语高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -11982,10 +12966,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "色条 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -12132,10 +13128,22 @@ export const pages = [
         "default": "#d61fb5",
         "def": "#d61fb5",
         "options": [
-          "#d61fb5",
-          "#f15a29",
-          "#5a138e",
-          "#1f6b2a"
+          {
+            "value": "#d61fb5",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "声波 / 高亮 / 页脚强调色",
         "publicKey": "accent",
@@ -12245,10 +13253,22 @@ export const pages = [
         "default": "#5a138e",
         "def": "#5a138e",
         "options": [
-          "#5a138e",
-          "#f15a29",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#5a138e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#f15a29",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "主引言 / 导语 / 页脚强调色",
         "publicKey": "accent",
@@ -12387,10 +13407,22 @@ export const pages = [
         "default": "#f15a29",
         "def": "#f15a29",
         "options": [
-          "#f15a29",
-          "#5a138e",
-          "#3bb6ec",
-          "#1f6b2a"
+          {
+            "value": "#f15a29",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#5a138e",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3bb6ec",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#1f6b2a",
+            "label": "颜色 4"
+          }
         ],
         "desc": "高亮/按钮等强调色",
         "publicKey": "accent",

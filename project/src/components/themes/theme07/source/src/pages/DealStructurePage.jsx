@@ -135,8 +135,15 @@ const CSS = `
   overflow: hidden; text-overflow: ellipsis; }
 
 /* donut mode */
-.aic-ds .ds-donutwrap { display: flex; align-items: center; gap: 48px; }
+.aic-ds .ds-donutwrap { display: flex; align-items: center; justify-content: center; gap: 48px; }
 .aic-ds .ds-donut { flex: none; }
+.aic-ds .ds-decomp.donut .ds-panel-t { margin-bottom: 14px; }
+.aic-ds .ds-decomp.donut .ds-donutwrap { height: 244px; }
+.aic-ds .ds-decomp.donut .ds-cards { margin-top: 24px; gap: 16px; }
+.aic-ds .ds-decomp.donut .ds-card { padding: 20px 22px; gap: 10px; }
+.aic-ds .ds-decomp.donut .ds-card-nm { font-size: 24px; }
+.aic-ds .ds-decomp.donut .ds-card-pct { font-size: 50px; }
+.aic-ds .ds-decomp.donut .ds-card-note { font-size: 18px; line-height: 1.34; }
 
 /* component cards */
 .aic-ds .ds-cards { margin-top: 40px; display: grid; gap: 20px; flex: 1; min-height: 0; }
@@ -145,11 +152,13 @@ const CSS = `
   transition: border-color .3s, box-shadow .3s, transform .3s; overflow: hidden; }
 .aic-ds .ds-card[data-focus="1"] { transform: translateY(-6px); border-color: var(--aic-accent);
   box-shadow: 0 24px 56px -30px color-mix(in srgb, var(--aic-accent) 60%, transparent); }
-.aic-ds .ds-card-top { display: flex; align-items: center; gap: 14px; }
+.aic-ds .ds-card-top { display: grid; grid-template-columns: 18px minmax(0, 1fr); align-items: start; gap: 14px; }
 .aic-ds .ds-card-swatch { width: 18px; height: 18px; border-radius: 6px; flex: none; }
-.aic-ds .ds-card-nm { font-family: var(--aic-font-text); font-weight: 700; font-size: 27px; color: var(--aic-ink); }
-.aic-ds .ds-card-en { font-family: var(--aic-font-display); font-weight: 500; font-size: 15px; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--aic-faint); margin-left: auto; white-space: nowrap; }
+.aic-ds .ds-card-title { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.aic-ds .ds-card-nm { font-family: var(--aic-font-text); font-weight: 700; font-size: 27px; line-height: 1.08;
+  color: var(--aic-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.aic-ds .ds-card-en { font-family: var(--aic-font-display); font-weight: 500; font-size: 13px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--aic-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.1; }
 .aic-ds .ds-card-pct { font-family: var(--aic-font-display); font-weight: 700; font-size: 58px; line-height: .85; color: var(--aic-ink);
   font-variant-numeric: tabular-nums; transform: skewX(-9deg); transform-origin: left bottom; display: inline-block; }
 .aic-ds .ds-card[data-focus="1"] .ds-card-pct { color: var(--aic-accent-deep); }
@@ -211,18 +220,17 @@ export default function DealStructurePage(props) {
           </div>
         )}
 
-        <div className="ds-decomp">
+        <div className={'ds-decomp ' + (isDonut ? 'donut' : 'stack')}>
           <p className="ds-panel-t">{copy.panelTitle}</p>
 
           {isDonut ? (
             <div className="ds-donutwrap">
               <div className="ds-donut">
-                <Donut segments={donutSegs} size={300} thickness={52}
+                <Donut segments={donutSegs} size={240} thickness={42}
                   focusIndex={p.focusEnabled ? focus : -1}
                   centerTop={p.focusEnabled ? focusComp.pct + '%' : n}
                   centerBottom={p.focusEnabled ? focusComp.name : '构成项'} />
               </div>
-              <div style={{ flex: 1 }} />
             </div>
           ) : (
             <div className="ds-stack">
@@ -248,8 +256,10 @@ export default function DealStructurePage(props) {
               <div className="ds-card" key={c.name} data-focus={p.focusEnabled && i === focus ? '1' : '0'}>
                 <div className="ds-card-top">
                   <span className="ds-card-swatch" style={{ background: SEG_FILL[i % SEG_FILL.length] }} />
-                  <span className="ds-card-nm">{c.name}</span>
-                  <span className="ds-card-en">{c.en}</span>
+                  <span className="ds-card-title">
+                    <span className="ds-card-nm">{c.name}</span>
+                    <span className="ds-card-en">{c.en}</span>
+                  </span>
                 </div>
                 <span className="ds-card-pct">{c.pct}%</span>
                 <p className="ds-card-note">{c.note}</p>

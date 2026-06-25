@@ -2,7 +2,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Independent prop-driven slide. Class prefix `acl-hm-`.
 // A calendar-style heatmap: each cell is a period whose colour intensity maps to
-// its value on a cool→hot brand ramp. Count-driven peak emphasis, optional value
+// its value on a cool→hot brand ramp. Single-cell peak emphasis, optional value
 // labels and a colour scale. No dependency on the Tweaks panel — the preview
 // maps Tweak values onto props; the component is fully portable.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -24,12 +24,16 @@ const aclHmColor = (t) => {
   return aclHmLerp(ACL_HM_RAMP[i], ACL_HM_RAMP[i + 1], x - i);
 };
 
-export default function Page09Heatmap(props) {
+export default function Page09Heatmap(props = {}) {
   const p = { ...Page09Heatmap.defaults, ...props };
   const {
-    backgroundTheme, columnCount, showValueLabels, highlightCount, showScale, showDecor,
+    backgroundTheme, columnCount, showValueLabels, showScale, showDecor,
     eyebrow, headline, subheadline, summary, cells, unit, peakNote, closingLine,
   } = p;
+  const rawHighlightIndex = props.highlightIndex ?? props.highlightCount ?? p.highlightIndex;
+  const highlightIndex = Number.isFinite(Number(rawHighlightIndex))
+    ? Number(rawHighlightIndex)
+    : Page09Heatmap.defaults.highlightIndex;
 
   const bg = backgroundTheme === 'muted'
     ? 'linear-gradient(165deg, #EFEFF6 0%, #E7E6EE 58%, #DEDCEA 100%)'
@@ -38,10 +42,10 @@ export default function Page09Heatmap(props) {
   const vals = cells.map((c) => c.v);
   const min = Math.min(...vals), max = Math.max(...vals);
   const norm = (v) => (max === min ? 0.5 : (v - min) / (max - min));
-  // indices of the N hottest cells
-  const peakSet = new Set(
-    cells.map((c, i) => i).sort((a, b) => cells[b].v - cells[a].v).slice(0, Math.max(0, highlightCount))
-  );
+  const peakIndex = cells.length
+    ? Math.max(0, Math.min(cells.length - 1, Math.round(highlightIndex) - 1))
+    : -1;
+  const peakSet = new Set(peakIndex >= 0 ? [peakIndex] : []);
 
   return (
     <div className="acl-root acl-hm" style={{ background: bg }}>
@@ -139,10 +143,10 @@ export default function Page09Heatmap(props) {
               <span>{max} 高 · {unit}</span>
             </div>
           ) : <span />}
-          {showDecor && highlightCount > 0 && (
+          {showDecor && peakSet.size > 0 && (
             <div className="acl-hm__peaknote">
               <Doodle kind="arrow" size={56} rotate={-6} style={{ position: 'static' }} />
-              全年热度由少数峰值月份拉高
+              全年热度由单一峰值月份拉高
             </div>
           )}
         </div>
@@ -160,13 +164,13 @@ Page09Heatmap.defaults = {
   backgroundTheme: 'primary',
   columnCount: 6,          // grid columns: 4 (→3 rows) or 6 (→2 rows)
   showValueLabels: true,
-  highlightCount: 3,       // number of hottest cells emphasized (0–4)
+  highlightIndex: 8,       // one-based index of the emphasized heatmap cell (1–12)
   showScale: true,
   showDecor: true,
   eyebrow: 'Monthly Heatmap',
   headline: '市场月度热力',
   subheadline: '12 个月融资节奏',
-  summary: '全年热度并非均匀释放，而是由 <b>5 月、8 月、9 月</b> 等峰值月份拉高。',
+  summary: '全年热度并非均匀释放，而是由 <b>8 月</b> 这一峰值月份拉高。',
   cells: [
     { m: '1月', en: 'JAN', v: 45 }, { m: '2月', en: 'FEB', v: 58 }, { m: '3月', en: 'MAR', v: 59 },
     { m: '4月', en: 'APR', v: 86 }, { m: '5月', en: 'MAY', v: 105 }, { m: '6月', en: 'JUN', v: 93 },
@@ -185,8 +189,8 @@ Page09Heatmap.controls = [
     label: '网格列数', desc: '热力格每行单元数：4 列(3 行) 或 6 列(2 行)' },
   { key: 'showValueLabels', type: 'boolean', default: true,
     label: '数值标签', desc: '在每个单元中显示数值' },
-  { key: 'highlightCount', type: 'number', default: 3, min: 0, max: 4, step: 1,
-    label: '峰值强调', desc: '按数值高低强调的峰值单元数量(0–4)' },
+  { key: 'highlightIndex', type: 'number', default: 8, min: 1, max: 12, step: 1,
+    label: '峰值强调', desc: '选择单个被强调热力格（第1个至第12个）' },
   { key: 'showScale', type: 'boolean', default: true,
     label: '色阶图例', desc: '底部冷→热色阶图例的显示/隐藏' },
   { key: 'showDecor', type: 'boolean', default: true,

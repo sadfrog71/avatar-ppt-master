@@ -26,15 +26,16 @@ export default function Page73Revenue(props) {
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
   const shown = stages.slice(0, Math.max(3, stageCount));
-  const fIdx = Math.min(focusIndex, shown.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, shown.length - 1));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
   const slots = mediaRail[mediaCount] || [];
   const hasMedia = slots.length > 0;
-  const palette = ['var(--acl-ink)', 'var(--acl-blue)', 'var(--acl-pink)', 'var(--acl-yellow)', 'var(--acl-paper)'];
   const isBars = chartType === 'bars';
+  const rootClass = ['acl-root', 'acl-rv', isBars ? 'acl-rv--bars' : 'acl-rv--funnel', !hasMedia ? 'acl-rv--no-media' : ''].filter(Boolean).join(' ');
+  const palette = ['var(--acl-ink)', 'var(--acl-blue)', 'var(--acl-pink)', 'var(--acl-yellow)', 'var(--acl-paper)'];
 
   return (
-    <div className="acl-root acl-rv" style={{ background: bg }}>
+    <div className={rootClass} style={{ background: bg }}>
       <style>{`
         .acl-rv{ position:absolute; inset:0; overflow:hidden; font-family:var(--acl-font-cn);
           color:var(--acl-ink); padding:74px 100px 60px; display:flex; flex-direction:column; }
@@ -51,6 +52,7 @@ export default function Page73Revenue(props) {
           -webkit-box-decoration-break:clone;  white-space:nowrap;}
 
         .acl-rv__body{ flex:1; display:flex; gap:40px; margin-top:28px; min-height:0; }
+        .acl-rv--no-media .acl-rv__body{ gap:34px; }
 
         /* ── media rail (collapses when empty) ── */
         .acl-rv__rail{ flex:0 0 auto; display:flex; flex-direction:column; align-items:center;
@@ -61,20 +63,24 @@ export default function Page73Revenue(props) {
         .acl-rv__ladder{ flex:1 1 0; position:relative; background:var(--acl-paper);
           border:3px solid var(--acl-ink); box-shadow:8px 10px 0 rgba(22,21,15,.16);
           padding:24px 38px 26px; display:flex; flex-direction:column; min-width:0; }
+        .acl-rv--no-media .acl-rv__ladder{ flex:1 1 0; padding-left:46px; padding-right:46px; }
         .acl-rv__cardt{ font-family:var(--acl-font-mono); font-weight:700; font-size:14px;
           letter-spacing:.1em; text-transform:uppercase; color:rgba(22,21,15,.45); flex:0 0 auto; }
         .acl-rv__stages{ flex:1; display:flex; flex-direction:column; justify-content:center;
           gap:10px; margin-top:16px; min-height:0; }
         .acl-rv__stage{ position:relative; flex:1 1 0; min-height:0; display:flex; }
-        .acl-rv__bar{ min-height:58px; border:3px solid var(--acl-ink); display:flex; align-items:center;
+        .acl-rv--funnel .acl-rv__stage{ justify-content:center; }
+        .acl-rv__bar{ position:relative; min-height:58px; border:3px solid var(--acl-ink); display:flex; align-items:center;
           justify-content:space-between; padding:0 22px; transition:opacity .25s, background .25s, width .3s;
           box-shadow:4px 5px 0 rgba(22,21,15,.16); }
+        .acl-rv--funnel .acl-rv__bar{ justify-content:center; gap:24px; text-align:center; }
         .acl-rv__bname{ font-weight:900; font-size:30px; line-height:1; white-space:nowrap; }
         .acl-rv__bname small{ font-family:var(--acl-font-mono); font-weight:400; font-size:11px;
           letter-spacing:.04em; text-transform:uppercase; opacity:.6; margin-left:9px; }
         .acl-rv__bval{ font-family:var(--acl-font-num); font-size:48px; line-height:.8; white-space:nowrap; }
         .acl-rv__bar--dim{ opacity:.4; }
         .acl-rv__drop{ display:flex; align-items:center; gap:8px; padding:1px 0 1px 30px; height:30px; flex:0 0 auto; }
+        .acl-rv--funnel .acl-rv__drop{ justify-content:center; padding-left:0; }
         .acl-rv__droptag{ font-family:var(--acl-font-hand); font-size:25px; line-height:1;
           color:var(--acl-red); white-space:nowrap; }
         .acl-rv__fx{ position:absolute; top:-15px; right:-10px; z-index:5; }
@@ -83,6 +89,7 @@ export default function Page73Revenue(props) {
         .acl-rv__margin{ flex:0 0 440px; position:relative; background:var(--acl-ink); color:var(--acl-paper);
           border:3px solid var(--acl-ink); box-shadow:8px 10px 0 rgba(22,21,15,.16);
           padding:26px 34px 28px; display:flex; flex-direction:column; min-width:0; }
+        .acl-rv--no-media .acl-rv__margin{ flex-basis:500px; }
         .acl-rv__margint{ font-family:var(--acl-font-mono); font-weight:700; font-size:14px;
           letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.5); }
         .acl-rv__herolab{ font-weight:700; font-size:22px; margin-top:16px; color:rgba(255,255,255,.85); }
@@ -173,9 +180,9 @@ export default function Page73Revenue(props) {
               return (
                 <React.Fragment key={i}>
                   <div className="acl-rv__stage">
-                    {isF && showDecor && <div className="acl-rv__fx"><Sticker label="关键转化" color="var(--acl-yellow)" subColor="var(--acl-ink)" rotate={6} size={14} /></div>}
                     <div className={'acl-rv__bar' + (dim ? ' acl-rv__bar--dim' : '')}
                       style={{ width: w, background: c, color: onDark ? 'var(--acl-paper)' : 'var(--acl-ink)', '--i': i }}>
+                      {isF && showDecor && <div className="acl-rv__fx"><Sticker label="关键转化" color="var(--acl-yellow)" subColor="var(--acl-ink)" rotate={6} size={14} /></div>}
                       <span className="acl-rv__bname">{s.k}<small>{s.en}</small></span>
                       {showValueLabels && <span className="acl-rv__bval">{s.pct}%</span>}
                     </div>
@@ -298,7 +305,7 @@ Page73Revenue.controls = [
   { key: 'stageCount', type: 'number', default: 4, min: 3, max: 5, step: 1,
     label: '阶段数量', desc: '收入兑现路径的阶段数量(3–5)' },
   { key: 'mediaCount', type: 'number', default: 1, min: 0, max: 2, step: 1,
-    label: '图片数量', desc: '左侧配图槽数量(0–2)；为 0 时自动收起，每张按上传图片比例自适应' },
+    label: '图片数量', desc: '左侧配图槽数量(0–2)；为 0 时收起媒体栏，主体内容自适应扩展；每张按上传图片比例自适应' },
   { key: 'showValueLabels', type: 'boolean', default: true,
     label: '数值标签', desc: '阶段转化率与成本结构百分比的显示/隐藏' },
   { key: 'metricCount', type: 'number', default: 3, min: 2, max: 4, step: 1,

@@ -34,7 +34,7 @@
 //   accent (color)
 // ============================================================================
 import React from 'react';
-import { KxEyebrow, KxGrid } from './kit.jsx';
+import { KxEyebrow, KxGrid, KxMediaSlotColumn } from './kit.jsx';
 
 if (typeof document !== 'undefined' && !document.getElementById('kx-mtx-css')) {
   const css = `
@@ -62,6 +62,9 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-mtx-css')) {
 
   /* matrix table */
   .kx-mtx-table{flex:1;min-height:0;display:flex;flex-direction:column;margin-top:14px;}
+  .kx-mtx-content{flex:1;min-height:0;display:grid;column-gap:38px;margin-top:14px;align-items:stretch;}
+  .kx-mtx-content .kx-mtx-table{margin-top:0;}
+  .kx-mtx-media{--kx-media-gap:18px;min-width:0;}
   .kx-mtx-row{display:grid;align-items:center;column-gap:34px;}
   .kx-mtx-colhead{padding:14px 0 12px;border-bottom:1px solid var(--kx-line);}
   .kx-mtx-ch{font-family:var(--kx-mono);font-size:21px;color:var(--kx-mute-2);
@@ -119,6 +122,7 @@ function SlideMatrix(props) {
   const cellCols = totalCols - 1;                     // how many of cells[] to show
   const rows = p.rows.slice(0, clamp(p.rowCount, 3, p.rows.length));
   const fi = clamp(p.focusIndex, 0, rows.length - 1);
+  const slots = clamp(Number(p.mediaSlotCount) || 0, 0, 2);
 
   // grid template — index? + dimension + N cell columns (last = verdict, widest)
   const idxCol = p.showIndex ? '56px ' : '';
@@ -156,6 +160,22 @@ function SlideMatrix(props) {
         }));
     }));
 
+  const table = h('div', { className: 'kx-mtx-table' }, head, body);
+  const media = h(KxMediaSlotColumn, {
+    className: 'kx-mtx-media',
+    slots,
+    idBase: 'matrix-' + (p.eyebrowId || 'x'),
+    placeholder: p.mediaPlaceholder || '矩阵主视觉 / DROP IMAGE',
+    badge: p.caseTag || p.eyebrowLabel,
+    minRatio: 0.78,
+    maxRatio: 1.48,
+    multiMinRatio: 1.2,
+    multiMaxRatio: 2.1,
+  });
+  const content = slots
+    ? h('div', { className: 'kx-mtx-content', style: { gridTemplateColumns: 'minmax(0,1.16fr) minmax(320px,.84fr)' } }, table, media)
+    : table;
+
   return h('div', { className: 'kx-slide kx-dark', style: { '--kx-accent': p.accent } },
     h(KxGrid, { cols: 6 }),
     h('div', { className: 'kx-pad kx-mtx-pad' },
@@ -172,7 +192,7 @@ function SlideMatrix(props) {
         figs.map((f, i) => h('div', { key: i, className: 'kx-mtx-fig' },
           h('div', { className: 'kx-fv' }, f.v),
           h('div', { className: 'kx-fk' }, f.k)))) : null,
-      h('div', { className: 'kx-mtx-table' }, head, body),
+      content,
       h('div', { className: 'kx-mtx-foot' },
         h('div', { className: 'kx-cl' }, '→ ' + p.closing),
         h('div', { className: 'kx-rt' }, p.footRight || (rows.length + ' DIM × ' + totalCols + ' COL')))));
@@ -202,7 +222,8 @@ SlideMatrix.defaults = {
     { no: 4, dim: '数据飞轮', en: 'DATA FLYWHEEL', cells: ['10 亿$', '企业推理客户', '越用越强的数据护城河'] },
   ],
   footRight: '4 DIM × 4 COL / TABLE',
-  rowCount: 4, columnCount: 4,
+  mediaPlaceholder: '矩阵主视觉 / DROP IMAGE',
+  rowCount: 4, columnCount: 4, mediaSlotCount: 0,
   focusEnabled: true, focusIndex: 3,
   showFigures: true, showIndex: true, showCaseIndex: true, showTagBadge: true, zebra: true,
   accent: '#c8f135',
@@ -211,6 +232,8 @@ SlideMatrix.defaults = {
 SlideMatrix.controls = [
   { key: 'rowCount', label: '行数', type: 'number', default: 4, min: 3, max: 5, desc: '展示的维度行数（按数据截取）' },
   { key: 'columnCount', label: '列数', type: 'number', default: 4, min: 3, max: 4, desc: '展示的列数（维度列恒显，3 时省略中间列）' },
+  { key: 'mediaSlotCount', label: '图片槽数量', type: 'number', default: 0, min: 0, max: 2,
+    desc: '右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）' },
   { key: 'focusEnabled', label: '重点行高亮', type: 'toggle', default: true, desc: '是否把某一行拉成整条强调行' },
   { key: 'focusIndex', label: '高亮第几行', type: 'number', default: 3, min: 0, max: 4, desc: '被强调的行序号', showIf: (p) => p.focusEnabled },
   { key: 'showFigures', label: '关键数字带', type: 'toggle', default: true, desc: '显示/隐藏顶部关键数字带（装饰锚点）' },
@@ -247,9 +270,11 @@ SlideMatrix.presetRegRisk = {
     { no: 2, dim: '采购审查', en: 'PROCUREMENT', cells: ['+36%', '大型企业 IT', '审查周期拉长交付与回款'] },
     { no: 3, dim: '数据隔离', en: 'ISOLATION', cells: ['58%', '受监管行业', '私有化/隔离部署推高成本'] },
     { no: 4, dim: '版权风险', en: 'COPYRIGHT', cells: ['19 起', '内容生成公司', '训练数据来源的法律敞口'] },
+    { no: 5, dim: '模型安全', en: 'MODEL SAFETY', cells: ['7 类', '企业 AI 助手', '越权输出与幻觉风险需要审计'] },
   ],
-  footRight: '4 DIM × 4 COL / TABLE',
-  rowCount: 4, columnCount: 4,
+  footRight: '',
+  mediaPlaceholder: '合规风险审查主视觉 / DROP IMAGE',
+  rowCount: 4, columnCount: 4, mediaSlotCount: 1,
   focusEnabled: true, focusIndex: 2,
   showFigures: true, showIndex: true, showCaseIndex: false, showTagBadge: true, zebra: true,
   accent: '#c8f135',
@@ -281,8 +306,9 @@ SlideMatrix.presetSources = {
     { no: 2, dim: '公司披露', en: 'COMPANY FILINGS', cells: ['头部 12 家', '官方公告 · 新闻稿', '以最大单笔融资作为排名口径'] },
     { no: 3, dim: '行业研究', en: 'MARKET RESEARCH', cells: ['赛道 9 类', '第三方研究 · 投行报告', '赛道占比为模拟估算值'] },
     { no: 4, dim: '公开报道', en: 'PUBLIC PRESS', cells: ['2024 全年', '主流科技与财经媒体', '未披露轮次按区间中值估计'] },
+    { no: 5, dim: '交叉校验', en: 'CROSS CHECK', cells: ['3 轮复核', '公告 · 数据库 · 媒体', '冲突数据按披露层级优先校准'] },
   ],
-  footRight: '4 SRC × 4 COL / APPENDIX',
+  footRight: '',
   rowCount: 4, columnCount: 4,
   focusEnabled: true, focusIndex: 0,
   showFigures: true, showIndex: true, showCaseIndex: false, showTagBadge: true, zebra: true,

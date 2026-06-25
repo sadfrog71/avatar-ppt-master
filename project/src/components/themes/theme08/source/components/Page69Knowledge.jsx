@@ -25,8 +25,8 @@ export default function Page69Knowledge(props) {
     ? 'linear-gradient(165deg, #EFEFF6 0%, #E7E6EE 58%, #DEDCEA 100%)'
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
-  const items = sources.slice(0, Math.max(2, sourceCount));
-  const fIdx = Math.min(focusIndex, items.length - 1);
+  const items = sources.slice(0, Math.max(2, Math.min(10, Number(sourceCount) || 2)));
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, items.length - 1));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
   const slots = hero[mediaCount] || [];
   const accents = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-red)', 'var(--acl-ink)', 'var(--acl-yellow)'];
@@ -226,6 +226,11 @@ Page69Knowledge.defaults = {
     { label: 'IM 与会议', note: 'Chat & Meetings', v: 19, unit: '%' },
     { label: '工单与项目', note: 'Tickets & Tasks', v: 15, unit: '%' },
     { label: '代码与知识库', note: 'Code & Wiki', v: 10, unit: '%' },
+    { label: 'CRM 客户库', note: 'CRM', v: 8, unit: '%' },
+    { label: '数据看板', note: 'Dashboards', v: 7, unit: '%' },
+    { label: '合同档案', note: 'Contracts', v: 6, unit: '%' },
+    { label: '研发文档', note: 'R&D Docs', v: 5, unit: '%' },
+    { label: '培训资料', note: 'Training', v: 4, unit: '%' },
   ],
   // count-driven hero presets — stage ≈ 700×560, each slot resizes to its ratio.
   hero: {
@@ -257,8 +262,8 @@ Page69Knowledge.controls = [
     label: '背景主题', desc: '主色(电光黄) 或 次色(淡紫灰) 底色' },
   { key: 'mediaCount', type: 'number', default: 2, min: 0, max: 3, step: 1,
     label: '图片数量', desc: '特写图片数量(0–3)：1 主视觉 + 至多 2 张嵌套；每张按上传图片比例自适应' },
-  { key: 'sourceCount', type: 'number', default: 5, min: 2, max: 5, step: 1,
-    label: '来源数量', desc: '左侧被汇聚的来源卡数量(2–5)' },
+  { key: 'sourceCount', type: 'number', default: 5, min: 2, max: 10, step: 1,
+    label: '来源数量', desc: '左侧被汇聚的来源卡数量(2–10)' },
   { key: 'metricCount', type: 'number', default: 3, min: 2, max: 3, step: 1,
     label: '指标数量', desc: '底部支撑指标格数量(2–3)' },
   { key: 'showValueLabels', type: 'boolean', default: true,
@@ -269,8 +274,8 @@ Page69Knowledge.controls = [
     label: '汇聚箭头', desc: '由来源指向主视觉的手绘汇聚箭头 显隐' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否突出某一张来源卡' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, maxFrom: 'sourceCount', step: 1,
-    label: '重点对象', desc: '被突出的来源卡序号(从 0 起)' },
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 9, maxFrom: 'sourceCount', step: 1,
+    label: '来源对象', desc: '被突出的来源卡序号(0–9)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘装饰与贴纸标签的显示/隐藏' },
 ];

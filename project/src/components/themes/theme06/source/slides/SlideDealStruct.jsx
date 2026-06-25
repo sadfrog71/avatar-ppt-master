@@ -90,8 +90,9 @@ if (!document.getElementById('kx-dst-css')) {
   .kx-dst-card .kx-ck{font-family:var(--kx-disp);font-weight:900;font-size:30px;letter-spacing:-.01em;}
   .kx-dst-card .kx-ce{font-family:var(--kx-mono);font-size:19px;color:var(--kx-mute-2);letter-spacing:.04em;}
   /* right: media */
-  .kx-dst-media{display:flex;flex-direction:column;gap:20px;min-height:0;justify-content:center;}
-  .kx-dst-media .kx-imgslot{flex:none;}
+  .kx-dst-media{display:flex;flex-direction:column;gap:20px;height:100%;min-height:0;max-height:100%;
+    justify-content:stretch;overflow:hidden;}
+  .kx-dst-media .kx-imgslot{flex:1 1 0;min-height:0;max-height:100%;aspect-ratio:auto;}
   .kx-dst-foot{display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--kx-line);}
   .kx-dst-foot .kx-cl{font-family:var(--kx-mono);font-size:26px;color:var(--kx-accent);font-weight:700;}
   .kx-dst-foot .kx-rt{font-family:var(--kx-mono);font-size:24px;color:var(--kx-mute-2);letter-spacing:.03em;}
@@ -145,14 +146,14 @@ function SlideDealStruct(props) {
           p.showValueLabels ? h('div', { className: 'kx-sg-v' }, pt.value + '%') : null); }));
   }
 
-  const media = slots > 0 ? h('div', { className: 'kx-dst-media' },
+  const media = slots > 0 ? h('div', { className: 'kx-dst-media kx-slots-' + slots },
     Array.from({ length: slots }, (_, i) =>
       h(KxImageSlot, {
         key: i, id: 'dealstruct-' + (p.eyebrowId || 'x') + '-' + i,
         placeholder: p.mediaPlaceholder || '交易结构示意 / DROP IMAGE',
         badge: slots === 1 ? p.structTag : ('IMG ' + String(i + 1).padStart(2, '0')),
         minRatio: slots === 1 ? 0.7 : 0.9, maxRatio: slots === 1 ? 1.3 : 1.9,
-        style: { width: '100%' },
+        style: { width: '100%', aspectRatio: 'auto' },
       }))) : null;
 
   const left = h('div', { className: 'kx-dst-left' },

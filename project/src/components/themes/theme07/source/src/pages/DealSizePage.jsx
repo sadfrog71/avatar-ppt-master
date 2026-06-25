@@ -33,7 +33,7 @@ const COPY = {
 // ── exported, migration-stable parameter contract ──
 export const defaultProps = {
   ...COPY,
-  rowCount: 4,           // size bands shown (3–4)
+  rowCount: 4,           // size bands shown (1–4)
   metricMode: 'both',    // 'both' | 'count' | 'amount' — which axes to show
   showValues: true,      // numeric value labels on bars
   focusEnabled: true,    // emphasise one band
@@ -50,8 +50,8 @@ export const controls = [
   { key: 'closing', label: '结语', type: 'text', default: '市场被少数超级交易重新定价。' },
   { key: 'countLabel', label: 'countLabel', type: 'text', default: '交易数量 / 笔' },
   { key: 'amountLabel', label: 'amountLabel', type: 'text', default: '融资金额 / 亿美元' },
-  { key: 'rowCount', label: '行数量', type: 'slider', default: 4, min: 3, max: 4, step: 1,
-    description: '金额区间分组数量（3–4）。' },
+  { key: 'rowCount', label: '行数量', type: 'slider', default: 4, min: 1, max: 4, step: 1,
+    description: '金额区间分组数量（1–4）。' },
   { key: 'metricMode', label: '图表类型', type: 'radio', default: 'both',
     options: [{ value: 'both', label: '双维' }, { value: 'count', label: '仅数量' }, { value: 'amount', label: '仅金额' }],
     description: '展示维度：数量 + 金额对照 / 仅数量 / 仅金额。' },
@@ -139,7 +139,7 @@ export default function DealSizePage(props) {
   injectScopedStyle('aic-dz', CSS);
   const vars = themeVars(p.accentColor);
 
-  const n = Math.max(3, Math.min(copy.rows.length, p.rowCount));
+  const n = Math.max(1, Math.min(copy.rows.length, p.rowCount));
   const rows = copy.rows.slice(0, n);
   const focus = Math.max(0, Math.min(n - 1, p.focusIndex));
 

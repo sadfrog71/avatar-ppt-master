@@ -24,7 +24,7 @@ export default function Page58Seattle(props) {
 
   const rows = tags.slice(0, Math.max(2, tagCount));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
-  const fIdx = Math.min(focusIndex, rows.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, rows.length - 1));
   const slots = rail[mediaCount] || [];
 
   return (
@@ -232,7 +232,7 @@ Page58Seattle.controls = [
     label: '占比大数字', desc: '右侧大号占比数字 显隐' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否突出某一个方向行' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, maxFrom: 'tagCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 3, maxFrom: 'tagCount', step: 1,
     label: '重点对象', desc: '被突出的方向行序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘装饰与贴纸标签 显隐' },

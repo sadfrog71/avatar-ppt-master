@@ -100,14 +100,15 @@ const CSS = `
 .aic-month .mo-leg .it i.dash { height: 0; width: 22px; border-top: 2.5px dashed var(--aic-ink-dim); border-radius: 0; }
 .aic-month .mo-svg { display: block; width: 100%; height: auto; }
 
-.aic-month .mo-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px; }
-.aic-month .mo-cell { position: relative; border-radius: 14px; aspect-ratio: 0.72; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 6px; border: 2px solid transparent; transition: transform .3s, border-color .3s; }
+.aic-month .mo-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(3, 1fr);
+  gap: 18px; height: 612px; }
+.aic-month .mo-cell { position: relative; min-height: 0; border-radius: 18px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px; border: 2px solid transparent; transition: transform .3s, border-color .3s; }
 .aic-month .mo-cell[data-peak="1"] { border-color: var(--aic-ink); }
 .aic-month .mo-cell[data-focus="1"] { transform: translateY(-8px); border-color: var(--aic-ink); }
-.aic-month .mo-cell .v { font-family: var(--aic-font-display); font-weight: 700; font-size: 30px;
+.aic-month .mo-cell .v { font-family: var(--aic-font-display); font-weight: 700; font-size: 42px;
   font-variant-numeric: tabular-nums; }
-.aic-month .mo-cell .m { font-family: var(--aic-font-text); font-weight: 600; font-size: 18px; }
+.aic-month .mo-cell .m { font-family: var(--aic-font-text); font-weight: 600; font-size: 21px; }
 .aic-month .mo-cells-x { display: none; }
 `;
 

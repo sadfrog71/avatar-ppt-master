@@ -23,8 +23,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(渐变) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -114,8 +120,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -179,8 +191,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰，默认) 底色",
         "publicKey": "backgroundTheme",
@@ -192,7 +210,7 @@ export const pages = [
         "label": "图片数量",
         "type": "number",
         "default": 2,
-        "min": 0,
+        "min": 1,
         "max": 2,
         "step": 1,
         "desc": "右侧照片点缀数量（0–2）",
@@ -268,8 +286,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(纸灰，默认) 底色",
         "publicKey": "backgroundTheme",
@@ -345,8 +369,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -595,8 +625,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -645,9 +681,18 @@ export const pages = [
         "type": "enum",
         "default": "bars",
         "options": [
-          "bars",
-          "donut",
-          null
+          {
+            "value": "bars",
+            "label": "条形"
+          },
+          {
+            "value": "donut",
+            "label": "环形图"
+          },
+          {
+            "value": null,
+            "label": "隐藏"
+          }
         ],
         "desc": "占比模块的呈现方式：条形 / 环形 / 隐藏",
         "publicKey": "chartType",
@@ -739,8 +784,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -851,8 +902,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -865,9 +922,18 @@ export const pages = [
         "type": "enum",
         "default": "column",
         "options": [
-          "column",
-          "area",
-          "line"
+          {
+            "value": "column",
+            "label": "列式"
+          },
+          {
+            "value": "area",
+            "label": "面积图"
+          },
+          {
+            "value": "line",
+            "label": "折线"
+          }
         ],
         "desc": "主数据系列的呈现：柱状 / 面积 / 折线",
         "publicKey": "chartType",
@@ -988,8 +1054,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -1002,8 +1074,14 @@ export const pages = [
         "type": "enum",
         "default": "donut",
         "options": [
-          "donut",
-          "bars"
+          {
+            "value": "donut",
+            "label": "环形图"
+          },
+          {
+            "value": "bars",
+            "label": "条形"
+          }
         ],
         "desc": "占比模块的呈现：环形 / 条形",
         "publicKey": "chartType",
@@ -1049,6 +1127,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被高亮的分段序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -1143,8 +1222,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -1166,26 +1251,26 @@ export const pages = [
       },
       {
         "key": "showRegion",
-        "label": "副面板(地区)",
+        "label": "类型面板",
         "type": "boolean",
         "default": true,
-        "desc": "右侧地区分布面板的显示/隐藏",
+        "desc": "右侧类型分布面板的显示/隐藏",
         "publicKey": "showRegion",
-        "publicLabel": "副面板(地区)",
-        "description": "右侧地区分布面板的显示/隐藏"
+        "publicLabel": "类型面板",
+        "description": "右侧类型分布面板的显示/隐藏"
       },
       {
         "key": "regionCount",
-        "label": "地区数量",
+        "label": "类型数量",
         "type": "number",
         "default": 5,
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "地区分布条的数量",
+        "desc": "类型分布条的数量",
         "publicKey": "regionCount",
-        "publicLabel": "地区数量",
-        "description": "地区分布条的数量"
+        "publicLabel": "类型数量",
+        "description": "类型分布条的数量"
       },
       {
         "key": "focusEnabled",
@@ -1203,6 +1288,7 @@ export const pages = [
         "type": "number",
         "default": 1,
         "min": 0,
+        "max": 2,
         "step": 1,
         "desc": "被突出的分层序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -1308,8 +1394,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -1550,8 +1642,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -1564,8 +1662,14 @@ export const pages = [
         "type": "enum",
         "default": 6,
         "options": [
-          4,
-          6
+          {
+            "value": 4,
+            "label": "4"
+          },
+          {
+            "value": 6,
+            "label": "6"
+          }
         ],
         "desc": "热力格每行单元数：4 列(3 行) 或 6 列(2 行)",
         "publicKey": "columnCount",
@@ -1583,17 +1687,17 @@ export const pages = [
         "description": "在每个单元中显示数值"
       },
       {
-        "key": "highlightCount",
+        "key": "highlightIndex",
         "label": "峰值强调",
         "type": "number",
-        "default": 3,
-        "min": 0,
-        "max": 4,
+        "default": 8,
+        "min": 1,
+        "max": 12,
         "step": 1,
-        "desc": "按数值高低强调的峰值单元数量(0–4)",
-        "publicKey": "highlightCount",
+        "desc": "选择单个被强调热力格（第1个至第12个）",
+        "publicKey": "highlightIndex",
         "publicLabel": "峰值强调",
-        "description": "按数值高低强调的峰值单元数量(0–4)"
+        "description": "选择单个被强调热力格（第1个至第12个）"
       },
       {
         "key": "showScale",
@@ -1620,13 +1724,13 @@ export const pages = [
       "backgroundTheme": "primary",
       "columnCount": 6,
       "showValueLabels": true,
-      "highlightCount": 3,
+      "highlightIndex": 8,
       "showScale": true,
       "showDecor": true,
       "eyebrow": "Monthly Heatmap",
       "headline": "市场月度热力",
       "subheadline": "12 个月融资节奏",
-      "summary": "全年热度并非均匀释放，而是由 <b>5 月、8 月、9 月</b> 等峰值月份拉高。",
+      "summary": "全年热度并非均匀释放，而是由 <b>8 月</b> 这一峰值月份拉高。",
       "cells": [
         {
           "m": "1月",
@@ -1709,8 +1813,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -1873,8 +1983,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -2006,8 +2122,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -2172,9 +2294,18 @@ export const pages = [
         "type": "enum",
         "default": "ink",
         "options": [
-          "primary",
-          "muted",
-          "ink"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          },
+          {
+            "value": "ink",
+            "label": "墨色"
+          }
         ],
         "desc": "主色(电光黄) / 次色(淡紫灰) / 深色(高反差金句)",
         "publicKey": "backgroundTheme",
@@ -2258,9 +2389,18 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted",
-          "ink"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          },
+          {
+            "value": "ink",
+            "label": "墨色"
+          }
         ],
         "desc": "主色(电光黄) / 次色(淡紫灰) / 深色(高反差章节页)",
         "publicKey": "backgroundTheme",
@@ -2336,8 +2476,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -2487,8 +2633,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -2514,9 +2666,18 @@ export const pages = [
         "type": "enum",
         "default": "column",
         "options": [
-          "column",
-          "area",
-          "line"
+          {
+            "value": "column",
+            "label": "列式"
+          },
+          {
+            "value": "area",
+            "label": "面积图"
+          },
+          {
+            "value": "line",
+            "label": "折线"
+          }
         ],
         "desc": "右侧序列迷你图：柱状 / 面积 / 折线",
         "publicKey": "chartType",
@@ -2647,8 +2808,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -2836,8 +3003,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -3059,8 +3232,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -3203,8 +3382,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -3217,8 +3402,14 @@ export const pages = [
         "type": "enum",
         "default": "column",
         "options": [
-          "column",
-          "lollipop"
+          {
+            "value": "column",
+            "label": "列式"
+          },
+          {
+            "value": "lollipop",
+            "label": "棒棒糖"
+          }
         ],
         "desc": "序列呈现：柱状 / 棒棒糖（细茎圆点）",
         "publicKey": "chartType",
@@ -3379,8 +3570,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -3524,8 +3721,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -3538,8 +3741,14 @@ export const pages = [
         "type": "enum",
         "default": "mirror",
         "options": [
-          "mirror",
-          "grouped"
+          {
+            "value": "mirror",
+            "label": "镜像"
+          },
+          {
+            "value": "grouped",
+            "label": "分组"
+          }
         ],
         "desc": "双维呈现：镜像对比(背向) / 成组并列",
         "publicKey": "chartType",
@@ -3663,9 +3872,18 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted",
-          "ink"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          },
+          {
+            "value": "ink",
+            "label": "墨色"
+          }
         ],
         "desc": "主色(电光黄) / 次色(淡紫灰) / 深色(高反差大数字)",
         "publicKey": "backgroundTheme",
@@ -3855,8 +4073,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -3869,9 +4093,18 @@ export const pages = [
         "type": "enum",
         "default": "area",
         "options": [
-          "area",
-          "line",
-          "step"
+          {
+            "value": "area",
+            "label": "面积图"
+          },
+          {
+            "value": "line",
+            "label": "折线"
+          },
+          {
+            "value": "step",
+            "label": "阶梯"
+          }
         ],
         "desc": "累计曲线的呈现：面积 / 折线 / 阶梯",
         "publicKey": "chartType",
@@ -4012,9 +4245,18 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted",
-          "ink"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          },
+          {
+            "value": "ink",
+            "label": "墨色"
+          }
         ],
         "desc": "主色(电光黄) / 次色(淡紫灰) / 深色(高反差章节页)",
         "publicKey": "backgroundTheme",
@@ -4090,8 +4332,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -4261,8 +4509,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -4485,8 +4739,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -4743,8 +5003,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -4925,8 +5191,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -5082,8 +5354,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -5109,8 +5387,14 @@ export const pages = [
         "type": "enum",
         "default": "donut",
         "options": [
-          "donut",
-          "bars"
+          {
+            "value": "donut",
+            "label": "环形图"
+          },
+          {
+            "value": "bars",
+            "label": "条形"
+          }
         ],
         "desc": "占比图：环形 / 条形",
         "publicKey": "chartType",
@@ -5308,9 +5592,18 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted",
-          "ink"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          },
+          {
+            "value": "ink",
+            "label": "墨色"
+          }
         ],
         "desc": "主色(电光黄) / 次色(淡紫灰) / 深色(高反差金句)",
         "publicKey": "backgroundTheme",
@@ -5395,8 +5688,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -5422,9 +5721,18 @@ export const pages = [
         "type": "enum",
         "default": "area",
         "options": [
-          "column",
-          "area",
-          "line"
+          {
+            "value": "column",
+            "label": "列式"
+          },
+          {
+            "value": "area",
+            "label": "面积图"
+          },
+          {
+            "value": "line",
+            "label": "折线"
+          }
         ],
         "desc": "增长趋势迷你图：柱状 / 面积 / 折线",
         "publicKey": "chartType",
@@ -5585,8 +5893,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -5883,8 +6197,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -6044,7 +6364,7 @@ export const pages = [
         "0": [],
         "1": [
           {
-            "l": 120,
+            "l": 270,
             "t": 24,
             "box": 440,
             "r": -3,
@@ -6057,9 +6377,9 @@ export const pages = [
         ],
         "2": [
           {
-            "l": 6,
+            "l": 24,
             "t": 0,
-            "box": 380,
+            "box": 386,
             "r": -4,
             "ratio": 1.22,
             "sr": -4,
@@ -6068,9 +6388,9 @@ export const pages = [
             "sub": "LABEL"
           },
           {
-            "l": 360,
-            "t": 138,
-            "box": 372,
+            "l": 520,
+            "t": 128,
+            "box": 380,
             "r": 4,
             "ratio": 0.86,
             "sr": 3,
@@ -6081,9 +6401,9 @@ export const pages = [
         ],
         "3": [
           {
-            "l": 178,
+            "l": 270,
             "t": 0,
-            "box": 332,
+            "box": 338,
             "r": 3,
             "ratio": 0.94,
             "sr": -4,
@@ -6093,8 +6413,8 @@ export const pages = [
           },
           {
             "l": 0,
-            "t": 168,
-            "box": 300,
+            "t": 164,
+            "box": 306,
             "r": -5,
             "ratio": 1.22,
             "sr": 4,
@@ -6103,9 +6423,9 @@ export const pages = [
             "sub": "SYNTH"
           },
           {
-            "l": 350,
-            "t": 196,
-            "box": 300,
+            "l": 610,
+            "t": 182,
+            "box": 306,
             "r": 5,
             "ratio": 0.84,
             "sr": -3,
@@ -6133,8 +6453,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -6147,8 +6473,14 @@ export const pages = [
         "type": "enum",
         "default": "grid",
         "options": [
-          "grid",
-          "bars"
+          {
+            "value": "grid",
+            "label": "网格"
+          },
+          {
+            "value": "bars",
+            "label": "条形"
+          }
         ],
         "desc": "占用呈现：算力网格 / 资源条形",
         "publicKey": "chartType",
@@ -6284,6 +6616,11 @@ export const pages = [
           "k": "其他 / 自研",
           "en": "Others",
           "v": 6
+        },
+        {
+          "k": "边缘算力",
+          "en": "Edge",
+          "v": 4
         }
       ],
       "closingLine": "算力是 AI 时代最直接的硬资源。"
@@ -6304,8 +6641,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -6468,8 +6811,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -6495,13 +6844,19 @@ export const pages = [
         "type": "enum",
         "default": "stack",
         "options": [
-          "stack",
-          "bars"
+          {
+            "value": "stack",
+            "label": "堆叠"
+          },
+          {
+            "value": "bars",
+            "label": "条形"
+          }
         ],
-        "desc": "应用分布呈现：堆叠条 / 分组柱",
+        "desc": "应用分布呈现：堆叠条 / 横向条形",
         "publicKey": "splitStyle",
         "publicLabel": "分布样式",
-        "description": "应用分布呈现：堆叠条 / 分组柱"
+        "description": "应用分布呈现：堆叠条 / 横向条形"
       },
       {
         "key": "segmentCount",
@@ -6727,8 +7082,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -6741,8 +7102,14 @@ export const pages = [
         "type": "enum",
         "default": "pie",
         "options": [
-          "pie",
-          "gate"
+          {
+            "value": "pie",
+            "label": "饼图"
+          },
+          {
+            "value": "gate",
+            "label": "闸门"
+          }
         ],
         "desc": "安全模块占比：饱图(pie) / 关卡漏斗(gate)",
         "publicKey": "chartType",
@@ -6901,8 +7268,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -6928,8 +7301,14 @@ export const pages = [
         "type": "enum",
         "default": "bars",
         "options": [
-          "bars",
-          "donut"
+          {
+            "value": "bars",
+            "label": "条形"
+          },
+          {
+            "value": "donut",
+            "label": "环形图"
+          }
         ],
         "desc": "资金分布呈现：条形 / 环形",
         "publicKey": "chartType",
@@ -7122,8 +7501,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -7135,13 +7520,13 @@ export const pages = [
         "label": "场景数量",
         "type": "number",
         "default": 3,
-        "min": 0,
+        "min": 1,
         "max": 4,
         "step": 1,
-        "desc": "学习路径场景卡数量(0–4)；每卡含一个图片槽，布局随数量自动平衡，每槽按上传图片比例自适应",
+        "desc": "学习路径场景卡数量(1–4)；每卡含一个图片槽，布局随数量自动平衡，每槽按上传图片比例自适应",
         "publicKey": "cardCount",
         "publicLabel": "场景数量",
-        "description": "学习路径场景卡数量(0–4)；每卡含一个图片槽，布局随数量自动平衡，每槽按上传图片比例自适应"
+        "description": "学习路径场景卡数量(1–4)；每卡含一个图片槽，布局随数量自动平衡，每槽按上传图片比例自适应"
       },
       {
         "key": "showPath",
@@ -7295,8 +7680,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -7523,8 +7914,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -7701,8 +8098,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -7990,8 +8393,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -8229,9 +8638,18 @@ export const pages = [
         "type": "enum",
         "default": "ink",
         "options": [
-          "primary",
-          "muted",
-          "ink"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          },
+          {
+            "value": "ink",
+            "label": "墨色"
+          }
         ],
         "desc": "主色(电光黄) / 次色(淡紫灰) / 深色(高反差章节页)",
         "publicKey": "backgroundTheme",
@@ -8277,6 +8695,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被高亮的关键词序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -8335,8 +8754,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -8402,6 +8827,7 @@ export const pages = [
         "type": "number",
         "default": 1,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被高亮的行序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -8521,8 +8947,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -8535,8 +8967,14 @@ export const pages = [
         "type": "enum",
         "default": "donut",
         "options": [
-          "donut",
-          "bars"
+          {
+            "value": "donut",
+            "label": "环形图"
+          },
+          {
+            "value": "bars",
+            "label": "条形"
+          }
         ],
         "desc": "占比模块的呈现：环形 / 条形",
         "publicKey": "chartType",
@@ -8572,6 +9010,7 @@ export const pages = [
         "type": "number",
         "default": 1,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被高亮的分段序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -8691,8 +9130,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -8741,6 +9186,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被高亮的资源卡序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -8928,8 +9374,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -8942,8 +9394,14 @@ export const pages = [
         "type": "enum",
         "default": "donut",
         "options": [
-          "donut",
-          "bars"
+          {
+            "value": "donut",
+            "label": "环形图"
+          },
+          {
+            "value": "bars",
+            "label": "条形"
+          }
         ],
         "desc": "占比模块的呈现：环形 / 条形",
         "publicKey": "chartType",
@@ -8992,6 +9450,7 @@ export const pages = [
         "type": "number",
         "default": 2,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被高亮的分段序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -9090,8 +9549,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -9103,13 +9568,13 @@ export const pages = [
         "label": "节点数量",
         "type": "number",
         "default": 4,
-        "min": 3,
+        "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "生态环上的节点数量(3–4)",
+        "desc": "生态环上的节点数量(2–4)；2 个时一左一右",
         "publicKey": "segmentCount",
         "publicLabel": "节点数量",
-        "description": "生态环上的节点数量(3–4)"
+        "description": "生态环上的节点数量(2–4)；2 个时一左一右"
       },
       {
         "key": "mediaCount",
@@ -9140,6 +9605,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被高亮的节点序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -9218,9 +9684,18 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted",
-          "ink"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          },
+          {
+            "value": "ink",
+            "label": "墨色"
+          }
         ],
         "desc": "主色(电光黄) / 次色(淡紫灰) / 深色(高反差大数字)",
         "publicKey": "backgroundTheme",
@@ -9269,6 +9744,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被高亮的优势要素序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -9354,8 +9830,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -9427,6 +9909,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被突出的标签序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -9631,8 +10114,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -9704,6 +10193,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被突出的方向行序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -9864,9 +10354,18 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted",
-          "ink"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          },
+          {
+            "value": "ink",
+            "label": "墨色"
+          }
         ],
         "desc": "主色(电光黄) / 次色(淡紫灰) / 深色(杂志海报)",
         "publicKey": "backgroundTheme",
@@ -9938,6 +10437,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被突出的票根序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -10093,8 +10593,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -10179,6 +10685,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被突出的节点序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -10319,9 +10826,18 @@ export const pages = [
         "type": "enum",
         "default": "ink",
         "options": [
-          "primary",
-          "muted",
-          "ink"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          },
+          {
+            "value": "ink",
+            "label": "墨色"
+          }
         ],
         "desc": "主色(电光黄) / 次色(淡紫灰) / 深色(高反差金句)",
         "publicKey": "backgroundTheme",
@@ -10377,6 +10893,7 @@ export const pages = [
         "type": "number",
         "default": 2,
         "min": 0,
+        "max": 2,
         "step": 1,
         "desc": "被突出的要素卡序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -10439,8 +10956,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -10512,6 +11035,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被高亮的节点序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -10657,8 +11181,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -10730,6 +11260,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被突出的指标行序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -10809,8 +11340,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -10889,6 +11426,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被高亮的行序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -11002,8 +11540,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -11085,6 +11629,7 @@ export const pages = [
         "type": "number",
         "default": 2,
         "min": 0,
+        "max": 3,
         "step": 1,
         "desc": "被突出的漏斗阶段序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -11254,8 +11799,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -11327,6 +11878,7 @@ export const pages = [
         "type": "number",
         "default": 3,
         "min": 0,
+        "max": 4,
         "step": 1,
         "desc": "被突出的层带序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -11434,8 +11986,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -11461,12 +12019,12 @@ export const pages = [
         "type": "number",
         "default": 5,
         "min": 2,
-        "max": 5,
+        "max": 10,
         "step": 1,
-        "desc": "左侧被汇聚的来源卡数量(2–5)",
+        "desc": "左侧被汇聚的来源卡数量(2–10)",
         "publicKey": "sourceCount",
         "publicLabel": "来源数量",
-        "description": "左侧被汇聚的来源卡数量(2–5)"
+        "description": "左侧被汇聚的来源卡数量(2–10)"
       },
       {
         "key": "metricCount",
@@ -11523,15 +12081,16 @@ export const pages = [
       },
       {
         "key": "focusIndex",
-        "label": "重点对象",
+        "label": "来源对象",
         "type": "number",
         "default": 0,
         "min": 0,
+        "max": 9,
         "step": 1,
-        "desc": "被突出的来源卡序号(从 0 起)",
+        "desc": "被突出的来源卡序号(0–9)",
         "publicKey": "focusIndex",
-        "publicLabel": "重点对象",
-        "description": "被突出的来源卡序号(从 0 起)"
+        "publicLabel": "来源对象",
+        "description": "被突出的来源卡序号(0–9)"
       },
       {
         "key": "showDecor",
@@ -11594,6 +12153,36 @@ export const pages = [
           "label": "代码与知识库",
           "note": "Code & Wiki",
           "v": 10,
+          "unit": "%"
+        },
+        {
+          "label": "CRM 客户库",
+          "note": "CRM",
+          "v": 8,
+          "unit": "%"
+        },
+        {
+          "label": "数据看板",
+          "note": "Dashboards",
+          "v": 7,
+          "unit": "%"
+        },
+        {
+          "label": "合同档案",
+          "note": "Contracts",
+          "v": 6,
+          "unit": "%"
+        },
+        {
+          "label": "研发文档",
+          "note": "R&D Docs",
+          "v": 5,
+          "unit": "%"
+        },
+        {
+          "label": "培训资料",
+          "note": "Training",
+          "v": 4,
           "unit": "%"
         }
       ],
@@ -11700,8 +12289,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -11907,8 +12502,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -11921,8 +12522,14 @@ export const pages = [
         "type": "enum",
         "default": "funnel",
         "options": [
-          "funnel",
-          "bars"
+          {
+            "value": "funnel",
+            "label": "漏斗"
+          },
+          {
+            "value": "bars",
+            "label": "条形"
+          }
         ],
         "desc": "阶梯呈现：几何收窄漏斗(funnel) / 按数值缩放条(bars)",
         "publicKey": "chartType",
@@ -11950,10 +12557,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "左侧配图槽数量(0–2)；为 0 时自动收起，每张按上传图片比例自适应",
+        "desc": "左侧配图槽数量(0–2)；为 0 时收起媒体栏，主体内容自适应扩展；每张按上传图片比例自适应",
         "publicKey": "mediaCount",
         "publicLabel": "图片数量",
-        "description": "左侧配图槽数量(0–2)；为 0 时自动收起，每张按上传图片比例自适应"
+        "description": "左侧配图槽数量(0–2)；为 0 时收起媒体栏，主体内容自适应扩展；每张按上传图片比例自适应"
       },
       {
         "key": "showValueLabels",
@@ -12150,8 +12757,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -12380,8 +12993,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -12394,8 +13013,14 @@ export const pages = [
         "type": "enum",
         "default": "pincer",
         "options": [
-          "pincer",
-          "bars"
+          {
+            "value": "pincer",
+            "label": "夹击"
+          },
+          {
+            "value": "bars",
+            "label": "条形"
+          }
         ],
         "desc": "竞争格局：夹击压缩(pincer) / 压力指标条(bars)",
         "publicKey": "chartType",
@@ -12410,6 +13035,7 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
+        "countArrays": "pressures",
         "desc": "压力指标数量(2–4)",
         "publicKey": "segmentCount",
         "publicLabel": "指标数量",
@@ -12464,8 +13090,10 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
-        "max": 3,
+        "max": 2,
         "step": 1,
+        "maxFromKey": "segmentCount",
+        "maxFromKeyOffset": -1,
         "desc": "被高亮的压力指标序号(从 0 起)",
         "publicKey": "focusIndex",
         "publicLabel": "重点对象",
@@ -12496,18 +13124,9 @@ export const pages = [
       "headline": "壁垒被压缩",
       "subheadline": "风险：开源与大厂竞争",
       "summary": "开源模型降低能力门槛，大厂生态<b>压缩初创独立空间</b>。",
-      "leftWall": {
-        "tag": "Open Source",
-        "name": "开源社区",
-        "v": 86
-      },
-      "rightWall": {
-        "tag": "Incumbents",
-        "name": "大厂生态",
-        "v": 72
-      },
-      "coreLabel": "被夹击的",
-      "coreValue": 34,
+      "strategyKicker": "防守判断 · 观察信号",
+      "strategyTitle": "不是守模型，而是守住业务闭环",
+      "strategyLead": "当能力差距被快速抹平，真正可防守的部分会转向客户数据、交付路径和渠道绑定。",
       "threshold": 75,
       "pressures": [
         {
@@ -12531,21 +13150,58 @@ export const pages = [
           "v": 58
         }
       ],
+      "signals": [
+        {
+          "k": "客户迁移成本",
+          "v": "高",
+          "color": "var(--acl-yellow)",
+          "text": "流程、权限和历史数据一旦绑定，替换成本会重新形成壁垒。"
+        },
+        {
+          "k": "专有数据回流",
+          "v": "中",
+          "color": "var(--acl-blue)",
+          "text": "能持续拿到业务反馈的产品，更不容易被通用模型平替。"
+        },
+        {
+          "k": "渠道控制力",
+          "v": "弱",
+          "color": "var(--acl-pink)",
+          "text": "若获客依赖平台分发，价格战会更快传导到收入端。"
+        }
+      ],
+      "actions": [
+        {
+          "no": "01",
+          "k": "先守场景",
+          "text": "优先选择交付链条长、流程复杂、替换成本高的企业场景。"
+        },
+        {
+          "no": "02",
+          "k": "绑定数据",
+          "text": "把使用数据、审批记录和运营反馈沉淀成产品循环。"
+        },
+        {
+          "no": "03",
+          "k": "后扩品类",
+          "text": "等闭环跑通后，再横向复制到相邻部门或相邻行业。"
+        }
+      ],
       "metrics": [
         {
-          "k": "开源性能逼近",
-          "v": "86",
-          "unit": "%"
+          "k": "可防守窗口",
+          "v": "12",
+          "unit": "月"
         },
         {
-          "k": "大厂产品覆盖",
-          "v": "72",
-          "unit": "%"
+          "k": "优先验证场景",
+          "v": "3",
+          "unit": "类"
         },
         {
-          "k": "企业自建意愿",
-          "v": "34",
-          "unit": "%"
+          "k": "复购触发点",
+          "v": "2",
+          "unit": "个"
         }
       ],
       "closingLine": "没有壁垒的模型能力会迅速商品化。"
@@ -12566,8 +13222,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -12715,8 +13377,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -13000,8 +13668,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -13181,9 +13855,18 @@ export const pages = [
         "type": "enum",
         "default": "ink",
         "options": [
-          "primary",
-          "muted",
-          "ink"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          },
+          {
+            "value": "ink",
+            "label": "墨色"
+          }
         ],
         "desc": "主色(电光黄) / 次色(淡紫灰) / 深色(高反差金句)",
         "publicKey": "backgroundTheme",
@@ -13196,8 +13879,14 @@ export const pages = [
         "type": "enum",
         "default": "band",
         "options": [
-          "band",
-          "underline"
+          {
+            "value": "band",
+            "label": "色带"
+          },
+          {
+            "value": "underline",
+            "label": "下划线"
+          }
         ],
         "desc": "重点句强调方式：倾斜填充色块 / 手绘下划线",
         "publicKey": "emphasisStyle",
@@ -13332,8 +14021,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -13488,8 +14183,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -13502,8 +14203,14 @@ export const pages = [
         "type": "enum",
         "default": "slope",
         "options": [
-          "slope",
-          "bars"
+          {
+            "value": "slope",
+            "label": "斜率"
+          },
+          {
+            "value": "bars",
+            "label": "条形"
+          }
         ],
         "desc": "迁移呈现：斜率连线(排名迁移) / 成对条形(两期对比)",
         "publicKey": "chartType",
@@ -13661,8 +14368,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -13674,13 +14387,13 @@ export const pages = [
         "label": "海报数量",
         "type": "number",
         "default": 3,
-        "min": 0,
+        "min": 1,
         "max": 4,
         "step": 1,
-        "desc": "竖向海报列数量(0–4)；每列含一个图片槽，列宽随数量自动平衡，每槽按上传图片比例自适应",
+        "desc": "竖向海报列数量(1–4)；每列含一个图片槽，列宽随数量自动平衡，每槽按上传图片比例自适应",
         "publicKey": "cardCount",
         "publicLabel": "海报数量",
-        "description": "竖向海报列数量(0–4)；每列含一个图片槽，列宽随数量自动平衡，每槽按上传图片比例自适应"
+        "description": "竖向海报列数量(1–4)；每列含一个图片槽，列宽随数量自动平衡，每槽按上传图片比例自适应"
       },
       {
         "key": "showValue",
@@ -13796,9 +14509,18 @@ export const pages = [
         "type": "enum",
         "default": "ink",
         "options": [
-          "primary",
-          "muted",
-          "ink"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          },
+          {
+            "value": "ink",
+            "label": "墨色"
+          }
         ],
         "desc": "主色(电光黄) / 次色(淡紫灰) / 深色(高反差大数字)",
         "publicKey": "backgroundTheme",
@@ -13811,8 +14533,14 @@ export const pages = [
         "type": "enum",
         "default": "solid",
         "options": [
-          "solid",
-          "outline"
+          {
+            "value": "solid",
+            "label": "纯色"
+          },
+          {
+            "value": "outline",
+            "label": "描边"
+          }
         ],
         "desc": "巨型数字：实心(带投影) / 描边(空心轮廓)",
         "publicKey": "numberStyle",
@@ -13837,10 +14565,10 @@ export const pages = [
         "min": 0,
         "max": 100,
         "step": 1,
-        "desc": "环形仪表扫过的百分比（主数字带 % 时会自动跟随主数字，此值作为后备）",
+        "desc": "中心数字与环形仪表共用的百分比；拖动会同步中心数字，编辑中心百分比也会带动圆环",
         "publicKey": "gaugePct",
         "publicLabel": "仪表百分比",
-        "description": "环形仪表扫过的百分比（主数字带 % 时会自动跟随主数字，此值作为后备）"
+        "description": "中心数字与环形仪表共用的百分比；拖动会同步中心数字，编辑中心百分比也会带动圆环"
       },
       {
         "key": "metricCount",
@@ -13914,8 +14642,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -13930,10 +14664,10 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "主视觉+裁切配图槽数量(0–3)；布局随数量自动平衡，每槽按上传图片比例自适应",
+        "desc": "主视觉+裁切配图槽数量(0–3)；为 0 时收起图片区，文字内容全宽自适应；每槽按上传图片比例自适应",
         "publicKey": "mediaCount",
         "publicLabel": "图片数量",
-        "description": "主视觉+裁切配图槽数量(0–3)；布局随数量自动平衡，每槽按上传图片比例自适应"
+        "description": "主视觉+裁切配图槽数量(0–3)；为 0 时收起图片区，文字内容全宽自适应；每槽按上传图片比例自适应"
       },
       {
         "key": "tagCount",
@@ -14047,9 +14781,9 @@ export const pages = [
         ],
         "2": [
           {
-            "l": 90,
+            "l": 210,
             "t": 20,
-            "box": 540,
+            "box": 460,
             "r": -2,
             "ratio": 0.96,
             "z": 2,
@@ -14057,11 +14791,11 @@ export const pages = [
             "color": "var(--acl-yellow)"
           },
           {
-            "l": 8,
-            "t": 470,
-            "box": 300,
+            "l": 10,
+            "t": 390,
+            "box": 380,
             "r": 4,
-            "ratio": 1.2,
+            "ratio": 1.18,
             "z": 3,
             "cap": "场景",
             "color": "var(--acl-blue)"
@@ -14069,9 +14803,9 @@ export const pages = [
         ],
         "3": [
           {
-            "l": 150,
-            "t": 0,
-            "box": 520,
+            "l": 235,
+            "t": 20,
+            "box": 410,
             "r": -2,
             "ratio": 0.96,
             "z": 2,
@@ -14080,8 +14814,8 @@ export const pages = [
           },
           {
             "l": 0,
-            "t": 380,
-            "box": 290,
+            "t": 300,
+            "box": 350,
             "r": 4,
             "ratio": 1.18,
             "z": 3,
@@ -14089,11 +14823,11 @@ export const pages = [
             "color": "var(--acl-blue)"
           },
           {
-            "l": 470,
-            "t": 500,
-            "box": 250,
+            "l": 365,
+            "t": 430,
+            "box": 340,
             "r": -5,
-            "ratio": 0.82,
+            "ratio": 0.9,
             "z": 3,
             "cap": "团队",
             "color": "var(--acl-pink)"
@@ -14118,8 +14852,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -14132,8 +14872,14 @@ export const pages = [
         "type": "enum",
         "default": "dumbbell",
         "options": [
-          "dumbbell",
-          "bars"
+          {
+            "value": "dumbbell",
+            "label": "哑铃图"
+          },
+          {
+            "value": "bars",
+            "label": "条形"
+          }
         ],
         "desc": "区间呈现：哑铃(下限→上限连点) / 成对条形",
         "publicKey": "chartType",
@@ -14292,8 +15038,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -14434,8 +15186,14 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -14446,14 +15204,14 @@ export const pages = [
         "key": "mediaCount",
         "label": "图片数量",
         "type": "number",
-        "default": 5,
+        "default": 4,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "step": 1,
-        "desc": "照片墙图片槽数量(0–6)；布局随数量自动平衡，每槽按上传图片比例自适应",
+        "desc": "照片墙图片槽数量(0–4)；布局随数量自动平衡，每槽按上传图片比例自适应",
         "publicKey": "mediaCount",
         "publicLabel": "图片数量",
-        "description": "照片墙图片槽数量(0–6)；布局随数量自动平衡，每槽按上传图片比例自适应"
+        "description": "照片墙图片槽数量(0–4)；布局随数量自动平衡，每槽按上传图片比例自适应"
       },
       {
         "key": "showCaptions",
@@ -14491,7 +15249,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
-        "max": 5,
+        "max": 3,
         "step": 1,
         "desc": "被放大突出的照片序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -14511,7 +15269,7 @@ export const pages = [
     ],
     "defaultProps": {
       "backgroundTheme": "primary",
-      "mediaCount": 5,
+      "mediaCount": 4,
       "showCaptions": true,
       "showStat": true,
       "focusEnabled": true,
@@ -14576,8 +15334,14 @@ export const pages = [
         "type": "enum",
         "default": "muted",
         "options": [
-          "primary",
-          "muted"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          }
         ],
         "desc": "主色(电光黄) 或 次色(淡紫灰) 底色",
         "publicKey": "backgroundTheme",
@@ -14588,14 +15352,14 @@ export const pages = [
         "key": "columnCount",
         "label": "对比项数量",
         "type": "number",
-        "default": 3,
+        "default": 4,
         "min": 2,
-        "max": 3,
+        "max": 4,
         "step": 1,
-        "desc": "参与对比的选项(列)数量(2–3)",
+        "desc": "参与对比的选项(列)数量(2–4)",
         "publicKey": "columnCount",
         "publicLabel": "对比项数量",
-        "description": "参与对比的选项(列)数量(2–3)"
+        "description": "参与对比的选项(列)数量(2–4)"
       },
       {
         "key": "rowCount",
@@ -14656,7 +15420,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
-        "max": 2,
+        "max": 3,
         "step": 1,
         "desc": "被高亮的对比项序号(从 0 起)",
         "publicKey": "focusIndex",
@@ -14676,7 +15440,7 @@ export const pages = [
     ],
     "defaultProps": {
       "backgroundTheme": "muted",
-      "columnCount": 3,
+      "columnCount": 4,
       "rowCount": 4,
       "showRating": true,
       "showValueLabels": true,
@@ -14685,49 +15449,62 @@ export const pages = [
       "focusIndex": 0,
       "showDecor": true,
       "ratingMax": 5,
-      "eyebrow": "Scorecard · Side by Side",
-      "headline": "三条路径对比",
+      "eyebrow": "横向记分卡",
+      "headline": "四条路径对比",
       "subheadline": "同一张记分卡",
       "summary": "把不同落地路径放进<b>同一套标准</b>，差距才看得清。",
       "options": [
         {
           "name": "嵌入工作流",
-          "tag": "Workflow",
+          "tag": "场景渗透",
           "verdict": "可计费 · 高留存"
         },
         {
           "name": "量化降本",
-          "tag": "ROI",
+          "tag": "成本回收",
           "verdict": "易验证 · 中壁垒"
         },
         {
           "name": "资源绑定",
-          "tag": "Resource",
+          "tag": "资源护城河",
           "verdict": "高门槛 · 难复制"
+        },
+        {
+          "name": "合规托管",
+          "tag": "信任入口",
+          "verdict": "慢启动 · 长周期"
         }
       ],
       "criteria": [
         {
           "name": "可计费性",
-          "note": "Billable",
+          "note": "收入转化",
           "cells": [
             {
               "rating": 5,
-              "value": "高"
+              "value": "86",
+              "unit": "%"
             },
             {
               "rating": 3,
-              "value": "中"
+              "value": "63",
+              "unit": "%"
             },
             {
               "rating": 4,
-              "value": "中高"
+              "value": "78",
+              "unit": "%"
+            },
+            {
+              "rating": 4,
+              "value": "74",
+              "unit": "%"
             }
           ]
         },
         {
           "name": "净留存",
-          "note": "NRR",
+          "note": "续费表现",
           "cells": [
             {
               "rating": 5,
@@ -14743,30 +15520,43 @@ export const pages = [
               "rating": 4,
               "value": "121",
               "unit": "%"
+            },
+            {
+              "rating": 4,
+              "value": "126",
+              "unit": "%"
             }
           ]
         },
         {
           "name": "壁垒强度",
-          "note": "Moat",
+          "note": "护城河",
           "cells": [
             {
               "rating": 3,
-              "value": "中"
+              "value": "3.6",
+              "unit": "分"
             },
             {
               "rating": 2,
-              "value": "低"
+              "value": "2.4",
+              "unit": "分"
             },
             {
               "rating": 5,
-              "value": "高"
+              "value": "4.7",
+              "unit": "分"
+            },
+            {
+              "rating": 4,
+              "value": "4.1",
+              "unit": "分"
             }
           ]
         },
         {
           "name": "复制成本",
-          "note": "Replicable",
+          "note": "扩张难度",
           "cells": [
             {
               "rating": 4,
@@ -14779,12 +15569,16 @@ export const pages = [
             {
               "rating": 2,
               "value": "高"
+            },
+            {
+              "rating": 3,
+              "value": "中"
             }
           ]
         },
         {
           "name": "回报周期",
-          "note": "Payback",
+          "note": "资金回笼",
           "cells": [
             {
               "rating": 4,
@@ -14799,6 +15593,11 @@ export const pages = [
             {
               "rating": 2,
               "value": "24",
+              "unit": "月"
+            },
+            {
+              "rating": 3,
+              "value": "18",
               "unit": "月"
             }
           ]
@@ -14822,9 +15621,18 @@ export const pages = [
         "type": "enum",
         "default": "primary",
         "options": [
-          "primary",
-          "muted",
-          "ink"
+          {
+            "value": "primary",
+            "label": "主色"
+          },
+          {
+            "value": "muted",
+            "label": "柔和"
+          },
+          {
+            "value": "ink",
+            "label": "墨色"
+          }
         ],
         "desc": "主色(电光黄) / 次色(淡紫灰) / 深色(高反差金句)",
         "publicKey": "backgroundTheme",

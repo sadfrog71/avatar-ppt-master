@@ -43,7 +43,7 @@
 //   accent (color)
 // ============================================================================
 import React from 'react';
-import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
+import { KxEyebrow, KxGrid, KxMediaSlotColumn } from './kit.jsx';
 
 if (typeof document !== 'undefined' && !document.getElementById('kx-geo-css')) {
   const css = `
@@ -87,8 +87,9 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-geo-css')) {
   .kx-geo-mcard.kx-on .kx-mv{color:var(--kx-accent);}
   .kx-geo-mcard .kx-mk{font-family:var(--kx-mono);font-size:21px;color:var(--kx-mute-2);text-transform:uppercase;letter-spacing:.03em;}
   /* right: media column */
-  .kx-geo-media{display:flex;flex-direction:column;gap:20px;min-height:0;justify-content:center;}
-  .kx-geo-media .kx-imgslot{flex:none;}
+  .kx-geo-media{display:flex;flex-direction:column;gap:20px;height:calc(100% - 18px);min-height:0;max-height:100%;
+    justify-content:stretch;overflow:hidden;}
+  .kx-geo-media .kx-imgslot{flex:1 1 0;min-height:0;max-height:100%;aspect-ratio:auto;}
   /* right: industry tags + note overlay block under media handled in left foot */
   /* right: zero-slot vertical distribution panel */
   .kx-geo-panel{display:flex;flex-direction:column;min-height:0;justify-content:center;gap:16px;}
@@ -217,15 +218,17 @@ function SlideGeoCluster(props) {
 
   const media = p.layout === 'map' ? map
     : showPanel ? panel
-    : h('div', { className: 'kx-geo-media' },
-        Array.from({ length: slots }, (_, i) =>
-          h(KxImageSlot, {
-            key: i, id: 'geo-' + (p.eyebrowId || 'x') + '-' + i,
-            placeholder: p.mediaPlaceholder || '集群主视觉 / DROP IMAGE',
-            badge: slots === 1 ? p.clusterTag : ('IMG ' + String(i + 1).padStart(2, '0')),
-            minRatio: slots === 1 ? 0.74 : 1.2, maxRatio: slots === 1 ? 1.4 : 2.1,
-            style: { width: '100%' },
-          })));
+    : h(KxMediaSlotColumn, {
+        className: 'kx-geo-media',
+        slots,
+        idBase: 'geo-' + (p.eyebrowId || 'x'),
+        placeholder: p.mediaPlaceholder || '集群主视觉 / DROP IMAGE',
+        badge: p.clusterTag,
+        minRatio: 0.74,
+        maxRatio: 1.4,
+        multiMinRatio: 1.2,
+        multiMaxRatio: 2.1,
+      });
 
   const footRt = p.layout === 'map' ? bubbleRegions.length + ' REGIONS / MAP'
     : slots === 0 ? allRegions.length + ' REGIONS / PANEL'

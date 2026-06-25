@@ -23,15 +23,17 @@ export default function Page43Education(props) {
     ? 'linear-gradient(165deg, #EFEFF6 0%, #E7E6EE 58%, #DEDCEA 100%)'
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
-  const cards = scenes.slice(0, Math.max(0, Math.min(4, cardCount)));
-  const fIdx = Math.min(focusIndex, Math.max(0, cards.length - 1));
+  const cards = scenes.slice(0, Math.max(1, Math.min(4, Number(cardCount) || 1)));
+  const isSingle = cards.length === 1;
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, cards.length - 1));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
   const palette = ['var(--acl-yellow)', 'var(--acl-blue)', 'var(--acl-pink)', 'var(--acl-paper)'];
   const box = cards.length <= 2 ? 320 : cards.length === 3 ? 268 : 222;
   const STEP = cards.length > 1 ? 116 / (cards.length - 1) : 0; // vertical rise per card (% of available)
+  const rootClass = ['acl-root', 'acl-ed', isSingle ? 'acl-ed--single' : ''].filter(Boolean).join(' ');
 
   return (
-    <div className="acl-root acl-ed" style={{ background: bg }}>
+    <div className={rootClass} style={{ background: bg }}>
       <style>{`
         .acl-ed{ position:absolute; inset:0; overflow:hidden; font-family:var(--acl-font-cn);
           color:var(--acl-ink); padding:74px 100px 64px; display:flex; flex-direction:column; }
@@ -51,16 +53,16 @@ export default function Page43Education(props) {
         /* ── left hero panel ── */
         .acl-ed__panel{ flex:0 0 470px; position:relative; background:var(--acl-paper);
           border:3px solid var(--acl-ink); box-shadow:8px 10px 0 rgba(22,21,15,.16);
-          padding:26px 36px 28px; display:flex; flex-direction:column; }
+          padding:28px 36px 30px; display:flex; flex-direction:column; justify-content:space-between; gap:18px; }
         .acl-ed__badge{ display:inline-flex; align-self:flex-start; align-items:center; gap:9px;
           font-family:var(--acl-font-mono); font-weight:700; font-size:18px; letter-spacing:.05em;
           text-transform:uppercase; background:var(--acl-ink); color:var(--acl-yellow); padding:9px 16px;  white-space:nowrap;}
-        .acl-ed__herolabel{ font-weight:700; font-size:22px; color:rgba(22,21,15,.6); margin-top:20px;
+        .acl-ed__herolabel{ font-weight:700; font-size:22px; color:rgba(22,21,15,.6); margin-top:4px;
           display:flex; align-items:center; gap:14px; }
         .acl-ed__unit{ font-style:normal; font-family:var(--acl-font-mono); font-weight:700; font-size:18px;
           letter-spacing:.04em; padding:5px 11px; background:var(--acl-pink); color:var(--acl-paper); }
-        .acl-ed__heronum{ font-family:var(--acl-font-num); font-size:176px; line-height:.78; margin-top:2px; }
-        .acl-ed__tiles{ display:flex; gap:14px; margin-top:auto; }
+        .acl-ed__heronum{ font-family:var(--acl-font-num); font-size:176px; line-height:.82; margin-top:2px; }
+        .acl-ed__tiles{ display:flex; gap:14px; margin-top:0; }
         .acl-ed__tile{ flex:1; border:2px solid var(--acl-ink); padding:13px 16px 11px; }
         .acl-ed__tile .k{ font-family:var(--acl-font-mono); font-size:13px; letter-spacing:.04em;
           text-transform:uppercase; color:rgba(22,21,15,.5); }
@@ -93,6 +95,13 @@ export default function Page43Education(props) {
         .acl-ed__card--focus .acl-ed__step{ background:var(--acl-yellow); color:var(--acl-ink); }
         .acl-ed__fx{ position:absolute; top:-20px; right:-10px; z-index:7; }
         .acl-ed__arrow{ position:absolute; z-index:5; }
+        .acl-ed--single .acl-ed__stage{ align-items:center; justify-content:center; padding-top:0; }
+        .acl-ed--single .acl-ed__card{ flex:0 1 520px; min-height:440px; justify-content:center;
+          padding:28px 26px 26px; }
+        .acl-ed--single .acl-ed__cmeta{ margin-top:22px; }
+        .acl-ed--single .acl-ed__cname{ font-size:42px; }
+        .acl-ed--single .acl-ed__cen{ font-size:14px; margin-top:7px; }
+        .acl-ed--single .acl-ed__cval{ font-size:82px; margin-top:14px; }
 
         .acl-ed__foot{ display:flex; align-items:center; gap:14px; font-family:var(--acl-font-hand);
           font-size:28px; margin-top:14px; flex:0 0 auto; }
@@ -182,7 +191,7 @@ export default function Page43Education(props) {
 
 Page43Education.defaults = {
   backgroundTheme: 'muted',
-  cardCount: 3,            // 0–4 scene cards (each carries an adaptive image slot)
+  cardCount: 3,            // 1–4 scene cards (each carries an adaptive image slot)
   showPath: true,          // hand-drawn path arrows between scenes
   showValue: true,         // big funding figure per scene
   metricCount: 3,          // 2–3 supporting metric tiles
@@ -214,8 +223,8 @@ Page43Education.defaults = {
 Page43Education.controls = [
   { key: 'backgroundTheme', type: 'enum', default: 'muted', options: ['primary', 'muted'],
     label: '背景主题', desc: '主色(电光黄) 或 次色(淡紫灰) 底色' },
-  { key: 'cardCount', type: 'number', default: 3, min: 0, max: 4, step: 1,
-    label: '场景数量', desc: '学习路径场景卡数量(0–4)；每卡含一个图片槽，布局随数量自动平衡，每槽按上传图片比例自适应' },
+  { key: 'cardCount', type: 'number', default: 3, min: 1, max: 4, step: 1,
+    label: '场景数量', desc: '学习路径场景卡数量(1–4)；每卡含一个图片槽，布局随数量自动平衡，每槽按上传图片比例自适应' },
   { key: 'showPath', type: 'boolean', default: true,
     label: '路径连线', desc: '场景之间手绘路径箭头的显示/隐藏' },
   { key: 'showValue', type: 'boolean', default: true,

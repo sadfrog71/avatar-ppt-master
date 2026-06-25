@@ -30,12 +30,13 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
     .kx-rnk-nm span{font-family:var(--kx-mono);font-size:22px;color:var(--kx-mute-2);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;}
     .kx-rnk-track{height:26px;background:rgba(0,0,0,.06);position:relative;}
     .kx-rnk-fill{height:100%;background:var(--kx-ink);min-width:4px;display:block;}
-    .kx-rnk-dots{display:flex;gap:6px;align-items:center;height:26px;flex-wrap:wrap;align-content:center;}
-    .kx-rnk-dots i{width:12px;height:12px;background:var(--kx-ink);display:block;}
+    .kx-rnk-dots{display:grid;grid-template-columns:repeat(40,minmax(0,1fr));gap:5px;align-items:center;height:26px;width:100%;}
+    .kx-rnk-dots i{width:100%;height:14px;background:rgba(0,0,0,.10);display:block;}
+    .kx-rnk-dots i.kx-fill{background:var(--kx-ink);}
     .kx-rnk-val{font-family:var(--kx-mono);font-weight:700;font-size:30px;text-align:right;}
     .kx-rnk-row.kx-on .kx-rnk-idx{color:var(--kx-ink);}
     .kx-rnk-row.kx-on .kx-rnk-fill{background:var(--kx-accent);}
-    .kx-rnk-row.kx-on .kx-rnk-dots i{background:var(--kx-accent);}
+    .kx-rnk-row.kx-on .kx-rnk-dots i.kx-fill{background:var(--kx-accent);}
     .kx-rnk-row.kx-on::before{content:'';position:absolute;left:-26px;top:0;bottom:0;width:6px;background:var(--kx-accent);}
     .kx-rnk-foot{display:flex;justify-content:space-between;align-items:center;padding-top:22px;}
     .kx-rnk-foot .kx-cl{font-family:var(--kx-mono);font-size:26px;color:var(--kx-mute-2);}
@@ -49,7 +50,7 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
     const p = { ...SlideRanking.defaults, ...props };
     const rows = p.rows.slice(0, Math.max(3, Math.min(p.rowCount, p.rows.length)));
     const max = Math.max(...rows.map((r) => r.value));
-    const dotMax = 20;
+    const dotMax = 40;
     const rowH = Math.min(86, Math.max(54, Math.floor(640 / rows.length)));
 
     return h('div', { className: 'kx-slide kx-light', style: { '--kx-accent': p.accent } },
@@ -69,7 +70,8 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
               h('div', { className: 'kx-rnk-idx' }, pad2(i + 1)),
               h('div', { className: 'kx-rnk-nm' }, h('b', null, r.name), h('span', null, r.tag)),
               p.chartType === 'dots'
-                ? h('div', { className: 'kx-rnk-dots' }, Array.from({ length: dotN }, (_, k) => h('i', { key: k })))
+                ? h('div', { className: 'kx-rnk-dots' },
+                    Array.from({ length: dotMax }, (_, k) => h('i', { key: k, className: k < dotN ? 'kx-fill' : '' })))
                 : h('div', { className: 'kx-rnk-track' }, h('span', { className: 'kx-rnk-fill', style: { width: pct + '%' } })),
               h('div', { className: 'kx-rnk-val' }, p.showValueLabels ? (r.value + (p.unit || '')) : ''));
           })),

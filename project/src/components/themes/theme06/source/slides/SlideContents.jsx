@@ -5,7 +5,7 @@
 // PROPS
 //   eyebrowId,eyebrowLabel,title,subhead,closing   content
 //   items ({name,en,scope}[])   content — chapter rows
-//   cardCount (int 3..7)  VISUAL  how many chapters shown
+//   cardCount (int 3..6)  VISUAL  how many chapters shown
 //   focusEnabled (bool)   VISUAL  emphasise one chapter
 //   focusIndex (int)      VISUAL  which chapter
 //   layout (enum)         VISUAL  'rows' | 'grid'
@@ -56,7 +56,7 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
 
   function SlideContents(props) {
     const p = { ...SlideContents.defaults, ...props };
-    const items = p.items.slice(0, Math.max(1, Math.min(p.cardCount, p.items.length)));
+    const items = p.items.slice(0, Math.max(1, Math.min(p.cardCount, 6, p.items.length)));
     const isGrid = p.layout === 'grid';
     const cols = items.length <= 4 ? 2 : 3;
 
@@ -110,15 +110,15 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       { name: '风险研判', en: 'Risk & Outlook', scope: '估值 · 监管 · 兑现' },
       { name: '结论判断', en: 'Conclusion', scope: '投资策略 · 数据来源' },
     ],
-    cardCount: 7, focusEnabled: true, focusIndex: 1, layout: 'rows', showColumnHeaders: true, accent: '#c8f135',
+    cardCount: 6, focusEnabled: true, focusIndex: 1, layout: 'rows', showColumnHeaders: true, accent: '#c8f135',
   };
 
   SlideContents.controls = [
-    { key: 'cardCount', label: '章节卡数量', type: 'number', default: 7, min: 3, max: 7, desc: '展示的章节数量' },
+    { key: 'cardCount', label: '章节卡数量', type: 'number', default: 6, min: 3, max: 6, desc: '展示的章节数量' },
     { key: 'layout', label: '排布方式', type: 'select', default: 'rows',
       options: [['rows', '列表'], ['grid', '网格']], desc: '章节的排布形式' },
     { key: 'focusEnabled', label: '重点章节高亮', type: 'toggle', default: true, desc: '是否突出某一章节' },
-    { key: 'focusIndex', label: '高亮第几章', type: 'number', default: 1, min: 0, max: 6, desc: '被突出的章节序号', showIf: (p) => p.focusEnabled },
+    { key: 'focusIndex', label: '高亮第几章', type: 'number', default: 1, min: 0, max: 5, desc: '被突出的章节序号', showIf: (p) => p.focusEnabled },
     { key: 'showColumnHeaders', label: '装饰列头', type: 'toggle', default: true, desc: '显示/隐藏列表的列头标签（装饰文案，仅列表布局）', showIf: (p) => p.layout !== 'grid' },
     { key: 'accent', label: '强调色', type: 'color', default: '#c8f135',
       options: ['#c8f135', '#ff5a3c', '#3ca0ff', '#ffd23c'], desc: '主强调色' },

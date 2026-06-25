@@ -91,7 +91,8 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
     const fi = clamp(p.focusIndex, 0, segs.length - 1);
     const total = segs.reduce((a, b) => a + b.value, 0);
     const isBars = p.chartType === 'bars';
-    const rO = 200, rI = p.chartType === 'ring' ? 170 : 132;
+    const isRing = p.chartType === 'ring';
+    const rO = 200, rI = isRing ? 170 : 132;
     const segColor = (i) => (p.focusEnabled && i === fi) ? 'var(--kx-accent)' : GREYS[i % GREYS.length];
 
     // build donut arcs (with a tiny gap between wedges)
@@ -102,7 +103,7 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       acc += sweep;
       const on = p.focusEnabled && i === fi;
       const mid = (start + end) / 2;
-      const lbl = polar((rO + rI) / 2, mid);
+      const lbl = polar(isRing ? rO + 24 : (rO + rI) / 2, mid);
       return { d: sector(on ? rO + 12 : rO, rI, start, end), color: segColor(i), on, lbl, val: sg.value, mid };
     });
 
@@ -118,9 +119,23 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       : h('div', { style: { position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
           h('svg', { className: 'kx-dnt-svg', viewBox: '0 0 460 460' },
             arcs.map((a, i) => h('path', { key: i, d: a.d, fill: a.color })),
-            p.showValueLabels ? arcs.map((a, i) => h('text', { key: 't' + i, x: a.lbl[0], y: a.lbl[1] + 9,
-              fill: a.on ? 'var(--kx-ink)' : 'var(--kx-cream)', fontSize: a.on ? 32 : 26, fontWeight: 800,
-              fontFamily: 'Archivo, sans-serif', textAnchor: 'middle' }, a.val + (p.unit || '%'))) : null),
+            p.showValueLabels ? arcs.map((a, i) => {
+              const label = a.val + (p.unit || '%');
+              const fontSize = a.on ? 32 : 26;
+              const boxW = label.length * (a.on ? 19 : 16) + 24;
+              const boxH = a.on ? 46 : 38;
+              return isRing
+                ? h('g', { key: 't' + i },
+                    h('rect', { x: a.lbl[0] - boxW / 2, y: a.lbl[1] - boxH / 2, width: boxW, height: boxH,
+                      rx: boxH / 2, fill: 'rgba(5,6,4,.88)', stroke: a.on ? 'var(--kx-accent)' : 'rgba(255,255,255,.20)',
+                      strokeWidth: a.on ? 2 : 1 }),
+                    h('text', { x: a.lbl[0], y: a.lbl[1] + fontSize * .34,
+                      fill: a.on ? 'var(--kx-accent)' : 'var(--kx-cream)', fontSize, fontWeight: 800,
+                      fontFamily: 'Archivo, sans-serif', textAnchor: 'middle' }, label))
+                : h('text', { key: 't' + i, x: a.lbl[0], y: a.lbl[1] + 9,
+                    fill: a.on ? 'var(--kx-ink)' : 'var(--kx-cream)', fontSize, fontWeight: 800,
+                    fontFamily: 'Archivo, sans-serif', textAnchor: 'middle' }, label);
+            }) : null),
           p.showCenter ? h('div', { className: 'kx-dnt-center' },
             h('div', { className: 'kx-dnt-cv' },
               h('span', { className: 'kx-n' }, p.hero.value),

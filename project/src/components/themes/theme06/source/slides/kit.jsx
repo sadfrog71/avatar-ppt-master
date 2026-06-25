@@ -121,7 +121,7 @@ const CSS = `
     font-size:30px;letter-spacing:-.01em;}
   .kx-statusbar .kx-reg{font-size:.5em;vertical-align:super;opacity:.6;}
 
-  /* adaptive image slot */
+  /* adaptive media slot */
   .kx-imgslot{position:relative;width:100%;overflow:hidden;cursor:pointer;
     background:
       repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 10px,rgba(255,255,255,.02) 10px 20px);
@@ -137,8 +137,12 @@ const CSS = `
     font-family:var(--kx-mono);font-size:24px;padding:6px 12px;letter-spacing:.04em;
     background:rgba(0,0,0,.6);color:var(--kx-cream);text-transform:uppercase;
     display:flex;align-items:center;gap:8px;}
+  .kx-imgslot[data-media-kind="video"] .kx-slot-badge{top:0;bottom:auto;}
   .kx-imgslot .kx-slot-badge::before{content:'';width:8px;height:8px;border-radius:50%;
     background:var(--kx-accent);}
+  .kx-media-col{display:flex;flex-direction:column;gap:var(--kx-media-gap,20px);
+    height:100%;min-height:0;max-height:100%;justify-content:stretch;overflow:hidden;}
+  .kx-media-col .kx-imgslot{flex:1 1 0;min-height:0;max-height:100%;aspect-ratio:auto;}
 `;
 
 // Inject scoped CSS once (idempotent — safe under module caching or re-import).
@@ -206,8 +210,8 @@ export function KxStatusBar({ wordmark = 'AI CAPITAL LAB', center, right, menu }
       menu ? h('div', { style: { border: '1px solid var(--kx-line)', padding: '8px 16px' } }, '☰ ' + menu) : null));
 }
 
-// -- Adaptive image slot (self-contained, localStorage, ratio-aware) ------
-export function KxImageSlot({ id, placeholder = 'DROP IMAGE', badge, minRatio = 0.6, maxRatio = 2.4, style }) {
+// -- Adaptive media slot (self-contained, localStorage, ratio-aware) -------
+export function KxImageSlot({ id, placeholder = 'DROP IMAGE', badge, minRatio = 0.6, maxRatio = 2.4, fill = false, adaptiveFlex = false, style }) {
   const key = 'kx-img-' + id;
   const media = React.useContext(KxImageSlotMediaContext);
   const hasHostMedia = Boolean(media?.get || media?.set);
@@ -243,6 +247,8 @@ export function KxImageSlot({ id, placeholder = 'DROP IMAGE', badge, minRatio = 
       if (file.type.startsWith('video/')) {
         const video = document.createElement('video');
         video.preload = 'metadata';
+        video.muted = true;
+        video.playsInline = true;
         video.onloadedmetadata = () => {
           const ratio = Math.min(maxRatio, Math.max(minRatio, video.videoWidth && video.videoHeight ? video.videoWidth / video.videoHeight : 1.6));
           const next = { src, ratio, kind: 'video', type: file.type };
@@ -266,13 +272,24 @@ export function KxImageSlot({ id, placeholder = 'DROP IMAGE', badge, minRatio = 
     reader.readAsDataURL(file);
   };
 
-  // adaptive aspect-ratio: container follows the image's natural ratio (clamped)
+  // adaptive aspect-ratio: container follows the media's natural ratio (clamped)
   const stopSlotNavigation = (e) => { e.stopPropagation(); };
   const currentData = data || readStored();
-  const ar = currentData ? currentData.ratio : 1.6;
+  const ar = currentData ? Math.min(maxRatio, Math.max(minRatio, Number(currentData.ratio) || 1.6)) : 1.6;
+  const flexGrow = currentData && adaptiveFlex ? Math.max(0.25, Math.min(4, 1 / ar)) : null;
+  const isVideo = currentData?.kind === 'video';
+  const slotBadge = isVideo && /^IMG\b/i.test(String(badge || ''))
+    ? String(badge).replace(/^IMG\b/i, 'VID')
+    : badge;
   return h('div', {
     className: 'kx-imgslot' + (drag ? ' kx-drag' : ''),
-    style: { aspectRatio: String(ar), ...style },
+    'data-media-kind': isVideo ? 'video' : currentData ? 'image' : 'empty',
+    'data-media-ratio': currentData ? String(ar) : undefined,
+    style: {
+      aspectRatio: fill ? 'auto' : String(ar),
+      ...(flexGrow ? { flex: `${flexGrow} 1 0` } : null),
+      ...style,
+    },
     onPointerDown: stopSlotNavigation,
     onMouseDown: stopSlotNavigation,
     onClick: (e) => { e.stopPropagation(); inputRef.current && inputRef.current.click(); },
@@ -280,20 +297,66 @@ export function KxImageSlot({ id, placeholder = 'DROP IMAGE', badge, minRatio = 
     onDragLeave: () => setDrag(false),
     onDrop: (e) => { e.preventDefault(); e.stopPropagation(); setDrag(false); accept(e.dataTransfer.files[0]); },
   },
-    currentData ? (currentData.kind === 'video'
-      ? h('video', { src: currentData.src, muted: true, playsInline: true, loop: true, preload: 'metadata' })
-      : h('img', { src: currentData.src, alt: '' }))
+    currentData ? (isVideo
+      ? h('video', {
+          src: currentData.src, muted: true, playsInline: true, loop: true, autoPlay: true,
+          controls: true, preload: 'auto',
+          style: { objectFit: 'cover' },
+          onPointerDown: stopSlotNavigation,
+          onMouseDown: stopSlotNavigation,
+          onClick: stopSlotNavigation,
+        })
+      : h('img', { src: currentData.src, alt: '', style: { objectFit: 'cover' } }))
          : h('div', { className: 'kx-slot-ph' }, placeholder),
-    badge ? h('div', { className: 'kx-slot-badge' }, badge) : null,
+    slotBadge ? h('div', { className: 'kx-slot-badge' }, slotBadge) : null,
     h('input', {
       ref: inputRef, type: 'file', accept: 'image/*,video/mp4,video/webm,video/quicktime,video/*', style: { display: 'none' },
       onChange: (e) => accept(e.target.files[0]),
     }));
 }
 
+export function KxMediaSlotColumn({
+  className = '',
+  slots = 1,
+  idBase = 'media',
+  placeholder = '主视觉 / DROP IMAGE',
+  badge,
+  maxSlots = 2,
+  minRatio = 0.8,
+  maxRatio = 1.5,
+  multiMinRatio = 1.2,
+  multiMaxRatio = 2.2,
+  style,
+  slotStyle,
+}) {
+  const count = Math.max(0, Math.min(maxSlots, Number(slots) || 0));
+  if (!count) return null;
+  const slotMinRatio = count === 1 ? minRatio : multiMinRatio;
+  const slotMaxRatio = count === 1 ? maxRatio : multiMaxRatio;
+  const getText = (value, i) => typeof value === 'function' ? value(i, count) : value;
+
+  return h('div', {
+    className: ['kx-media-col', className, 'kx-slots-' + count].filter(Boolean).join(' '),
+    style,
+  }, Array.from({ length: count }, (_, i) =>
+    h(KxImageSlot, {
+      key: i,
+      id: idBase + '-' + i,
+      placeholder: getText(placeholder, i) || '主视觉 / DROP IMAGE',
+      badge: count === 1
+        ? (getText(badge, i) || 'IMG 01')
+        : (getText(badge, i) || ('IMG ' + String(i + 1).padStart(2, '0'))),
+      minRatio: slotMinRatio,
+      maxRatio: slotMaxRatio,
+      fill: true,
+      adaptiveFlex: true,
+      style: { width: '100%', ...slotStyle },
+    })));
+}
+
 function normalizeHostMedia(value) {
   if (!value) return null;
-  if (typeof value === 'string') return { src: value, ratio: 1.6, kind: value.startsWith('data:video/') ? 'video' : 'image' };
+  if (typeof value === 'string') return { src: value, ratio: 1.6, kind: kxMediaKind(value) };
   if (typeof value === 'object') {
     const src = value.src || value.url || value.u;
     if (!src) return null;
@@ -301,8 +364,18 @@ function normalizeHostMedia(value) {
       ...value,
       src,
       ratio: value.ratio || value.ar || value.aspect || 1.6,
-      kind: value.kind || (String(value.type || src).startsWith('video/') || String(src).startsWith('data:video/') ? 'video' : 'image'),
+      kind: kxMediaKind(value),
     };
   }
   return null;
+}
+
+function kxMediaKind(value) {
+  if (value && typeof value === 'object' && value.kind) return String(value.kind).toLowerCase() === 'video' ? 'video' : 'image';
+  const hint = String(value && typeof value === 'object' ? (value.type || value.src || value.url || value.u || '') : value || '').toLowerCase();
+  return hint.startsWith('video/')
+    || hint.startsWith('data:video/')
+    || /\.(mp4|webm|mov|m4v)(?:[?#].*)?$/i.test(hint)
+    ? 'video'
+    : 'image';
 }

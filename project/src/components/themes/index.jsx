@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSlideViewModel } from '../../view-model/context.jsx';
 import {
+  normalizeControlOptions,
   normalizeControlValue,
   normalizePublicControls,
 } from '../../control-naming.mjs';
@@ -120,7 +121,7 @@ function normalizeControls(controls, defaults, page) {
       if (!key) return null;
       const type = normalizeType(control.type);
       if (REMOVED_CONTROL_TYPES.has(String(control.type || type || '').toLowerCase())) return null;
-      const options = normalizeControlValue(serializeValue(control.options));
+      const options = normalizeControlOptions(serializeValue(control.options));
       const next = {
         key,
         label: control.label || key,

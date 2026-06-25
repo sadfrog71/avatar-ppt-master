@@ -83,7 +83,7 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
 
   function SlideFunnel(props) {
     const p = { ...SlideFunnel.defaults, ...props };
-    const tiers = p.tiers.slice(0, clamp(p.tierCount, 3, p.tiers.length));
+    const tiers = p.tiers.slice(0, clamp(Number(p.tierCount) || 3, 3, Math.min(5, p.tiers.length)));
     const fi = clamp(p.focusIndex, 0, tiers.length - 1);
     const metrics = p.metrics.slice(0, clamp(p.metricCount, 1, p.metrics.length));
     const maxV = Math.max(...tiers.map((t) => t.value));
@@ -168,6 +168,7 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       { name: '线索评分', en: 'LEAD SCORING', value: 7, unit: ' 亿' },
       { name: '自动外呼', en: 'AUTO OUTREACH', value: 6, unit: ' 亿' },
       { name: '邮件触达', en: 'EMAIL OUTREACH', value: 4, unit: ' 亿' },
+      { name: '复购扩张', en: 'EXPANSION', value: 3, unit: ' 亿' },
     ],
     chartType: 'funnel', tierCount: 4, metricCount: 2, showRate: true, showValueLabels: true,
     focusEnabled: true, focusIndex: 0, accent: '#c8f135',

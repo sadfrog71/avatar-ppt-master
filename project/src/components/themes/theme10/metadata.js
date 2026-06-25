@@ -579,14 +579,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -689,14 +693,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -785,14 +793,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -892,14 +904,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -988,14 +1004,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -1098,14 +1118,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -1208,14 +1232,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -1318,14 +1346,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -1428,14 +1460,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -1538,14 +1574,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -1666,14 +1706,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -1765,14 +1809,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -1871,14 +1919,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -1970,14 +2022,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -2077,14 +2133,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -2184,14 +2244,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -2343,14 +2407,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -2423,14 +2491,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -2508,14 +2580,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -2618,14 +2694,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -2714,14 +2794,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -2807,14 +2891,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -2900,14 +2988,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -2993,14 +3085,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -3100,14 +3196,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -3206,14 +3306,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -3327,14 +3431,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -3423,14 +3531,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -3530,14 +3642,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -3658,14 +3774,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -3746,14 +3866,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -4019,14 +4143,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -4111,14 +4239,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -4217,14 +4349,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -4323,14 +4459,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -4419,14 +4559,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -4540,14 +4684,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -4614,14 +4762,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -4703,14 +4855,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -4785,14 +4941,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -4867,14 +5027,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -5004,14 +5168,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -5386,14 +5554,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -5471,14 +5643,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -5744,14 +5920,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -5854,14 +6034,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -5961,14 +6145,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -6068,14 +6256,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -6196,14 +6388,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -6292,14 +6488,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -6385,14 +6585,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -6492,14 +6696,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -6602,14 +6810,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -6698,14 +6910,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -6808,14 +7024,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -6914,14 +7134,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -6996,14 +7220,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -7091,14 +7319,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -7190,14 +7422,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -7283,14 +7519,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -7393,14 +7633,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -7500,14 +7744,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -7607,14 +7855,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -7689,14 +7941,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -8060,14 +8316,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -8156,14 +8416,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -8266,14 +8530,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -8383,14 +8651,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -8490,14 +8762,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -8621,14 +8897,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -8727,14 +9007,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -8834,14 +9118,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -8930,14 +9218,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -9026,14 +9318,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -9122,14 +9418,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -9221,14 +9521,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -9317,14 +9621,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -9420,14 +9728,18 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",
@@ -9502,14 +9814,18 @@ export const pages = [
         "type": "radio",
         "default": "light",
         "options": [
-          [
-            "dark",
-            "深色"
-          ],
-          [
-            "light",
-            "浅色"
-          ]
+          {
+            "value": "dark",
+            "label": "深色",
+            "image": "",
+            "color": ""
+          },
+          {
+            "value": "light",
+            "label": "浅色",
+            "image": "",
+            "color": ""
+          }
         ],
         "desc": "整页深色或浅色底。",
         "publicKey": "tone",

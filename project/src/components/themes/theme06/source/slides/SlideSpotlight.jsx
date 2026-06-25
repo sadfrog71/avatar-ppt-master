@@ -44,7 +44,7 @@
 //   accent (color)
 // ============================================================================
 import React from 'react';
-import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
+import { KxEyebrow, KxGrid, KxMediaSlotColumn } from './kit.jsx';
 
 if (typeof document !== 'undefined' && !document.getElementById('kx-spt-css')) {
   const css = `
@@ -101,8 +101,9 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-spt-css')) {
   .kx-spt-tags{margin-top:auto;padding-top:18px;}
   .kx-spt-tags .kx-chip{font-size:21px;padding:7px 15px;border-radius:999px;}
   /* right: media column */
-  .kx-spt-visual{display:flex;flex-direction:column;gap:18px;min-height:0;justify-content:center;}
-  .kx-spt-visual .kx-imgslot{flex:none;border-radius:26px;}
+  .kx-spt-visual{display:flex;flex-direction:column;gap:18px;height:calc(100% - 18px);min-height:0;max-height:100%;
+    justify-content:stretch;overflow:hidden;}
+  .kx-spt-visual .kx-imgslot{flex:1 1 0;min-height:0;max-height:100%;aspect-ratio:auto;border-radius:26px;}
   .kx-spt-visual .kx-imgslot .kx-slot-badge{border-radius:0 14px 0 0;}
   /* right: stat mosaic (zero-slot) */
   .kx-spt-mosaic{display:flex;flex-direction:column;min-height:0;justify-content:center;}
@@ -171,15 +172,17 @@ function SlideSpotlight(props) {
 
   // ---- right column: adaptive image slots ------------------------------
   const media = showMosaic ? mosaic
-    : h('div', { className: 'kx-spt-visual' },
-        Array.from({ length: slots }, (_, i) =>
-          h(KxImageSlot, {
-            key: i, id: 'spt-' + (p.eyebrowId || 'x') + '-' + i,
-            placeholder: p.mediaPlaceholder || '案例主视觉 / DROP IMAGE',
-            badge: slots === 1 ? p.caseTag : ('IMG ' + String(i + 1).padStart(2, '0')),
-            minRatio: slots === 1 ? 0.82 : 1.3, maxRatio: slots === 1 ? 1.5 : 2.2,
-            style: { width: '100%' },
-          })));
+    : h(KxMediaSlotColumn, {
+        className: 'kx-spt-visual',
+        slots,
+        idBase: 'spt-' + (p.eyebrowId || 'x'),
+        placeholder: p.mediaPlaceholder || '案例主视觉 / DROP IMAGE',
+        badge: p.caseTag,
+        minRatio: 0.82,
+        maxRatio: 1.5,
+        multiMinRatio: 1.3,
+        multiMaxRatio: 2.2,
+      });
 
   const footRt = showMosaic ? (metrics.length) + ' FIGURES / MOSAIC' : slots + ' IMG / MEDIA';
 
@@ -214,7 +217,14 @@ SlideSpotlight.defaults = {
     { k: '订阅转化率 / PAID', v: '5.8%' },
     { k: '赛道 / SEGMENT', v: 'AI 搜索' },
   ],
-  tags: ['AI 搜索 / SEARCH', '答案引擎 / ANSWER', '信息入口 / GATEWAY', '用户留存 / RETENTION'],
+  tags: [
+    'AI 搜索 / SEARCH',
+    '答案引擎 / ANSWER',
+    '信息入口 / GATEWAY',
+    '用户留存 / RETENTION',
+    '引用溯源 / CITATION',
+    '订阅转化 / PAID CONVERSION',
+  ],
   mediaPlaceholder: 'Perplexity 搜索入口主视觉 / DROP IMAGE',
   mediaSlotCount: 1, metricCount: 3, tagCount: 4,
   focusEnabled: true, focusIndex: 0, showHero: true, showCaseIndex: true, showTagBadge: true,
@@ -249,7 +259,14 @@ SlideSpotlight.presetDatabricks = {
     { k: '净收入留存 / NRR', v: '132%' },
     { k: '赛道 / SEGMENT', v: '数据平台' },
   ],
-  tags: ['数据平台 / DATA', 'AI 平台 / AI PLATFORM', '存量客户 / INSTALLED', '高留存 / NRR'],
+  tags: [
+    '数据平台 / DATA',
+    'AI 平台 / AI PLATFORM',
+    '存量客户 / INSTALLED',
+    '高留存 / NRR',
+    '湖仓架构 / LAKEHOUSE',
+    '企业 AI / ENTERPRISE AI',
+  ],
   mediaPlaceholder: 'Databricks 平台架构主视觉 / DROP IMAGE',
   mediaSlotCount: 0, metricCount: 3, tagCount: 4,
   focusEnabled: true, focusIndex: 1, showHero: true, showCaseIndex: true, showTagBadge: true,
@@ -270,7 +287,14 @@ SlideSpotlight.presetGlean = {
     { k: '续约率 / RENEWAL', v: '91%' },
     { k: '赛道 / SEGMENT', v: '企业搜索' },
   ],
-  tags: ['企业搜索 / SEARCH', '知识工作流 / WORKFLOW', '高频入口 / DAILY', '高续约 / RENEWAL'],
+  tags: [
+    '企业搜索 / SEARCH',
+    '知识工作流 / WORKFLOW',
+    '高频入口 / DAILY',
+    '高续约 / RENEWAL',
+    '权限索引 / PERMISSION',
+    'Agent 助手 / AGENT',
+  ],
   mediaPlaceholder: 'Glean 知识库入口主视觉 / DROP IMAGE',
   mediaSlotCount: 1, metricCount: 3, tagCount: 4,
   focusEnabled: true, focusIndex: 1, showHero: true, showCaseIndex: true, showTagBadge: true,
@@ -291,7 +315,14 @@ SlideSpotlight.presetSSI = {
     { k: '团队规模 / TEAM', v: '85 人' },
     { k: '赛道 / SEGMENT', v: '安全智能' },
   ],
-  tags: ['安全智能 / SAFE SI', '强团队 / TEAM', '强叙事 / NARRATIVE', '长期兑现 / LONG-TERM'],
+  tags: [
+    '安全智能 / SAFE SI',
+    '强团队 / TEAM',
+    '强叙事 / NARRATIVE',
+    '长期兑现 / LONG-TERM',
+    '对齐研究 / ALIGNMENT',
+    '长期资本 / PATIENT CAPITAL',
+  ],
   mediaPlaceholder: 'SSI 抽象技术主视觉 / DROP IMAGE',
   mediaSlotCount: 1, metricCount: 3, tagCount: 4,
   focusEnabled: true, focusIndex: 0, showHero: true, showCaseIndex: true, showTagBadge: true,

@@ -153,6 +153,210 @@ const REPEATED_GENERIC_TEXT_REPLACEMENTS = [
   ['指标指标', '指标'],
 ];
 
+const ENGLISH_OPTION_LABELS = {
+  absolute: '绝对值',
+  accent: '强调色',
+  all: '全部',
+  alternate: '交替',
+  amount: '数值',
+  arabic: '阿拉伯数字',
+  area: '面积图',
+  arrow: '箭头',
+  asc: '升序',
+  ascend: '上升',
+  auto: '自适应',
+  automations: '自动化',
+  band: '色带',
+  bar: '柱状',
+  bars: '条形',
+  below: '下方',
+  black: '黑色',
+  bl: '左下',
+  blue: '蓝色',
+  bottom: '底部',
+  'bottom-left': '左下',
+  'bottom-right': '右下',
+  both: '两侧',
+  box: '方框',
+  br: '右下',
+  bubble: '气泡',
+  bubbles: '气泡',
+  bullish: '积极',
+  burst: '爆发',
+  cards: '卡片',
+  category: '分类',
+  cautions: '谨慎',
+  cautious: '谨慎',
+  cells: '格子',
+  center: '居中',
+  centered: '居中',
+  'center-left': '左中',
+  change: '变化',
+  chart: '图表',
+  circle: '圆形',
+  cluster: '聚类',
+  collage: '拼贴',
+  color: '彩色',
+  column: '列式',
+  columns: '多列',
+  constellation: '星群',
+  contain: '完整显示',
+  cool: '冷色',
+  corner: '角标',
+  count: '数量',
+  cover: '填充裁剪',
+  dark: '深色',
+  dashed: '虚线',
+  data: '数据',
+  dawn: '晨光',
+  default: '默认',
+  delta: '差值',
+  desc: '降序',
+  descend: '下降',
+  dest: '目标',
+  diverging: '分歧',
+  donut: '环形图',
+  dot: '圆点',
+  dots: '点阵',
+  dumbbell: '哑铃图',
+  duotone: '双色',
+  dusk: '暮色',
+  ember: '暖焰',
+  feature: '重点图文',
+  figure: '大数字',
+  fill: '填充',
+  flat: '平铺',
+  flow: '流程',
+  from: '起点',
+  full: '全幅',
+  funnel: '漏斗',
+  gate: '闸门',
+  gauge: '仪表',
+  gauges: '仪表组',
+  glass: '玻璃',
+  gloss: '光泽',
+  glow: '发光',
+  goey: '流体',
+  gradient: '渐变',
+  graphite: '石墨',
+  green: '绿色',
+  grid: '网格',
+  group: '分组',
+  grouped: '分组',
+  hatched: '斜纹',
+  heat: '热度',
+  heatmap: '热力图',
+  hero: '主视觉',
+  'hero-left': '主视觉在左',
+  'hero-right': '主视觉在右',
+  horizontal: '横向',
+  image: '图片',
+  ink: '墨色',
+  justified: '两端对齐',
+  ladder: '阶梯',
+  landscape: '横图',
+  layers: '层级',
+  left: '左侧',
+  lens: '镜头',
+  letter: '字母',
+  level: '水平',
+  light: '浅色',
+  lime: '荧光绿',
+  line: '折线',
+  linear: '线性',
+  lines: '线条',
+  list: '列表',
+  lollipop: '棒棒糖',
+  map: '地图',
+  media: '媒体',
+  mesh: '网格',
+  meters: '仪表',
+  midnight: '午夜',
+  mirror: '镜像',
+  mono: '单色',
+  month: '月度',
+  monthly: '按月',
+  mosaic: '马赛克',
+  moving: '动态',
+  multi: '多色',
+  muted: '柔和',
+  nested: '嵌套',
+  none: '无',
+  norm: '标准化',
+  normal: '常规',
+  number: '数字',
+  orbit: '环绕',
+  outline: '描边',
+  overlay: '叠加',
+  panel: '面板',
+  paper: '纸面',
+  pie: '饼图',
+  pill: '胶囊',
+  pincer: '夹击',
+  pink: '粉色',
+  plain: '纯净',
+  portrait: '竖图',
+  pressure: '压力',
+  primary: '主色',
+  pyramid: '金字塔',
+  quote: '引语',
+  radar: '雷达',
+  radial: '放射',
+  radius: '半径',
+  ratio: '比例',
+  right: '右侧',
+  ring: '环形',
+  roman: '罗马数字',
+  rounded: '圆角',
+  row: '横排',
+  rows: '多行',
+  scatter: '散点',
+  score: '评分',
+  segment: '分段',
+  segments: '分段',
+  series: '系列',
+  side: '侧边',
+  solid: '纯色',
+  source: '来源',
+  spark: '亮点',
+  spiral: '螺旋',
+  split: '分栏',
+  'split-left': '左分栏',
+  'split-right': '右分栏',
+  slope: '斜率',
+  square: '正方形',
+  stack: '堆叠',
+  stacked: '堆叠',
+  step: '阶梯',
+  steps: '步骤',
+  table: '表格',
+  tags: '标签',
+  tech: '科技',
+  text: '文字',
+  ticket: '票卡',
+  timeline: '时间轴',
+  tl: '左上',
+  to: '终点',
+  top: '顶部',
+  'top-left': '左上',
+  total: '总计',
+  tr: '右上',
+  treemap: '矩形树图',
+  underline: '下划线',
+  unicorn: '动态视觉',
+  vapor: '雾化',
+  vertical: '纵向',
+  violet: '紫色',
+  vs: '对比',
+  waterfall: '瀑布',
+  warm: '暖色',
+  white: '白色',
+  year: '年度',
+  yearly: '按年',
+  yellow: '黄色',
+  zigzag: '折线',
+};
+
 export function normalizeControlText(value) {
   if (typeof value !== 'string') return value;
   let next = value;
@@ -173,6 +377,81 @@ export function normalizeControlValue(value) {
     key,
     key === 'value' || key === 'image' ? item : normalizeControlValue(item),
   ]));
+}
+
+export function normalizeControlOptions(options) {
+  if (!Array.isArray(options)) return normalizeControlValue(options);
+  return options.map((option, index) => normalizeControlOption(option, index));
+}
+
+function normalizeControlOption(option, index = 0) {
+  if (Array.isArray(option)) {
+    if (isPaletteOption(option)) {
+      return {
+        value: option.map(item => item),
+        label: `配色 ${index + 1}`,
+        color: paletteSwatchBackground(option),
+      };
+    }
+    return {
+      value: option[0],
+      label: normalizeOptionLabel(option[1] ?? option[0], option[0], index),
+      image: option[2] || '',
+      color: option[3] || '',
+    };
+  }
+  if (option && typeof option === 'object' && 'value' in option) {
+    return {
+      ...normalizeControlValue(option),
+      value: option.value,
+      label: normalizeOptionLabel(option.label ?? option.value, option.value, index),
+    };
+  }
+  return {
+    value: option,
+    label: normalizeOptionLabel(option, option, index),
+  };
+}
+
+export function normalizeOptionLabel(label, value = label, index = 0) {
+  if (value == null || label == null) return '隐藏';
+  if (isHexColor(value) && (label === value || String(label).trim() === String(value).trim())) {
+    return `颜色 ${index + 1}`;
+  }
+  const normalized = normalizeControlText(String(label));
+  const direct = optionLabelForValue(normalized);
+  if (direct) return direct;
+  const byValue = optionLabelForValue(value);
+  if (byValue && (normalized === String(value) || /^[A-Za-z0-9_./ -]+$/.test(normalized))) return byValue;
+  return normalized
+    .replace(/\bYES\b/g, '是')
+    .replace(/\bNO\b/g, '否')
+    .replace(/\b8-bit\b/gi, '像素');
+}
+
+function optionLabelForValue(value) {
+  if (value == null) return '隐藏';
+  const key = String(value).trim().toLowerCase();
+  return ENGLISH_OPTION_LABELS[key] || null;
+}
+
+function isHexColor(value) {
+  return /^#[0-9a-f]{3,8}$/i.test(String(value || ''));
+}
+
+function isPaletteOption(item) {
+  return item.length > 1 && item.every(value => isHexColor(value));
+}
+
+function paletteSwatchBackground(colors) {
+  const count = Math.max(1, colors.length);
+  if (count === 1) return colors[0];
+  const stops = colors.map((color, index) => {
+    const from = index / count * 100;
+    const to = (index + 1) / count * 100;
+    return `${color} ${from}% ${to}%`;
+  });
+  return `linear-gradient(135deg, ${stops.join(', ')})`;
 }
 
 export function normalizePublicControls(controls, context = {}) {
@@ -203,7 +482,7 @@ export function normalizePublicControl(control, context = {}) {
     label,
     desc,
     description: desc,
-    options: normalizeControlValue(control.options),
+    options: normalizeControlOptions(control.options),
   };
 }
 

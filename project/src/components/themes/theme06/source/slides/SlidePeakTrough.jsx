@@ -52,16 +52,26 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       font-weight:800;font-size:36px;letter-spacing:-.01em;color:var(--kx-cream);white-space:nowrap;}
     .kx-ptr-col.kx-peak .kx-ptr-bv{color:var(--kx-accent);}
     /* lollipop variant */
-    .kx-ptr-stem{width:3px;background:var(--kx-line);flex:1;}
-    .kx-ptr-knob{width:30px;height:30px;border-radius:50%;background:#5a5a52;position:relative;}
-    .kx-ptr-col.kx-peak .kx-ptr-knob{background:var(--kx-accent);}
-    .kx-ptr-col.kx-trough .kx-ptr-knob{background:#5a5a52;outline:2px solid var(--kx-line);}
+    .kx-ptr-lollipop{position:relative;width:76%;min-height:54px;display:flex;justify-content:center;align-items:flex-end;}
+    .kx-ptr-stem{width:38px;height:100%;background:#34342f;border-radius:10px 10px 0 0;}
+    .kx-ptr-knob{position:absolute;left:50%;top:-33px;transform:translateX(-50%);width:min(100%,112px);height:62px;
+      border-radius:999px;background:#34342f;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 0 0 1px rgba(255,255,255,.08),0 18px 36px rgba(0,0,0,.24);}
+    .kx-ptr-knob .kx-ptr-bv{position:static;transform:none;font-size:34px;line-height:1;color:var(--kx-cream);}
+    .kx-ptr-col.kx-peak .kx-ptr-stem,.kx-ptr-col.kx-peak .kx-ptr-knob{background:var(--kx-accent);}
+    .kx-ptr-col.kx-peak .kx-ptr-knob .kx-ptr-bv{color:var(--kx-ink);}
+    .kx-ptr-col.kx-trough .kx-ptr-stem,.kx-ptr-col.kx-trough .kx-ptr-knob{background:#5a5a52;}
+    .kx-ptr-col.kx-trough .kx-ptr-knob{outline:2px solid var(--kx-line);}
     .kx-ptr-col.kx-focus .kx-ptr-knob{outline:3px solid var(--kx-accent);outline-offset:3px;}
     /* dots variant */
-    .kx-ptr-stack{display:flex;flex-direction:column-reverse;gap:7px;align-items:center;width:100%;}
-    .kx-ptr-dot{width:15px;height:15px;border-radius:50%;background:#34342f;}
-    .kx-ptr-col.kx-peak .kx-ptr-dot{background:var(--kx-accent);}
-    .kx-ptr-col.kx-trough .kx-ptr-dot{background:#5a5a52;}
+    .kx-ptr-stack{position:relative;display:grid;grid-template-rows:repeat(18,minmax(0,1fr));
+      justify-items:center;align-items:center;width:100%;height:100%;padding:2px 0;}
+    .kx-ptr-stack .kx-ptr-bv{top:-40px;}
+    .kx-ptr-dot{width:22px;height:22px;border-radius:5px;background:#2d2d28;opacity:.32;}
+    .kx-ptr-dot.kx-fill{background:#4a4a43;opacity:1;}
+    .kx-ptr-col.kx-peak .kx-ptr-dot.kx-fill{background:var(--kx-accent);}
+    .kx-ptr-col.kx-trough .kx-ptr-dot.kx-fill{background:#5a5a52;}
+    .kx-ptr-col.kx-focus .kx-ptr-dot.kx-fill{box-shadow:0 0 0 1px rgba(200,241,53,.55);}
     /* axis labels */
     .kx-ptr-axis{display:grid;column-gap:30px;border-top:1px solid var(--kx-line);padding-top:16px;}
     .kx-ptr-lab{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;}
@@ -94,14 +104,19 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       const hpct = Math.max(6, (d.value / maxV) * 100);
       let mark;
       if (p.chartType === 'lollipop') {
-        mark = [h('div', { key: 's', className: 'kx-ptr-stem', style: { height: hpct + '%' } }),
-                h('div', { key: 'k', className: 'kx-ptr-knob' },
-                  p.showValueLabels ? h('span', { className: 'kx-ptr-bv' }, d.value) : null)];
+        mark = h('div', { className: 'kx-ptr-lollipop', style: { height: hpct + '%' } },
+          h('div', { className: 'kx-ptr-stem' }),
+          h('div', { className: 'kx-ptr-knob' },
+            p.showValueLabels ? h('span', { className: 'kx-ptr-bv' }, d.value) : null));
       } else if (p.chartType === 'dots') {
-        const n = Math.max(1, Math.round((d.value / maxV) * 10));
+        const dotMax = 18;
+        const n = Math.max(1, Math.round((d.value / maxV) * dotMax));
         mark = h('div', { className: 'kx-ptr-stack' },
-          Array.from({ length: n }, (_, k) => h('div', { key: k, className: 'kx-ptr-dot' })),
-          p.showValueLabels ? h('span', { className: 'kx-ptr-bv', style: { position: 'static', transform: 'none', marginTop: '6px' } }, d.value) : null);
+          Array.from({ length: dotMax }, (_, k) => h('div', {
+            key: k,
+            className: 'kx-ptr-dot' + (k >= dotMax - n ? ' kx-fill' : ''),
+          })),
+          p.showValueLabels ? h('span', { className: 'kx-ptr-bv' }, d.value) : null);
       } else {
         mark = h('div', { className: 'kx-ptr-bar', style: { height: hpct + '%' } },
           p.showValueLabels ? h('span', { className: 'kx-ptr-bv' }, d.value) : null);

@@ -23,18 +23,20 @@ export default function Page55Ecosystem(props) {
     ? 'linear-gradient(165deg, #EFEFF6 0%, #E7E6EE 58%, #DEDCEA 100%)'
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
-  const segs = segments.slice(0, Math.max(3, segmentCount));
+  const segs = segments.slice(0, Math.max(2, segmentCount));
   const photoNodes = Math.min(mediaCount, segs.length);
-  const fIdx = Math.min(focusIndex, segs.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, segs.length - 1));
 
   // even angular placement on an ellipse; even counts start on the diagonal so
   // nodes sit in the corners (fills the frame instead of leaving empty corners)
   const Rx = 47, Ry = 38;
   const startAng = segs.length % 2 === 0 ? -45 : -90;
-  const nodes = segs.map((s, i) => {
-    const ang = (startAng + (i * 360) / segs.length) * Math.PI / 180;
-    return { ...s, x: 50 + Rx * Math.cos(ang), y: 50 + Ry * Math.sin(ang) };
-  });
+  const nodes = segs.length === 2
+    ? segs.map((s, i) => ({ ...s, x: i === 0 ? 24 : 76, y: 50 }))
+    : segs.map((s, i) => {
+      const ang = (startAng + (i * 360) / segs.length) * Math.PI / 180;
+      return { ...s, x: 50 + Rx * Math.cos(ang), y: 50 + Ry * Math.sin(ang) };
+    });
 
   return (
     <div className="acl-root acl-ec" style={{ background: bg }}>
@@ -174,7 +176,7 @@ export default function Page55Ecosystem(props) {
 Page55Ecosystem.defaults = {
   // adjustable params
   backgroundTheme: 'primary',  // 'primary' | 'muted'
-  segmentCount: 4,             // 3–4 ecosystem nodes on the ring
+  segmentCount: 4,             // 2–4 ecosystem nodes on the ring
   mediaCount: 2,               // 0–4 leading nodes carry an adaptive photo
   focusEnabled: true,
   focusIndex: 0,               // spotlight GPU 云
@@ -201,13 +203,13 @@ Page55Ecosystem.defaults = {
 Page55Ecosystem.controls = [
   { key: 'backgroundTheme', type: 'enum', default: 'primary', options: ['primary', 'muted'],
     label: '背景主题', desc: '主色(电光黄) 或 次色(淡紫灰) 底色' },
-  { key: 'segmentCount', type: 'number', default: 4, min: 3, max: 4, step: 1,
-    label: '节点数量', desc: '生态环上的节点数量(3–4)' },
+  { key: 'segmentCount', type: 'number', default: 4, min: 2, max: 4, step: 1,
+    label: '节点数量', desc: '生态环上的节点数量(2–4)；2 个时一左一右' },
   { key: 'mediaCount', type: 'number', default: 2, min: 0, max: 4, step: 1,
     label: '图片数量', desc: '前 N 个节点改为承载图片(0–4，超过节点数自动封顶)；每张按上传图片比例自适应' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否高亮某一个生态节点' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, maxFrom: 'segmentCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 3, maxFrom: 'segmentCount', step: 1,
     label: '重点对象', desc: '被高亮的节点序号(从 0 起)' },
   { key: 'showValueLabels', type: 'boolean', default: true,
     label: '数值标签', desc: '各节点融资额数值 显隐' },

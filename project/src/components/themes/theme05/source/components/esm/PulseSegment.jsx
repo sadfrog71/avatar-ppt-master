@@ -1,5 +1,5 @@
 import React from 'react';
-import './PulseImageFrame.jsx';
+import { getTheme05MediaKind, getTheme05MediaRatio, normalizeTheme05Media } from './PulseImageFrame.jsx';
 const window = globalThis.__theme05Window || (globalThis.__theme05Window = {});
 globalThis.React = React;
 function withTheme05Copy(Component) {
@@ -68,15 +68,16 @@ function replaceTheme05Text(node, replacements) {
 /* =========================================================================
    PulseSegment — P28 image-led page ("赛道剖析 / Segment Profile" archetype).
    A generic single-segment deep-dive: a colored identity card (eyebrow + title
-   + metric spec) beside an ADAPTIVE image gallery (0–n justified, ratio-aware
-   slots). With 0 images the card goes full-width with two-column metrics, so
+   + metric spec) beside an ADAPTIVE media gallery (0–n justified, ratio-aware
+   slots). With 0 media items the card goes full-width with two-column metrics, so
    the composition stays balanced at any slot count. This is the reusable
    template for every sector / segment page in the deck.
-   Image slots are prop-driven (`images` + `onImageChange`); everything else by
+   Media slots are prop-driven (`images` + `onImageChange`); everything else by
    props. See PulseSegment.controls for the typed, documented parameter list.
    ========================================================================= */
 (function () {
   const SPECTRUM = ["#d8402e","#e2742c","#efbe2e","#3c9a52","#4da0c6","#2c44a0","#7a3c90"];
+  const GALLERY_GAP = 16;
 
   // Static copy + data (text/data intentionally NOT prop-driven, per spec).
   const COPY = {
@@ -98,6 +99,60 @@ function replaceTheme05Text(node, replacements) {
 
   function clampAR(v) { return Math.max(0.62, Math.min(1.78, v || 1.45)); }
 
+  function fitGalleryMediaLayout(items, box, gap) {
+    if (!items.length || !box.width || !box.height) return null;
+    const ars = items.map(item => clampAR(getTheme05MediaRatio(item)));
+    const totalAR = ars.reduce((sum, ar) => sum + ar, 0);
+    const totalGap = gap * Math.max(0, items.length - 1);
+    const usableWidth = Math.max(0, box.width - totalGap);
+    const height = Math.min(box.height, usableWidth / totalAR);
+    if (!(height > 0)) return null;
+    return {
+      height,
+      widths: ars.map(ar => ar * height),
+    };
+  }
+
+  function useMeasuredBox(ref, activeKey) {
+    const [box, setBox] = React.useState({ width: 0, height: 0 });
+
+    React.useLayoutEffect(() => {
+      const el = ref.current;
+      if (!el || !activeKey) return undefined;
+      let frame = 0;
+      const measure = () => {
+        if (frame) globalThis.cancelAnimationFrame?.(frame);
+        frame = globalThis.requestAnimationFrame?.(() => {
+          frame = 0;
+          const next = { width: el.clientWidth, height: el.clientHeight };
+          setBox(prev => (
+            Math.abs(prev.width - next.width) < 0.5 && Math.abs(prev.height - next.height) < 0.5
+              ? prev
+              : next
+          ));
+        }) || 0;
+      };
+
+      measure();
+      if (globalThis.ResizeObserver) {
+        const observer = new globalThis.ResizeObserver(measure);
+        observer.observe(el);
+        return () => {
+          if (frame) globalThis.cancelAnimationFrame?.(frame);
+          observer.disconnect();
+        };
+      }
+
+      globalThis.addEventListener?.("resize", measure);
+      return () => {
+        if (frame) globalThis.cancelAnimationFrame?.(frame);
+        globalThis.removeEventListener?.("resize", measure);
+      };
+    }, [ref, activeKey]);
+
+    return box;
+  }
+
   function PulseSegment(props) {
     const p = Object.assign({}, PulseSegment.defaults, props);
     const accent = p.accentColor;
@@ -105,8 +160,13 @@ function replaceTheme05Text(node, replacements) {
     const metrics = COPY.metrics.slice(0, nMetric);
     const nImg = Math.max(0, Math.min(3, p.imageCount));
     const images = p.images || [];
+    const mediaItems = Array.from({ length: nImg }, (_, i) => images[i] || {});
+    const galleryRowRef = React.useRef(null);
     const Frame = window.PulseImageFrame;
     const hasGallery = nImg > 0 && Frame;
+    const hasVideoMedia = mediaItems.some(item => getTheme05MediaKind(item) === "video");
+    const galleryBox = useMeasuredBox(galleryRowRef, hasGallery && hasVideoMedia ? nImg : 0);
+    const fittedGallery = hasGallery && hasVideoMedia ? fitGalleryMediaLayout(mediaItems, galleryBox, GALLERY_GAP) : null;
 
     // theme → card bg / fg / divider color
     let bg, fg, div;
@@ -154,19 +214,28 @@ function replaceTheme05Text(node, replacements) {
                     <span className="pulse-mono">{COPY.galleryUnit}</span>
                   </div>
                 )}
-                <div className="pulse-seg__gallery-row">
-                  {Array.from({ length: nImg }).map((_, i) => {
-                    const im = images[i] || {};
-                    const grow = clampAR(im.ar);
+                <div
+                  className="pulse-seg__gallery-row"
+                  ref={galleryRowRef}
+                  style={fittedGallery ? { alignItems: "center", justifyContent: "center" } : undefined}
+                >
+                  {mediaItems.map((im, i) => {
+                    const media = normalizeTheme05Media(im);
+                    const mediaAR = getTheme05MediaRatio(media);
+                    const grow = clampAR(mediaAR);
+                    const fitWidth = fittedGallery?.widths[i] || 0;
+                    const itemStyle = fitWidth
+                      ? { flex: `0 0 ${fitWidth}px`, width: fitWidth, height: fittedGallery.height, minWidth: 0 }
+                      : { flex: `${grow} 1 0`, minWidth: 0 };
                     return (
-                      <div key={i} style={{ flex: `${grow} 1 0`, minWidth: 0 }}>
+                      <div key={i} style={itemStyle}>
                         <Frame
-                          src={im.src || null}
-                          ar={im.ar || null}
+                          src={media}
+                          ar={mediaAR}
                           fill={true}
                           editable={p.editable !== false}
                           label={"IMG." + (i + 1)}
-                          placeholder="拖入图片"
+                          placeholder="拖入图片/视频"
                           onChange={(src, ar) => p.onImageChange && p.onImageChange(i, src, ar)}
                         />
                       </div>
@@ -185,7 +254,7 @@ function replaceTheme05Text(node, replacements) {
 
   PulseSegment.controls = [
     { key: "imageCount", type: "slider", label: "图片槽数量", default: 2, min: 0, max: 3, step: 1,
-      description: "图片槽数量（0–3）；按各图比例自适应排布。为 0 时主体卡自动铺满整幅。" },
+      description: "图片/视频槽数量（0–3）；按各媒体比例自适应排布。为 0 时主体卡自动铺满整幅。" },
     { key: "metricCount", type: "slider", label: "指标行数", default: 4, min: 2, max: 4, step: 1,
       description: "主体卡内的指标行数。" },
     { key: "cardTheme", type: "radio", label: "主体卡主题", default: "color",
@@ -201,7 +270,7 @@ function replaceTheme05Text(node, replacements) {
       description: "右上角的页码 / 章节标签。" },
   ];
   PulseSegment.defaults = PulseSegment.controls.reduce(
-    (o, c) => { o[c.key] = c.default; return o; }, {}
+    (o, c) => { o[c.key] = c.default; return o; }, { images: [] }
   );
 
   PulseSegment.copyDefaults = COPY;

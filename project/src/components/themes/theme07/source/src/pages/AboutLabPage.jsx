@@ -10,9 +10,11 @@
  *
  * ── Image slots (migration note) ───────────────────────────────────────────
  * Host-agnostic. The fillable slot is supplied by the host via the
- * `renderSlot(i, { ratio, ratioAR }) => ReactNode` prop. When omitted a striped
- * placeholder renders, so the page works (and exports) standalone. Image count
- * is prop-driven (0–3); at 0 the gallery falls back to the brand lens graphic.
+ * `renderSlot(i, { ratio, ratioAR, preserveVideoSize, adaptiveMedia, fallbackRatio }) => ReactNode`
+ * prop. When omitted a striped placeholder renders, so the page works (and
+ * exports) standalone. Image count is prop-driven (0–3); at 0 the gallery falls
+ * back to the brand lens graphic. Uploaded videos keep their native size while
+ * companion images adapt inside the same gallery system.
  *
  * Scoped under `.aic-about`. Shared deps: ./theme.js, ./viz.jsx (LensCluster, HeatStrip).
  */
@@ -50,13 +52,14 @@ export const defaultProps = {
   ...COPY,
   imageCount: 2,           // hero gallery slots (0–3)
   imageRatio: 'auto',      // 'portrait' | 'landscape' | 'square' | 'auto'
+  images: [],
   cardCount: 4,            // capability cards (2–4)
   focusEnabled: true,      // highlight one card
   focusIndex: 0,           // which card is the focus (0-based)
   showContact: true,       // contact line
   showDecorations: true,   // glow + heat strip + image badge
   accentColor: THEME.accent,
-  renderSlot: null,        // host hook: (i, { ratio, ratioAR }) => ReactNode
+  renderSlot: null,        // host hook: (i, { ratio, ratioAR, preserveVideoSize, adaptiveMedia, fallbackRatio }) => ReactNode
 };
 
 export const controls = [
@@ -150,15 +153,23 @@ const CSS = `
 .aic-about .ab-cell { position: relative; overflow: hidden; border-radius: 24px;
   background: var(--aic-accent-soft); border: 1.5px solid var(--aic-hair); }
 .aic-about .ab-cell.tile { flex: 1 1 0; min-height: 0; }
+.aic-about .ab-cell.tile-auto { flex: 1 1 0; min-height: 0; display: grid; place-items: center; }
 .aic-about .ab-cell.fill { flex: 1 1 0; }
 .aic-about .ab-cell.single-fixed { margin: auto 0; width: 100%; }
 .aic-about .ab-cell.single-auto { margin: auto 0; width: 100%; }
 .aic-about .ab-frame { position: relative; width: 100%; height: 100%; overflow: hidden; }
 .aic-about .ab-cell.tile .ab-frame, .aic-about .ab-cell.fill .ab-frame { height: 100%; }
+.aic-about .ab-cell.tile-auto .ab-frame { height: 100%; display: grid; place-items: center; }
 .aic-about .ab-cell.single-fixed .ab-frame { aspect-ratio: var(--ar); height: auto; max-height: 100%; width: 100%; }
 .aic-about .ab-cell.single-auto .ab-frame { height: auto; }
 .aic-about .ab-frame > * { position: absolute; inset: 0; width: 100%; height: 100%; }
 .aic-about .ab-cell.single-auto .ab-frame > * { position: static; width: 100%; height: auto; display: block; }
+.aic-about .ab-cell.tile-auto .ab-frame > [data-dashi-host-image-slot] {
+  position: relative; inset: auto; width: 100%; height: auto; max-width: 100%; max-height: 100%;
+}
+.aic-about .ab-frame > [data-dashi-video-native="true"] {
+  position: relative; inset: auto; width: auto; height: auto; max-width: 100%; max-height: 100%;
+}
 .aic-about .ab-badge { position: absolute; top: 16px; left: 16px; z-index: 4; font-family: var(--aic-font-display);
   font-weight: 600; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--aic-ink);
   background: var(--aic-accent); padding: 6px 13px; border-radius: 999px; white-space: nowrap; }
@@ -215,8 +226,8 @@ export default function AboutLabPage(props) {
   const ratioAR = RATIO_AR[ratio];
   const isAuto = ratioAR == null;
   const single = imgN === 1;
-  // single image: honor its ratio (auto = natural). multiple: uniform gallery tiles.
-  const cellClass = single ? (isAuto ? 'single-auto' : 'single-fixed') : 'tile';
+  // single auto: use uploaded ratio when available; multiple: uniform gallery tiles.
+  const cellClass = single ? (isAuto ? 'single-auto' : 'single-fixed') : (isAuto ? 'tile-auto' : 'tile');
 
   return (
     <div className="aic-about" style={vars}>
@@ -265,7 +276,15 @@ export default function AboutLabPage(props) {
               style={single && !isAuto ? { '--ar': String(ratioAR) } : null}>
               {p.showDecorations && i === 0 && <span className="ab-badge">{copy.badge}</span>}
               <div className="ab-frame">
-                {p.renderSlot ? p.renderSlot(i, { ratio, ratioAR }) : <Placeholder i={i} />}
+                {p.renderSlot
+                  ? p.renderSlot(i, {
+                      ratio,
+                      ratioAR,
+                      preserveVideoSize: true,
+                      adaptiveMedia: isAuto && single,
+                      fallbackRatio: single ? 4 / 3 : undefined,
+                    })
+                  : <Placeholder i={i} />}
               </div>
             </div>
           ))

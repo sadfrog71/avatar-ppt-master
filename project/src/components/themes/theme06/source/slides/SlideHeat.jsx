@@ -81,9 +81,11 @@ if (!document.getElementById('kx-hmp-css')) {
   .kx-hmp-dhead .kx-m{font-family:var(--kx-disp);font-weight:900;font-size:30px;}
   .kx-hmp-dhead .kx-cv{font-family:var(--kx-disp);font-weight:800;font-size:30px;color:var(--kx-mute);}
   .kx-hmp-dcell.kx-on .kx-cv,.kx-hmp-dcell.kx-pk .kx-cv{color:var(--kx-accent);}
-  .kx-hmp-dots{display:flex;flex-wrap:wrap;align-content:flex-end;gap:8px;flex:1;}
-  .kx-hmp-dots i{width:13px;height:13px;border-radius:50%;background:#34342f;}
-  .kx-hmp-dcell.kx-on .kx-hmp-dots i,.kx-hmp-dcell.kx-pk .kx-hmp-dots i{background:var(--kx-accent);}
+  .kx-hmp-dots{display:grid;grid-template-columns:repeat(6,15px);grid-auto-rows:15px;
+    justify-content:start;align-content:end;gap:7px;flex:1;min-height:0;}
+  .kx-hmp-dots i{width:15px;height:15px;border-radius:50%;background:#34342f;opacity:.72;}
+  .kx-hmp-dots i.kx-fill{background:#5a5a52;opacity:1;}
+  .kx-hmp-dcell.kx-on .kx-hmp-dots i.kx-fill,.kx-hmp-dcell.kx-pk .kx-hmp-dots i.kx-fill{background:var(--kx-accent);}
   /* scale legend */
   .kx-hmp-scale{display:flex;align-items:center;gap:18px;padding-top:6px;}
   .kx-hmp-scale .kx-sl{font-family:var(--kx-mono);font-size:22px;color:var(--kx-mute-2);
@@ -148,13 +150,15 @@ function SlideHeat(props) {
       periods.map((d, i) => {
         const isPk = i === peakIdx;
         const on = p.focusEnabled && i === fi;
-        const dots = Math.max(1, Math.round(d.v / 10));
+        const dotTotal = 30;
+        const dots = Math.max(8, Math.round((d.v / maxV) * dotTotal));
         return h('div', { key: i, className: 'kx-hmp-dcell' + (on ? ' kx-on' : isPk ? ' kx-pk' : '') },
           h('div', { className: 'kx-hmp-dhead' },
             h('span', { className: 'kx-m' }, d.m),
             p.showValueLabels ? h('span', { className: 'kx-cv' }, d.v + p.unit) : null),
           h('div', { className: 'kx-hmp-dots' },
-            Array.from({ length: dots }, (_, k) => h('i', { key: k }))));
+            Array.from({ length: dotTotal }, (_, k) =>
+              h('i', { key: k, className: k < dots ? 'kx-fill' : '' }))));
       }));
   } else {
     // grid (heat cells)

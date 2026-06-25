@@ -18,7 +18,8 @@ export default function Page02Summary(props) {
     ? 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)'
     : 'linear-gradient(165deg, #EFEFF6 0%, #E7E6EE 58%, #DEDCEA 100%)';
   const cards = metrics.slice(0, cardCount);
-  const focusOn = focusEnabled && chartType !== null;
+  const chartVisible = chartType !== null && chartType !== 'null';
+  const focusOn = focusEnabled;
   const cyc = ['var(--acl-ink)', 'var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-red)', 'rgba(22,21,15,.35)'];
 
   return (
@@ -109,7 +110,7 @@ export default function Page02Summary(props) {
           </div>
         </div>
 
-        {chartType !== null && (
+        {chartVisible && (
           <div className="acl-sm__right">
             <h3>{trackTitle}{showDecor && <Doodle kind="arrowS" size={42} rotate={-20} style={{ position: 'static' }} />}</h3>
             {chartType === 'bars' && (

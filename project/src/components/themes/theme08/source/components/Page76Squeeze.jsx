@@ -16,8 +16,8 @@ export default function Page76Squeeze(props) {
   const {
     backgroundTheme, chartType, segmentCount, showThreshold, showValueLabels, metricCount,
     focusEnabled, focusIndex, showDecor,
-    eyebrow, headline, subheadline, summary, leftWall, rightWall, coreLabel, coreValue,
-    threshold, pressures, metrics, closingLine,
+    eyebrow, headline, subheadline, summary, threshold, pressures, metrics,
+    strategyKicker, strategyTitle, strategyLead, signals, actions, closingLine,
   } = p;
 
   const bg = backgroundTheme === 'muted'
@@ -25,13 +25,20 @@ export default function Page76Squeeze(props) {
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
   const segs = pressures.slice(0, Math.max(2, segmentCount));
-  const fIdx = Math.min(focusIndex, segs.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, segs.length - 1));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
   const isPincer = chartType === 'pincer';
+  const rootClass = ['acl-root', 'acl-cz', isPincer ? 'acl-cz--pincer' : 'acl-cz--bars'].join(' ');
   const palette = ['var(--acl-pink)', 'var(--acl-red)', 'var(--acl-blue)', 'var(--acl-ink)'];
+  const pressureColor = (index, isFocus) => isFocus ? 'var(--acl-yellow)' : palette[index % palette.length];
+  const pressureTextColor = (color) => (
+    color === 'var(--acl-ink)' || color === 'var(--acl-pink)' || color === 'var(--acl-red)'
+      ? 'var(--acl-paper)'
+      : 'var(--acl-ink)'
+  );
 
   return (
-    <div className="acl-root acl-cz" style={{ background: bg }}>
+    <div className={rootClass} style={{ background: bg }}>
       <style>{`
         .acl-cz{ position:absolute; inset:0; overflow:hidden; font-family:var(--acl-font-cn);
           color:var(--acl-ink); padding:78px 100px 64px; display:flex; flex-direction:column; }
@@ -59,7 +66,22 @@ export default function Page76Squeeze(props) {
           position:relative; margin-top:8px; }
 
         /* pincer variant */
-        .acl-cz__pincer{ width:100%; height:100%; display:flex; align-items:stretch; gap:0; }
+        .acl-cz__pincer{ width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+          gap:8px; padding:20px 4px; }
+        .acl-cz__pnode{ flex:1 1 0; min-width:0; height:78%; position:relative; display:flex;
+          flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center;
+          border:3px solid var(--acl-paper); box-shadow:4px 5px 0 rgba(0,0,0,.2);
+          transition:transform .25s, opacity .25s; }
+        .acl-cz__pnode--l{ clip-path:polygon(0 0, 100% 14%, 100% 86%, 0 100%); }
+        .acl-cz__pnode--m{ clip-path:polygon(0 14%, 100% 6%, 100% 94%, 0 86%); }
+        .acl-cz__pnode--r{ clip-path:polygon(0 14%, 100% 0, 100% 100%, 0 86%); }
+        .acl-cz__pnode--focus{ transform:translateY(-6px); box-shadow:6px 8px 0 rgba(0,0,0,.26); }
+        .acl-cz__pidx{ position:absolute; left:14px; top:12px; font-family:var(--acl-font-mono);
+          font-weight:700; font-size:12px; letter-spacing:.08em; opacity:.62; }
+        .acl-cz__pname{ font-weight:900; font-size:25px; line-height:1.06; padding:0 14px; }
+        .acl-cz__ptag{ font-family:var(--acl-font-mono); font-weight:700; font-size:11px;
+          letter-spacing:.05em; text-transform:uppercase; opacity:.62; padding:0 12px; }
+        .acl-cz__pval{ font-family:var(--acl-font-num); font-size:54px; line-height:.82; }
         .acl-cz__wall{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
           color:var(--acl-ink); position:relative; }
         .acl-cz__wall--l{ clip-path:polygon(0 0, 100% 18%, 100% 82%, 0 100%); background:var(--acl-blue); }
@@ -118,6 +140,30 @@ export default function Page76Squeeze(props) {
         .acl-cz__gfill{ position:absolute; inset:0 auto 0 0; border-right:3px solid var(--acl-ink); }
         .acl-cz__gauge--dim{ opacity:.42; }
         .acl-cz__fx{ position:absolute; right:30px; z-index:5; transform:translateY(-50%); }
+        .acl-cz__brief{ flex:1; min-height:0; margin-top:18px; display:flex; flex-direction:column; gap:14px; }
+        .acl-cz__briefhero{ background:var(--acl-ink); color:var(--acl-paper); border:3px solid var(--acl-ink);
+          box-shadow:5px 6px 0 rgba(22,21,15,.16); padding:18px 22px 20px; }
+        .acl-cz__brieftag{ font-family:var(--acl-font-mono); font-weight:700; font-size:12px;
+          letter-spacing:.12em; color:var(--acl-yellow); }
+        .acl-cz__brieftitle{ font-weight:900; font-size:34px; line-height:1.08; margin-top:7px; }
+        .acl-cz__briefhero p{ margin:10px 0 0; font-weight:700; font-size:18px; line-height:1.42;
+          color:rgba(255,255,255,.82); }
+        .acl-cz__signals{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:10px; }
+        .acl-cz__signal{ min-width:0; border:3px solid var(--acl-ink); background:#fff;
+          padding:12px 12px 14px; box-shadow:3px 4px 0 rgba(22,21,15,.12); }
+        .acl-cz__sighead{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+        .acl-cz__sigdot{ width:16px; height:16px; border:2px solid var(--acl-ink); flex:0 0 auto; }
+        .acl-cz__sigv{ font-family:var(--acl-font-num); font-size:28px; line-height:.9; }
+        .acl-cz__signame{ font-weight:900; font-size:20px; line-height:1.08; margin-top:8px; }
+        .acl-cz__sigtext{ font-weight:700; font-size:14px; line-height:1.35; margin-top:7px;
+          color:rgba(22,21,15,.62); }
+        .acl-cz__actions{ display:flex; flex-direction:column; gap:8px; }
+        .acl-cz__action{ display:grid; grid-template-columns:50px 1fr; gap:12px; align-items:center;
+          border:2.5px solid var(--acl-ink); background:rgba(22,21,15,.035); padding:10px 12px; }
+        .acl-cz__actno{ font-family:var(--acl-font-num); font-size:36px; line-height:.9; color:var(--acl-pink); }
+        .acl-cz__actk{ font-weight:900; font-size:20px; line-height:1.08; }
+        .acl-cz__acttext{ font-weight:700; font-size:15px; line-height:1.34; margin-top:3px;
+          color:rgba(22,21,15,.62); }
 
         .acl-cz__tiles{ flex:0 0 auto; display:flex; gap:14px; margin-top:18px;
           border-top:2px dashed rgba(22,21,15,.2); padding-top:16px; }
@@ -164,28 +210,27 @@ export default function Page76Squeeze(props) {
           <div className="acl-cz__stage">
             {isPincer ? (
               <div className="acl-cz__pincer">
-                <div className="acl-cz__wall acl-cz__wall--l">
-                  <span className="acl-cz__walltag">{leftWall.tag}</span>
-                  <span className="acl-cz__wallname">{leftWall.name}</span>
-                  {showValueLabels && <span className="acl-cz__wallv">{leftWall.v}%</span>}
-                </div>
-                <div className="acl-cz__core">
-                  <span className="acl-cz__corelab">{coreLabel}</span>
-                  <span className="acl-cz__corename">初创独立空间</span>
-                  {showValueLabels && <span className="acl-cz__corev">{coreValue}%</span>}
-                </div>
-                <div className="acl-cz__wall acl-cz__wall--r">
-                  <span className="acl-cz__walltag">{rightWall.tag}</span>
-                  <span className="acl-cz__wallname">{rightWall.name}</span>
-                  {showValueLabels && <span className="acl-cz__wallv">{rightWall.v}%</span>}
-                </div>
+                {segs.map((s, i) => {
+                  const isF = focusEnabled && i === fIdx;
+                  const c = pressureColor(i, isF);
+                  const shape = i === 0 ? 'l' : (i === segs.length - 1 ? 'r' : 'm');
+                  return (
+                    <div key={i}
+                      className={'acl-cz__pnode acl-cz__pnode--' + shape + (isF ? ' acl-cz__pnode--focus' : '')}
+                      style={{ background: c, color: pressureTextColor(c), opacity: focusEnabled && !isF ? 0.72 : 1 }}>
+                      <span className="acl-cz__pidx">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="acl-cz__pname">{s.k}</span>
+                      <span className="acl-cz__ptag">{s.en}</span>
+                      {showValueLabels && <span className="acl-cz__pval">{s.v}%</span>}
+                    </div>
+                  );
+                })}
               </div>
             ) : (
               <div className="acl-cz__bars">
                 {segs.map((s, i) => {
                   const isF = focusEnabled && i === fIdx;
-                  const c = isF ? 'var(--acl-yellow)' : palette[i % palette.length];
-                  const onDark = c === 'var(--acl-ink)';
+                  const c = pressureColor(i, isF);
                   return (
                     <div key={i} className="acl-cz__brow" style={{ opacity: focusEnabled && !isF ? 0.5 : 1 }}>
                       <div className="acl-cz__btop">
@@ -204,37 +249,43 @@ export default function Page76Squeeze(props) {
           </div>
         </div>
 
-        {/* ── pressure gauges panel ── */}
+        {/* ── strategy reading panel ── */}
         <div className="acl-cz__panel">
-          <div className="acl-cz__panelt">压力指标 · Compression Pressure</div>
+          <div className="acl-cz__panelt">{strategyKicker}</div>
           {showDecor && (
             <div style={{ position: 'absolute', right: 26, top: 22 }}>
-              <Sticker label="商品化风险" sub="HIGH" color="var(--acl-pink)" subColor="var(--acl-ink)" rotate={5} size={14} />
+              <Sticker label="防守策略" sub="优先级" color="var(--acl-yellow)" subColor="var(--acl-ink)" rotate={5} size={14} />
             </div>
           )}
-          <div className="acl-cz__gauges">
-            {segs.map((s, i) => {
-              const isF = focusEnabled && i === fIdx;
-              const dim = focusEnabled && !isF;
-              const c = isF ? 'var(--acl-pink)' : palette[i % palette.length];
-              return (
-                <div key={i} className={'acl-cz__gauge' + (dim ? ' acl-cz__gauge--dim' : '')} style={{ '--i': i }}>
-                  {isF && showDecor && <div className="acl-cz__fx" style={{ top: -34 }}><Sticker label="逼近临界" color="var(--acl-yellow)" subColor="var(--acl-ink)" rotate={6} size={13} /></div>}
-                  <div className="acl-cz__gtop">
-                    <span className="acl-cz__gname">{s.k}<small>{s.en}</small></span>
-                    {showValueLabels && <span className="acl-cz__gval">{s.v}%</span>}
+          <div className="acl-cz__brief">
+            <div className="acl-cz__briefhero">
+              <div className="acl-cz__brieftag">判断口径</div>
+              <div className="acl-cz__brieftitle">{strategyTitle}</div>
+              <p>{strategyLead}</p>
+            </div>
+            <div className="acl-cz__signals">
+              {signals.slice(0, 3).map((sig, i) => (
+                <div key={i} className="acl-cz__signal">
+                  <div className="acl-cz__sighead">
+                    <span className="acl-cz__sigdot" style={{ background: sig.color || palette[i % palette.length] }} />
+                    <span className="acl-cz__sigv">{sig.v}</span>
                   </div>
-                  <div className="acl-cz__gtrack">
-                    <div className="acl-cz__gfill" style={{ width: `${Math.min(100, s.v)}%`, background: c }} />
-                    {showThreshold && (
-                      <div className="acl-cz__thr" style={{ left: `${threshold}%`, borderLeftColor: 'var(--acl-ink)' }}>
-                        {i === 0 && <span className="acl-cz__thrlab" style={{ color: 'var(--acl-ink)' }}>临界 {threshold}%</span>}
-                      </div>
-                    )}
+                  <div className="acl-cz__signame">{sig.k}</div>
+                  <div className="acl-cz__sigtext">{sig.text}</div>
+                </div>
+              ))}
+            </div>
+            <div className="acl-cz__actions">
+              {actions.slice(0, 3).map((item, i) => (
+                <div key={i} className="acl-cz__action">
+                  <div className="acl-cz__actno">{item.no || String(i + 1).padStart(2, '0')}</div>
+                  <div>
+                    <div className="acl-cz__actk">{item.k}</div>
+                    <div className="acl-cz__acttext">{item.text}</div>
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
           <div className="acl-cz__tiles">
             {tiles.map((m, i) => (
@@ -271,10 +322,9 @@ Page76Squeeze.defaults = {
   headline: '壁垒被压缩',
   subheadline: '风险：开源与大厂竞争',
   summary: '开源模型降低能力门槛，大厂生态<b>压缩初创独立空间</b>。',
-  leftWall: { tag: 'Open Source', name: '开源社区', v: 86 },
-  rightWall: { tag: 'Incumbents', name: '大厂生态', v: 72 },
-  coreLabel: '被夹击的',
-  coreValue: 34,
+  strategyKicker: '防守判断 · 观察信号',
+  strategyTitle: '不是守模型，而是守住业务闭环',
+  strategyLead: '当能力差距被快速抹平，真正可防守的部分会转向客户数据、交付路径和渠道绑定。',
   threshold: 75,
   // pressure indicators — text not parameterized (count via segmentCount)
   pressures: [
@@ -283,10 +333,20 @@ Page76Squeeze.defaults = {
     { k: '企业自建意愿', en: 'Build In-House', v: 34 },
     { k: '价格战压力', en: 'Price Pressure', v: 58 },
   ],
+  signals: [
+    { k: '客户迁移成本', v: '高', color: 'var(--acl-yellow)', text: '流程、权限和历史数据一旦绑定，替换成本会重新形成壁垒。' },
+    { k: '专有数据回流', v: '中', color: 'var(--acl-blue)', text: '能持续拿到业务反馈的产品，更不容易被通用模型平替。' },
+    { k: '渠道控制力', v: '弱', color: 'var(--acl-pink)', text: '若获客依赖平台分发，价格战会更快传导到收入端。' },
+  ],
+  actions: [
+    { no: '01', k: '先守场景', text: '优先选择交付链条长、流程复杂、替换成本高的企业场景。' },
+    { no: '02', k: '绑定数据', text: '把使用数据、审批记录和运营反馈沉淀成产品循环。' },
+    { no: '03', k: '后扩品类', text: '等闭环跑通后，再横向复制到相邻部门或相邻行业。' },
+  ],
   metrics: [
-    { k: '开源性能逼近', v: '86', unit: '%' },
-    { k: '大厂产品覆盖', v: '72', unit: '%' },
-    { k: '企业自建意愿', v: '34', unit: '%' },
+    { k: '可防守窗口', v: '12', unit: '月' },
+    { k: '优先验证场景', v: '3', unit: '类' },
+    { k: '复购触发点', v: '2', unit: '个' },
   ],
   closingLine: '没有壁垒的模型能力会迅速商品化。',
 };
@@ -297,7 +357,7 @@ Page76Squeeze.controls = [
     label: '背景主题', desc: '主色(电光黄) 或 次色(淡紫灰) 底色' },
   { key: 'chartType', type: 'enum', default: 'pincer', options: ['pincer', 'bars'],
     label: '图表类型', desc: '竞争格局：夹击压缩(pincer) / 压力指标条(bars)' },
-  { key: 'segmentCount', type: 'number', default: 3, min: 2, max: 4, step: 1,
+  { key: 'segmentCount', type: 'number', default: 3, min: 2, max: 4, step: 1, countArrays: ['pressures'],
     label: '指标数量', desc: '压力指标数量(2–4)' },
   { key: 'showThreshold', type: 'boolean', default: true,
     label: '临界线', desc: '压力条上的临界阈值虚线 显隐' },
@@ -307,7 +367,7 @@ Page76Squeeze.controls = [
     label: '指标数量', desc: '面板底部支撑指标格数量(2–3)' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否高亮某个压力指标(其余淡化)' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 3, step: 1, maxFrom: 'segmentCount',
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: (p) => Math.max(0, (p.segmentCount || 1) - 1), step: 1, maxFromKey: 'segmentCount', maxFromKeyOffset: -1,
     label: '重点对象', desc: '被高亮的压力指标序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘装饰与贴纸标签 显隐' },

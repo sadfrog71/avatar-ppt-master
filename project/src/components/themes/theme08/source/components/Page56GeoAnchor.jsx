@@ -26,7 +26,7 @@ export default function Page56GeoAnchor(props) {
 
   const items = factors.slice(0, Math.max(2, factorCount));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
-  const fIdx = Math.min(focusIndex, items.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, items.length - 1));
 
   return (
     <div className={'acl-root acl-ga' + (isInk ? ' acl-ga--ink' : '')}
@@ -222,7 +222,7 @@ Page56GeoAnchor.controls = [
     label: '指标数量', desc: '大数字下方支撑指标格数量(2–3)' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否高亮某一条优势要素' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, maxFrom: 'factorCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 3, maxFrom: 'factorCount', step: 1,
     label: '重点对象', desc: '被高亮的优势要素序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘箭头、火花与贴纸标签 显隐' },

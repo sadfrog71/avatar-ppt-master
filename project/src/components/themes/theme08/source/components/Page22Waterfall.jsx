@@ -35,7 +35,7 @@ export default function Page22Waterfall(props) {
     const base = run; run += s.v;
     return { ...s, base, top: run, i, share: s.v / total };
   });
-  const palette = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-yellow)', 'var(--acl-red)', '#B9A8E8'];
+  const palette = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-yellow)', '#70E7D2', '#B9A8E8'];
   const yPct = (v) => (1 - v / maxV) * 100;
 
   // columns laid out across the plot: steps + optional total column

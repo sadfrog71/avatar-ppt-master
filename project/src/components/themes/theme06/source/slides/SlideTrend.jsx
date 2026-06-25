@@ -8,7 +8,7 @@
 //   unit (string)                  content — value unit suffix on cards
 //   metricCount (int 2..6) VISUAL  number of bottom metric cards
 //   focusEnabled (bool)    VISUAL  emphasise one point (peak)
-//   focusIndex (int)       VISUAL  which point is emphasised
+//   focusIndex (int 1..6)  VISUAL  which point is emphasised
 //   chartType (enum)       VISUAL  'area' | 'bars' | 'line'
 //   showDecor (bool)       VISUAL  baseline grid + peak marker (decorative)
 //   accent (color)         VISUAL
@@ -119,7 +119,7 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
   function SlideTrend(props) {
     const p = { ...SlideTrend.defaults, ...props };
     const cards = p.series.slice(0, Math.max(2, Math.min(p.metricCount, p.series.length)));
-    const fi = Math.min(p.focusIndex, p.series.length - 1);
+    const fi = Math.max(0, Math.min((Number(p.focusIndex) || 1) - 1, p.series.length - 1));
     return h('div', { className: 'kx-slide kx-dark', style: { '--kx-accent': p.accent } },
       h(KxGrid, { cols: 6 }),
       h('div', { className: 'kx-pad kx-trd-pad' },
@@ -154,7 +154,7 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       { label: 'Q3', value: 318, sub: '31 笔' },
       { label: 'Q4', value: 206, sub: '22 笔' },
     ],
-    metricCount: 4, focusEnabled: true, focusIndex: 2, chartType: 'area', showDecor: true, accent: '#c8f135',
+    metricCount: 4, focusEnabled: true, focusIndex: 3, chartType: 'area', showDecor: true, accent: '#c8f135',
   };
 
   SlideTrend.controls = [
@@ -162,7 +162,7 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       options: [['area', '面积'], ['bars', '柱状'], ['line', '折线']], desc: '主视觉图表的呈现形式' },
     { key: 'metricCount', label: '指标卡数量', type: 'number', default: 4, min: 2, max: 6, desc: '底部数据卡的数量（按数据点截取）' },
     { key: 'focusEnabled', label: '峰值高亮', type: 'toggle', default: true, desc: '是否高亮某个数据点（峰值）' },
-    { key: 'focusIndex', label: '高亮第几个', type: 'number', default: 2, min: 0, max: 5, desc: '被高亮的数据点序号', showIf: (p) => p.focusEnabled },
+    { key: 'focusIndex', label: '高亮第几个', type: 'number', default: 3, min: 1, max: 6, desc: '被高亮的数据点序号（从 1 开始）', showIf: (p) => p.focusEnabled },
     { key: 'showDecor', label: '装饰网格 / 峰值标', type: 'toggle', default: true, desc: '显示/隐藏基准网格线与峰值标记（装饰）' },
     { key: 'accent', label: '强调色', type: 'color', default: '#c8f135',
       options: ['#c8f135', '#ff5a3c', '#3ca0ff', '#ffd23c'], desc: '主强调色' },

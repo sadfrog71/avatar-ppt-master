@@ -24,11 +24,13 @@ export default function Page41Safety(props) {
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
   const segs = segments.slice(0, Math.max(3, segmentCount));
-  const fIdx = Math.min(focusIndex, segs.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, segs.length - 1));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
   const maxSeg = Math.max(...segs.map((s) => s.v));
   const palette = ['var(--acl-yellow)', 'var(--acl-blue)', 'var(--acl-pink)', 'var(--acl-paper)', 'var(--acl-red)'];
-  const ringColor = (i, isF) => (isF ? 'var(--acl-pink)' : palette[i % palette.length]);
+  const grayPalette = ['rgba(251,250,244,.42)', 'rgba(251,250,244,.31)', 'rgba(251,250,244,.22)', 'rgba(251,250,244,.15)', 'rgba(251,250,244,.1)'];
+  const isOverviewPie = !focusEnabled || fIdx === 0;
+  const ringColor = (i, isF) => (isOverviewPie || isF ? palette[i % palette.length] : grayPalette[i % grayPalette.length]);
 
   const STAGE = 470;          // perimeter stage size (px)
   const n = segs.length;
@@ -217,7 +219,7 @@ export default function Page41Safety(props) {
                 const isF = focusEnabled && i === fIdx;
                 const c = ringColor(i, isF);
                 return (
-                  <div key={i} className={'acl-sf__rlrow' + (focusEnabled && !isF ? ' acl-sf__rlrow--dim' : '')}>
+                  <div key={i} className={'acl-sf__rlrow' + (focusEnabled && fIdx > 0 && !isF ? ' acl-sf__rlrow--dim' : '')}>
                     <i style={{ background: c }} />
                     <b>{s.k}</b>
                     {showValueLabels && <em>{s.v}{valueUnit}</em>}

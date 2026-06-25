@@ -16,7 +16,7 @@
 //   stats ({v,k,en}[])         the headline numbers (v=figure, k=caption, en=Latin sub)
 //   footRight                  mono caption at the foot-right (decorative)
 // PROPS (visual — all map 1:1 to .controls)
-//   statCount (int 2..5)       stat cells shown
+//   statCount (int 2..8)       stat cells shown
 //   layout (enum)              'hero' | 'grid' | 'row'
 //   focusEnabled (bool)        pull one stat out as the lime hero
 //   focusIndex (int)           which stat is the hero/emphasis
@@ -69,6 +69,9 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-rcp-css')) {
   .kx-rcp-big .kx-rcp-e{font-size:22px;}
   .kx-rcp-rest{display:grid;gap:16px;min-height:0;}
   .kx-rcp-rest .kx-rcp-v{font-size:76px;}
+  .kx-rcp-rest.kx-many .kx-rcp-v{font-size:64px;}
+  .kx-rcp-rest.kx-many .kx-rcp-k{font-size:22px;}
+  .kx-rcp-rest.kx-many .kx-rcp-e{font-size:15px;}
 
   /* ---- even grid ---- */
   .kx-rcp-board.kx-grid2{grid-auto-rows:1fr;}
@@ -85,6 +88,10 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-rcp-css')) {
   .kx-rcp-board.kx-row .kx-rcp-v{font-size:96px;}
   .kx-rcp-board.kx-row .kx-rcp-cell.kx-on .kx-rcp-k::after{content:'';display:block;width:54px;height:4px;
     background:var(--kx-accent);margin-top:14px;}
+  .kx-rcp-board.kx-row.kx-wrap{display:grid;}
+  .kx-rcp-board.kx-row.kx-wrap .kx-rcp-cell{border:1px solid var(--kx-line);padding:26px 30px;}
+  .kx-rcp-board.kx-row.kx-wrap .kx-rcp-cell:first-child{border-left:1px solid var(--kx-line);padding-left:30px;}
+  .kx-rcp-board.kx-row.kx-wrap .kx-rcp-v{font-size:76px;}
 
   .kx-rcp-foot{display:flex;justify-content:space-between;align-items:center;padding-top:22px;margin-top:18px;border-top:1px solid var(--kx-line);}
   .kx-rcp-foot .kx-cl{font-family:var(--kx-mono);font-size:26px;color:var(--kx-accent);font-weight:700;}
@@ -113,8 +120,7 @@ function SlideRecap(props) {
     const heroI = p.focusEnabled ? fi : 0;
     const hero = stats[heroI];
     const rest = stats.filter((_, i) => i !== heroI);
-    // right grid: 2 cols; if rest is odd, the last cell spans both columns
-    const restCols = rest.length <= 1 ? 1 : 2;
+    const restCols = rest.length <= 1 ? 1 : rest.length >= 4 ? Math.ceil(rest.length / 2) : 2;
     const restNodes = rest.map((s, i) => {
       const wide = restCols === 2 && rest.length % 2 === 1 && i === rest.length - 1;
       return h('div', { key: i, style: wide ? { gridColumn: '1 / -1' } : null }, cell(s, i, false, true));
@@ -125,12 +131,19 @@ function SlideRecap(props) {
         h('div', { className: 'kx-rcp-meta' },
           h('div', { className: 'kx-rcp-k' }, hero.k),
           p.showCaption && hero.en ? h('div', { className: 'kx-rcp-e' }, hero.en) : null)),
-      h('div', { className: 'kx-rcp-rest', style: { gridTemplateColumns: `repeat(${restCols},1fr)` } }, restNodes));
+      h('div', {
+        className: 'kx-rcp-rest' + (rest.length >= 5 ? ' kx-many' : ''),
+        style: { gridTemplateColumns: `repeat(${restCols},1fr)`, gridAutoRows: '1fr' },
+      }, restNodes));
   } else if (p.layout === 'row') {
-    board = h('div', { className: 'kx-rcp-board kx-row' },
+    const cols = stats.length >= 5 ? Math.ceil(stats.length / 2) : stats.length;
+    board = h('div', {
+      className: 'kx-rcp-board kx-row' + (stats.length >= 5 ? ' kx-wrap' : ''),
+      style: stats.length >= 5 ? { gridTemplateColumns: `repeat(${cols},1fr)`, gridAutoRows: '1fr' } : null,
+    },
       stats.map((s, i) => cell(s, i, p.focusEnabled && i === fi, false)));
   } else {
-    const cols = stats.length <= 2 ? stats.length : stats.length <= 4 ? 2 : 3;
+    const cols = stats.length <= 2 ? stats.length : stats.length <= 4 ? 2 : Math.ceil(stats.length / 2);
     board = h('div', { className: 'kx-rcp-board kx-grid2', style: { gridTemplateColumns: `repeat(${cols},1fr)` } },
       stats.map((s, i) => cell(s, i, p.focusEnabled && i === fi, true)));
   }
@@ -164,18 +177,21 @@ SlideRecap.defaults = {
     { v: '10亿$', k: '平均单笔', en: 'PER MEGA DEAL' },
     { v: '63.9%', k: '湾区占比', en: 'BAY AREA SHARE' },
     { v: '71.2%', k: 'Top-50 集中度', en: 'CAPITAL CONCENTRATION' },
+    { v: '718亿$', k: '超级交易合计', en: 'MEGA-DEAL TOTAL' },
+    { v: '31%', k: '推理成本占比', en: 'INFERENCE COST SHARE' },
+    { v: '4 城', k: '核心城市集群', en: 'BAY-NYC-SEA-BOS' },
   ],
-  footRight: '4 STATS · RECAP',
+  footRight: '',
   statCount: 4, layout: 'hero', focusEnabled: true, focusIndex: 0,
   showWatermark: true, showThesis: true, showCaption: true, accent: '#c8f135',
 };
 
 SlideRecap.controls = [
-  { key: 'statCount', label: '数字数量', type: 'number', default: 4, min: 2, max: 5, desc: '展示的大数字单元数量' },
+  { key: 'statCount', label: '数字数量', type: 'number', default: 4, min: 2, max: 8, desc: '展示的大数字单元数量' },
   { key: 'layout', label: '排布形态', type: 'select', default: 'hero',
     options: [['hero', '主数字 + 阵列'], ['grid', '均分网格'], ['row', '单行数字带']], desc: '大数字墙的版式' },
   { key: 'focusEnabled', label: '主数字高亮', type: 'toggle', default: true, desc: '是否把某个数字拉成 lime 主数字（hero 时即左侧大格）' },
-  { key: 'focusIndex', label: '主数字第几个', type: 'number', default: 0, min: 0, max: 4, desc: '作为主数字/强调的序号', showIf: (p) => p.focusEnabled },
+  { key: 'focusIndex', label: '主数字第几个', type: 'number', default: 0, min: 0, max: 7, desc: '作为主数字/强调的序号', showIf: (p) => p.focusEnabled },
   { key: 'showWatermark', label: '背景大字', type: 'toggle', default: true, desc: '显示/隐藏背景水印字（装饰）' },
   { key: 'showThesis', label: '引导句', type: 'toggle', default: true, desc: '显示/隐藏顶部一句话引导（装饰文案）' },
   { key: 'showCaption', label: '英文小注', type: 'toggle', default: true, desc: '显示/隐藏每个数字的英文小注（装饰）' },

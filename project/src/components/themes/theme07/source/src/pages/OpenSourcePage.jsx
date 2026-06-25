@@ -166,8 +166,9 @@ const CSS = `
 .aic-os .os-ring { position: relative; width: 150px; height: 150px; }
 .aic-os .os-ring svg { transform: rotate(-90deg); }
 .aic-os .os-ring-v { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--aic-font-display);
-  font-weight: 700; font-size: 46px; color: var(--aic-ink); font-variant-numeric: tabular-nums; }
-.aic-os .os-ring-v u { text-decoration: none; font-size: 20px; font-weight: 600; color: var(--aic-ink-dim); margin-left: 1px; }
+  font-weight: 700; font-size: 46px; color: var(--aic-ink); font-variant-numeric: tabular-nums; line-height: 1; }
+.aic-os .os-ring-v span { display: inline-flex; align-items: baseline; justify-content: center; white-space: nowrap; line-height: 1; }
+.aic-os .os-ring-v u { display: inline-block; text-decoration: none; font-size: 20px; font-weight: 600; color: var(--aic-ink-dim); margin-left: 1px; line-height: 1; }
 .aic-os .os-target-body { display: flex; align-items: center; gap: 22px; }
 /* bar variant */
 .aic-os .os-barbox { display: flex; flex-direction: column; gap: 12px; }
@@ -207,7 +208,7 @@ function TargetRing({ pct, focus, showValue, display, unit }) {
           stroke={focus ? 'var(--aic-accent)' : 'var(--aic-ink)'}
           strokeDasharray={`${dash} ${c - dash}`} style={{ transition: 'stroke-dasharray .6s cubic-bezier(.3,.7,.4,1)' }} />
       </svg>
-      {showValue && <div className="os-ring-v">{display}<u>{unit}</u></div>}
+      {showValue && <div className="os-ring-v"><span>{display}<u>{unit}</u></span></div>}
     </div>
   );
 }

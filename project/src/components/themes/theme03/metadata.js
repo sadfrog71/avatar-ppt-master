@@ -408,7 +408,7 @@ export const pages = [
           },
           {
             "value": "assets/3d/02.png",
-            "label": "YES 按键",
+            "label": "是 按键",
             "image": "assets/3d/02.png"
           },
           {
@@ -418,12 +418,12 @@ export const pages = [
           },
           {
             "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
+            "label": "像素 幽灵",
             "image": "assets/3d/04.png"
           },
           {
             "value": "assets/3d/05.png",
-            "label": "YES 气泡",
+            "label": "是 气泡",
             "image": "assets/3d/05.png"
           },
           {
@@ -823,7 +823,7 @@ export const pages = [
           },
           {
             "value": "assets/3d/02.png",
-            "label": "YES 按键",
+            "label": "是 按键",
             "image": "assets/3d/02.png"
           },
           {
@@ -833,12 +833,12 @@ export const pages = [
           },
           {
             "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
+            "label": "像素 幽灵",
             "image": "assets/3d/04.png"
           },
           {
             "value": "assets/3d/05.png",
-            "label": "YES 气泡",
+            "label": "是 气泡",
             "image": "assets/3d/05.png"
           },
           {
@@ -11638,7 +11638,7 @@ export const pages = [
           },
           {
             "value": "assets/3d/02.png",
-            "label": "YES 按键",
+            "label": "是 按键",
             "image": "assets/3d/02.png"
           },
           {
@@ -11648,12 +11648,12 @@ export const pages = [
           },
           {
             "value": "assets/3d/04.png",
-            "label": "8-bit 幽灵",
+            "label": "像素 幽灵",
             "image": "assets/3d/04.png"
           },
           {
             "value": "assets/3d/05.png",
-            "label": "YES 气泡",
+            "label": "是 气泡",
             "image": "assets/3d/05.png"
           },
           {

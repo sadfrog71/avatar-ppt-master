@@ -109,6 +109,7 @@ export const defaultProps = {
   region: 0,               // which region: 0 纽约 / 1 西雅图 / 2 波士顿 / 3 其他地区
   imageCount: 1,           // hero image slots (0–2)
   imageRatio: 'portrait',  // 'portrait' | 'landscape' | 'square' | 'auto'
+  images: [],
   showShare: true,         // national-share chart module
   chartType: 'bar',        // national-share chart: 'bar' (stacked) | 'donut'
   tagCount: 4,             // industry tags (2–5)
@@ -122,10 +123,10 @@ export const defaultProps = {
 
 export const controls = [
   { key: 'shareTitle', label: '占比标题', type: 'text', default: '全美融资额占比' },
-  { key: 'region', label: '地区', type: 'select', default: 0,
+  { key: 'region', label: '类别', type: 'select', default: 0,
     options: [{ value: 0, label: '纽约' }, { value: 1, label: '西雅图' },
       { value: 2, label: '波士顿' }, { value: 3, label: '其他地区' }],
-    description: '切换展示的地区集群（纽约 / 西雅图 / 波士顿 / 其他地区），整页内容随之更新。' },
+    description: '切换展示的类别集群（纽约 / 西雅图 / 波士顿 / 其他地区），整页内容随之更新。' },
   { key: 'imageCount', label: '图片数量', type: 'slider', default: 1, min: 0, max: 2, step: 1,
     description: '主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。' },
   { key: 'imageRatio', label: '图片比例', type: 'radio', default: 'portrait',

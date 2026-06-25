@@ -63,14 +63,23 @@ if (!document.getElementById('kx-all-css')) {
   .kx-all-btrack{height:28px;background:#26261f;}
   .kx-all-bfill{height:100%;}
   .kx-all-brow.kx-on .kx-k,.kx-all-brow.kx-on .kx-v{color:var(--kx-accent);}
-  .kx-all-dots{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:30px;padding:0 4px;}
-  .kx-all-drow{display:flex;align-items:center;gap:26px;}
-  .kx-all-dot{border-radius:50%;background:#4a4a44;flex:none;}
-  .kx-all-drow.kx-on .kx-all-dot{background:var(--kx-accent);}
-  .kx-all-dnm{flex:1;display:flex;flex-direction:column;gap:3px;}
-  .kx-all-dnm .kx-k{font-family:var(--kx-disp);font-weight:800;font-size:40px;letter-spacing:-.01em;}
-  .kx-all-dnm .kx-e{font-family:var(--kx-mono);font-size:19px;color:var(--kx-mute-2);letter-spacing:.04em;}
-  .kx-all-dv{font-family:var(--kx-disp);font-weight:800;font-size:50px;color:var(--kx-accent);letter-spacing:-.02em;}
+  .kx-all-dots{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:0 4px;}
+  .kx-all-drow{min-height:0;border:1px solid var(--kx-line);border-left:3px solid #4a4a44;
+    background:rgba(255,255,255,.018);padding:9px 16px;display:grid;
+    grid-template-columns:minmax(220px,.82fr) minmax(236px,1fr) auto;align-items:center;gap:18px;}
+  .kx-all-drow.kx-on{border-color:var(--kx-accent);border-left-color:var(--kx-accent);
+    background:linear-gradient(90deg,color-mix(in srgb,var(--kx-accent) 14%,transparent),transparent 78%);}
+  .kx-all-dhead{min-width:0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:12px;}
+  .kx-all-dnm{min-width:0;display:flex;flex-direction:column;gap:2px;}
+  .kx-all-dnm .kx-k{font-family:var(--kx-disp);font-weight:800;font-size:29px;line-height:.96;letter-spacing:-.01em;}
+  .kx-all-dnm .kx-e{font-family:var(--kx-mono);font-size:14px;color:var(--kx-mute-2);letter-spacing:.04em;}
+  .kx-all-drk{font-family:var(--kx-mono);font-size:16px;color:var(--kx-mute-2);letter-spacing:.04em;}
+  .kx-all-drow.kx-on .kx-k,.kx-all-drow.kx-on .kx-drk{color:var(--kx-accent);}
+  .kx-all-dgrid{display:grid;grid-template-columns:repeat(12,12px);gap:5px;align-content:center;justify-content:start;}
+  .kx-all-dcell{display:block;width:12px;height:12px;border-radius:50%;background:#2c2c26;}
+  .kx-all-dcell.kx-fill{background:#5a5a50;}
+  .kx-all-drow.kx-on .kx-all-dcell.kx-fill{background:var(--kx-accent);}
+  .kx-all-dv{font-family:var(--kx-disp);font-weight:800;font-size:38px;line-height:.9;color:var(--kx-accent);letter-spacing:-.02em;white-space:nowrap;text-align:right;}
   /* closed-loop ribbon */
   .kx-all-loop{display:flex;align-items:stretch;gap:0;margin-top:18px;border:1px solid var(--kx-line);}
   .kx-all-loopbadge{display:flex;align-items:center;gap:10px;background:var(--kx-accent);color:var(--kx-ink);
@@ -109,14 +118,19 @@ function SlideAlliance(props) {
           h('div', { className: 'kx-all-btrack' },
             h('div', { className: 'kx-all-bfill', style: { width: (pv.value / maxV * 100) + '%', background: on ? 'var(--kx-accent)' : '#5a5a50' } }))); }));
   } else if (p.chartType === 'dots') {
+    const dotTotal = 24;
     plot = h('div', { className: 'kx-all-dots' },
       provs.map((pv, i) => { const on = p.focusEnabled && i === fi;
-        const d = 40 + Math.sqrt(pv.value / maxV) * 92;
+        const filled = Math.max(1, Math.round((pv.value / maxV) * dotTotal));
         return h('div', { key: i, className: 'kx-all-drow' + (on ? ' kx-on' : '') },
-          h('div', { className: 'kx-all-dot', style: { width: d + 'px', height: d + 'px' } }),
-          h('div', { className: 'kx-all-dnm' },
-            h('span', { className: 'kx-k' }, pv.name),
-            h('span', { className: 'kx-e' }, pv.en)),
+          h('div', { className: 'kx-all-dhead' },
+            h('div', { className: 'kx-all-dnm' },
+              h('span', { className: 'kx-k' }, pv.name),
+              h('span', { className: 'kx-e' }, pv.en)),
+            h('span', { className: 'kx-all-drk' }, '#' + String(i + 1).padStart(2, '0'))),
+          h('div', { className: 'kx-all-dgrid' },
+            Array.from({ length: dotTotal }, (_, k) =>
+              h('i', { key: k, className: 'kx-all-dcell' + (k < filled ? ' kx-fill' : '') }))),
           p.showValueLabels ? h('span', { className: 'kx-all-dv' }, pv.value + (p.unit || '')) : null); }));
   } else {
     // flow — Sankey-style filled ribbons from each provider to the hub

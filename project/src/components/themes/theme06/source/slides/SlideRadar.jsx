@@ -84,7 +84,7 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
 
   function SlideRadar(props) {
     const p = { ...SlideRadar.defaults, ...props };
-    const axes = p.axes.slice(0, clamp(p.axisCount, 3, p.axes.length));
+    const axes = p.axes.slice(0, clamp(Number(p.axisCount) || 3, 3, Math.min(6, p.axes.length)));
     const N = axes.length;
     const fi = clamp(p.focusIndex, 0, N - 1);
 
@@ -140,7 +140,7 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
           p.showValueLabels ? h('span', { className: 'kx-rad-dv' }, a.v) : null); }));
 
     const plot = p.chartType === 'bars' ? bars : p.chartType === 'dots' ? dots : radar;
-    const plotCap = p.chartType === 'radar' ? '四维能力雷达 / CAPABILITY RADAR'
+    const plotCap = p.chartType === 'radar' ? N + '维能力雷达 / CAPABILITY RADAR'
       : p.chartType === 'bars' ? '能力对比柱 / CAPABILITY BARS' : '能力点阵 / CAPABILITY DOTS';
 
     return h('div', { className: 'kx-slide kx-dark', style: { '--kx-accent': p.accent } },
@@ -178,6 +178,8 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
       { k: '企业 API 客户 / CLIENTS', en: 'ENTERPRISE API', v: '+52%', mag: 78, base: 50 },
       { k: '研究团队 / TEAM', en: 'RESEARCH HEADCOUNT', v: '+38%', mag: 64, base: 48 },
       { k: '推理成本 / COST', en: 'INFERENCE COST', v: '-21%', mag: 58, base: 54 },
+      { k: '产品生态 / ECOSYSTEM', en: 'PLATFORM INTEGRATION', v: '+46%', mag: 72, base: 49 },
+      { k: '安全治理 / GOVERNANCE', en: 'SAFETY & COMPLIANCE', v: '+33%', mag: 61, base: 47 },
     ],
     chartType: 'radar', axisCount: 4, showGrid: true, showCompare: true,
     showValueLabels: true, focusEnabled: true, focusIndex: 0, accent: '#c8f135',

@@ -23,7 +23,7 @@ export default function Page88PhotoWall(props) {
 
   const items = tiles.slice(0, Math.max(0, mediaCount));
   const n = items.length;
-  const fIdx = Math.min(focusIndex, Math.max(0, n - 1));
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, Math.max(0, n - 1), 3));
   // base slot box scales down as the wall fills up so the collage stays balanced
   const baseBox = n <= 2 ? 430 : n <= 3 ? 376 : n <= 4 ? 330 : n <= 5 ? 300 : 272;
   const tilt = [-3, 2.2, -1.6, 3, -2.4, 1.6];
@@ -124,7 +124,7 @@ export default function Page88PhotoWall(props) {
 // ── default content + adjustable params ──────────────────────────────────────
 Page88PhotoWall.defaults = {
   backgroundTheme: 'primary',  // 'primary' | 'muted'
-  mediaCount: 5,               // 0–6 photo slots (each adaptive ratio)
+  mediaCount: 4,               // 0–4 photo slots (each adaptive ratio)
   showCaptions: true,          // sticker caption under each photo
   showStat: true,              // bottom-right stat badge
   focusEnabled: true,
@@ -152,15 +152,15 @@ Page88PhotoWall.defaults = {
 Page88PhotoWall.controls = [
   { key: 'backgroundTheme', type: 'enum', default: 'primary', options: ['primary', 'muted'],
     label: '背景主题', desc: '主色(电光黄) 或 次色(淡紫灰) 底色' },
-  { key: 'mediaCount', type: 'number', default: 5, min: 0, max: 6, step: 1,
-    label: '图片数量', desc: '照片墙图片槽数量(0–6)；布局随数量自动平衡，每槽按上传图片比例自适应' },
+  { key: 'mediaCount', type: 'number', default: 4, min: 0, max: 4, step: 1,
+    label: '图片数量', desc: '照片墙图片槽数量(0–4)；布局随数量自动平衡，每槽按上传图片比例自适应' },
   { key: 'showCaptions', type: 'boolean', default: true,
     label: '照片标签', desc: '每张照片的贴纸标签 显隐' },
   { key: 'showStat', type: 'boolean', default: true,
     label: '统计徽标', desc: '右下角统计数字徽标 显隐' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否放大突出某一张照片' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 5, step: 1, maxFrom: 'mediaCount',
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 3, step: 1, maxFrom: 'mediaCount',
     label: '重点对象', desc: '被放大突出的照片序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘装饰与贴纸标签 显隐' },

@@ -215,7 +215,7 @@ function replaceTheme05Text(node, replacements) {
                     const grow = clampAR(im.ar);
                     return (
                       <div key={i} style={{ flex: `${grow} 1 0`, minWidth: 0 }}>
-                        <Frame src={im.src || null} ar={im.ar || null} fill={true}
+                        <Frame src={im || null} ar={im.ar || null} fill={true}
                           editable={p.editable !== false} label={"IMG." + (i + 1)} placeholder="拖入集群图片"
                           onChange={(src, ar) => p.onImageChange && p.onImageChange(i, src, ar)} />
                       </div>

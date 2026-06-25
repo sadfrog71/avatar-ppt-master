@@ -9,7 +9,7 @@
  *
  * ── Image slots (migration note) ───────────────────────────────────────────
  * Host-agnostic. The fillable slot is supplied by the host via the
- * `renderSlot(i, { ratio, ratioAR }) => ReactNode` prop. When omitted a striped
+ * `renderSlot(i, { ratio, ratioAR, adaptiveMedia, fallbackRatio }) => ReactNode` prop. When omitted a striped
  * placeholder renders, so the page works (and exports) standalone. Image count
  * is prop-driven (0–2); at 0 the hero falls back to the brand lens graphic.
  *
@@ -41,14 +41,16 @@ const COPY = {
   ],
 };
 
-// aspect presets → numeric width/height ratio. 'auto' → null (slot self-sizes).
-const RATIO_AR = { portrait: 3 / 4, landscape: 4 / 3, square: 1, auto: null };
+// aspect presets → numeric width/height ratio.
+// auto fills the designed slot; normal uses media ratio when available.
+const RATIO_AR = { portrait: 3 / 4, landscape: 4 / 3, square: 1, auto: null, normal: null };
 
 // ── exported, migration-stable parameter contract ──
 export const defaultProps = {
   ...COPY,
   imageCount: 1,           // hero image slots (0–2)
-  imageRatio: 'portrait',  // 'portrait' | 'landscape' | 'square' | 'auto'
+  imageRatio: 'auto',      // 'portrait' | 'landscape' | 'square' | 'auto' | 'normal'
+  images: [],
   segmentCount: 4,         // ecosystem nodes (2–4)
   focusEnabled: true,      // highlight one node
   focusIndex: 0,           // which node is the focus (0-based)
@@ -56,7 +58,7 @@ export const defaultProps = {
   showValues: true,        // value labels inside nodes
   showDecorations: true,   // glow + heat strip + image badge
   accentColor: THEME.accent,
-  renderSlot: null,        // host hook: (i, { ratio, ratioAR }) => ReactNode
+  renderSlot: null,        // host hook: (i, { ratio, ratioAR, adaptiveMedia, fallbackRatio }) => ReactNode
 };
 
 export const controls = [
@@ -72,14 +74,15 @@ export const controls = [
   { key: 'legend', label: 'legend', type: 'text', default: '节点大小 · 数值 = 融资额（亿美元）' },
   { key: 'imageCount', label: '图片数量', type: 'slider', default: 1, min: 0, max: 2, step: 1,
     description: '主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。' },
-  { key: 'imageRatio', label: '图片比例', type: 'radio', default: 'portrait',
+  { key: 'imageRatio', label: '图片比例', type: 'radio', default: 'auto',
     options: [
+      { value: 'auto', label: '自适应' },
+      { value: 'normal', label: '正常比例' },
       { value: 'portrait', label: '竖图' },
       { value: 'landscape', label: '横图' },
       { value: 'square', label: '方形' },
-      { value: 'auto', label: '自适应' },
     ],
-    description: '图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。' },
+    description: '图片槽比例；自适应裁剪填满版面，正常比例按上传媒体原始比例显示。' },
   { key: 'segmentCount', label: '卡片数量', type: 'slider', default: 4, min: 2, max: 4, step: 1,
     description: '生态环上的节点数量（2–4）。' },
   { key: 'focusEnabled', label: '重点信息', type: 'toggle', default: true,
@@ -151,8 +154,10 @@ const CSS = `
 .aic-eco .ec-frame { position: relative; width: 100%; height: 100%; overflow: hidden; }
 .aic-eco .ec-cell.fixed .ec-frame { aspect-ratio: var(--ar); height: auto; max-height: 100%; width: 100%; }
 .aic-eco .ec-frame > * { position: absolute; inset: 0; width: 100%; height: 100%; }
-.aic-eco .ec-cell.auto .ec-frame { height: auto; }
-.aic-eco .ec-cell.auto .ec-frame > * { position: static; width: 100%; height: auto; display: block; }
+.aic-eco .ec-cell.normal .ec-frame { height: auto; }
+.aic-eco .ec-cell.normal .ec-frame > * {
+  position: static; width: 100%; height: auto; display: block;
+}
 .aic-eco .ec-badge { position: absolute; top: 16px; left: 16px; z-index: 4; font-family: var(--aic-font-display);
   font-weight: 600; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--aic-ink);
   background: var(--aic-accent); padding: 6px 13px; border-radius: 999px; white-space: nowrap; }
@@ -254,10 +259,12 @@ export default function EcosystemPage(props) {
   const focus = Math.max(0, Math.min(n - 1, p.focusIndex));
 
   const imgN = Math.max(0, Math.min(2, p.imageCount));
-  const ratio = RATIO_AR.hasOwnProperty(p.imageRatio) ? p.imageRatio : 'portrait';
+  const ratio = RATIO_AR.hasOwnProperty(p.imageRatio) ? p.imageRatio : 'auto';
   const ratioAR = RATIO_AR[ratio];
-  const isAuto = ratioAR == null;
-  const heroAR = isAuto ? (3 / 4) : ratioAR;
+  const isNormal = ratio === 'normal';
+  const isFixed = ratioAR != null;
+  const heroAR = isFixed ? ratioAR : (3 / 4);
+  const cellClass = isNormal ? 'normal' : (isFixed ? 'fixed' : 'fill');
 
   return (
     <div className="aic-eco" style={vars}>
@@ -292,10 +299,18 @@ export default function EcosystemPage(props) {
             </div>
           ) : (
             Array.from({ length: imgN }).map((_, i) => (
-              <div className={'ec-cell ' + (isAuto ? 'auto' : 'fixed')} key={i}>
+              <div className={'ec-cell ' + cellClass} key={i}>
                 {p.showDecorations && i === 0 && <span className="ec-badge">{copy.badge}</span>}
-                <div className="ec-frame" style={isAuto ? null : { '--ar': String(ratioAR) }}>
-                  {p.renderSlot ? p.renderSlot(i, { ratio, ratioAR }) : <Placeholder i={i} />}
+                <div className="ec-frame" style={isFixed ? { '--ar': String(ratioAR) } : null}>
+                  {p.renderSlot
+                    ? p.renderSlot(i, {
+                        ratio: isNormal ? 'auto' : ratio,
+                        ratioAR,
+                        adaptiveMedia: isNormal,
+                        preserveVideoRatio: isNormal,
+                        fallbackRatio: heroAR,
+                      })
+                    : <Placeholder i={i} />}
                 </div>
               </div>
             ))

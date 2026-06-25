@@ -1,5 +1,5 @@
 import React from 'react';
-import './PulseImageFrame.jsx';
+import { getTheme05MediaRatio, normalizeTheme05Media } from './PulseImageFrame.jsx';
 const window = globalThis.__theme05Window || (globalThis.__theme05Window = {});
 globalThis.React = React;
 function withTheme05Copy(Component) {
@@ -108,11 +108,10 @@ function replaceTheme05Text(node, replacements) {
         <div className="pulse-spec2__cells">
           {COPY.props.map((s, i) => (
             <div className="pulse-spec2__cell" key={i} style={{ flexGrow: s.v }}>
-              <div className="pulse-spec2__cell-bar" style={{ background: s.c }} />
-              <div className="pulse-spec2__cell-cap">
-                <span className="pulse-spec2__cell-name">{s.name}</span>
-                <b>{s.v}%</b>
+              <div className="pulse-spec2__cell-bar" style={{ background: s.c }}>
+                <b className="pulse-spec2__cell-pct">{s.v}%</b>
               </div>
+              <span className="pulse-spec2__cell-name">{s.name}</span>
             </div>
           ))}
         </div>
@@ -150,6 +149,24 @@ function replaceTheme05Text(node, replacements) {
 
     return (
       <div className="pulse-slide pulse-spec2" style={{ "--pulse-accent": accent }}>
+        <style>{`
+          .pulse-spec2__cells{ align-items:stretch; }
+          .pulse-spec2__cell{
+            min-width:74px; display:flex; flex-direction:column; gap:8px; overflow:hidden;
+          }
+          .pulse-spec2__cell-bar{
+            height:46px; display:flex; align-items:center; justify-content:flex-end;
+            padding:0 10px; overflow:hidden; color:#fff;
+          }
+          .pulse-spec2__cell-pct{
+            font-family:var(--pulse-mono-font); font-size:15px; font-weight:800;
+            font-variant-numeric:tabular-nums; letter-spacing:.02em; flex:0 0 auto;
+          }
+          .pulse-spec2__cell .pulse-spec2__cell-name{
+            color:var(--pulse-ink-2); font-weight:700; font-size:15px; line-height:1.1;
+            min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+          }
+        `}</style>
         <div className="pulse-spec2__head">
           <h1 className="pulse-spec2__title">{COPY.title}</h1>
           {p.showSheetLabel && <div className="pulse-spec2__sheet">{COPY.sheet}</div>}
@@ -161,11 +178,13 @@ function replaceTheme05Text(node, replacements) {
             <div className="pulse-spec2__figs" style={{ gridTemplateRows: `repeat(${n}, auto)` }}>
               {Array.from({ length: n }).map((_, i) => {
                 const im = images[i] || {};
+                const media = normalizeTheme05Media(im);
+                const mediaAR = getTheme05MediaRatio(media);
                 return (
                   <div key={i}>
                     <Frame
-                      src={im.src || null}
-                      ar={im.ar || null}
+                      src={media}
+                      ar={mediaAR}
                       editable={p.editable !== false}
                       defaultAR={n === 1 ? 1.45 : 1.7}
                       label={"FIG." + (i + 1)}

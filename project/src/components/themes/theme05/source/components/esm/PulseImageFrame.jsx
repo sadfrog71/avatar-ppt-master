@@ -1,12 +1,45 @@
 import React from 'react';
 const window = globalThis.__theme05Window || (globalThis.__theme05Window = {});
 globalThis.React = React;
+const THEME05_VIDEO_EXT_RE = /\.(mp4|webm|mov|m4v)(?:[?#].*)?$/i;
+
+function theme05MediaHintKind(value) {
+  const hint = String(value || "").trim().toLowerCase();
+  if (!hint) return null;
+  if (hint.startsWith("video/") || hint.startsWith("data:video/")) return "video";
+  return THEME05_VIDEO_EXT_RE.test(hint) ? "video" : null;
+}
+
+export function getTheme05MediaKind(value) {
+  if (!value) return null;
+  if (typeof value === "string") return theme05MediaHintKind(value) || "image";
+  if (typeof value !== "object") return null;
+  if (value.kind) return String(value.kind).toLowerCase() === "video" ? "video" : "image";
+  return theme05MediaHintKind(value.type) || theme05MediaHintKind(value.src) || "image";
+}
+
+export function getTheme05MediaRatio(value) {
+  if (!value || typeof value !== "object") return null;
+  const ratio = Number(value.ar ?? value.ratio ?? value.aspectRatio);
+  return Number.isFinite(ratio) && ratio > 0 ? ratio : null;
+}
+
+export function normalizeTheme05Media(value) {
+  if (!value) return null;
+  if (typeof value === "string") return { src: value, kind: getTheme05MediaKind(value) };
+  if (typeof value === "object" && value.src) {
+    return { ...value, kind: getTheme05MediaKind(value) };
+  }
+  return null;
+}
 /* =========================================================================
    PulseImageFrame — self-contained, prop-driven image slot.
    Migratable: depends only on React + the .pulse-imgframe CSS classes.
    - Controlled by props: { src, onChange, placeholder, label, editable, minAR, maxAR }
    - On drop / click-browse it reads the file as a data URL, measures the
      image's natural aspect ratio, and reports BOTH up via onChange(src, ar).
+   - Video uses the same slot contract: natural aspect ratio is measured from
+     metadata, then stored with the media item so sibling slots can relayout.
    - The frame sets its own aspect-ratio from the loaded image (clamped to
      [minAR, maxAR]) so composition stays balanced at any image proportion.
    ========================================================================= */
@@ -48,16 +81,18 @@ globalThis.React = React;
           video.preload = "metadata";
           video.onloadedmetadata = () => {
             const natural = video.videoWidth && video.videoHeight ? video.videoWidth / video.videoHeight : defaultAR;
-            onChange && onChange({ src: url, kind: "video", type: file.type }, clamp(natural, minAR, maxAR));
+            const ratio = clamp(natural, minAR, maxAR);
+            onChange && onChange({ src: url, kind: "video", type: file.type, ar: ratio, ratio }, ratio);
           };
-          video.onerror = () => onChange && onChange({ src: url, kind: "video", type: file.type }, defaultAR);
+          video.onerror = () => onChange && onChange({ src: url, kind: "video", type: file.type, ar: defaultAR, ratio: defaultAR }, defaultAR);
           video.src = url;
           return;
         }
         const img = new Image();
         img.onload = () => {
           const natural = img.naturalWidth / img.naturalHeight;
-          onChange && onChange({ src: url, kind: "image", type: file.type }, clamp(natural, minAR, maxAR));
+          const ratio = clamp(natural, minAR, maxAR);
+          onChange && onChange({ src: url, kind: "image", type: file.type, ar: ratio, ratio }, ratio);
         };
         img.src = url;
       };
@@ -71,9 +106,10 @@ globalThis.React = React;
       ingest(file);
     }, [editable, ingest]);
 
-    const media = normalizeMedia(src);
-    const aspectRatio = media ? (ar || defaultAR) : defaultAR;
+    const media = normalizeTheme05Media(src);
+    const aspectRatio = media ? (ar || getTheme05MediaRatio(media) || defaultAR) : defaultAR;
     const empty = !media;
+    const videoStyle = { width: "100%", height: "100%", objectFit: "cover", display: "block" };
 
     return (
       <div
@@ -94,13 +130,13 @@ globalThis.React = React;
       >
         {media ? (
           media.kind === "video"
-            ? <video src={media.src} muted playsInline loop autoPlay preload="metadata" aria-label={label || "media"} />
+            ? <video src={media.src} muted playsInline loop autoPlay preload="metadata" style={videoStyle} aria-label={label || "media"} />
             : <img src={media.src} alt={label || "image"} />
         ) : (
           <div className="pulse-imgframe__hint">{placeholder}</div>
         )}
         {label ? <div className="pulse-imgframe__corner">{label}</div> : null}
-        {src && editable ? (
+        {media && editable ? (
           <button
             className="pulse-imgframe__clear"
             title="清除"
@@ -119,18 +155,6 @@ globalThis.React = React;
         ) : null}
       </div>
     );
-  }
-
-  function normalizeMedia(value) {
-    if (!value) return null;
-    if (typeof value === "string") return { src: value, kind: value.startsWith("data:video/") ? "video" : "image" };
-    if (typeof value === "object" && value.src) {
-      return {
-        ...value,
-        kind: value.kind || (String(value.type || value.src).startsWith("video/") || String(value.src).startsWith("data:video/") ? "video" : "image"),
-      };
-    }
-    return null;
   }
 
   window.PulseImageFrame = PulseImageFrame;

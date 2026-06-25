@@ -25,7 +25,7 @@ export default function Page57NewYork(props) {
 
   const chips = tags.slice(0, Math.max(2, tagCount));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
-  const fIdx = Math.min(focusIndex, chips.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, chips.length - 1));
   const slots = collage[mediaCount] || [];
   const sPos = sharePos[mediaCount] || { l: '50%', t: '6%' };
   const accents = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-yellow)', 'var(--acl-red)'];
@@ -249,7 +249,7 @@ Page57NewYork.controls = [
     label: '占比徽标', desc: '拼贴中的大号占比徽标 显隐' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否突出某一个行业标签' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, maxFrom: 'tagCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 3, maxFrom: 'tagCount', step: 1,
     label: '重点对象', desc: '被突出的标签序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘装饰与贴纸标签 显隐' },

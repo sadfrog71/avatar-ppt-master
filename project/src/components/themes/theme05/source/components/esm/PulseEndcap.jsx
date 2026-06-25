@@ -105,6 +105,7 @@ function replaceTheme05Text(node, replacements) {
       options: [{ value: "dark", label: "深色" }, { value: "paper", label: "纸色" }, { value: "color", label: "色块" }],
       description: "页面背景：深色 / 纸色 / 整页强调色块。" },
     { key: "bgColor", type: "color", label: "色块背景", default: SPECTRUM[5], options: SPECTRUM,
+      dependsOn: "theme", dependsOnValue: "color",
       description: "「色块」主题下的整页背景色（其它主题忽略）。" },
     { key: "layout", type: "radio", label: "构图方式", default: "left",
       options: [{ value: "left", label: "左对齐" }, { value: "center", label: "居中" }],

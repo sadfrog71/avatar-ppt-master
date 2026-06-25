@@ -62,8 +62,9 @@ if (!document.getElementById('kx-rsc-css')) {
   .kx-rsc-val .kx-u{font-size:30px;color:var(--kx-mute-2);}
   .kx-rsc-card.kx-on .kx-rsc-val .kx-n{color:var(--kx-accent);}
   /* media column */
-  .kx-rsc-media{display:flex;flex-direction:column;gap:20px;min-height:0;justify-content:center;}
-  .kx-rsc-media .kx-imgslot{flex:none;}
+  .kx-rsc-media{display:flex;flex-direction:column;gap:20px;height:100%;min-height:0;max-height:100%;
+    justify-content:stretch;overflow:hidden;}
+  .kx-rsc-media .kx-imgslot{flex:1 1 0;min-height:0;max-height:100%;aspect-ratio:auto;}
   .kx-rsc-foot{display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--kx-line);}
   .kx-rsc-foot .kx-cl{font-family:var(--kx-mono);font-size:26px;color:var(--kx-accent);font-weight:700;}
   .kx-rsc-foot .kx-rt{font-family:var(--kx-mono);font-size:24px;color:var(--kx-mute-2);letter-spacing:.03em;}
@@ -99,14 +100,14 @@ function SlideResource(props) {
           r.unit ? h('span', { className: 'kx-u' }, r.unit) : null));
     }));
 
-  const media = slots > 0 ? h('div', { className: 'kx-rsc-media' },
+  const media = slots > 0 ? h('div', { className: 'kx-rsc-media kx-slots-' + slots },
     Array.from({ length: slots }, (_, i) =>
       h(KxImageSlot, {
         key: i, id: 'resource-' + (p.eyebrowId || 'x') + '-' + i,
         placeholder: p.mediaPlaceholder || '资源示意 / DROP IMAGE',
         badge: slots === 1 ? p.resTag : ('IMG ' + String(i + 1).padStart(2, '0')),
         minRatio: slots === 1 ? 0.7 : 0.9, maxRatio: slots === 1 ? 1.3 : 1.9,
-        style: { width: '100%' },
+        style: { width: '100%', aspectRatio: 'auto' },
       }))) : null;
 
   const cardsBlock = h('div', { className: 'kx-rsc-cards-wrap' },

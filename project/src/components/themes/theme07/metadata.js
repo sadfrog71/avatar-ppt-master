@@ -53,11 +53,26 @@ export const pages = [
         "type": "color",
         "default": "#8FD400",
         "options": [
-          "#8FD400",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0D100A"
+          {
+            "value": "#8FD400",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0D100A",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色（作用于 Logo、条码与高亮）。",
         "publicKey": "accentColor",
@@ -120,11 +135,26 @@ export const pages = [
         "type": "color",
         "default": "#8FD400",
         "options": [
-          "#8FD400",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0D100A"
+          {
+            "value": "#8FD400",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0D100A",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色（作用于结语短条与高亮）。",
         "publicKey": "accentColor",
@@ -200,11 +230,26 @@ export const pages = [
         "type": "color",
         "default": "#8FD400",
         "options": [
-          "#8FD400",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0D100A"
+          {
+            "value": "#8FD400",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0D100A",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色（作用于分隔点与底部台座）。",
         "publicKey": "accentColor",
@@ -265,11 +310,26 @@ export const pages = [
         "type": "color",
         "default": "#8FE327",
         "options": [
-          "#8FE327",
-          "#23C76A",
-          "#2F7BFF",
-          "#F5A623",
-          "#FFFFFF"
+          {
+            "value": "#8FE327",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F5A623",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#FFFFFF",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色（作用于网络节点、高亮词与短条）。",
         "publicKey": "accentColor",
@@ -375,11 +435,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于渐变、透镜、数字与高亮。",
         "publicKey": "accentColor",
@@ -518,11 +593,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -619,14 +709,14 @@ export const pages = [
         "key": "cardCount",
         "label": "章节卡数量",
         "type": "slider",
-        "default": 7,
+        "default": 8,
         "min": 3,
-        "max": 7,
+        "max": 8,
         "step": 1,
-        "desc": "展示的章节卡数量（3–7）。",
+        "desc": "展示的章节卡数量（3–8）。",
         "publicKey": "cardCount",
         "publicLabel": "章节卡数量",
-        "description": "展示的章节卡数量（3–7）。"
+        "description": "展示的章节卡数量（3–8）。"
       },
       {
         "key": "columns",
@@ -643,10 +733,17 @@ export const pages = [
             "label": "4 列"
           }
         ],
-        "desc": "章节卡的网格列数，影响排布节奏。",
+        "desc": "章节卡的网格列数；3 列仅用于 6 张以内。",
+        "dependsOn": "cardCount",
+        "dependsOnValues": [
+          3,
+          4,
+          5,
+          6
+        ],
         "publicKey": "columns",
         "publicLabel": "每行列数",
-        "description": "章节卡的网格列数，影响排布节奏。"
+        "description": "章节卡的网格列数；3 列仅用于 6 张以内。"
       },
       {
         "key": "focusEnabled",
@@ -691,6 +788,10 @@ export const pages = [
           {
             "value": 6,
             "label": "第 7 个"
+          },
+          {
+            "value": 7,
+            "label": "第 8 个"
           }
         ],
         "desc": "选择被高亮的章节卡。",
@@ -714,11 +815,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -730,7 +846,7 @@ export const pages = [
       "eyebrow": "Structure",
       "title": "报告结构",
       "sub": "从方法到结论的阅读路径",
-      "lead": "整份报告按研究方法、市场全景、横向透视、产业链、典型案例、风险展望和结论展开。",
+      "lead": "整份报告按研究方法、市场全景、横向透视、产业链、典型案例、风险展望、结论和数据来源展开。",
       "closing": "先建立框架，再进入数据和判断。",
       "chapters": [
         {
@@ -767,9 +883,14 @@ export const pages = [
           "no": "07",
           "zh": "结论判断",
           "en": "Conclusion"
+        },
+        {
+          "no": "08",
+          "zh": "数据来源",
+          "en": "Data Sources"
         }
       ],
-      "cardCount": 7,
+      "cardCount": 8,
       "focusEnabled": true,
       "focusIndex": 1,
       "columns": 4,
@@ -869,11 +990,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -960,44 +1096,23 @@ export const pages = [
       },
       {
         "key": "imageCount",
-        "label": "图片数量",
-        "type": "slider",
-        "default": 3,
-        "min": 0,
-        "max": 3,
-        "step": 1,
-        "desc": "带图片槽的卡片数量（0–n）；其余卡片以品牌图形填充，保持构图完整。",
-        "publicKey": "imageCount",
-        "publicLabel": "图片数量",
-        "description": "带图片槽的卡片数量（0–n）；其余卡片以品牌图形填充，保持构图完整。"
-      },
-      {
-        "key": "imageRatio",
-        "label": "图片比例",
+        "label": "图片呈现",
         "type": "radio",
-        "default": "portrait",
+        "default": 3,
         "options": [
           {
-            "value": "portrait",
-            "label": "竖图"
+            "value": 0,
+            "label": "纯色纹理"
           },
           {
-            "value": "landscape",
-            "label": "横图"
-          },
-          {
-            "value": "square",
-            "label": "方形"
-          },
-          {
-            "value": "auto",
-            "label": "自适应"
+            "value": 3,
+            "label": "全部图片"
           }
         ],
-        "desc": "图片槽的比例；自适应会跟随用户上传图片的原始比例。",
-        "publicKey": "imageRatio",
-        "publicLabel": "图片比例",
-        "description": "图片槽的比例；自适应会跟随用户上传图片的原始比例。"
+        "desc": "仅支持两种模式：所有卡片使用绿色纹理，或所有卡片使用图片。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片呈现",
+        "description": "仅支持两种模式：所有卡片使用绿色纹理，或所有卡片使用图片。"
       },
       {
         "key": "focusEnabled",
@@ -1049,11 +1164,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -1109,7 +1239,6 @@ export const pages = [
       ],
       "cardCount": 3,
       "imageCount": 3,
-      "imageRatio": "portrait",
       "focusEnabled": true,
       "focusIndex": 0,
       "showDecorations": true,
@@ -1242,11 +1371,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于热度配色与高亮。",
         "publicKey": "accentColor",
@@ -1363,11 +1507,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -1515,11 +1674,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -1692,11 +1866,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -1853,11 +2042,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -2027,11 +2231,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于金句重点词与装饰。",
         "publicKey": "accentColor",
@@ -2172,11 +2391,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -2325,11 +2559,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -2511,11 +2760,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于图表、时间段标记与高亮卡。",
         "publicKey": "accentColor",
@@ -2697,11 +2961,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于时间段标记、高亮行与锚点数字。",
         "publicKey": "accentColor",
@@ -2898,11 +3177,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于时间段标记、图表与高亮卡。",
         "publicKey": "accentColor",
@@ -3097,11 +3391,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于曲线、高亮节点与指标卡。",
         "publicKey": "accentColor",
@@ -3310,11 +3619,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于峰值柱、均值线与高亮卡。",
         "publicKey": "accentColor",
@@ -3543,11 +3867,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于高亮台阶、合计柱与连接线。",
         "publicKey": "accentColor",
@@ -3615,13 +3954,13 @@ export const pages = [
         "label": "行数量",
         "type": "slider",
         "default": 4,
-        "min": 3,
+        "min": 1,
         "max": 4,
         "step": 1,
-        "desc": "数值区间分组数量（3–4）。",
+        "desc": "数值区间分组数量（1–4）。",
         "publicKey": "rowCount",
         "publicLabel": "行数量",
-        "description": "数值区间分组数量（3–4）。"
+        "description": "数值区间分组数量（1–4）。"
       },
       {
         "key": "metricMode",
@@ -3711,11 +4050,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于数值条与高亮区间。",
         "publicKey": "accentColor",
@@ -3840,11 +4194,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于主数字下划线、品牌图形与点缀。",
         "publicKey": "accentColor",
@@ -4012,11 +4381,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于高亮图片框、机构标签与锚点数字。",
         "publicKey": "accentColor",
@@ -4200,11 +4584,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于高亮行、排名条与锚点数字。",
         "publicKey": "accentColor",
@@ -4370,11 +4769,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于主数字下划线、份额条与品牌图形。",
         "publicKey": "accentColor",
@@ -4549,11 +4963,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于高亮行、阵容徽标与点缀。",
         "publicKey": "accentColor",
@@ -4785,11 +5214,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、高亮指标与进度条。",
         "publicKey": "accentColor",
@@ -4956,11 +5400,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、占比条、高亮行与流程节点。",
         "publicKey": "accentColor",
@@ -5152,11 +5611,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、高亮分支与柱形。",
         "publicKey": "accentColor",
@@ -5349,11 +5823,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、图表与高亮场景。",
         "publicKey": "accentColor",
@@ -5524,11 +6013,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、集群高负载单元与高亮卡。",
         "publicKey": "accentColor",
@@ -5694,11 +6198,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于层级标记、高亮行与总额数字。",
         "publicKey": "accentColor",
@@ -5888,11 +6407,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、高亮应用与柱形。",
         "publicKey": "accentColor",
@@ -6091,11 +6625,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、架构条、图表与高亮场景。",
         "publicKey": "accentColor",
@@ -6269,11 +6818,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、防线层级与高亮卡。",
         "publicKey": "accentColor",
@@ -6476,11 +7040,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、高亮媒介与分布条。",
         "publicKey": "accentColor",
@@ -6654,11 +7233,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、高亮阶段与路径节点。",
         "publicKey": "accentColor",
@@ -6804,11 +7398,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于角色标记、高亮行与总额数字。",
         "publicKey": "accentColor",
@@ -6997,11 +7606,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、高亮阶段与漏斗。",
         "publicKey": "accentColor",
@@ -7201,11 +7825,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、高亮节点与指标盘。",
         "publicKey": "accentColor",
@@ -7411,11 +8050,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、高亮节点与转化连接带。",
         "publicKey": "accentColor",
@@ -7594,11 +8248,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、高亮防线与防护弧线。",
         "publicKey": "accentColor",
@@ -7767,11 +8436,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -7862,13 +8546,13 @@ export const pages = [
         "label": "行数量",
         "type": "slider",
         "default": 4,
-        "min": 3,
+        "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "表格展示的阶段行数量（3–4）。",
+        "desc": "表格展示的阶段行数量（2–4）。",
         "publicKey": "rowCount",
         "publicLabel": "行数量",
-        "description": "表格展示的阶段行数量（3–4）。"
+        "description": "表格展示的阶段行数量（2–4）。"
       },
       {
         "key": "showBubble",
@@ -7954,11 +8638,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于阶段标记、气泡、高亮行与锚点数字。",
         "publicKey": "accentColor",
@@ -8151,11 +8850,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于图表、锚点数字与高亮构成项。",
         "publicKey": "accentColor",
@@ -8324,12 +9038,12 @@ export const pages = [
         "type": "slider",
         "default": 3,
         "min": 2,
-        "max": 3,
+        "max": 5,
         "step": 1,
-        "desc": "时间轴上的阶段节点数量（2–3）。",
+        "desc": "时间轴上的阶段节点数量（2–5）。",
         "publicKey": "nodeCount",
         "publicLabel": "节点数量",
-        "description": "时间轴上的阶段节点数量（2–3）。"
+        "description": "时间轴上的阶段节点数量（2–5）。"
       },
       {
         "key": "showDecorations",
@@ -8347,11 +9061,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于图表、高亮分类类型与时间轴节点。",
         "publicKey": "accentColor",
@@ -8393,9 +9122,14 @@ export const pages = [
       ],
       "nodes": [
         {
-          "year": "2020 — 22",
+          "year": "2020",
           "title": "VC 主导",
           "note": "经典风险投资定义估值锚"
+        },
+        {
+          "year": "2021 — 22",
+          "title": "成长基金跟进",
+          "note": "后期资金开始放大单笔规模"
         },
         {
           "year": "2023",
@@ -8403,7 +9137,12 @@ export const pages = [
           "note": "大厂与产业方开始战略持股"
         },
         {
-          "year": "2024",
+          "year": "2024 H1",
+          "title": "云资源入局",
+          "note": "算力额度成为交易条件"
+        },
+        {
+          "year": "2024 H2",
           "title": "产业资本混合",
           "note": "VC 与产业资本共同主导大额轮"
         }
@@ -8445,7 +9184,7 @@ export const pages = [
         "key": "imageRatio",
         "label": "图片比例",
         "type": "radio",
-        "default": "landscape",
+        "default": "auto",
         "options": [
           {
             "value": "landscape",
@@ -8546,11 +9285,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于资源标记、强度条与高亮卡。",
         "publicKey": "accentColor",
@@ -8603,7 +9357,7 @@ export const pages = [
         }
       ],
       "imageCount": 1,
-      "imageRatio": "landscape",
+      "imageRatio": "auto",
       "cardCount": 4,
       "focusEnabled": true,
       "focusIndex": 0,
@@ -8729,11 +9483,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于厂商节点、投资连接与高亮节点。",
         "publicKey": "accentColor",
@@ -8822,8 +9591,16 @@ export const pages = [
         "key": "imageRatio",
         "label": "图片比例",
         "type": "radio",
-        "default": "portrait",
+        "default": "auto",
         "options": [
+          {
+            "value": "auto",
+            "label": "自适应"
+          },
+          {
+            "value": "normal",
+            "label": "正常比例"
+          },
           {
             "value": "portrait",
             "label": "竖图"
@@ -8835,16 +9612,12 @@ export const pages = [
           {
             "value": "square",
             "label": "方形"
-          },
-          {
-            "value": "auto",
-            "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "desc": "图片槽比例；自适应裁剪填满版面，正常比例按上传媒体原始比例显示。",
         "publicKey": "imageRatio",
         "publicLabel": "图片比例",
-        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "description": "图片槽比例；自适应裁剪填满版面，正常比例按上传媒体原始比例显示。"
       },
       {
         "key": "segmentCount",
@@ -8933,11 +9706,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于生态节点、连接线与高亮节点。",
         "publicKey": "accentColor",
@@ -8979,7 +9767,7 @@ export const pages = [
         }
       ],
       "imageCount": 1,
-      "imageRatio": "portrait",
+      "imageRatio": "auto",
       "segmentCount": 4,
       "focusEnabled": true,
       "focusIndex": 0,
@@ -8987,7 +9775,8 @@ export const pages = [
       "showValues": true,
       "showDecorations": true,
       "accentColor": "#86D62B",
-      "renderSlot": null
+      "renderSlot": null,
+      "images": []
     }
   },
   {
@@ -9068,11 +9857,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于主数字点缀、品牌图形与高亮。",
         "publicKey": "accentColor",
@@ -9127,7 +9931,7 @@ export const pages = [
     "controls": [
       {
         "key": "region",
-        "label": "地区",
+        "label": "类别",
         "type": "select",
         "default": 0,
         "options": [
@@ -9148,10 +9952,10 @@ export const pages = [
             "label": "其他地区"
           }
         ],
-        "desc": "切换展示的地区集群（纽约 / 西雅图 / 波士顿 / 其他地区），整页内容随之更新。",
+        "desc": "切换展示的类别集群（纽约 / 西雅图 / 波士顿 / 其他地区），整页内容随之更新。",
         "publicKey": "region",
-        "publicLabel": "地区",
-        "description": "切换展示的地区集群（纽约 / 西雅图 / 波士顿 / 其他地区），整页内容随之更新。"
+        "publicLabel": "类别",
+        "description": "切换展示的类别集群（纽约 / 西雅图 / 波士顿 / 其他地区），整页内容随之更新。"
       },
       {
         "key": "imageCount",
@@ -9304,11 +10108,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于占比高亮、标签、强调卡与图形。",
         "publicKey": "accentColor",
@@ -9518,7 +10337,8 @@ export const pages = [
       "focusIndex": 0,
       "showDecorations": true,
       "accentColor": "#86D62B",
-      "renderSlot": null
+      "renderSlot": null,
+      "images": []
     }
   },
   {
@@ -9643,11 +10463,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于金句重点词与支柱高亮。",
         "publicKey": "accentColor",
@@ -9833,11 +10668,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于强调卡、标签与图形。",
         "publicKey": "accentColor",
@@ -9894,7 +10744,8 @@ export const pages = [
       "tagCount": 3,
       "showDecorations": true,
       "accentColor": "#86D62B",
-      "renderSlot": null
+      "renderSlot": null,
+      "images": []
     }
   },
   {
@@ -9985,11 +10836,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于主数字点缀、品牌图形与高亮。",
         "publicKey": "accentColor",
@@ -10176,11 +11042,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于强调卡、标签与图形。",
         "publicKey": "accentColor",
@@ -10237,7 +11118,8 @@ export const pages = [
       "tagCount": 3,
       "showDecorations": true,
       "accentColor": "#86D62B",
-      "renderSlot": null
+      "renderSlot": null,
+      "images": []
     }
   },
   {
@@ -10338,11 +11220,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -10472,11 +11369,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于漏斗、转化率与高亮卡。",
         "publicKey": "accentColor",
@@ -10658,11 +11570,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、高亮行与流程节点。",
         "publicKey": "accentColor",
@@ -10819,11 +11746,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于主数字点缀、毛利段与品牌图形。",
         "publicKey": "accentColor",
@@ -11000,11 +11942,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于分类标记、剩余壁垒与高亮指标。",
         "publicKey": "accentColor",
@@ -11173,11 +12130,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于强度条、高亮卡与序号。",
         "publicKey": "accentColor",
@@ -11364,11 +12336,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于嵌入节点、连接线与标签。",
         "publicKey": "accentColor",
@@ -11552,11 +12539,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于时间轴节点与高亮公司。",
         "publicKey": "accentColor",
@@ -11727,11 +12729,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于金句重点词与装饰。",
         "publicKey": "accentColor",
@@ -11856,11 +12873,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色。",
         "publicKey": "accentColor",
@@ -12010,11 +13042,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于上行指标、推演线与高亮元素。",
         "publicKey": "accentColor",
@@ -12189,11 +13236,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于维度标记、高亮行与流程节点。",
         "publicKey": "accentColor",
@@ -12394,11 +13456,26 @@ export const pages = [
         "type": "color",
         "default": "#86D62B",
         "options": [
-          "#86D62B",
-          "#23C76A",
-          "#2F7BFF",
-          "#F2A93B",
-          "#0E110B"
+          {
+            "value": "#86D62B",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#23C76A",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#2F7BFF",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#F2A93B",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#0E110B",
+            "label": "颜色 5"
+          }
         ],
         "desc": "品牌强调色，作用于序号、高亮卡与装饰。",
         "publicKey": "accentColor",
@@ -12447,7 +13524,8 @@ export const pages = [
       "showContact": true,
       "showDecorations": true,
       "accentColor": "#86D62B",
-      "renderSlot": null
+      "renderSlot": null,
+      "images": []
     }
   }
 ];

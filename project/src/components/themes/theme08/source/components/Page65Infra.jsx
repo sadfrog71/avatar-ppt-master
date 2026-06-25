@@ -25,7 +25,7 @@ export default function Page65Infra(props) {
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
   const rows = metrics.slice(0, Math.max(2, metricCount));
-  const fIdx = Math.min(focusIndex, rows.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, rows.length - 1));
   const chips = clients.slice(0, Math.max(2, tagCount));
   const slots = stack[mediaCount] || [];
   const accents = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-red)', 'var(--acl-yellow)'];
@@ -282,7 +282,7 @@ Page65Infra.controls = [
     label: '容量计量', desc: '资源容量计量条(单元格 + 大数字) 显隐' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否突出某一条指标行' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, maxFrom: 'metricCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 3, maxFrom: 'metricCount', step: 1,
     label: '重点对象', desc: '被突出的指标行序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘装饰与贴纸标签的显示/隐藏' },

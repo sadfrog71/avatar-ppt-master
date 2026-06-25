@@ -23,11 +23,26 @@ export const pages = [
         "type": "color",
         "default": "#E0301E",
         "options": [
-          "#E0301E",
-          "#E8741C",
-          "#F2C00C",
-          "#2F9450",
-          "#2742C2"
+          {
+            "value": "#E0301E",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#E8741C",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#F2C00C",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#2F9450",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#2742C2",
+            "label": "颜色 5"
+          }
         ],
         "publicKey": "accentColor",
         "publicLabel": "强调色"
@@ -190,11 +205,26 @@ export const pages = [
         "type": "color",
         "default": "#E8741C",
         "options": [
-          "#E8741C",
-          "#E0301E",
-          "#F2C00C",
-          "#2F9450",
-          "#2742C2"
+          {
+            "value": "#E8741C",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#E0301E",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#F2C00C",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#2F9450",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#2742C2",
+            "label": "颜色 5"
+          }
         ],
         "publicKey": "accentColor",
         "publicLabel": "强调色"
@@ -258,11 +288,26 @@ export const pages = [
         "type": "color",
         "default": "#E0301E",
         "options": [
-          "#E0301E",
-          "#E8741C",
-          "#F2C00C",
-          "#2F9450",
-          "#7A3C9A"
+          {
+            "value": "#E0301E",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#E8741C",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#F2C00C",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#2F9450",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#7A3C9A",
+            "label": "颜色 5"
+          }
         ],
         "publicKey": "accentColor",
         "publicLabel": "高亮色"
@@ -345,13 +390,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与装饰条的强调色，取自色谱。",
         "publicKey": "accentColor",
@@ -374,8 +440,14 @@ export const pages = [
         "type": "radio",
         "default": "dark",
         "options": [
-          "dark",
-          "light"
+          {
+            "value": "dark",
+            "label": "深色"
+          },
+          {
+            "value": "light",
+            "label": "浅色"
+          }
         ],
         "desc": "侧栏深色 / 浅色两种配色。",
         "publicKey": "sidePanelTheme",
@@ -526,13 +598,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "正文高亮使用的强调色。",
         "publicKey": "accentColor",
@@ -545,8 +638,14 @@ export const pages = [
         "type": "radio",
         "default": "bar",
         "options": [
-          "bar",
-          "cells"
+          {
+            "value": "bar",
+            "label": "柱状"
+          },
+          {
+            "value": "cells",
+            "label": "格子"
+          }
         ],
         "desc": "占比可视化：整条堆叠 (bar) 或分段色块 (cells)。",
         "publicKey": "chartType",
@@ -1073,11 +1172,26 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#2c44a0",
-          "#7a3c90",
-          "#3c9a52",
-          "#d8402e",
-          "#1a1814"
+          {
+            "value": "#2c44a0",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#d8402e",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#1a1814",
+            "label": "颜色 5"
+          }
         ],
         "desc": "右侧菜单面板背景色（取深色保证文字可读）。",
         "publicKey": "panelColor",
@@ -1090,13 +1204,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "左侧眉标的强调色。",
         "publicKey": "accentColor",
@@ -1295,13 +1430,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "重点标注与眉标的强调色。",
         "publicKey": "accentColor",
@@ -1467,13 +1623,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与重点项的强调色。",
         "publicKey": "accentColor",
@@ -1608,13 +1785,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与重点层级标记的强调色。",
         "publicKey": "accentColor",
@@ -1809,13 +2007,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标的强调色。",
         "publicKey": "accentColor",
@@ -2052,13 +2271,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "峰值标记与眉标的强调色。",
         "publicKey": "accentColor",
@@ -2263,13 +2503,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "突出条目与眉标的强调色。",
         "publicKey": "accentColor",
@@ -2448,13 +2709,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "重点象限标记与眉标的强调色。",
         "publicKey": "accentColor",
@@ -2713,13 +2995,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标的强调色。",
         "publicKey": "accentColor",
@@ -2888,13 +3191,34 @@ export const pages = [
         "type": "color",
         "default": "#3c9a52",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "左侧对比栏的标题条颜色。",
         "publicKey": "leftColor",
@@ -2907,13 +3231,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "右侧对比栏的标题条颜色。",
         "publicKey": "rightColor",
@@ -2926,13 +3271,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与时间轴重点节点的强调色。",
         "publicKey": "accentColor",
@@ -3128,13 +3494,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标、引号与金句重点词的强调色。",
         "publicKey": "accentColor",
@@ -3246,13 +3633,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "「色块」主题下的整页背景色。",
         "publicKey": "bgColor",
@@ -3288,13 +3696,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与章节编号的强调色（色块主题除外）。",
         "publicKey": "accentColor",
@@ -3466,13 +3895,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标的强调色（强调色配色模式下也用于气泡）。",
         "publicKey": "accentColor",
@@ -3645,13 +4095,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "主体字形 / 重点标注 / 眉标的强调色。",
         "publicKey": "accentColor",
@@ -3843,13 +4314,34 @@ export const pages = [
         "type": "color",
         "default": "#e2742c",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "主体字形 / 变化量 / 重点标注的强调色。",
         "publicKey": "accentColor",
@@ -4085,13 +4577,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "主体字形 / 峰值标记 / 眉标的强调色。",
         "publicKey": "accentColor",
@@ -4304,13 +4817,34 @@ export const pages = [
         "type": "color",
         "default": "#4da0c6",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "主体字形 / 曲线 / 重点标注的强调色。",
         "publicKey": "accentColor",
@@ -4512,13 +5046,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "高位色组的柱体颜色。",
         "publicKey": "highColor",
@@ -4531,13 +5086,34 @@ export const pages = [
         "type": "color",
         "default": "#4da0c6",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "低位色组的柱体颜色。",
         "publicKey": "lowColor",
@@ -4550,13 +5126,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与重点标注的强调色。",
         "publicKey": "accentColor",
@@ -4746,13 +5343,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与重点项的强调色（强调色配色下也用于台阶）。",
         "publicKey": "accentColor",
@@ -4911,13 +5529,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标的强调色。",
         "publicKey": "accentColor",
@@ -5076,13 +5715,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "主数字与眉标的强调色。",
         "publicKey": "accentColor",
@@ -5250,13 +5910,34 @@ export const pages = [
         "type": "color",
         "default": "#7a3c90",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "重点标注与眉标的强调色。",
         "publicKey": "accentColor",
@@ -5361,13 +6042,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "「色块」主题下的整页背景色。",
         "publicKey": "bgColor",
@@ -5403,13 +6105,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与章节编号的强调色（色块主题除外）。",
         "publicKey": "accentColor",
@@ -5564,13 +6287,34 @@ export const pages = [
         "type": "color",
         "default": "#3c9a52",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "数据多边形与重点 / 眉标的强调色。",
         "publicKey": "accentColor",
@@ -5654,10 +6398,10 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "图片槽数量（0–3）；按各图比例自适应排布。为 0 时主体卡自动铺满整幅。",
+        "desc": "图片/视频槽数量（0–3）；按各媒体比例自适应排布。为 0 时主体卡自动铺满整幅。",
         "publicKey": "imageCount",
         "publicLabel": "图片槽数量",
-        "description": "图片槽数量（0–3）；按各图比例自适应排布。为 0 时主体卡自动铺满整幅。"
+        "description": "图片/视频槽数量（0–3）；按各媒体比例自适应排布。为 0 时主体卡自动铺满整幅。"
       },
       {
         "key": "metricCount",
@@ -5712,13 +6456,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与「色块」主题下主体卡的颜色。",
         "publicKey": "accentColor",
@@ -5747,6 +6512,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 2,
       "metricCount": 4,
       "cardTheme": "color",
@@ -5916,13 +6682,34 @@ export const pages = [
         "type": "color",
         "default": "#efbe2e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与「色块」主题下文本卡的颜色。",
         "publicKey": "accentColor",
@@ -6078,13 +6865,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与重点行的强调色。",
         "publicKey": "accentColor",
@@ -6309,13 +7117,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 /「色块」主题主体卡 / 重点项的强调色。",
         "publicKey": "accentColor",
@@ -6482,13 +7311,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与环形中心数字的强调色。",
         "publicKey": "accentColor",
@@ -6599,13 +7449,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "「色块」主题下的整页背景色（其它主题忽略）。",
         "publicKey": "bgColor",
@@ -6681,13 +7552,34 @@ export const pages = [
         "type": "color",
         "default": "#efbe2e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点词 / 装饰数字的强调色。",
         "publicKey": "accentColor",
@@ -6861,13 +7753,34 @@ export const pages = [
         "type": "color",
         "default": "#3c9a52",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 增长数字 / 指标卡的强调色。",
         "publicKey": "accentColor",
@@ -7088,13 +8001,34 @@ export const pages = [
         "type": "color",
         "default": "#4da0c6",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 卡内强调条 /「色块」主题下规格卡的颜色。",
         "publicKey": "accentColor",
@@ -7295,13 +8229,34 @@ export const pages = [
         "type": "color",
         "default": "#e2742c",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点条 /「强调色」配色模式下占比条的颜色。",
         "publicKey": "accentColor",
@@ -7525,13 +8480,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 占用单元 / 指标卡的强调色。",
         "publicKey": "accentColor",
@@ -7755,13 +8731,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点行 / 合计行的强调色。",
         "publicKey": "accentColor",
@@ -8002,13 +8999,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 /「色块」主题身份卡的颜色。",
         "publicKey": "accentColor",
@@ -8255,13 +9273,34 @@ export const pages = [
         "type": "color",
         "default": "#4da0c6",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 卡内强调条 /「色块」主题身份卡的颜色。",
         "publicKey": "accentColor",
@@ -8477,13 +9516,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 指标卡 / 重点标记的强调色。",
         "publicKey": "accentColor",
@@ -8698,13 +9758,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 指标条强调色。",
         "publicKey": "accentColor",
@@ -8944,13 +10025,34 @@ export const pages = [
         "type": "color",
         "default": "#3c9a52",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点节点 / 指标的强调色。",
         "publicKey": "accentColor",
@@ -9188,13 +10290,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点行 / 仪表填充的强调色。",
         "publicKey": "accentColor",
@@ -9445,13 +10568,34 @@ export const pages = [
         "type": "color",
         "default": "#e2742c",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 指标 / 重点层的强调色。",
         "publicKey": "accentColor",
@@ -9644,13 +10788,34 @@ export const pages = [
         "type": "color",
         "default": "#3c9a52",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "主数字 / 眉标 / 辅助指标的强调色。",
         "publicKey": "accentColor",
@@ -9828,13 +10993,34 @@ export const pages = [
         "type": "color",
         "default": "#7a3c90",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 指标 / 强调端的颜色。",
         "publicKey": "accentColor",
@@ -10017,13 +11203,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 指标卡 / 重点标记的强调色。",
         "publicKey": "accentColor",
@@ -10153,13 +11360,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "「色块」主题下的整页背景色。",
         "publicKey": "bgColor",
@@ -10195,13 +11423,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标与章节编号的强调色（色块主题除外）。",
         "publicKey": "accentColor",
@@ -10371,13 +11620,34 @@ export const pages = [
         "type": "color",
         "default": "#efbe2e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 头部指标 / 重点行 / 信号点的强调色。",
         "publicKey": "accentColor",
@@ -10584,13 +11854,34 @@ export const pages = [
         "type": "color",
         "default": "#4da0c6",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 主体卡巨号读数的强调色。",
         "publicKey": "accentColor",
@@ -10710,20 +12001,20 @@ export const pages = [
             "label": "饼图"
           }
         ],
-        "desc": "占比图呈现方式：环形（中心显示重点）/ 饼图。",
+        "desc": "占比图呈现方式：环形 / 饼图，均可突出重点读数。",
         "publicKey": "chartType",
         "publicLabel": "图表类型",
-        "description": "占比图呈现方式：环形（中心显示重点）/ 饼图。"
+        "description": "占比图呈现方式：环形 / 饼图，均可突出重点读数。"
       },
       {
         "key": "focusEnabled",
         "label": "重点类型",
         "type": "toggle",
         "default": true,
-        "desc": "是否突出某一类型（环形中心显示该项）。",
+        "desc": "是否突出某一类型（图表和读数同步强调该项）。",
         "publicKey": "focusEnabled",
         "publicLabel": "重点类型",
-        "description": "是否突出某一类型（环形中心显示该项）。"
+        "description": "是否突出某一类型（图表和读数同步强调该项）。"
       },
       {
         "key": "focusIndex",
@@ -10790,13 +12081,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 环心数字 / 重点节点的强调色。",
         "publicKey": "accentColor",
@@ -11011,13 +12323,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点标记的强调色。",
         "publicKey": "accentColor",
@@ -11192,13 +12525,34 @@ export const pages = [
         "type": "color",
         "default": "#e2742c",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点条 / 闭环面板的强调色。",
         "publicKey": "accentColor",
@@ -11408,13 +12762,34 @@ export const pages = [
         "type": "color",
         "default": "#3c9a52",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 核心 / 重点节点的强调色。",
         "publicKey": "accentColor",
@@ -11603,13 +12978,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "主数字 / 眉标 / 量规填充的强调色。",
         "publicKey": "accentColor",
@@ -11842,13 +13238,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 强调条 /「色块」主题身份卡的颜色。",
         "publicKey": "accentColor",
@@ -12088,13 +13505,34 @@ export const pages = [
         "type": "color",
         "default": "#4da0c6",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 定位格 / 指标的强调色。",
         "publicKey": "accentColor",
@@ -12297,13 +13735,34 @@ export const pages = [
         "type": "color",
         "default": "#7a3c90",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 主指标 / 强调条的强调色。",
         "publicKey": "accentColor",
@@ -12517,13 +13976,34 @@ export const pages = [
         "type": "color",
         "default": "#e2742c",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 头部指标的强调色。",
         "publicKey": "accentColor",
@@ -12655,13 +14135,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "「色块」主题下的整页背景色。",
         "publicKey": "bgColor",
@@ -12740,13 +14241,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 关键词 / 装饰数字的强调色。",
         "publicKey": "accentColor",
@@ -12946,13 +14468,34 @@ export const pages = [
         "type": "color",
         "default": "#3c9a52",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 角标 /「色块」主题下主体卡的颜色。",
         "publicKey": "accentColor",
@@ -13169,13 +14712,34 @@ export const pages = [
         "type": "color",
         "default": "#efbe2e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 /「色块」主题下主体卡的颜色。",
         "publicKey": "accentColor",
@@ -13410,13 +14974,34 @@ export const pages = [
         "type": "color",
         "default": "#4da0c6",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点节点 /「色块」主题下主体卡的颜色。",
         "publicKey": "accentColor",
@@ -13679,13 +15264,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 占用单元 /「色块」主题下主体卡的颜色。",
         "publicKey": "accentColor",
@@ -13894,13 +15500,34 @@ export const pages = [
         "type": "color",
         "default": "#4da0c6",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 头部指标 / 重点行的强调色。",
         "publicKey": "accentColor",
@@ -14182,13 +15809,34 @@ export const pages = [
         "type": "color",
         "default": "#7a3c90",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 漏斗终点 /「色块」主题下主体卡的颜色。",
         "publicKey": "accentColor",
@@ -14407,13 +16055,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 延展层 /「色块」主题下主体卡的颜色。",
         "publicKey": "accentColor",
@@ -14700,13 +16369,34 @@ export const pages = [
         "type": "color",
         "default": "#3c9a52",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点来源 / 续约环 /「色块」主题主体卡的颜色。",
         "publicKey": "accentColor",
@@ -14920,13 +16610,34 @@ export const pages = [
         "type": "color",
         "default": "#efbe2e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "主数字 / 眉标 / 重点段的强调色。",
         "publicKey": "accentColor",
@@ -15168,13 +16879,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 轨迹 / 重点节点 /「色块」主题主体卡的颜色。",
         "publicKey": "accentColor",
@@ -15313,13 +17045,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "「色块」主题下的整页背景色。",
         "publicKey": "bgColor",
@@ -15398,13 +17151,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 大号编号 / 高亮行 / 状态灯的强调色。",
         "publicKey": "accentColor",
@@ -15642,13 +17416,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点阶段 /「色块」主题指标卡的颜色。",
         "publicKey": "accentColor",
@@ -15862,13 +17657,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 头部指标 / 重点行的强调色（严重度带用独立色阶）。",
         "publicKey": "accentColor",
@@ -16076,13 +17892,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "主数字 / 眉标 / 压力填充的强调色。",
         "publicKey": "accentColor",
@@ -16275,13 +18112,34 @@ export const pages = [
         "type": "color",
         "default": "#7a3c90",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 锚点卡巨号 / 重点维度的强调色。",
         "publicKey": "accentColor",
@@ -16499,13 +18357,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点方向 /「色块」主题面板 / 筛选标记的颜色。",
         "publicKey": "accentColor",
@@ -16746,13 +18625,34 @@ export const pages = [
         "type": "color",
         "default": "#e2742c",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 嵌入节点 /「色块」主题面板 / 标记的颜色。",
         "publicKey": "accentColor",
@@ -16994,13 +18894,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点节点 / 窗口进度 /「色块」主题面板的颜色。",
         "publicKey": "accentColor",
@@ -17143,13 +19064,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "「色块」主题下的整页背景色（其它主题忽略）。",
         "publicKey": "bgColor",
@@ -17242,13 +19184,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "标签 / 重点词 / 收尾标记的强调色。",
         "publicKey": "accentColor",
@@ -17398,13 +19361,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点连线 / 标记的强调色。",
         "publicKey": "accentColor",
@@ -17649,13 +19633,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 表头 / 重点行 / 综合列的强调色。",
         "publicKey": "accentColor",
@@ -17904,13 +19909,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 轴线 / 重点节点的强调色。",
         "publicKey": "accentColor",
@@ -18114,13 +20140,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 巨号字标 / 强调条的强调色。",
         "publicKey": "accentColor",
@@ -18256,52 +20303,24 @@ export const pages = [
         "description": "全幅图片槽数量（0–3）。1 张铺满整幅；多张按比例自适应分列；为 0 时显示色谱占位。"
       },
       {
-        "key": "panelPosition",
-        "label": "标题位置",
+        "key": "textColor",
+        "label": "文字颜色",
         "type": "radio",
-        "default": "tl",
+        "default": "white",
         "options": [
           {
-            "value": "tl",
-            "label": "左上"
+            "value": "white",
+            "label": "纯白"
           },
           {
-            "value": "tr",
-            "label": "右上"
-          },
-          {
-            "value": "bl",
-            "label": "左下"
+            "value": "black",
+            "label": "纯黑"
           }
         ],
-        "desc": "标题面板的锚定位置（左下时自动隐藏底部指标条以避免重叠）。",
-        "publicKey": "panelPosition",
-        "publicLabel": "标题位置",
-        "description": "标题面板的锚定位置（左下时自动隐藏底部指标条以避免重叠）。"
-      },
-      {
-        "key": "panelTheme",
-        "label": "面板主题",
-        "type": "radio",
-        "default": "ink",
-        "options": [
-          {
-            "value": "ink",
-            "label": "墨色"
-          },
-          {
-            "value": "paper",
-            "label": "纸色"
-          },
-          {
-            "value": "color",
-            "label": "色块"
-          }
-        ],
-        "desc": "标题面板背景：墨色 / 纸色 / 强调色块（保证压在图片上的可读性）。",
-        "publicKey": "panelTheme",
-        "publicLabel": "面板主题",
-        "description": "标题面板背景：墨色 / 纸色 / 强调色块（保证压在图片上的可读性）。"
+        "desc": "标题文字颜色：纯白 / 纯黑。",
+        "publicKey": "textColor",
+        "publicLabel": "文字颜色",
+        "description": "标题文字颜色：纯白 / 纯黑。"
       },
       {
         "key": "showKicker",
@@ -18362,13 +20381,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 色块面板 / 指标条强调色。",
         "publicKey": "accentColor",
@@ -18390,8 +20430,7 @@ export const pages = [
       "backgroundMode": "unicorn",
       "unicornScene": "goey",
       "imageCount": 1,
-      "panelPosition": "tl",
-      "panelTheme": "ink",
+      "textColor": "white",
       "showKicker": true,
       "showTicker": true,
       "tickerCount": 4,
@@ -18521,13 +20560,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 重点列标记强调色。",
         "publicKey": "accentColor",
@@ -18753,13 +20813,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 强调侧数字 / 徽标的强调色。",
         "publicKey": "accentColor",
@@ -18889,13 +20970,34 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "「色块」主题下的整页背景色（其它主题忽略）。",
         "publicKey": "bgColor",
@@ -18968,13 +21070,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 首字 / 关键词强调色。",
         "publicKey": "accentColor",
@@ -19167,13 +21290,34 @@ export const pages = [
         "type": "color",
         "default": "#4da0c6",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 来源序号 /「色块」主题面板 / 重点项的颜色。",
         "publicKey": "accentColor",
@@ -19318,14 +21462,37 @@ export const pages = [
         "type": "color",
         "default": "#2c44a0",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
+        "dependsOn": "theme",
+        "dependsOnValue": "color",
         "desc": "「色块」主题下的整页背景色（其它主题忽略）。",
         "publicKey": "bgColor",
         "publicLabel": "色块背景",
@@ -19420,13 +21587,34 @@ export const pages = [
         "type": "color",
         "default": "#d8402e",
         "options": [
-          "#d8402e",
-          "#e2742c",
-          "#efbe2e",
-          "#3c9a52",
-          "#4da0c6",
-          "#2c44a0",
-          "#7a3c90"
+          {
+            "value": "#d8402e",
+            "label": "颜色 1"
+          },
+          {
+            "value": "#e2742c",
+            "label": "颜色 2"
+          },
+          {
+            "value": "#efbe2e",
+            "label": "颜色 3"
+          },
+          {
+            "value": "#3c9a52",
+            "label": "颜色 4"
+          },
+          {
+            "value": "#4da0c6",
+            "label": "颜色 5"
+          },
+          {
+            "value": "#2c44a0",
+            "label": "颜色 6"
+          },
+          {
+            "value": "#7a3c90",
+            "label": "颜色 7"
+          }
         ],
         "desc": "眉标 / 大字强调的颜色。",
         "publicKey": "accentColor",

@@ -122,8 +122,9 @@ const CSS = `
   color: var(--aic-ink); margin: 34px 0 0; }
 .aic-cold .cd-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 38px; }
 .aic-cold .cd-card { border-radius: 18px; padding: 22px 26px; background: var(--aic-card);
-  border: 1.5px solid var(--aic-hair); transition: background .3s, border-color .3s, transform .3s; }
-.aic-cold .cd-card[data-focus="1"] { background: var(--aic-accent); border-color: var(--aic-accent); transform: translateY(-5px); }
+  border: 1.5px solid var(--aic-hair); box-shadow: none; transition: background .3s, border-color .3s, transform .3s; }
+.aic-cold .cd-card[data-focus="1"] { background: var(--aic-accent); border-color: var(--aic-accent);
+  transform: translateY(-2px); box-shadow: none; }
 .aic-cold .cd-card-lbl { font-family: var(--aic-font-text); font-weight: 600; font-size: 20px; color: var(--aic-muted); }
 .aic-cold .cd-card[data-focus="1"] .cd-card-lbl { color: rgba(14,17,11,.62); }
 .aic-cold .cd-card-val { font-family: var(--aic-font-display); font-weight: 700; font-size: 46px; color: var(--aic-ink);

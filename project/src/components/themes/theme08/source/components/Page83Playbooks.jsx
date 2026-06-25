@@ -4,7 +4,7 @@
 // A NEW image layout (distinct from P08 list+scatter, P31 branch cards, P43
 // stepped path cards, P57 postcards, P58 vertical track): a row of FULL-HEIGHT
 // "poster columns" — each column is one aspect-true AdaptiveImageSlot pinned over
-// an ink caption plate (title / tag / big value), count-driven (0–4), focusable.
+// an ink caption plate (title / tag / big value), count-driven (1–4), focusable.
 // Pure ESM — no Tweaks/preview-runtime dependency; every variation is a prop.
 // ─────────────────────────────────────────────────────────────────────────────
 import React from 'react';
@@ -21,7 +21,8 @@ export default function Page83Playbooks(props) {
     ? 'linear-gradient(165deg, #EFEFF6 0%, #E7E6EE 58%, #DEDCEA 100%)'
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
-  const items = cards.slice(0, Math.max(0, cardCount));
+  const visibleCount = Math.min(cards.length, Math.max(1, Number(cardCount) || 1));
+  const items = cards.slice(0, visibleCount);
   const n = items.length;
   const fIdx = Math.min(focusIndex, Math.max(0, n - 1));
   const accents = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-red)', 'var(--acl-yellow)'];
@@ -48,7 +49,6 @@ export default function Page83Playbooks(props) {
 
         .acl-pc__row{ flex:1; display:flex; align-items:center; justify-content:center; gap:36px;
           margin-top:18px; min-height:0; }
-        .acl-pc__empty{ font-family:var(--acl-font-hand); font-size:38px; color:rgba(22,21,15,.4); }
         .acl-pc__col{ position:relative; display:flex; flex-direction:column; align-items:center;
           transition:transform .28s; }
         .acl-pc__imgwrap{ display:flex; align-items:flex-end; justify-content:center; }
@@ -95,7 +95,6 @@ export default function Page83Playbooks(props) {
       </div>
 
       <div className="acl-pc__row">
-        {n === 0 && <div className="acl-pc__empty">// 图片数量 = 0</div>}
         {items.map((c, i) => {
           const isF = focusEnabled && i === fIdx;
           return (
@@ -133,7 +132,7 @@ export default function Page83Playbooks(props) {
 // ── default content + adjustable params ──────────────────────────────────────
 Page83Playbooks.defaults = {
   backgroundTheme: 'muted',    // 'primary' | 'muted'
-  cardCount: 3,                // 0–4 poster columns (each holds one image slot)
+  cardCount: 3,                // 1–4 poster columns (each holds one image slot)
   focusEnabled: true,
   focusIndex: 1,
   showValue: true,             // big value on each plate
@@ -158,8 +157,8 @@ Page83Playbooks.defaults = {
 Page83Playbooks.controls = [
   { key: 'backgroundTheme', type: 'enum', default: 'muted', options: ['primary', 'muted'],
     label: '背景主题', desc: '主色(电光黄) 或 次色(淡紫灰) 底色' },
-  { key: 'cardCount', type: 'number', default: 3, min: 0, max: 4, step: 1,
-    label: '海报数量', desc: '竖向海报列数量(0–4)；每列含一个图片槽，列宽随数量自动平衡，每槽按上传图片比例自适应' },
+  { key: 'cardCount', type: 'number', default: 3, min: 1, max: 4, step: 1,
+    label: '海报数量', desc: '竖向海报列数量(1–4)；每列含一个图片槽，列宽随数量自动平衡，每槽按上传图片比例自适应' },
   { key: 'showValue', type: 'boolean', default: true,
     label: '数值标签', desc: '每张海报底牌的大号数值 显隐' },
   { key: 'showTag', type: 'boolean', default: true,

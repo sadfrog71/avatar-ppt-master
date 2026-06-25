@@ -33,7 +33,7 @@
 //   accent (color)
 // ============================================================================
 import React from 'react';
-import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
+import { KxEyebrow, KxGrid, KxMediaSlotColumn } from './kit.jsx';
 
 if (!document.getElementById('kx-gal-css')) {
   const css = `
@@ -59,6 +59,8 @@ if (!document.getElementById('kx-gal-css')) {
   .kx-gal-metrics{display:grid;margin-top:30px;border-top:1px solid var(--kx-line);}
   .kx-gal-mcard{padding:20px 24px 16px 0;border-right:1px solid var(--kx-line);display:flex;flex-direction:column;gap:7px;}
   .kx-gal-mcard:last-child{border-right:none;}
+  .kx-gal-metrics.kx-wrap .kx-gal-mcard:nth-child(2n){border-right:none;padding-left:22px;}
+  .kx-gal-metrics.kx-wrap .kx-gal-mcard:nth-child(n+3){border-top:1px solid var(--kx-line);}
   .kx-gal-mcard.kx-on{background:linear-gradient(180deg,color-mix(in srgb,var(--kx-accent) 14%,transparent),transparent 80%);padding-left:18px;}
   .kx-gal-mcard .kx-mv{font-family:var(--kx-disp);font-weight:800;font-size:50px;line-height:.9;letter-spacing:-.02em;}
   .kx-gal-mcard.kx-on .kx-mv{color:var(--kx-accent);}
@@ -114,7 +116,10 @@ function SlideGallery(props) {
         h('span', { className: 'kx-n' }, p.hero.value),
         p.hero.unit ? h('span', { className: 'kx-u' }, p.hero.unit) : null),
       h('div', { className: 'kx-gal-hl' }, p.hero.label)) : null,
-    h('div', { className: 'kx-gal-metrics', style: { gridTemplateColumns: `repeat(${metrics.length},1fr)` } },
+    h('div', {
+      className: 'kx-gal-metrics' + (metrics.length === 4 ? ' kx-wrap' : ''),
+      style: { gridTemplateColumns: `repeat(${metrics.length === 4 ? 2 : metrics.length},1fr)`, gridAutoRows: '1fr' },
+    },
       metrics.map((m, i) => {
         const on = p.focusEnabled && i === fi;
         return h('div', { key: i, className: 'kx-gal-mcard' + (on ? ' kx-on' : '') },
@@ -137,15 +142,18 @@ function SlideGallery(props) {
         h('div', { className: 'kx-gal-wv' }, d.v + (p.hero.unit || '')))));
   } else {
     const [mn, mx] = RATIO[slots] || RATIO[1];
-    stage = h('div', { className: 'kx-gal-stage' + (slots === 1 ? ' kx-one' : '') },
-      Array.from({ length: slots }, (_, i) =>
-        h(KxImageSlot, {
-          key: slots + '-' + i, id: 'gallery-' + slots + '-' + i,
-          placeholder: slots === 1 ? '主视觉 / DROP IMAGE' : ('图 ' + String(i + 1).padStart(2, '0')),
-          badge: slots === 1 ? p.galleryTag : ('IMG ' + String(i + 1).padStart(2, '0')),
-          minRatio: mn, maxRatio: mx,
-          style: { width: '100%' },
-        })));
+    stage = h(KxMediaSlotColumn, {
+      className: 'kx-gal-stage',
+      slots,
+      maxSlots: 3,
+      idBase: 'gallery-' + slots,
+      placeholder: (i) => slots === 1 ? '主视觉 / DROP IMAGE' : ('图 ' + String(i + 1).padStart(2, '0')),
+      badge: p.galleryTag,
+      minRatio: mn,
+      maxRatio: mx,
+      multiMinRatio: mn,
+      multiMaxRatio: mx,
+    });
   }
 
   const right = h('div', { className: 'kx-gal-right' },

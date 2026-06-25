@@ -306,9 +306,21 @@ if (!/renderOverviewThumbDomPreview/.test(overviewThumbSource) || !/rememberOver
 }
 
 if (!/function uniquifySvgCloneIds\(/.test(html)
-  || !/value\.replace\(\s*\/url\\\(/.test(html)
+  || !/rewriteSvgUrlRefs[\s\S]{0,120}url\\\(/.test(html)
   || !/attr\.name === 'xlink:href'/.test(html)) {
   errors.push('Cloned slide DOM must rewrite SVG ids and url(#id) references so thumbnails and transitions do not shadow the live slide defs.');
+}
+
+if (!/querySelectorAll\?\.\(['"]style['"]\)/.test(html)
+  || !/node\.textContent\s*=\s*next/.test(html)) {
+  errors.push('SVG id clone rewriting must also update url(#id) references inside style tags.');
+}
+
+if (!/function isDuplicatedRuntimeSlide\(/.test(html)
+  || !/function uniquifyDuplicatedRuntimeSlideSvgIds\(/.test(html)
+  || !/function ensureRuntimeSlideRendered\([\s\S]{0,700}uniquifyDuplicatedRuntimeSlideSvgIds\(slide\)/.test(html)
+  || !/clone\.dataset\.duplicatedSlide\s*=\s*['"]true['"]/.test(html)) {
+  errors.push('Duplicated imported-theme slides must uniquify SVG defs after runtime render, not only before cloning.');
 }
 
 if (!/cloneNode\(true\)/.test(overviewDomPreviewSource)

@@ -7,9 +7,10 @@
 // top spotlight, paired with an adaptive image and a couple of anchor stat
 // cards in the corner — borrowing the reference art's big-statement-plus-mini-
 // stat-cards composition. The right media column is fully driven by
-// mediaSlotCount (0..2) and rebalances at every count; each KxImageSlot follows
-// its uploaded image's natural ratio (ratio-aware). With 0 slots the statement
-// goes full-bleed (pure-type editorial) so the page is never empty. Reusable
+// mediaSlotCount (0..2) and rebalances at every count; image slots are bounded
+// by the media column height so tall uploads crop inside the slots instead of
+// pushing past the slide edges. With 0 slots the statement goes full-bleed
+// (pure-type editorial) so the page is never empty. Reusable
 // for any section-closing statement / thesis page.
 //
 // Second-level prefix: kx-stm-  ·  style id: kx-stm-css  (unique)
@@ -45,7 +46,7 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-stm-css')) {
     background:var(--kx-accent);color:var(--kx-ink);padding:8px 16px;white-space:nowrap;}
   .kx-stm-badge::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--kx-ink);}
 
-  .kx-stm-main{flex:1;min-height:0;display:grid;column-gap:64px;align-items:center;padding:18px 0;}
+  .kx-stm-main{flex:1;min-height:0;display:grid;column-gap:64px;align-items:stretch;padding:18px 0;}
   .kx-stm-left{display:flex;flex-direction:column;justify-content:center;min-width:0;}
   .kx-stm-kicker{font-family:var(--kx-mono);font-size:24px;color:var(--kx-mute-2);letter-spacing:.05em;
     text-transform:uppercase;display:flex;align-items:center;gap:13px;margin-bottom:26px;}
@@ -59,8 +60,9 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-stm-css')) {
     margin-top:30px;max-width:760px;text-wrap:pretty;}
 
   /* right media column */
-  .kx-stm-right{display:flex;flex-direction:column;min-height:0;gap:16px;justify-content:center;}
-  .kx-stm-right .kx-imgslot{width:100%;}
+  .kx-stm-right{display:flex;flex-direction:column;min-height:0;height:100%;max-height:100%;
+    gap:16px;justify-content:stretch;overflow:hidden;}
+  .kx-stm-right .kx-imgslot{width:100%;flex:1 1 0;min-height:0;max-height:100%;aspect-ratio:auto;}
 
   /* anchor stat cards */
   .kx-stm-stats{display:flex;gap:16px;flex-wrap:wrap;margin-top:26px;}
@@ -119,7 +121,7 @@ function SlideStatement(props) {
           key: slots + '-' + i, id: 'statement-' + slots + '-' + i,
           placeholder: slots === 1 ? p.mediaPlaceholder : ('图 ' + String(i + 1).padStart(2, '0')),
           badge: slots === 1 ? p.statTag : ('IMG ' + String(i + 1).padStart(2, '0')),
-          minRatio: mn, maxRatio: mx, style: { width: '100%' },
+          minRatio: mn, maxRatio: mx, style: { width: '100%', aspectRatio: 'auto' },
         })));
   }
 

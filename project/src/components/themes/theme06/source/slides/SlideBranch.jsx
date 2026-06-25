@@ -28,7 +28,7 @@
 //   accent (color)
 // ============================================================================
 import React from 'react';
-import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
+import { KxEyebrow, KxGrid, KxMediaSlotColumn } from './kit.jsx';
 
   if (!document.getElementById('kx-brn-css')) {
     const css = `
@@ -85,8 +85,9 @@ import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
     .kx-brn-fill{height:100%;background:#3a3a32;}
     .kx-brn-node.kx-on .kx-brn-fill{background:var(--kx-accent);}
     /* media column */
-    .kx-brn-media{display:flex;flex-direction:column;gap:20px;min-height:0;justify-content:center;}
-    .kx-brn-media .kx-imgslot{flex:none;}
+    .kx-brn-media{display:flex;flex-direction:column;gap:20px;height:100%;min-height:0;max-height:100%;
+      justify-content:stretch;overflow:hidden;}
+    .kx-brn-media .kx-imgslot{flex:1 1 0;min-height:0;max-height:100%;aspect-ratio:auto;}
     .kx-brn-foot{display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--kx-line);}
     .kx-brn-foot .kx-cl{font-family:var(--kx-mono);font-size:26px;color:var(--kx-accent);font-weight:700;}
     .kx-brn-foot .kx-rt{font-family:var(--kx-mono);font-size:24px;color:var(--kx-mute-2);letter-spacing:.03em;}
@@ -135,15 +136,17 @@ import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
               h('div', { className: 'kx-brn-fill', style: { width: ((b.value / maxV) * 100) + '%' } })) : null));
       }));
 
-    const media = slots > 0 ? h('div', { className: 'kx-brn-media' },
-      Array.from({ length: slots }, (_, i) =>
-        h(KxImageSlot, {
-          key: i, id: 'branch-' + (p.eyebrowId || 'x') + '-' + i,
-          placeholder: p.mediaPlaceholder || '主视觉 / DROP IMAGE',
-          badge: slots === 1 ? p.rootTag : ('IMG ' + String(i + 1).padStart(2, '0')),
-          minRatio: slots === 1 ? 0.7 : 0.9, maxRatio: slots === 1 ? 1.3 : 1.9,
-          style: { width: '100%' },
-        }))) : null;
+    const media = h(KxMediaSlotColumn, {
+      className: 'kx-brn-media',
+      slots,
+      idBase: 'branch-' + (p.eyebrowId || 'x'),
+      placeholder: p.mediaPlaceholder || '主视觉 / DROP IMAGE',
+      badge: p.rootTag,
+      minRatio: 0.7,
+      maxRatio: 1.3,
+      multiMinRatio: 0.9,
+      multiMaxRatio: 1.9,
+    });
 
     return h('div', { className: 'kx-slide kx-dark', style: { '--kx-accent': p.accent } },
       h(KxGrid, { cols: 6 }),

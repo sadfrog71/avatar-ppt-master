@@ -22,8 +22,9 @@ export default function Page37Compute(props) {
     ? 'linear-gradient(165deg, #EFEFF6 0%, #E7E6EE 58%, #DEDCEA 100%)'
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
-  const segs = segments.slice(0, Math.max(3, segmentCount));
-  const fIdx = Math.min(focusIndex, segs.length - 1);
+  const safeSegmentCount = Math.max(3, Math.min(segments.length, Number(segmentCount) || 3));
+  const segs = segments.slice(0, safeSegmentCount);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, segs.length - 1));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
   const maxSeg = Math.max(...segs.map((s) => s.v));
 
@@ -71,12 +72,14 @@ export default function Page37Compute(props) {
 
         .acl-gp__caphd{ font-family:var(--acl-font-mono); font-weight:700; font-size:14px;
           letter-spacing:.1em; text-transform:uppercase; color:rgba(22,21,15,.45); margin:22px 0 12px; }
-        .acl-gp__caps{ display:flex; flex-direction:column; gap:13px; flex:1; justify-content:center; }
-        .acl-gp__cap{ display:grid; grid-template-columns:150px 1fr auto; align-items:center; gap:16px;
+        .acl-gp__caps{ display:flex; flex-direction:column; gap:10px; flex:1; justify-content:center; min-height:0; }
+        .acl-gp__cap{ display:grid; grid-template-columns:minmax(128px, 172px) minmax(150px, 1fr) minmax(72px, auto);
+          align-items:center; gap:13px; min-height:56px; padding:8px 10px; border:2px solid transparent;
           transition:.25s; }
-        .acl-gp__cap .cn{ font-weight:900; font-size:24px; line-height:1.05; }
+        .acl-gp__cap .cn{ min-width:0; font-weight:900; font-size:22px;
+          line-height:1.08; overflow-wrap:anywhere; word-break:break-word; }
         .acl-gp__cap .cn small{ display:block; font-family:var(--acl-font-mono); font-weight:400;
-          font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:rgba(22,21,15,.5); margin-top:2px; }
+          font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:rgba(22,21,15,.5); margin-top:3px; }
         .acl-gp__track{ height:26px; background:rgba(22,21,15,.1); border:2px solid var(--acl-ink);
           position:relative; overflow:hidden; }
         .acl-gp__fill{ position:absolute; inset:0 auto 0 0; background:var(--acl-blue);
@@ -85,9 +88,14 @@ export default function Page37Compute(props) {
           min-width:96px; text-align:right; }
         .acl-gp__cap .cv em{ font-style:normal; font-family:var(--acl-font-cn); font-weight:700; font-size:14px;
           margin-left:3px; opacity:.6; }
-        .acl-gp__cap--focus .cn{ color:var(--acl-ink); }
-        .acl-gp__cap--focus .acl-gp__fill{ background:var(--acl-pink); }
-        .acl-gp__cap--dim{ opacity:.42; }
+        .acl-gp__cap--focus{ background:var(--acl-ink); color:var(--acl-paper); border-color:var(--acl-ink);
+          box-shadow:4px 5px 0 rgba(22,21,15,.14); }
+        .acl-gp__cap--focus .cn{ color:var(--acl-paper); }
+        .acl-gp__cap--focus .cn small{ color:rgba(255,255,255,.58); }
+        .acl-gp__cap--focus .acl-gp__track{ background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.55); }
+        .acl-gp__cap--focus .acl-gp__fill{ background:var(--acl-pink); border-right-color:var(--acl-paper); }
+        .acl-gp__cap--focus .cv em{ color:rgba(255,255,255,.64); opacity:1; }
+        .acl-gp__cap--dim{ opacity:.48; }
 
         /* ── right: occupancy grid card ── */
         .acl-gp__chart{ flex:1; position:relative; background:var(--acl-ink); color:var(--acl-paper);
@@ -259,6 +267,7 @@ Page37Compute.defaults = {
     { k: 'A100 集群', en: 'Ampere', v: 24 },
     { k: '推理加速卡', en: 'Inference', v: 12 },
     { k: '其他 / 自研', en: 'Others', v: 6 },
+    { k: '边缘算力', en: 'Edge', v: 4 },
   ],
   closingLine: '算力是 AI 时代最直接的硬资源。',
 };

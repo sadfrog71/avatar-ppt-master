@@ -127,6 +127,8 @@ function readMediaFile(file) {
           src,
           type: file.type,
           kind: 'video',
+          width: video.videoWidth || null,
+          height: video.videoHeight || null,
           ratio: video.videoWidth && video.videoHeight ? video.videoWidth / video.videoHeight : null,
         });
         video.onerror = () => resolve({ src, type: file.type, kind: 'video', ratio: null });
@@ -135,9 +137,16 @@ function readMediaFile(file) {
       }
       const img = new Image();
       img.onload = async () => {
-        const ratio = img.naturalWidth / img.naturalHeight;
+        const ratio = img.naturalWidth && img.naturalHeight ? img.naturalWidth / img.naturalHeight : null;
         const compressed = await compressImageFile(file, img.naturalWidth, img.naturalHeight, src);
-        resolve({ src: compressed.src, type: compressed.type, kind: 'image', ratio });
+        resolve({
+          src: compressed.src,
+          type: compressed.type,
+          kind: 'image',
+          width: img.naturalWidth || null,
+          height: img.naturalHeight || null,
+          ratio,
+        });
       };
       img.onerror = () => resolve({ src, type: file.type, kind: 'image', ratio: null });
       img.src = src;
@@ -184,12 +193,22 @@ async function compressImageFile(file, naturalWidth, naturalHeight, originalSrc)
 
 function mediaItem(value) {
   if (!value) return null;
-  if (typeof value === 'string') return { src: value, kind: value.startsWith('data:video/') ? 'video' : 'image' };
+  if (typeof value === 'string') return { src: value, kind: mediaKindFromValue(value) };
   if (typeof value === 'object' && value.src) {
-    const kind = value.kind || (String(value.type || value.src).startsWith('video/') || String(value.src).startsWith('data:video/') ? 'video' : 'image');
+    const kind = mediaKindFromValue(value);
     return { ...value, kind };
   }
   return null;
+}
+
+function mediaKindFromValue(value) {
+  if (value && typeof value === 'object' && value.kind) return String(value.kind).toLowerCase() === 'video' ? 'video' : 'image';
+  const hint = String(value && typeof value === 'object' ? (value.type || value.src || '') : value || '').toLowerCase();
+  return hint.startsWith('video/')
+    || hint.startsWith('data:video/')
+    || /\.(mp4|webm|mov|m4v)(?:[?#].*)?$/i.test(hint)
+    ? 'video'
+    : 'image';
 }
 
 function mediaWithAspect(value, ar) {
@@ -268,8 +287,26 @@ function createMediaApi(slide, baseProps) {
 function HostImageSlot({ mediaApi, index, options = {} }) {
   const [over, setOver] = React.useState(false);
   const value = mediaApi.get('images', index);
-  const filled = !!mediaSrc(value);
-  const aspectRatio = options.ratioAR || (options.ratio ? String(options.ratio) : undefined);
+  const item = mediaItem(value);
+  const filled = !!item?.src;
+  const mediaRatioValue = Number(item?.ar ?? item?.ratio);
+  const mediaRatio = Number.isFinite(mediaRatioValue) && mediaRatioValue > 0 ? mediaRatioValue : null;
+  const optionRatioValue = Number(options.ratioAR ?? (options.ratio && options.ratio !== 'auto' ? options.ratio : undefined));
+  const optionRatio = Number.isFinite(optionRatioValue) && optionRatioValue > 0 ? optionRatioValue : null;
+  const fallbackRatioValue = Number(options.fallbackRatio ?? options.fallbackRatioAR);
+  const fallbackRatio = Number.isFinite(fallbackRatioValue) && fallbackRatioValue > 0 ? fallbackRatioValue : null;
+  const preserveVideoSize = !!options.preserveVideoSize && item?.kind === 'video';
+  const preserveVideoRatio = (!!options.preserveVideoRatio || !!options.preserveVideoSize) && item?.kind === 'video';
+  const containMedia = !!options.containMedia && filled;
+  const preserveMediaRatio = preserveVideoRatio && !!mediaRatio;
+  const adaptiveMedia = !!options.adaptiveMedia && !preserveMediaRatio;
+  const aspectRatioValue = preserveMediaRatio
+    ? mediaRatio
+    : (adaptiveMedia ? (mediaRatio || fallbackRatio) : optionRatio);
+  const aspectRatio = aspectRatioValue ? String(aspectRatioValue) : undefined;
+  const nativeWidth = preserveVideoSize && item?.width ? `${item.width}px` : '100%';
+  const nativeHeight = preserveVideoSize ? 'auto' : '100%';
+  const autoHeight = preserveVideoSize || adaptiveMedia || preserveMediaRatio;
   const stopSlotNavigation = event => event.stopPropagation();
   const drop = (event) => {
     event.preventDefault();
@@ -281,10 +318,18 @@ function HostImageSlot({ mediaApi, index, options = {} }) {
   return (
     <div
       data-dashi-host-image-slot="true"
+      data-dashi-media-kind={item?.kind || ''}
+      data-dashi-video-native={preserveVideoSize ? 'true' : undefined}
+      data-dashi-video-ratio={preserveVideoRatio ? 'true' : undefined}
+      data-dashi-contain-media={containMedia ? 'true' : undefined}
+      data-dashi-adaptive-media={adaptiveMedia ? 'true' : undefined}
+      data-dashi-fallback-ratio={adaptiveMedia && fallbackRatio ? String(fallbackRatio) : undefined}
       style={{
         position: 'relative',
-        width: '100%',
-        height: '100%',
+        width: preserveVideoSize ? nativeWidth : '100%',
+        height: preserveVideoSize ? nativeHeight : (autoHeight ? 'auto' : '100%'),
+        maxWidth: preserveVideoSize ? '100%' : undefined,
+        maxHeight: preserveVideoSize ? '100%' : undefined,
         minHeight: 0,
         aspectRatio,
         overflow: 'hidden',
@@ -315,7 +360,12 @@ function HostImageSlot({ mediaApi, index, options = {} }) {
       {filled ? (
         <>
           {renderMedia(value, {
-            style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' },
+            style: {
+              width: '100%',
+              height: '100%',
+              objectFit: containMedia || preserveVideoRatio ? 'contain' : 'cover',
+              display: 'block',
+            },
           })}
           <button
             type="button"

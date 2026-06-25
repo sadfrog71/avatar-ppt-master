@@ -1,17 +1,16 @@
 /**
  * CasePage — P08 典型案例深度剖析 (Case Studies · Image-led)
  *
- * Image-led slide: a row of case cards, each with an image slot on top and
- * a metric block below. The number of image slots (0–n), their aspect ratio,
- * the card count and the focus card are all prop-driven.
+ * Image-led slide: a row of case cards, each with a fixed visual band on top
+ * and a metric block below. The visual band is either all image slots or all
+ * green texture fills, keeping the card system visually consistent.
  *
  * ── Image slots (migration note) ───────────────────────────────────────────
  * This component is pure and host-agnostic: it does NOT hard-depend on any
  * web component. The actual fillable slot is supplied by the host via the
- * `renderSlot(i, { ratio, ratioAR }) => ReactNode` prop. When `renderSlot`
- * is omitted, a static striped placeholder is rendered instead, so the page
- * is fully functional (and exportable) on its own. The preview runtime wires
- * `renderSlot` to a drop-capable, ratio-adaptive slot — see the demo loader.
+ * `renderSlot(i, { fixed: true }) => ReactNode` prop. When `renderSlot` is
+ * omitted, a static striped placeholder is rendered instead, so the page is
+ * fully functional (and exportable) on its own.
  *
  * Scoped under `.aic-case`. Shared deps: ./theme.js, ./viz.jsx (BigNumber, LensCluster, HeatStrip).
  */
@@ -36,20 +35,15 @@ const COPY = {
   ],
 };
 
-// aspect presets → numeric width/height ratio. 'auto' returns null so the host
-// slot can size itself to the uploaded image.
-const RATIO_AR = { portrait: 3 / 4, landscape: 4 / 3, square: 1, auto: null };
-
 export const defaultProps = {
   ...COPY,
   cardCount: 3,            // number of case cards (1–3)
-  imageCount: 3,           // how many cards carry an image slot (0–n)
-  imageRatio: 'portrait',  // 'portrait' | 'landscape' | 'square' | 'auto'
+  imageCount: 3,           // 0 = all texture fills, 3 = all image slots
   focusEnabled: true,
   focusIndex: 0,
   showDecorations: true,
   accentColor: THEME.accent,
-  renderSlot: null,        // host hook: (i, { ratio, ratioAR }) => ReactNode
+  renderSlot: null,        // host hook: (i, { fixed: true }) => ReactNode
 };
 
 export const controls = [
@@ -61,16 +55,12 @@ export const controls = [
   { key: 'closing', label: '结语', type: 'text', default: '不同案例共同指向同一个问题：技术优势能否转成可持续收入。' },
   { key: 'cardCount', label: '卡片数量', type: 'slider', default: 3, min: 1, max: 3, step: 1,
     description: '展示的案例卡数量（1–3）。' },
-  { key: 'imageCount', label: '图片数量', type: 'slider', default: 3, min: 0, max: 3, step: 1,
-    description: '带图片槽的卡片数量（0–n）；其余卡片以品牌图形填充，保持构图完整。' },
-  { key: 'imageRatio', label: '图片比例', type: 'radio', default: 'portrait',
+  { key: 'imageCount', label: '图片呈现', type: 'radio', default: 3,
     options: [
-      { value: 'portrait', label: '竖图' },
-      { value: 'landscape', label: '横图' },
-      { value: 'square', label: '方形' },
-      { value: 'auto', label: '自适应' },
+      { value: 0, label: '纯色纹理' },
+      { value: 3, label: '全部图片' },
     ],
-    description: '图片槽的比例；自适应会跟随用户上传图片的原始比例。' },
+    description: '仅支持两种模式：所有卡片使用绿色纹理，或所有卡片使用图片。' },
   { key: 'focusEnabled', label: '重点信息', type: 'toggle', default: true,
     description: '是否高亮某一张案例卡作为视觉重点。' },
   { key: 'focusIndex', label: '重点元素', type: 'select', default: 0,
@@ -115,16 +105,29 @@ const CSS = `
   font-weight: 600; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--aic-ink);
   background: var(--aic-accent); padding: 6px 13px; border-radius: 999px; }
 
-.aic-case .cs-imgbox { position: relative; width: 100%; overflow: hidden; background: var(--aic-accent-soft); }
-.aic-case .cs-imgbox.fixed > * { position: absolute; inset: 0; width: 100%; height: 100%; }
-.aic-case .cs-imgbox.auto { min-height: 200px; }
-.aic-case .cs-imgbox.auto > * { width: 100%; display: block; }
+.aic-case .cs-imgbox { position: relative; width: 100%; height: 232px; flex: 0 0 232px;
+  overflow: hidden; background: var(--aic-accent-soft); }
+.aic-case .cs-imgbox > * { position: absolute; inset: 0; width: 100%; height: 100%; }
 .aic-case .cs-ph { width: 100%; height: 100%; display: grid; place-items: center; }
 .aic-case .cs-ph-cap { position: absolute; left: 0; right: 0; bottom: 20px; text-align: center;
   font-family: var(--aic-font-display); font-weight: 500; font-size: 17px; letter-spacing: .06em;
   color: var(--aic-ink-dim); }
 .aic-case .cs-deco-fill { width: 100%; height: 100%; position: relative; overflow: hidden;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--aic-accent-bright) 70%, white), var(--aic-accent) 92%); }
+  background:
+    radial-gradient(circle at 20% 22%, rgba(255,255,255,.34) 0 9%, transparent 10% 29%),
+    radial-gradient(circle at 82% 18%, color-mix(in srgb, var(--aic-accent) 46%, transparent) 0 12%, transparent 13% 34%),
+    repeating-linear-gradient(135deg,
+      color-mix(in srgb, var(--aic-accent-bright) 70%, white) 0 12px,
+      color-mix(in srgb, var(--aic-accent) 88%, white) 12px 24px),
+    linear-gradient(135deg, color-mix(in srgb, var(--aic-accent-bright) 76%, white), var(--aic-accent) 92%); }
+.aic-case .cs-deco-fill::before { content: ""; position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(14,17,11,.08) 0 1px, transparent 1px 18px),
+    repeating-linear-gradient(0deg, rgba(14,17,11,.08) 0 1px, transparent 1px 18px);
+  mix-blend-mode: multiply; opacity: .58; }
+.aic-case .cs-deco-fill::after { content: ""; position: absolute; inset: 18px; border: 1.5px solid rgba(14,17,11,.16);
+  border-radius: 18px; pointer-events: none; }
+.aic-case .cs-deco-fill .aic-viz-lens { position: absolute; inset: 18px; opacity: .62; }
 
 .aic-case .cs-meta { flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 26px 28px 28px; }
 .aic-case .cs-logic { font-family: var(--aic-font-display); font-weight: 600; font-size: 17px;
@@ -152,7 +155,7 @@ const DECO = ['pos','accent','pos','warn','neg','pos','accent','pos','warn','acc
   'accent','pos','pos','neg','warn','accent','pos','pos','warn','accent'].map((tone) => ({ tone }));
 
 // striped placeholder — used when no host `renderSlot` is supplied
-function Placeholder({ i, ratioAR }) {
+function Placeholder({ i }) {
   const pid = 'csph-' + i;
   return (
     <div className="cs-ph">
@@ -181,10 +184,8 @@ export default function CasePage(props) {
   const n = Math.max(1, Math.min(3, p.cardCount));
   const cases = copy.cases.slice(0, n);
   const focus = Math.max(0, Math.min(n - 1, p.focusIndex));
-  const imgN = Math.max(0, Math.min(n, p.imageCount));
-  const ratio = RATIO_AR.hasOwnProperty(p.imageRatio) ? p.imageRatio : 'portrait';
-  const ratioAR = RATIO_AR[ratio];
-  const isAuto = ratioAR == null;
+  const imageCountValue = Number(p.imageCount);
+  const useImages = Number.isFinite(imageCountValue) && imageCountValue >= n;
 
   return (
     <div className="aic-case" style={vars}>
@@ -202,15 +203,13 @@ export default function CasePage(props) {
 
       <div className="cs-grid" style={{ gridTemplateColumns: `repeat(${n}, 1fr)` }}>
         {cases.map((c, i) => {
-          const hasImage = i < imgN;
-          const boxStyle = isAuto ? {} : { aspectRatio: String(ratioAR) };
           return (
             <div className="cs-card" key={c.en} data-focus={p.focusEnabled && i === focus ? '1' : '0'}>
               {p.showDecorations && p.focusEnabled && i === focus && <span className="cs-badge">重点</span>}
-              <div className={'cs-imgbox ' + (isAuto && hasImage ? 'auto' : 'fixed')} style={boxStyle}>
-                {hasImage
-                  ? (p.renderSlot ? p.renderSlot(i, { ratio, ratioAR })
-                                  : <Placeholder i={i} ratioAR={ratioAR} />)
+              <div className="cs-imgbox">
+                {useImages
+                  ? (p.renderSlot ? p.renderSlot(i, { fixed: true })
+                                  : <Placeholder i={i} />)
                   : <div className="cs-deco-fill"><LensCluster /></div>}
               </div>
               <div className="cs-meta">

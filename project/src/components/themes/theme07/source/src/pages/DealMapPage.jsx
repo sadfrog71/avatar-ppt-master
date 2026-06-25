@@ -178,6 +178,7 @@ export default function DealMapPage(props) {
 
   // bubble radius for an individual deal of a given band-mid amount
   const dotR = (mid) => (3.4 + Math.sqrt(mid) * 2.6) * scale;
+  const clusterR = (total) => Math.min(colW * 0.48, (26 + Math.sqrt(total) * 3.1) * scale);
 
   // build scatter points per band (grid + jitter, bottom-aligned)
   const scatter = bands.map((b, bi) => {
@@ -256,7 +257,7 @@ export default function DealMapPage(props) {
           {p.viewMode === 'cluster'
             ? scatter.map(({ band, bi, cx }) => {
                 const isF = p.focusEnabled && bi === focus;
-                const r = Math.min(colW * 0.42, (10 + Math.sqrt(band.total) * 2.0) * scale);
+                const r = clusterR(band.total);
                 const cy = baseline - r - 8;
                 return (
                   <g key={band.range} opacity={p.focusEnabled && !isF ? 0.42 : 1}>

@@ -246,7 +246,7 @@ function replaceTheme05Text(node, replacements) {
                       return (
                         <div key={i} style={{ flex: `${grow} 1 0`, minWidth: 0 }}>
                           <Frame
-                            src={im.src || null}
+                            src={im || null}
                             ar={im.ar || null}
                             fill={true}
                             editable={p.editable !== false}

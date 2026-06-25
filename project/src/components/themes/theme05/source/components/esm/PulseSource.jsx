@@ -114,9 +114,9 @@ function replaceTheme05Text(node, replacements) {
       description: "投资人类型环图的分段数量。" },
     { key: "chartType", type: "radio", label: "图表类型", default: "donut",
       options: [{ value: "donut", label: "环形" }, { value: "pie", label: "饼图" }],
-      description: "占比图呈现方式：环形（中心显示重点）/ 饼图。" },
+      description: "占比图呈现方式：环形 / 饼图，均可突出重点读数。" },
     { key: "focusEnabled", type: "toggle", label: "重点类型", default: true,
-      description: "是否突出某一类型（环形中心显示该项）。" },
+      description: "是否突出某一类型（图表和读数同步强调该项）。" },
     { key: "focusIndex", type: "slider", label: "重点类型序号", default: 1, min: 1, max: 4, step: 1,
       description: "被突出的投资人类型序号（从 1 起）。" },
     { key: "showLegend", type: "toggle", label: "类型图例", default: true,
@@ -150,6 +150,15 @@ function replaceTheme05Text(node, replacements) {
     const ringR = isPie ? R / 2 : R;
     const ringC = isPie ? Math.PI * R : C;
     let acc = 0;
+    const segments = types.map((s, i) => {
+      const frac = s.v / total;
+      const seg = { ...s, i, frac, start: acc, isFocus: p.focusEnabled && i === focusIdx };
+      acc += frac;
+      return seg;
+    });
+    const chartSegments = isPie && p.focusEnabled
+      ? [...segments.filter(s => !s.isFocus), ...segments.filter(s => s.isFocus)]
+      : segments;
 
     const nNode = Math.max(2, Math.min(COPY.nodes.length, p.nodeCount));
     const nodes = COPY.nodes.slice(0, nNode);
@@ -170,22 +179,26 @@ function replaceTheme05Text(node, replacements) {
           <div className="pulse-src__top">
             <div className="pulse-src__donut">
               <svg viewBox="0 0 100 100">
-                {types.map((s, i) => {
-                  const frac = s.v / total;
-                  const len = frac * ringC;
-                  const off = -acc * ringC;
-                  acc += frac;
-                  const isFocus = p.focusEnabled && i === focusIdx;
-                  const w = isPie ? R : (isFocus ? 21 : 15);
+                {chartSegments.map((s) => {
+                  const len = s.frac * ringC;
+                  const off = -s.start * ringC;
+                  const w = isPie ? (s.isFocus ? R + 8 : R) : (s.isFocus ? 21 : 15);
                   return (
-                    <circle key={i} className="pulse-src__donut-seg" cx="50" cy="50"
+                    <circle key={s.i}
+                      className={
+                        "pulse-src__donut-seg" +
+                        (isPie ? " pulse-src__donut-seg--pie" : "") +
+                        (s.isFocus ? " pulse-src__donut-seg--focus" : "") +
+                        (isPie && p.focusEnabled && !s.isFocus ? " pulse-src__donut-seg--dim" : "")
+                      }
+                      cx="50" cy="50"
                       r={ringR} stroke={s.c} strokeWidth={w}
                       strokeDasharray={`${len} ${ringC - len}`} strokeDashoffset={off} />
                   );
                 })}
               </svg>
-              {!isPie && (
-                <div className="pulse-src__donut-center">
+              {(!isPie || p.focusEnabled) && (
+                <div className={"pulse-src__donut-center" + (isPie ? " pulse-src__donut-center--pie" : "")}>
                   <div className="pulse-src__donut-num">{focus.v}%</div>
                   <div className="pulse-src__donut-cap">{focus.name}</div>
                 </div>

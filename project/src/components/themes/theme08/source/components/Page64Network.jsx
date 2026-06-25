@@ -29,7 +29,7 @@ export default function Page64Network(props) {
   const items = nodes.slice(0, Math.max(3, nodeCount));
   const pos = layout[items.length] || layout[4];
   const photoNodes = Math.min(mediaCount, items.length);
-  const fIdx = Math.min(focusIndex, items.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, items.length - 1));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
   const hub = { x: 12, y: 50 };
 
@@ -241,7 +241,7 @@ Page64Network.controls = [
     label: '节点标注', desc: '各节点的角色标注 显隐' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否高亮某一个生态节点' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, maxFrom: 'nodeCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 3, maxFrom: 'nodeCount', step: 1,
     label: '重点对象', desc: '被高亮的节点序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘装饰与贴纸标签的显示/隐藏' },

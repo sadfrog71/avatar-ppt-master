@@ -26,7 +26,7 @@ export default function Page60OtherRegions(props) {
   const pts = nodes.slice(0, Math.max(3, nodeCount));
   const chips = tags.slice(0, Math.max(2, tagCount));
   const tiles = metrics.slice(0, Math.max(2, metricCount));
-  const fIdx = Math.min(focusIndex, pts.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, pts.length - 1));
   const nMedia = Math.min(mediaCount, pts.length);
   const HUB = { l: 50, t: 46 };
   const accents = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-red)', 'var(--acl-ink)'];
@@ -268,7 +268,7 @@ Page60OtherRegions.controls = [
     label: '数值标签', desc: '各节点的融资额数值 显隐' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否突出某一个区域节点' },
-  { key: 'focusIndex', type: 'number', default: 0, min: 0, maxFrom: 'nodeCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 0, min: 0, max: 3, maxFrom: 'nodeCount', step: 1,
     label: '重点对象', desc: '被突出的节点序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘装饰与贴纸标签 显隐' },

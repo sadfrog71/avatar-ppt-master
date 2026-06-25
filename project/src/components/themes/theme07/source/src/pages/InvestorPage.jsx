@@ -7,11 +7,11 @@
  *
  * ── Image slots (migration note) ───────────────────────────────────────────
  * Host-agnostic: the page does NOT hard-depend on any web component. Fillable
- * slots are supplied by the host via `renderSlot(i, { ratio, ratioAR }) =>
- * ReactNode`. When omitted, a striped placeholder renders, so the page works
- * (and exports) standalone. Cell count is prop-driven (0–4) and the row stays
- * balanced at every count and aspect ratio. At count 0 the wall falls back to
- * the brand lens graphic so the composition never breaks.
+ * slots are supplied by the host via
+ * `renderSlot(i, { ratio, ratioAR, preserveVideoSize, adaptiveMedia }) =>
+ * ReactNode`. Videos can keep their native dimensions while image slots still
+ * follow the page ratio / auto-ratio mode. When omitted, a striped placeholder
+ * renders, so the page works (and exports) standalone.
  *
  * Self-contained & prop-driven. Scoped under `.aic-inv`.
  * Shared deps: ./theme.js (tokens), ./viz.jsx (BigNumber, LensCluster, HeatStrip).
@@ -53,7 +53,7 @@ export const defaultProps = {
   showAnchor: true,       // anchor figure (active-institution count)
   showDecorations: true,  // glow + heat strip
   accentColor: THEME.accent,
-  renderSlot: null,       // host hook: (i, { ratio, ratioAR }) => ReactNode
+  renderSlot: null,       // host hook: (i, { ratio, ratioAR, preserveVideoSize, adaptiveMedia }) => ReactNode
 };
 
 export const controls = [
@@ -129,10 +129,11 @@ const CSS = `
 .aic-inv .iv-cell.brand { height: 100%; aspect-ratio: var(--ar); max-width: 100%; }
 .aic-inv .iv-cell[data-focus="1"] { border-color: var(--aic-accent); transform: translateY(-8px);
   box-shadow: 0 22px 48px -22px color-mix(in srgb, var(--aic-accent) 70%, transparent); }
-.aic-inv .iv-slot { position: absolute; inset: 0; }
+.aic-inv .iv-slot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
 .aic-inv .iv-slot > * { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .aic-inv .iv-cell.auto .iv-slot { position: relative; inset: auto; }
 .aic-inv .iv-cell.auto .iv-slot > * { position: relative; inset: auto; width: 100%; height: auto; }
+.aic-inv .iv-slot > [data-dashi-video-native="true"] { position: relative; inset: auto; width: auto; height: auto; max-width: 100%; max-height: 100%; }
 .aic-inv .iv-deco-fill { width: 100%; height: 100%; position: relative; overflow: hidden;
   background: linear-gradient(135deg, color-mix(in srgb, var(--aic-accent-bright) 70%, white), var(--aic-accent) 92%); }
 
@@ -241,7 +242,9 @@ export default function InvestorPage(props) {
                 data-focus={isF ? '1' : '0'}
                 style={isAuto ? null : { '--ar': String(ratioAR) }}>
                 <div className="iv-slot">
-                  {p.renderSlot ? p.renderSlot(i, { ratio, ratioAR }) : <Placeholder i={i} auto={isAuto} />}
+                  {p.renderSlot
+                    ? p.renderSlot(i, { ratio, ratioAR, preserveVideoSize: true, adaptiveMedia: isAuto })
+                    : <Placeholder i={i} auto={isAuto} />}
                 </div>
                 <span className="iv-rank">{i + 1}</span>
                 {p.showLabels && (

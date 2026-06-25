@@ -34,7 +34,7 @@
 //   accent (color)
 // ============================================================================
 import React from 'react';
-import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
+import { KxEyebrow, KxGrid, KxMediaSlotColumn } from './kit.jsx';
 
 if (typeof document !== 'undefined' && !document.getElementById('kx-stg-css')) {
   const css = `
@@ -117,8 +117,8 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-stg-css')) {
   .kx-stg-row.kx-on .kx-rtag{background:var(--kx-ink);color:var(--kx-accent);}
 
   /* media column */
-  .kx-stg-media{display:flex;flex-direction:column;gap:18px;min-height:0;justify-content:center;}
-  .kx-stg-media .kx-imgslot{flex:none;border-radius:22px;}
+  .kx-stg-media{display:flex;flex-direction:column;gap:18px;min-height:0;height:100%;overflow:hidden;justify-content:stretch;}
+  .kx-stg-media .kx-imgslot{flex:1 1 0;min-height:0;max-height:100%;border-radius:22px;}
 
   /* foot */
   .kx-stg-foot{display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--kx-line);}
@@ -186,15 +186,17 @@ function SlideStrategy(props) {
     p.layout === 'rows' || slots > 0 ? rows : tiles);
 
   // ---- media column ----------------------------------------------------
-  const media = slots > 0 ? h('div', { className: 'kx-stg-media' },
-    Array.from({ length: slots }, (_, i) =>
-      h(KxImageSlot, {
-        key: i, id: 'strategy-' + (p.eyebrowId || 'x') + '-' + i,
-        placeholder: p.mediaPlaceholder || '方向示意 / DROP IMAGE',
-        badge: slots === 1 ? p.stanceTag : ('IMG ' + String(i + 1).padStart(2, '0')),
-        minRatio: slots === 1 ? 0.78 : 0.9, maxRatio: slots === 1 ? 1.5 : 1.9,
-        style: { width: '100%' },
-      }))) : null;
+  const media = h(KxMediaSlotColumn, {
+    className: 'kx-stg-media',
+    slots,
+    idBase: 'strategy-' + (p.eyebrowId || 'x'),
+    placeholder: p.mediaPlaceholder || '方向示意 / DROP IMAGE',
+    badge: p.stanceTag,
+    minRatio: 0.78,
+    maxRatio: 1.5,
+    multiMinRatio: 0.9,
+    multiMaxRatio: 1.9,
+  });
 
   return h('div', { className: 'kx-slide kx-dark', style: { '--kx-accent': p.accent } },
     h(KxGrid, { cols: 6 }),
@@ -239,20 +241,22 @@ SlideStrategy.defaults = {
   focusEnabled: true, focusIndex: 0, showTag: true, showBadge: true, accent: '#c8f135',
 };
 
-SlideStrategy.controls = [
-  { key: 'cardCount', label: '方向数量', type: 'number', default: 4, min: 2, max: 5, desc: '展示的推荐方向数量' },
+SlideStrategy.controlsFor = ({ maxCardCount = 4, defaultCardCount = 4 } = {}) => [
+  { key: 'cardCount', label: '方向数量', type: 'number', default: defaultCardCount, min: 2, max: maxCardCount, desc: '展示的推荐方向数量' },
   { key: 'layout', label: '方向排布', type: 'select', default: 'cards',
     options: [['cards', '方向卡'], ['rows', '列表行']], desc: '推荐方向的呈现形式（有图片时自动转列表行）' },
   { key: 'mediaSlotCount', label: '图片槽数量', type: 'number', default: 0, min: 0, max: 2,
     desc: '右侧自适应图片槽数量（0 时方向卡占满；上传后按图片比例自适应，构图随数量重排）' },
   { key: 'watchCount', label: '筛选清单条数', type: 'number', default: 4, min: 0, max: 4, desc: '左侧筛选指标清单条数（0 隐藏整列）' },
   { key: 'focusEnabled', label: '重点方向高亮', type: 'toggle', default: true, desc: '是否把某一方向拉成实心强调（最优先推荐）' },
-  { key: 'focusIndex', label: '高亮第几个', type: 'number', default: 0, min: 0, max: 4, desc: '被突出的方向序号', showIf: (p) => p.focusEnabled },
+  { key: 'focusIndex', label: '高亮第几个', type: 'number', default: 0, min: 0, max: maxCardCount - 1, desc: '被突出的方向序号', showIf: (p) => p.focusEnabled },
   { key: 'showTag', label: '方向标签', type: 'toggle', default: true, desc: '显示/隐藏每个方向的标签芯片（装饰）' },
   { key: 'showBadge', label: '区块徽标', type: 'toggle', default: true, desc: '显示/隐藏策略 / 方向区徽标（装饰）' },
   { key: 'accent', label: '强调色', type: 'color', default: '#c8f135',
     options: ['#c8f135', '#ff5a3c', '#3ca0ff', '#ffd23c'], desc: '主强调色' },
 ];
+
+SlideStrategy.controls = SlideStrategy.controlsFor();
 
 // P78 嵌入工作流 / 筛选垂直应用 — reuse this strategy page via a preset passed as props.
 // Image-led variant: a workflow-embedding diagram slot + scenario rows.

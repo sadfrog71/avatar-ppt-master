@@ -22,7 +22,7 @@ export default function Page50EarlyStage(props) {
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
   const shown = rows.slice(0, Math.max(2, rowCount));
-  const fIdx = Math.min(focusIndex, shown.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, shown.length - 1));
   const maxAmt = Math.max(...shown.map((r) => r.amount));
 
   return (
@@ -238,7 +238,7 @@ Page50EarlyStage.controls = [
     label: '信号评级', desc: '信号强度的菱形评级显示/隐藏' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否高亮某一行' },
-  { key: 'focusIndex', type: 'number', default: 1, min: 0, maxFrom: 'rowCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 1, min: 0, max: 3, maxFrom: 'rowCount', step: 1,
     label: '重点对象', desc: '被高亮的行序号(从 0 起)' },
   { key: 'showStat', type: 'boolean', default: true,
     label: '底部统计', desc: '右下角统计徽标的显示/隐藏' },

@@ -1,4 +1,5 @@
 import {
+  normalizeControlOptions,
   normalizeControlValue,
   normalizePublicControls,
   resolvePublicPropAliases,
@@ -505,7 +506,7 @@ function normalizeControl(control, defaults) {
     min: resolveControlValue(control.min, defaults),
     max: resolveControlValue(control.max, defaults),
     step: serializeValue(control.step),
-    options: normalizeControlValue(serializeValue(control.options)),
+    options: normalizeControlOptions(serializeValue(control.options)),
     countKey: serializeValue(control.countKey),
     countIndex: serializeValue(control.countIndex),
     countArrays: serializeValue(control.countArrays),

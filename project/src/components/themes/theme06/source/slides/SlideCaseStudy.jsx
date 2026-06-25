@@ -41,7 +41,7 @@
 //   accent (color)
 // ============================================================================
 import React from 'react';
-import { KxEyebrow, KxGrid, KxImageSlot } from './kit.jsx';
+import { KxEyebrow, KxGrid, KxMediaSlotColumn } from './kit.jsx';
 
 if (typeof document !== 'undefined' && !document.getElementById('kx-cas-css')) {
   const css = `
@@ -58,9 +58,9 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-cas-css')) {
   .kx-cas-idx{font-family:var(--kx-mono);font-size:24px;color:var(--kx-mute-2);letter-spacing:.06em;}
   .kx-cas-idx b{color:var(--kx-accent);font-weight:700;}
 
-  .kx-cas-main{flex:1;min-height:0;display:grid;column-gap:60px;padding:30px 0 8px;}
+  .kx-cas-main{flex:1;min-height:0;display:grid;column-gap:52px;padding:30px 0 8px;}
   /* left column */
-  .kx-cas-left{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--kx-line);padding-right:52px;}
+  .kx-cas-left{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--kx-line);padding-right:44px;}
   .kx-cas-badge{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;
     font-family:var(--kx-mono);font-size:23px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
     background:var(--kx-accent);color:var(--kx-ink);padding:7px 15px;}
@@ -82,6 +82,7 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-cas-css')) {
     border-bottom:1px solid var(--kx-line);display:flex;flex-direction:column;gap:7px;min-width:0;}
   .kx-cas-metrics.kx-1col{grid-template-columns:1fr;}
   .kx-cas-mcard:nth-child(2n){border-right:none;padding-right:0;}
+  .kx-cas-mcard:last-child:nth-child(odd){grid-column:1 / -1;border-right:none;padding-right:0;}
   .kx-cas-metrics.kx-1col .kx-cas-mcard{border-right:none;padding-right:0;}
   .kx-cas-mcard.kx-on{background:linear-gradient(180deg,color-mix(in srgb,var(--kx-accent) 14%,transparent),transparent 82%);
     padding-left:16px;}
@@ -93,8 +94,9 @@ if (typeof document !== 'undefined' && !document.getElementById('kx-cas-css')) {
   .kx-cas-tags{margin-top:16px;}
   .kx-cas-tags .kx-chip{font-size:21px;padding:7px 13px;}
   /* right: media column */
-  .kx-cas-media{display:flex;flex-direction:column;gap:18px;min-height:0;justify-content:center;}
-  .kx-cas-media .kx-imgslot{flex:none;}
+  .kx-cas-media{display:flex;flex-direction:column;gap:18px;height:calc(100% - 18px);min-height:0;max-height:100%;
+    justify-content:stretch;overflow:hidden;}
+  .kx-cas-media .kx-imgslot{flex:1 1 0;min-height:0;max-height:100%;aspect-ratio:auto;}
   /* right: stat mosaic (zero-slot) */
   .kx-cas-mosaic{display:flex;flex-direction:column;min-height:0;justify-content:center;}
   .kx-cas-moscap{font-family:var(--kx-mono);font-size:23px;color:var(--kx-mute-2);letter-spacing:.05em;
@@ -128,7 +130,7 @@ function SlideCaseStudy(props) {
   const showMosaic = slots === 0;
   const tags = p.tags.slice(0, clamp(p.tagCount, 0, p.tags.length));
 
-  const mainCols = showMosaic ? '0.92fr 1.08fr' : slots === 2 ? '0.96fr 1.04fr' : '0.86fr 1.14fr';
+  const mainCols = showMosaic ? '0.92fr 1.08fr' : slots === 2 ? '1.06fr 0.94fr' : '1fr 1fr';
 
   // ---- left column -----------------------------------------------------
   const left = h('div', { className: 'kx-cas-left' },
@@ -163,15 +165,17 @@ function SlideCaseStudy(props) {
 
   // ---- right column: adaptive image slots ------------------------------
   const media = showMosaic ? mosaic
-    : h('div', { className: 'kx-cas-media' },
-        Array.from({ length: slots }, (_, i) =>
-          h(KxImageSlot, {
-            key: i, id: 'cas-' + (p.eyebrowId || 'x') + '-' + i,
-            placeholder: p.mediaPlaceholder || '案例主视觉 / DROP IMAGE',
-            badge: slots === 1 ? p.caseTag : ('IMG ' + String(i + 1).padStart(2, '0')),
-            minRatio: slots === 1 ? 0.78 : 1.3, maxRatio: slots === 1 ? 1.5 : 2.2,
-            style: { width: '100%' },
-          })));
+    : h(KxMediaSlotColumn, {
+        className: 'kx-cas-media',
+        slots,
+        idBase: 'cas-' + (p.eyebrowId || 'x'),
+        placeholder: p.mediaPlaceholder || '案例主视觉 / DROP IMAGE',
+        badge: p.caseTag,
+        minRatio: 0.78,
+        maxRatio: 1.5,
+        multiMinRatio: 1.3,
+        multiMaxRatio: 2.2,
+      });
 
   const footRt = showMosaic ? (metrics.length + 1) + ' FIGURES / MOSAIC'
     : slots + ' IMG / MEDIA';

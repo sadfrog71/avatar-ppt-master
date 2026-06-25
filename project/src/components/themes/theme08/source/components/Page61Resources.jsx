@@ -25,7 +25,7 @@ export default function Page61Resources(props) {
       : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
   const items = pillars.slice(0, Math.max(2, pillarCount));
-  const fIdx = Math.min(focusIndex, items.length - 1);
+  const fIdx = Math.max(0, Math.min(Number(focusIndex) || 0, items.length - 1));
   const marks = ['heart', 'star', 'spark'];
   const accents = ['var(--acl-pink)', 'var(--acl-blue)', 'var(--acl-red)'];
 
@@ -171,7 +171,7 @@ Page61Resources.controls = [
     label: '背景大字', desc: '倾斜大号背景装饰字的显示/隐藏' },
   { key: 'focusEnabled', type: 'boolean', default: true,
     label: '重点强调', desc: '是否突出某一张要素卡' },
-  { key: 'focusIndex', type: 'number', default: 2, min: 0, maxFrom: 'pillarCount', step: 1,
+  { key: 'focusIndex', type: 'number', default: 2, min: 0, max: 2, maxFrom: 'pillarCount', step: 1,
     label: '重点对象', desc: '被突出的要素卡序号(从 0 起)' },
   { key: 'showDecor', type: 'boolean', default: true,
     label: '装饰元素', desc: '手绘火花与贴纸标签的显示/隐藏' },

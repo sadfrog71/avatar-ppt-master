@@ -34,9 +34,11 @@ const COPY = {
   ],
   // capital-source evolution nodes
   nodes: [
-    { year: '2020 — 22', title: 'VC 主导', note: '经典风险投资定义估值锚' },
+    { year: '2020', title: 'VC 主导', note: '经典风险投资定义估值锚' },
+    { year: '2021 — 22', title: '成长基金跟进', note: '后期资金开始放大单笔规模' },
     { year: '2023', title: '战略资本进入', note: '大厂与产业方开始战略持股' },
-    { year: '2024', title: '产业资本混合', note: 'VC 与产业资本共同主导大额轮' },
+    { year: '2024 H1', title: '云资源入局', note: '算力额度成为交易条件' },
+    { year: '2024 H2', title: '产业资本混合', note: 'VC 与产业资本共同主导大额轮' },
   ],
 };
 
@@ -57,7 +59,7 @@ export const defaultProps = {
   focusIndex: 0,          // which segment is the focus (0-based)
   showLegend: true,       // legend list (donut mode)
   showTimeline: true,     // capital-source evolution timeline
-  nodeCount: 3,           // timeline node count (2–3)
+  nodeCount: 3,           // timeline node count (2–5)
   showDecorations: true,  // glow + heat strip
   accentColor: THEME.accent,
 };
@@ -87,8 +89,8 @@ export const controls = [
     description: '环形图右侧图例列表的显隐。', showWhen: (p) => p.chartType === 'donut' },
   { key: 'showTimeline', label: '阶段时间轴', type: 'toggle', default: true,
     description: '底部资本来源演进时间轴的显隐。' },
-  { key: 'nodeCount', label: '节点数量', type: 'slider', default: 3, min: 2, max: 3, step: 1,
-    description: '时间轴上的阶段节点数量（2–3）。', showWhen: (p) => p.showTimeline },
+  { key: 'nodeCount', label: '节点数量', type: 'slider', default: 3, min: 2, max: 5, step: 1,
+    description: '时间轴上的阶段节点数量（2–5）。', showWhen: (p) => p.showTimeline },
   { key: 'showDecorations', label: '装饰文案', type: 'toggle', default: true,
     description: '背景光晕与条码等装饰的显隐。' },
   { key: 'accentColor', label: '主题色', type: 'color', default: THEME.accent,
@@ -158,7 +160,7 @@ const CSS = `
 .aic-imx .im-tl-year { font-family: var(--aic-font-display); font-weight: 700; font-size: 28px; color: var(--aic-ink);
   font-variant-numeric: tabular-nums; transform: skewX(-9deg); transform-origin: left bottom; display: inline-block; }
 .aic-imx .im-tl-ttl { font-family: var(--aic-font-text); font-weight: 700; font-size: 25px; color: var(--aic-ink); margin: 8px 0 4px; }
-.aic-imx .im-tl-note { font-family: var(--aic-font-text); font-weight: 500; font-size: 20px; color: var(--aic-muted); line-height: 1.35; max-width: 400px; }
+.aic-imx .im-tl-note { font-family: var(--aic-font-text); font-weight: 500; font-size: 20px; color: var(--aic-muted); line-height: 1.35; max-width: 300px; }
 
 .aic-imx .im-foot { position: absolute; left: var(--pad); right: var(--pad); bottom: 64px;
   display: flex; align-items: center; justify-content: space-between; gap: 48px; }

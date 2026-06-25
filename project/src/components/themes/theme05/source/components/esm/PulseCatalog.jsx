@@ -196,7 +196,7 @@ function replaceTheme05Text(node, replacements) {
 
                   {isSlot && (
                     <div className="pulse-cat__img">
-                      <Frame src={im.src || null} ar={im.ar || null} fill={true}
+                      <Frame src={im || null} ar={im.ar || null} fill={true}
                         editable={p.editable !== false} label={"NO." + (i + 1)} placeholder="拖入图片"
                         onChange={(src, ar) => p.onImageChange && p.onImageChange(i, src, ar)} />
                     </div>

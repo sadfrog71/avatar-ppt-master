@@ -22,13 +22,22 @@ export default function Page31Triptych(props) {
     : 'linear-gradient(168deg, #F4F66C 0%, #ECEF35 44%, #E2E62A 100%)';
 
   const cards = branches.slice(0, Math.max(0, cardCount));
+  const isEmpty = cards.length === 0;
+  const isSingle = cards.length === 1;
   const fIdx = Math.min(focusIndex, Math.max(0, cards.length - 1));
   const accents = ['var(--acl-yellow)', 'var(--acl-blue)', 'var(--acl-pink)', 'var(--acl-paper)'];
   // image box shrinks a touch as card count grows so the row stays balanced.
-  const box = cards.length <= 2 ? 460 : cards.length === 3 ? 392 : 300;
+  const box = isSingle ? 520 : cards.length === 2 ? 460 : cards.length === 3 ? 392 : 300;
+  const rootClass = [
+    'acl-root',
+    'acl-tp',
+    isEmpty ? 'acl-tp--empty' : '',
+    isSingle ? 'acl-tp--single' : '',
+    !showStrip ? 'acl-tp--no-strip' : '',
+  ].filter(Boolean).join(' ');
 
   return (
-    <div className="acl-root acl-tp" style={{ background: bg }}>
+    <div className={rootClass} style={{ background: bg }}>
       <style>{`
         .acl-tp{ position:absolute; inset:0; overflow:hidden; font-family:var(--acl-font-cn);
           color:var(--acl-ink); padding:78px 100px 70px; display:flex; flex-direction:column; }
@@ -44,8 +53,6 @@ export default function Page31Triptych(props) {
           -webkit-box-decoration-break:clone;  white-space:nowrap;}
 
         .acl-tp__body{ flex:1; display:flex; gap:34px; margin-top:28px; min-height:0; }
-        .acl-tp__empty{ flex:1; display:flex; align-items:center; justify-content:center;
-          font-family:var(--acl-font-hand); font-size:36px; color:rgba(22,21,15,.4); transform:rotate(-3deg); }
         .acl-tp__card{ flex:1; position:relative; background:var(--acl-paper); border:3px solid var(--acl-ink);
           box-shadow:8px 10px 0 rgba(22,21,15,.16); padding:22px 22px 24px; display:flex; flex-direction:column;
           align-items:center; min-width:0; }
@@ -69,6 +76,19 @@ export default function Page31Triptych(props) {
         .acl-tp__card--focus .acl-tp__rank{ background:var(--acl-yellow); color:var(--acl-ink); }
         .acl-tp__fx{ position:absolute; top:-20px; right:-12px; z-index:7; }
 
+        .acl-tp--single .acl-tp__body{ margin-top:34px; }
+        .acl-tp--single .acl-tp__card{ flex-direction:row; align-items:stretch; gap:44px; padding:34px 42px; }
+        .acl-tp--single .acl-tp__imgzone{ flex:0 1 54%; width:auto; }
+        .acl-tp--single .acl-tp__meta{ flex:1; min-width:0; margin-top:0; text-align:left; display:flex;
+          flex-direction:column; justify-content:center; }
+        .acl-tp--single .acl-tp__name{ font-size:72px; line-height:.95; overflow-wrap:anywhere; }
+        .acl-tp--single .acl-tp__en{ font-size:20px; margin-top:12px; }
+        .acl-tp--single .acl-tp__val{ font-size:128px; margin-top:28px; }
+        .acl-tp--single .acl-tp__note{ font-family:var(--acl-font-cn); font-size:22px; font-weight:700;
+          line-height:1.35; letter-spacing:0; max-width:520px; overflow-wrap:anywhere; }
+        .acl-tp--single .acl-tp__rank{ width:66px; height:66px; top:-24px; left:-18px; font-size:40px; }
+        .acl-tp--single .acl-tp__fx{ top:24px; right:28px; }
+
         .acl-tp__strip{ flex:0 0 auto; margin-top:22px; display:flex; align-items:center; gap:0;
           border:3px solid var(--acl-ink); }
         .acl-tp__stripcell{ flex:1; padding:13px 24px; display:flex; align-items:baseline; gap:12px;
@@ -81,6 +101,17 @@ export default function Page31Triptych(props) {
 
         .acl-tp__foot{ display:flex; align-items:center; gap:14px; font-family:var(--acl-font-hand);
           font-size:28px; margin-top:14px; flex:0 0 auto; }
+        .acl-tp--empty .acl-tp__strip{ flex:1; margin-top:42px; display:grid;
+          grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:1fr; align-items:stretch; }
+        .acl-tp--empty .acl-tp__stripcell{ flex:none; min-height:0; padding:38px 44px;
+          flex-direction:column; align-items:flex-start; justify-content:center; gap:12px; }
+        .acl-tp--empty .acl-tp__stripcell + .acl-tp__stripcell{ border-left:0; }
+        .acl-tp--empty .acl-tp__stripcell:nth-child(2n){ border-left:3px solid var(--acl-ink); }
+        .acl-tp--empty .acl-tp__stripcell:nth-child(n+3){ border-top:3px solid var(--acl-ink); }
+        .acl-tp--empty .acl-tp__stripcell .sk{ font-size:20px; }
+        .acl-tp--empty .acl-tp__stripcell .sv{ font-size:54px; line-height:1; }
+        .acl-tp--empty .acl-tp__foot{ margin-top:24px; font-size:38px; }
+        .acl-tp--empty.acl-tp--no-strip .acl-tp__foot{ flex:1; justify-content:center; font-size:54px; }
         @media (prefers-reduced-motion:no-preference){
           [data-deck-active] .acl-tp__card{ animation:acl-tp-rise .55s cubic-bezier(.2,.8,.2,1) both;
             animation-delay:calc(var(--i,0) * .1s); }
@@ -97,30 +128,31 @@ export default function Page31Triptych(props) {
         <div className="acl-tp__summary" dangerouslySetInnerHTML={{ __html: summary }} />
       </div>
 
-      <div className="acl-tp__body">
-        {cards.length === 0 && <div className="acl-tp__empty">// 分支数量 = 0</div>}
-        {cards.map((b, i) => {
-          const isF = focusEnabled && i === fIdx;
-          const accent = accents[i % accents.length];
-          return (
-            <div key={i} className={'acl-tp__card' + (isF ? ' acl-tp__card--focus' : '')} style={{ '--i': i }}>
-              <div className="acl-tp__rank">{i + 1}</div>
-              {isF && showDecor && <div className="acl-tp__fx"><Sticker label="高壁垒" sub="MOAT" color="var(--acl-yellow)" subColor="var(--acl-ink)" rotate={6} size={17} /></div>}
-              <div className="acl-tp__imgzone">
-                <AdaptiveImageSlot id={'triptych-' + i} box={box} rotate={i % 2 ? 2 : -2} ratio={0.82}
-                  accent={isF ? 'var(--acl-yellow)' : 'var(--acl-paper)'} placeholder={b.name}
-                  sticker={{ label: b.tag, color: accent, subColor: 'var(--acl-ink)', rotate: i % 2 ? 3 : -3 }} />
+      {!isEmpty && (
+        <div className="acl-tp__body">
+          {cards.map((b, i) => {
+            const isF = focusEnabled && i === fIdx;
+            const accent = accents[i % accents.length];
+            return (
+              <div key={i} className={'acl-tp__card' + (isF ? ' acl-tp__card--focus' : '')} style={{ '--i': i }}>
+                <div className="acl-tp__rank">{i + 1}</div>
+                {isF && showDecor && <div className="acl-tp__fx"><Sticker label="高壁垒" sub="MOAT" color="var(--acl-yellow)" subColor="var(--acl-ink)" rotate={6} size={17} /></div>}
+                <div className="acl-tp__imgzone">
+                  <AdaptiveImageSlot id={'triptych-' + i} box={box} rotate={i % 2 ? 2 : -2} ratio={0.82}
+                    accent={isF ? 'var(--acl-yellow)' : 'var(--acl-paper)'} placeholder={b.name}
+                    sticker={{ label: b.tag, color: accent, subColor: 'var(--acl-ink)', rotate: i % 2 ? 3 : -3 }} />
+                </div>
+                <div className="acl-tp__meta">
+                  <div className="acl-tp__name">{b.name}</div>
+                  <div className="acl-tp__en">{b.en}</div>
+                  {showValue && <div className="acl-tp__val">{b.value}<em>{b.unit}</em></div>}
+                  <div className="acl-tp__note">{b.note}</div>
+                </div>
               </div>
-              <div className="acl-tp__meta">
-                <div className="acl-tp__name">{b.name}</div>
-                <div className="acl-tp__en">{b.en}</div>
-                {showValue && <div className="acl-tp__val">{b.value}<em>{b.unit}</em></div>}
-                <div className="acl-tp__note">{b.note}</div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
 
       {showStrip && (
         <div className="acl-tp__strip">

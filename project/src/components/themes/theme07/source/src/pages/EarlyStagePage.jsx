@@ -39,7 +39,7 @@ const COPY = {
 // ── exported, migration-stable parameter contract ──
 export const defaultProps = {
   ...COPY,
-  rowCount: 4,           // table rows shown (3–4)
+  rowCount: 4,           // table rows shown (2–4)
   showBubble: true,      // average-ticket bubble column (气泡图)
   showThemes: true,      // emerging-theme tag column
   showSignal: true,      // signal/judgment column
@@ -60,8 +60,8 @@ export const controls = [
   { key: 'anchorValue', label: 'anchorValue', type: 'text', default: '20.6%' },
   { key: 'anchorLabel', label: 'anchorLabel', type: 'text', default: '早期轮占全年事件数' },
   { key: 'closing', label: '结语', type: 'text', default: '小金额交易往往藏着下一轮主题。' },
-  { key: 'rowCount', label: '行数量', type: 'slider', default: 4, min: 3, max: 4, step: 1,
-    description: '表格展示的轮次行数量（3–4）。' },
+  { key: 'rowCount', label: '行数量', type: 'slider', default: 4, min: 2, max: 4, step: 1,
+    description: '表格展示的轮次行数量（2–4）。' },
   { key: 'showBubble', label: '气泡列', type: 'toggle', default: true,
     description: '平均单笔气泡列（气泡大小=平均单笔规模）的显隐。' },
   { key: 'showThemes', label: '主题标签列', type: 'toggle', default: true,
@@ -170,7 +170,7 @@ export default function EarlyStagePage(props) {
   injectScopedStyle('aic-es', CSS);
   const vars = themeVars(p.accentColor);
 
-  const n = Math.max(3, Math.min(copy.rows.length, p.rowCount));
+  const n = Math.max(2, Math.min(copy.rows.length, p.rowCount));
   const rows = copy.rows.slice(0, n);
   const focus = Math.max(0, Math.min(n - 1, p.focusIndex));
   const maxAvg = Math.max(...rows.map((r) => r.avg));
