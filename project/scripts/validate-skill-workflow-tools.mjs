@@ -18,6 +18,10 @@ import { npmCommand, npmCommandOptions } from './command-paths.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ACCEPTED_THEME_PACKS = filterAcceptedThemePacks(GENERATED_THEME_PACKS);
+const STYLE_GRID_COLUMNS = 3;
+const STYLE_GRID_ROWS = 4;
+const STYLE_GRID_TILE_ASPECT_RATIO = 2;
+const STYLE_GRID_ASPECT_TOLERANCE = 0.08;
 
 const tests = [
   ['layout-query returns compact media candidates', testLayoutQuery],
@@ -534,7 +538,16 @@ function testSyncedSkillOutput() {
     const sourceStyleGrid = readFileSync(path.join(ROOT, 'assets/skill/theme-style-grid.png'));
     const syncedStyleGrid = readFileSync(path.join(skillRoot, 'assets/skill/theme-style-grid.png'));
     const styleGrid = PNG.sync.read(syncedStyleGrid);
-    assert(styleGrid.height <= Math.ceil(styleGrid.width / ACCEPTED_THEME_KEYS.length), 'synced style grid should be a horizontal accepted-theme strip');
+    assert(
+      ACCEPTED_THEME_KEYS.length === STYLE_GRID_COLUMNS * STYLE_GRID_ROWS,
+      'accepted themes should fill a 3x4 style-choice grid',
+    );
+    const expectedStyleGridAspect = (STYLE_GRID_COLUMNS * STYLE_GRID_TILE_ASPECT_RATIO) / STYLE_GRID_ROWS;
+    const styleGridAspect = styleGrid.width / styleGrid.height;
+    assert(
+      Math.abs(styleGridAspect - expectedStyleGridAspect) <= STYLE_GRID_ASPECT_TOLERANCE,
+      `synced style grid should be a 3x4 grid, got ${styleGrid.width}x${styleGrid.height}`,
+    );
     assert(syncedStyleGrid.equals(sourceStyleGrid), 'synced style grid should match the checked-in style grid image');
 
     const schema = JSON.parse(readFileSync(path.join(skillRoot, 'references/goal-spec.schema.json'), 'utf8'));
