@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+    <!--
+    editorial_zebra
+    Purpose: Narrative comparison table — readability beats density.
+    Header: soft band; body: alternating soft zebra; no verticals; horizontal rules only.
+    Canonical: 4-6 narrative rows + optional verdict row.
+    -->
+    <rect width="1280" height="720" fill="#FFFFFF"/>
+
+    <!-- Eyebrow + title -->
+    <text x="80" y="80" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#64748B" letter-spacing="2">EDITORIAL ZEBRA · NARRATIVE COMPARISON</text>
+    <text x="80" y="120" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="800" fill="#0F172A">Vendor Shortlist Across Decision Criteria</text>
+
+    <g transform="translate(80, 170)">
+        <!-- Header band -->
+        <rect x="0" y="0" width="1120" height="54" fill="#F8FAFC"/>
+        <line x1="0" y1="54" x2="1120" y2="54" stroke="#CBD5E1" stroke-width="2"/>
+        <text x="24" y="34" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">CRITERION</text>
+        <text x="320" y="34" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">VENDOR A</text>
+        <text x="600" y="34" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">VENDOR B</text>
+        <text x="880" y="34" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">VENDOR C</text>
+
+        <!-- Row 1 (white) -->
+        <text x="24" y="90" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Total cost of ownership</text>
+        <text x="320" y="90" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">Modular pricing scales</text>
+        <text x="600" y="90" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">Aggressive entry rate</text>
+        <text x="880" y="90" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">Bundled, fixed annual</text>
+        <line x1="0" y1="112" x2="1120" y2="112" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 2 (zebra) -->
+        <rect x="0" y="112" width="1120" height="56" fill="#F8FAFC" fill-opacity="0.6"/>
+        <text x="24" y="148" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Implementation timeline</text>
+        <text x="320" y="148" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">10-12 weeks, phased</text>
+        <text x="600" y="148" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">6 weeks, big-bang</text>
+        <text x="880" y="148" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">8 weeks, parallel</text>
+        <line x1="0" y1="168" x2="1120" y2="168" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 3 (white) -->
+        <text x="24" y="204" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Domain expertise</text>
+        <text x="320" y="204" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">Energy, deep references</text>
+        <text x="600" y="204" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">Cross-industry, light</text>
+        <text x="880" y="204" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">Energy, 2 case studies</text>
+        <line x1="0" y1="226" x2="1120" y2="226" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 4 (zebra) -->
+        <rect x="0" y="226" width="1120" height="56" fill="#F8FAFC" fill-opacity="0.6"/>
+        <text x="24" y="262" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Support &amp; SLA</text>
+        <text x="320" y="262" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">24x7, named CSM</text>
+        <text x="600" y="262" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">Business hours only</text>
+        <text x="880" y="262" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">24x7, shared pool</text>
+        <line x1="0" y1="282" x2="1120" y2="282" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 5 (white) -->
+        <text x="24" y="318" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Risk profile</text>
+        <text x="320" y="318" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">Low — proven at scale</text>
+        <text x="600" y="318" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">Medium — fast but thin</text>
+        <text x="880" y="318" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">Low-medium</text>
+        <line x1="0" y1="340" x2="1120" y2="340" stroke="#CBD5E1" stroke-width="2"/>
+
+        <!-- Verdict row (accent) -->
+        <rect x="0" y="340" width="1120" height="54" fill="#EFF6FF"/>
+        <text x="24" y="374" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#1D4ED8" letter-spacing="1.5">RECOMMENDATION</text>
+        <text x="320" y="374" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#1D4ED8">Primary candidate</text>
+        <text x="600" y="374" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">Hold — short-term only</text>
+        <text x="880" y="374" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">Backup</text>
+    </g>
+
+    <!-- Insight strip -->
+    <text x="80" y="620" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1D4ED8" letter-spacing="1">SO WHAT</text>
+    <text x="80" y="650" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#0F172A">Vendor A wins on cost predictability and depth; the timeline gap can be closed with a phased rollout.</text>
+
+    <text x="1200" y="690" text-anchor="end" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#94A3B8">Source: vendor RFP responses, Q2 review</text>
+</svg>

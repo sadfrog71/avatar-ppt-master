@@ -95,7 +95,9 @@ Before the first SVG page, output a confirmation listing: canvas dimensions, bod
 
 - Page number, title, and `Core message`
 - `Purpose` and `So What` if present; if absent, infer them briefly from `Core message` and the locked `mode`
-- Layout / `page_rhythm` / `page_layouts` / `page_charts`
+- Layout / `page_rhythm` / `page_layouts` / `page_charts` / `page_tables`
+- **Focal hierarchy**: `page_focal.P<NN>` L1 (the single line a reader should remember) + L2 (2–4 supporting items) + L3 (0–3 context items). L1 is what becomes the largest text on the page; L2 are the parallel content blocks; L3 is footer / source / scope.
+- **Page groups + render anchors**: `page_groups.P<NN>` declares semantic slot groups (`hero` / `grid` / `chrome` / `footnote` / `source` etc.) and which `page_focal` items each group owns. Each rendered group container MUST carry `data-group="<group_name>"` on its wrapping `<g>`; each L2 slot MUST carry `data-l2-item="<N>"` on the wrapping `<g>` where `<N>` is the 1-based index from `page_focal.L2`. Without these anchors the visual-consistency validator cannot verify parallelism — failure blocks Step 6 exit.
 - Content texture: prose, bullets, keywords, table, chart, image-led, or mixed
 - Visualization / image intent and the exact resource row if applicable
 - Translation pattern: hero metric, card grid, timeline / flow, matrix, comparison table, process diagram, concept diagram, or custom
@@ -125,6 +127,12 @@ If `Core message` is missing or the inferred so-what is unclear, do not paper ov
 - Font sizes follow a **ramp anchored on `typography.body`**, not a closed menu. Use the declared slots when they fit. Intermediate sizes (e.g., 40px hero number, 13px annotation) are allowed if the ratio to `body` falls within the role's band (see `design_spec.md §IV ramp table`). Sizes outside every band require extending the lock first.
 - Images MUST reference files listed under `images`; no invented filenames
 - Formula PNGs are images with `Acquire Via: formula` / `Status: Rendered`; place them only from the listed file path and never recreate the formula as text.
+- **Focal point**: the page's L1 (`page_focal.P<NN>.L1`) MUST be the single largest text element on the page. Anchor templates: use the title slot. Free design: place L1 at the top-left or hero zone with a font size ≥ `body × 2.0` (typography ramp's `h1` or higher). No other text on the page may match or exceed L1's size.
+- **Supporting tier**: the rendered parallel content blocks (cards, bullets, columns, KPI tiles) MUST equal `len(L2)` and source their headings from `page_focal.P<NN>.L2`. Rendering more parallel items than L2 declares is forbidden — split the page or return to Strategist to revise the lock.
+- **Table preset**: for pages listed in `page_tables`, the rendered table MUST adapt the named preset from `templates/tables/<value>.svg` (header weight, alignment, total-row treatment, row tint discipline). Free-design tables only when no `page_tables` row exists.
+- **Font lockdown (HARD)**: every `font-family="..."` value MUST normalize to one of the stacks declared in `spec_lock.typography` (`font_family` / `title_family` / `body_family` / `emphasis_family` / `code_family`). Inheriting a chart-template's CSS-system font stack (`-apple-system, BlinkMacSystemFont, 'Segoe UI', ...`) unchanged is forbidden — re-skin every text element to one of the locked stacks. Verified by `validate_visual_consistency.py` V11 + `svg_quality_checker._check_fonts`; failure blocks Step 6 exit.
+- **Palette role lockdown (HARD)**: every fill / stroke / stop-color HEX MUST appear in `spec_lock.md ## palette_roles`. No invented HEXes; no copying chart-template Tailwind defaults. When the spec genuinely needs a value not declared, return to Strategist to extend `palette_roles` — do not silently emit a new HEX. Verified by `validate_visual_consistency.py` V12. Three-digit shorthand `#RGB` is exempt from this check (legacy decorative use); always prefer the full 6-digit form for new pages.
+- **Group anchors (HARD)**: each parallel content block sourced from `page_focal.P<NN>.L2` MUST be wrapped in `<g data-group="<group_name>" data-l2-item="<N>">…</g>` where `<group_name>` and `<N>` come from `page_groups.P<NN>`. Group containers without L2 items (e.g., `hero=[L1]`, `chrome=[]`) still carry `data-group="<group_name>"` on their wrapping `<g>`. The anchors are what let the validator detect "5 cards rendered when L2 declared 3" — without them the deck silently drifts off the focal hierarchy. Verified by `validate_visual_consistency.py` V13.
 
 If a page needs a value not in `spec_lock.md`, surface it — do not silently invent one.
 
@@ -161,6 +169,48 @@ Before drawing each page, look up its entry in `page_charts` to decide which cha
 - Entry present (e.g., `P09: timeline_horizontal`) → adapt the corresponding chart SVG already in context. Apply project colors/typography/density; do not copy verbatim. Cross-reference `templates/charts/charts_index.json` for the chart's purpose summary if needed.
 - No entry for this page → either no chart on this page, or a chart that didn't match any catalog template (Strategist's `no-template-match` fallback). Design the visualization from scratch using `design_spec.md §VII` for guidance.
 - Whole section absent → no chart pages in this deck.
+
+**Per-page table reference — `page_tables` section**:
+
+Before drawing each page, look up its entry in `page_tables` to decide which designed table preset applies:
+
+- Entry present (e.g., `P05: editorial_zebra`) → load and adapt the corresponding preset from `templates/tables/<value>.svg`. Apply project colors/typography; preserve the preset's header weight, alignment rules, total-row treatment, and row-tint discipline (see `templates/tables/TABLE_STYLE_GUIDE.md`). Cross-reference `templates/tables/tables_index.json` for the preset's selection rule.
+- No entry for this page → either no table on this page, or the table did not match any preset. Design from scratch using `design_spec.md §VII`.
+- Whole section absent → no preset-driven table pages in this deck.
+
+**Hard mutual exclusion**: A page MUST NOT appear in both `page_charts` and `page_tables`. The validator (`scripts/validate_focal_hierarchy.py`) blocks the lock when it does. Chart-side tables (`basic_table` / `consulting_table` / `feature_matrix_table` in `templates/charts/`) remain available via `page_charts` for backward compatibility but `templates/tables/` is the preferred library for new decks.
+
+**Per-group visual parity rules** (consumed alongside `page_groups`):
+
+- **Within a group**: all child elements that wrap a slot (`L1` / `L2_<N>` / `L3_<N>`) MUST share the same visual register. Same dominant fill via the same `palette_roles` token; same `rx`/stroke vocabulary on container rects; same font ramp tier (`title` / `subtitle` / `body` / `annotation`) for the slot's primary text; same baseline alignment (cards in `grid` line up to one row top; bullets in `matrix` line up to one column left). Validator V14 flags within-group font-size span >1.5×; V15 flags within-group fill role mixing.
+- **Across groups**: the visual treatment MUST differ in at least one of {font ramp tier, container shape, container fill role, position register}. A `hero` group's L1 sits in title-ramp font; a `grid` group's children sit in body or subtitle ramp. A `chrome` group lives in the page-edge band (footer / corner / accent line) using `text_secondary` or `text_muted`; it MUST NOT reuse the same `rx` + same fill role as a `grid` group's cards. Validator V16 flags chrome/footnote groups that share container geometry with hero/grid.
+- **Empty groups carry no slots but still need a container**: `chrome=[]` typically maps to the template's footer band (no slots, only chrome furniture). Emit a `<g data-group="chrome">` element with the chrome content so the validator can confirm the group was rendered; an empty group with no `data-group` anchor is treated as missing.
+- **One palette role per slot, one ramp tier per slot**: within a slot's container, the slot's heading uses one role + one ramp tier; supporting text inside the slot may use a different ramp tier but should stay within `text_primary` / `text_secondary`. Mixing accent colors inside a single slot makes the parallelism unreadable.
+
+**Word budgets per focal tier** (validator enforces L1 / L2 / L3 character limits; body-paragraph length stays at Executor judgement):
+
+| Page type / tier | L1 (headline) | L2 (each item) | L3 (each item) | Body / per block |
+|---|---|---|---|---|
+| `anchor` (cover / chapter / TOC / ending) | 4–12 CJK / 8–24 Latin | 2–8 CJK | omit | one-line subtitle ≤24 CJK |
+| `dense` content (text-led) | 8–18 CJK / 16–36 Latin | 4–12 CJK | 2–10 CJK | block ≤60 CJK; ≤2 blocks parallel |
+| `dense` content (chart / table) | 8–18 CJK / 16–36 Latin | header cells ≤8 CJK; row labels ≤10 CJK | source ≤20 CJK | insight strip ≤30 CJK |
+| `breathing` (hero quote / single number) | 6–14 CJK / 12–28 Latin | 0–2 items, ≤8 CJK | omit | one supporting line ≤24 CJK |
+| Section transition (sub-`breathing`) | 4–10 CJK / 8–20 Latin | omit | omit | omit |
+
+**Anti-pattern blacklist** (Executor must refuse these; Strategist must not plan them):
+
+1. **Equal-weight 2×2 / 1×4 card grid as default** when L2 has fewer than 4 items — downgrade to single-block or 1×N where N = `len(L2)`.
+2. **"Fake card for every paragraph"** — every body sentence wrapped in its own rounded rect on a `breathing` page; collapse to naked text blocks instead.
+3. **Multi-column comparison with identical visual emphasis across columns** — at least one column (recommended / winning / anchored) MUST get accent treatment (band, border, fill, or icon).
+4. **Table with full grid + zebra + alternating tint + colored header simultaneously** — pick at most two of {full-grid lines, zebra tint, accent header band}. The 6 `templates/tables/` presets already respect this.
+5. **L1 same size as L2** — L1 must be ≥1.6× L2 font size (links to existing typography ramp in `design_spec.md §IV`).
+6. **Page renders more parallel content blocks than `L2` declares** — e.g., L2=[a,b,c] but the page has 5 cards.
+7. **Cover / chapter pages without an L1 assertion** — anchor pages may use a short label (validator warning C14 is skipped for anchor pages, but L1 still must be present).
+8. **Table page picking a chart-side table** (`basic_table` / `consulting_table` / `feature_matrix_table`) when a `templates/tables/` preset fits the content shape.
+9. **Cross-role color misuse** — `accent_primary` used as body text fill, `state_danger` used as decorative stroke, or `surface_subtle` used for an emphasis card. Each `palette_roles` token has one semantic register; do not borrow a state color (success / warning / danger) for non-state decoration, and do not promote `text_secondary` to a hero color. If the design genuinely needs a new register, return to Strategist to extend `palette_roles`.
+10. **Blurred group boundaries** — `chrome` or `footnote` group rendered with the same `rx` + same fill role as the `grid` group's cards, so the page reads as "five equal cards" instead of "three grid cards + one chrome band + one footnote line". Chrome must visually subordinate to grid (smaller font, edge band, or no container at all); footnote/source must use `text_muted` or `text_secondary` and an annotation-tier ramp.
+11. **Unswapped chart-template font fallback** — inheriting `templates/charts/<name>.svg` and leaving its CSS-system font stack (`-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif`) on the rendered output. Every `font-family` attribute must be re-skinned to one of the stacks declared in `spec_lock.typography`. Verified hard by V11.
+12. **Short Latin labels inside small badges / pills / tags** — `BUDGET`, `OPEX / YEAR`, `RECOMMENDED`, `PRICING`, `PRICING TBD`, `RANK 1 / 2 / 3 / 4`, `SCOPE`, `TOTAL TIMELINE`, `PC / APP / 微信小程序` and similar ALL-CAPS or letter-spaced English strings. They render correctly in PowerPoint but wrap mid-word in the LibreOffice PDF / PNG visual check used by `workflows/live-preview.md` and `workflows/visual-review.md`. Rewrite the label to CJK (`建设投入` / `年度运维` / `推荐方案` / `价格区间` / `报价待澄清` / `第 1 名` / `主要任务` / `项目总周期` / `三端覆盖 · PC 端 / 移动端`) on first draft. Do **not** chase this by patching `estimate_text_width` or widening the surrounding rect — those won't help, the converter measures `<text>` only. Also strip every `letter-spacing="N"` attribute from short Latin labels; it widens the visual advance without widening the converter's measured width. Full root-cause + recipe in [`shared-standards.md`](shared-standards.md) §4 "Short Latin Labels Mid-Wrap Pitfall".
 
 ---
 
@@ -216,6 +266,19 @@ grep "chart-plot-area" <project_path>/svg_output/<current_page>.svg
 > All chart templates in `templates/charts/` include this marker as a reference. If you are drawing a chart and the marker is absent, you have a bug.
 - **Technical specs**: see [shared-standards.md](shared-standards.md) for SVG/PPT constraints
 - **Card containers — use the documented patterns**: when a content page needs section cards (4 quadrants, parallel aspects, capability blocks, info cards), use the patterns codified in [`templates/charts/CHART_STYLE_GUIDE.md`](../templates/charts/CHART_STYLE_GUIDE.md) §11 — half-rounded section tab (§11.1), nested card border without stroke (§11.2), card-grid skeletons (§11.3), diagonal dashed connector for cross-quadrant relationships (§11.5), ground-anchor ellipse as a non-filter depth marker (§11.6), bidirectional interaction arrows for paired protocols (§11.7). Do not reinvent the "tinted full-rounded rect + white cover-rect to hide the bottom corners" hack; it survives in older templates but breaks SVG→PPTX color editing. Reference templates: [`labeled_card.svg`](../templates/charts/labeled_card.svg), [`quadrant_text_bullets.svg`](../templates/charts/quadrant_text_bullets.svg), [`kpi_cards.svg`](../templates/charts/kpi_cards.svg), [`matrix_2x2.svg`](../templates/charts/matrix_2x2.svg), [`team_roster.svg`](../templates/charts/team_roster.svg), [`client_server_flow.svg`](../templates/charts/client_server_flow.svg).
+- **Decoration vocabulary — reach for these when the deck reads "too plain / 过素"**: a restrained palette (e.g. blue-white, monochrome editorial) needs garnish to avoid feeling bare. Layer one or two of the following per page, never the whole list. All gradients use `<linearGradient>` / `<radialGradient>` from `palette_roles` HEXes (see [`shared-standards.md`](shared-standards.md) §6); all decorative clusters (dot grids / concentric rings / scattered orbs) emit opacity per element, never on a wrapping `<g>` (see [`shared-standards.md`](shared-standards.md) §2 "Decorative clusters" pitfall).
+  1. **Hero gradient strip** — top 180–240 px band filled with `url(#hero<page>)` running from the deepest palette role to a mid-tone; covers cover / chapter / closing pages and decision summaries.
+  2. **Decorative concentric circles** — two or three `<circle>` rings at low `fill-opacity` (0.06–0.12) anchored in a hero corner. Cheap, low-noise visual weight.
+  3. **Per-element dot grid** — a 6×N or 8×N grid of small `<circle r="2">` dots, each carrying `fill-opacity="0.18"` directly. Used inside hero strips or full-bleed banners. Never wrap in `<g opacity>`.
+  4. **Gradient header band** — title-bar rectangle filled with `url(#titleGrad)` (deep → mid). Pairs with white headline text. Standard on dense content pages.
+  5. **Color side-rail** — 4–8 px vertical stripe in `accent_primary` along the left edge of a content card, used in place of a full border. Marks the card as recommended / focal.
+  6. **Gradient progress bar** — slim rounded `<rect>` filled with a horizontal gradient and a brighter end cap; used inline next to KPIs / capability scores. Add a `<circle>` marker on top for the current value.
+  7. **Circle medallion / numbered badge** — `<circle r="22–32">` with a white-or-dark number inside, sized at `body × 1.8` to `body × 2.4`. Drives decision / process / roadmap pages with explicit ordering.
+  8. **Pill-shaped tag** — `<rect rx="<half-height>">` with a one-word CJK label; used for recommended vendors, status markers, ranked entries. Pair with a colored side-rail or medallion so the pill isn't carrying the whole accent load alone. Heed [`shared-standards.md`](shared-standards.md) §4 "Short Latin Labels Mid-Wrap Pitfall" — pill labels are exactly the wrap-prone class; default to CJK.
+  9. **Gradient banner with award pill** — bottom 60–80 px strip filled with `url(#banner<page>)`, white text + a white `<rect rx="20">` chip that reads `★ <one short CJK phrase>`. Used on roadmap / closing pages to land the deck's recommendation.
+  10. **Ranked ribbon** — a `<path>` chevron tail attached to the top-left of a card, two-tone (deep + mid), labeling `第 N 名` / `推荐` / `重点`. Use sparingly — one per page maximum.
+
+  > **Density rule**: pick one hero idiom (1, 4, 9) + at most two accents (2, 3, 5, 6, 7, 8, 10). Stacking more re-creates the "stock template" look. Decoration earns its place by sharpening focal hierarchy, not by adding visual noise on top.
 - **Reference — prefer semantic shapes over preset stacks (not a constraint)**: when a slide needs to express "ascending / converging / breaking through / stacking" — i.e., a relationship that goes beyond a generic arrow — prefer a single custom `<polygon>` or `<path>` that encodes the semantics geometrically, rather than stacking multiple preset arrows. A converging-tip path or a podium polygon reads faster than three arrows pointing at a label. Examples of this technique appear in many imported corporate decks; see `projects/01_template_import/svg_output/slide_01.svg` shape-158 for a reference (gradient-filled inward-pointing arrow). Do not codify these as templates — they are page-specific; the rule is just "consider polygon before stacking presets."
 - **Reference — visual depth through restraint (not a constraint)**: layered depth comes from rhythm (flat vs lifted, dense vs spacious), not from shadows everywhere. Shadow typically suits 2-3 genuinely floating elements per page (cards on photos, primary CTA, overlays); keep peer-grid cards, dividers, body containers flat. Reach for typography weight, spacing, accent bars, subtle tints **before** shadow. Full rules in shared-standards.md §6.
 

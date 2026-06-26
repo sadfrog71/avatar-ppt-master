@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+    <!--
+    timeline_swimlane
+    Purpose: Swimlane-by-time-bucket schedules where each cell is a status pill (roadmap-as-table, multi-track plan).
+    Header: borderless time-period columns; body: row pills + soft separators; no internal vertical rules.
+    Canonical: 3-5 swimlanes x 4-6 time buckets.
+    -->
+    <rect width="1280" height="720" fill="#FFFFFF"/>
+
+    <!-- Eyebrow + title -->
+    <text x="80" y="80" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#64748B" letter-spacing="2">SWIMLANE · QUARTERLY ROADMAP</text>
+    <text x="80" y="120" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="800" fill="#0F172A">Workstream Milestones Through FY26</text>
+
+    <g transform="translate(80, 180)">
+        <!-- Time-bucket column headers -->
+        <text x="220" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">Q1</text>
+        <text x="420" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">Q2</text>
+        <text x="620" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">Q3</text>
+        <text x="820" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">Q4</text>
+        <text x="1020" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">FY27 Q1</text>
+        <line x1="120" y1="48" x2="1120" y2="48" stroke="#0F172A" stroke-width="2"/>
+
+        <!-- Today marker -->
+        <line x1="520" y1="48" x2="520" y2="420" stroke="#1D4ED8" stroke-width="2" stroke-dasharray="4 4" opacity="0.55"/>
+        <text x="520" y="64" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="800" fill="#1D4ED8" letter-spacing="1">TODAY</text>
+
+        <!-- Row 1: Product -->
+        <text x="0" y="106" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#0F172A">Product</text>
+        <text x="0" y="124" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#64748B">Lifecycle</text>
+        <rect x="160" y="86" width="120" height="36" rx="18" fill="#1D4ED8"/>
+        <text x="220" y="109" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">v2.0 GA</text>
+        <rect x="360" y="86" width="120" height="36" rx="18" fill="#1D4ED8" opacity="0.85"/>
+        <text x="420" y="109" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">v2.1 GA</text>
+        <rect x="560" y="86" width="120" height="36" rx="18" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.5"/>
+        <text x="620" y="109" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1D4ED8">v3 Beta</text>
+        <rect x="760" y="86" width="120" height="36" rx="18" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+        <text x="820" y="109" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#475569">v3 GA</text>
+        <line x1="0" y1="148" x2="1120" y2="148" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 2: Go-to-market -->
+        <text x="0" y="186" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#0F172A">Go-to-Market</text>
+        <text x="0" y="204" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#64748B">Channel + pricing</text>
+        <rect x="160" y="166" width="120" height="36" rx="18" fill="#1D4ED8"/>
+        <text x="220" y="189" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">EU launch</text>
+        <rect x="360" y="166" width="120" height="36" rx="18" fill="#1D4ED8" opacity="0.85"/>
+        <text x="420" y="189" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">Tier-2 reseller</text>
+        <rect x="760" y="166" width="120" height="36" rx="18" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.5"/>
+        <text x="820" y="189" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1D4ED8">APAC entry</text>
+        <line x1="0" y1="228" x2="1120" y2="228" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 3: Operations -->
+        <text x="0" y="266" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#0F172A">Operations</text>
+        <text x="0" y="284" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#64748B">Capacity + SLA</text>
+        <rect x="160" y="246" width="120" height="36" rx="18" fill="#1D4ED8"/>
+        <text x="220" y="269" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">DC migration</text>
+        <rect x="560" y="246" width="120" height="36" rx="18" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.5"/>
+        <text x="620" y="269" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1D4ED8">+30% capacity</text>
+        <rect x="960" y="246" width="120" height="36" rx="18" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+        <text x="1020" y="269" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#475569">99.95% SLA</text>
+        <line x1="0" y1="308" x2="1120" y2="308" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 4: People -->
+        <text x="0" y="346" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#0F172A">People</text>
+        <text x="0" y="364" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#64748B">Hiring + enablement</text>
+        <rect x="360" y="326" width="120" height="36" rx="18" fill="#1D4ED8" opacity="0.85"/>
+        <text x="420" y="349" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">+8 engineers</text>
+        <rect x="560" y="326" width="120" height="36" rx="18" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.5"/>
+        <text x="620" y="349" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1D4ED8">Sales academy</text>
+        <rect x="760" y="326" width="120" height="36" rx="18" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+        <text x="820" y="349" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#475569">+6 CSMs</text>
+        <line x1="0" y1="388" x2="1120" y2="388" stroke="#0F172A" stroke-width="2"/>
+    </g>
+
+    <!-- Legend -->
+    <g transform="translate(80, 600)">
+        <rect x="0" y="0" width="20" height="20" rx="10" fill="#1D4ED8"/>
+        <text x="28" y="14" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#475569">Delivered</text>
+        <rect x="120" y="0" width="20" height="20" rx="10" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.5"/>
+        <text x="148" y="14" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#475569">In flight</text>
+        <rect x="232" y="0" width="20" height="20" rx="10" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+        <text x="260" y="14" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#475569">Committed (future)</text>
+    </g>
+
+    <!-- Insight strip -->
+    <text x="80" y="660" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1D4ED8" letter-spacing="1">SO WHAT</text>
+    <text x="80" y="690" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#0F172A">v3 Beta + APAC entry both sit in Q4 — staggering one earns six weeks of operational headroom.</text>
+</svg>

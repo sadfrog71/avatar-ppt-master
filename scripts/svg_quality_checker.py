@@ -813,17 +813,21 @@ class SVGQualityChecker:
         for v in size_drifts:
             self._drift_summary['sizes'][v].add(fname)
 
-        # Per-file warning (one condensed line; details live in summary)
-        parts = []
-        if color_drifts:
-            parts.append(f"{len(color_drifts)} color(s)")
+        # Per-file emission — fonts are HARD errors (Batch C font lockdown);
+        # colors and sizes remain warnings to preserve existing tolerance.
         if font_drifts:
-            parts.append(f"{len(font_drifts)} font-family value(s)")
+            result['errors'].append(
+                f"spec_lock drift: {len(font_drifts)} font-family value(s) not in "
+                "spec_lock.md typography (see drift summary for details)"
+            )
+        warn_parts = []
+        if color_drifts:
+            warn_parts.append(f"{len(color_drifts)} color(s)")
         if size_drifts:
-            parts.append(f"{len(size_drifts)} font-size value(s)")
-        if parts:
+            warn_parts.append(f"{len(size_drifts)} font-size value(s)")
+        if warn_parts:
             result['warnings'].append(
-                f"spec_lock drift: {', '.join(parts)} not in spec_lock.md "
+                f"spec_lock drift: {', '.join(warn_parts)} not in spec_lock.md "
                 "(see drift summary for details)"
             )
 

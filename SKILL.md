@@ -25,7 +25,7 @@ description: >
 > 5. **NO SPECULATIVE EXECUTION** — "Pre-preparing" content for subsequent Steps is FORBIDDEN (e.g., writing SVG code during the Strategist phase)
 > 6. **NO SUB-AGENT SVG GENERATION** — Executor Step 6 SVG generation is context-dependent and MUST be completed by the current main agent end-to-end. Delegating page SVG generation to sub-agents is FORBIDDEN
 > 7. **SEQUENTIAL PAGE GENERATION ONLY** — In Executor Step 6, after the global design context is confirmed, SVG pages MUST be generated sequentially page by page in one continuous pass. Grouped page batches (for example, 5 pages at a time) are FORBIDDEN
-> 8. **SPEC_LOCK RE-READ PER PAGE** — Before generating each SVG page, Executor MUST `read_file <project_path>/spec_lock.md`. All colors / fonts / icons / images MUST come from this file — no values from memory or invented on the fly. Executor MUST also look up the current page's `page_rhythm` (`anchor` / `dense` / `breathing`), `page_layouts` (which template SVG to inherit, if any), and `page_charts` (which chart template to adapt, if any). Empty / absent entries are intentional Strategist signals — see executor-base.md §2.1. This rule exists to resist context-compression drift on long decks and to break the uniform "every page is a card grid" default
+> 8. **SPEC_LOCK RE-READ PER PAGE** — Before generating each SVG page, Executor MUST `read_file <project_path>/spec_lock.md`. All colors / fonts / icons / images MUST come from this file — no values from memory or invented on the fly. Executor MUST also look up the current page's `page_rhythm` (`anchor` / `dense` / `breathing`), `page_layouts` (which template SVG to inherit, if any), `page_charts` (which chart template to adapt, if any), `page_focal` (L1 assertion + L2 supporting items + L3 context, see §2.1 word budgets), `page_tables` (which designed table preset to adapt, if any), `palette_roles` (the role → HEX whitelist every fill / stroke / stop-color MUST resolve to), and `page_groups` (the semantic slot → `data-group` / `data-l2-item` mapping that drives the visual parity validator). Empty / absent entries are intentional Strategist signals — see executor-base.md §2.1. This rule exists to resist context-compression drift on long decks and to break the uniform "every page is a card grid" default
 > 9. **SVG MUST BE HAND-WRITTEN, NOT SCRIPT-GENERATED** — Every SVG page is written by the main agent directly, one page at a time (see rules 6 and 7). Writing or running a Python / Node / shell script that produces the SVG files in batch — looping over pages, templating from data, or emitting them via a generator — is FORBIDDEN, including under "save tokens", "quick draft", or "user is in a hurry" pretexts. The script-generation path was tried on a feature branch and abandoned: cross-page visual consistency depends on per-page authoring with full upstream context, which a generator script cannot reproduce
 
 > [!IMPORTANT]
@@ -55,6 +55,8 @@ description: >
 | `${SKILL_DIR}/scripts/latex_render.py` | LaTeX formula rendering (manifest-driven PNG assets) |
 | `${SKILL_DIR}/scripts/image_gen.py` | AI image generation (multi-provider) |
 | `${SKILL_DIR}/scripts/svg_quality_checker.py` | SVG quality check |
+| `${SKILL_DIR}/scripts/validate_focal_hierarchy.py` | Focal hierarchy + table preset gate — enforces `page_focal` and `page_tables` grammar before SVG generation begins |
+| `${SKILL_DIR}/scripts/validate_visual_consistency.py` | Palette roles + page groups + font lockdown gate — enforces visual-system coherence both at Step 6 entry (`--stage=lock-only`) and Step 6 exit (full svg scan) |
 | `${SKILL_DIR}/scripts/total_md_split.py` | Speaker notes splitting |
 | `${SKILL_DIR}/scripts/finalize_svg.py` | SVG post-processing (unified entry) |
 | `${SKILL_DIR}/scripts/svg_to_pptx.py` | Export to PPTX |
@@ -71,6 +73,7 @@ For complete tool documentation, see `${SKILL_DIR}/scripts/README.md`.
 | Layout templates | `${SKILL_DIR}/templates/layouts/layouts_index.json` | Query available page layout templates |
 | Brand presets | `${SKILL_DIR}/templates/brands/brands_index.json` | Query available brand identity presets (color / typography / logo / voice) |
 | Visualization templates | `${SKILL_DIR}/templates/charts/charts_index.json` | Query available visualization SVG templates (charts, infographics, diagrams, frameworks) |
+| Table presets | `${SKILL_DIR}/templates/tables/tables_index.json` | Query designed table presets (editorial / ledger / scorecard / timeline / comparison / KPI summary) for `page_tables` entries |
 | Icon library | `${SKILL_DIR}/templates/icons/` | See `${SKILL_DIR}/templates/icons/README.md`; search icons on demand with `ls templates/icons/<library>/ \| grep <keyword>` |
 
 ## Standalone Workflows
@@ -474,20 +477,38 @@ python3 ${SKILL_DIR}/scripts/svg_editor/server.py <project_path> --live
 
 **Pre-generation Batch Read (Mandatory)**: before the first SVG, batch-read every distinct layout SVG referenced in `spec_lock.page_layouts` and every distinct chart SVG referenced in `spec_lock.page_charts` (plus any §VII backup charts). One read per file, up front — do not re-read these during page generation. See executor-base.md §1.0.
 
-**Per-page spec_lock re-read (Mandatory)**: before **each** SVG page, `read_file <project_path>/spec_lock.md` and use only its colors / fonts / icons / images, plus the per-page `page_rhythm` / `page_layouts` / `page_charts` lookups (resolves to template SVGs already loaded in the batch read above). Resists context-compression drift on long decks. See executor-base.md §2.1.
+**Per-page spec_lock re-read (Mandatory)**: before **each** SVG page, `read_file <project_path>/spec_lock.md` and use only its colors / fonts / icons / images, plus the per-page `page_rhythm` / `page_layouts` / `page_charts` / `page_focal` / `page_tables` lookups (resolves to template SVGs already loaded in the batch read above). Resists context-compression drift on long decks. See executor-base.md §2.1.
 
 > ⚠️ **Main-agent only**: SVG generation MUST stay in the current main agent — page design depends on full upstream context. Do NOT delegate to sub-agents.
 > ⚠️ **Generation rhythm**: generate pages sequentially, one at a time, in the same continuous context. Do NOT batch (e.g., 5 per group).
+
+**Focal-Hierarchy Pre-Gate (Mandatory)** — before the Visual Construction Phase starts:
+```bash
+python3 ${SKILL_DIR}/scripts/validate_focal_hierarchy.py <project_path>
+```
+- Exit 0 → proceed. Exit 1 (error) → STOP and return to Strategist to fix `spec_lock.md ## page_focal` / `## page_tables`. Exit 2 (warn-only) → review warnings, proceed if accepted.
+- Enforces: every §IX page has a `page_focal` row; L1 ≤18 CJK / ≤36 Latin; L2 has 2–4 items each ≤12 CJK / ≤24 Latin; L3 has 0–3 items each ≤10 CJK / ≤20 Latin; `page_tables` values exist in `templates/tables/tables_index.json`; mutual exclusion with `page_charts`.
+- Do NOT skip this gate. The hard constraints exist to keep every page's visual focal point legible — bypassing them re-creates the "AI-generated uniform card grid" failure mode.
+
+**Visual-Consistency Pre-Gate (Mandatory)** — runs alongside the focal pre-gate; both must pass before the Visual Construction Phase starts:
+```bash
+python3 ${SKILL_DIR}/scripts/validate_visual_consistency.py <project_path> --stage=lock-only
+```
+- Exit 0 → proceed. Exit 1 (error) → STOP and return to Strategist to fix `spec_lock.md ## palette_roles` / `## page_groups` / `## typography`. Exit 2 (warn-only) → review warnings, proceed if accepted.
+- Lock-only stage enforces: `## palette_roles` exists with the required roles (`bg_canvas`, `text_primary`, `text_secondary`, `border_subtle`, `accent_primary`) and valid HEX values; `## page_groups` has a well-formed row per §IX page with slots that resolve into `page_focal` and that cover all L1/L2/L3 items exactly once; `## typography` declares at least `font_family` + `title_family` + `body_family` so the SVG stage can lock fonts against this whitelist.
+- The full svg-stage (V11–V16: font lockdown, palette role compliance, group anchors, per-group parity) runs after generation as part of the Quality Check Gate below. Do NOT skip either invocation.
 
 **Visual Construction Phase**: generate SVG pages sequentially, one at a time, in one continuous pass → `<project_path>/svg_output/`
 
 **Quality Check Gate (Mandatory)** — after all SVGs, BEFORE annotation handling and speaker notes:
 ```bash
 python3 ${SKILL_DIR}/scripts/svg_quality_checker.py <project_path>
+python3 ${SKILL_DIR}/scripts/validate_visual_consistency.py <project_path>
 ```
 - Any `error` (banned SVG features, viewBox mismatch, spec_lock drift, etc.) MUST be fixed before proceeding — return to Visual Construction, regenerate that page, re-run check.
 - `warning` entries (low-res image, non-PPT-safe font tail, etc.): fix when straightforward, otherwise acknowledge and release.
 - Run against `svg_output/` (not after `finalize_svg.py` — finalize rewrites SVG and masks violations).
+- `validate_visual_consistency.py` (full stage) re-runs the lock checks plus V11–V16: every `font-family` must normalize to a `spec_lock.typography` stack; every fill / stroke / stop-color HEX must appear in `## palette_roles`; every L2 supporting block must carry `data-l2-item` + `data-group` anchors; same-group children must share fill role and stay within one font ramp tier. Exit 1 → return to Visual Construction.
 - Narrative validation is manual but mandatory: read every page title in order and verify the story is reconstructable from titles alone; every content page has either an insight strip, hero metric interpretation, or explicit so-what; the final section ends with recommendations, decisions, next actions, or a clear conclusion; source limitations appear in notes or appendix when needed.
 
 **Logic Construction Phase**: generate speaker notes → `<project_path>/notes/total.md`
@@ -496,8 +517,11 @@ python3 ${SKILL_DIR}/scripts/svg_quality_checker.py <project_path>
 ```markdown
 ## ✅ Executor Phase Complete
 - [x] Live preview started and kept available at the reported URL
+- [x] validate_focal_hierarchy.py passed (exit 0)
+- [x] validate_visual_consistency.py --stage=lock-only passed (exit 0)
 - [x] All SVGs generated to svg_output/
 - [x] svg_quality_checker.py passed (0 errors)
+- [x] validate_visual_consistency.py (full stage) passed (0 errors)
 - [x] Title-track, insight-strip, and final now-what checks passed
 - [x] Speaker notes generated at notes/total.md
 ```

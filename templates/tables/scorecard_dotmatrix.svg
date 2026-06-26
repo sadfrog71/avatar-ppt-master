@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+    <!--
+    scorecard_dotmatrix
+    Purpose: Multi-criterion scoring matrix (vendor evaluation, capability assessment, option scoring).
+    Header: borderless (text only + single 2 px rule); body: white + soft horizontal separators; dot glyphs replace numeric scores.
+    Canonical: 4-6 rows x 3-5 score criteria; one accented column = recommended option.
+    -->
+    <rect width="1280" height="720" fill="#FFFFFF"/>
+
+    <!-- Eyebrow + title -->
+    <text x="80" y="80" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#64748B" letter-spacing="2">SCORECARD · DOT MATRIX</text>
+    <text x="80" y="120" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="800" fill="#0F172A">Solution Options Scored Against Strategic Criteria</text>
+
+    <g transform="translate(80, 180)">
+        <!-- Accent column highlight (Option B — recommended) -->
+        <rect x="540" y="0" width="200" height="380" fill="#EFF6FF"/>
+        <line x1="540" y1="0" x2="540" y2="380" stroke="#1D4ED8" stroke-width="3"/>
+
+        <!-- Borderless header (text + single rule) -->
+        <text x="0" y="32" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">CRITERION</text>
+        <text x="430" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">OPTION A</text>
+        <text x="640" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#1D4ED8" letter-spacing="1.5">OPTION B</text>
+        <text x="850" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">OPTION C</text>
+        <text x="1060" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">OPTION D</text>
+        <line x1="0" y1="54" x2="1120" y2="54" stroke="#0F172A" stroke-width="2"/>
+
+        <!-- Helper: dot glyph rules -->
+        <!-- 5 dots arranged horizontally, filled = score level. Center of dot row at x=col_center, y=row_baseline-6 -->
+
+        <!-- Row 1: Strategic fit (A=3, B=5, C=4, D=2) -->
+        <text x="0" y="94" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Strategic fit with growth plan</text>
+        <!-- Option A (3/5) -->
+        <g transform="translate(390, 88)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <!-- Option B (5/5) -->
+        <g transform="translate(600, 88)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="72" cy="0" r="6" fill="#1D4ED8"/>
+        </g>
+        <!-- Option C (4/5) -->
+        <g transform="translate(810, 88)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <!-- Option D (2/5) -->
+        <g transform="translate(1020, 88)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="54" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <line x1="0" y1="114" x2="1120" y2="114" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 2: Implementation cost (lower = better, so showing filled = strength) -->
+        <text x="0" y="152" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Implementation cost efficiency</text>
+        <g transform="translate(390, 146)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="54" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <g transform="translate(600, 146)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <g transform="translate(810, 146)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <g transform="translate(1020, 146)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="72" cy="0" r="6" fill="#1D4ED8"/>
+        </g>
+        <line x1="0" y1="172" x2="1120" y2="172" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 3: Time-to-value -->
+        <text x="0" y="210" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Time-to-value horizon</text>
+        <g transform="translate(390, 204)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <g transform="translate(600, 204)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <g transform="translate(810, 204)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="54" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <g transform="translate(1020, 204)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <line x1="0" y1="230" x2="1120" y2="230" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 4: Risk profile -->
+        <text x="0" y="268" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Operating risk profile</text>
+        <g transform="translate(390, 262)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <g transform="translate(600, 262)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <g transform="translate(810, 262)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <g transform="translate(1020, 262)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="54" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <line x1="0" y1="288" x2="1120" y2="288" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 5: Internal capability fit -->
+        <text x="0" y="326" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Internal capability fit</text>
+        <g transform="translate(390, 320)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <g transform="translate(600, 320)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="72" cy="0" r="6" fill="#1D4ED8"/>
+        </g>
+        <g transform="translate(810, 320)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="54" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <g transform="translate(1020, 320)">
+            <circle cx="0" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="18" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="36" cy="0" r="6" fill="#1D4ED8"/>
+            <circle cx="54" cy="0" r="6" fill="#E2E8F0"/>
+            <circle cx="72" cy="0" r="6" fill="#E2E8F0"/>
+        </g>
+        <line x1="0" y1="346" x2="1120" y2="346" stroke="#0F172A" stroke-width="2"/>
+
+        <!-- Summary score row -->
+        <text x="0" y="378" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">COMPOSITE</text>
+        <text x="430" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#475569">16</text>
+        <text x="640" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#1D4ED8">23</text>
+        <text x="850" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#475569">15</text>
+        <text x="1060" y="378" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#475569">12</text>
+    </g>
+
+    <!-- Legend -->
+    <g transform="translate(80, 600)">
+        <text x="0" y="14" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#64748B" letter-spacing="1">SCALE</text>
+        <g transform="translate(60, 8)">
+            <circle cx="0" cy="6" r="5" fill="#E2E8F0"/>
+            <circle cx="14" cy="6" r="5" fill="#E2E8F0"/>
+            <circle cx="28" cy="6" r="5" fill="#E2E8F0"/>
+            <circle cx="42" cy="6" r="5" fill="#E2E8F0"/>
+            <circle cx="56" cy="6" r="5" fill="#E2E8F0"/>
+        </g>
+        <text x="130" y="14" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#475569">Low</text>
+        <g transform="translate(170, 8)">
+            <circle cx="0" cy="6" r="5" fill="#1D4ED8"/>
+            <circle cx="14" cy="6" r="5" fill="#1D4ED8"/>
+            <circle cx="28" cy="6" r="5" fill="#1D4ED8"/>
+            <circle cx="42" cy="6" r="5" fill="#1D4ED8"/>
+            <circle cx="56" cy="6" r="5" fill="#1D4ED8"/>
+        </g>
+        <text x="240" y="14" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#475569">High</text>
+    </g>
+
+    <!-- Insight strip -->
+    <text x="80" y="660" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1D4ED8" letter-spacing="1">SO WHAT</text>
+    <text x="80" y="690" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#0F172A">Option B leads on every weighted criterion — proceed to detailed business case.</text>
+</svg>

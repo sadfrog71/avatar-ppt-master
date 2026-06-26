@@ -19,6 +19,24 @@ EMU_PER_PX = 9525  # 1 SVG px = 9525 EMU (96 DPI)
 FONT_PX_TO_HUNDREDTHS_PT = 75  # 1px = 0.75pt -> 75 hundredths-of-a-point
 ANGLE_UNIT = 60000  # DrawingML angle: 60000ths of a degree
 
+
+def font_px_to_sz(font_px: float, snap_grid_pt: float = 0.5) -> int:
+    """Convert a CSS-pixel font size to DrawingML ``sz`` (hundredths of a point),
+    snapping the intermediate pt value to a half-point grid.
+
+    Reason: SVG authors write CSS-pixel sizes (13, 15, 17 px ...) that map to
+    9.75, 11.25, 12.75 pt — fractional sizes that PowerPoint's font picker
+    cannot represent cleanly and that break the user's "increase font size"
+    button (it jumps from 9.75 back to 10). Snapping to 0.5pt produces clean
+    sizes (10, 11.5, 13) without altering the visual rhythm of the deck.
+    """
+    raw_pt = font_px * (FONT_PX_TO_HUNDREDTHS_PT / 100.0)
+    if snap_grid_pt > 0:
+        snapped_pt = round(raw_pt / snap_grid_pt) * snap_grid_pt
+    else:
+        snapped_pt = raw_pt
+    return int(round(snapped_pt * 100))
+
 # SVG attributes inheritable from parent <g>
 INHERITABLE_ATTRS = [
     'fill', 'stroke', 'stroke-width', 'stroke-dasharray', 'stroke-linecap',
@@ -395,15 +413,29 @@ def get_effective_filter_id(elem: ET.Element, ctx: ConvertContext) -> str | None
 def parse_font_family(font_family_str: str) -> dict[str, str]:
     """Parse CSS font-family into latin/ea typeface names.
 
-    Prioritizes Windows-available fonts since PPTX is primarily opened on
-    Windows. macOS/Linux-only fonts are mapped via FONT_FALLBACK_WIN.
+    Returns a dict with keys:
+      - latin: primary Latin typeface (rendered in PPTX <a:latin>)
+      - ea:    primary East-Asian typeface (rendered in PPTX <a:ea>)
+      - ea_fallback: comma-separated cross-platform CJK fallback chain
+                     (informational; consumed by font-substitution emitter
+                      so a deck authored on macOS still renders on Windows
+                      and vice versa)
+
+    Strategy change vs. previous skill version: instead of force-mapping
+    macOS CJK families to Microsoft YaHei (which loses fidelity on macOS
+    and produces handwriting-font fallbacks on LibreOffice), we keep the
+    author-intended primary and ship a multi-platform fallback chain so
+    PowerPoint / Keynote / LibreOffice each pick the best locally-available
+    family.
     """
     if not font_family_str:
-        return {'latin': 'Segoe UI', 'ea': 'Microsoft YaHei'}
+        return _default_font_bundle('sans')
 
     fonts = [f.strip().strip("'\"") for f in font_family_str.split(',')]
     latin_font = None
     ea_font = None
+    ea_chain: list[str] = []
+    is_serif = False
 
     for font in fonts:
         if font in SYSTEM_FONTS:
@@ -411,25 +443,71 @@ def parse_font_family(font_family_str: str) -> dict[str, str]:
         if font in GENERIC_FONT_MAP:
             resolved = GENERIC_FONT_MAP[font]
             latin_font = latin_font or resolved
+            if font == 'serif':
+                is_serif = True
             continue
 
-        win_font = FONT_FALLBACK_WIN.get(font, font)
         if font in EA_FONTS:
-            ea_font = ea_font or win_font
+            ea_font = ea_font or font
+            if font not in ea_chain:
+                ea_chain.append(font)
         else:
-            latin_font = latin_font or win_font
+            # Latin or unknown — keep author preference for Latin slot
+            latin_font = latin_font or font
 
-    # PPT renders CJK text via latin typeface when ea doesn't match
-    if not latin_font and ea_font:
-        latin_font = ea_font
+    final_latin = latin_font or ('Times New Roman' if is_serif else 'Arial')
 
-    final_latin = latin_font or 'Segoe UI'
+    # Build cross-platform CJK fallback chain. Start from author choice
+    # (if any) then append the platform-canonical families so the same
+    # PPTX renders coherently on Windows / macOS / Linux.
+    default_chain = _CJK_FALLBACK_SERIF if is_serif or final_latin in _SERIF_LATIN \
+        else _CJK_FALLBACK_SANS
+    for name in default_chain:
+        if name not in ea_chain:
+            ea_chain.append(name)
 
-    # EA must always be a CJK-capable font
-    if not ea_font:
-        ea_font = 'SimSun' if final_latin in _SERIF_LATIN else 'Microsoft YaHei'
+    primary_ea = ea_font or ea_chain[0]
 
-    return {'latin': final_latin, 'ea': ea_font}
+    return {
+        'latin': final_latin,
+        'ea': primary_ea,
+        'ea_fallback': ', '.join(ea_chain),
+    }
+
+
+# Cross-platform CJK fallback chains. Order = preference; clients render the
+# first locally-installed family. Windows -> macOS -> Linux coverage.
+_CJK_FALLBACK_SANS = [
+    'Microsoft YaHei',     # Windows
+    'PingFang SC',         # macOS 10.11+
+    'Hiragino Sans GB',    # macOS legacy
+    'Noto Sans CJK SC',    # Linux + Google Fonts
+    'Source Han Sans SC',  # Adobe / Google variant
+    'SimSun',              # Windows legacy fallback
+]
+
+_CJK_FALLBACK_SERIF = [
+    'SimSun',
+    'Songti SC',
+    'Noto Serif CJK SC',
+    'Source Han Serif SC',
+    'STSong',
+    'Microsoft YaHei',
+]
+
+
+def _default_font_bundle(kind: str = 'sans') -> dict[str, str]:
+    if kind == 'serif':
+        return {
+            'latin': 'Times New Roman',
+            'ea': _CJK_FALLBACK_SERIF[0],
+            'ea_fallback': ', '.join(_CJK_FALLBACK_SERIF),
+        }
+    return {
+        'latin': 'Arial',
+        'ea': _CJK_FALLBACK_SANS[0],
+        'ea_fallback': ', '.join(_CJK_FALLBACK_SANS),
+    }
 
 
 def is_cjk_char(ch: str) -> bool:

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+    <!--
+    ledger_financial
+    Purpose: Numeric reporting with a totals row (budget, P&L, AR aging).
+    Header: accent band; body: white + soft separators; full grid; right-aligned numbers.
+    Canonical: 5-7 data rows + 1 total row.
+    -->
+    <rect width="1280" height="720" fill="#FFFFFF"/>
+
+    <!-- Eyebrow + title -->
+    <text x="80" y="80" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#64748B" letter-spacing="2">LEDGER · FINANCIAL REPORTING</text>
+    <text x="80" y="120" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="800" fill="#0F172A">Q2 Operating Budget by Business Line</text>
+
+    <g transform="translate(80, 170)">
+        <!-- Table bounding box (full grid uses outer + separators) -->
+        <rect x="0" y="0" width="1120" height="400" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+
+        <!-- Header band (accent) -->
+        <rect x="0" y="0" width="1120" height="56" fill="#1D4ED8"/>
+        <text x="24" y="36" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="1.5">BUSINESS LINE</text>
+        <text x="500" y="36" text-anchor="end" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="1.5">Q1 ACTUAL</text>
+        <text x="700" y="36" text-anchor="end" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="1.5">Q2 PLAN</text>
+        <text x="900" y="36" text-anchor="end" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="1.5">Q2 ACTUAL</text>
+        <text x="1096" y="36" text-anchor="end" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="1.5">VARIANCE</text>
+
+        <!-- Vertical grid lines -->
+        <line x1="340" y1="0" x2="340" y2="400" stroke="#E2E8F0" stroke-width="1"/>
+        <line x1="540" y1="0" x2="540" y2="400" stroke="#E2E8F0" stroke-width="1"/>
+        <line x1="740" y1="0" x2="740" y2="400" stroke="#E2E8F0" stroke-width="1"/>
+        <line x1="940" y1="0" x2="940" y2="400" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 1 -->
+        <text x="24" y="92" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Retail Distribution</text>
+        <text x="500" y="92" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">38,420</text>
+        <text x="700" y="92" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">40,000</text>
+        <text x="900" y="92" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">41,180</text>
+        <text x="1096" y="92" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#15803D">+1,180</text>
+        <line x1="0" y1="112" x2="1120" y2="112" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 2 -->
+        <text x="24" y="148" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Wholesale Channel</text>
+        <text x="500" y="148" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">52,100</text>
+        <text x="700" y="148" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">55,000</text>
+        <text x="900" y="148" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">53,860</text>
+        <text x="1096" y="148" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#B91C1C">-1,140</text>
+        <line x1="0" y1="168" x2="1120" y2="168" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 3 -->
+        <text x="24" y="204" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Digital Direct</text>
+        <text x="500" y="204" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">14,800</text>
+        <text x="700" y="204" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">18,000</text>
+        <text x="900" y="204" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">20,640</text>
+        <text x="1096" y="204" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#15803D">+2,640</text>
+        <line x1="0" y1="224" x2="1120" y2="224" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 4 -->
+        <text x="24" y="260" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Industrial Solutions</text>
+        <text x="500" y="260" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">22,500</text>
+        <text x="700" y="260" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">24,000</text>
+        <text x="900" y="260" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">23,720</text>
+        <text x="1096" y="260" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#B91C1C">-280</text>
+        <line x1="0" y1="280" x2="1120" y2="280" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 5 -->
+        <text x="24" y="316" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Aftermarket Services</text>
+        <text x="500" y="316" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">9,650</text>
+        <text x="700" y="316" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="500" fill="#334155">10,500</text>
+        <text x="900" y="316" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">11,200</text>
+        <text x="1096" y="316" text-anchor="end" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#15803D">+700</text>
+        <line x1="0" y1="336" x2="1120" y2="336" stroke="#CBD5E1" stroke-width="2"/>
+
+        <!-- Total row (accent) -->
+        <rect x="0" y="336" width="1120" height="64" fill="#EFF6FF"/>
+        <text x="24" y="376" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#1D4ED8" letter-spacing="1.5">TOTAL</text>
+        <text x="500" y="376" text-anchor="end" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#1D4ED8">137,470</text>
+        <text x="700" y="376" text-anchor="end" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#1D4ED8">147,500</text>
+        <text x="900" y="376" text-anchor="end" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#1D4ED8">150,600</text>
+        <text x="1096" y="376" text-anchor="end" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="#1D4ED8">+3,100</text>
+    </g>
+
+    <!-- Insight strip -->
+    <text x="80" y="620" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1D4ED8" letter-spacing="1">SO WHAT</text>
+    <text x="80" y="650" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#0F172A">Digital Direct now covers shortfalls in Wholesale and Industrial — reweight Q3 plan accordingly.</text>
+
+    <text x="1200" y="690" text-anchor="end" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#94A3B8">Source: ERP close, period 06; all figures in USD thousands</text>
+</svg>

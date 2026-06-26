@@ -157,6 +157,26 @@ One offending character invalidates the file and aborts export. Numeric refs (`&
 
 **Mnemonic**: PPT does not recognize rgba, group opacity, or image opacity.
 
+> **Decorative clusters (dot grids / concentric rings / scattered orbs) — common pitfall.** Authoring `<g opacity="0.18"> …N circles… </g>` to dim a whole sprinkle of decoration is the single most-repeated `<g opacity>` violation. The decoration looks right in a browser, then `svg_quality_checker` errors out at Step 6 exit and every child needs a manual rewrite. Always emit the opacity on **each `<circle>` / `<rect>` / `<path>` element directly** the first time:
+>
+> ```xml
+> <!-- ❌ Forbidden — looks fine in the browser, blocks export -->
+> <g opacity="0.18">
+>   <circle cx="60"  cy="60"  r="2" fill="#FFFFFF"/>
+>   <circle cx="100" cy="60"  r="2" fill="#FFFFFF"/>
+>   <!-- … many more dots … -->
+> </g>
+>
+> <!-- ✅ Required — same look, exports cleanly -->
+> <g id="decor-dotgrid">
+>   <circle cx="60"  cy="60"  r="2" fill="#FFFFFF" fill-opacity="0.18"/>
+>   <circle cx="100" cy="60"  r="2" fill="#FFFFFF" fill-opacity="0.18"/>
+>   <!-- … many more dots, each carrying fill-opacity … -->
+> </g>
+> ```
+>
+> The wrapping `<g id="decor-…">` is still encouraged (grouping for animation/edit), what's banned is the `opacity` attribute on the group itself. Same rule for stroke-based clusters (use `stroke-opacity` per element). When the cluster shares one HEX + one opacity, factor the literal pair (`fill="#FFFFFF" fill-opacity="0.18"`) into a search-and-replace before pasting the cluster — do **not** factor it into a `<g opacity>`.
+
 > Arrows: prefer `marker-end` for connector lines (§1.1) — converter produces native auto-rotating arrow heads. For block/chunky arrows, use standalone closed shapes; see `templates/charts/chevron_process.svg` and `templates/charts/process_flow.svg`.
 
 ---
@@ -244,6 +264,47 @@ Color: use the deck's primary brand color for emphasis. Reserve green/red for ac
   2024年公司营收同比<tspan fill="#1A73E8" font-weight="bold">增长35%</tspan>达到<tspan fill="#1A73E8" font-weight="bold">12亿元</tspan>创历史新高
 </text>
 ```
+
+### Short Latin Labels Mid-Wrap Pitfall (Renderer-Level)
+
+> **The single most frequent "looks fine in the browser, wraps mid-word in the exported PPTX" bug.** Reproducible on every LibreOffice-backed visual check (which is what the live preview uses for PDF / PNG visual diffs).
+
+**Symptom**: a short ALL-CAPS or letter-spaced Latin label inside a small badge / pill / tag —
+`PLATFORM`, `BUDGET`, `OPEX / YEAR`, `SECURITY`, `RECOMMENDED`, `PRICING`, `PRICING TBD`, `RANK 1`, `RANK 2`, `RANK 3`, `RANK 4`, `SCOPE`, `TOTAL TIMELINE`, `PC / APP / 微信小程序` — visibly wraps mid-word (`RECOM\nMENDED`, `SECUR\nITY`) in LibreOffice PDF / PNG export, even though the SVG looked tight in the browser.
+
+**Root cause** (one-line summary, do **not** edit the converter):
+
+- `svg_to_pptx/drawingml_elements.py` emits **`wrap="none" + spAutoFit`** for single-line Latin text frames and sizes the frame via `estimate_text_width × 1.05`.
+- `estimate_text_width` (in `drawingml_utils.py`) assigns ~0.55em to ASCII letters and ~0.30em to spaces — narrower than the **~0.60em advance** LibreOffice gives Microsoft YaHei's Latin glyphs.
+- LibreOffice **ignores `wrap="none"`** and reflows whenever its measured advance overflows the frame box. PowerPoint honors `wrap="none"` and renders fine — but the deck still ships through LibreOffice for the live-preview PDF / PNG.
+- Single-line **CJK** frames use `wrap="square"` + `cjk_width_slack=1.12` and render correctly.
+
+**Fix at content level — pick one per label**:
+
+1. **Rewrite the label to CJK** (preferred for decks whose primary audience reads CJK):
+   - `BUDGET` → `建设投入`
+   - `OPEX / YEAR` → `年度运维`
+   - `SECURITY` → `合规等级`
+   - `RECOMMENDED` → `推荐方案`
+   - `PRICING` → `价格区间`
+   - `PRICING TBD` → `报价待澄清`
+   - `RANK 1 / 2 / 3 / 4` → `第 1 / 2 / 3 / 4 名`
+   - `SCOPE` → `主要任务`
+   - `TOTAL TIMELINE` → `项目总周期`
+   - `PC / APP / 微信小程序` → `三端覆盖 · PC 端 / 移动端`
+2. **Or rewrite to a single short Latin word with `letter-spacing` removed** (acceptable when the deck is English-first and a single token still reads):
+   - `PRICING TBD` → `Pricing` (drop the second word)
+   - `TOTAL TIMELINE` → `Timeline`
+   - And strip every `letter-spacing="N"` attribute the label carries — letter-spacing widens the visual advance without widening the converter's measured width, doubling the wrap risk.
+
+> **Forbidden workarounds**:
+>
+> - ❌ Patching `estimate_text_width` / `drawingml_utils.py` / `drawingml_elements.py` to over-allocate Latin width. This is a shipped converter; do not touch it for one deck's labels.
+> - ❌ Wrapping the label in a wider invisible `<rect>` — the converter measures the `<text>`, not the surrounding rect.
+> - ❌ Reducing the label's `font-size` until it fits — destroys the badge's visual rhythm with its peers.
+> - ❌ Manually inserting `<tspan x dy>` to pre-break the word — that splits into two text frames and reads as two stacked labels in PowerPoint.
+>
+> **Detection during visual self-check**: when the LibreOffice PDF / PNG shows a Latin label clearly broken across two lines while every other element on the page is intact, do not chase a layout fix — apply one of the two content rewrites above and re-export.
 
 ### Element Grouping (Mandatory)
 

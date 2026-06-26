@@ -13,6 +13,7 @@ from xml.etree import ElementTree as ET
 from .drawingml_context import ConvertContext, ShapeResult
 from .drawingml_utils import (
     SVG_NS, XLINK_NS, ANGLE_UNIT, FONT_PX_TO_HUNDREDTHS_PT, DASH_PRESETS,
+    font_px_to_sz,
     px_to_emu, _f, _get_attr,
     ctx_x, ctx_y, ctx_w, ctx_h,
     rect_to_dml_xfrm,
@@ -1006,7 +1007,7 @@ def _build_run_xml(
 
     text_dec = run.get('text_decoration', '')
 
-    sz = round(fs_px * FONT_PX_TO_HUNDREDTHS_PT)
+    sz = font_px_to_sz(fs_px)
     b_attr = ' b="1"' if fw in ('bold', '600', '700', '800', '900') else ''
     i_attr = ' i="1"' if fstyle == 'italic' else ''
     u_attr = ' u="sng"' if 'underline' in text_dec else ''
@@ -1019,8 +1020,17 @@ def _build_run_xml(
 
     space_attr = ' xml:space="preserve"' if text != text.strip() or '  ' in text else ''
 
+    # Set lang/altLang based on actual run content so spell-check / line
+    # breaking honor the language. Mixed-content runs still pick the first
+    # detected script as the primary language for the run; we rely on
+    # paragraph-level decomposition (one run per script transition) to
+    # keep each run linguistically homogeneous.
+    has_cjk = any(is_cjk_char(c) for c in text)
+    lang = 'zh-CN' if has_cjk else 'en-US'
+    alt_lang = 'en-US' if has_cjk else 'zh-CN'
+
     return f'''<a:r>
-<a:rPr lang="zh-CN" sz="{sz}"{b_attr}{i_attr}{u_attr}{strike_attr} dirty="0">
+<a:rPr lang="{lang}" altLang="{alt_lang}" sz="{sz}"{b_attr}{i_attr}{u_attr}{strike_attr} dirty="0">
 {outline_xml}
 {fill_xml}
 {effect_xml}
@@ -1142,23 +1152,38 @@ def convert_text(elem: ET.Element, ctx: ConvertContext) -> ShapeResult | None:
         return None
 
     # Estimate text dimensions
+    # CJK width slack. The width estimator assigns 1em per CJK char, but the
+    # rendered width on the consuming host depends on the actual font: when
+    # the deck travels from a macOS authoring station (PingFang ~0.95em
+    # advance) to a Windows / Linux host (Microsoft YaHei ~1.02em advance,
+    # plus inter-glyph hints), a box sized exactly to the estimate clips its
+    # last character. Detect CJK presence once and let downstream sizing
+    # bump both the paragraph-mode width and the single-line width.
+    has_cjk_text = any(is_cjk_char(c) for c in full_text)
+    cjk_width_slack = 1.12 if has_cjk_text else 1.0
+
     if paragraph_runs is not None:
         # Use the WIDEST visual line (per-tspan as the deck author drew it),
         # not the joined-up paragraph: soft-broken paragraphs concatenate
         # many lines into one <a:p>, and measuring the joined string would
         # blow the textbox past the canvas.
-        text_width = max(visual_line_widths) if visual_line_widths else 0.0
+        widest_line = max(visual_line_widths) if visual_line_widths else 0.0
+        text_width = widest_line * cjk_width_slack
         # Total height assumes the visual line count from the SVG source;
         # if PowerPoint wraps to more or fewer lines after the user resizes,
-        # the user resizes the height accordingly.
+        # the user resizes the height accordingly. CJK descenders + Microsoft
+        # YaHei's tall x-height push us to 1.6em for safety on the last line.
+        last_line_height = font_size * (1.6 if has_cjk_text else 1.5)
         text_height = (
             line_height_px * (len(visual_line_widths) - 1)
             + sum(paragraph_space_before)
-            + font_size * 1.5
+            + last_line_height
         )
     else:
-        text_width = estimate_text_width(full_text, font_size, font_weight) * 1.05
-        text_height = font_size * 1.5
+        text_width = estimate_text_width(full_text, font_size, font_weight) * (
+            1.05 * cjk_width_slack
+        )
+        text_height = font_size * (1.6 if has_cjk_text else 1.5)
     padding = font_size * 0.1
 
     # Adjust position based on text-anchor
@@ -1255,15 +1280,53 @@ def convert_text(elem: ET.Element, ctx: ConvertContext) -> ShapeResult | None:
         # SVG dy(px) -> hundredths-of-a-point: dy_pt = dy_px * 0.75, then x100.
         line_spc_val = round(line_height_px * FONT_PX_TO_HUNDREDTHS_PT)
         ln_spc_xml = f'<a:lnSpc><a:spcPts val="{line_spc_val}"/></a:lnSpc>'
+        # Literal bullet glyphs that the SVG layer typically writes as the
+        # first character of a line. We convert these into a true
+        # <a:buChar char="•"/> paragraph property so PowerPoint owns the
+        # bullet rendering (auto-indent, hanging indent, level coloring,
+        # outline view, etc.) instead of treating the glyph as inline text.
+        _BULLET_PREFIXES = ('•', '●', '▪', '◦', '‣', '·', '∙')
+        # Hanging indent for one bullet level. ~1.5em of font-size feels
+        # right and matches the visual spacing the SVG renderers produce.
+        bullet_indent_emu = int(font_size * 1.5 * 9525)  # 9525 EMU per px
         paragraph_xml_chunks = []
         for line, extra_px in zip(paragraph_runs, paragraph_space_before):
             spc_bef_xml = ''
             if extra_px > 0:
                 spc_bef_val = round(extra_px * FONT_PX_TO_HUNDREDTHS_PT)
                 spc_bef_xml = f'<a:spcBef><a:spcPts val="{spc_bef_val}"/></a:spcBef>'
+            # Detect a leading literal bullet glyph and strip it from the run
+            # so we can promote it to a real <a:buChar/> below. Look at the
+            # first non-empty run only; subsequent runs in the same paragraph
+            # are interior text.
+            bullet_char = ''
+            if line:
+                first_run = line[0]
+                first_text = first_run.get('text', '')
+                lstripped = first_text.lstrip()
+                if lstripped and lstripped[0] in _BULLET_PREFIXES:
+                    bullet_char = lstripped[0]
+                    # Strip "<bullet>[whitespace]" from the front of the run.
+                    rest = lstripped[1:].lstrip()
+                    new_first = dict(first_run)
+                    new_first['text'] = rest
+                    if rest:
+                        line = [new_first] + list(line[1:])
+                    else:
+                        line = list(line[1:])
+            if bullet_char and line:
+                marL_attr = f' marL="{bullet_indent_emu}" indent="-{bullet_indent_emu}"'
+                bullet_xml = f'<a:buChar char="{bullet_char}"/>'
+            else:
+                marL_attr = ''
+                bullet_xml = ''
+            if not line:
+                # All content was the bullet glyph itself — drop the
+                # paragraph rather than emit an empty <a:p>.
+                continue
             runs_inner = '\n'.join(_build_run_xml(r, fonts, ctx, text_effect_xml) for r in line)
             paragraph_xml_chunks.append(
-                f'<a:p>\n<a:pPr algn="{algn}">{ln_spc_xml}{spc_bef_xml}</a:pPr>\n'
+                f'<a:p>\n<a:pPr algn="{algn}"{marL_attr}>{ln_spc_xml}{spc_bef_xml}{bullet_xml}</a:pPr>\n'
                 f'{runs_inner}\n</a:p>'
             )
         paragraphs_xml = '\n'.join(paragraph_xml_chunks)
@@ -1281,8 +1344,17 @@ def convert_text(elem: ET.Element, ctx: ConvertContext) -> ShapeResult | None:
     # long joined-up <a:p> on one line, blowing past the canvas. The cx we
     # write below (longest SVG line) is the design target width;
     # PowerPoint wraps long paragraphs inside this width.
-    # Single-line text keeps wrap="none" + spAutoFit for tight fidelity.
+    # Single-line Latin text keeps wrap="none" + spAutoFit for tight fidelity.
+    # Single-line CJK text switches to wrap="square" (no spAutoFit) so font
+    # substitution on the target machine — which can make a YaHei glyph
+    # advance wider than the PingFang estimate — re-wraps inside the box
+    # instead of bleeding past the next column.
     if paragraph_runs is not None:
+        body_pr_xml = (
+            '<a:bodyPr wrap="square" lIns="0" tIns="0" rIns="0" bIns="0" '
+            'anchor="t" anchorCtr="0"/>'
+        )
+    elif has_cjk_text:
         body_pr_xml = (
             '<a:bodyPr wrap="square" lIns="0" tIns="0" rIns="0" bIns="0" '
             'anchor="t" anchorCtr="0"/>'

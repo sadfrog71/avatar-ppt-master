@@ -346,6 +346,135 @@ def collect_defs(root: ET.Element) -> dict[str, ET.Element]:
     return defs
 
 
+def _parse_svg_viewbox(root: ET.Element) -> tuple[float, float] | None:
+    """Return (width_px, height_px) for the root SVG, or None when unknown.
+
+    Accepts both an explicit viewBox attribute and bare width/height (numeric
+    or "Npx") attributes.
+    """
+    vb = root.get('viewBox')
+    if vb:
+        parts = re.split(r'[\s,]+', vb.strip())
+        if len(parts) == 4:
+            try:
+                return float(parts[2]), float(parts[3])
+            except ValueError:
+                pass
+
+    def _num(s: str | None) -> float | None:
+        if s is None:
+            return None
+        m = re.match(r'\s*([-+]?\d*\.?\d+)', s)
+        return float(m.group(1)) if m else None
+
+    w = _num(root.get('width'))
+    h = _num(root.get('height'))
+    if w and h:
+        return w, h
+    return None
+
+
+def _hex_from_svg_fill(value: str | None) -> str | None:
+    """Normalize an SVG fill attribute to a "RRGGBB" hex string."""
+    if not value:
+        return None
+    v = value.strip().lower()
+    if v in ('none', 'transparent'):
+        return None
+    if v.startswith('url('):
+        return None  # gradient / pattern — out of scope here
+    m = re.match(r'^#([0-9a-f]{3})$', v)
+    if m:
+        ch = m.group(1)
+        return (ch[0] * 2 + ch[1] * 2 + ch[2] * 2).upper()
+    m = re.match(r'^#([0-9a-f]{6})$', v)
+    if m:
+        return m.group(1).upper()
+    m = re.match(r'^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$', v)
+    if m:
+        r, g, b = (max(0, min(255, int(m.group(i)))) for i in (1, 2, 3))
+        return f'{r:02X}{g:02X}{b:02X}'
+    return None
+
+
+def _candidate_background_rect(
+    rect: ET.Element,
+    vb_w: float,
+    vb_h: float,
+) -> str | None:
+    """If rect is a slide-spanning solid fill, return its RRGGBB hex."""
+    if _local_tag(rect) != 'rect':
+        return None
+    try:
+        x = float(rect.get('x', '0') or '0')
+        y = float(rect.get('y', '0') or '0')
+        w = float(rect.get('width', '0') or '0')
+        h = float(rect.get('height', '0') or '0')
+    except ValueError:
+        return None
+    # Allow a 1px tolerance on each edge — some authoring tools nudge the
+    # background rect a fraction of a unit.
+    if not (
+        abs(x) <= 1.0
+        and abs(y) <= 1.0
+        and abs(w - vb_w) <= 1.5
+        and abs(h - vb_h) <= 1.5
+    ):
+        return None
+    # Honor either fill="..." or style="fill: ...".
+    fill_attr = rect.get('fill')
+    if fill_attr is None:
+        style = rect.get('style') or ''
+        sm = re.search(r'(?:^|;)\s*fill\s*:\s*([^;]+)', style)
+        fill_attr = sm.group(1).strip() if sm else None
+    return _hex_from_svg_fill(fill_attr)
+
+
+def _extract_background_fill(
+    root: ET.Element,
+) -> tuple[str, int] | None:
+    """Try to promote the slide's background rect into a <p:bg> block.
+
+    Returns (bg_xml, child_index) on success — the caller skips that child
+    in the shape pipeline and inserts bg_xml after <p:cSld>. Returns None
+    when the first visible child is not a recognizable background fill.
+    """
+    dims = _parse_svg_viewbox(root)
+    if not dims:
+        return None
+    vb_w, vb_h = dims
+
+    for idx, child in enumerate(root):
+        tag = _local_tag(child)
+        if tag in _NON_VISUAL_TAGS:
+            continue
+        hex_rgb: str | None = None
+        # Direct top-level <rect>
+        if tag == 'rect':
+            hex_rgb = _candidate_background_rect(child, vb_w, vb_h)
+        # <g id="background"> containing exactly one full-viewport rect.
+        elif tag == 'g' and (child.get('id') or '').lower() in {
+            'background', 'bg', 'page-background',
+        }:
+            visual = [c for c in child if _local_tag(c) not in _NON_VISUAL_TAGS]
+            if len(visual) == 1 and _local_tag(visual[0]) == 'rect':
+                hex_rgb = _candidate_background_rect(visual[0], vb_w, vb_h)
+        if hex_rgb is not None:
+            bg_xml = (
+                '<p:bg>'
+                '<p:bgPr>'
+                f'<a:solidFill><a:srgbClr val="{hex_rgb}"/></a:solidFill>'
+                '<a:effectLst/>'
+                '</p:bgPr>'
+                '</p:bg>'
+            )
+            return bg_xml, idx
+        # First visible child wasn't a background — stop scanning so we
+        # don't accidentally promote a content rect later in z-order.
+        return None
+    return None
+
+
 def convert_element(elem: ET.Element, ctx: ConvertContext) -> ShapeResult | None:
     """Dispatch an SVG element to the appropriate converter."""
     tag = elem.tag.replace(f'{{{SVG_NS}}}', '')
@@ -498,6 +627,21 @@ def convert_svg_to_slide_shapes(
         trace_events=trace_events,
     )
 
+    # Background layer detection. When the first visible child is a slide-
+    # spanning solid-fill <rect> (or a <g id="background"> wrapping one), we
+    # extract its colour and promote it to a real PowerPoint <p:bg>. This
+    # gives the user a single editable swatch in the slide-master tools
+    # instead of a shape that overlaps and blocks selection of foreground
+    # content. Anything more complex (gradients, patterns, multi-shape
+    # backgrounds) falls through to the normal shape pipeline so the deck
+    # still renders correctly.
+    bg_xml = _extract_background_fill(root)
+    shapes_to_skip: set[int] = set()
+    if bg_xml is not None:
+        bg_xml, skip_index = bg_xml
+        shapes_to_skip.add(skip_index)
+        trace_steps.append({'action': 'extract-background', 'child_index': skip_index})
+
     shapes: list[str] = []
     converted = 0
     skipped = 0
@@ -505,9 +649,12 @@ def convert_svg_to_slide_shapes(
     # fallback when no <g id="..."> groups are present at the root.
     fallback_targets: list = []
 
-    for child in root:
+    for child_index, child in enumerate(root):
         tag = child.tag.replace(f'{{{SVG_NS}}}', '')
         if tag == 'defs':
+            continue
+        if child_index in shapes_to_skip:
+            # Already promoted to <p:bg>; do not also draw it as a shape.
             continue
         result = convert_element(child, ctx)
         if result:
@@ -550,12 +697,14 @@ def convert_svg_to_slide_shapes(
 
     shapes_xml = '\n'.join(shapes)
 
+    bg_block = bg_xml + '\n' if bg_xml else ''
+
     slide_xml = f'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <p:sld xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
        xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
        xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
 <p:cSld>
-<p:spTree>
+{bg_block}<p:spTree>
 <p:nvGrpSpPr>
 <p:cNvPr id="1" name=""/>
 <p:cNvGrpSpPr/><p:nvPr/>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+    <!--
+    comparison_columns_table
+    Purpose: 2-4 side-by-side option comparisons with one accented column (recommended/winning).
+    Header: accent band on the recommended column; soft bands on siblings.
+    Body: white + horizontal separators; no internal vertical rules; left rail accent on recommended column.
+    Canonical: 3 columns x 5-8 attribute rows.
+    -->
+    <rect width="1280" height="720" fill="#FFFFFF"/>
+
+    <!-- Eyebrow + title -->
+    <text x="80" y="80" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#64748B" letter-spacing="2">COMPARISON · OPTIONS SIDE BY SIDE</text>
+    <text x="80" y="120" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="800" fill="#0F172A">Deployment Models Compared on Six Dimensions</text>
+
+    <g transform="translate(80, 170)">
+        <!-- Left attribute column header strip -->
+        <rect x="0" y="0" width="280" height="56" fill="#F8FAFC"/>
+        <text x="24" y="34" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">ATTRIBUTE</text>
+
+        <!-- Column A (soft) -->
+        <rect x="280" y="0" width="280" height="56" fill="#F8FAFC"/>
+        <text x="420" y="36" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#475569" letter-spacing="1.5">ON-PREMISE</text>
+
+        <!-- Column B (ACCENT — recommended) -->
+        <rect x="560" y="0" width="280" height="440" fill="#EFF6FF"/>
+        <line x1="560" y1="0" x2="560" y2="440" stroke="#1D4ED8" stroke-width="4"/>
+        <rect x="560" y="0" width="280" height="56" fill="#1D4ED8"/>
+        <text x="700" y="36" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF" letter-spacing="1.5">HYBRID CLOUD</text>
+        <!-- Recommended badge -->
+        <rect x="640" y="-30" width="120" height="24" rx="12" fill="#1D4ED8"/>
+        <text x="700" y="-14" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" letter-spacing="1.5">RECOMMENDED</text>
+
+        <!-- Column C (soft) -->
+        <rect x="840" y="0" width="280" height="56" fill="#F8FAFC"/>
+        <text x="980" y="36" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#475569" letter-spacing="1.5">PUBLIC CLOUD</text>
+
+        <line x1="0" y1="56" x2="1120" y2="56" stroke="#CBD5E1" stroke-width="2"/>
+
+        <!-- Row 1: Upfront cost -->
+        <text x="24" y="94" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Upfront cost</text>
+        <text x="420" y="94" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">High capex</text>
+        <text x="700" y="94" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Moderate capex + opex</text>
+        <text x="980" y="94" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">Low — pure opex</text>
+        <line x1="0" y1="112" x2="1120" y2="112" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 2 -->
+        <text x="24" y="148" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Data residency control</text>
+        <text x="420" y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">Full control</text>
+        <text x="700" y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Tiered by sensitivity</text>
+        <text x="980" y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">Region-policy bound</text>
+        <line x1="0" y1="166" x2="1120" y2="166" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 3 -->
+        <text x="24" y="202" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Scalability ceiling</text>
+        <text x="420" y="202" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">Hardware-bound</text>
+        <text x="700" y="202" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Burst into cloud</text>
+        <text x="980" y="202" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">Effectively unlimited</text>
+        <line x1="0" y1="220" x2="1120" y2="220" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 4 -->
+        <text x="24" y="256" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Time to first value</text>
+        <text x="420" y="256" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">9-12 months</text>
+        <text x="700" y="256" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">10-14 weeks</text>
+        <text x="980" y="256" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">4-6 weeks</text>
+        <line x1="0" y1="274" x2="1120" y2="274" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 5 -->
+        <text x="24" y="310" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Operating risk</text>
+        <text x="420" y="310" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">Self-managed</text>
+        <text x="700" y="310" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Shared responsibility</text>
+        <text x="980" y="310" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">Vendor-managed</text>
+        <line x1="0" y1="328" x2="1120" y2="328" stroke="#E2E8F0" stroke-width="1"/>
+
+        <!-- Row 6 -->
+        <text x="24" y="364" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Regulatory fit (FY26)</text>
+        <text x="420" y="364" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">Best</text>
+        <text x="700" y="364" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0F172A">Strong with controls</text>
+        <text x="980" y="364" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="#475569">Conditional</text>
+        <line x1="0" y1="382" x2="1120" y2="382" stroke="#CBD5E1" stroke-width="2"/>
+
+        <!-- Verdict / pricing band -->
+        <rect x="0" y="382" width="280" height="58" fill="#FFFFFF"/>
+        <text x="24" y="416" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#475569" letter-spacing="1.5">3-YR TCO</text>
+        <rect x="280" y="382" width="280" height="58" fill="#F8FAFC"/>
+        <text x="420" y="416" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#475569">USD 9.2M</text>
+        <text x="700" y="416" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#1D4ED8">USD 7.4M</text>
+        <rect x="840" y="382" width="280" height="58" fill="#F8FAFC"/>
+        <text x="980" y="416" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#475569">USD 8.1M</text>
+    </g>
+
+    <!-- Insight strip -->
+    <text x="80" y="660" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1D4ED8" letter-spacing="1">SO WHAT</text>
+    <text x="80" y="690" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#0F172A">Hybrid wins on cost, speed, and regulatory fit simultaneously — no single-dimension trade-off required.</text>
+</svg>

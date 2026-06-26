@@ -164,6 +164,98 @@
 >
 > **Strategist source**: copy from `design_spec.md §VII Visualization Reference List` — only the rows whose `reference template path` points to a `templates/charts/` file. Pages marked `no-template-match` in §VII MUST NOT appear here.
 
+## page_focal
+- P01: L1="封面主张" | L2=[副标题,日期] | L3=[]
+- P02: L1="三大风险已识别" | L2=[风险A,风险B,风险C] | L3=[来源,时点]
+- P03: L1="增长来自存量复购" | L2=[复购率,客单价,频次] | L3=[同比,环比]
+
+> **Mandatory section** — every `P<NN>` that appears in `design_spec.md §IX` MUST have a row here. Missing rows fail `scripts/validate_focal_hierarchy.py` and block Step 6 SVG generation.
+>
+> **Inner grammar** (parsed by the validator, not by `update_spec.parse_lock`): `L1="<headline>" | L2=[item, item, ...] | L3=[item, item, ...]`. The `|` separates tiers; commas inside `[...]` separate items. L2/L3 values are bare strings (no quotes); double-quote chars are forbidden inside list items.
+>
+> **Tier semantics**:
+> - **L1** — the single line a reader should remember from the page. Exactly one. ≤18 CJK / ≤36 Latin chars. Rendered as the largest text element (anchor templates: title slot; free-design: top-left, ≥body × 2.0 ramp). No other text on the page may match or exceed L1 in size.
+> - **L2** — supporting items that make L1 credible. 2–4 items. Each ≤12 CJK / ≤24 Latin. Executor MUST NOT render more parallel content blocks than L2 declares.
+> - **L3** — context (source, date, scope, caveat). 0–3 items, may be empty `[]`. Each ≤10 CJK / ≤20 Latin.
+>
+> **Rhythm interaction**: when `page_rhythm` is `breathing`, keep L2 ≤2 (warning, not error). When the page is also in `page_tables`, L2 should be 3–4 (warning if outside).
+>
+> **Anti-pattern (planner-side)**: noun-phrase topic labels (`"行业概览"`, `"现状分析"`) instead of assertions trigger a warning (skipped for `anchor` pages where a label is acceptable). Aim for an assertion the audience can agree or disagree with.
+>
+> **Strategist source**: produced in `references/strategist.md §6.1.1 step 9 (Focal hierarchy planning)`; cross-check the `Core message` field in `design_spec.md §IX` — L1 is the one-line distillation of Core message.
+
+## page_tables
+- P05: editorial_zebra
+- P09: ledger_financial
+- P12: scorecard_dotmatrix
+
+> One entry per page **that adapts a `templates/tables/` table-style preset**. Key: `P<NN>`. Value: preset basename without `.svg` (must match a key in `templates/tables/tables_index.json`).
+>
+> **Mutual exclusion (HARD)**: a page MUST NOT appear in both `page_charts` and `page_tables`. Strategist picks the dominant primitive — pages whose visualization is fundamentally a table go here; pages whose visualization is a chart go in `page_charts`.
+>
+> **No entry for a page** → no designed-table preset (free-design table OR no table at all on that page).
+>
+> **Whole section omitted** → deck has no preset-driven table pages.
+>
+> **Strategist source**: copy from `design_spec.md §VII Visualization Reference List` — only the rows whose `reference template path` points to a `templates/tables/` file. Catalog: `templates/tables/tables_index.json`; selection rules per preset live there.
+
+## palette_roles
+- bg_canvas: #FFFFFF
+- surface_subtle: #F8FAFC
+- text_primary: #0F172A
+- text_secondary: #475569
+- text_muted: #94A3B8
+- border_subtle: #E2E8F0
+- accent_primary: #2563EB
+- accent_subtle: #DBEAFE
+- state_success: #10B981
+- state_warning: #F59E0B
+- state_danger: #EF4444
+
+> **Mandatory section** — every deck must declare semantic palette roles. Missing or incomplete rows fail `scripts/validate_visual_consistency.py --stage=lock-only` and block Step 6 SVG generation.
+>
+> **Inner grammar**: each line is `- <role>: <HEX>`. Role names use `[a-z0-9_]+` and must be unique within the section. HEX values must be `#RRGGBB` or `#RRGGBBAA` (3-digit `#RGB` shorthand is not allowed for palette_roles entries — it is allowed elsewhere in SVG content for non-palette decoration).
+>
+> **Required roles** (validator hard error if missing): `bg_canvas`, `text_primary`, `text_secondary`, `border_subtle`, `accent_primary`. Add any of the following optional roles when the deck genuinely needs them:
+> - Surface — `surface_subtle`, `surface_emphasis`
+> - Text — `text_muted`
+> - Border — `border_emphasis`
+> - Accent — `accent_subtle`, `accent_emphasis`
+> - State — `state_success`, `state_warning`, `state_danger`, `state_info`
+>
+> **Relationship to `## colors`**: `## colors` stays as the strategist input + `update_spec.py` color replacement working set (backward compatible). `## palette_roles` is the **downstream truth** — every SVG `fill` / `stroke` / `stop-color` HEX MUST appear in this section. The two sections may overlap freely; `palette_roles` may carry additional roles that `colors` does not (e.g., split a single `accent` into `accent_primary` + `accent_subtle`). Validator does NOT require strict mirroring.
+>
+> **Strategist source**: produced in `references/strategist.md §6.1.1 step 10 (Palette role mapping)`. Map each HEX in `design_spec.md §III Visual Theme` to a role; add extra roles when the spec needs more granularity than `colors` captures.
+>
+> **Executor consumption**: when rendering SVGs, every fill / stroke / stop-color HEX MUST be one declared here. Inventing new HEXes mid-generation is forbidden — return to Strategist to extend `palette_roles` instead.
+
+## page_groups
+- P01: hero=[L1] | meta=[L2_1,L2_2] | chrome=[]
+- P02: headline=[L1] | grid=[L2_1,L2_2,L2_3] | footnote=[L3_1]
+- P03: hero=[L1,L2_1] | matrix=[L2_2,L2_3,L2_4] | source=[L3_1]
+
+> **Mandatory section** — every `P<NN>` declared in `design_spec.md §IX` MUST have a row here. Missing or malformed rows fail `scripts/validate_visual_consistency.py` and block Step 6 SVG generation.
+>
+> **Inner grammar** (parsed by the validator, not by `update_spec.parse_lock`):
+>
+> ```
+> P<NN>: <group_name>=[<slot>, <slot>, ...] | <group_name>=[<slot>, ...] | ...
+> ```
+>
+> - `group_name` is a Strategist-chosen semantic label (`hero`, `grid`, `matrix`, `chrome`, `footnote`, `source`, etc.) using `[a-z0-9_]+`. Group names within a page must be unique.
+> - Slot tokens are `L1`, `L2_<N>`, `L3_<N>` (N is 1-based, refers to position in the same page's `page_focal` row).
+> - All slots from `page_focal.P<NN>` (L1 + every L2 item + every L3 item) MUST be covered by the union of group slots, exactly once. Cross-group duplicates are forbidden.
+> - Empty groups (e.g., `chrome=[]`) are allowed when the slot is supplied by the template chrome (footer / page number) rather than by `page_focal`.
+>
+> **Hard constraints**:
+> 1. **Intra-group visual parity** — all slots inside one `<g data-group="<name>">` MUST render with the same visual treatment: same font size band, same primary `palette_role` for fill, same baseline / column alignment.
+> 2. **Cross-group separation** — different groups MUST use visibly different containers. A `footnote` group MUST NOT reuse the same card geometry (rx + fill role) as a `grid` group.
+> 3. **Group count** — recommended 2-4 groups per page (hero + body + chrome). Pages with 1 or ≥5 groups trigger a validator warning.
+>
+> **Executor consumption**: each parallel content block MUST be wrapped in `<g data-group="<name>" data-l2-item="<N>">…</g>` (anchor attributes are how the validator detects "5 cards rendered when L2 declared 3"). L1 / L3 slots do not require `data-l2-item`; only L2 items do. See `references/executor-base.md §2.1` group-anchor rules.
+>
+> **Strategist source**: produced in `references/strategist.md §6.1.1 step 11 (Page group planning)`. Group names should describe the page's reading order ("what does the reader look at first / second / third"). Do not pad pages with single-element groups to inflate the count; group count must be load-bearing.
+
 ## forbidden
 - Mixing icon libraries
 - rgba()

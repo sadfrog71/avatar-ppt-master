@@ -98,6 +98,87 @@ def _add_default_content_type(content_types: str, extension: str, content_type: 
     return content_types.replace('</Types>', entry + '\n</Types>')
 
 
+_THEME_CJK_SCRIPT_FONTS = {
+    'Hans': 'Microsoft YaHei',
+    'Hant': 'Microsoft JhengHei',
+    'Jpan': 'Yu Gothic',
+    'Hang': 'Malgun Gothic',
+}
+
+
+def _upgrade_theme_fonts(theme_path: Path) -> bool:
+    """Rewrite major/minor font definitions inside theme1.xml.
+
+    The default Office theme leaves the East-Asian slot blank and points the
+    per-script entries at fonts (SimSun / MS Mincho) that may not exist on
+    macOS / Linux. This helper rewrites Latin to Arial, EA to Microsoft
+    YaHei, and the per-script CJK entries to widely available sans families.
+
+    Best-effort: missing or unreadable theme files are left untouched.
+    """
+    if not theme_path.exists():
+        return False
+
+    try:
+        with open(theme_path, 'r', encoding='utf-8') as f:
+            xml = f.read()
+    except OSError:
+        return False
+
+    original = xml
+
+    def _rewrite_font_block(block_tag: str, source: str) -> str:
+        pattern = re.compile(
+            r'(<a:' + block_tag + r'>)(.*?)(</a:' + block_tag + r'>)',
+            re.DOTALL,
+        )
+
+        def _sub(match):
+            head, body, tail = match.group(1), match.group(2), match.group(3)
+            body = re.sub(
+                r'<a:latin\s+typeface="[^"]*"\s*/>',
+                '<a:latin typeface="Arial"/>',
+                body,
+                count=1,
+            )
+            if re.search(r'<a:ea\s+typeface="[^"]*"\s*/>', body):
+                body = re.sub(
+                    r'<a:ea\s+typeface="[^"]*"\s*/>',
+                    '<a:ea typeface="Microsoft YaHei"/>',
+                    body,
+                    count=1,
+                )
+            else:
+                body = re.sub(
+                    r'(<a:latin\s+typeface="[^"]*"\s*/>)',
+                    r'\1<a:ea typeface="Microsoft YaHei"/>',
+                    body,
+                    count=1,
+                )
+            for script_code, replacement in _THEME_CJK_SCRIPT_FONTS.items():
+                body = re.sub(
+                    r'<a:font\s+script="' + script_code + r'"\s+typeface="[^"]*"\s*/>',
+                    '<a:font script="' + script_code + '" typeface="' + replacement + '"/>',
+                    body,
+                )
+            return head + body + tail
+
+        return pattern.sub(_sub, source, count=1)
+
+    xml = _rewrite_font_block('majorFont', xml)
+    xml = _rewrite_font_block('minorFont', xml)
+
+    if xml == original:
+        return False
+
+    try:
+        with open(theme_path, 'w', encoding='utf-8') as f:
+            f.write(xml)
+    except OSError:
+        return False
+    return True
+
+
 _IMAGE_CONTENT_TYPES = {
     'png': 'image/png',
     'jpg': 'image/jpeg',
@@ -606,6 +687,15 @@ def create_pptx_with_native_svg(
         with zipfile.ZipFile(base_pptx, 'r') as zf:
             zf.extractall(extract_dir)
 
+        # Upgrade theme fonts so the deck renders coherently on Windows,
+        # macOS, and Linux. The default Office theme1.xml ships <a:font
+        # script="Hans" typeface="宋体"/> which falls through to whatever
+        # the local renderer picks when 宋体 is absent — on macOS LibreOffice
+        # this regularly selects a casual / handwritten family. Rewrite to
+        # Microsoft YaHei (Windows + most Office installs on macOS) and
+        # set the Latin slots to Arial.
+        _upgrade_theme_fonts(extract_dir / 'ppt' / 'theme' / 'theme1.xml')
+
         media_dir = extract_dir / 'ppt' / 'media'
         media_dir.mkdir(exist_ok=True)
 
@@ -649,6 +739,22 @@ def create_pptx_with_native_svg(
                             merge_paragraphs=merge_paragraphs,
                             trace_out=conversion_trace,
                         )
+                    )
+                    # Deck-level placeholder substitution. The Strategist
+                    # embeds {{deck.page_num}} / {{deck.total_pages}} into
+                    # SVG footers and page counters; we resolve them here
+                    # because only this loop knows the final total. Allow
+                    # optional whitespace inside the braces — hand-edited
+                    # SVGs frequently render "{{ deck.page_num }}".
+                    slide_xml = re.sub(
+                        r'\{\{\s*deck\.page_num\s*\}\}',
+                        str(slide_num),
+                        slide_xml,
+                    )
+                    slide_xml = re.sub(
+                        r'\{\{\s*deck\.total_pages\s*\}\}',
+                        str(len(svg_files)),
+                        slide_xml,
                     )
                     slide_transition, slide_transition_duration, slide_auto_advance = (
                         _slide_transition_settings(

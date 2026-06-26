@@ -133,6 +133,7 @@ class ProjectManager:
             )
 
         date_str = datetime.now().strftime("%Y%m%d")
+        today_iso = datetime.now().date().isoformat()
         project_dir_name = f"{project_name}_{normalized_format}_{date_str}"
         project_path = base_path / project_dir_name
 
@@ -156,7 +157,7 @@ class ProjectManager:
             (
                 f"# {project_name}\n\n"
                 f"- Canvas format: {normalized_format}\n"
-                f"- Created: {date_str}\n\n"
+                f"- Created: {date_str} ({today_iso})\n\n"
                 "## Directories\n\n"
                 "- `svg_output/`: raw SVG output\n"
                 "- `svg_final/`: finalized SVG output\n"
@@ -167,6 +168,25 @@ class ProjectManager:
                 "- `exports/`: main native pptx (timestamped); `_svg.pptx` sibling added when exported with `--svg-snapshot`\n"
                 "- `backup/<timestamp>/`: svg_output/ archive (always written in default-flow mode; safe to delete old timestamps)\n"
             ),
+            encoding="utf-8",
+        )
+
+        # Deck-level metadata file. Strategist / Executor agents read this
+        # instead of re-deriving today's date from the runtime clock, which
+        # is critical because the system clock can drift across sessions and
+        # the Strategist's planning brief needs a stable reference date for
+        # {{deck.today_iso}} substitution into source_digest.md, design_spec
+        # frontmatter, and slide footers ("As of YYYY-MM-DD").
+        deck_meta = {
+            "project_name": project_name,
+            "canvas_format": normalized_format,
+            "canvas_label": canvas_info["name"],
+            "canvas_dimensions": canvas_info["dimensions"],
+            "created_date_compact": date_str,
+            "today_iso": today_iso,
+        }
+        (project_path / ".deck_meta.json").write_text(
+            json.dumps(deck_meta, indent=2, ensure_ascii=False) + "\n",
             encoding="utf-8",
         )
 

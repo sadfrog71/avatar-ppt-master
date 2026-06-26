@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "total": 6,
+    "defaultViewBox": "0 0 1280 720",
+    "formats": ["ppt169"],
+    "filePattern": "{key}.svg",
+    "libraryPositioning": "Designed table preset library — the visual counterpart to charts/. While templates/charts/ holds 3 chart-side table SVGs (basic_table / consulting_table / feature_matrix_table) for backward compatibility, templates/tables/ is the curated style library Executor should adapt for any page declared in spec_lock ## page_tables. Each preset codifies a distinct combination of header weight, alignment discipline, total-row treatment, and row-tint usage — selected so the deck never falls into the 'every table looks the same colored zebra' failure mode.",
+    "summaryGrammar": "Each preset's `summary` is a selection rule, not a description. Format: 'Pick for <content shape + scale>. Skip if <reason -> alternative>'. Strategist matches every table page's content shape against all summaries.",
+    "designContract": "All presets follow TABLE_STYLE_GUIDE.md: at most TWO of {full-grid lines, zebra tint, accent header band} simultaneously; numeric columns right-aligned; label columns left-aligned; category columns center-aligned; total row is the only visually accented row by default; max 6 data rows + 1 total row in the canonical layout.",
+    "updated": "2026-06-26"
+  },
+  "tables": {
+    "editorial_zebra": {
+      "summary": "Pick for 4-6 row narrative comparisons where readability beats density (criteria comparison, vendor short-list, policy options). Header band + soft zebra; no vertical grid lines. Skip for >=8 rows of pure numbers (use ledger_financial) or single-axis ranking (use scorecard_dotmatrix)."
+    },
+    "ledger_financial": {
+      "summary": "Pick for 5-7 rows of numeric reporting with a totals row (budget, P&L summary, headcount allocation, AR aging). Full horizontal rules + emphasized total band; right-aligned numbers. Skip for narrative comparisons (use editorial_zebra) or matrix-style scoring (use scorecard_dotmatrix)."
+    },
+    "scorecard_dotmatrix": {
+      "summary": "Pick for 4-6 row x 3-5 criterion scoring tables (vendor evaluation, option scoring, capability assessment). Dot/level glyphs replace numeric scores in matrix cells; column highlight on recommendation. Skip for raw-number tables (use ledger_financial) or time-sequenced milestones (use timeline_swimlane)."
+    },
+    "timeline_swimlane": {
+      "summary": "Pick for 3-5 swimlanes x 4-6 time-bucket project schedules where each cell shows a milestone or status pill (roadmap-as-table, multi-track plan). Column headers are time periods; row headers are tracks; cells are pills. Skip for true Gantt durations (use templates/charts/gantt_chart.svg) or single-track timelines (use templates/charts/timeline_horizontal.svg)."
+    },
+    "comparison_columns_table": {
+      "summary": "Pick for 2-4 column side-by-side option comparisons (plan A/B/C, current vs proposed, before vs after) with 5-8 attribute rows. One column gets accent treatment (recommended/winning) — never equal-weight across columns. Skip for >=5 columns (use scorecard_dotmatrix) or non-comparative listings (use editorial_zebra)."
+    },
+    "kpi_summary_band": {
+      "summary": "Pick for 4-6 hero KPI rows with current value, target, delta, and one-line interpretation (executive scorecard, OKR check-in, operating dashboard). Each row reads as a wide band with multiple typographic weights instead of equal column cells. Skip for >=8 metrics in dense grid (use ledger_financial) or single-metric hero (use templates/charts/gauge_chart.svg)."
+    }
+  }
+}
