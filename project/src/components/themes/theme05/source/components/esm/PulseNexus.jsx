@@ -193,8 +193,10 @@ function replaceTheme05Text(node, replacements) {
         <div className="pulse-nex__body">
           <div className={rowCls}>
             <div className={cardCls} style={{ background: bg, color: fg, flex: hasGallery ? "0 0 42%" : "1 1 auto" }}>
-              <div className="pulse-nex__en">{COPY.en}</div>
-              <div className="pulse-nex__zh">{COPY.zh}</div>
+              <div className="pulse-nex__titleline">
+                <div className="pulse-nex__en">{COPY.en}</div>
+                <div className="pulse-nex__zh">{COPY.zh}</div>
+              </div>
               <div className="pulse-nex__sub">{COPY.sub}</div>
               {p.showLead && <div className="pulse-nex__lead">{COPY.lead}</div>}
               <div className="pulse-nex__metrics">
@@ -254,8 +256,10 @@ function replaceTheme05Text(node, replacements) {
                 </svg>
               )}
               <div className="pulse-nex__hub" style={{ background: "var(--pulse-dark)" }}>
-                <div className="pulse-nex__hub-en">{COPY.hubEn}</div>
-                <div className="pulse-nex__hub-zh">{COPY.hubZh}</div>
+                <div className="pulse-nex__hub-head">
+                  <div className="pulse-nex__hub-en">{COPY.hubEn}</div>
+                  <div className="pulse-nex__hub-zh">{COPY.hubZh}</div>
+                </div>
                 <div className="pulse-nex__hub-note">{COPY.hubNote}</div>
               </div>
               <div className="pulse-nex__spacer" />

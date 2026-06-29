@@ -58,16 +58,17 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
     /* right: stage axis */
     .kx-tml-right{display:flex;flex-direction:column;min-height:0;}
     .kx-tml-axiscap{font-family:var(--kx-mono);font-size:22px;color:var(--kx-mute-2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px;}
-    .kx-tml-stage{flex:1;min-height:0;display:grid;align-items:end;gap:24px;padding-top:50px;}
-    .kx-tml-node{display:flex;flex-direction:column;height:100%;justify-content:flex-end;gap:0;position:relative;}
+    .kx-tml-stage{flex:1;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto;grid-auto-flow:column;align-items:stretch;column-gap:24px;row-gap:0;padding-top:50px;}
+    .kx-tml-node{display:contents;}
+    .kx-tml-barbox{min-height:0;display:flex;align-items:flex-end;}
     .kx-tml-bar{width:100%;background:#34342f;border-radius:4px 4px 0 0;min-height:8px;position:relative;}
     .kx-tml-node.kx-on .kx-tml-bar{background:var(--kx-accent);}
     .kx-tml-bv{position:absolute;top:-40px;left:0;font-family:var(--kx-disp);font-weight:800;font-size:34px;letter-spacing:-.01em;color:var(--kx-cream);}
     .kx-tml-node.kx-on .kx-tml-bv{color:var(--kx-accent);}
-    .kx-tml-nbody{border-top:2px solid var(--kx-line);padding-top:16px;margin-top:14px;display:flex;flex-direction:column;gap:7px;}
+    .kx-tml-nbody{position:relative;border-top:2px solid var(--kx-line);padding-top:16px;margin-top:14px;display:flex;flex-direction:column;gap:7px;}
     .kx-tml-node.kx-on .kx-tml-nbody{border-top-color:var(--kx-accent);}
-    .kx-tml-dot{position:absolute;left:0;width:16px;height:16px;border-radius:50%;background:var(--kx-ink);
-      border:2px solid var(--kx-mute-2);transform:translateY(13px);z-index:1;}
+    .kx-tml-dot{position:absolute;left:0;top:-9px;width:16px;height:16px;border-radius:50%;background:var(--kx-ink);
+      border:2px solid var(--kx-mute-2);z-index:1;}
     .kx-tml-node.kx-on .kx-tml-dot{background:var(--kx-accent);border-color:var(--kx-accent);}
     .kx-tml-when{font-family:var(--kx-disp);font-weight:900;font-size:36px;letter-spacing:.01em;line-height:1;}
     .kx-tml-nnm{font-family:var(--kx-mono);font-size:22px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--kx-mute);}
@@ -113,8 +114,9 @@ import { KxEyebrow, KxGrid } from './kit.jsx';
         nodes.map((n, i) => {
           const on = p.focusEnabled && i === fi;
           return h('div', { key: i, className: 'kx-tml-node' + (on ? ' kx-on' : '') },
-            p.showTrack ? h('div', { className: 'kx-tml-bar', style: { height: Math.max(8, (n.value / maxV) * 100) + '%' } },
-              h('span', { className: 'kx-tml-bv' }, n.value)) : null,
+            h('div', { className: 'kx-tml-barbox' },
+              p.showTrack ? h('div', { className: 'kx-tml-bar', style: { height: Math.max(8, (n.value / maxV) * 100) + '%' } },
+                h('span', { className: 'kx-tml-bv' }, n.value)) : null),
             h('div', { className: 'kx-tml-nbody' },
               p.showTrack ? h('div', { className: 'kx-tml-dot' }) : null,
               h('div', { className: 'kx-tml-when' }, n.when),

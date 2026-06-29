@@ -91,10 +91,11 @@ const CSS = `
 .aic-case .cs-sub { font-family: var(--aic-font-display); font-weight: 600; font-size: 30px;
   color: var(--aic-ink-dim); padding-bottom: 8px; }
 
-.aic-case .cs-lead { position: absolute; left: var(--pad); top: 286px; width: 1320px;
-  font-family: var(--aic-font-text); font-weight: 500; font-size: 32px; line-height: 1.5; color: var(--aic-ink-dim); margin: 0; }
+.aic-case .cs-lead { position: absolute; left: var(--pad); right: var(--pad); top: 280px;
+  font-family: var(--aic-font-text); font-weight: 500; font-size: 28px; line-height: 1.24; color: var(--aic-ink-dim);
+  margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-.aic-case .cs-grid { position: absolute; left: var(--pad); right: var(--pad); top: 420px; bottom: 150px;
+.aic-case .cs-grid { position: absolute; left: var(--pad); right: var(--pad); top: 374px; bottom: 126px;
   display: grid; gap: 28px; align-items: start; }
 .aic-case .cs-card { position: relative; display: flex; flex-direction: column; height: 100%;
   border-radius: 24px; overflow: hidden; background: var(--aic-card); border: 1.5px solid var(--aic-hair);
@@ -105,7 +106,7 @@ const CSS = `
   font-weight: 600; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--aic-ink);
   background: var(--aic-accent); padding: 6px 13px; border-radius: 999px; }
 
-.aic-case .cs-imgbox { position: relative; width: 100%; height: 232px; flex: 0 0 232px;
+.aic-case .cs-imgbox { position: relative; width: 100%; height: 210px; flex: 0 0 210px;
   overflow: hidden; background: var(--aic-accent-soft); }
 .aic-case .cs-imgbox > * { position: absolute; inset: 0; width: 100%; height: 100%; }
 .aic-case .cs-ph { width: 100%; height: 100%; display: grid; place-items: center; }
@@ -129,16 +130,16 @@ const CSS = `
   border-radius: 18px; pointer-events: none; }
 .aic-case .cs-deco-fill .aic-viz-lens { position: absolute; inset: 18px; opacity: .62; }
 
-.aic-case .cs-meta { flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 26px 28px 28px; }
+.aic-case .cs-meta { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 10px; padding: 20px 26px 22px; }
 .aic-case .cs-logic { font-family: var(--aic-font-display); font-weight: 600; font-size: 17px;
   letter-spacing: .1em; text-transform: uppercase; color: var(--aic-muted); }
-.aic-case .cs-name { font-family: var(--aic-font-display); font-weight: 700; font-size: 42px; line-height: 1;
+.aic-case .cs-name { font-family: var(--aic-font-display); font-weight: 700; font-size: 40px; line-height: 1;
   color: var(--aic-ink); margin: 0; transform: skewX(-7deg); transform-origin: left bottom; }
-.aic-case .cs-zh { font-family: var(--aic-font-text); font-weight: 700; font-size: 25px; color: var(--aic-ink-dim); margin: -4px 0 0; }
-.aic-case .cs-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2px; }
-.aic-case .cs-tag { font-family: var(--aic-font-text); font-weight: 600; font-size: 19px; color: var(--aic-ink-dim);
-  padding: 7px 15px; border-radius: 999px; border: 1.5px solid var(--aic-hair-strong); }
-.aic-case .cs-metric { margin-top: auto; padding-top: 16px; border-top: 1.5px solid var(--aic-hair);
+.aic-case .cs-zh { font-family: var(--aic-font-text); font-weight: 700; font-size: 23px; color: var(--aic-ink-dim); margin: -2px 0 0; }
+.aic-case .cs-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0; }
+.aic-case .cs-tag { font-family: var(--aic-font-text); font-weight: 600; font-size: 17px; color: var(--aic-ink-dim);
+  padding: 6px 13px; border-radius: 999px; border: 1.5px solid var(--aic-hair-strong); }
+.aic-case .cs-metric { margin-top: auto; padding-top: 14px; border-top: 1.5px solid var(--aic-hair);
   display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .aic-case .cs-metric .lbl { font-family: var(--aic-font-text); font-weight: 600; font-size: 19px; color: var(--aic-muted); }
 

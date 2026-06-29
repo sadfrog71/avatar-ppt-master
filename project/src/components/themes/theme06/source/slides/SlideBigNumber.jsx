@@ -21,8 +21,9 @@ import { KxEyebrow, KxGrid, KxMediaSlotColumn } from './kit.jsx';
   if (!document.getElementById('kx-big-css')) {
     const css = `
     .kx-big-pad{display:flex;flex-direction:column;height:100%;padding-top:44px;padding-bottom:40px;}
-    .kx-big-top{display:flex;justify-content:space-between;align-items:flex-start;}
+    .kx-big-top{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;}
     .kx-big-kicker{font-family:var(--kx-disp);font-weight:800;font-size:34px;max-width:560px;line-height:1.25;}
+    .kx-big-top.kx-withmedia .kx-big-kicker{margin-left:auto;max-width:none;white-space:nowrap;}
     .kx-big-mainwrap{flex:1;min-height:0;display:grid;column-gap:54px;align-items:stretch;}
     .kx-big-mainwrap.kx-solo{display:flex;flex-direction:column;}
     .kx-big-main{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;}
@@ -79,7 +80,7 @@ import { KxEyebrow, KxGrid, KxMediaSlotColumn } from './kit.jsx';
       h(KxGrid, { cols: 6 }),
       p.showWatermark ? h('div', { className: 'kx-wm kx-big-wm' }, p.watermark) : null,
       h('div', { className: 'kx-pad kx-big-pad' },
-        h('div', { className: 'kx-big-top' },
+        h('div', { className: 'kx-big-top' + (slots ? ' kx-withmedia' : '') },
           h(KxEyebrow, { id: p.eyebrowId, label: p.eyebrowLabel }),
           h('div', { className: 'kx-big-kicker', style: { textAlign: 'right' } }, p.kicker)),
         h('div', {
