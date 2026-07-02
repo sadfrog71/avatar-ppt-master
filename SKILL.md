@@ -47,12 +47,13 @@ node <skill-root>/scripts/check_latest_version.mjs
 ## 使用规则
 
 - 运行生成器需要 Node.js 18+ 和 npm;首次生成时渲染脚本会在 Skill 内置 `project/` 目录安装依赖。
-- 风格选择提问:用户可见回复必须嵌入 `<skill-root>/assets/skill/theme-style-grid.png` 的 Markdown 图片,先展开绝对路径;列出当前可选风格和极简“适合/人群”,不能只在内部进度提示中提到风格图。
+- 风格选择提问:用户可见回复必须嵌入 `<skill-root>/assets/skill/theme-style-grid.png` 的 Markdown 图片,先展开绝对路径;这是回复展示用内置风格图,不可写入 `goal.json` 或任何 media 字段;列出当前可选风格和极简“适合/人群”,不能只在内部进度提示中提到风格图。
 - 委托模式:用户说“随意”“自拟”“你来定”“不用问”“直接开干”时,自选已验收主题,默认 HTML,默认不使用 image-gen,最终说明假设。
-- 非交互/一次性执行(无法追问)时:未指定风格按内容主题自选已验收主题;需视觉素材但无法确认时用 `--planned-images <n>` 预留合理图片槽,不要默认 0;不调 image-gen;最终说明全部假设。
+- 非交互/一次性执行(无法追问)时:未指定风格按内容主题自选已验收主题;无真实素材且不能生图时优先选无媒体页,不调 image-gen;最终说明全部假设。
 - 交付格式:默认 HTML;“生成 PPT”“做 PPT”“做一个 PPT”“制作 ppt”表示 PPT 呈现形态。只有明确 `PPTX`、`PowerPoint`、`可编辑 PPTX`、`导出 PPTX`、`PPT 格式` 或“格式/文件类型为 PPT/PPTX”时才交付 PPTX 文件。
 - PPTX 文件:仍先生成 HTML 并启动本机预览服务,再调用本机 HTTP 导出服务;最终只给 PPTX 文件路径或下载结果。
 - 当前可选风格: `theme01` 轻拟态风、`theme02` 炫光紫绿风、`theme03` 深浅代码风、`theme04` 玻璃糖果风、`theme05` 色谱图表风、`theme06` 深色图谱风、`theme07` 冷白调研风、`theme08` 黑金实验风、`theme09` 深蓝杂志风、`theme10` 金色指数风、`theme11` 高能增长风、`theme12` 声波霓虹风。
+- 普通自动选择不选 `theme10`;只有用户明确指定,或金融/投资指数内容强相关且 inspect 确认可填时才用。
 <!-- theme-choice-hints:start -->
   - `theme01` 轻拟态风 | 适合: 产品介绍 / 企业汇报 | 人群: 创业团队 / 产品经理
   - `theme02` 炫光紫绿风 | 适合: 科技发布会 / AI/自动驾驶/机器人主题 | 人群: 科技公司创始人 / 技术负责人
@@ -67,21 +68,14 @@ node <skill-root>/scripts/check_latest_version.mjs
   - `theme11` 高能增长风 | 适合: 增长复盘 / 商业计划 | 人群: 创业者 / 增长团队
   - `theme12` 声波霓虹风 | 适合: 音乐娱乐 / 潮流活动 | 人群: 娱乐品牌 / 活动策划
 <!-- theme-choice-hints:end -->
-- 不使用旧 token、旧主题、旧图片 slot、旧风格分支或旧入场动画控制。
-- 选页先用 `npm run layout:query -- --theme <themePack> --role <role> --limit 8`;需要图片槽时加 `--needs-media`、`--planned-images <n>`、`--provided-images <n>` 或 `--image-gen`。
-- 字段不清楚、对象/数组/count、图片/媒体:先运行 `npm run inspect:layout -- --compact <layout...>`;写对象、数组、数量或图片 props:运行 `props:safe`,整份 goal 用 `props:safe -- --goal <file> --write`。
-- 把 `layout:query` / `inspect:layout` 的 JSON 管道给程序解析时,改用 `node scripts/layout-query.mjs` / `node scripts/inspect-layout.mjs`:`npm run` 会在 stdout 前打印生命周期 banner,污染 JSON。
-- 长 deck:先用 `npm run goal:scaffold -- --title <title> --goal <goal> --theme <themePack> --pages <n> --chunk-size 5 --out output/<deck-name>/goal.json` 生成唯一 layout 骨架和 `goal.fill-plan.json`,再按 `fillPlan` 分段补 props。
+- 不使用旧 token、旧主题、旧媒体槽、旧风格分支或旧入场动画控制。
+- 选页先用 `npm --prefix <skill-root>/project run layout:query -- --theme <themePack> --role <role> --limit 8`;需要媒体槽时加 `--needs-media`、`--planned-images <n>`、`--provided-images <n>` 或 `--image-gen`。
+- 字段不清楚、对象/数组/count、图片/媒体:先运行 `npm --prefix <skill-root>/project run inspect:layout -- --compact <layout...>`;写对象、数组、数量或图片 props:运行 `props:safe`,整份 goal 用 `props:safe -- --goal <file> --write`。
+- 把 `layout:query` / `inspect:layout` 的 JSON 管道给程序解析时,改用 `node <skill-root>/project/scripts/layout-query.mjs` / `node <skill-root>/project/scripts/inspect-layout.mjs`:`npm run` 会在 stdout 前打印生命周期 banner,污染 JSON。
+- 长 deck:先用 `npm --prefix <skill-root>/project run goal:scaffold -- --title <title> --goal <goal> --theme <themePack> --pages <n> --chunk-size 5 --out output/<deck-name>/goal.json` 生成唯一 layout 骨架和 `goal.fill-plan.json`,再按 `fillPlan` 分段补 props。
 - 文案长度和数组数量:优先按 `fillPlan.text[].maxChars`、`fillPlan.arrays[].visibleCount`、`fillPlan.arrays[].nestedArrays` 写;`display` / `metric` 字段只写短词、短句或数字。
 - Html 字段(如 `headlineHtml` / `quoteHtml`)写文案只用 `<br>` 换行加 `<b>` / `<em>` 行内强调,禁止 `<span>` 等自由 HTML;主题默认值里的 `<span class>` 依赖主题 CSS,只是占位,不要照抄。`validate:goal-spec` 会拦截自由 HTML。
 - 可见数组项必须写实文案;被 count/显隐控制隐藏的尾项可保留“请输入文本”占位。
-- 图片/视频只写 `props.images` / `props.media`。视觉素材任务先问是否预留图片槽;不能默认图片槽为 0。用户同意用 `--planned-images <n>`,用户给图用 `--provided-images <n>`。用户明确要求原创视觉图/生图时,Codex 环境用 image-gen 生成图片并加 `--image-gen`;未明确生图时先询问用户。
-- 需要 image-gen 生成 2 张以上独立图片时,用多个 subagent 并行生成,不要串行逐张等待;每张图独立生成,不要用一张拼图/素材板再拆分。subagent 只用于生图,不用于选题、文案、选页或校验。
-- 用户给素材时优先选 `layout:query --provided-images/--provided-media` 候选;只使用 `mediaSlots[].canPresetMedia: true` 的槽,按 `presetProp` 写路径。
-- 用户提供本地图片/视频先运行 `npm run media:stage -- <deck-output-dir-or-ppt-dir> <media-file...>`,使用返回的 `relative` 路径;AVIF 会转成浏览器可用格式。
-- image-gen 或用户素材必须先落到本次 deck 目录;`goal.json` 只引用 deck 内相对路径,不要引用临时目录或外部绝对路径。
-- 渲染后核对 goal 引用的每个图片/视频:`ppt/<relative>` 存在且 HTML 包含文件名;缺失时只补最终 `ppt/assets` 并重跑校验。
-- 用户提供的图片/视频素材每个最多使用一次。素材用完后,媒体插槽留空或改选无媒体插槽页面;除非用户明确要求,不要重复填充同一素材。
 - 元素出现动画使用页面组件自带的原生效果。
 - 页面切换动画可以在预览控制面板里调整。
 - 面向用户交付的 deck 默认不显示风格/主题切换选项;风格切换只保留在内部调试 demo 页面。用户明确要求保留主题切换时,在 goal 顶层写 `preview: {"themeSwitcher": true}`。
@@ -95,9 +89,17 @@ node <skill-root>/scripts/check_latest_version.mjs
 - 允许用顶层 `text` 覆盖可见文字槽位,但只用于替换文字内容。不要在普通生成中启动浏览器批量抽取全页面文本槽位;只有用户明确要求“彻底清除所有模板默认文案/逐页校对可见文案”时才做运行时槽位抽取。
 - 禁止复用 `output/` 里已有的旧 `goal.json` 或旧 HTML。每次请求都新建本次输出目录和本次 JSON 计划。
 - 输出目录写在当前会话工作目录,不要写入 `<skill-root>/project/output`。
-- HTML 交付:给 `http://127.0.0.1:<port>/`、`https://jadon.local:<port>/`、HTML 文件路径;本机 HTTP 可导出 HTML/PDF/PPTX,`http://jadon.local:<port>/` 不作导出主入口,本地 HTML 或 `file://` 不能导出可编辑 PPTX。不要返回 `theme-preview`。
+- HTML 交付:给 `http://127.0.0.1:<port>/`、`https://<local-host>.local:<port>/`、HTML 文件路径;本机 HTTP 可导出 HTML/PDF/PPTX,`http://<local-host>.local:<port>/` 不作导出主入口,本地 HTML 或 `file://` 不能导出可编辑 PPTX。不要返回 `theme-preview`。
 - PPTX 交付:调用 `/api/export-editable-pptx`;最终只给 PPTX 文件路径或下载结果。
 - 如果输出正文里出现与用户主题无关的默认文案,例如 AI Capital / 投融资 / SoundWave / 声浪 / Key Metrics / Roadmap / End of Report 等,必须重写 JSON 后重新渲染,不能交付。
+
+## 媒体工作流
+
+- 媒体字段只写 `mediaSlots[].canPresetMedia: true` 的槽,按该槽 `presetProp` / `fieldPath` 写路径;`goal.json` 只引用 deck 内相对媒体路径,不可引用临时目录、外部绝对路径、`file://` 或远程 URL。
+- 视觉素材任务先判断意图:无图但需要视觉素材时先问是否预留图片槽;无真实素材且不能生图时优先选无媒体页。用户同意用 `--planned-images <n>` / `--needs-media`,用户给素材用 `--provided-images <n>` / `--provided-media`,用户明确要求原创视觉图/生图时,Codex 环境用 image-gen 生成图片并加 `--image-gen`;未明确生图时先询问用户。`plannedImages` / `needsVisual` / `imageGen` 只表示选页意图,除非用户明确选择预留空槽,交付前必须写入真实媒体路径,不能交付空媒体槽或伪造路径。
+- 用户本地图片/视频先运行 `npm --prefix <skill-root>/project run media:stage -- <deck-output-dir-or-ppt-dir> <media-file...>`,使用返回的 `relative` 路径;AVIF 会转成浏览器可用格式。image-gen 输出也先落到本次 deck 目录。
+- 渲染后核对 goal 引用的每个图片/视频:`ppt/<relative>` 存在且 HTML 包含文件名;缺失时只补最终 `ppt/assets` 并重跑校验。图片/视频素材每个最多使用一次;素材用完后,媒体插槽留空或改选无媒体插槽页面;除非用户明确要求,不要重复填充同一素材。
+- 需要 image-gen 生成 2 张以上独立图片时,用多个 subagent 并行生成,不要串行逐张等待;每张图独立生成,不要用一张拼图/素材板再拆分。subagent 只用于生图,不用于选题、文案、选页或校验。
 
 ## 工作流
 
@@ -106,12 +108,12 @@ node <skill-root>/scripts/check_latest_version.mjs
 3. 判断图片意图:无图但需要视觉素材时先问是否预留图片槽;用户给本地素材先 `media:stage`;明确生图时用 image-gen。
 4. 用 `layout:query` 选候选;对象/数组/count/图片 props 用 `inspect:layout` + `props:safe`。
 5. 每页只承载一个主要信息角色。无法安全覆盖的页面优先换 layout,不要改样式字段硬凑。
-6. 把 JSON 写入本次工作目录的 `output/<deck-name>/goal.json`;渲染前运行 `npm run props:safe -- --goal output/<deck-name>/goal.json --write` 和 goal spec 校验。
+6. 把 JSON 写入本次工作目录的 `output/<deck-name>/goal.json`;渲染前运行 `npm --prefix <skill-root>/project run props:safe -- --goal output/<deck-name>/goal.json --write` 和 goal spec 校验。
 7. 运行渲染脚本输出 `output/<deck-name>/ppt/index.html`;脚本会使用 Skill 内置生成器,不要切回外部项目目录。
 8. 渲染后核对素材路径,缺失时补最终 `ppt/assets`。
 9. 确认脚本完成 `validate:swiss` 和 `validate:goal-copy` 校验。
 10. 运行 `node <skill-root>/scripts/check_latest_version.mjs` 做静默版本检查。
-11. 渲染脚本会启动本地 HTTP/HTTPS 预览服务并输出本机 HTTP 导出地址 `http://127.0.0.1:<port>/`、HTTPS 预览地址 `https://jadon.local:<port>/` 和 HTTP LAN 备用地址;需要指定端口时设置 `DASHI_PPT_PREVIEW_PORT` 后再运行脚本。
+11. 渲染脚本会启动本地 HTTP/HTTPS 预览服务并输出本机 HTTP 导出地址 `http://127.0.0.1:<port>/`、HTTPS 预览地址 `https://<local-host>.local:<port>/` 和 HTTP LAN 备用地址;需要指定端口时设置 `DASHI_PPT_PREVIEW_PORT` 后再运行脚本。
 12. 按交付格式回复:HTML 给本机 HTTP、HTTPS 备用、HTML 文件路径;PPTX 调用 `/api/export-editable-pptx` 后只给文件路径或下载结果。只有版本检查脚本有输出时才附加更新提醒。
 
 ## 返工与浏览器检查
@@ -169,18 +171,18 @@ node <skill-root>/scripts/check_latest_version.mjs
 
 ## 交付能力
 
-生成后的预览页支持翻页、打开侧边栏编辑文本、调整页面 props、替换 Claude 页面自带图片 slot、切换页面切换动画、导出 HTML/PDF/PPTX。面向用户交付的页面底部不显示页码标识、翻页引导、圆点导航或索引提示。
+生成后的预览页支持翻页、打开侧边栏编辑文本、调整页面 props、替换组件暴露的图片/视频媒体槽、切换页面切换动画、导出 HTML/PDF/PPTX。面向用户交付的页面底部不显示页码标识、翻页引导、圆点导航或索引提示。
 
 ## 页面属性契约
 
-普通生成不要读 `layout-manifest.json`。先用 `layout:query` 输出的候选摘要。只有需要更细契约时,再用 `npm run inspect:layout -- --compact <layout...>` 看页面契约:
+普通生成不要读 `layout-manifest.json`。先用 `layout:query` 输出的候选摘要。只有需要更细契约时,再用 `npm --prefix <skill-root>/project run inspect:layout -- --compact <layout...>` 看页面契约:
 
 - `copyKeys`: 可安全改写的文案/数据字段。
 - `copyBudgets`: 文案长度预算;`display` / `metric` 超长会被 goal spec 拦截。
 - `propShapes`: `copyKeys` / 数组字段的内部形状;写 `copy`、`cells`、`items`、`rows` 等对象字段时只使用这里列出的 key。
 - `mediaSlots`: 图片/视频写入字段、count key、默认数量和最大数量。
 - `countBindings`: 数量参数与数组字段的绑定。
-- `controlKeys`: 右侧面板可操作字段。
+- `controlKeys`: 右侧面板可操作字段,不是普通内容填充清单;仅用户明确要求调整页面属性时使用。默认只填 `copyKeys`、可见数组和真实媒体槽。
 
 ## 校验
 

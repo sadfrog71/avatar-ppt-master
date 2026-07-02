@@ -558,9 +558,12 @@ export const pages = [
       },
       {
         "key": "imageCount",
-        "type": "toggle",
+        "type": "slider",
         "label": "图片",
-        "default": false,
+        "default": 0,
+        "min": 0,
+        "max": 1,
+        "step": 1,
         "describe": "右栏图片开关；关闭时呈现指标堆叠，开启时呈现一张满栏图。",
         "publicKey": "imageCount",
         "publicLabel": "图片",
@@ -780,26 +783,30 @@ export const pages = [
       ],
       "trustedLabel": "Trusted by",
       "marks": [
-        [
-          "DAZZ",
-          "."
-        ],
-        [
-          "MULTIPLY"
-        ],
-        [
-          "CLOUDBOLT"
-        ],
-        [
-          "VOLT"
-        ],
-        [
-          "CAYO",
-          "soft"
-        ],
-        [
-          "DENSIFY"
-        ]
+        {
+          "label": "DAZZ",
+          "accent": "."
+        },
+        {
+          "label": "MULTIPLY",
+          "accent": ""
+        },
+        {
+          "label": "CLOUDBOLT",
+          "accent": ""
+        },
+        {
+          "label": "VOLT",
+          "accent": ""
+        },
+        {
+          "label": "CAYO",
+          "accent": "soft"
+        },
+        {
+          "label": "DENSIFY",
+          "accent": ""
+        }
       ],
       "pageRange": "↓ 01 — 18"
     }
@@ -1650,9 +1657,15 @@ export const pages = [
       },
       {
         "key": "avatarCount",
-        "type": "toggle",
+        "type": "slider",
         "label": "图片",
-        "default": false,
+        "default": 0,
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "countArrays": [
+          "images"
+        ],
         "describe": "署名旁的圆形头像图片槽。",
         "publicKey": "avatarCount",
         "publicLabel": "图片",
@@ -1698,8 +1711,13 @@ export const pages = [
       "showMark": true,
       "showRule": true,
       "showAttribution": true,
-      "avatarCount": false,
-      "avatar": [],
+      "avatarCount": 0,
+      "images": [
+        ""
+      ],
+      "avatar": [
+        ""
+      ],
       "showKicker": true,
       "showGhostMark": true,
       "showScaffold": true,
@@ -2465,9 +2483,15 @@ export const pages = [
       },
       {
         "key": "avatarCount",
-        "type": "toggle",
+        "type": "slider",
         "label": "图片",
-        "default": false,
+        "default": 0,
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "countArrays": [
+          "images"
+        ],
         "describe": "引述旁的圆形头像图片槽。",
         "publicKey": "avatarCount",
         "publicLabel": "图片",
@@ -2517,8 +2541,13 @@ export const pages = [
       "showRibbon": true,
       "ribbonStepCount": 5,
       "showQuote": true,
-      "avatarCount": false,
-      "quoteAvatar": null,
+      "avatarCount": 0,
+      "images": [
+        ""
+      ],
+      "avatar": [
+        ""
+      ],
       "showNote": true,
       "showGhostMark": true,
       "showScaffold": true,
@@ -2899,9 +2928,12 @@ export const pages = [
       },
       {
         "key": "imageCount",
-        "type": "toggle",
+        "type": "slider",
         "label": "图片",
-        "default": true,
+        "default": 1,
+        "min": 0,
+        "max": 1,
+        "step": 1,
         "describe": "是否显示配图槽。",
         "publicKey": "imageCount",
         "publicLabel": "图片",
@@ -3119,9 +3151,15 @@ export const pages = [
       },
       {
         "key": "avatarCount",
-        "type": "toggle",
+        "type": "slider",
         "label": "图片",
-        "default": true,
+        "default": 1,
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "countArrays": [
+          "images"
+        ],
         "describe": "客户头像图片槽，关闭时留白占位。",
         "publicKey": "avatarCount",
         "publicLabel": "图片",
@@ -3207,8 +3245,13 @@ export const pages = [
     ],
     "defaultProps": {
       "surface": "ember",
-      "avatarCount": true,
-      "avatar": [],
+      "avatarCount": 1,
+      "images": [
+        ""
+      ],
+      "avatar": [
+        ""
+      ],
       "portraitShape": "rounded",
       "showRating": true,
       "showMetric": true,
@@ -3597,45 +3640,14 @@ export const pages = [
       ],
       "axisX": "投入成本 →",
       "axisY": "增长效果 →",
-      "others": [
-        {
-          "name": "综合代理",
-          "x": 78,
-          "y": 50,
-          "r": 36
-        },
-        {
-          "name": "外包工厂",
-          "x": 68,
-          "y": 20,
-          "r": 30
-        },
-        {
-          "name": "内部团队",
-          "x": 56,
-          "y": 34,
-          "r": 32
-        },
-        {
-          "name": "垂直工具",
-          "x": 40,
-          "y": 42,
-          "r": 28
-        },
-        {
-          "name": "自由职业",
-          "x": 28,
-          "y": 22,
-          "r": 26
-        }
+      "names": [
+        "燃点",
+        "综合代理",
+        "外包工厂",
+        "内部团队",
+        "垂直工具",
+        "自由职业"
       ],
-      "us": {
-        "name": "燃点",
-        "x": 22,
-        "y": 80,
-        "r": 52,
-        "us": true
-      },
       "metaLeft": "IGNIS — 燃点 · 竞争格局",
       "metaMid": "左上角，本该有人站"
     }
@@ -4711,6 +4723,10 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
+        "countArrays": [
+          "cols",
+          "rows[].cells"
+        ],
         "describe": "参与对比的方案列数。",
         "publicKey": "columnCount",
         "publicLabel": "对比列数",
@@ -4725,6 +4741,9 @@ export const pages = [
         "min": 1,
         "max": 6,
         "step": 1,
+        "countArrays": [
+          "rows"
+        ],
         "describe": "对比维度（行）的数量。",
         "publicKey": "rowCount",
         "publicLabel": "对比行数",
@@ -4947,6 +4966,9 @@ export const pages = [
         "min": 1,
         "max": 7,
         "step": 1,
+        "countArrays": [
+          "rows"
+        ],
         "describe": "清单的条目数量。",
         "publicKey": "itemCount",
         "publicLabel": "条目数量",
@@ -4961,6 +4983,9 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "rows[].cells"
+        ],
         "describe": "对比的方案列数（最后一列始终为「燃点」）。",
         "publicKey": "columnCount",
         "publicLabel": "对比列数",
@@ -5095,70 +5120,126 @@ export const pages = [
           "t": "搜索与内容",
           "en": "SEO & Content",
           "cells": [
-            1,
-            2,
-            1,
-            2
+            {
+              "state": "partial"
+            },
+            {
+              "state": "full"
+            },
+            {
+              "state": "partial"
+            },
+            {
+              "state": "full"
+            }
           ]
         },
         {
           "t": "转化率优化",
           "en": "CRO",
           "cells": [
-            0,
-            1,
-            1,
-            2
+            {
+              "state": "missing"
+            },
+            {
+              "state": "partial"
+            },
+            {
+              "state": "partial"
+            },
+            {
+              "state": "full"
+            }
           ]
         },
         {
           "t": "网站开发维护",
           "en": "Web & Maintenance",
           "cells": [
-            1,
-            1,
-            0,
-            2
+            {
+              "state": "partial"
+            },
+            {
+              "state": "partial"
+            },
+            {
+              "state": "missing"
+            },
+            {
+              "state": "full"
+            }
           ]
         },
         {
           "t": "付费投放",
           "en": "Paid Media",
           "cells": [
-            1,
-            2,
-            2,
-            2
+            {
+              "state": "partial"
+            },
+            {
+              "state": "full"
+            },
+            {
+              "state": "full"
+            },
+            {
+              "state": "full"
+            }
           ]
         },
         {
           "t": "数据与归因",
           "en": "Data & Attribution",
           "cells": [
-            0,
-            1,
-            1,
-            2
+            {
+              "state": "missing"
+            },
+            {
+              "state": "partial"
+            },
+            {
+              "state": "partial"
+            },
+            {
+              "state": "full"
+            }
           ]
         },
         {
           "t": "一体化协同",
           "en": "One Team",
           "cells": [
-            0,
-            0,
-            0,
-            2
+            {
+              "state": "missing"
+            },
+            {
+              "state": "missing"
+            },
+            {
+              "state": "missing"
+            },
+            {
+              "state": "full"
+            }
           ]
         },
         {
           "t": "复利式增长",
           "en": "Compounding",
           "cells": [
-            0,
-            1,
-            0,
-            2
+            {
+              "state": "missing"
+            },
+            {
+              "state": "partial"
+            },
+            {
+              "state": "missing"
+            },
+            {
+              "state": "full"
+            }
           ]
         }
       ],
@@ -5355,7 +5436,8 @@ export const pages = [
             "搜索引擎优化基础包",
             "每月内容产出 4 篇",
             "月度数据看板",
-            "邮件支持"
+            "邮件支持",
+            "基础诊断建议"
           ]
         },
         {
@@ -6427,6 +6509,9 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "images"
+        ],
         "describe": "使用真实照片的成员数量；其余回退为字号大的姓氏字符。",
         "publicKey": "avatarCount",
         "publicLabel": "头像槽数量",
@@ -6536,6 +6621,7 @@ export const pages = [
       "surface": "ember",
       "memberCount": 4,
       "avatarCount": 0,
+      "images": [],
       "portraitShape": "rounded",
       "showRoles": true,
       "showEn": true,
@@ -6764,7 +6850,7 @@ export const pages = [
       "lead": "Every dial, climbing.",
       "headingHtml": "每一项，<span class=\"ign-ember-text\">都在往上走</span>。",
       "lede": "不是单点漂亮，而是关键指标同时抬升——这才是引擎跑顺的样子。",
-      "deltaSuffix": " pts · 同比",
+      "deltaSuffix": " pts",
       "rings": [
         {
           "pct": 96,
@@ -7078,9 +7164,12 @@ export const pages = [
       },
       {
         "key": "imageCount",
-        "type": "toggle",
+        "type": "slider",
         "label": "图片",
-        "default": true,
+        "default": 1,
+        "min": 0,
+        "max": 1,
+        "step": 1,
         "describe": "样机内截图的显示与隐藏。",
         "publicKey": "imageCount",
         "publicLabel": "图片",
@@ -7436,9 +7525,12 @@ export const pages = [
       },
       {
         "key": "imageCount",
-        "type": "toggle",
+        "type": "slider",
         "label": "图片",
-        "default": true,
+        "default": 1,
+        "min": 0,
+        "max": 1,
+        "step": 1,
         "describe": "是否显示配图槽。",
         "publicKey": "imageCount",
         "publicLabel": "图片",
@@ -7634,6 +7726,9 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
+        "countArrays": [
+          "periods"
+        ],
         "describe": "横轴上的时间周期（柱子）数量。",
         "publicKey": "periodCount",
         "publicLabel": "周期数量",
@@ -7648,6 +7743,10 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
+        "countArrays": [
+          "segs",
+          "periods[].vals"
+        ],
         "describe": "每根柱子堆叠的渠道层数。",
         "publicKey": "segmentCount",
         "publicLabel": "渠道层数",
@@ -7795,9 +7894,16 @@ export const pages = [
           "en": "Direct"
         }
       ],
+      "periodLabels": [
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q4",
+        "Q5",
+        "Q6"
+      ],
       "periods": [
         {
-          "x": "Q1",
           "vals": [
             10,
             14,
@@ -7805,7 +7911,6 @@ export const pages = [
           ]
         },
         {
-          "x": "Q2",
           "vals": [
             16,
             22,
@@ -7813,7 +7918,6 @@ export const pages = [
           ]
         },
         {
-          "x": "Q3",
           "vals": [
             24,
             34,
@@ -7821,7 +7925,6 @@ export const pages = [
           ]
         },
         {
-          "x": "Q4",
           "vals": [
             34,
             48,
@@ -7829,7 +7932,6 @@ export const pages = [
           ]
         },
         {
-          "x": "Q5",
           "vals": [
             46,
             64,
@@ -7837,7 +7939,6 @@ export const pages = [
           ]
         },
         {
-          "x": "Q6",
           "vals": [
             58,
             82,
@@ -7847,7 +7948,15 @@ export const pages = [
       ],
       "metaLeft": "IGNIS — 燃点 · 渠道贡献叠加（季度营收 / 万元）",
       "metaMid": "往上叠，别来回挪"
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "periods[].vals",
+        "anchor": "segs",
+        "relation": "same-length",
+        "countKey": "segmentCount"
+      }
+    ]
   },
   {
     "key": "theme11_page040",
@@ -8348,6 +8457,7 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 12,
+        "maxFromKey": "brandCount",
         "step": 1,
         "describe": "使用真实 logo 的格子数；其余回退为字母组合标记。",
         "publicKey": "logoCount",
@@ -9152,9 +9262,12 @@ export const pages = [
       },
       {
         "key": "imageCount",
-        "type": "toggle",
+        "type": "slider",
         "label": "图片",
-        "default": true,
+        "default": 1,
+        "min": 0,
+        "max": 1,
+        "step": 1,
         "describe": "是否显示配图槽。",
         "publicKey": "imageCount",
         "publicLabel": "图片",
@@ -9599,7 +9712,15 @@ export const pages = [
       ],
       "metaLeft": "IGNIS — 燃点 · 月度群组周留存（%）",
       "metaMid": "留得住，才算赢"
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "cohorts[].vals",
+        "anchor": "periods",
+        "relation": "same-length",
+        "countKey": "periodCount"
+      }
+    ]
   },
   {
     "key": "theme11_page048",
@@ -9805,44 +9926,26 @@ export const pages = [
       "axisYLow": "低",
       "bubbles": [
         {
-          "x": 22,
-          "y": 78,
-          "r": 46,
           "lit": true,
           "label": "内容引擎"
         },
         {
-          "x": 38,
-          "y": 62,
-          "r": 34,
           "lit": true,
           "label": "转化优化"
         },
         {
-          "x": 68,
-          "y": 84,
-          "r": 40,
           "lit": true,
           "label": "付费放大"
         },
         {
-          "x": 30,
-          "y": 34,
-          "r": 22,
           "lit": false,
           "label": "社媒运营"
         },
         {
-          "x": 74,
-          "y": 40,
-          "r": 28,
           "lit": false,
           "label": "线下活动"
         },
         {
-          "x": 55,
-          "y": 52,
-          "r": 18,
           "lit": false,
           "label": "邮件触达"
         }
@@ -12016,16 +12119,20 @@ export const pages = [
       {
         "key": "cardCount",
         "type": "slider",
-        "label": "卡片数量",
+        "label": "图片卡片数量",
         "default": 3,
         "min": 2,
         "max": 3,
         "step": 1,
-        "describe": "并列案例卡的数量。",
+        "countArrays": [
+          "cards",
+          "images"
+        ],
+        "describe": "并列案例图片卡的数量。",
         "publicKey": "cardCount",
-        "publicLabel": "卡片数量",
-        "desc": "并列案例卡的数量。",
-        "description": "并列案例卡的数量。"
+        "publicLabel": "图片卡片数量",
+        "desc": "并列案例图片卡的数量。",
+        "description": "并列案例图片卡的数量。"
       },
       {
         "key": "showMetric",
@@ -12699,7 +12806,10 @@ export const pages = [
     ],
     "defaultProps": {
       "surface": "paper",
-      "images": [],
+      "images": [
+        "",
+        ""
+      ],
       "showLabels": true,
       "showCaptions": true,
       "showSeam": true,
@@ -13009,6 +13119,9 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "images"
+        ],
         "describe": "散落宝丽来照片槽数量（0–4）；不足回退条纹占位。",
         "publicKey": "imageCount",
         "publicLabel": "照片数量",
@@ -13134,42 +13247,22 @@ export const pages = [
         "团队",
         "后台"
       ],
-      "photos": [
+      "photoItems": [
         {
-          "ph": "门店开业",
-          "cap": "首店 · 当天售罄",
-          "rot": -6,
-          "w": 360,
-          "x": 2,
-          "y": 40,
-          "z": 4
+          "placeholder": "门店开业",
+          "caption": "首店 · 当天售罄"
         },
         {
-          "ph": "产品特写",
-          "cap": "复购率 ×2.4",
-          "rot": 5,
-          "w": 320,
-          "x": 360,
-          "y": 8,
-          "z": 3
+          "placeholder": "产品特写",
+          "caption": "复购率 ×2.4"
         },
         {
-          "ph": "团队现场",
-          "cap": "上线第 14 天",
-          "rot": -3,
-          "w": 300,
-          "x": 240,
-          "y": 360,
-          "z": 5
+          "placeholder": "团队现场",
+          "caption": "上线第 14 天"
         },
         {
-          "ph": "后台数据",
-          "cap": "自然进线 +182%",
-          "rot": 7,
-          "w": 286,
-          "x": 612,
-          "y": 300,
-          "z": 2
+          "placeholder": "后台数据",
+          "caption": "自然进线 +182%"
         }
       ],
       "metaLeft": "IGNIS — 燃点 · 增长现场",
@@ -13354,35 +13447,30 @@ export const pages = [
           "nm": "自然搜索",
           "en": "Organic",
           "val": 182,
-          "w": 100,
           "d": "占增量 38%"
         },
         {
           "nm": "内容分发",
           "en": "Content",
           "val": 124,
-          "w": 68,
           "d": "占增量 24%"
         },
         {
           "nm": "私域复购",
           "en": "Retention",
           "val": 96,
-          "w": 53,
           "d": "占增量 18%"
         },
         {
           "nm": "社媒互动",
           "en": "Social",
           "val": 61,
-          "w": 34,
           "d": "占增量 12%"
         },
         {
           "nm": "付费投放",
           "en": "Paid",
           "val": 38,
-          "w": 21,
           "d": "占增量 8%"
         }
       ],
@@ -13665,6 +13753,9 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
+        "countArrays": [
+          "metrics"
+        ],
         "describe": "参与前后对比的指标（斜线）数量。",
         "publicKey": "lineCount",
         "publicLabel": "指标数量",
@@ -14098,6 +14189,10 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
+        "countArrays": [
+          "frames",
+          "images"
+        ],
         "describe": "胶片画格的数量。",
         "publicKey": "frameCount",
         "publicLabel": "画格数量",
@@ -14456,16 +14551,20 @@ export const pages = [
       {
         "key": "screenCount",
         "type": "slider",
-        "label": "屏幕数量",
+        "label": "图片屏幕数量",
         "default": 4,
         "min": 2,
         "max": 4,
         "step": 1,
-        "describe": "横向排列的手机屏数量（流程步数）。",
+        "countArrays": [
+          "steps",
+          "images"
+        ],
+        "describe": "横向排列的手机图片屏数量（流程步数）。",
         "publicKey": "screenCount",
-        "publicLabel": "屏幕数量",
-        "desc": "横向排列的手机屏数量（流程步数）。",
-        "description": "横向排列的手机屏数量（流程步数）。"
+        "publicLabel": "图片屏幕数量",
+        "desc": "横向排列的手机图片屏数量（流程步数）。",
+        "description": "横向排列的手机图片屏数量（流程步数）。"
       },
       {
         "key": "showArrows",
@@ -15129,7 +15228,11 @@ export const pages = [
     ],
     "defaultProps": {
       "surface": "ink",
-      "images": [],
+      "images": [
+        "",
+        "",
+        ""
+      ],
       "showTags": true,
       "showStats": true,
       "emphasis": false,
@@ -15474,6 +15577,9 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
+        "countArrays": [
+          "rows"
+        ],
         "describe": "子弹图的指标行数。",
         "publicKey": "metricCount",
         "publicLabel": "指标数量",
@@ -15656,7 +15762,8 @@ export const pages = [
           "b3": 72,
           "disp": "×3.8",
           "u": "",
-          "hit": true
+          "hit": true,
+          "status": "✓ 过线"
         },
         {
           "nm": "获客成本",
@@ -15667,7 +15774,8 @@ export const pages = [
           "b3": 68,
           "disp": "−41",
           "u": "%",
-          "hit": true
+          "hit": true,
+          "status": "✓ 达标"
         },
         {
           "nm": "复购占比",
@@ -15689,7 +15797,8 @@ export const pages = [
           "b3": 70,
           "disp": "5.4k",
           "u": "",
-          "hit": true
+          "hit": true,
+          "status": "✓ 完成"
         }
       ],
       "metaLeft": "IGNIS — 燃点 · 关键指标达成（中位样本）",
@@ -16731,7 +16840,7 @@ export const pages = [
         "对比基准"
       ],
       "scoreUnit": " /10",
-      "deltaSuffix": " vs 基准",
+      "deltaSuffix": "",
       "rows": [
         {
           "nm": "自然增长",
@@ -16951,28 +17060,20 @@ export const pages = [
       "eyebrowEn": "What we changed",
       "headingHtml": "一张截图，<span class=\"ign-ember-text\">把每处改动指出来</span>。",
       "noteHtml": "编号对应改动点——<br>每一处都对着转化。",
-      "pins": [
+      "notes": [
         {
-          "x": 16,
-          "y": 26,
           "t": "价值主张",
           "d": "首屏一句话锁定意图。"
         },
         {
-          "x": 78,
-          "y": 34,
           "t": "社会证明",
           "d": "客户与数据即时建立信任。"
         },
         {
-          "x": 30,
-          "y": 72,
           "t": "主行动按钮",
           "d": "高对比、零干扰的唯一出口。"
         },
         {
-          "x": 66,
-          "y": 78,
           "t": "风险消解",
           "d": "退款与保障，临门一脚不丢人。"
         }
@@ -17848,7 +17949,7 @@ export const pages = [
         "key": "textTone",
         "type": "select",
         "label": "文字色调",
-        "default": "dark",
+        "default": "light",
         "options": [
           {
             "value": "dark",
@@ -17868,7 +17969,7 @@ export const pages = [
         "key": "showScrim",
         "type": "toggle",
         "label": "压暗层",
-        "default": false,
+        "default": true,
         "desc": "给文字区域增加渐变压暗。",
         "publicKey": "showScrim",
         "publicLabel": "压暗层",
@@ -17888,7 +17989,7 @@ export const pages = [
         "key": "surface",
         "type": "select",
         "label": "氛围基调",
-        "default": "paper",
+        "default": "ink",
         "options": [
           {
             "value": "paper",

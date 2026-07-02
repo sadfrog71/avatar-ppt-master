@@ -8,6 +8,7 @@ import {
   getMediaSlotsForLayout,
   getLayoutRecord,
   getThemePackMetadata,
+  isDeckLocalMediaSource,
   isCoverCandidate,
   isCoverLikeLayout,
   layoutExists,
@@ -19,6 +20,7 @@ import {
 const ALLOWED_INLINE_TAGS = new Set(['b', 'strong', 'i', 'em', 'br', 'sup', 'sub']);
 const NEUTRAL_PLACEHOLDERS = ['请输入文本', '请输入', '请输'];
 const NON_CONTENT_STRING_FIELD_PATTERN = /^(id|key|type|kind|tone|color|colour|accent|fill|stroke|background|bg|tint|hex|variant|style|theme|mode|layout|align|side|position|icon|href|url|src|fit|className)$/i;
+const ALLOWED_MEDIA_ITEM_FIELDS = new Set(['src', 'kind', 'type', 'ar', 'ratio', 'poster']);
 
 export function validateGoalSpec(spec, options = {}) {
   const errors = [];
@@ -26,6 +28,7 @@ export function validateGoalSpec(spec, options = {}) {
   const authoredSlides = Array.isArray(options.authoredSpec?.slides) ? options.authoredSpec.slides : null;
   const mediaUsages = new Map();
   const layoutUsages = new Map();
+  const deckCoreCopyUsages = new Map();
 
   if (!slides.length) {
     errors.push('deck field slides: final delivery goal must include non-empty slides with concrete layout values');
@@ -73,21 +76,26 @@ export function validateGoalSpec(spec, options = {}) {
       errors.push(`slide ${slideNumber} layout ${layoutLabel} field media: slides[].media is not rendered; use props.images or props.media`);
     }
 
+    if (Object.prototype.hasOwnProperty.call(slide, 'copy')) {
+      errors.push(`slide ${slideNumber} layout ${layoutLabel} field copy: slides[].copy is not supported in final goal specs; write authored values under props`);
+    }
+
     const record = getLayoutRecord(layout);
     const props = slide?.props || {};
     const authoredProps = authoredSlides ? authoredSlides[index]?.props || {} : props;
     validateNoSerializedReactElements(props, `slide ${slideNumber}`, layoutLabel, 'props', errors);
     validateNoSerializedReactElements(slide?.copy, `slide ${slideNumber}`, layoutLabel, 'copy', errors);
-    validateMediaIntent(slide, slideNumber, layoutLabel, props, errors);
+    validateMediaIntent(slide, slideNumber, layoutLabel, props, errors, options);
     validateMediaProps(slideNumber, layoutLabel, props, errors);
     collectMediaUsages(props, slideNumber, layoutLabel, mediaUsages);
 
     for (const key of unknownPropKeys(record, props)) {
-      errors.push(`slide ${slideNumber} layout ${layoutLabel} field ${key}: unknown prop for this layout`);
+      errors.push(`slide ${slideNumber} theme ${themeFromLayout(layoutLabel)} layout ${layoutLabel} field ${key}: unknown prop for this layout`);
     }
 
     const normalized = normalizeProps(layout, props);
-    for (const error of normalized.errors || []) {
+    const shapeChecked = authoredSlides ? normalizeProps(layout, authoredProps) : normalized;
+    for (const error of shapeChecked.errors || []) {
       errors.push(`slide ${slideNumber} layout ${layoutLabel} field props: ${error}`);
     }
 
@@ -103,6 +111,7 @@ export function validateGoalSpec(spec, options = {}) {
     validateArrayCapacities(layout, props, slideNumber, layoutLabel, errors);
     validateCopyBudgets(layout, props, slideNumber, layoutLabel, errors);
     validateRepeatedVisibleCopy(layout, props, slideNumber, layoutLabel, errors);
+    collectDeckCoreCopy(layout, normalized.props || props, authoredProps, slideNumber, layoutLabel, deckCoreCopyUsages);
     validateObjectStrings(slide?.copy, `slide ${slideNumber}`, layoutLabel, 'copy', errors);
 
     if (isCoverCandidate(layout)) coverCandidates.push(layout);
@@ -118,6 +127,7 @@ export function validateGoalSpec(spec, options = {}) {
   }
 
   validateUniqueLayouts(layoutUsages, errors);
+  validateDeckRepeatedCoreCopy(deckCoreCopyUsages, errors);
 
   if (spec?.allowMediaReuse !== true) validateUniqueMediaUsages(mediaUsages, errors);
 
@@ -137,7 +147,7 @@ function validateUniqueLayouts(layoutUsages, errors) {
   }
 }
 
-function validateMediaIntent(slide, slideNumber, layout, props, errors) {
+function validateMediaIntent(slide, slideNumber, layout, props, errors, options = {}) {
   const slots = getMediaSlotsForLayout(layout);
   const intent = getSlideMediaIntent(slide);
   if (!intent.requiresMedia) return;
@@ -152,7 +162,7 @@ function validateMediaIntent(slide, slideNumber, layout, props, errors) {
     errors.push(`slide ${slideNumber} layout ${layout} field ${intent.field}: ${intent.label} needs ${intent.count} media item(s), but available media slot capacity is ${capacities}`);
   }
 
-  if (!intent.requiresWrittenProps) return;
+  if (!intent.requiresWrittenProps || options.allowUnfilledMediaIntent === true) return;
 
   const writtenSlot = slots.find(slot => Array.isArray(props?.[slot.field]) && props[slot.field].length >= Math.max(1, intent.count));
   if (!writtenSlot) {
@@ -205,6 +215,7 @@ function validateMediaItem(item, slot, scope, layout, field, errors) {
       errors.push(`${scope} layout ${layout} field ${field}: expected non-empty media source`);
       return;
     }
+    if (validateMediaSource(src, scope, layout, field, errors)) return;
     if (looksLikeVideoSrc(src) && !src.startsWith('data:video/')) {
       errors.push(`${scope} layout ${layout} field ${field}: video media must use {src, kind:"video", type}`);
       return;
@@ -218,10 +229,23 @@ function validateMediaItem(item, slot, scope, layout, field, errors) {
     return;
   }
 
+  const unknownFields = Object.keys(item).filter(key => !ALLOWED_MEDIA_ITEM_FIELDS.has(key));
+  if (unknownFields.length) {
+    errors.push(`${scope} layout ${layout} field ${field}: unknown media item field(s): ${unknownFields.join(', ')}; allowed fields: ${[...ALLOWED_MEDIA_ITEM_FIELDS].join(', ')}`);
+  }
+
   const src = typeof item.src === 'string' ? item.src.trim() : '';
   if (!src) {
     errors.push(`${scope} layout ${layout} field ${field}: expected media item with src`);
     return;
+  }
+  validateMediaSource(src, scope, layout, `${field}.src`, errors);
+  if (Object.prototype.hasOwnProperty.call(item, 'poster')) {
+    if (item.poster != null && typeof item.poster !== 'string') {
+      errors.push(`${scope} layout ${layout} field ${field}.poster: expected poster media source as string`);
+    } else if (typeof item.poster === 'string' && item.poster.trim()) {
+      validateMediaSource(item.poster.trim(), scope, layout, `${field}.poster`, errors);
+    }
   }
 
   const declaredKind = normalizeMediaKind(item.kind);
@@ -233,6 +257,14 @@ function validateMediaItem(item, slot, scope, layout, field, errors) {
     return;
   }
   validateAcceptedMediaKind(inferredKind, slot, scope, layout, field, errors);
+}
+
+function validateMediaSource(src, scope, layout, field, errors) {
+  const text = String(src || '').trim();
+  if (!text) return false;
+  if (isDeckLocalMediaSource(text)) return false;
+  errors.push(`${scope} layout ${layout} field ${field}: media source "${text}" must be staged as deck-local offline media under assets/user-media/ and referenced by normalized POSIX relative path; traversal, loose relative paths, absolute local paths, file:// URLs, remote http(s) URLs, and data: media are not allowed`);
+  return true;
 }
 
 function validateAcceptedMediaKind(kind, slot, scope, layout, field, errors) {
@@ -268,7 +300,7 @@ function getSlideMediaIntent(slide) {
   if (plannedCount) {
     return {
       requiresMedia: true,
-      requiresWrittenProps: false,
+      requiresWrittenProps: true,
       count: plannedCount,
       field: 'plannedImages',
       label: 'plannedImages',
@@ -279,7 +311,7 @@ function getSlideMediaIntent(slide) {
     const field = slide?.needsVisual === true ? 'needsVisual' : slide?.needsImageGen === true ? 'needsImageGen' : 'imageGen';
     return {
       requiresMedia: true,
-      requiresWrittenProps: false,
+      requiresWrittenProps: true,
       count: 1,
       field,
       label: field,
@@ -303,9 +335,13 @@ function mediaCount(value) {
   return 0;
 }
 
-function validateObjectStrings(value, scope, layout, fieldPrefix, errors) {
+export function validateHtmlStringBoundaries(value, scope, layout, fieldPrefix, errors) {
   if (!value || typeof value !== 'object') return;
   visitStrings(value, fieldPrefix, (text, field) => validateFreeHtml(text, scope, layout, field, errors));
+}
+
+function validateObjectStrings(value, scope, layout, fieldPrefix, errors) {
+  validateHtmlStringBoundaries(value, scope, layout, fieldPrefix, errors);
 }
 
 function validateNoSerializedReactElements(value, scope, layout, fieldPrefix, errors) {
@@ -434,7 +470,7 @@ function validateVisibleDirtyCopy(layout, props, authoredProps, slideNumber, lay
 function dirtyVisibleCopyReason(value) {
   const text = String(value || '');
   const placeholder = NEUTRAL_PLACEHOLDERS.find(item => text.includes(item));
-  if (placeholder) return `placeholder text "${placeholder}" is not allowed in visible copy`;
+  if (placeholder) return `中性占位文案 "${placeholder}" 不允许出现在可见文案`;
   if (text.includes('[object Object]')) return 'object placeholder "[object Object]" is not allowed in visible copy';
   if (/\bundefined\b/i.test(text)) return 'undefined literal is not allowed in visible copy';
   return '';
@@ -455,8 +491,9 @@ function validateCountBindingConsistency(layout, props, slideNumber, layoutLabel
       if (isMediaArrayKey(rootArrayKey(arrayPath))) continue;
       for (const item of collectBoundArrays(props, arrayPath)) {
         if (item.value.length === count) continue;
-        if (item.value.length > count && isNeutralRestoreTail(item.value, count)) continue;
-        mismatches.push(`${item.field} has ${item.value.length}`);
+        const shortField = stripPropsPrefix(item.field);
+        const fullField = item.field === shortField ? '' : ` (${item.field} has ${item.value.length})`;
+        mismatches.push(`${shortField} has ${item.value.length}${fullField}`);
       }
     }
     if (!mismatches.length) continue;
@@ -540,7 +577,7 @@ function validateRepeatedArrayPlanCopy(props, arrayPlan, inspected, slideNumber,
     const role = fieldMeta.role || inspected.copyRoles?.[pathName] || arrayPlan.role;
     if (!isRepeatCheckedCopyRole(role) || fieldMeta.type !== 'string') continue;
     const seen = collectRepeatedValues(visible, index => ({
-      value: visible[index]?.[fieldKey],
+      value: valueAtObjectPath(visible[index], fieldKey),
       field: `props.${arrayPlan.key}[${index}].${fieldKey}`,
       summaryField: `props.${pathName}`,
       role,
@@ -579,6 +616,58 @@ function isMeaningfulRepeatedCopy(value, role) {
   const text = String(value || '').trim();
   if (charLength(text) < 8) return false;
   if (isNumericLike(text) || isPageLabel(text) || isUploadPlaceholderText(text)) return false;
+  return /[\p{Letter}\p{Number}]/u.test(text);
+}
+
+function collectDeckCoreCopy(layout, props, authoredProps, slideNumber, layoutLabel, usages) {
+  const inspected = inspectLayout(layout, { compact: true }) || {};
+  const visibleProps = visiblePropsForInspection(props, inspected, authoredProps);
+  visitStrings(visibleProps, 'props', (text, field) => {
+    const contractPath = normalizeContractPath(field.replace(/^props\./, ''));
+    const role = coreCopyRoleForPath(inspected, contractPath);
+    const budget = inspected.copyBudgets?.[contractPath];
+    if (!isDeckCoreCopyField(contractPath, role, budget)) return;
+    const normalized = normalizeRepeatedCopy(text);
+    if (!isMeaningfulDeckCoreCopy(normalized)) return;
+    const rows = usages.get(normalized) || [];
+    rows.push({ slideNumber, layout: layoutLabel, field });
+    usages.set(normalized, rows);
+  });
+}
+
+function validateDeckRepeatedCoreCopy(usages, errors) {
+  for (const [text, rows] of usages.entries()) {
+    const uniqueSlides = new Set(rows.map(item => item.slideNumber));
+    if (uniqueSlides.size < 4) continue;
+    const locations = rows
+      .filter((item, index, list) => list.findIndex(other => other.slideNumber === item.slideNumber) === index)
+      .slice(0, 6)
+      .map(item => `slide ${item.slideNumber} ${item.layout} ${item.field}`)
+      .join(', ');
+    errors.push(`deck field slides: repeated core copy "${text}" appears on ${uniqueSlides.size} slides (${locations}); vary page titles/core copy`);
+  }
+}
+
+function coreCopyRoleForPath(inspected, contractPath) {
+  if (inspected.copyRoles?.[contractPath]) return inspected.copyRoles[contractPath];
+  const contract = (inspected.fieldContracts || []).find(item => normalizeContractPath(item.key) === contractPath);
+  return contract?.role || '';
+}
+
+function isDeckCoreCopyField(contractPath, role, budget) {
+  const field = lastPathKey(contractPath).toLowerCase();
+  if (/^(kicker|eyebrow|en|unit|amount|value|no|index|label|tag|chip|caption|footnote|note|summary|intro|description|desc|cn)$/i.test(field)) return false;
+  if (/^(title|titleTop|titleBottom|headline|heading|statement|quote|lead|subtitle)$/i.test(field)) return true;
+  const normalizedRole = String(role || '').toLowerCase();
+  if (normalizedRole === 'title') return true;
+  return String(budget?.density || '').toLowerCase() === 'display';
+}
+
+function isMeaningfulDeckCoreCopy(value) {
+  const text = String(value || '').trim();
+  if (charLength(text) < 8) return false;
+  if (isNumericLike(text) || isPageLabel(text) || isUploadPlaceholderText(text)) return false;
+  if (containsNeutralPlaceholder(text)) return false;
   return /[\p{Letter}\p{Number}]/u.test(text);
 }
 
@@ -779,18 +868,49 @@ function visitStrings(value, field, visitor) {
 
 function validateFreeHtml(value, scope, layout, field, errors) {
   if (typeof value !== 'string') return;
-  const tags = findDisallowedTags(value);
-  if (!tags.length) return;
-  errors.push(`${scope} layout ${layout} field ${field}: obvious free HTML is not allowed (${tags.join(', ')})`);
+  const findings = findUnsafeHtmlFindings(value);
+  if (!findings.length) return;
+  errors.push(`${scope} layout ${layout} field ${field}: obvious free HTML is not allowed (${findings.join(', ')})`);
 }
 
-function findDisallowedTags(value) {
-  const tags = new Set();
+function findUnsafeHtmlFindings(value) {
+  const findings = new Set();
   for (const match of value.matchAll(/<\/?([a-z][a-z0-9-]*)\b[^>]*>/gi)) {
     const tag = match[1].toLowerCase();
-    if (!ALLOWED_INLINE_TAGS.has(tag)) tags.add(tag);
+    if (!ALLOWED_INLINE_TAGS.has(tag)) findings.add(tag);
+    for (const attr of htmlAttributes(match[0])) {
+      if (/^on[a-z]/i.test(attr.name)) findings.add(attr.name.toLowerCase());
+      if (hasJavascriptUrl(attr.value)) findings.add('javascript:');
+    }
   }
-  return [...tags];
+  return [...findings];
+}
+
+function htmlAttributes(tagSource) {
+  const attrs = [];
+  const attrPattern = /[\s/]+([^\s"'<>/=]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/g;
+  for (const match of tagSource.matchAll(attrPattern)) {
+    attrs.push({
+      name: match[1],
+      value: match[2] ?? match[3] ?? match[4] ?? '',
+    });
+  }
+  return attrs;
+}
+
+function hasJavascriptUrl(value) {
+  return decodeHtmlEntities(String(value || '')).replace(/[\u0000-\u001f\u007f\s]+/g, '').toLowerCase().includes('javascript:');
+}
+
+function decodeHtmlEntities(value) {
+  return String(value || '')
+    .replace(/&#(\d+);?/g, (source, code) => decodeCodePoint(Number(code), source))
+    .replace(/&#x([0-9a-f]+);?/gi, (source, code) => decodeCodePoint(Number.parseInt(code, 16), source));
+}
+
+function decodeCodePoint(code, fallback) {
+  if (!Number.isInteger(code) || code < 0 || code > 0x10ffff) return fallback;
+  return String.fromCodePoint(code);
 }
 
 function normalizeBudgetPath(field) {
@@ -813,7 +933,6 @@ function valueAtObjectPath(value, pathName) {
 function normalizeMediaSrc(src) {
   return String(src || '').trim();
 }
-
 
 function looksLikeVideoSrc(src) {
   return /\.(mp4|m4v|mov|webm|ogv)(?:[?#].*)?$/i.test(String(src || '').trim())

@@ -6,6 +6,11 @@ import {
 } from './control-naming.mjs';
 
 const REMOVED_CONTROL_TYPES = new Set(['text', 'string', 'input', 'url', 'email', 'textarea', 'multiline']);
+export const MEDIA_ARRAY_KEYS = Object.freeze(['images', 'media', 'photos', 'pictures', 'logos', 'thumbs', 'imageSlots', 'imgs']);
+const CONTRACT_OMIT = Symbol('contract-omit');
+const NON_CONTENT_FIELD_PATTERN = /^(id|key|type|kind|mode|variant|style|theme|tone|layout|align|side|position|pos|fit|icon|href|url|src|sourceId|targetId|className|c|color|colour|accent|fill|stroke|background|bg|tint|hex|subcolor|dark|pin|pins|swatch|swatches|avatar|image|picture|photo)$/i;
+const VISUAL_CONTAINER_FIELD_PATTERN = /^(pin|pins|pos|position|positions|layout|swatch|swatches|tilt|tilts|rotation|rotations|angle|angles|offset|offsets|coord|coords|coordinate|coordinates)$/i;
+const VISUAL_NUMBER_FIELD_PATTERN = /^(x|y|l|t|r|w|h|cx|cy|dx|dy|box|width|height|left|top|right|bottom|ratio|rotate|rotation|rot|angle|tilt|scale|sr|opacity|radius|z|zindex)$/i;
 
 export const COUNT_ARRAY_BINDINGS = {
   barCount: ['bars'],
@@ -35,7 +40,7 @@ export const COUNT_ARRAY_BINDINGS = {
   wordCount: ['words'],
 };
 
-const MEDIA_COUNT_KEY_PATTERN = /^(image|images|imageSlot|media|photo|photos|picture|pictures|logo|logos|thumb|thumbs|avatar|avatars|frame)Count$/i;
+const MEDIA_COUNT_KEY_PATTERN = /^(image|images|media|photo|photos|picture|pictures|logo|logos|thumb|thumbs|avatar|avatars|frame)Count$/i;
 
 export function createLayoutContracts(pages = []) {
   return new Map(pages.map(page => [page.key, createContract(page, page.themeKey)]));
@@ -45,16 +50,22 @@ export function normalizeSlidePropsForContract(layout, props = {}, contract = nu
   const aliasResult = contract ? resolvePublicPropAliases(props, contract.controls) : { props: props || {} };
   const authoredProps = aliasResult.props || {};
   const authoredCounts = deriveAuthoredCounts(authoredProps, contract?.countBindings || []);
-  const authoredCountErrors = contract ? validateExplicitCountBindings(authoredProps, contract.countBindings || []) : [];
-  const shapeErrors = contract ? validateAuthoredPropShape(authoredProps, contract.defaultProps, contract) : [];
-  const next = contract ? mergeDefaultArrayProps(authoredProps, contract) : { ...authoredProps };
+  const shapeErrors = contract ? validateAuthoredPropShape(authoredProps, contract.defaultProps, contract.propShapes) : [];
+  const next = { ...authoredProps };
   if (contract) applyMediaBackgroundMode(next, authoredProps, contract);
   if (!contract) return next;
 
-  const errors = [...shapeErrors, ...authoredCountErrors];
+  const errors = [...shapeErrors];
   for (const binding of contract.countBindings) {
     const derived = deriveCount(next, binding);
-    if (!derived) continue;
+    if (!derived) {
+      if (Object.prototype.hasOwnProperty.call(next, binding.key)) {
+        const currentNumber = Number(next[binding.key]);
+        if (!Number.isFinite(currentNumber)) errors.push(`${binding.key} 不是有效数字`);
+        else validateCountRange(binding, currentNumber, binding.key, errors, { props: next, defaults: contract.defaultProps });
+      }
+      continue;
+    }
 
     if (derived.error) {
       errors.push(derived.error);
@@ -64,7 +75,7 @@ export function normalizeSlidePropsForContract(layout, props = {}, contract = nu
     const current = next[binding.key];
     if (current == null || current === '') {
       next[binding.key] = authoredCounts.get(binding.key) ?? derived.count;
-      validateCountRange(binding, next[binding.key], binding.key, errors);
+      validateCountRange(binding, next[binding.key], binding.key, errors, { props: next, defaults: contract.defaultProps });
       continue;
     }
 
@@ -72,12 +83,14 @@ export function normalizeSlidePropsForContract(layout, props = {}, contract = nu
     if (!Number.isFinite(currentNumber)) {
       errors.push(`${binding.key} 不是有效数字`);
     } else {
-      validateCountRange(binding, currentNumber, binding.key, errors);
-      if (currentNumber > derived.count) {
+      validateCountRange(binding, currentNumber, binding.key, errors, { props: next, defaults: contract.defaultProps });
+      if (currentNumber > derived.count && !isAllowedMediaCountShortage(binding, derived)) {
         errors.push(`${binding.key}=${currentNumber},但 ${derived.source} 只有 ${derived.count} 条`);
       }
     }
   }
+  validateControlRanges(next, contract.controls, contract.countBindings, contract.defaultProps, errors);
+  validateLengthBindings(next, contract.defaultProps, contract.lengthBindings, errors);
 
   if (errors.length) {
     throw new Error(`Slide props mismatch for "${layout}": ${errors.join('; ')}`);
@@ -97,29 +110,42 @@ export function createContract(page, themePack) {
   const rawDefaultProps = serializeValue(page.defaultProps || {}) || {};
   const controls = clampCountControlLimits(normalizeControls(page), rawDefaultProps);
   const defaultProps = clampDefaultCountProps(rawDefaultProps, controls);
-  const countBindings = controls
+  let countBindings = controls
     .filter(control => !isBooleanControl(control))
     .map(control => {
-      const declaredArrays = firstCountArrays(
-        normalizeCountArrays(control.countArrays),
-        COUNT_ARRAY_BINDINGS[control.key],
-        inferCountArrayBindings(control.key, defaultProps),
-        inferMediaCountArrayBindings(control.key, controls, defaultProps),
-      );
-      if (!declaredArrays.length) return { control, arrays: [] };
-      const arrays = resolveCountBindingArrays({ key: control.key, arrays: declaredArrays, max: control.max }, defaultProps);
-      return { control, arrays };
+      const explicitArrays = normalizeCountArrays(control.countArrays);
+      return {
+        control,
+        explicitArrays: Boolean(explicitArrays),
+        arrays: explicitArrays || COUNT_ARRAY_BINDINGS[control.key] || inferCountArrayBindings(control.key, defaultProps),
+      };
     })
     .filter(item => item.arrays.length)
-    .map(({ control, arrays }) => ({
+    .map(({ control, arrays, explicitArrays }) => ({
       key: control.key,
       publicKey: control.publicKey || control.key,
       label: control.label || control.publicLabel || control.key,
       arrays,
+      explicitArrays,
       min: control.min,
       max: control.max,
+      maxFromKey: control.maxFromKey,
+      maxFromKeyOffset: control.maxFromKeyOffset,
+      maxByKey: control.maxByKey,
+      maxByValue: control.maxByValue,
     }));
-  const lengthBindings = inferLengthBindings(defaultProps, countBindings);
+  countBindings.push(...inferSyntheticCountBindings(defaultProps, countBindings));
+  countBindings = countBindings.map(binding => {
+    const { explicitArrays, ...publicBinding } = binding;
+    return {
+      ...publicBinding,
+      arrays: resolveContractBindingArrays(binding, defaultProps, { preserveDeclared: explicitArrays }),
+    };
+  });
+  const lengthBindings = mergeLengthBindings(
+    normalizeLengthBindings(page.lengthBindings),
+    inferLengthBindings(defaultProps, countBindings),
+  );
 
   return {
     key: page.key,
@@ -136,8 +162,246 @@ export function createContract(page, themePack) {
   };
 }
 
-function firstCountArrays(...candidates) {
-  return candidates.find(candidate => Array.isArray(candidate) && candidate.length) || [];
+function resolveContractBindingArrays(binding, defaultProps = {}, { preserveDeclared = false } = {}) {
+  const declared = Array.isArray(binding?.arrays) ? binding.arrays : [];
+  if (preserveDeclared && declared.length) {
+    const kept = declared.filter(pathName => isExplicitBindableContractArray(defaultProps, pathName));
+    return [...new Set(kept)];
+  }
+  if (isMediaCountBinding(binding)) {
+    const declaredMedia = declared.filter(pathName => isMediaArrayPath(pathName) && arrayPathExistsAny(defaultProps, pathName));
+    const declaredBindable = declared.filter(pathName => isBindableContractArray(defaultProps, pathName));
+    if (declaredMedia.length && declaredBindable.length > declaredMedia.length) return [...new Set(declaredBindable)];
+    if (declaredMedia.length) return narrowCountBindingArrays(binding, [...new Set(declaredMedia)]);
+    const mediaArrays = discoverAllArrayPaths(defaultProps).filter(pathName => isMediaArrayPath(pathName));
+    const preferred = preferredMediaBindingArray(binding, mediaArrays);
+    if (preferred) return [preferred];
+  }
+
+  if (Array.isArray(binding?.arrays) && !declared.length) return [];
+  const kept = declared.filter(pathName => isBindableContractArray(defaultProps, pathName));
+  if (kept.length && isVisualSlotCountBinding(binding)) {
+    const mediaArrays = discoverAllArrayPaths(defaultProps).filter(pathName => isMediaArrayPath(pathName));
+    if (mediaArrays.length) return [...new Set([...kept, ...mediaArrays])];
+  }
+  if (kept.length) return narrowCountBindingArrays(binding, kept);
+
+  const paths = discoverContractArrayPaths(defaultProps);
+  const byField = declared.flatMap(pathName => paths.filter(candidate => countArrayPathField(candidate) === countArrayPathField(pathName)));
+  if (byField.length) return narrowCountBindingArrays(binding, [...new Set(byField)]);
+
+  const content = paths.filter(pathName => !isMediaArrayPath(pathName));
+  const max = Number(binding?.max);
+  const byMax = Number.isFinite(max) ? content.filter(pathName => arrayLengthAtPath(defaultProps, pathName) === max) : [];
+  if (byMax.length === 1) return byMax;
+  const fallbackDefault = Number(defaultProps?.[binding?.key]);
+  const byDefault = Number.isFinite(fallbackDefault) ? content.filter(pathName => arrayLengthAtPath(defaultProps, pathName) === fallbackDefault) : [];
+  if (byDefault.length === 1) return byDefault;
+  return [];
+}
+
+function isBindableContractArray(defaultProps, pathName) {
+  if (!arrayPathExistsAny(defaultProps, pathName)) return false;
+  if (isMediaArrayPath(pathName)) return true;
+  return isContractContentArray(pathName, valueAtContractPath(defaultProps, pathName));
+}
+
+function isExplicitBindableContractArray(defaultProps, pathName) {
+  if (!arrayPathExistsAny(defaultProps, pathName)) return false;
+  if (isBindableContractArray(defaultProps, pathName)) return true;
+  const value = valueAtContractPath(defaultProps, pathName);
+  return Array.isArray(value) && value.length > 0 && value.every(item => typeof item === 'number' && Number.isFinite(item));
+}
+
+function discoverAllArrayPaths(value, prefix = '') {
+  if (Array.isArray(value)) {
+    const paths = prefix ? [prefix] : [];
+    for (const item of value) {
+      if (isPlainObject(item)) paths.push(...discoverAllArrayPaths(item, `${prefix}[]`));
+    }
+    return paths;
+  }
+  if (!isPlainObject(value)) return [];
+  return Object.entries(value).flatMap(([key, item]) => (
+    discoverAllArrayPaths(item, prefix ? `${prefix}.${key}` : key)
+  ));
+}
+
+function arrayPathExistsAny(defaultProps, pathName) {
+  return Array.isArray(valueAtContractPath(defaultProps, pathName));
+}
+
+function valueAtContractPath(source, pathName) {
+  let current = source;
+  for (const segment of String(pathName || '').split('.')) {
+    if (current == null) return undefined;
+    if (Array.isArray(current)) {
+      const arrayKey = segment.endsWith('[]') ? segment.slice(0, -2) : segment;
+      const values = current.map(item => arrayKey ? item?.[arrayKey] : item).filter(item => item !== undefined);
+      current = segment.endsWith('[]') ? values.find(Array.isArray) : values.find(item => item !== undefined);
+      continue;
+    }
+    if (segment.endsWith('[]')) {
+      const array = current[segment.slice(0, -2)];
+      if (!Array.isArray(array)) return undefined;
+      current = array;
+      continue;
+    }
+    current = current[segment];
+  }
+  return current;
+}
+
+function arrayLengthAtPath(source, pathName) {
+  const value = valueAtContractPath(source, pathName);
+  return Array.isArray(value) ? value.length : NaN;
+}
+
+function isMediaArrayPath(pathName) {
+  return isMediaArrayKey(String(pathName || '').split('.')[0].replace(/\[\]$/, ''))
+    || isMediaArrayKey(countArrayPathField(pathName));
+}
+
+function isMediaCountControlBinding(binding) {
+  const text = `${binding?.key || ''} ${binding?.publicKey || ''} ${binding?.label || ''}`;
+  return /image|media|photo|picture|video|logo|slot|图片|图像|视频|媒体|照片|徽标|标志|槽/i.test(text)
+    && /(count|数量)/i.test(text);
+}
+
+function isMediaCountBinding(binding) {
+  return isMediaCountControlBinding(binding)
+    || MEDIA_COUNT_KEY_PATTERN.test(binding?.key || '')
+    || MEDIA_COUNT_KEY_PATTERN.test(binding?.publicKey || '')
+    || (binding?.arrays || []).some(isMediaArrayPath);
+}
+
+function isVisualSlotCountBinding(binding) {
+  const text = `${binding?.key || ''} ${binding?.publicKey || ''} ${binding?.label || ''}`;
+  return /(count|数量)$/i.test(String(binding?.key || ''))
+    && /(frame|image|media|photo|picture|slot|gallery|画框|画格|图片|图像|媒体|照片|相册)/i.test(text);
+}
+
+function isAllowedMediaCountShortage(binding, derived) {
+  return isMediaCountBinding(binding) && isMediaArrayPath(derived?.source);
+}
+
+function preferredMediaBindingArray(binding, mediaArrays = []) {
+  if (!mediaArrays.length) return null;
+  const stem = normalizeName(String(binding?.publicKey || binding?.key || '').replace(/Count$/i, ''));
+  const exact = mediaArrays.find(key => normalizeName(key).startsWith(stem));
+  return exact || mediaArrays[0];
+}
+
+function narrowCountBindingArrays(binding, arrays) {
+  if (!arrays.length) return arrays;
+  const scored = arrays.map(pathName => ({ pathName, score: countArrayNameScore(binding?.key, pathName) }));
+  const best = Math.max(...scored.map(item => item.score));
+  if (best <= 0) return arrays;
+  return scored.filter(item => item.score === best).map(item => item.pathName);
+}
+
+function countArrayNameScore(countKey, pathName) {
+  const stem = normalizeName(String(countKey || '').replace(/Count$/i, ''));
+  const field = normalizeName(countArrayPathField(pathName));
+  if (!stem || !field) return 0;
+  if (field === stem || field === pluralize(stem)) return 4;
+  if (field.includes(stem) || stem.includes(field)) return 2;
+  return 0;
+}
+
+function inferSyntheticCountBindings(defaultProps = {}, countBindings = []) {
+  return [];
+}
+
+function arrayPathExists(defaultProps, pathName) {
+  const [root, nested] = String(pathName || '').split('[].');
+  if (!root || !nested || !Array.isArray(defaultProps?.[root])) return false;
+  return defaultProps[root].some(item => Array.isArray(item?.[nested]));
+}
+
+export function inferLengthBindings(defaultProps = {}, countBindings = []) {
+  const topLevelArrays = Object.entries(defaultProps || {})
+    .filter(([key, value]) => Array.isArray(value) && !isMediaArrayKey(key));
+  const bindings = [];
+  for (const [rootKey, rootValue] of topLevelArrays) {
+    const objectItems = rootValue.filter(isPlainObject);
+    if (!objectItems.length) continue;
+    const fields = new Set(objectItems.flatMap(item => Object.keys(item || {})));
+    for (const field of fields) {
+      const nestedArrays = objectItems
+        .map(item => item?.[field])
+        .filter(Array.isArray);
+      if (nestedArrays.length !== objectItems.length) continue;
+      if (!isLengthBoundValueArray(field, nestedArrays)) continue;
+      const length = nestedArrays[0]?.length;
+      if (!Number.isFinite(length) || length <= 0) continue;
+      if (!nestedArrays.every(array => array.length === length)) continue;
+      const candidates = topLevelArrays
+        .filter(([key, value]) => key !== rootKey && value.length === length && isLengthAnchorArray(key, value))
+        .map(([key, value]) => ({ key, value, score: lengthAnchorScore(key, value, countBindings) }))
+        .sort((a, b) => b.score - a.score || a.key.localeCompare(b.key));
+      if (!candidates.length) continue;
+      if (candidates.length > 1 && candidates[0].score === candidates[1].score) continue;
+      const anchor = candidates[0].key;
+      const countKey = countKeyForArray(anchor, countBindings);
+      bindings.push({
+        dependent: `${rootKey}[].${field}`,
+        anchor,
+        relation: 'same-length',
+        ...(countKey ? { countKey } : {}),
+      });
+    }
+  }
+  return bindings;
+}
+
+function normalizeLengthBindings(value = []) {
+  if (!Array.isArray(value)) return [];
+  return value
+    .filter(item => item?.dependent && item?.anchor)
+    .map(item => ({
+      dependent: item.dependent,
+      anchor: item.anchor,
+      relation: item.relation || 'same-length',
+      ...(item.countKey ? { countKey: item.countKey } : {}),
+    }));
+}
+
+function mergeLengthBindings(primary = [], fallback = []) {
+  const result = [];
+  const seen = new Set();
+  for (const binding of [...(primary || []), ...(fallback || [])]) {
+    if (!binding?.dependent || !binding?.anchor) continue;
+    const key = `${binding.relation || 'same-length'}:${binding.dependent}:${binding.anchor}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push(binding);
+  }
+  return result;
+}
+
+function isLengthBoundValueArray(field, arrays = []) {
+  if (!/^(values?|vals?|data|points?|parts?)$/i.test(String(field || ''))) return false;
+  return arrays.length > 0 && arrays.every(array => array.length > 0 && array.every(item => typeof item === 'number' && Number.isFinite(item)));
+}
+
+function isLengthAnchorArray(key, value = []) {
+  if (isMediaArrayKey(key) || !Array.isArray(value) || !value.length) return false;
+  if (value.every(item => ['string', 'number'].includes(typeof item))) return true;
+  return value.some(item => isPlainObject(item) && ['label', 'name', 'title', 'key', 'id'].some(field => typeof item[field] === 'string'));
+}
+
+function lengthAnchorScore(key, value, countBindings = []) {
+  let score = 0;
+  if (countKeyForArray(key, countBindings)) score += 4;
+  if (/^(periods?|categories|series|groups|labels?)$/i.test(key)) score += 2;
+  if (value.every(item => ['string', 'number'].includes(typeof item))) score += 1;
+  return score;
+}
+
+function countKeyForArray(pathName, countBindings = []) {
+  const binding = (countBindings || []).find(item => (item.arrays || []).includes(pathName));
+  return binding?.publicKey || binding?.key || null;
 }
 
 export function clampCountControlLimits(controls = [], defaultProps = {}) {
@@ -169,16 +433,10 @@ export function clampDefaultCountProps(defaultProps = {}, controls = []) {
 
 function countControlLimit(control, defaultProps = {}) {
   if (!control?.key || MEDIA_COUNT_KEY_PATTERN.test(control.key)) return null;
-  const declaredArrays = normalizeCountArrays(control.countArrays);
-  const arrays = firstCountArrays(
-    declaredArrays,
-    COUNT_ARRAY_BINDINGS[control.key],
-    inferCountArrayBindings(control.key, defaultProps),
-  );
+  const arrays = normalizeCountArrays(control.countArrays) || COUNT_ARRAY_BINDINGS[control.key] || inferCountArrayBindings(control.key, defaultProps);
   if (!arrays.length || arrays.some(isMediaCountPath)) return null;
   const counts = arrays.flatMap(pathName => collectArrayCounts(defaultProps, pathName).map(item => item.count));
   if (!counts.length) return null;
-  if (declaredArrays?.length && arrays.some(isNestedArrayPath)) return Math.max(...counts);
   return Math.min(...counts);
 }
 
@@ -196,71 +454,8 @@ function deriveAuthoredCounts(props, bindings) {
   return counts;
 }
 
-function validateExplicitCountBindings(props = {}, bindings = []) {
-  const errors = [];
-  for (const binding of bindings || []) {
-    const rawCount = props?.[binding.key] ?? props?.[binding.publicKey];
-    if (rawCount == null || rawCount === '') continue;
-    const count = Number(rawCount);
-    if (!Number.isFinite(count)) continue;
-    const mismatches = [];
-    for (const arrayPath of binding.arrays || []) {
-      if (isMediaArrayKey(rootArrayKey(arrayPath))) continue;
-      for (const item of collectArrayCounts(props, arrayPath)) {
-        if (item.count !== count) mismatches.push(`${item.source} has ${item.count}`);
-      }
-    }
-    if (mismatches.length) {
-      errors.push(`countBinding mismatch ${binding.key}=${count}; ${mismatches.join(', ')}; authored array lengths must match the count key`);
-    }
-  }
-  return errors;
-}
-
-function mergeDefaultArrayProps(props, contract) {
-  const next = { ...(props || {}) };
-  const defaults = contract.defaultProps || {};
-  for (const [arrayKey, value] of Object.entries(props || {})) {
-    if (!Array.isArray(value) || !Array.isArray(defaults[arrayKey])) continue;
-    if (isMediaArrayKey(arrayKey)) continue;
-    next[arrayKey] = mergeArrayWithDefaultTail(value, defaults[arrayKey]);
-  }
-  return next;
-}
-
-function mergeArrayWithDefaultTail(items, defaults) {
-  if (items.length >= defaults.length) {
-    return items.map((item, index) => mergeArrayItem(defaults[index], item));
-  }
-  return [
-    ...items.map((item, index) => mergeArrayItem(defaults[index], item)),
-    ...defaults.slice(items.length).map(item => neutralizeDefaultCopy(item)),
-  ];
-}
-
-function mergeArrayItem(defaultItem, item) {
-  if (isPlainObject(defaultItem) && isPlainObject(item)) {
-    return mergePlainObject(defaultItem, item);
-  }
-  return item;
-}
-
 function isPlainObject(value) {
   return !!value && typeof value === 'object' && !Array.isArray(value);
-}
-
-function mergePlainObject(defaultValue, value) {
-  const next = { ...defaultValue };
-  for (const [key, item] of Object.entries(value || {})) {
-    if (Array.isArray(item) && Array.isArray(defaultValue?.[key]) && !isMediaArrayKey(key)) {
-      next[key] = mergeArrayWithDefaultTail(item, defaultValue[key]);
-    } else if (isPlainObject(item) && isPlainObject(defaultValue?.[key])) {
-      next[key] = mergePlainObject(defaultValue[key], item);
-    } else {
-      next[key] = item;
-    }
-  }
-  return next;
 }
 
 function applyMediaBackgroundMode(props, authoredProps, contract) {
@@ -308,7 +503,7 @@ export function neutralizeDefaultCopy(value, field = '') {
 
 function shouldNeutralizeString(field, value) {
   if (!value) return false;
-  if (/^(id|key|type|tone|color|colour|accent|variant|style|theme|layout|align|side|position|icon|href|url|src|fit|className|from|to|source|target|sourceId|targetId)$/i.test(field)) return false;
+  if (/^(id|key|type|tone|color|colour|accent|variant|style|theme|layout|align|side|position|icon|href|url|src|fit|className)$/i.test(field)) return false;
   if (/^(show|is|has)[A-Z_]/.test(field)) return false;
   if (/(Color|Colour|Tone|Variant|Style|Mode|Layout|Align|Side|Index|Id|Key|Url|Src|Fit|ClassName)$/i.test(field)) return false;
   if (/^(https?:|data:|#)/i.test(value)) return false;
@@ -324,53 +519,38 @@ function neutralPlaceholder(value) {
 
 function serializeContract(contract) {
   const { defaultProps, propShapes, ...publicContract } = contract;
-  return publicContract;
+  const mediaDefaults = manifestMediaDefaults(defaultProps, contract.countBindings);
+  return Object.keys(mediaDefaults).length
+    ? { ...publicContract, defaultProps: mediaDefaults }
+    : publicContract;
 }
 
-export function validateAuthoredPropShape(props = {}, defaults = {}, contract = null) {
+function manifestMediaDefaults(defaultProps = {}, countBindings = []) {
+  const keys = new Set(
+    (countBindings || [])
+      .flatMap(binding => binding.arrays || [])
+      .filter(pathName => !String(pathName).includes('.') && isMediaArrayPath(pathName))
+      .map(pathName => String(pathName).replace(/\[\]$/, '')),
+  );
+  return Object.fromEntries(
+    [...keys]
+      .filter(key => Array.isArray(defaultProps?.[key]))
+      .map(key => [key, defaultProps[key]]),
+  );
+}
+
+export function validateAuthoredPropShape(props = {}, defaults = {}, propShapes = null) {
   const errors = [];
   for (const [key, value] of Object.entries(props || {})) {
     if (isMediaArrayKey(key)) continue;
+    if (!propShapes?.[key] && isRawMatrixProp(key)) {
+      errors.push(`props.${key}: unknown prop`);
+      continue;
+    }
     if (!Object.prototype.hasOwnProperty.call(defaults || {}, key)) continue;
     validateValueShape(value, defaults[key], `props.${key}`, errors);
   }
-  validateFixedNestedArrayLengths(props, defaults, contract, errors);
   return errors;
-}
-
-function validateFixedNestedArrayLengths(props = {}, defaults = {}, contract = null, errors = []) {
-  const lengthBound = new Set((contract?.lengthBindings || []).map(binding => binding.dependent));
-  const countBound = new Set((contract?.countBindings || []).flatMap(binding => binding.arrays || []));
-  for (const [rootKey, items] of Object.entries(props || {})) {
-    if (!Array.isArray(items) || !Array.isArray(defaults?.[rootKey])) continue;
-    items.forEach((item, index) => {
-      if (!isPlainObject(item)) return;
-      const defaultItem = defaults[rootKey][index] || defaults[rootKey].find(defaultCandidate => isPlainObject(defaultCandidate));
-      if (!isPlainObject(defaultItem)) return;
-      for (const [field, value] of Object.entries(item)) {
-        if (!Array.isArray(value) || !Array.isArray(defaultItem[field])) continue;
-        const pathName = `${rootKey}[].${field}`;
-        if (lengthBound.has(pathName) || countBound.has(pathName)) continue;
-        if (!isFixedCapacityArray(field, [defaultItem[field]])) continue;
-        const expected = defaultItem[field].length;
-        if (value.length !== expected) {
-          errors.push(`props.${rootKey}[${index}].${field}: expected fixed length ${expected}`);
-        }
-      }
-    });
-  }
-}
-
-function isFixedCapacityArray(field, arrays = []) {
-  if (/^(tags?|chips?|bullets?|labels?)$/i.test(String(field || ''))) return false;
-  return arrays.some(array => Array.isArray(array) && array.some(isFixedCapacityArrayItem));
-}
-
-function isFixedCapacityArrayItem(item) {
-  if (typeof item === 'number' && Number.isFinite(item)) return true;
-  if (Array.isArray(item)) return item.some(isFixedCapacityArrayItem);
-  if (!isPlainObject(item)) return false;
-  return Object.values(item).some(value => typeof value === 'number' && Number.isFinite(value));
 }
 
 function validateValueShape(value, defaultValue, field, errors) {
@@ -397,7 +577,41 @@ function validateValueShape(value, defaultValue, field, errors) {
       errors.push(`${field}: expected array`);
       return;
     }
-    validateArrayShape(value, defaultValue, field, errors);
+    const shape = mergeObjectShape(defaultValue);
+    if (!shape) {
+      const tuple = tupleShapeForArrayItems(defaultValue);
+      if (tuple) {
+        value.forEach((item, index) => {
+          if (!Array.isArray(item)) {
+            errors.push(`${field}[${index}]: expected tuple array`);
+            return;
+          }
+          if (item.length !== tuple.items.length) {
+            errors.push(`${field}[${index}]: expected tuple length ${tuple.items.length}`);
+            return;
+          }
+          tuple.items.forEach((itemDefault, itemIndex) => {
+            validateValueShape(item[itemIndex], itemDefault, `${field}[${index}][${itemIndex}]`, errors);
+          });
+        });
+        return;
+      }
+      const itemDefault = defaultValue.find(item => item != null);
+      const itemPrimitive = primitiveShape(itemDefault);
+      if (itemPrimitive) {
+        value.forEach((item, index) => validatePrimitiveValue(item, itemPrimitive, itemDefault, `${field}[${index}]`, errors));
+      }
+      return;
+    }
+    const enumFields = enumFieldsForArrayItems(defaultValue);
+    const numberBounds = numberBoundsForArrayItems(defaultValue);
+    value.forEach((item, index) => {
+      if (!isPlainObject(item)) {
+        errors.push(`${field}[${index}]: expected object item`);
+        return;
+      }
+      validateObjectShape(item, shape, `${field}[${index}]`, errors, enumFields, numberBounds);
+    });
     return;
   }
 
@@ -410,46 +624,8 @@ function validateValueShape(value, defaultValue, field, errors) {
   }
 }
 
-function validateArrayShape(value, defaultItems, field, errors) {
-  const shape = mergeObjectShape(defaultItems);
-  if (shape) {
-    const enumFields = enumFieldsForArrayItems(defaultItems);
-    const numberBounds = numberBoundsForArrayItems(defaultItems);
-    value.forEach((item, index) => {
-      if (!isPlainObject(item)) {
-        errors.push(`${field}[${index}]: expected object item`);
-        return;
-      }
-      validateObjectShape(item, shape, `${field}[${index}]`, errors, enumFields, numberBounds);
-    });
-    return;
-  }
-
-  const tuple = tupleShapeForArrayItems(defaultItems);
-  if (tuple) {
-    value.forEach((item, index) => validateTupleValue(item, tuple, `${field}[${index}]`, errors));
-    return;
-  }
-
-  const itemDefault = defaultItems.find(item => item != null);
-  const itemPrimitive = primitiveShape(itemDefault);
-  if (itemPrimitive) {
-    value.forEach((item, index) => validatePrimitiveValue(item, itemPrimitive, itemDefault, `${field}[${index}]`, errors));
-  }
-}
-
-function validateTupleValue(value, tuple, field, errors) {
-  if (!Array.isArray(value)) {
-    errors.push(`${field}: expected array tuple`);
-    return;
-  }
-  if (tuple.fixedLength != null && value.length !== tuple.items.length) {
-    errors.push(`${field}: expected tuple length ${tuple.items.length}`);
-  }
-  const count = Math.min(value.length, tuple.items.length);
-  for (let index = 0; index < count; index += 1) {
-    validateValueShape(value[index], tuple.items[index], `${field}[${index}]`, errors);
-  }
+function isRawMatrixProp(key) {
+  return String(key || '') === 'matrix';
 }
 
 function validateObjectShape(value, shape, field, errors, enumFields = new Map(), numberBounds = new Map()) {
@@ -509,31 +685,10 @@ function enumFieldsForArrayItems(items = []) {
     const values = objects
       .map(item => item?.[key])
       .filter(item => typeof item === 'string' && item.trim());
-    if (!shouldInferEnumField(key, values, objects)) continue;
     const unique = new Set(values);
     if (unique.size) result.set(key, unique);
   }
   return result;
-}
-
-function shouldInferEnumField(key, values, objects) {
-  if (!values.length) return false;
-  if (!/^q$/i.test(String(key || ''))) return true;
-  if (objects.some(hasQuestionCopyShape) && values.some(isQuestionCopyValue)) return false;
-  return values.every(isTokenOptionValue);
-}
-
-function hasQuestionCopyShape(item) {
-  return ['a', 'answer', 'desc', 'description'].some(key => typeof item?.[key] === 'string' && item[key].trim());
-}
-
-function isQuestionCopyValue(value) {
-  const text = String(value || '').trim();
-  return text.includes('?') || text.includes('？') || Array.from(text).length > 12;
-}
-
-function isTokenOptionValue(value) {
-  return /^[A-Za-z0-9_-]{1,32}$/.test(String(value || '').trim());
 }
 
 function numberBoundsForArrayItems(items = []) {
@@ -645,10 +800,12 @@ function mergeShapeValue(left, right) {
 function tupleShapeForArrayItems(items) {
   const arrays = (items || []).filter(Array.isArray);
   if (!arrays.length) return null;
-  const fixedLength = arrays.every(item => item.length === arrays[0].length) ? arrays[0].length : null;
-  const length = fixedLength ?? Math.max(...arrays.map(item => item.length));
-  const tupleItems = Array.from({ length }, (_, index) => mergeTupleItemShape(arrays.map(item => item[index]).filter(item => item !== undefined)));
-  return { items: tupleItems, fixedLength };
+  const length = arrays.every(item => item.length === arrays[0].length)
+    ? arrays[0].length
+    : Math.max(...arrays.map(item => item.length));
+  return {
+    items: Array.from({ length }, (_, index) => mergeTupleItemShape(arrays.map(item => item[index]).filter(item => item !== undefined))),
+  };
 }
 
 function mergeTupleItemShape(values) {
@@ -665,246 +822,128 @@ function formatExpectedKeys(keys) {
 }
 
 export function isMediaArrayKey(key) {
-  return /^(images|media|photos|pictures|logos|thumbs|imageSlots|imgs)$/i.test(String(key || ''));
+  const value = String(key || '').toLowerCase();
+  return MEDIA_ARRAY_KEYS.some(item => item.toLowerCase() === value);
 }
 
-function inferCountArrayBindings(key, props = {}) {
-  if (!String(key || '').endsWith('Count')) return [];
-  const arrayPaths = contentArrayPaths(props);
-  if (!arrayPaths.length) return [];
+export function isPrunedContractOmit(value) {
+  return value === CONTRACT_OMIT;
+}
 
-  const stem = lowerFirst(String(key).slice(0, -'Count'.length));
-  const candidates = buildCountArrayCandidates(stem);
-  for (const candidate of candidates) {
-    const exact = arrayPaths.find(propKey => propKey === candidate);
-    if (exact) return [exact];
+export function pruneContractValue(value, pathName = '') {
+  if (isNonContentContractValue(pathName, value)) return CONTRACT_OMIT;
+  if (Array.isArray(value)) {
+    const items = value
+      .map(item => pruneContractValue(item, `${pathName}[]`))
+      .filter(item => !isPrunedContractOmit(item));
+    return items.length ? items : CONTRACT_OMIT;
   }
-
-  for (const candidate of candidates) {
-    const exactField = arrayPaths.find(propKey => arrayPathField(propKey) === candidate);
-    if (exactField) return [exactField];
-  }
-
-  const normalizedCandidates = new Set(candidates.map(normalizeName));
-  const normalized = arrayPaths.find(propKey => normalizedCandidates.has(normalizeName(propKey)));
-  if (normalized) return [normalized];
-  const normalizedField = arrayPaths.find(propKey => normalizedCandidates.has(normalizeName(arrayPathField(propKey))));
-  return normalizedField ? [normalizedField] : [];
+  if (!isPlainObject(value)) return value;
+  const entries = Object.entries(value)
+    .map(([key, item]) => [key, pruneContractValue(item, pathName ? `${pathName}.${key}` : key)])
+    .filter(([, item]) => !isPrunedContractOmit(item));
+  return entries.length ? Object.fromEntries(entries) : CONTRACT_OMIT;
 }
 
-function inferMediaCountArrayBindings(key, controls = [], defaultProps = {}) {
-  if (!MEDIA_COUNT_KEY_PATTERN.test(String(key || ''))) return [];
-  const mediaArrays = [
-    ...(controls || [])
-      .map(control => control?.key)
-      .filter(controlKey => controlKey && isMediaArrayKey(controlKey)),
-    ...Object.keys(defaultProps || {})
-      .filter(propKey => Array.isArray(defaultProps[propKey]) && isMediaArrayKey(propKey)),
-  ];
-  const candidatesPool = [...new Set(mediaArrays)];
-  if (!candidatesPool.length) return [];
-  const stem = lowerFirst(String(key).slice(0, -'Count'.length));
-  const candidates = buildCountArrayCandidates(stem);
-  for (const candidate of candidates) {
-    const exact = candidatesPool.find(controlKey => controlKey === candidate);
-    if (exact) return [exact];
-  }
-  const normalizedCandidates = new Set(candidates.map(normalizeName));
-  const normalized = candidatesPool.find(controlKey => normalizedCandidates.has(normalizeName(controlKey)));
-  return normalized ? [normalized] : [];
+export function isContractContentArray(pathName, value) {
+  if (!Array.isArray(value) || !value.length) return false;
+  if (isMediaArrayKey(pathName) || isColorArray(value) || (isNumericMatrixArray(value) && !isWritableNumericTupleArray(pathName)) || isVisualContainerPath(pathName)) return false;
+  return value.some(item => !isPrunedContractOmit(pruneContractValue(item, `${pathName}[]`)));
 }
 
-function contentArrayPaths(props = {}) {
-  const paths = [];
-  for (const [key, value] of Object.entries(props || {})) {
-    if (Array.isArray(value)) {
-      if (!isMediaArrayKey(key) && !isColorArray(value)) paths.push(key);
-      for (const pathName of nestedArrayPaths(value, key)) paths.push(pathName);
-      continue;
-    }
-    if (!isPlainObject(value)) continue;
-    for (const [nestedKey, nestedValue] of Object.entries(value)) {
-      if (Array.isArray(nestedValue) && !isMediaArrayKey(nestedKey) && !isColorArray(nestedValue)) {
-        paths.push(`${key}.${nestedKey}`);
-      }
-      if (Array.isArray(nestedValue)) {
-        for (const pathName of nestedArrayPaths(nestedValue, `${key}.${nestedKey}`)) paths.push(pathName);
-      }
-    }
-  }
-  return [...new Set(paths)];
+function isWritableNumericTupleArray(pathName) {
+  return /^(flows?|links?|edges?|relations?|connections?)$/i.test(countArrayPathField(pathName));
 }
 
-function nestedArrayPaths(items, prefix) {
-  const paths = [];
-  for (const item of items || []) {
-    if (!isPlainObject(item)) continue;
-    for (const [key, value] of Object.entries(item)) {
-      if (!Array.isArray(value)) continue;
-      if (!isMediaArrayKey(key) && !isColorArray(value)) paths.push(`${prefix}[].${key}`);
-      for (const pathName of nestedArrayPaths(value, `${prefix}[].${key}`)) paths.push(pathName);
-    }
-  }
-  return paths;
+export function isNonContentContractValue(pathName, value) {
+  const field = String(pathName || '').split('.').pop()?.replace(/\[\]$/, '') || '';
+  if (!field) return false;
+  if (isScatterPointMetricField(pathName, field, value)) return false;
+  if (/axesData\[\]\.id$/i.test(String(pathName || '')) && typeof value === 'string') return false;
+  if (isMediaArrayKey(field)) return true;
+  if (Array.isArray(value)) return isColorArray(value) || isVisualContainerPath(pathName);
+  if (isPlainObject(value)) return isNumericKeyedConfigObject(value) || NON_CONTENT_FIELD_PATTERN.test(field);
+  if (isColorString(value)) return true;
+  if (NON_CONTENT_FIELD_PATTERN.test(field)) return true;
+  if (typeof value === 'number' && Number.isFinite(value) && VISUAL_NUMBER_FIELD_PATTERN.test(field)) return true;
+  if (typeof value === 'boolean' && /^(show|hide|enable|enabled|visible|dark|dim|muted|active)$/i.test(field)) return true;
+  return false;
 }
 
-function arrayPathField(pathName) {
-  return String(pathName || '').split('.').at(-1)?.replace(/\[\]$/, '') || '';
+function isScatterPointMetricField(pathName, field, value) {
+  return /^points\[\]\.(x|y|r)$/i.test(String(pathName || ''))
+    && /^(x|y|r)$/i.test(field)
+    && typeof value === 'number'
+    && Number.isFinite(value);
 }
 
-function resolveCountBindingArrays(binding, defaultProps = {}) {
-  const declared = Array.isArray(binding?.arrays) ? binding.arrays : [];
-  const kept = declared.filter(pathName => arrayPathExists(defaultProps, pathName));
-  if (kept.length) return narrowCountBindingArrays(binding, kept);
-  const paths = contentArrayPaths(defaultProps);
-  const byField = declared
-    .flatMap(pathName => paths.filter(candidate => arrayPathField(candidate) === arrayPathField(pathName)));
-  if (byField.length) return [...new Set(byField)];
-  const normalizedFields = new Set(declared.map(pathName => normalizeName(arrayPathField(pathName))).filter(Boolean));
-  const byNormalizedField = paths.filter(candidate => normalizedFields.has(normalizeName(arrayPathField(candidate))));
-  if (byNormalizedField.length) return byNormalizedField;
-  const content = contentArrayKeys(defaultProps);
-  if (!content.length) return [];
-  const max = Number(binding?.max);
-  const byMax = Number.isFinite(max) ? content.filter(key => defaultProps[key].length === max) : [];
-  if (byMax.length === 1) return byMax;
-  const fallbackDefault = Number(defaultProps[binding?.key]);
-  const byDefault = Number.isFinite(fallbackDefault) ? content.filter(key => defaultProps[key].length === fallbackDefault) : [];
-  if (byDefault.length === 1) return byDefault;
-  return [];
-}
-
-function narrowCountBindingArrays(binding, arrays) {
-  if (!arrays.length) return arrays;
-  const scored = arrays.map(pathName => ({ pathName, score: countArrayNameScore(binding?.key, pathName) }));
-  const best = Math.max(...scored.map(item => item.score));
-  if (best <= 0) return arrays;
-  return scored.filter(item => item.score === best).map(item => item.pathName);
-}
-
-function countArrayNameScore(countKey, pathName) {
-  const stem = normalizeName(String(countKey || '').replace(/Count$/i, ''));
-  if (!stem) return 0;
-  const aliases = countStemAliases(stem);
-  const field = normalizeName(arrayPathField(pathName));
-  if (aliases.has(field)) return 3;
-  const full = normalizeName(pathName);
-  if (aliases.has(full)) return 2;
-  return 0;
-}
-
-function countStemAliases(stem) {
-  const aliases = {
-    column: ['column', 'columns', 'coldata', 'colsdata', 'columndata', 'columnsdata'],
-    col: ['column', 'columns', 'col', 'cols', 'coldata', 'colsdata'],
-    row: ['row', 'rows', 'rowdata', 'rowsdata'],
-  }[stem] || [];
-  return new Set([stem, pluralize(stem), ...aliases].map(normalizeName));
-}
-
-function arrayPathExists(defaultProps, pathName) {
-  if (String(pathName || '').includes('[]')) return collectArrayCounts(defaultProps, pathName).length > 0;
-  return Array.isArray(valueAtPath(defaultProps, String(pathName || '').replace(/\[\]/g, '')));
-}
-
-function valueAtPath(value, pathName) {
-  let current = value;
-  for (const segment of String(pathName || '').split('.')) {
-    if (!segment) continue;
-    if (current == null) return undefined;
-    current = current[segment];
-  }
-  return current;
-}
-
-function contentArrayKeys(defaultProps = {}) {
-  return Object.keys(defaultProps || {})
-    .filter(key => Array.isArray(defaultProps[key]) && !isMediaArrayKey(key) && !isColorArray(defaultProps[key]));
-}
-
-function inferLengthBindings(defaultProps = {}, countBindings = []) {
-  const paths = contentArrayPaths(defaultProps);
-  const topLevelArrays = contentArrayKeys(defaultProps);
-  const bindingByArray = countBindingByArray(countBindings);
-  const result = [];
-
-  for (const dependent of paths.filter(isNestedArrayPath)) {
-    if (bindingByArray.has(dependent)) continue;
-    const counts = collectArrayCounts(defaultProps, dependent);
-    const lengths = [...new Set(counts.map(item => item.count))];
-    if (lengths.length !== 1 || lengths[0] <= 0) continue;
-
-    const root = rootArrayKey(dependent);
-    const anchor = chooseLengthAnchor({
-      dependent,
-      defaultProps,
-      length: lengths[0],
-      root,
-      topLevelArrays,
-      bindingByArray,
-    });
-    if (!anchor) continue;
-
-    const anchorBinding = bindingByArray.get(anchor);
-    result.push({
-      relation: 'same-length',
-      dependent,
-      anchor,
-      ...(anchorBinding ? { countKey: anchorBinding.publicKey || anchorBinding.key } : {}),
-      defaultCount: lengths[0],
-    });
-  }
-
-  return result;
-}
-
-function countBindingByArray(countBindings = []) {
-  const result = new Map();
-  for (const binding of countBindings || []) {
-    for (const arrayPath of binding.arrays || []) {
-      if (!result.has(arrayPath)) result.set(arrayPath, binding);
-    }
-  }
-  return result;
-}
-
-function chooseLengthAnchor({ dependent, defaultProps, length, root, topLevelArrays, bindingByArray }) {
-  const candidates = topLevelArrays
-    .filter(key => key !== root && defaultProps[key].length === length)
-    .map(key => ({
-      key,
-      score: lengthAnchorScore(key, dependent, bindingByArray),
-    }))
-    .sort((a, b) => b.score - a.score || a.key.localeCompare(b.key));
-
-  if (!candidates.length) return null;
-  if (candidates[0].score < 3) return null;
-  if (candidates[1] && candidates[1].score === candidates[0].score) return null;
-  return candidates[0].key;
-}
-
-function lengthAnchorScore(anchor, dependent, bindingByArray) {
-  const anchorName = normalizeName(anchor);
-  const dependentField = normalizeName(arrayPathField(dependent));
-  let score = 0;
-  if (/(labels?|periods?|quarters?|months?|weeks?|years?|days?|columns?|cols?|headers?|ticks?|axes?|axis|segments?|categories?|dims?|dimensions?)(data)?$/.test(anchorName)) score += 4;
-  if (bindingByArray.has(anchor)) score += 2;
-  if (/^(values?|vals?|parts?|scores?|amounts?|totals?|data|series)$/.test(dependentField)) score += 1;
-  return score;
-}
-
-function rootArrayKey(pathName) {
-  return String(pathName || '').split('.')[0].replace(/\[\]$/, '');
+export function isPrivateDefaultRoundTrip(value, defaultValue) {
+  return sameContractValue(value, defaultValue) && isNonContentContractValue('', value);
 }
 
 function isColorArray(value) {
   return Array.isArray(value) && value.length > 0 && value.every(isColorString);
 }
 
+function isNumericMatrixArray(value) {
+  return Array.isArray(value)
+    && value.length > 0
+    && value.every(item => Array.isArray(item) && item.every(cell => typeof cell === 'number' && Number.isFinite(cell)));
+}
+
 function isColorString(value) {
   if (typeof value !== 'string') return false;
   const text = value.trim();
   return /^#[0-9a-fA-F]{3,8}$/.test(text) || /^(rgb|rgba|hsla?)\(/i.test(text);
+}
+
+function isNumericKeyedConfigObject(value) {
+  if (!isPlainObject(value)) return false;
+  const entries = Object.entries(value);
+  return entries.length > 0
+    && entries.every(([key, item]) => /^\d+$/.test(key) && (Array.isArray(item) || isPlainObject(item)));
+}
+
+function isVisualContainerPath(pathName) {
+  return String(pathName || '')
+    .split('.')
+    .map(segment => segment.replace(/\[\]$/, ''))
+    .some(segment => VISUAL_CONTAINER_FIELD_PATTERN.test(segment));
+}
+
+function sameContractValue(left, right) {
+  if (left === right) return true;
+  if (typeof left !== typeof right) return false;
+  if (Array.isArray(left) || isPlainObject(left)) {
+    try {
+      return JSON.stringify(left) === JSON.stringify(right);
+    } catch {
+      return false;
+    }
+  }
+  return false;
+}
+
+function inferCountArrayBindings(key, props = {}) {
+  if (!String(key || '').endsWith('Count')) return [];
+  const arrayKeys = discoverContractArrayPaths(props);
+  if (!arrayKeys.length) return [];
+
+  const stem = lowerFirst(String(key).slice(0, -'Count'.length));
+  const candidates = buildCountArrayCandidates(stem);
+  for (const candidate of candidates) {
+    const exact = arrayKeys.find(propKey => propKey === candidate);
+    if (exact) return [exact];
+    const fieldExact = arrayKeys.find(propKey => countArrayPathField(propKey) === candidate);
+    if (fieldExact) return [fieldExact];
+  }
+
+  const normalizedCandidates = new Set(candidates.map(normalizeName));
+  const normalized = arrayKeys.find(propKey => (
+    normalizedCandidates.has(normalizeName(propKey))
+    || normalizedCandidates.has(normalizeName(countArrayPathField(propKey)))
+  ));
+  return normalized ? [normalized] : [];
 }
 
 function buildCountArrayCandidates(stem) {
@@ -940,7 +979,9 @@ function buildCountArrayCandidates(stem) {
     line: ['lines'],
     logo: ['logos', 'images'],
     media: ['media', 'images'],
+    mediaSlot: ['images', 'media', 'imageSlots'],
     member: ['members', 'avatars', 'media'],
+    menuItem: ['menu', 'items'],
     meta: ['meta'],
     objective: ['objectives'],
     petal: ['petals', 'items'],
@@ -951,10 +992,13 @@ function buildCountArrayCandidates(stem) {
     secondary: ['secondaries'],
     set: ['sets'],
     skill: ['skills'],
+    specRow: ['specs'],
     stack: ['stacks', 'stackLabels', 'items'],
     takeaway: ['takeaways'],
     task: ['tasks'],
     thumb: ['thumbs', 'images'],
+    listItem: ['items'],
+    timelineNode: ['timeline'],
     track: ['tracks', 'media'],
   };
   return [
@@ -964,6 +1008,24 @@ function buildCountArrayCandidates(stem) {
     `${stem}Items`,
     ...(explicit[stem] || []),
   ];
+}
+
+function discoverContractArrayPaths(value, prefix = '') {
+  if (Array.isArray(value)) {
+    const paths = prefix && (isMediaArrayKey(countArrayPathField(prefix)) || isContractContentArray(prefix, value)) ? [prefix] : [];
+    for (const item of value) {
+      if (isPlainObject(item)) paths.push(...discoverContractArrayPaths(item, `${prefix}[]`));
+    }
+    return paths;
+  }
+  if (!isPlainObject(value)) return [];
+  return Object.entries(value).flatMap(([key, item]) => (
+    discoverContractArrayPaths(item, prefix ? `${prefix}.${key}` : key)
+  ));
+}
+
+function countArrayPathField(pathName) {
+  return String(pathName || '').split('.').at(-1).replace(/\[\]$/, '');
 }
 
 function lowerFirst(value) {
@@ -987,7 +1049,7 @@ function normalizeControls(page) {
     page.spec.controls.forEach(control => {
       if (control.prop) defaults[control.prop] = control.default;
     });
-    return normalizePublicControls(page.spec.controls.filter(control => !isRemovedControl(control)).map(control => normalizeControl({
+    return normalizePublicControls(page.spec.controls.filter(control => !isRemovedControl(control, page.themeKey)).map(control => normalizeControl({
       key: control.prop,
       label: control.label,
       desc: control.desc || control.description || control.describe,
@@ -1006,13 +1068,14 @@ function normalizeControls(page) {
       maxByValue: control.maxByValue,
       displayOffset: control.displayOffset,
       display: control.display,
+      mediaSlots: control.mediaSlots,
       dependsOn: control.dependsOn,
       dependsOnValue: control.dependsOnValue,
       dependsOnValues: control.dependsOnValues,
     }, defaults)), { layout: page.key, themeKey: page.themeKey });
   }
 
-  return normalizePublicControls((page.controls || []).filter(control => !isRemovedControl(control)).map(control => normalizeControl({
+  return normalizePublicControls((page.controls || []).filter(control => !isRemovedControl(control, page.themeKey)).map(control => normalizeControl({
     key: control.key || control.prop,
     label: control.label,
     desc: control.desc || control.description || control.describe,
@@ -1031,13 +1094,15 @@ function normalizeControls(page) {
     maxByValue: control.maxByValue,
     displayOffset: control.displayOffset,
     display: control.display,
+    mediaSlots: control.mediaSlots,
     dependsOn: control.dependsOn,
     dependsOnValue: control.dependsOnValue,
     dependsOnValues: control.dependsOnValues,
   }, page.defaultProps || {})), { layout: page.key, themeKey: page.themeKey });
 }
 
-function isRemovedControl(control) {
+function isRemovedControl(control, themeKey) {
+  if (themeKey === 'theme04') return false;
   return REMOVED_CONTROL_TYPES.has(String(control?.type || '').toLowerCase());
 }
 
@@ -1060,6 +1125,7 @@ function normalizeControl(control, defaults) {
     maxByValue: serializeValue(control.maxByValue),
     displayOffset: serializeValue(control.displayOffset),
     display: serializeValue(control.display),
+    mediaSlots: serializeValue(control.mediaSlots),
     dependsOn: serializeValue(control.dependsOn),
     dependsOnValue: serializeValue(control.dependsOnValue),
     dependsOnValues: serializeValue(control.dependsOnValues),
@@ -1117,6 +1183,45 @@ function collectArrayCounts(value, pathName, sourcePrefix = '') {
   return collectArrayCounts(next, rest, source);
 }
 
+function validateLengthBindings(props = {}, defaults = {}, lengthBindings = [], errors = []) {
+  for (const binding of lengthBindings || []) {
+    if ((binding.relation || 'same-length') !== 'same-length') continue;
+    const anchor = firstArrayCount(props, binding.anchor) ?? firstArrayCount(defaults, binding.anchor);
+    if (anchor == null) continue;
+    const dependents = collectArrayCounts(props, binding.dependent);
+    for (const dependent of dependents) {
+      if (dependent.count !== anchor.count) {
+        errors.push(`${dependent.source} 的数量 ${dependent.count} 必须等于 ${anchor.source} 的数量 ${anchor.count}`);
+      }
+    }
+  }
+}
+
+function firstArrayCount(source, pathName) {
+  return collectArrayCounts(source, pathName)[0] || null;
+}
+
+function validateControlRanges(props = {}, controls = [], countBindings = [], defaults = {}, errors = []) {
+  const countKeys = new Set((countBindings || []).map(binding => binding.key));
+  for (const control of controls || []) {
+    if (!control?.key || countKeys.has(control.key)) continue;
+    if (!isNumericRangeControl(control)) continue;
+    if (!Object.prototype.hasOwnProperty.call(props, control.key)) continue;
+    const value = Number(props[control.key]);
+    if (!Number.isFinite(value)) {
+      errors.push(`${control.key} 不是有效数字`);
+      continue;
+    }
+    validateCountRange(control, value, control.key, errors, { props, defaults });
+  }
+}
+
+function isNumericRangeControl(control) {
+  const type = String(control?.type || '').toLowerCase();
+  if (['number', 'range', 'slider'].includes(type)) return true;
+  return typeof control?.default === 'number' || control?.min !== undefined || control?.max !== undefined || control?.maxFromKey || control?.maxByKey;
+}
+
 function isNestedArrayPath(pathName) {
   return String(pathName || '').includes('[].');
 }
@@ -1155,15 +1260,50 @@ function collapseNestedCounts(counts) {
   };
 }
 
-function validateCountRange(binding, count, source, errors) {
+function validateCountRange(binding, count, source, errors, context = null) {
   const min = Number(binding.min);
-  const max = Number(binding.max);
+  const max = resolveRangeMax(binding, context);
   if (Number.isFinite(min) && count < min) {
     errors.push(`${source} 的数量 ${count} 小于 ${binding.key} 最小值 ${min}`);
   }
   if (Number.isFinite(max) && count > max) {
     errors.push(`${source} 的数量 ${count} 大于最大值 ${max}`);
   }
+}
+
+function resolveRangeMax(binding, context = null) {
+  const maxByValue = resolveMaxByValue(binding, context);
+  if (Number.isFinite(maxByValue)) return maxByValue;
+  const maxFromKey = resolveMaxFromKey(binding, context);
+  if (Number.isFinite(maxFromKey)) return maxFromKey;
+  return Number(binding.max);
+}
+
+function resolveMaxByValue(binding, context = null) {
+  if (!binding?.maxByKey || !isPlainObject(binding.maxByValue)) return NaN;
+  const sourceValue = rangeSourceValue(binding.maxByKey, context);
+  if (sourceValue === undefined) return NaN;
+  if (!Object.prototype.hasOwnProperty.call(binding.maxByValue, sourceValue)) return NaN;
+  return Number(binding.maxByValue[sourceValue]);
+}
+
+function resolveMaxFromKey(binding, context = null) {
+  if (!binding?.maxFromKey) return NaN;
+  const source = Number(rangeSourceValue(binding.maxFromKey, context));
+  if (!Number.isFinite(source)) return NaN;
+  const offset = Number(binding.maxFromKeyOffset ?? 0);
+  const max = source + (Number.isFinite(offset) ? offset : 0);
+  const min = Number(binding.min);
+  return Number.isFinite(min) ? Math.max(min, max) : max;
+}
+
+function rangeSourceValue(key, context = null) {
+  if (!key || !context) return undefined;
+  const props = context.props || {};
+  if (Object.prototype.hasOwnProperty.call(props, key)) return props[key];
+  const defaults = context.defaults || {};
+  if (Object.prototype.hasOwnProperty.call(defaults, key)) return defaults[key];
+  return undefined;
 }
 
 function resolveControlValue(value, defaults) {

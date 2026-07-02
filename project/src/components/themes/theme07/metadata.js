@@ -112,6 +112,29 @@ export const pages = [
     "bgClass": "",
     "controls": [
       {
+        "key": "imageCount",
+        "label": "图片数量",
+        "type": "slider",
+        "default": 1,
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "description": "右侧主视觉图片槽数量（0–1）。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "desc": "右侧主视觉图片槽数量（0–1）。"
+      },
+      {
+        "key": "images",
+        "label": "图片",
+        "type": "images",
+        "countKey": "imageCount",
+        "description": "右侧主视觉可替换图片。",
+        "publicKey": "images",
+        "publicLabel": "图片",
+        "desc": "右侧主视觉可替换图片。"
+      },
+      {
         "key": "showTimeline",
         "label": "年份时间轴",
         "type": "toggle",
@@ -181,6 +204,8 @@ export const pages = [
         "2027",
         "2028"
       ],
+      "imageCount": 1,
+      "images": [],
       "showTimeline": true,
       "showLenses": true,
       "accentColor": "#8FD400",
@@ -1097,22 +1122,6 @@ export const pages = [
         "desc": "展示的案例卡数量（1–3）。"
       },
       {
-        "key": "chipCount",
-        "label": "标签数量",
-        "type": "slider",
-        "default": 2,
-        "min": 1,
-        "max": 2,
-        "step": 1,
-        "countArrays": [
-          "cases[].chips"
-        ],
-        "description": "每张案例卡展示的标签数量（1–2）。",
-        "publicKey": "chipCount",
-        "publicLabel": "标签数量",
-        "desc": "每张案例卡展示的标签数量（1–2）。"
-      },
-      {
         "key": "imageCount",
         "label": "图片呈现",
         "type": "radio",
@@ -1131,6 +1140,16 @@ export const pages = [
         "publicKey": "imageCount",
         "publicLabel": "图片呈现",
         "desc": "仅支持两种模式：所有卡片使用绿色纹理，或所有卡片使用图片。"
+      },
+      {
+        "key": "images",
+        "label": "图片",
+        "type": "images",
+        "countKey": "imageCount",
+        "description": "案例卡片可替换图片。",
+        "publicKey": "images",
+        "publicLabel": "图片",
+        "desc": "案例卡片可替换图片。"
       },
       {
         "key": "focusEnabled",
@@ -1256,8 +1275,8 @@ export const pages = [
         }
       ],
       "cardCount": 3,
-      "chipCount": 2,
       "imageCount": 3,
+      "images": [],
       "focusEnabled": true,
       "focusIndex": 0,
       "showDecorations": true,
@@ -1668,22 +1687,6 @@ export const pages = [
         "desc": "选择被高亮的象限。"
       },
       {
-        "key": "dirCount",
-        "label": "方向标签数",
-        "type": "slider",
-        "default": 2,
-        "min": 1,
-        "max": 2,
-        "step": 1,
-        "countArrays": [
-          "quadrants[].dirs"
-        ],
-        "description": "每个象限展示的方向标签数量（1–2）。",
-        "publicKey": "dirCount",
-        "publicLabel": "方向标签数",
-        "desc": "每个象限展示的方向标签数量（1–2）。"
-      },
-      {
         "key": "showSecondary",
         "label": "辅助信息",
         "type": "toggle",
@@ -1783,7 +1786,8 @@ export const pages = [
           "pos": "低热度 · 低兑现",
           "dirs": [
             "长尾工具",
-            "安全"
+            "安全",
+            "早期硬件"
           ],
           "tone": "faint",
           "col": 1,
@@ -1792,7 +1796,6 @@ export const pages = [
       ],
       "focusEnabled": true,
       "focusIndex": 0,
-      "dirCount": 2,
       "showSecondary": true,
       "showDecorations": true,
       "accentColor": "#86D62B"
@@ -4907,22 +4910,6 @@ export const pages = [
         "desc": "表格展示的行数量（3–6）。"
       },
       {
-        "key": "syndicateCount",
-        "label": "阵容徽标数",
-        "type": "slider",
-        "default": 3,
-        "min": 1,
-        "max": 3,
-        "step": 1,
-        "countArrays": [
-          "rows[].syn"
-        ],
-        "description": "每行展示的领投 / 跟投徽标数量（1–3）。",
-        "publicKey": "syndicateCount",
-        "publicLabel": "阵容徽标数",
-        "desc": "每行展示的领投 / 跟投徽标数量（1–3）。"
-      },
-      {
         "key": "showRound",
         "label": "阶段列",
         "type": "toggle",
@@ -5129,7 +5116,6 @@ export const pages = [
         }
       ],
       "rowCount": 5,
-      "syndicateCount": 3,
       "showRound": true,
       "showSyndicate": true,
       "focusEnabled": true,
@@ -8607,22 +8593,6 @@ export const pages = [
         "desc": "表格展示的阶段行数量（2–4）。"
       },
       {
-        "key": "themeCount",
-        "label": "主题标签数",
-        "type": "slider",
-        "default": 2,
-        "min": 1,
-        "max": 2,
-        "step": 1,
-        "countArrays": [
-          "rows[].themes"
-        ],
-        "description": "每行展示的萌芽主题标签数量（1–2）。",
-        "publicKey": "themeCount",
-        "publicLabel": "主题标签数",
-        "desc": "每行展示的萌芽主题标签数量（1–2）。"
-      },
-      {
         "key": "showBubble",
         "label": "气泡列",
         "type": "toggle",
@@ -8803,7 +8773,6 @@ export const pages = [
         }
       ],
       "rowCount": 4,
-      "themeCount": 2,
       "showBubble": true,
       "showThemes": true,
       "showSignal": true,
@@ -8950,7 +8919,7 @@ export const pages = [
       "eyebrow": "Undisclosed Mega Rounds",
       "title": "复杂交易结构",
       "titleTail": "未披露巨额轮次",
-      "sub": "未披露巨额轮次",
+      "sub": "交易结构拆解",
       "lead": "未披露轮次常对应战略投资、债务组合或云资源置换；不披露不代表信息不足，而是交易结构更复杂。",
       "closing": "AI 融资越来越像资源组合交易。",
       "panelTitle": "单笔交易结构拆解 · 构成占比",
@@ -8958,7 +8927,7 @@ export const pages = [
         {
           "value": "22",
           "unit": "笔",
-          "label": "未披露巨额轮次"
+          "label": "结构化交易样本"
         },
         {
           "value": "18.6",
@@ -9039,7 +9008,7 @@ export const pages = [
         "max": 4,
         "step": 1,
         "description": "分类类型分段数量（2–4）。",
-        "publicKey": "categoryCount",
+        "publicKey": "segmentCount",
         "publicLabel": "卡片数量",
         "desc": "分类类型分段数量（2–4）。"
       },
@@ -9278,6 +9247,16 @@ export const pages = [
         "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
+        "key": "images",
+        "label": "图片",
+        "type": "images",
+        "countKey": "imageCount",
+        "description": "主视觉区可替换图片。",
+        "publicKey": "images",
+        "publicLabel": "图片",
+        "desc": "主视觉区可替换图片。"
+      },
+      {
         "key": "cardCount",
         "label": "卡片数量",
         "type": "slider",
@@ -9427,6 +9406,7 @@ export const pages = [
       ],
       "imageCount": 1,
       "imageRatio": "auto",
+      "images": [],
       "cardCount": 4,
       "focusEnabled": true,
       "focusIndex": 0,
@@ -10106,7 +10086,7 @@ export const pages = [
         "max": 5,
         "step": 1,
         "description": "分类标签数量（2–5）。",
-        "publicKey": "categoryCount",
+        "publicKey": "tagCount",
         "publicLabel": "标签数量",
         "desc": "分类标签数量（2–5）。"
       },

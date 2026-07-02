@@ -2272,14 +2272,14 @@ export const pages = [
           "title": "Anthropic Series G",
           "tag": "估值 600 亿",
           "val": "105",
-          "unit": "亿 · 单月"
+          "unit": "亿 · 5 月"
         },
         {
           "time": "8 月",
           "title": "头部集中关账",
           "tag": "全年最高月",
           "val": "118",
-          "unit": "亿 · 单月"
+          "unit": "亿 · 8 月"
         },
         {
           "time": "11 月",
@@ -2293,7 +2293,7 @@ export const pages = [
           "title": "狂热转向分化",
           "tag": "理性回落",
           "val": "52",
-          "unit": "亿 · 单月"
+          "unit": "亿 · 12 月"
         },
         {
           "time": "全年",
@@ -3089,61 +3089,71 @@ export const pages = [
           "co": "OpenAI",
           "amt": 66,
           "sector": "通用大模型",
-          "layer": "中游"
+          "layer": "中游",
+          "layerBadge": "OpenAI 中游"
         },
         {
           "co": "Anthropic",
           "amt": 65,
           "sector": "通用大模型",
-          "layer": "中游"
+          "layer": "中游",
+          "layerBadge": "Claude 中游"
         },
         {
           "co": "xAI",
           "amt": 50,
           "sector": "通用大模型",
-          "layer": "中游"
+          "layer": "中游",
+          "layerBadge": "Grok 中游"
         },
         {
-          "co": "Safe Superintelligence",
+          "co": "Safe SI",
           "amt": 10,
           "sector": "通用大模型",
-          "layer": "中游"
+          "layer": "中游",
+          "layerBadge": "SSI 中游"
         },
         {
           "co": "CoreWeave",
           "amt": 11,
           "sector": "AI 基础设施",
-          "layer": "上游"
+          "layer": "上游",
+          "layerBadge": "基建上游"
         },
         {
           "co": "Figure AI",
           "amt": 6.8,
           "sector": "AI 硬件 · 人形机器人",
-          "layer": "下游"
+          "layer": "下游",
+          "layerBadge": "硬件下游"
         },
         {
           "co": "Scale AI",
           "amt": 10,
           "sector": "AI 基础设施 · 数据标注",
-          "layer": "上游"
+          "layer": "上游",
+          "layerBadge": "数据上游"
         },
         {
           "co": "Perplexity AI",
           "amt": 5.2,
           "sector": "垂直应用 · AI 搜索",
-          "layer": "下游"
+          "layer": "下游",
+          "layerBadge": "搜索下游"
         },
         {
           "co": "Databricks",
           "amt": 5,
           "sector": "AI 基础设施 · 数据平台",
-          "layer": "下游"
+          "layer": "下游",
+          "layerBadge": "数据下游"
         },
         {
           "co": "Glean",
           "amt": 2.6,
           "sector": "垂直应用 · 企业搜索",
-          "layer": "下游"
+          "layer": "下游",
+          "layerBadge": "企业下游"
         }
       ],
       "showDecor": false,
@@ -3624,40 +3634,76 @@ export const pages = [
           "name": "叙事泡沫区",
           "tag": "热度高 · 兑现待验证",
           "desc": "通用大模型与 AGI 实验室获得巨额融资，但兑现仍受算力成本、模型差异化与监管约束。",
-          "chips": [
-            "OpenAI",
-            "Anthropic",
-            "xAI",
-            "SSI"
+          "chipItems": [
+            {
+              "label": "OpenAI",
+              "slot": 0
+            },
+            {
+              "label": "Anthropic",
+              "slot": 1
+            },
+            {
+              "label": "xAI",
+              "slot": 2
+            },
+            {
+              "label": "SSI",
+              "slot": 3
+            }
           ]
         },
         {
           "name": "明星兑现区",
           "tag": "热度高 · 兑现高",
           "desc": "基础设施、算力云、数据平台兼具融资热度与收入确定性，典型的「卖铲子」逻辑。",
-          "chips": [
-            "CoreWeave",
-            "Databricks",
-            "Scale AI"
+          "chipItems": [
+            {
+              "label": "CoreWeave",
+              "slot": 0
+            },
+            {
+              "label": "Databricks",
+              "slot": 1
+            },
+            {
+              "label": "Scale AI",
+              "slot": 2
+            }
           ]
         },
         {
           "name": "等待验证区",
           "tag": "热度中低 · 兑现待验证",
           "desc": "长尾工具链、安全与早期硬件「概念成立但规模未证」，更适合作为风险与边缘变量。",
-          "chips": [
-            "工具链",
-            "安全",
-            "早期硬件"
+          "chipItems": [
+            {
+              "label": "工具链",
+              "slot": 0
+            },
+            {
+              "label": "安全",
+              "slot": 1
+            },
+            {
+              "label": "早期硬件",
+              "slot": 2
+            }
           ]
         },
         {
           "name": "隐形价值区",
           "tag": "热度中低 · 兑现高",
           "desc": "垂直应用、企业搜索、工作流自动化单笔不一定最大，但落地路径更清晰。",
-          "chips": [
-            "Glean",
-            "Perplexity"
+          "chipItems": [
+            {
+              "label": "Glean",
+              "slot": 0
+            },
+            {
+              "label": "Perplexity",
+              "slot": 1
+            }
           ]
         }
       ],
@@ -3727,36 +3773,6 @@ export const pages = [
         "help": "展示的产业链层级数量（上游→下游）",
         "publicKey": "layerCount",
         "publicLabel": "层级数量"
-      },
-      {
-        "key": "segCount",
-        "label": "每层环节数",
-        "type": "slider",
-        "default": 3,
-        "min": 1,
-        "max": 3,
-        "step": 1,
-        "countArrays": [
-          "layers[].segs"
-        ],
-        "help": "每个产业层级最多展示的细分环节数",
-        "publicKey": "segCount",
-        "publicLabel": "每层环节数"
-      },
-      {
-        "key": "cosCount",
-        "label": "每环节公司数",
-        "type": "slider",
-        "default": 3,
-        "min": 1,
-        "max": 3,
-        "step": 1,
-        "countArrays": [
-          "layers[].segs[].cos"
-        ],
-        "help": "每个细分环节最多展示的公司标签数",
-        "publicKey": "cosCount",
-        "publicLabel": "每环节公司数"
       },
       {
         "key": "showChips",
@@ -3884,8 +3900,6 @@ export const pages = [
     "defaultProps": {
       "showEyebrow": true,
       "layerCount": 3,
-      "segCount": 3,
-      "cosCount": 3,
       "showChips": true,
       "focusEnabled": false,
       "focusIndex": 1,
@@ -4031,36 +4045,6 @@ export const pages = [
         "publicLabel": "代表公司"
       },
       {
-        "key": "rowCount",
-        "label": "每层行数",
-        "type": "slider",
-        "default": 3,
-        "min": 1,
-        "max": 3,
-        "step": 1,
-        "countArrays": [
-          "layers[].rows"
-        ],
-        "help": "每个产业层级最多展示的细分行数",
-        "publicKey": "rowCount",
-        "publicLabel": "每层行数"
-      },
-      {
-        "key": "cosCount",
-        "label": "每行公司数",
-        "type": "slider",
-        "default": 3,
-        "min": 1,
-        "max": 3,
-        "step": 1,
-        "countArrays": [
-          "layers[].rows[].cos"
-        ],
-        "help": "每个细分行最多展示的代表公司数",
-        "publicKey": "cosCount",
-        "publicLabel": "每行公司数"
-      },
-      {
         "key": "showAmount",
         "label": "层资金量级",
         "type": "toggle",
@@ -4204,8 +4188,6 @@ export const pages = [
     "defaultProps": {
       "showEyebrow": true,
       "showCompanies": true,
-      "rowCount": 3,
-      "cosCount": 3,
       "showAmount": true,
       "showCertainty": true,
       "focusEnabled": false,
@@ -4242,7 +4224,7 @@ export const pages = [
           "b": true
         },
         {
-          "t": "——\"卖铲子\" 环节最稳，模型层最卷，应用层赔率最高。"
+          "t": "——基建稳、模型卷、应用赔率高。"
         }
       ],
       "layers": [
@@ -4254,16 +4236,30 @@ export const pages = [
           "rows": [
             {
               "seg": "AI 芯片",
+              "slot": 0,
               "cos": [
-                "Cerebras",
-                "Groq"
+                {
+                  "label": "Cerebras",
+                  "slot": 0
+                },
+                {
+                  "label": "Groq",
+                  "slot": 1
+                }
               ]
             },
             {
               "seg": "算力云 / 数据",
+              "slot": 1,
               "cos": [
-                "CoreWeave",
-                "Scale AI"
+                {
+                  "label": "CoreWeave",
+                  "slot": 0
+                },
+                {
+                  "label": "Scale AI",
+                  "slot": 1
+                }
               ]
             }
           ]
@@ -4276,17 +4272,34 @@ export const pages = [
           "rows": [
             {
               "seg": "通用大模型",
+              "slot": 0,
               "cos": [
-                "OpenAI",
-                "Anthropic",
-                "xAI"
+                {
+                  "label": "OpenAI",
+                  "slot": 0
+                },
+                {
+                  "label": "Anthropic",
+                  "slot": 1
+                },
+                {
+                  "label": "xAI",
+                  "slot": 2
+                }
               ]
             },
             {
               "seg": "开源 / 专用模型",
+              "slot": 1,
               "cos": [
-                "Mistral",
-                "SSI"
+                {
+                  "label": "Mistral",
+                  "slot": 0
+                },
+                {
+                  "label": "SSI",
+                  "slot": 1
+                }
               ]
             }
           ]
@@ -4299,21 +4312,36 @@ export const pages = [
           "rows": [
             {
               "seg": "企业生产力",
+              "slot": 0,
               "cos": [
-                "Glean",
-                "Databricks"
+                {
+                  "label": "Glean",
+                  "slot": 0
+                },
+                {
+                  "label": "Databricks",
+                  "slot": 1
+                }
               ]
             },
             {
               "seg": "消费 / 搜索",
+              "slot": 1,
               "cos": [
-                "Perplexity AI"
+                {
+                  "label": "Perplexity AI",
+                  "slot": 0
+                }
               ]
             },
             {
               "seg": "具身智能 / 机器人",
+              "slot": 2,
               "cos": [
-                "Figure AI"
+                {
+                  "label": "Figure AI",
+                  "slot": 0
+                }
               ]
             }
           ]
@@ -4416,18 +4444,6 @@ export const pages = [
         "help": "垂直应用赛道融资额核心数字显示 / 隐藏",
         "publicKey": "showFigure",
         "publicLabel": "核心数字"
-      },
-      {
-        "key": "chipCount",
-        "label": "特征标签",
-        "type": "slider",
-        "default": 3,
-        "min": 0,
-        "max": 3,
-        "step": 1,
-        "help": "底部特征标签数量",
-        "publicKey": "chipCount",
-        "publicLabel": "特征标签"
       },
       {
         "key": "showCallout",
@@ -4536,7 +4552,6 @@ export const pages = [
       "imageCount": 2,
       "layout": "row",
       "showFigure": true,
-      "chipCount": 3,
       "showCallout": true,
       "accent": "blue",
       "copy": {
@@ -5391,6 +5406,9 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
+        "countArrays": [
+          "companies"
+        ],
         "help": "参与对比的公司数量",
         "publicKey": "itemCount",
         "publicLabel": "公司数量"
@@ -5572,18 +5590,36 @@ export const pages = [
           "metric": "成立年份",
           "en": "FOUNDED",
           "vals": [
-            "2021",
-            "2023",
-            "2023 转型"
+            {
+              "text": "2021",
+              "slot": 0
+            },
+            {
+              "text": "2023",
+              "slot": 1
+            },
+            {
+              "text": "2023 转型",
+              "slot": 2
+            }
           ]
         },
         {
           "metric": "2024 融资",
           "en": "RAISED",
           "vals": [
-            "累计 650 亿",
-            "50 亿",
-            "110 亿"
+            {
+              "text": "累计 650 亿",
+              "slot": 0
+            },
+            {
+              "text": "50 亿",
+              "slot": 1
+            },
+            {
+              "text": "110 亿",
+              "slot": 2
+            }
           ],
           "unit": "亿美元"
         },
@@ -5591,9 +5627,18 @@ export const pages = [
           "metric": "最新估值",
           "en": "VALUATION",
           "vals": [
-            "9650 亿",
-            "500 亿",
-            "190 亿+"
+            {
+              "text": "9650 亿",
+              "slot": 0
+            },
+            {
+              "text": "500 亿",
+              "slot": 1
+            },
+            {
+              "text": "190 亿+",
+              "slot": 2
+            }
           ],
           "unit": "亿美元",
           "strong": true
@@ -5602,18 +5647,36 @@ export const pages = [
           "metric": "主营赛道",
           "en": "SECTOR",
           "vals": [
-            "通用大模型",
-            "通用大模型",
-            "AI 算力云"
+            {
+              "text": "通用大模型",
+              "slot": 0
+            },
+            {
+              "text": "通用大模型",
+              "slot": 1
+            },
+            {
+              "text": "AI 算力云",
+              "slot": 2
+            }
           ]
         },
         {
           "metric": "差异化优势",
           "en": "EDGE",
           "vals": [
-            "安全对齐 · 企业信任",
-            "X 实时数据 · 特斯拉协同",
-            "锁定算力 · 卖铲子逻辑"
+            {
+              "text": "安全对齐 · 企业信任",
+              "slot": 0
+            },
+            {
+              "text": "X 实时数据 · 特斯拉协同",
+              "slot": 1
+            },
+            {
+              "text": "锁定算力 · 卖铲子逻辑",
+              "slot": 2
+            }
           ],
           "edge": true
         }
@@ -6451,21 +6514,6 @@ export const pages = [
         "publicLabel": "数值条"
       },
       {
-        "key": "pointCount",
-        "label": "月度点数",
-        "type": "slider",
-        "default": 12,
-        "min": 12,
-        "max": 12,
-        "step": 1,
-        "countArrays": [
-          "data"
-        ],
-        "help": "固定展示 12 个月数据点",
-        "publicKey": "pointCount",
-        "publicLabel": "月度点数"
-      },
-      {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
@@ -6592,7 +6640,6 @@ export const pages = [
       "showEyebrow": true,
       "showHeat": true,
       "showBar": true,
-      "pointCount": 12,
       "focusEnabled": true,
       "focusIndex": 7,
       "showSummary": true,
@@ -6721,22 +6768,6 @@ export const pages = [
         "publicLabel": "月度节奏"
       },
       {
-        "key": "pointCount",
-        "label": "月度点数",
-        "type": "slider",
-        "default": 12,
-        "min": 12,
-        "max": 12,
-        "step": 1,
-        "countArrays": [
-          "data",
-          "months"
-        ],
-        "help": "固定展示 12 个月数据点与月份标签",
-        "publicKey": "pointCount",
-        "publicLabel": "月度点数"
-      },
-      {
         "key": "showSecondPeak",
         "label": "次峰标记",
         "type": "toggle",
@@ -6845,7 +6876,6 @@ export const pages = [
       "showUnit": true,
       "showSupport": true,
       "showChart": true,
-      "pointCount": 12,
       "showSecondPeak": true,
       "eyebrow": "纵向节奏 / RHYTHM",
       "kicker": "2024 · 逐月融资额 · 单月峰值",
@@ -8724,9 +8754,9 @@ export const pages = [
         "key": "nodeCount",
         "label": "每链节点数",
         "type": "slider",
-        "default": 4,
+        "default": 3,
         "min": 1,
-        "max": 4,
+        "max": 3,
         "step": 1,
         "countArrays": [
           "chains[].nodes"
@@ -8885,7 +8915,7 @@ export const pages = [
     "defaultProps": {
       "showEyebrow": true,
       "chainCount": 3,
-      "nodeCount": 4,
+      "nodeCount": 3,
       "outcomeCount": 2,
       "showConnector": true,
       "showOutcome": true,
@@ -8994,6 +9024,10 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
+        "countArrays": [
+          "favorItems",
+          "cautionItems"
+        ],
         "help": "每栏展示的条目数量",
         "publicKey": "itemCount",
         "publicLabel": "条目数量"
@@ -9505,6 +9539,21 @@ export const pages = [
         "publicLabel": "视野卡片"
       },
       {
+        "key": "laneCount",
+        "label": "分类标签数",
+        "type": "slider",
+        "default": 2,
+        "min": 1,
+        "max": 2,
+        "step": 1,
+        "countArrays": [
+          "horizons[].lanes"
+        ],
+        "help": "每张视野卡展示的赛道标签数量",
+        "publicKey": "categoryCount",
+        "publicLabel": "分类标签数"
+      },
+      {
         "key": "showMeter",
         "label": "定性标尺",
         "type": "toggle",
@@ -9640,6 +9689,7 @@ export const pages = [
       "showEyebrow": true,
       "showEnvelope": true,
       "showCards": true,
+      "laneCount": 2,
       "showMeter": true,
       "focusEnabled": false,
       "focusIndex": 0,
@@ -11040,7 +11090,7 @@ export const pages = [
         {
           "label": "投资 / 增长",
           "en": "INVEST",
-          "color": "#2742ec",
+          "color": "blue",
           "strat": "资源倾斜，抢占市场份额"
         },
         {
@@ -11612,14 +11662,14 @@ export const pages = [
           "en": "DISCOVER",
           "dir": "发散",
           "desc": "广扫 970 亿融资全景 · 识别热点、拐点与风险信号",
-          "accent": "#2742ec"
+          "accent": "blue"
         },
         {
           "cn": "定义",
           "en": "DEFINE",
           "dir": "收敛",
           "desc": "收敛到兑现确定性高的赛道 · 锁定投资主题",
-          "accent": "#2742ec"
+          "accent": "blue"
         },
         {
           "cn": "构建",
@@ -11873,7 +11923,7 @@ export const pages = [
           "cn": "优势",
           "en": "STRENGTHS",
           "side": "内部 · 增益",
-          "accent": "#2742ec",
+          "accent": "blue",
           "tint": "rgba(39,66,236,0.10)",
           "items": [
             "核心技术壁垒领先",
@@ -12247,6 +12297,21 @@ export const pages = [
         "publicLabel": "要点条目"
       },
       {
+        "key": "itemCount",
+        "label": "要点数量",
+        "type": "slider",
+        "default": 2,
+        "min": 1,
+        "max": 2,
+        "step": 1,
+        "countArrays": [
+          "blocks[].items"
+        ],
+        "help": "每个画布模块展示的要点数量",
+        "publicKey": "itemCount",
+        "publicLabel": "要点数量"
+      },
+      {
         "key": "showIndex",
         "label": "模块编号",
         "type": "toggle",
@@ -12390,6 +12455,7 @@ export const pages = [
     "defaultProps": {
       "showEyebrow": true,
       "showItems": true,
+      "itemCount": 2,
       "showIndex": true,
       "groupColor": true,
       "showAnalysis": true,
@@ -13113,9 +13179,6 @@ export const pages = [
         "min": 1,
         "max": 6,
         "step": 1,
-        "countArrays": [
-          "bubbles"
-        ],
         "help": "矩阵中展示的业务气泡数量",
         "publicKey": "bubbleCount",
         "publicLabel": "气泡数量"
@@ -13298,7 +13361,7 @@ export const pages = [
         }
       ],
       "quadDarkAccents": [
-        "#6e85ff",
+        "#91a2ff",
         "#d8a43c",
         "#9ccb3a",
         "#e07a5a"
@@ -13851,7 +13914,7 @@ export const pages = [
           "k": "P",
           "cn": "政治",
           "en": "POLITICAL",
-          "accent": "#2742ec",
+          "accent": "blue",
           "items": [
             "政策监管走向",
             "政府补贴与扶持",
@@ -17440,7 +17503,8 @@ export const pages = [
           "heat": 5,
           "deliver": 5,
           "moat": 4,
-          "q": "star"
+          "q": "star",
+          "qLabel": "算力兑现区"
         },
         {
           "name": "Databricks",
@@ -17448,7 +17512,8 @@ export const pages = [
           "heat": 5,
           "deliver": 5,
           "moat": 4,
-          "q": "star"
+          "q": "star",
+          "qLabel": "数据兑现区"
         },
         {
           "name": "Scale AI",
@@ -17456,31 +17521,35 @@ export const pages = [
           "heat": 4,
           "deliver": 4,
           "moat": 4,
-          "q": "star"
+          "q": "star",
+          "qLabel": "标注兑现区"
         },
         {
           "name": "Anthropic",
-          "seg": "中游 · 通用大模型",
+          "seg": "中游 · Claude 系列",
           "heat": 5,
           "deliver": 2,
           "moat": 4,
-          "q": "bubble"
+          "q": "bubble",
+          "qLabel": "Claude 泡沫区"
         },
         {
           "name": "OpenAI",
-          "seg": "中游 · 通用大模型",
+          "seg": "中游 · GPT / AGI 平台",
           "heat": 5,
           "deliver": 2,
           "moat": 4,
-          "q": "bubble"
+          "q": "bubble",
+          "qLabel": "GPT 泡沫区"
         },
         {
           "name": "xAI",
-          "seg": "中游 · 通用大模型",
+          "seg": "中游 · Grok 系列",
           "heat": 4,
           "deliver": 2,
           "moat": 3,
-          "q": "bubble"
+          "q": "bubble",
+          "qLabel": "Grok 泡沫区"
         },
         {
           "name": "Glean",
@@ -17488,7 +17557,8 @@ export const pages = [
           "heat": 3,
           "deliver": 4,
           "moat": 3,
-          "q": "hidden"
+          "q": "hidden",
+          "qLabel": "企业价值区"
         },
         {
           "name": "Perplexity AI",
@@ -17496,7 +17566,8 @@ export const pages = [
           "heat": 3,
           "deliver": 4,
           "moat": 2,
-          "q": "hidden"
+          "q": "hidden",
+          "qLabel": "搜索价值区"
         }
       ],
       "quad": {
@@ -17506,7 +17577,7 @@ export const pages = [
         },
         "bubble": {
           "label": "叙事泡沫区",
-          "c": "#2742ec"
+          "c": "blue"
         },
         "hidden": {
           "label": "隐形价值区",
@@ -17851,18 +17922,6 @@ export const pages = [
         "publicLabel": "核心数字"
       },
       {
-        "key": "chipCount",
-        "label": "理由标签",
-        "type": "slider",
-        "default": 3,
-        "min": 0,
-        "max": 3,
-        "step": 1,
-        "help": "「看好理由」特征标签数量",
-        "publicKey": "chipCount",
-        "publicLabel": "理由标签"
-      },
-      {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
@@ -17969,7 +18028,6 @@ export const pages = [
       "imageCount": 2,
       "layout": "row",
       "showFigure": true,
-      "chipCount": 3,
       "showCallout": true,
       "accent": "blue",
       "copy": {
@@ -18738,17 +18796,20 @@ export const pages = [
         {
           "pct": 33,
           "label": "AI 占全美风投",
-          "sub": "近三分之一 · 资本大年"
+          "sub": "近三分之一 · 资本大年",
+          "shareLabel": "占比 / VC SHARE"
         },
         {
           "pct": 43.3,
           "label": "通用大模型",
-          "sub": "占 AI 大额融资 · 赛道集中"
+          "sub": "占 AI 大额融资 · 赛道集中",
+          "shareLabel": "占比 / MODEL SHARE"
         },
         {
           "pct": 63.9,
           "label": "旧金山湾区",
-          "sub": "占 AI 大额融资 · 地理集中"
+          "sub": "占 AI 大额融资 · 地理集中",
+          "shareLabel": "占比 / BAY SHARE"
         }
       ],
       "showDecor": false,
@@ -19340,6 +19401,9 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
+        "countArrays": [
+          "companies"
+        ],
         "help": "参与剖析的公司数量",
         "publicKey": "itemCount",
         "publicLabel": "公司数量"
@@ -19514,10 +19578,20 @@ export const pages = [
           "seg": "中游 · 通用大模型",
           "type": "信任 × 渠道",
           "depth": 4,
+          "meterLabel": "Anthropic 护城河",
           "points": [
-            "「安全对齐」路线 → 企业客户信任优势",
-            "Claude 在代码生成、长文本理解领先",
-            "与 Amazon、Google 云深度合作、渠道快覆盖"
+            {
+              "text": "「安全对齐」路线 → 企业客户信任优势",
+              "slot": 0
+            },
+            {
+              "text": "Claude 在代码生成、长文本理解领先",
+              "slot": 1
+            },
+            {
+              "text": "与 Amazon、Google 云深度合作、渠道快覆盖",
+              "slot": 2
+            }
           ]
         },
         {
@@ -19525,10 +19599,20 @@ export const pages = [
           "seg": "中游 · 通用大模型",
           "type": "数据 × 协同",
           "depth": 3,
+          "meterLabel": "xAI 护城河",
           "points": [
-            "背靠 X 平台海量实时社交数据",
-            "与特斯拉自动驾驶团队协同多模态感知",
-            "Grok 主打「幽默 · 实时 · 无审查」差异化"
+            {
+              "text": "背靠 X 平台海量实时社交数据",
+              "slot": 0
+            },
+            {
+              "text": "与特斯拉自动驾驶团队协同多模态感知",
+              "slot": 1
+            },
+            {
+              "text": "Grok 主打「幽默 · 实时 · 无审查」差异化",
+              "slot": 2
+            }
           ]
         },
         {
@@ -19536,10 +19620,20 @@ export const pages = [
           "seg": "上游 · 算力云",
           "type": "资源锁定",
           "depth": 4,
+          "meterLabel": "CoreWeave 护城河",
           "points": [
-            "与 NVIDIA 签订长期供应协议",
-            "手握数万张 H100 / H200 GPU",
-            "OpenAI、Stability 等公司核心算力供应商"
+            {
+              "text": "与 NVIDIA 签订长期供应协议",
+              "slot": 0
+            },
+            {
+              "text": "手握数万张 H100 / H200 GPU",
+              "slot": 1
+            },
+            {
+              "text": "OpenAI、Stability 等公司核心算力供应商",
+              "slot": 2
+            }
           ]
         }
       ],
@@ -19889,18 +19983,6 @@ export const pages = [
         "publicLabel": "核心数字"
       },
       {
-        "key": "chipCount",
-        "label": "特征标签",
-        "type": "slider",
-        "default": 3,
-        "min": 0,
-        "max": 3,
-        "step": 1,
-        "help": "底部特征标签数量",
-        "publicKey": "chipCount",
-        "publicLabel": "特征标签"
-      },
-      {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
@@ -20007,7 +20089,6 @@ export const pages = [
       "imageCount": 2,
       "layout": "row",
       "showFigure": true,
-      "chipCount": 3,
       "showCallout": true,
       "accent": "blue",
       "eyebrow": "上游 · 基础设施 / SILICON",
@@ -20125,18 +20206,6 @@ export const pages = [
         "publicLabel": "核心数字"
       },
       {
-        "key": "chipCount",
-        "label": "特征标签",
-        "type": "slider",
-        "default": 3,
-        "min": 0,
-        "max": 3,
-        "step": 1,
-        "help": "底部特征标签数量",
-        "publicKey": "chipCount",
-        "publicLabel": "特征标签"
-      },
-      {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
@@ -20243,7 +20312,6 @@ export const pages = [
       "imageCount": 2,
       "layout": "row",
       "showFigure": true,
-      "chipCount": 3,
       "showCallout": true,
       "accent": "blue",
       "eyebrow": "中游 · 基础设施 / COMPUTE",

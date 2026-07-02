@@ -93,7 +93,7 @@ export function makeImportedThemePage(layoutKey) {
           data-theme-key={page.themeKey}
           data-page-key={page.key}
           data-prop-controls={JSON.stringify(controls)}
-          data-prop-defaults={JSON.stringify({ ...defaults, ...(props || {}) })}
+          data-prop-defaults={JSON.stringify(defaults)}
         />
       </section>
     );
@@ -106,7 +106,7 @@ function normalizeControls(controls, defaults, page) {
       const key = control.key || control.prop;
       if (!key) return null;
       const type = normalizeType(control.type);
-      if (REMOVED_CONTROL_TYPES.has(String(control.type || type || '').toLowerCase())) return null;
+      if (page?.themeKey !== 'theme04' && REMOVED_CONTROL_TYPES.has(String(control.type || type || '').toLowerCase())) return null;
       const options = normalizeControlOptions(serializeValue(control.options));
       const explicitDisplay = serializeValue(control.display);
       const next = {
@@ -129,6 +129,7 @@ function normalizeControls(controls, defaults, page) {
         dependsOn: serializeValue(control.dependsOn),
         dependsOnValue: serializeValue(control.dependsOnValue),
         dependsOnValues: serializeValue(control.dependsOnValues),
+        mediaSlots: serializeValue(control.mediaSlots),
         desc: serializeValue(control.desc || control.description || control.describe),
       };
       const sourceType = String(control.type || '').toLowerCase();

@@ -1,4 +1,5 @@
 const TEXT_REPLACEMENTS = [
+  ['图片面板', '占比面板'],
   ['数据芯片数量', '指标卡片数量'],
   ['数据芯片数', '指标卡片数'],
   ['数据芯片', '指标卡片'],
@@ -557,6 +558,9 @@ function exactPublicKey(key) {
     quarterCount: 'timeColumnCount',
     assetCount: 'categoryCount',
     flowStageCount: 'stepCount',
+    segmentCount: 'segmentCount',
+    tagCount: 'tagCount',
+    showShareBar: 'showShareBar',
   };
   return exact[key] || null;
 }

@@ -49,13 +49,14 @@ function run() {
   const pageCount = Math.max(1, Math.min(50, Number(args.pages || args.pageCount || args['page-count']) || 0));
   const chunkSize = Number(args.chunkSize || args['chunk-size']) || 0;
   const out = String(args.out || '').trim();
+  const mediaIntent = parseMediaIntent(args);
 
   if (!themePack) throw new Error('Missing --theme <themePack>');
   if (!pageCount) throw new Error('Missing --pages <n>');
   if (!out) throw new Error('Missing --out <goal.json>');
 
   const roles = parseRoles(args.roles);
-  const slides = buildSlides({ themePack, pageCount, roles });
+  const slides = buildSlides({ themePack, pageCount, roles, mediaIntent });
   const spec = {
     title,
     goal,
@@ -63,7 +64,7 @@ function run() {
     pageCount,
     slides,
   };
-  const errors = validateGoalSpec(spec);
+  const errors = validateGoalSpec(spec, { allowUnfilledMediaIntent: true });
   if (errors.length) throw new Error(`Scaffold failed goal spec validation:\n- ${errors.join('\n- ')}`);
 
   writeJson(out, spec);
@@ -79,23 +80,41 @@ function run() {
   }));
 }
 
-function buildSlides({ themePack, pageCount, roles }) {
+function buildSlides({ themePack, pageCount, roles, mediaIntent }) {
   const used = new Set();
-  return Array.from({ length: pageCount }, (_, index) => {
+  let mediaAssigned = false;
+  const slides = Array.from({ length: pageCount }, (_, index) => {
     const role = index === 0
       ? 'cover'
       : index === pageCount - 1 && pageCount > 2
         ? 'closing'
         : roles[(index - 1) % roles.length];
-    const layout = pickLayout({ themePack, role, used, body: index > 0 });
+    const useMediaIntent = Boolean(mediaIntent && !mediaAssigned && index > 0);
+    const layout = pickLayout({
+      themePack,
+      role: useMediaIntent ? 'image' : role,
+      used,
+      body: index > 0,
+      mediaIntent: useMediaIntent ? mediaIntent : null,
+    });
     used.add(layout);
-    return { layout, props: {} };
+    const slide = { layout, props: {} };
+    if (useMediaIntent) {
+      slide[mediaIntent.field] = mediaIntent.value;
+      mediaAssigned = true;
+    }
+    return slide;
   });
+  if (mediaIntent && !mediaAssigned) {
+    throw new Error(`No body slide available for ${mediaIntent.field}; use --pages 2 or more`);
+  }
+  return slides;
 }
 
-function pickLayout({ themePack, role, used, body }) {
-  const roleCandidates = listLayouts({ theme: themePack, role, limit: 80 });
-  const fallbackCandidates = listLayouts({ theme: themePack, limit: 200 });
+function pickLayout({ themePack, role, used, body, mediaIntent = null }) {
+  const mediaQuery = mediaIntent ? mediaIntentQuery(mediaIntent) : {};
+  const roleCandidates = listLayouts({ theme: themePack, role, ...mediaQuery, limit: 80 });
+  const fallbackCandidates = listLayouts({ theme: themePack, ...mediaQuery, limit: 200 });
   const seen = new Set();
   const candidates = [...roleCandidates, ...fallbackCandidates]
     .map(item => item.layout)
@@ -110,6 +129,29 @@ function pickLayout({ themePack, role, used, body }) {
   const layout = candidates[0];
   if (!layout) throw new Error(`No unused ${body ? 'body' : 'cover'} layout available for role "${role}" in ${themePack}`);
   return layout;
+}
+
+function parseMediaIntent(args) {
+  const plannedImages = mediaIntentCount(args['planned-images'] ?? args.plannedImages);
+  if (plannedImages) return { field: 'plannedImages', value: plannedImages, count: plannedImages };
+  if (args['image-gen'] === true || args.imageGen === true) return { field: 'imageGen', value: true, count: 1 };
+  if (args['needs-visual'] === true || args.needsVisual === true) return { field: 'needsVisual', value: true, count: 1 };
+  return null;
+}
+
+function mediaIntentQuery(intent) {
+  if (!intent) return {};
+  if (intent.field === 'plannedImages') return { plannedImages: intent.count, mediaCount: intent.count };
+  if (intent.field === 'imageGen') return { imageGen: true, mediaCount: intent.count };
+  if (intent.field === 'needsVisual') return { needsVisual: true, mediaCount: intent.count };
+  return {};
+}
+
+function mediaIntentCount(value) {
+  if (value === true) return 1;
+  const count = Number(value);
+  if (Number.isFinite(count) && count > 0) return Math.round(count);
+  return 0;
 }
 
 function parseRoles(value) {

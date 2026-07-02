@@ -390,34 +390,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -460,10 +460,13 @@ export const pages = [
         "key": "metaCount",
         "type": "slider",
         "label": "参数行数",
-        "default": 3,
+        "default": 4,
         "min": 1,
-        "max": 3,
+        "max": 5,
         "step": 1,
+        "countArrays": [
+          "copy.specs"
+        ],
         "description": "侧栏展示的规格行数量。",
         "publicKey": "metaCount",
         "publicLabel": "参数行数",
@@ -501,10 +504,10 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showSidePanel": true,
       "sidePanelTheme": "dark",
-      "metaCount": 3,
+      "metaCount": 4,
       "showSwatches": true,
       "showColorBand": true,
       "showTagline": true,
@@ -575,7 +578,7 @@ export const pages = [
         "key": "specRowCount",
         "type": "slider",
         "label": "指标行数",
-        "default": 4,
+        "default": 5,
         "min": 2,
         "max": 5,
         "step": 1,
@@ -598,34 +601,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -677,9 +680,9 @@ export const pages = [
     ],
     "defaultProps": {
       "imageCount": 1,
-      "specRowCount": 4,
+      "specRowCount": 5,
       "showHighlight": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "chartType": "bar",
       "showProportionBar": true,
       "showSheetLabel": true,
@@ -712,38 +715,34 @@ export const pages = [
           },
           {
             "k": "Top10 集中",
-            "v": "23.8%"
+            "v": "72.6%"
           }
         ],
         "propTitle": "赛道融资占比",
         "props": [
           {
             "name": "通用大模型",
-            "v": 43.3,
-            "c": "#d8402e"
+            "v": 43.3
           },
           {
             "name": "垂直应用",
-            "v": 25.3,
-            "c": "#e2742c"
+            "v": 25.3
           },
           {
             "name": "基础设施",
-            "v": 16.3,
-            "c": "#4da0c6"
+            "v": 16.3
           },
           {
             "name": "AI 芯片",
-            "v": 10,
-            "c": "#2c44a0"
+            "v": 10
           },
           {
             "name": "其他",
-            "v": 5.1,
-            "c": "#3c9a52"
+            "v": 5.1
           }
         ]
-      }
+      },
+      "images": []
     }
   },
   {
@@ -904,7 +903,7 @@ export const pages = [
         ],
         "skins": [
           {
-            "bg": "#d8402e",
+            "bg": "#b82b20",
             "fg": "#fff",
             "blocks": [
               [
@@ -912,14 +911,14 @@ export const pages = [
                 42,
                 40,
                 58,
-                "#efbe2e"
+                "#7a5a00"
               ],
               [
                 34,
                 8,
                 34,
                 54,
-                "#e2742c"
+                "#9b4a17"
               ],
               [
                 64,
@@ -939,26 +938,26 @@ export const pages = [
                 30,
                 30,
                 70,
-                "#d8402e"
+                "#b82b20"
               ],
               [
                 30,
                 55,
                 34,
                 45,
-                "#2c44a0"
+                "#243985"
               ],
               [
                 62,
                 18,
                 36,
                 82,
-                "#efbe2e"
+                "#7a5a00"
               ]
             ]
           },
           {
-            "bg": "#3c9a52",
+            "bg": "#2f6f3e",
             "fg": "#fff",
             "blocks": [
               [
@@ -966,14 +965,14 @@ export const pages = [
                 20,
                 46,
                 40,
-                "#efbe2e"
+                "#7a5a00"
               ],
               [
                 40,
                 48,
                 38,
                 52,
-                "#4da0c6"
+                "#2a667b"
               ],
               [
                 70,
@@ -985,7 +984,7 @@ export const pages = [
             ]
           },
           {
-            "bg": "#2c44a0",
+            "bg": "#243985",
             "fg": "#fff",
             "blocks": [
               [
@@ -993,48 +992,48 @@ export const pages = [
                 48,
                 36,
                 52,
-                "#4da0c6"
+                "#2a667b"
               ],
               [
                 30,
                 12,
                 36,
                 46,
-                "#d8402e"
+                "#b82b20"
               ],
               [
                 62,
                 40,
                 36,
                 60,
-                "#efbe2e"
+                "#7a5a00"
               ]
             ]
           },
           {
-            "bg": "#efbe2e",
-            "fg": "#1a1814",
+            "bg": "#7a5a00",
+            "fg": "#fff",
             "blocks": [
               [
                 0,
                 30,
                 42,
                 50,
-                "#d8402e"
+                "#b82b20"
               ],
               [
                 38,
                 10,
                 30,
                 64,
-                "#2c44a0"
+                "#243985"
               ],
               [
                 64,
                 46,
                 36,
                 54,
-                "#3c9a52"
+                "#2f6f3e"
               ]
             ]
           },
@@ -1047,26 +1046,26 @@ export const pages = [
                 24,
                 32,
                 54,
-                "#3c9a52"
+                "#2f6f3e"
               ],
               [
                 32,
                 46,
                 34,
                 54,
-                "#e2742c"
+                "#9b4a17"
               ],
               [
                 62,
                 16,
                 36,
                 62,
-                "#4da0c6"
+                "#2a667b"
               ]
             ]
           },
           {
-            "bg": "#4da0c6",
+            "bg": "#2a667b",
             "fg": "#fff",
             "blocks": [
               [
@@ -1074,26 +1073,26 @@ export const pages = [
                 40,
                 40,
                 60,
-                "#2c44a0"
+                "#243985"
               ],
               [
                 34,
                 14,
                 34,
                 50,
-                "#efbe2e"
+                "#7a5a00"
               ],
               [
                 64,
                 34,
                 36,
                 66,
-                "#d8402e"
+                "#b82b20"
               ]
             ]
           },
           {
-            "bg": "#7a3c90",
+            "bg": "#6d357f",
             "fg": "#fff",
             "blocks": [
               [
@@ -1101,21 +1100,21 @@ export const pages = [
                 30,
                 36,
                 62,
-                "#efbe2e"
+                "#7a5a00"
               ],
               [
                 32,
                 54,
                 34,
                 46,
-                "#4da0c6"
+                "#2a667b"
               ],
               [
                 62,
                 12,
                 36,
                 60,
-                "#e2742c"
+                "#9b4a17"
               ]
             ]
           }
@@ -1172,22 +1171,22 @@ export const pages = [
         "key": "panelColor",
         "type": "color",
         "label": "面板色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 1"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 2"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 3"
           },
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 4"
           },
           {
@@ -1204,34 +1203,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -1278,8 +1277,8 @@ export const pages = [
       "menuItemCount": 6,
       "focusEnabled": true,
       "focusIndex": 1,
-      "panelColor": "#2c44a0",
-      "accentColor": "#d8402e",
+      "panelColor": "#243985",
+      "accentColor": "#b82b20",
       "specRowCount": 4,
       "showColorBand": true,
       "showWordmark": true,
@@ -1430,34 +1429,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -1494,7 +1493,7 @@ export const pages = [
       "focusIndex": 3,
       "showSecondary": true,
       "showMetrics": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -1623,34 +1622,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -1677,7 +1676,7 @@ export const pages = [
       "focusIndex": 1,
       "showLegend": true,
       "showConclusion": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showSheetLabel": true,
       "copy": {
         "eyebrow": "CROSS-SECTION",
@@ -1689,27 +1688,27 @@ export const pages = [
           {
             "name": "通用大模型",
             "v": 43.3,
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "name": "垂直应用",
             "v": 25.3,
-            "c": "#e2742c"
+            "c": "#9b4a17"
           },
           {
             "name": "基础设施",
             "v": 16.3,
-            "c": "#4da0c6"
+            "c": "#2a667b"
           },
           {
             "name": "AI 芯片",
             "v": 10,
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "name": "其他",
             "v": 5.1,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           }
         ],
         "conclusion": "融资额排名背后，是资本对叙事和兑现的双重押注。"
@@ -1737,22 +1736,6 @@ export const pages = [
         "publicKey": "layerCount",
         "publicLabel": "层级数量",
         "desc": "纵向堆叠的结构层级数量。"
-      },
-      {
-        "key": "itemCount",
-        "type": "slider",
-        "label": "层级标签数",
-        "default": 3,
-        "min": 1,
-        "max": 3,
-        "step": 1,
-        "countArrays": [
-          "copy.layers[].items"
-        ],
-        "description": "每个层级内部的要素标签数量。",
-        "publicKey": "itemCount",
-        "publicLabel": "层级标签数",
-        "desc": "每个层级内部的要素标签数量。"
       },
       {
         "key": "focusEnabled",
@@ -1801,34 +1784,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -1860,12 +1843,11 @@ export const pages = [
     ],
     "defaultProps": {
       "layerCount": 3,
-      "itemCount": 3,
       "focusEnabled": true,
       "focusIndex": 2,
       "showItems": true,
       "showSidePanel": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -1877,7 +1859,7 @@ export const pages = [
           {
             "zh": "上游",
             "en": "UPSTREAM",
-            "c": "#4da0c6",
+            "c": "#2a667b",
             "items": [
               "算力",
               "芯片",
@@ -1887,7 +1869,7 @@ export const pages = [
           {
             "zh": "中游",
             "en": "MIDSTREAM",
-            "c": "#2c44a0",
+            "c": "#243985",
             "items": [
               "通用模型",
               "专用模型"
@@ -1896,7 +1878,7 @@ export const pages = [
           {
             "zh": "下游",
             "en": "DOWNSTREAM",
-            "c": "#3c9a52",
+            "c": "#2f6f3e",
             "items": [
               "企业应用",
               "搜索",
@@ -1906,7 +1888,7 @@ export const pages = [
           {
             "zh": "支撑",
             "en": "ENABLERS",
-            "c": "#7a3c90",
+            "c": "#6d357f",
             "items": [
               "安全",
               "评测",
@@ -1920,22 +1902,22 @@ export const pages = [
           {
             "name": "旧金山湾区",
             "v": 63.9,
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "name": "纽约",
             "v": 12.4,
-            "c": "#e2742c"
+            "c": "#9b4a17"
           },
           {
             "name": "西雅图",
             "v": 9.8,
-            "c": "#efbe2e"
+            "c": "#7a5a00"
           },
           {
             "name": "波士顿",
             "v": 7.7,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           }
         ],
         "conclusion": "产业链分层决定了资本确定性与商业风险的不同位置。"
@@ -1963,22 +1945,6 @@ export const pages = [
         "publicKey": "cardCount",
         "publicLabel": "案例卡数量",
         "desc": "横向排列的案例卡数量。"
-      },
-      {
-        "key": "metricCount",
-        "type": "slider",
-        "label": "卡内指标数",
-        "default": 3,
-        "min": 1,
-        "max": 3,
-        "step": 1,
-        "countArrays": [
-          "copy.cards[].metrics"
-        ],
-        "description": "每张案例卡内部的指标行数。",
-        "publicKey": "metricCount",
-        "publicLabel": "卡内指标数",
-        "desc": "每张案例卡内部的指标行数。"
       },
       {
         "key": "focusEnabled",
@@ -2011,6 +1977,9 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
+        "countArrays": [
+          "images"
+        ],
         "description": "底部图片槽数量（0–3）；按各图比例自适应排布，构图自动均衡。",
         "publicKey": "imageCount",
         "publicLabel": "图片槽数量",
@@ -2040,34 +2009,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -2089,14 +2058,14 @@ export const pages = [
     ],
     "defaultProps": {
       "cardCount": 3,
-      "metricCount": 3,
       "focusEnabled": true,
       "focusIndex": 1,
       "imageCount": 2,
       "showMetrics": true,
       "showGalleryCaption": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showSheetLabel": true,
+      "images": [],
       "copy": {
         "eyebrow": "CASE STUDIES",
         "title": "典型案例深度剖析",
@@ -2106,81 +2075,81 @@ export const pages = [
           {
             "en": "ANTHROPIC",
             "zh": "安全可靠模型",
-            "c": "#d8402e",
+            "c": "#b82b20",
             "fg": "#fff",
             "metrics": [
-              [
-                "融资",
-                "650 亿+"
-              ],
-              [
-                "方向",
-                "安全对齐"
-              ],
-              [
-                "产品",
-                "Claude"
-              ]
+              {
+                "label": "总融资",
+                "value": "650 亿+"
+              },
+              {
+                "label": "方向",
+                "value": "安全对齐"
+              },
+              {
+                "label": "产品",
+                "value": "Claude"
+              }
             ]
           },
           {
             "en": "XAI",
             "zh": "实时数据生态",
-            "c": "#2c44a0",
+            "c": "#243985",
             "fg": "#fff",
             "metrics": [
-              [
-                "融资",
-                "50 亿"
-              ],
-              [
-                "数据",
-                "X 平台"
-              ],
-              [
-                "方向",
-                "多模态"
-              ]
+              {
+                "label": "融资额",
+                "value": "50 亿"
+              },
+              {
+                "label": "数据",
+                "value": "X 平台"
+              },
+              {
+                "label": "方向",
+                "value": "多模态"
+              }
             ]
           },
           {
             "en": "COREWEAVE",
             "zh": "算力基础设施",
-            "c": "#3c9a52",
+            "c": "#2f6f3e",
             "fg": "#fff",
             "metrics": [
-              [
-                "融资",
-                "110 亿"
-              ],
-              [
-                "GPU",
-                "7.8 万张"
-              ],
-              [
-                "方向",
-                "算力云"
-              ]
+              {
+                "label": "债务融资",
+                "value": "110 亿"
+              },
+              {
+                "label": "GPU",
+                "value": "7.8 万张"
+              },
+              {
+                "label": "方向",
+                "value": "算力云"
+              }
             ]
           },
           {
             "en": "OPENAI",
             "zh": "商业化标杆",
-            "c": "#7a3c90",
+            "c": "#6d357f",
             "fg": "#fff",
             "metrics": [
-              [
-                "融资",
-                "66 亿"
-              ],
-              [
-                "客户",
-                "9.4 万家"
-              ],
-              [
-                "方向",
-                "通用模型"
-              ]
+              {
+                "label": "战略融资",
+                "value": "66 亿"
+              },
+              {
+                "label": "客户",
+                "value": "9.4 万家"
+              },
+              {
+                "label": "方向",
+                "value": "通用模型"
+              }
             ]
           }
         ],
@@ -2305,34 +2274,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -2371,7 +2340,7 @@ export const pages = [
       "showValues": true,
       "showPeakList": true,
       "showScaleLegend": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -2537,34 +2506,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -2602,7 +2571,7 @@ export const pages = [
       "showRankNumber": true,
       "showTag": true,
       "showValue": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -2720,6 +2689,22 @@ export const pages = [
         "desc": "每个象限内的代表方向标签。"
       },
       {
+        "key": "itemCount",
+        "type": "slider",
+        "label": "方向数量",
+        "default": 3,
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "countArrays": [
+          "copy.quads[].items"
+        ],
+        "description": "每个象限展示的代表方向数量。",
+        "publicKey": "itemCount",
+        "publicLabel": "方向数量",
+        "desc": "每个象限展示的代表方向数量。"
+      },
+      {
         "key": "showScatter",
         "type": "toggle",
         "label": "散点标记",
@@ -2743,34 +2728,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -2805,9 +2790,10 @@ export const pages = [
       "focusIndex": 1,
       "quadrantTint": false,
       "showItems": true,
+      "itemCount": 3,
       "showScatter": true,
       "showAxisLabels": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -2821,12 +2807,13 @@ export const pages = [
           {
             "zh": "明星兑现",
             "en": "STAR DELIVERY",
-            "c": "#3c9a52",
+            "c": "#2f6f3e",
             "area": "tr",
             "note": "高热度 · 高兑现",
             "items": [
               "基础设施",
-              "数据平台"
+              "数据平台",
+              "算力服务"
             ],
             "dots": [
               [
@@ -2846,12 +2833,13 @@ export const pages = [
           {
             "zh": "叙事泡沫",
             "en": "NARRATIVE BUBBLE",
-            "c": "#d8402e",
+            "c": "#b82b20",
             "area": "tl",
             "note": "高热度 · 低兑现",
             "items": [
               "通用模型",
-              "AGI 实验室"
+              "AGI 实验室",
+              "概念硬件"
             ],
             "dots": [
               [
@@ -2871,12 +2859,13 @@ export const pages = [
           {
             "zh": "隐形价值",
             "en": "HIDDEN VALUE",
-            "c": "#2c44a0",
+            "c": "#243985",
             "area": "br",
             "note": "低热度 · 高兑现",
             "items": [
               "垂直应用",
-              "企业搜索"
+              "企业搜索",
+              "自动化工作流"
             ],
             "dots": [
               [
@@ -2896,7 +2885,7 @@ export const pages = [
           {
             "zh": "等待验证",
             "en": "TO BE PROVEN",
-            "c": "#e2742c",
+            "c": "#9b4a17",
             "area": "bl",
             "note": "低热度 · 低兑现",
             "items": [
@@ -3029,34 +3018,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -3087,6 +3076,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "chainCount": 4,
       "cardCount": 4,
       "focusEnabled": true,
@@ -3095,7 +3085,7 @@ export const pages = [
       "showChain": true,
       "showLevel": true,
       "showGalleryCaption": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -3114,35 +3104,35 @@ export const pages = [
           {
             "en": "VALUATION",
             "zh": "估值泡沫",
-            "c": "#d8402e",
+            "c": "#b82b20",
             "level": "高",
             "note": "一级估值远超当期收入支撑"
           },
           {
             "en": "REVENUE",
             "zh": "盈利模式未验证",
-            "c": "#2c44a0",
+            "c": "#243985",
             "level": "高",
             "note": "多数公司仍停留在试点阶段"
           },
           {
             "en": "REGULATION",
             "zh": "监管成本上升",
-            "c": "#e2742c",
+            "c": "#9b4a17",
             "level": "中",
             "note": "隐私、版权与合规推高交付成本"
           },
           {
             "en": "COMPETITION",
             "zh": "开源与大厂挤压",
-            "c": "#7a3c90",
+            "c": "#6d357f",
             "level": "中",
             "note": "模型能力被快速商品化"
           },
           {
             "en": "COMPUTE",
             "zh": "算力供应链卡脖子",
-            "c": "#3c9a52",
+            "c": "#2f6f3e",
             "level": "高",
             "note": "GPU 供给与成本约束毛利"
           }
@@ -3225,34 +3215,34 @@ export const pages = [
         "key": "leftColor",
         "type": "color",
         "label": "左栏色",
-        "default": "#3c9a52",
+        "default": "#2f6f3e",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -3265,34 +3255,34 @@ export const pages = [
         "key": "rightColor",
         "type": "color",
         "label": "右栏色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -3305,34 +3295,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -3368,9 +3358,9 @@ export const pages = [
       "timelineNodeCount": 4,
       "focusEnabled": true,
       "focusIndex": 2,
-      "leftColor": "#3c9a52",
-      "rightColor": "#d8402e",
-      "accentColor": "#d8402e",
+      "leftColor": "#2f6f3e",
+      "rightColor": "#b82b20",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -3528,34 +3518,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -3600,7 +3590,7 @@ export const pages = [
       "quoteAlign": "left",
       "conclusionCount": 3,
       "showQuoteMark": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showSource": true,
       "showColorBand": true,
       "showSheetLabel": true,
@@ -3667,34 +3657,34 @@ export const pages = [
         "key": "bgColor",
         "type": "color",
         "label": "色块背景",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -3730,34 +3720,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -3799,10 +3789,10 @@ export const pages = [
     ],
     "defaultProps": {
       "theme": "dark",
-      "bgColor": "#2c44a0",
+      "bgColor": "#243985",
       "showBigNumber": true,
       "keywordCount": 4,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showColorBand": true,
       "showWordmark": true,
       "showSheetLabel": true,
@@ -3929,34 +3919,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -3994,7 +3984,7 @@ export const pages = [
       "colorMode": "category",
       "showGrid": true,
       "showLegend": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -4129,34 +4119,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -4193,7 +4183,7 @@ export const pages = [
       "focusIndex": 3,
       "metricCount": 4,
       "showSwatches": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -4348,34 +4338,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#e2742c",
+        "default": "#9b4a17",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -4414,7 +4404,7 @@ export const pages = [
       "showArrow": true,
       "metricCount": 4,
       "showSwatches": true,
-      "accentColor": "#e2742c",
+      "accentColor": "#9b4a17",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -4611,34 +4601,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -4669,6 +4659,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "chartType": "area",
       "pointCount": 3,
       "focusEnabled": true,
@@ -4678,7 +4669,7 @@ export const pages = [
       "showGalleryCaption": true,
       "metricCount": 4,
       "showSwatches": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -4851,34 +4842,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#4da0c6",
+        "default": "#2a667b",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -4917,7 +4908,7 @@ export const pages = [
       "showDeltaBadge": true,
       "metricCount": 4,
       "showSwatches": true,
-      "accentColor": "#4da0c6",
+      "accentColor": "#2a667b",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -5080,34 +5071,34 @@ export const pages = [
         "key": "highColor",
         "type": "color",
         "label": "高位色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -5120,34 +5111,34 @@ export const pages = [
         "key": "lowColor",
         "type": "color",
         "label": "低位色",
-        "default": "#4da0c6",
+        "default": "#2a667b",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -5160,34 +5151,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -5225,9 +5216,9 @@ export const pages = [
       "showBaseline": true,
       "showValue": true,
       "showMetrics": true,
-      "highColor": "#d8402e",
-      "lowColor": "#4da0c6",
-      "accentColor": "#d8402e",
+      "highColor": "#b82b20",
+      "lowColor": "#2a667b",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -5377,34 +5368,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -5443,7 +5434,7 @@ export const pages = [
       "showValue": true,
       "colorMode": "category",
       "showLegend": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -5457,27 +5448,27 @@ export const pages = [
           {
             "name": "通用大模型",
             "v": 420,
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "name": "垂直应用",
             "v": 245,
-            "c": "#e2742c"
+            "c": "#9b4a17"
           },
           {
             "name": "基础设施",
             "v": 158,
-            "c": "#4da0c6"
+            "c": "#2a667b"
           },
           {
             "name": "AI 芯片",
             "v": 97,
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "name": "其他",
             "v": 50,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           }
         ],
         "conclusion": "大模型制造热度，基础设施和应用承接兑现。"
@@ -5563,34 +5554,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -5627,7 +5618,7 @@ export const pages = [
       "focusIndex": 4,
       "showValue": true,
       "showLegend": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -5648,25 +5639,25 @@ export const pages = [
             "name": "1–2 亿美元",
             "a": 41,
             "b": 58,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "name": "2–5 亿美元",
             "a": 29,
             "b": 91,
-            "c": "#4da0c6"
+            "c": "#2a667b"
           },
           {
             "name": "5–10 亿美元",
             "a": 15,
             "b": 103,
-            "c": "#e2742c"
+            "c": "#9b4a17"
           },
           {
             "name": "10 亿以上",
             "a": 12,
             "b": 718,
-            "c": "#d8402e"
+            "c": "#b82b20"
           }
         ],
         "conclusion": "市场被少数超级交易重新定价。"
@@ -5749,34 +5740,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -5822,7 +5813,7 @@ export const pages = [
       "showUnit": true,
       "showCaption": true,
       "showMessage": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showWordmark": true,
       "showColorBand": true,
       "showSheetLabel": true,
@@ -5944,34 +5935,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#7a3c90",
+        "default": "#6d357f",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -6008,7 +5999,7 @@ export const pages = [
       "focusIndex": 4,
       "showStageLabels": true,
       "showMetrics": true,
-      "accentColor": "#7a3c90",
+      "accentColor": "#6d357f",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -6076,34 +6067,34 @@ export const pages = [
         "key": "bgColor",
         "type": "color",
         "label": "色块背景",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -6139,34 +6130,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -6208,10 +6199,10 @@ export const pages = [
     ],
     "defaultProps": {
       "theme": "color",
-      "bgColor": "#d8402e",
+      "bgColor": "#b82b20",
       "showBigNumber": true,
       "keywordCount": 4,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showColorBand": true,
       "showWordmark": true,
       "showSheetLabel": true,
@@ -6321,34 +6312,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#3c9a52",
+        "default": "#2f6f3e",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -6386,7 +6377,7 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 1,
       "showMetrics": true,
-      "accentColor": "#3c9a52",
+      "accentColor": "#2f6f3e",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -6490,34 +6481,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -6553,7 +6544,7 @@ export const pages = [
       "metricCount": 4,
       "cardTheme": "color",
       "showGalleryCaption": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -6716,34 +6707,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#efbe2e",
+        "default": "#7a5a00",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -6774,6 +6765,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "metricCount": 4,
@@ -6782,7 +6774,7 @@ export const pages = [
       "focusIndex": 1,
       "showLead": true,
       "showMediaCaption": true,
-      "accentColor": "#efbe2e",
+      "accentColor": "#7a5a00",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -6899,34 +6891,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -6963,7 +6955,7 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 1,
       "showIntro": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -6987,7 +6979,7 @@ export const pages = [
             "unit": "% 场景占比",
             "ex": "条款比对 · 风险标注",
             "chip": "高频",
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "k": "尽职调查",
@@ -6996,7 +6988,7 @@ export const pages = [
             "unit": "亿美元",
             "ex": "文档归集 · 引用核验",
             "chip": "高值",
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "k": "法律检索",
@@ -7005,7 +6997,7 @@ export const pages = [
             "unit": "亿美元/笔",
             "ex": "判例检索 · 摘要生成",
             "chip": "成熟",
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "k": "合规问答",
@@ -7014,7 +7006,7 @@ export const pages = [
             "unit": "笔事件",
             "ex": "政策解读 · 审计链路",
             "chip": "壁垒",
-            "c": "#4da0c6"
+            "c": "#2a667b"
           }
         ],
         "conclusion": "法律 AI 是垂直应用商业化样本。"
@@ -7051,6 +7043,9 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
+        "countArrays": [
+          "images"
+        ],
         "description": "底部图片槽数量（0–3），按比例自适应；为 0 时隐藏整条图片带。",
         "publicKey": "imageCount",
         "publicLabel": "图片槽数量",
@@ -7151,34 +7146,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -7209,6 +7204,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "itemCount": 3,
       "imageCount": 0,
       "sortDescending": true,
@@ -7217,7 +7213,7 @@ export const pages = [
       "colorMode": "category",
       "cardTheme": "color",
       "showTotal": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -7234,17 +7230,17 @@ export const pages = [
           {
             "name": "药物发现",
             "v": 14,
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "name": "影像诊断",
             "v": 11,
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "name": "临床文书",
             "v": 9,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           }
         ],
         "mediaCap": "赛道图示",
@@ -7345,34 +7341,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -7403,13 +7399,14 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "chartType": "donut",
       "sceneCount": 4,
       "imageCount": 0,
       "focusEnabled": true,
       "focusIndex": 1,
       "showLegend": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -7423,22 +7420,22 @@ export const pages = [
           {
             "name": "投研",
             "v": 31,
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "name": "合规",
             "v": 28,
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "name": "风控",
             "v": 24,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "name": "客服",
             "v": 17,
-            "c": "#e2742c"
+            "c": "#9b4a17"
           }
         ],
         "mediaUnit": "DROP IMAGE",
@@ -7483,34 +7480,34 @@ export const pages = [
         "key": "bgColor",
         "type": "color",
         "label": "色块背景",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -7586,34 +7583,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#efbe2e",
+        "default": "#7a5a00",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -7645,13 +7642,13 @@ export const pages = [
     ],
     "defaultProps": {
       "theme": "dark",
-      "bgColor": "#2c44a0",
+      "bgColor": "#243985",
       "align": "left",
       "showIndex": true,
       "emphasis": true,
       "keywordCount": 3,
       "showSub": true,
-      "accentColor": "#efbe2e",
+      "accentColor": "#7a5a00",
       "showColorBand": true,
       "showSheetLabel": true,
       "copy": {
@@ -7787,34 +7784,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#3c9a52",
+        "default": "#2f6f3e",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -7853,7 +7850,7 @@ export const pages = [
       "pointCount": 3,
       "metricCount": 3,
       "showFlowCaption": true,
-      "accentColor": "#3c9a52",
+      "accentColor": "#2f6f3e",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -7867,31 +7864,31 @@ export const pages = [
             "en": "INGEST",
             "zh": "数据采集",
             "note": "多源接入",
-            "color": "#2c44a0"
+            "color": "#243985"
           },
           {
             "en": "CLEAN",
             "zh": "清洗治理",
             "note": "质量校验",
-            "color": "#4da0c6"
+            "color": "#2a667b"
           },
           {
             "en": "INDEX",
             "zh": "向量索引",
             "note": "RAG 检索",
-            "color": "#3c9a52"
+            "color": "#2f6f3e"
           },
           {
             "en": "SERVE",
             "zh": "服务编排",
             "note": "应用调用",
-            "color": "#d8402e"
+            "color": "#b82b20"
           },
           {
             "en": "GOVERN",
             "zh": "监控治理",
             "note": "权限审计",
-            "color": "#7a3c90"
+            "color": "#6d357f"
           }
         ],
         "metrics": [
@@ -8035,34 +8032,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#4da0c6",
+        "default": "#2a667b",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -8093,13 +8090,14 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "left",
       "metricCount": 4,
       "cardTheme": "dark",
       "showLead": true,
       "showMediaCaption": true,
-      "accentColor": "#4da0c6",
+      "accentColor": "#2a667b",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -8263,34 +8261,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#e2742c",
+        "default": "#9b4a17",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -8321,6 +8319,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "barCount": 3,
@@ -8329,7 +8328,7 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 1,
       "showMetrics": true,
-      "accentColor": "#e2742c",
+      "accentColor": "#9b4a17",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -8356,17 +8355,17 @@ export const pages = [
           {
             "name": "合成数据",
             "v": 42,
-            "color": "#d8402e"
+            "color": "#b82b20"
           },
           {
             "name": "人类反馈数据",
             "v": 35,
-            "color": "#3c9a52"
+            "color": "#2f6f3e"
           },
           {
             "name": "真实采集",
             "v": 23,
-            "color": "#2c44a0"
+            "color": "#243985"
           }
         ],
         "conclusion": "数据越稀缺，数据基础设施越有价值。"
@@ -8514,34 +8513,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -8582,7 +8581,7 @@ export const pages = [
       "focusIndex": 1,
       "showShare": true,
       "metricCount": 4,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -8620,22 +8619,22 @@ export const pages = [
           {
             "k": "H100",
             "v": 38,
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "k": "H200",
             "v": 20,
-            "c": "#e2742c"
+            "c": "#9b4a17"
           },
           {
             "k": "A100",
             "v": 27,
-            "c": "#4da0c6"
+            "c": "#2a667b"
           },
           {
             "k": "其他",
             "v": 15,
-            "c": "#7a3c90"
+            "c": "#6d357f"
           }
         ],
         "conclusion": "算力是 AI 时代最直接的硬资源。"
@@ -8765,34 +8764,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -8832,7 +8831,7 @@ export const pages = [
       "focusIndex": 1,
       "colorMode": "category",
       "showIntro": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -8856,28 +8855,28 @@ export const pages = [
             "en": "Training Accelerator",
             "v": 46,
             "chip": "高资本",
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "k": "推理芯片",
             "en": "Inference Chip",
             "v": 32,
             "chip": "放量",
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "k": "边缘 AI",
             "en": "Edge AI",
             "v": 19,
             "chip": "早期",
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "k": "封装互联",
             "en": "Packaging / Interconnect",
             "v": 12,
             "chip": "壁垒",
-            "c": "#4da0c6"
+            "c": "#2a667b"
           }
         ],
         "conclusion": "硬件方向看长期确定性。"
@@ -9033,34 +9032,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -9091,6 +9090,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "left",
       "cardTheme": "color",
@@ -9101,7 +9101,7 @@ export const pages = [
       "focusIndex": 1,
       "showLead": true,
       "showMediaCaption": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -9141,17 +9141,17 @@ export const pages = [
           {
             "k": "人形机器人",
             "v": 21,
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "k": "工业自动化",
             "v": 11,
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "k": "仓储机器人",
             "v": 9,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           }
         ],
         "conclusion": "长周期赛道需要看供应链和量产能力。"
@@ -9307,34 +9307,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#4da0c6",
+        "default": "#2a667b",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -9365,6 +9365,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "cardTheme": "dark",
@@ -9375,7 +9376,7 @@ export const pages = [
       "focusIndex": 1,
       "showLead": true,
       "showMediaCaption": true,
-      "accentColor": "#4da0c6",
+      "accentColor": "#2a667b",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -9417,21 +9418,21 @@ export const pages = [
             "zh": "端到端驾驶",
             "num": "13",
             "unit": "亿美元",
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "en": "SIMULATION",
             "zh": "仿真平台",
             "num": "9",
             "unit": "亿美元",
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "en": "IN-CAR COPILOT",
             "zh": "车载助手",
             "num": "7",
             "unit": "亿美元",
-            "c": "#e2742c"
+            "c": "#9b4a17"
           }
         ],
         "conclusion": "自动驾驶回暖，但更看重工程兑现。"
@@ -9550,34 +9551,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -9616,7 +9617,7 @@ export const pages = [
       "showMetricCard": true,
       "metricCount": 4,
       "showNote": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -9630,25 +9631,25 @@ export const pages = [
             "en": "EVALUATION",
             "zh": "模型评测",
             "v": 6,
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "en": "RED TEAM",
             "zh": "红队测试",
             "v": 4,
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "en": "CONTENT",
             "zh": "内容安全",
             "v": 5,
-            "c": "#e2742c"
+            "c": "#9b4a17"
           },
           {
             "en": "COMPLIANCE",
             "zh": "合规监测",
             "v": 5,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           }
         ],
         "metricCap": "赛道指标",
@@ -9792,34 +9793,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -9850,6 +9851,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "cardCount": 4,
       "imageCount": 2,
       "widthByValue": true,
@@ -9859,7 +9861,7 @@ export const pages = [
       "focusIndex": 1,
       "showHeadline": true,
       "showGalleryCaption": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -9868,21 +9870,21 @@ export const pages = [
         "sub": "内容生成赛道",
         "sheet": "IMAGE · 42 / 80",
         "metrics": [
-          [
-            "融资额",
-            "31",
-            "亿美元"
-          ],
-          [
-            "事件数",
-            "11",
-            "笔"
-          ],
-          [
-            "平均单笔",
-            "2.8",
-            "亿美元"
-          ]
+          {
+            "label": "融资额",
+            "value": "31",
+            "unit": "亿美元"
+          },
+          {
+            "label": "事件数",
+            "value": "11",
+            "unit": "笔"
+          },
+          {
+            "label": "平均单笔",
+            "value": "2.8",
+            "unit": "亿美元"
+          }
         ],
         "galleryCap": "内容类型型录",
         "galleryUnit": "DROP IMAGES",
@@ -9893,7 +9895,7 @@ export const pages = [
             "code": "VG",
             "v": 14,
             "unit": "亿美元",
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "en": "ADS",
@@ -9901,7 +9903,7 @@ export const pages = [
             "code": "AD",
             "v": 8,
             "unit": "亿美元",
-            "c": "#efbe2e"
+            "c": "#7a5a00"
           },
           {
             "en": "IMAGE",
@@ -9909,7 +9911,7 @@ export const pages = [
             "code": "IM",
             "v": 5,
             "unit": "亿美元",
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "en": "AUDIO",
@@ -9917,7 +9919,7 @@ export const pages = [
             "code": "AU",
             "v": 4,
             "unit": "亿美元",
-            "c": "#4da0c6"
+            "c": "#2a667b"
           }
         ],
         "conclusion": "流量热度不等于商业壁垒。"
@@ -10059,34 +10061,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#3c9a52",
+        "default": "#2f6f3e",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -10117,6 +10119,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "nodeCount": 4,
       "imageCount": 1,
       "imageSide": "right",
@@ -10127,7 +10130,7 @@ export const pages = [
       "showLead": true,
       "showMetrics": true,
       "showGalleryCaption": true,
-      "accentColor": "#3c9a52",
+      "accentColor": "#2f6f3e",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -10181,21 +10184,21 @@ export const pages = [
             "zh": "K12 辅导",
             "v": "6",
             "unit": "亿美元",
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "en": "ENTERPRISE",
             "zh": "企业培训",
             "v": "5",
             "unit": "亿美元",
-            "c": "#e2742c"
+            "c": "#9b4a17"
           },
           {
             "en": "TEACHER",
             "zh": "教师工具",
             "v": "3",
             "unit": "亿美元",
-            "c": "#2c44a0"
+            "c": "#243985"
           }
         ],
         "conclusion": "教育 AI 需要用结果证明价值。"
@@ -10324,34 +10327,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -10392,7 +10395,7 @@ export const pages = [
       "showProcess": true,
       "processNodeCount": 4,
       "showIntro": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -10446,7 +10449,7 @@ export const pages = [
             "unit": "%",
             "base": 20,
             "chip": "可量化",
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "k": "工单时长下降",
@@ -10455,7 +10458,7 @@ export const pages = [
             "unit": "%",
             "base": 25,
             "chip": "高 ROI",
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "k": "首次解决率",
@@ -10464,7 +10467,7 @@ export const pages = [
             "unit": "%",
             "base": 55,
             "chip": "稳健",
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "k": "客户满意度",
@@ -10473,7 +10476,7 @@ export const pages = [
             "unit": "%",
             "base": 80,
             "chip": "正向",
-            "c": "#4da0c6"
+            "c": "#2a667b"
           }
         ],
         "conclusion": "能量化 ROI 的场景更容易获得预算。"
@@ -10602,34 +10605,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#e2742c",
+        "default": "#9b4a17",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -10660,6 +10663,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "tierCount": 4,
       "imageCount": 1,
       "imageSide": "right",
@@ -10669,7 +10673,7 @@ export const pages = [
       "showMetrics": true,
       "showLead": true,
       "showGalleryCaption": true,
-      "accentColor": "#e2742c",
+      "accentColor": "#9b4a17",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -10696,25 +10700,25 @@ export const pages = [
             "en": "REACH",
             "zh": "广告创意",
             "v": 8,
-            "c": "#efbe2e"
+            "c": "#7a5a00"
           },
           {
             "en": "LEAD",
             "zh": "线索评分",
             "v": 7,
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "en": "OUTREACH",
             "zh": "自动外呼",
             "v": 6,
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "en": "CONVERT",
             "zh": "转化成交",
             "v": 4,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           }
         ],
         "galleryCap": "场景图示",
@@ -10822,34 +10826,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#3c9a52",
+        "default": "#2f6f3e",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -10880,6 +10884,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "auxCount": 3,
@@ -10887,7 +10892,7 @@ export const pages = [
       "showCaption": true,
       "showMessage": true,
       "showGalleryCaption": true,
-      "accentColor": "#3c9a52",
+      "accentColor": "#2f6f3e",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -11027,34 +11032,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#7a3c90",
+        "default": "#6d357f",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -11085,6 +11090,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "showTransfer": true,
@@ -11092,7 +11098,7 @@ export const pages = [
       "showMetrics": true,
       "showLead": true,
       "showGalleryCaption": true,
-      "accentColor": "#7a3c90",
+      "accentColor": "#6d357f",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -11237,34 +11243,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -11303,7 +11309,7 @@ export const pages = [
       "showMetricCard": true,
       "metricCount": 3,
       "showNote": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -11318,19 +11324,19 @@ export const pages = [
             "en": "EVALUATION",
             "zh": "评测平台",
             "v": 8,
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "en": "ALIGNMENT",
             "zh": "对齐工具",
             "v": 7,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "en": "RED TEAM",
             "zh": "红队服务",
             "v": 6,
-            "c": "#d8402e"
+            "c": "#b82b20"
           }
         ],
         "metricCap": "赛道指标",
@@ -11394,34 +11400,34 @@ export const pages = [
         "key": "bgColor",
         "type": "color",
         "label": "色块背景",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -11457,34 +11463,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -11526,10 +11532,10 @@ export const pages = [
     ],
     "defaultProps": {
       "theme": "color",
-      "bgColor": "#2c44a0",
+      "bgColor": "#243985",
       "showBigNumber": true,
       "keywordCount": 4,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showColorBand": true,
       "showWordmark": true,
       "showSheetLabel": true,
@@ -11654,34 +11660,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#efbe2e",
+        "default": "#7a5a00",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -11720,7 +11726,7 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 1,
       "showIntro": true,
-      "accentColor": "#efbe2e",
+      "accentColor": "#7a5a00",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -11888,34 +11894,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#4da0c6",
+        "default": "#2a667b",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -11953,7 +11959,7 @@ export const pages = [
       "focusIndex": 1,
       "showValue": true,
       "showLegend": true,
-      "accentColor": "#4da0c6",
+      "accentColor": "#2a667b",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -11975,25 +11981,25 @@ export const pages = [
             "k": "云资源置换",
             "en": "Cloud Credits",
             "v": 39,
-            "c": "#4da0c6"
+            "c": "#2a667b"
           },
           {
             "k": "战略投资",
             "en": "Strategic",
             "v": 31,
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "k": "债务组合",
             "en": "Debt",
             "v": 18,
-            "c": "#7a3c90"
+            "c": "#6d357f"
           },
           {
             "k": "普通股权",
             "en": "Equity",
             "v": 12,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           }
         ],
         "conclusion": "AI 融资越来越像资源组合交易。"
@@ -12115,34 +12121,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -12181,7 +12187,7 @@ export const pages = [
       "showTimeline": true,
       "nodeCount": 4,
       "timelineFocus": 4,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -12196,25 +12202,25 @@ export const pages = [
             "name": "传统 VC",
             "en": "Venture",
             "v": 42,
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "name": "企业战略",
             "en": "Strategic",
             "v": 27,
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "name": "成长基金",
             "en": "Growth",
             "v": 18,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "name": "云厂商相关",
             "en": "Cloud",
             "v": 13,
-            "c": "#e2742c"
+            "c": "#9b4a17"
           }
         ],
         "timeCap": "资本来源演进",
@@ -12357,34 +12363,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -12415,6 +12421,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "cardCount": 4,
       "imageCount": 1,
       "imageSide": "right",
@@ -12423,7 +12430,7 @@ export const pages = [
       "focusIndex": 1,
       "showLead": true,
       "showMediaCaption": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -12437,28 +12444,28 @@ export const pages = [
             "zh": "云资源授信",
             "v": "118",
             "unit": "亿美元",
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "en": "CO-SELLING",
             "zh": "联合销售",
             "v": "36",
             "unit": "起",
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "en": "CHIP SUPPLY",
             "zh": "芯片供应",
             "v": "22",
             "unit": "起",
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "en": "DATA PARTNERSHIP",
             "zh": "数据合作",
             "v": "17",
             "unit": "起",
-            "c": "#e2742c"
+            "c": "#9b4a17"
           }
         ],
         "mediaCap": "资源绑定",
@@ -12559,34 +12566,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#e2742c",
+        "default": "#9b4a17",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -12624,7 +12631,7 @@ export const pages = [
       "showLoop": true,
       "stageCount": 3,
       "showReturn": true,
-      "accentColor": "#e2742c",
+      "accentColor": "#9b4a17",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -12639,25 +12646,25 @@ export const pages = [
             "en": "AZURE",
             "zh": "Azure 相关",
             "v": 88,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "en": "AWS",
             "zh": "AWS 相关",
             "v": 74,
-            "c": "#e2742c"
+            "c": "#9b4a17"
           },
           {
             "en": "GOOGLE CLOUD",
             "zh": "Google Cloud 相关",
             "v": 69,
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "en": "ORACLE CLOUD",
             "zh": "Oracle Cloud 相关",
             "v": 21,
-            "c": "#d8402e"
+            "c": "#b82b20"
           }
         ],
         "loopCap": "资金—算力闭环",
@@ -12796,34 +12803,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#3c9a52",
+        "default": "#2f6f3e",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -12854,6 +12861,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "nodeCount": 4,
       "imageCount": 1,
       "imageSide": "right",
@@ -12862,7 +12870,7 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 1,
       "showMediaCaption": true,
-      "accentColor": "#3c9a52",
+      "accentColor": "#2f6f3e",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -12879,25 +12887,25 @@ export const pages = [
             "en": "GPU CLOUD",
             "zh": "GPU 云",
             "v": 64,
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "en": "CLUSTER OPS",
             "zh": "集群管理",
             "v": 12,
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "en": "INFERENCE",
             "zh": "推理优化",
             "v": 9,
-            "c": "#e2742c"
+            "c": "#9b4a17"
           },
           {
             "en": "INTERCONNECT",
             "zh": "芯片互联",
             "v": 7,
-            "c": "#d8402e"
+            "c": "#b82b20"
           }
         ],
         "mediaCap": "GPU 生态",
@@ -13012,34 +13020,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -13087,7 +13095,7 @@ export const pages = [
       "showUnit": true,
       "showCaption": true,
       "showMessage": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showWordmark": true,
       "showColorBand": true,
       "showSheetLabel": true,
@@ -13211,7 +13219,7 @@ export const pages = [
         "max": 4,
         "step": 1,
         "description": "分类 / 主题标签 chip 数量（0 隐藏整行）。",
-        "publicKey": "categoryCount",
+        "publicKey": "tagCount",
         "publicLabel": "标签数量",
         "desc": "分类 / 主题标签 chip 数量（0 隐藏整行）。"
       },
@@ -13272,34 +13280,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -13330,6 +13338,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "cardTheme": "paper",
@@ -13340,7 +13349,7 @@ export const pages = [
       "focusIndex": 1,
       "showLead": true,
       "showMediaCaption": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -13539,34 +13548,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#4da0c6",
+        "default": "#2a667b",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -13597,6 +13606,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "left",
       "mosaicCols": 7,
@@ -13608,7 +13618,7 @@ export const pages = [
       "tagCount": 4,
       "showLead": true,
       "showMediaCaption": true,
-      "accentColor": "#4da0c6",
+      "accentColor": "#2a667b",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -13769,34 +13779,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#7a3c90",
+        "default": "#6d357f",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -13827,6 +13837,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "left",
       "heroIndex": 1,
@@ -13835,7 +13846,7 @@ export const pages = [
       "tagCount": 4,
       "showLead": true,
       "showMediaCaption": true,
-      "accentColor": "#7a3c90",
+      "accentColor": "#6d357f",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -14010,34 +14021,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#e2742c",
+        "default": "#9b4a17",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -14068,6 +14079,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "cols": 12,
       "rows": 6,
       "activeCount": 26,
@@ -14078,7 +14090,7 @@ export const pages = [
       "showCounts": true,
       "showMetrics": true,
       "imageCount": 0,
-      "accentColor": "#e2742c",
+      "accentColor": "#9b4a17",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -14106,22 +14118,22 @@ export const pages = [
           {
             "name": "行业专用模型",
             "en": "VERTICAL MODELS",
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "name": "本地化应用",
             "en": "LOCALIZED APPS",
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "name": "垂直 SaaS",
             "en": "VERTICAL SAAS",
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "name": "区域服务",
             "en": "REGIONAL OPS",
-            "c": "#e2742c"
+            "c": "#9b4a17"
           }
         ],
         "legendCap": "落地方向",
@@ -14169,34 +14181,34 @@ export const pages = [
         "key": "bgColor",
         "type": "color",
         "label": "色块背景",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -14275,34 +14287,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -14344,14 +14356,14 @@ export const pages = [
     ],
     "defaultProps": {
       "theme": "paper",
-      "bgColor": "#2c44a0",
+      "bgColor": "#243985",
       "pillarCount": 3,
       "focusEnabled": false,
       "focusIndex": 1,
       "showRoman": true,
       "showGhost": true,
       "emphasis": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showSub": true,
       "showColorBand": true,
       "showSheetLabel": true,
@@ -14369,19 +14381,19 @@ export const pages = [
             "en": "TALENT",
             "zh": "人才",
             "note": "顶尖研究员与工程团队的密度",
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "en": "CAPITAL",
             "zh": "资本",
             "note": "持续、巨额且有耐心的资金",
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "en": "COMPUTE",
             "zh": "算力",
             "note": "可调度的大规模训练与推理",
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           }
         ],
         "src": "EXPANDED SLIDE · P61",
@@ -14502,34 +14514,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#3c9a52",
+        "default": "#2f6f3e",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -14560,6 +14572,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "metricCount": 3,
@@ -14567,7 +14580,7 @@ export const pages = [
       "showBadge": true,
       "showLead": true,
       "showGalleryCaption": true,
-      "accentColor": "#3c9a52",
+      "accentColor": "#2f6f3e",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -14580,26 +14593,26 @@ export const pages = [
         "lead": "模型能力、生态入口与企业商业化能否同时领先，是衡量这一阶段标杆的核心标尺。",
         "badge": "BENCHMARK",
         "kpis": [
-          [
-            "最大单笔融资",
-            "66",
-            "亿美元"
-          ],
-          [
-            "企业客户",
-            "9.4",
-            "万家"
-          ],
-          [
-            "年度化收入",
-            "38",
-            "亿美元"
-          ],
-          [
-            "赛道",
-            "通用大模型",
-            ""
-          ]
+          {
+            "label": "最大单笔融资",
+            "value": "66",
+            "unit": "亿美元"
+          },
+          {
+            "label": "企业客户",
+            "value": "9.4",
+            "unit": "万家"
+          },
+          {
+            "label": "年度化收入",
+            "value": "38",
+            "unit": "亿美元"
+          },
+          {
+            "label": "赛道",
+            "value": "通用大模型",
+            "unit": ""
+          }
         ],
         "galleryCap": "案例主视觉",
         "galleryUnit": "DROP IMAGES",
@@ -14746,34 +14759,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#efbe2e",
+        "default": "#7a5a00",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -14804,6 +14817,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "tagCount": 3,
@@ -14813,7 +14827,7 @@ export const pages = [
       "focusIndex": 1,
       "showLead": true,
       "showGalleryCaption": true,
-      "accentColor": "#efbe2e",
+      "accentColor": "#7a5a00",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -15008,34 +15022,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#4da0c6",
+        "default": "#2a667b",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -15066,6 +15080,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "nodeCount": 4,
@@ -15076,7 +15091,7 @@ export const pages = [
       "cardTheme": "color",
       "showLead": true,
       "showGalleryCaption": true,
-      "accentColor": "#4da0c6",
+      "accentColor": "#2a667b",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -15111,25 +15126,25 @@ export const pages = [
             "zh": "X 平台",
             "en": "DATA GATEWAY",
             "role": "数据入口",
-            "c": "#d8402e"
+            "c": "#b82b20"
           },
           {
             "zh": "特斯拉",
             "en": "FLEET SIGNALS",
             "role": "协同",
-            "c": "#2c44a0"
+            "c": "#243985"
           },
           {
             "zh": "多模态",
             "en": "MULTIMODAL",
             "role": "能力",
-            "c": "#3c9a52"
+            "c": "#2f6f3e"
           },
           {
             "zh": "实时搜索",
             "en": "LIVE SEARCH",
             "role": "场景",
-            "c": "#4da0c6"
+            "c": "#2a667b"
           }
         ],
         "conclusion": "独特数据入口可以成为模型差异化。"
@@ -15298,34 +15313,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -15356,6 +15371,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "metricCount": 4,
@@ -15367,7 +15383,7 @@ export const pages = [
       "focusIndex": 3,
       "showLead": true,
       "showGalleryCaption": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -15379,26 +15395,26 @@ export const pages = [
         "sub": "CoreWeave 案例",
         "lead": "当模型公司都在抢 GPU，算力供应商获得资本溢价 —— 确定性需求叠加稀缺供给。",
         "kpis": [
-          [
-            "融资额",
-            "110",
-            "亿美元"
-          ],
-          [
-            "估值",
-            "190",
-            "亿美元"
-          ],
-          [
-            "GPU 资源",
-            "7.8",
-            "万张"
-          ],
-          [
-            "核心客户",
-            "模型 · 内容 · 推理",
-            ""
-          ]
+          {
+            "label": "融资额",
+            "value": "110",
+            "unit": "亿美元"
+          },
+          {
+            "label": "估值",
+            "value": "190",
+            "unit": "亿美元"
+          },
+          {
+            "label": "GPU 资源",
+            "value": "7.8",
+            "unit": "万张"
+          },
+          {
+            "label": "核心客户",
+            "value": "模型 · 内容 · 推理",
+            "unit": ""
+          }
         ],
         "galleryCap": "案例主视觉",
         "galleryUnit": "DROP IMAGES",
@@ -15534,34 +15550,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#4da0c6",
+        "default": "#2a667b",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -15602,7 +15618,7 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 1,
       "showIntro": true,
-      "accentColor": "#4da0c6",
+      "accentColor": "#2a667b",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -15843,34 +15859,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#7a3c90",
+        "default": "#6d357f",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -15901,6 +15917,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "metricCount": 3,
@@ -15912,7 +15929,7 @@ export const pages = [
       "focusIndex": 3,
       "showLead": true,
       "showGalleryCaption": true,
-      "accentColor": "#7a3c90",
+      "accentColor": "#6d357f",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -15924,21 +15941,21 @@ export const pages = [
         "sub": "Perplexity AI 案例",
         "lead": "机会在于重构信息入口，挑战是内容版权和用户留存 —— 新入口要用留存证明价值。",
         "kpis": [
-          [
-            "最大单笔融资",
-            "5.2",
-            "亿美元"
-          ],
-          [
-            "月活用户",
-            "4800",
-            "万"
-          ],
-          [
-            "赛道",
-            "AI 搜索",
-            ""
-          ]
+          {
+            "label": "最大单笔融资",
+            "value": "5.2",
+            "unit": "亿美元"
+          },
+          {
+            "label": "月活用户",
+            "value": "4800",
+            "unit": "万"
+          },
+          {
+            "label": "赛道",
+            "value": "AI 搜索",
+            "unit": ""
+          }
         ],
         "galleryCap": "案例主视觉",
         "galleryUnit": "DROP IMAGES",
@@ -16029,6 +16046,22 @@ export const pages = [
         "desc": "各层右侧的能力 chip 标签。"
       },
       {
+        "key": "itemCount",
+        "type": "slider",
+        "label": "能力数量",
+        "default": 3,
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "countArrays": [
+          "copy.tiers[].items"
+        ],
+        "description": "每层展示的能力 chip 数量。",
+        "publicKey": "itemCount",
+        "publicLabel": "能力数量",
+        "desc": "每层展示的能力 chip 数量。"
+      },
+      {
         "key": "showExpand",
         "type": "toggle",
         "label": "扩张读数",
@@ -16089,34 +16122,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -16151,11 +16184,12 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 2,
       "showItems": true,
+      "itemCount": 3,
       "showExpand": true,
       "cardTheme": "dark",
       "metricCount": 4,
       "showLead": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -16403,34 +16437,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#3c9a52",
+        "default": "#2f6f3e",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -16461,6 +16495,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "metricCount": 3,
@@ -16473,7 +16508,7 @@ export const pages = [
       "showRing": true,
       "showLead": true,
       "showGalleryCaption": true,
-      "accentColor": "#3c9a52",
+      "accentColor": "#2f6f3e",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -16485,21 +16520,21 @@ export const pages = [
         "sub": "Glean 案例",
         "lead": "接入知识库后，企业搜索会成为高频工作入口 —— 窄场景也能产生高价值。",
         "kpis": [
-          [
-            "最大单笔融资",
-            "2.6",
-            "亿美元"
-          ],
-          [
-            "付费客户",
-            "780",
-            "家"
-          ],
-          [
-            "赛道",
-            "企业搜索",
-            ""
-          ]
+          {
+            "label": "最大单笔融资",
+            "value": "2.6",
+            "unit": "亿美元"
+          },
+          {
+            "label": "付费客户",
+            "value": "780",
+            "unit": "家"
+          },
+          {
+            "label": "赛道",
+            "value": "企业搜索",
+            "unit": ""
+          }
         ],
         "galleryCap": "案例主视觉",
         "galleryUnit": "DROP IMAGES",
@@ -16644,34 +16679,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#efbe2e",
+        "default": "#7a5a00",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -16710,7 +16745,7 @@ export const pages = [
       "auxCount": 3,
       "showCaption": true,
       "showMessage": true,
-      "accentColor": "#efbe2e",
+      "accentColor": "#7a5a00",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -16913,34 +16948,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -16971,6 +17006,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 1,
       "imageSide": "right",
       "metricCount": 4,
@@ -16982,7 +17018,7 @@ export const pages = [
       "focusIndex": 3,
       "showLead": true,
       "showGalleryCaption": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -16994,26 +17030,26 @@ export const pages = [
         "sub": "SSI 案例",
         "lead": "强团队、强叙事、弱商业化验证 —— 短期难以用收入评价，价值建立在长期技术想象上。",
         "kpis": [
-          [
-            "最大单笔融资",
-            "10",
-            "亿美元"
-          ],
-          [
-            "产品收入",
-            "0",
-            ""
-          ],
-          [
-            "团队规模",
-            "85",
-            "人"
-          ],
-          [
-            "赛道",
-            "安全智能",
-            ""
-          ]
+          {
+            "label": "最大单笔融资",
+            "value": "10",
+            "unit": "亿美元"
+          },
+          {
+            "label": "产品收入",
+            "value": "0",
+            "unit": ""
+          },
+          {
+            "label": "团队规模",
+            "value": "85",
+            "unit": "人"
+          },
+          {
+            "label": "赛道",
+            "value": "安全智能",
+            "unit": ""
+          }
         ],
         "galleryCap": "案例主视觉",
         "galleryUnit": "DROP IMAGES",
@@ -17079,34 +17115,34 @@ export const pages = [
         "key": "bgColor",
         "type": "color",
         "label": "色块背景",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -17185,34 +17221,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -17254,14 +17290,14 @@ export const pages = [
     ],
     "defaultProps": {
       "theme": "dark",
-      "bgColor": "#2c44a0",
+      "bgColor": "#243985",
       "showBigNumber": true,
       "rowCount": 5,
       "showStatus": true,
       "showGloss": true,
       "focusEnabled": true,
       "focusIndex": 1,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showColorBand": true,
       "showWordmark": true,
       "showSheetLabel": true,
@@ -17450,34 +17486,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -17518,7 +17554,7 @@ export const pages = [
       "metricCount": 4,
       "cardTheme": "dark",
       "showLead": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -17554,26 +17590,26 @@ export const pages = [
         "cardEn": "REVENUE VALIDATION",
         "cardLead": "收入验证要看留存、毛利和客户扩张，而不是只看 Logo。",
         "kpis": [
-          [
-            "试点转付费率",
-            "28",
-            "%"
-          ],
-          [
-            "企业年流失率",
-            "17",
-            "%"
-          ],
-          [
-            "毛利率中位数",
-            "54",
-            "%"
-          ],
-          [
-            "推理成本占收入",
-            "31",
-            "%"
-          ]
+          {
+            "label": "试点转付费率",
+            "value": "28",
+            "unit": "%"
+          },
+          {
+            "label": "企业年流失率",
+            "value": "17",
+            "unit": "%"
+          },
+          {
+            "label": "毛利率中位数",
+            "value": "54",
+            "unit": "%"
+          },
+          {
+            "label": "推理成本占收入",
+            "value": "31",
+            "unit": "%"
+          }
         ],
         "conclusion": "客户试点不等于商业化成功。"
       }
@@ -17691,34 +17727,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -17758,7 +17794,7 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 1,
       "showIntro": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -17926,34 +17962,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -17991,7 +18027,7 @@ export const pages = [
       "numberAlign": "left",
       "showCaption": true,
       "showMessage": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -18146,34 +18182,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#7a3c90",
+        "default": "#6d357f",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -18213,7 +18249,7 @@ export const pages = [
       "showValue": true,
       "showAnchor": true,
       "showLead": true,
-      "accentColor": "#7a3c90",
+      "accentColor": "#6d357f",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -18228,19 +18264,19 @@ export const pages = [
             "k": "开源模型性能逼近",
             "en": "OPEN SOURCE",
             "p": 86,
-            "color": "#d8402e"
+            "color": "#b82b20"
           },
           {
             "k": "大厂产品覆盖",
             "en": "PLATFORM",
             "p": 72,
-            "color": "#2c44a0"
+            "color": "#243985"
           },
           {
             "k": "企业自建意愿",
             "en": "IN-HOUSE",
             "p": 34,
-            "color": "#3c9a52"
+            "color": "#2f6f3e"
           }
         ],
         "wallLabel": "壁垒墙",
@@ -18391,34 +18427,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -18459,7 +18495,7 @@ export const pages = [
       "criteriaCount": 4,
       "panelTheme": "dark",
       "showLead": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -18474,25 +18510,25 @@ export const pages = [
             "en": "CLOUD",
             "k": "GPU 云",
             "tag": "算力供给 · 刚性预算",
-            "color": "#d8402e"
+            "color": "#b82b20"
           },
           {
             "en": "DATA",
             "k": "数据平台",
             "tag": "数据治理 · 长期锁定",
-            "color": "#2c44a0"
+            "color": "#243985"
           },
           {
             "en": "EVAL",
             "k": "评测工具",
             "tag": "合规评测 · 采购门槛",
-            "color": "#3c9a52"
+            "color": "#2f6f3e"
           },
           {
             "en": "INFER",
             "k": "推理优化",
             "tag": "降本增效 · 全行业需求",
-            "color": "#e2742c"
+            "color": "#9b4a17"
           }
         ],
         "criteriaCap": "筛选指标",
@@ -18659,34 +18695,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#e2742c",
+        "default": "#9b4a17",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -18727,7 +18763,7 @@ export const pages = [
       "showScenes": true,
       "sceneCount": 5,
       "showLead": true,
-      "accentColor": "#e2742c",
+      "accentColor": "#9b4a17",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -18928,34 +18964,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -18996,7 +19032,7 @@ export const pages = [
       "indicatorCount": 4,
       "panelTheme": "dark",
       "showLead": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -19098,34 +19134,34 @@ export const pages = [
         "key": "bgColor",
         "type": "color",
         "label": "色块背景",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -19218,34 +19254,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -19267,7 +19303,7 @@ export const pages = [
     ],
     "defaultProps": {
       "theme": "dark",
-      "bgColor": "#d8402e",
+      "bgColor": "#b82b20",
       "align": "center",
       "emphasis": true,
       "showTag": true,
@@ -19275,7 +19311,7 @@ export const pages = [
       "showMarker": true,
       "showFooter": true,
       "showColorBand": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showSheetLabel": true,
       "copy": {
         "kicker": "CLOSING · 收尾页",
@@ -19395,34 +19431,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -19460,7 +19496,7 @@ export const pages = [
       "showRankNumber": true,
       "showValue": true,
       "showDelta": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -19667,34 +19703,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -19734,7 +19770,7 @@ export const pages = [
       "focusIndex": 1,
       "zebra": false,
       "showIntro": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -19943,34 +19979,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -20008,7 +20044,7 @@ export const pages = [
       "showValue": true,
       "showNote": true,
       "showAxisCaps": true,
-      "accentColor": "#2c44a0",
+      "accentColor": "#243985",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -20174,34 +20210,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -20232,6 +20268,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "imageCount": 3,
       "imageSide": "right",
       "heroWeight": true,
@@ -20240,7 +20277,7 @@ export const pages = [
       "tagCount": 4,
       "showLead": true,
       "showMediaCaption": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -20413,34 +20450,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -20461,6 +20498,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "images": [],
       "backgroundMode": "unicorn",
       "unicornScene": "goey",
       "imageCount": 1,
@@ -20470,7 +20508,7 @@ export const pages = [
       "tickerCount": 4,
       "showScrim": true,
       "showMediaCaption": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showSheetLabel": true,
       "copy": {
         "eyebrow": "Field · 现场",
@@ -20592,34 +20630,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -20657,7 +20695,7 @@ export const pages = [
       "showSegValue": true,
       "showColTotal": true,
       "showLegend": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -20845,34 +20883,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -20919,7 +20957,7 @@ export const pages = [
       "showCaption": true,
       "auxCount": 3,
       "showClosing": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showWordmark": true,
       "showColorBand": true,
       "showSheetLabel": true,
@@ -21002,34 +21040,34 @@ export const pages = [
         "key": "bgColor",
         "type": "color",
         "label": "色块背景",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -21102,34 +21140,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -21161,13 +21199,13 @@ export const pages = [
     ],
     "defaultProps": {
       "theme": "paper",
-      "bgColor": "#2c44a0",
+      "bgColor": "#243985",
       "align": "left",
       "showInitial": true,
       "emphasis": true,
       "showSource": true,
       "showTag": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showColorBand": true,
       "showSheetLabel": true,
       "copy": {
@@ -21322,34 +21360,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#4da0c6",
+        "default": "#2a667b",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -21390,7 +21428,7 @@ export const pages = [
       "showMethodChips": true,
       "methodCount": 4,
       "showLead": true,
-      "accentColor": "#4da0c6",
+      "accentColor": "#2a667b",
       "showConclusion": true,
       "showSheetLabel": true,
       "copy": {
@@ -21494,34 +21532,34 @@ export const pages = [
         "key": "bgColor",
         "type": "color",
         "label": "色块背景",
-        "default": "#2c44a0",
+        "default": "#243985",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -21619,34 +21657,34 @@ export const pages = [
         "key": "accentColor",
         "type": "color",
         "label": "强调色",
-        "default": "#d8402e",
+        "default": "#b82b20",
         "options": [
           {
-            "value": "#d8402e",
+            "value": "#b82b20",
             "label": "颜色 1"
           },
           {
-            "value": "#e2742c",
+            "value": "#9b4a17",
             "label": "颜色 2"
           },
           {
-            "value": "#efbe2e",
+            "value": "#7a5a00",
             "label": "颜色 3"
           },
           {
-            "value": "#3c9a52",
+            "value": "#2f6f3e",
             "label": "颜色 4"
           },
           {
-            "value": "#4da0c6",
+            "value": "#2a667b",
             "label": "颜色 5"
           },
           {
-            "value": "#2c44a0",
+            "value": "#243985",
             "label": "颜色 6"
           },
           {
-            "value": "#7a3c90",
+            "value": "#6d357f",
             "label": "颜色 7"
           }
         ],
@@ -21668,7 +21706,7 @@ export const pages = [
     ],
     "defaultProps": {
       "theme": "dark",
-      "bgColor": "#2c44a0",
+      "bgColor": "#243985",
       "layout": "left",
       "showMetaBar": true,
       "showPanel": true,
@@ -21676,7 +21714,7 @@ export const pages = [
       "showClosing": true,
       "showSwatches": true,
       "showColorBand": true,
-      "accentColor": "#d8402e",
+      "accentColor": "#b82b20",
       "showSheetLabel": false,
       "copy": {
         "brand": "AICL",

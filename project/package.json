@@ -10,7 +10,6 @@
     "props:safe": "node scripts/write-safe-props.mjs",
     "goal:scaffold": "node scripts/goal-scaffold.mjs",
     "validate:goal-spec": "node scripts/validate-goal-spec.mjs",
-    "validate:skill-workflow-tools": "node scripts/validate-skill-workflow-tools.mjs",
     "render:goal": "tsx scripts/render-goal-deck.jsx",
     "preview:https": "node scripts/serve-preview-https.mjs",
     "preview:start": "node scripts/start-preview-server.mjs",

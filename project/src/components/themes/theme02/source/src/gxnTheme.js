@@ -40,7 +40,8 @@ export const GXN_TOKENS = {
   bg: '#07090b',
   text: '#eef3f1',
   textDim: 'rgba(238,243,241,0.58)',
-  textFaint: 'rgba(238,243,241,0.34)',
+  textFaint: 'rgba(238,243,241,0.58)',
+  decorFaint: 'rgba(238,243,241,0.34)',
   palette: GXN_PALETTE,
 };
 
@@ -56,7 +57,9 @@ const CSS = `
   --gxn-glow: 47,224,127;
   --gxn-text: #eef3f1;
   --gxn-dim: rgba(238,243,241,0.58);
-  --gxn-faint: rgba(238,243,241,0.34);
+  --gxn-text-faint: rgba(238,243,241,0.58);
+  --gxn-decor-faint: rgba(238,243,241,0.34);
+  --gxn-faint: var(--gxn-text-faint);
   --gxn-line: rgba(255,255,255,0.09);
   --gxn-panel-a: rgba(255,255,255,0.055);
   --gxn-panel-b: rgba(255,255,255,0.012);
@@ -164,7 +167,7 @@ const CSS = `
 /* index chip */
 .gxn-index{
   font-family:var(--gxn-font-mono); font-size:var(--gxn-fs-label);
-  color:var(--gxn-faint); letter-spacing:.1em;
+  color:var(--gxn-text-faint); letter-spacing:.1em;
 }
 
 /* legend */
@@ -184,7 +187,7 @@ const CSS = `
 .gxn-slot.is-filled{ background:#0b0d10; border-color:rgba(var(--gxn-glow),0.3);
   box-shadow:0 0 56px -22px rgba(var(--gxn-glow),0.6); }
 .gxn-slot img,.gxn-slot video{ width:100%; height:100%; object-fit:cover; display:block; }
-.gxn-slot-cap{ font-family:var(--gxn-font-mono); font-size:24px; color:var(--gxn-faint);
+.gxn-slot-cap{ font-family:var(--gxn-font-mono); font-size:24px; color:var(--gxn-text-faint);
   letter-spacing:.06em; text-align:center; padding:10px; }
 .gxn-slot-btn{
   position:absolute; appearance:none; border:0; cursor:pointer; font-family:var(--gxn-font-mono);
@@ -285,7 +288,7 @@ export const GXN_SCHEMES = {
     // ticket-card emphasis palette — kept in lock-step with the scheme accent
     ticket: {
       glow: '47,224,127', accent: '#a8f6cd', text: '#eafff4',
-      dim: 'rgba(234,255,244,0.82)', faint: 'rgba(234,255,244,0.56)',
+      dim: 'rgba(234,255,244,0.82)', faint: 'rgba(234,255,244,0.56)', decorFaint: 'rgba(234,255,244,0.34)',
       fillA: '#0a1d13', fillB: '#06110b', edge: '#9bf3c4',
     },
   },
@@ -303,7 +306,7 @@ export const GXN_SCHEMES = {
     aurora: ['#9b82ff', '#5ad1ff', '#c4b3ff', '#ff8fce', '#6f8bff'],
     ticket: {
       glow: '150,120,255', accent: '#cfc4ff', text: '#f3f1ff',
-      dim: 'rgba(239,234,255,0.82)', faint: 'rgba(239,234,255,0.58)',
+      dim: 'rgba(239,234,255,0.82)', faint: 'rgba(239,234,255,0.58)', decorFaint: 'rgba(239,234,255,0.34)',
       fillA: '#17123c', fillB: '#0c0822', edge: '#c9bcff',
     },
   },
@@ -347,7 +350,9 @@ function ticketFocusCSS(t, breath) {
   --gxn-glow:${g};
   --gxn-text:${t.text};
   --gxn-dim:${t.dim};
-  --gxn-faint:${t.faint};
+  --gxn-text-faint:${t.faint};
+  --gxn-decor-faint:${t.decorFaint};
+  --gxn-faint:var(--gxn-text-faint);
   position:relative;
   border-color:transparent;
   /* even dark fill — depth only; the rim is entirely inset box-shadow */

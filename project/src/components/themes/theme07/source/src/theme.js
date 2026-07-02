@@ -23,8 +23,8 @@ export const THEME = {
   inkDim: '#3D413A',
   paper:  '#FAFAF6',         // off-white page
   card:   '#FFFFFF',
-  muted:  '#83877C',         // secondary text
-  faint:  '#B7BBB0',         // tertiary text / labels
+  muted:  '#5F6559',         // secondary text
+  faint:  '#6B7165',         // tertiary text / labels
   hair:   'rgba(14,17,11,0.10)',   // hairline divider
   hairStrong: 'rgba(14,17,11,0.16)',
   // data semantics
@@ -36,23 +36,10 @@ export const THEME = {
   fontText:    "'Noto Sans SC','Space Grotesk',system-ui,sans-serif",
 };
 
-const FONT_HREF =
-  'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap';
-
 let _fontsDone = false;
 export function ensureFonts() {
   if (_fontsDone || typeof document === 'undefined') return;
   _fontsDone = true;
-  for (const [rel, href, cross] of [
-    ['preconnect', 'https://fonts.googleapis.com'],
-    ['preconnect', 'https://fonts.gstatic.com', true],
-    ['stylesheet', FONT_HREF],
-  ]) {
-    const l = document.createElement('link');
-    l.rel = rel; l.href = href;
-    if (cross) l.crossOrigin = 'anonymous';
-    document.head.appendChild(l);
-  }
 }
 
 const _styleIds = new Set();

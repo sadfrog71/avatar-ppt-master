@@ -3,15 +3,20 @@ import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
+  MEDIA_ARRAY_KEYS,
   createLayoutContracts,
-  describePropShapes,
+  isContractContentArray,
   isMediaArrayKey,
+  isNonContentContractValue,
+  isPrivateDefaultRoundTrip,
+  isPrunedContractOmit,
   isSerializedReactElementLike,
-  neutralizeDefaultCopy,
   normalizeSlidePropsForContract,
+  pruneContractValue,
   reactElementText,
 } from '../src/prop-contract-core.mjs';
 import {
+  normalizePublicControls,
   resolvePublicPropAliases,
   toPublicProps,
 } from '../src/control-naming.mjs';
@@ -173,14 +178,28 @@ function compactLayoutCandidate(row) {
     countBindings,
     defaultVisibleCounts,
     fillPlan,
+    lengthBindings,
+    themeDisplayName,
+    themeScenario,
+    themeAudience,
     ...candidate
   } = row;
+  const copyKeys = (row.copyKeys || []).slice(0, 6);
   return {
     ...candidate,
-    copyKeys: (row.copyKeys || []).slice(0, 8),
+    themeDisplayName,
+    copyKeys,
+    copyBudgets: compactCopyBudgets(row.copyBudgets, copyKeys),
     arrayMeta: (row.arrayMeta || []).map(compactCandidateArrayMeta),
-    ...(fillPlan ? { fillPlan: compactCandidateFillPlan(fillPlan) } : {}),
+    mediaSlots: (row.mediaSlots || []).map(compactQueryMediaSlot),
   };
+}
+
+function compactCopyBudgets(copyBudgets = {}, copyKeys = []) {
+  return Object.fromEntries((copyKeys || [])
+    .map(key => [key, copyBudgets?.[key]])
+    .filter(([, budget]) => budget?.maxChars)
+    .map(([key, budget]) => [key, { maxChars: budget.maxChars }]));
 }
 
 function compactCandidateArrayMeta(meta) {
@@ -190,6 +209,34 @@ function compactCandidateArrayMeta(meta) {
     defaultVisibleCount: meta.defaultVisibleCount,
     maxCount: meta.maxCount,
     countKey: meta.countKey,
+    maxFromKey: meta.maxFromKey,
+    maxFromKeyOffset: meta.maxFromKeyOffset,
+    maxByKey: meta.maxByKey,
+    maxByValue: meta.maxByValue,
+  };
+}
+
+function compactQueryMediaSlot(slot) {
+  return {
+    role: slot.role,
+    field: slot.field,
+    fieldPath: slot.fieldPath,
+    writableProp: slot.writableProp,
+    countKey: slot.countKey,
+    publicCountKey: slot.publicCountKey || slot.countKey,
+    defaultVisibleCount: slot.defaultVisibleCount,
+    max: slot.max,
+    maxFromKey: slot.maxFromKey,
+    maxFromKeyOffset: slot.maxFromKeyOffset,
+    maxByKey: slot.maxByKey,
+    maxByValue: slot.maxByValue,
+    maxCount: slot.maxCount,
+    acceptedKinds: slot.acceptedKinds,
+    acceptedKindsSource: slot.acceptedKindsSource,
+    initialSrcSupported: slot.initialSrcSupported,
+    canPresetMedia: slot.canPresetMedia,
+    presetProp: slot.presetProp,
+    emptySlotBehavior: slot.emptySlotBehavior,
   };
 }
 
@@ -201,16 +248,91 @@ function compactCandidateFillPlan(plan) {
       visibleCount: item.visibleCount,
       maxCount: item.maxCount,
       countKey: item.countKey,
+      ...(item.itemShape === 'string' ? { itemShape: item.itemShape } : {}),
+      ...(item.item?.maxChars ? { item: item.item } : {}),
       ...(item.nestedArrays && Object.keys(item.nestedArrays).length ? { nestedArrays: item.nestedArrays } : {}),
     })),
     media: (plan.media || []).slice(0, 2),
   };
 }
 
+function buildFillablePropShapes(defaultProps = {}, copyKeys = [], roots = []) {
+  const rootFilter = roots?.length ? new Set(roots.map(rootPropKey)) : null;
+  const shapes = {};
+  const rootKeys = rootFilter ? [...rootFilter] : Object.keys(defaultProps || {});
+  for (const root of rootKeys) {
+    if (!Object.prototype.hasOwnProperty.call(defaultProps || {}, root)) continue;
+    const shape = fillableValueShape(defaultProps[root], root);
+    if (shape == null) continue;
+    shapes[root] = shape;
+  }
+  for (const key of copyKeys || []) {
+    const root = rootPropKey(key);
+    if (rootFilter && !rootFilter.has(root)) continue;
+    const type = simpleValueType(sampleValueForCopyPath(defaultProps, key));
+    if (type === 'array' || type === 'object') continue;
+    assignPropShape(shapes, String(key).split('.').filter(Boolean), type);
+  }
+  return shapes;
+}
+
+function fillableValueShape(value, pathName) {
+  if (Array.isArray(value)) {
+    const shape = fillPlanArrayValueShape(value, pathName);
+    return shape.length ? shape : null;
+  }
+  if (isPlainObject(value)) {
+    const shape = fillableObjectShape(value, pathName);
+    return Object.keys(shape).length ? shape : null;
+  }
+  return isFillableCopyLeaf(pathName, value) ? simpleValueType(value) : null;
+}
+
+function sampleValueForCopyPath(defaultProps, pathName) {
+  const value = valuesForPattern(defaultProps, pathName);
+  return Array.isArray(value) ? value.find(item => item != null) : value;
+}
+
+function assignPropShape(target, parts, leafShape) {
+  if (!parts.length) return;
+  const [part, ...rest] = parts;
+  const arrayPart = part.endsWith('[]');
+  const key = arrayPart ? part.slice(0, -2) : part;
+  if (!key) return;
+  if (arrayPart) {
+    if (!rest.length) {
+      target[key] = mergePropShape(target[key], [leafShape]);
+      return;
+    }
+    const current = Array.isArray(target[key]) && isPlainObject(target[key][0]) ? target[key][0] : {};
+    target[key] = [current];
+    assignPropShape(current, rest, leafShape);
+    return;
+  }
+  if (!rest.length) {
+    target[key] = mergePropShape(target[key], leafShape);
+    return;
+  }
+  if (!isPlainObject(target[key])) target[key] = {};
+  assignPropShape(target[key], rest, leafShape);
+}
+
+function mergePropShape(left, right) {
+  if (left == null) return right;
+  if (Array.isArray(left) && Array.isArray(right)) return [mergePropShape(left[0], right[0])];
+  if (isPlainObject(left) && isPlainObject(right)) {
+    const next = { ...left };
+    for (const [key, value] of Object.entries(right)) next[key] = mergePropShape(next[key], value);
+    return next;
+  }
+  return left;
+}
+
 export function inspectLayout(layout, { compact = false } = {}) {
   const record = getLayoutRecord(layout);
   if (!record) return null;
-  const { page, contract, controls, countBindings, lengthBindings, defaultProps } = record;
+  const { page, contract, controls, countBindings, lengthBindings } = record;
+  const defaultProps = effectiveInspectDefaultProps(record.defaultProps, page);
   const theme = getThemePackMetadata(page.themeKey);
   const controlKeys = controls.map(control => control.key).filter(Boolean);
   const publicControls = controls.map(publicControl);
@@ -224,12 +346,13 @@ export function inspectLayout(layout, { compact = false } = {}) {
   const arrayKeys = getArrayKeys(defaultProps, mediaSlots);
   const copyBudgets = getCopyBudgets(defaultProps, copyKeyRoots);
   // count 绑定解析到真实数组键(修正 items/stats/data 等静态错配)。
-  const resolvedBindings = (countBindings || []).map(binding => ({ ...binding, arrays: resolveBindingArrays(binding, defaultProps) }));
+  const resolvedBindings = (countBindings || []).map(binding => ({ ...binding, arrays: resolveBindingArrays(binding, defaultProps, controls) }));
   // JAD-213:arrayMeta 含语义 role;JAD-212:覆盖 copy 内数组并匹配其 count 控件。
   const arrayMeta = buildArrayMeta(defaultProps, countBindings, controls, { withItemRoles: true });
   const copyRoles = buildCopyRoles(copyKeys);
   const fieldContracts = buildFieldContracts({ copyKeys, copyRoles, arrayMeta, decorativeKeys, mediaSlots });
-  const fillPlan = buildFillPlan({ copyKeys, copyBudgets, copyRoles, arrayMeta, mediaSlots, defaultProps, controls, lengthBindings });
+  const fillPlan = buildFillPlan({ copyKeys, copyBudgets, copyRoles, arrayMeta, mediaSlots, defaultProps, controls, countBindings, lengthBindings });
+  const propShapes = buildFillablePropShapes(defaultProps, copyKeys, [...copyKeyRoots, ...arrayKeys]);
   // JAD-212:正文全由组件硬编码(count 指向的数组缺席且无可填正文)时标记 contentLocked。
   const contentLockedReason = detectContentLocked({ copyKeys, copyRoles, arrayMeta, resolvedBindings, defaultProps });
   const palette = paletteColorsForLayout(defaultProps);
@@ -267,7 +390,6 @@ export function inspectLayout(layout, { compact = false } = {}) {
   };
 
   if (compact) {
-    const compactKeys = [...new Set([...copyKeyRoots, ...arrayKeys])];
     const compactArrayMeta = arrayMeta.map(({ itemRoles, ...rest }) => rest);
     return {
       layout: base.layout,
@@ -279,10 +401,10 @@ export function inspectLayout(layout, { compact = false } = {}) {
       label: base.label,
       slot: base.slot,
       roles: base.roles,
-      copyKeys: base.copyKeys.slice(0, 12),
-      copyBudgets: base.copyBudgets,
+      copyKeys: base.copyKeys,
+      copyBudgets: compactInspectCopyBudgets(base.copyBudgets),
       copyRoles: base.copyRoles,
-      fieldContracts: base.fieldContracts,
+      fieldContracts: base.fieldContracts.map(compactInspectFieldContract).filter(Boolean),
       fillPlan: base.fillPlan,
       ...(decorativeKeys.length ? { decorativeKeys } : {}),
       ...(contentLockedReason ? { contentLocked: true, contentLockedReason } : {}),
@@ -290,19 +412,64 @@ export function inspectLayout(layout, { compact = false } = {}) {
       arrayMeta: compactArrayMeta,
       lengthBindings: base.lengthBindings,
       ...(palette ? { paletteColors: palette } : {}),
-      propShapes: describePropShapes(defaultProps, compactKeys),
+      propShapes,
       mediaSlots: base.mediaSlots.map(compactMediaSlot),
       countBindings: base.countBindings.map(compactCountBinding),
+      controls: base.controls,
       defaultVisibleCounts: base.defaultVisibleCounts,
     };
   }
 
   return {
     ...base,
-    propShapes: describePropShapes(defaultProps, [...copyKeyRoots, ...arrayKeys]),
-    allowedPropKeys: [...new Set([...Object.keys(defaultProps), ...controlKeys, ...mediaSlots.map(slot => slot.field).filter(Boolean)])].sort(),
-    allowedPublicPropKeys: [...new Set([...Object.keys(toPublicProps(defaultProps, controls)), ...publicControlKeys, ...mediaSlots.map(slot => slot.field).filter(Boolean)])].sort(),
+    propShapes,
+    allowedPropKeys: [...allowedPropKeySet(record, mediaSlots, decorativeKeys)].sort(),
+    allowedPublicPropKeys: [...allowedPublicPropKeySet(record, mediaSlots, decorativeKeys)].sort(),
   };
+}
+
+function compactInspectCopyBudgets(copyBudgets = {}) {
+  return Object.fromEntries(Object.entries(copyBudgets || {}).map(([key, budget]) => [
+    key,
+    budget?.maxChars ? { maxChars: budget.maxChars } : budget,
+  ]));
+}
+
+function compactInspectFieldContract(contract) {
+  if (!contract) return null;
+  if (contract.role === 'eyebrow') return null;
+  if (contract.role !== 'media') return contract;
+  const {
+    acceptedKinds,
+    acceptedKindsSource,
+    defaultCount,
+    canPresetMedia,
+    ...compact
+  } = contract;
+  return compact;
+}
+
+function effectiveInspectDefaultProps(defaultProps = {}, page = {}) {
+  const flows = flowRowsFromMatrix(defaultProps);
+  if (!flows) return defaultProps;
+  return { ...defaultProps, flows };
+}
+
+function flowRowsFromMatrix(defaultProps = {}) {
+  if (!Array.isArray(defaultProps.sources) || !Array.isArray(defaultProps.sectors) || !Array.isArray(defaultProps.matrix)) return null;
+  if (!defaultProps.matrix.every(row => Array.isArray(row))) return null;
+  const rows = [];
+  defaultProps.matrix.forEach((row, sourceIndex) => {
+    row.forEach((value, sectorIndex) => {
+      const amount = Number(value);
+      if (!Number.isFinite(amount) || amount <= 0) return;
+      const source = defaultProps.sources[sourceIndex];
+      const sector = defaultProps.sectors[sectorIndex];
+      if (!source?.name || !sector?.name) return;
+      rows.push({ from: source.name, to: sector.name, value: amount });
+    });
+  });
+  return rows.length ? rows : null;
 }
 
 export function normalizeProps(layout, props = {}) {
@@ -316,17 +483,24 @@ export function normalizeProps(layout, props = {}) {
   }
   const aliasResult = resolvePublicPropAliases(props, record.controls);
   const warnings = unknownPropKeys(record, props).map(key => unknownPropWarning(record, key));
+  const mediaSlots = getMediaSlots(record);
   try {
-    const propsWithCountSafety = normalizeSlidePropsForContract(layout, props, record.contract);
-    const propsWithDefaults = mergeDefaultArrayTails(propsWithCountSafety, record.defaultProps, aliasResult.props);
-    const propsWithMedia = normalizeMediaItems(propsWithDefaults, getMediaSlots(record));
+    const authoredShapeErrors = validateAuthoredFillableProps(aliasResult.props, record, mediaSlots);
+    if (authoredShapeErrors.length) {
+      throw new Error(`Slide props mismatch for "${layout}": ${authoredShapeErrors.join('; ')}`);
+    }
+    const propsWithAuthoredMediaCounts = backfillMediaCountKeys(props, mediaSlots);
+    const propsWithCountSafety = normalizeSlidePropsForContract(layout, propsWithAuthoredMediaCounts, record.contract);
+    const propsWithDefaults = mergeDefaultArrayTails(propsWithCountSafety, record.defaultProps, aliasResult.props, record.countBindings);
+    const mediaResult = normalizeMediaItems(propsWithDefaults, mediaSlots);
+    const propsWithMedia = mediaResult.props;
     const placeholderErrors = visibleNeutralPlaceholderErrors(record, propsWithMedia, aliasResult.props);
     return {
       props: propsWithMedia,
       publicProps: toPublicProps(propsWithMedia, record.controls),
       appliedAliases: aliasResult.appliedAliases,
       warnings,
-      errors: placeholderErrors,
+      errors: [...mediaResult.errors, ...placeholderErrors],
     };
   } catch (error) {
     return {
@@ -337,6 +511,206 @@ export function normalizeProps(layout, props = {}) {
       errors: [publicErrorMessage(error.message, record.controls)],
     };
   }
+}
+
+function validateAuthoredFillableProps(props = {}, record, mediaSlots = getMediaSlots(record)) {
+  const decorativeKeys = getDecorativeKeys(record.page.key);
+  const copyKeyRoots = getCopyKeyRoots(record.defaultProps, record.controls, mediaSlots, decorativeKeys);
+  const copyKeys = expandCopyKeys(record.defaultProps, copyKeyRoots);
+  const arrayKeys = getArrayKeys(record.defaultProps, mediaSlots);
+  const propShapes = buildFillablePropShapes(record.defaultProps, copyKeys, [...copyKeyRoots, ...arrayKeys]);
+  const allowedNestedArrays = new Set(
+    buildArrayMeta(record.defaultProps, record.countBindings, record.controls)
+      .map(meta => meta.key)
+      .filter(isNestedArrayPath),
+  );
+  const countBoundLengths = countBoundLengthsForProps(props, record.countBindings);
+  const countBoundPaths = new Set((record.countBindings || []).flatMap(binding => binding.arrays || []));
+  const errors = [];
+  for (const [key, value] of Object.entries(props || {})) {
+    if (!Object.prototype.hasOwnProperty.call(propShapes, key)) continue;
+    if (isPrivateDefaultRoundTrip(value, record.defaultProps?.[key]) && !containsPrivatePosToneField(value)) continue;
+    validateFillableValueShape(value, propShapes[key], `props.${key}`, errors, record.defaultProps?.[key], allowedNestedArrays, countBoundLengths, countBoundPaths);
+  }
+  return errors;
+}
+
+function validateFillableValueShape(value, shape, field, errors, defaultValue = undefined, allowedNestedArrays = new Set(), countBoundLengths = new Map(), countBoundPaths = new Set(), numberBounds = new Map()) {
+  if (!isPrivatePosToneField(pathFieldName(field)) && !Array.isArray(value) && !isPlainObject(value) && isPrivateDefaultRoundTrip(value, defaultValue)) return;
+  if (Array.isArray(shape)) {
+    if (!Array.isArray(value)) {
+      errors.push(`${field}: expected array`);
+      return;
+    }
+    const contractPath = contractPathForField(field);
+    const countBound = countBoundLengths.get(contractPath);
+    if (countBound != null && value.length !== countBound.count) {
+      errors.push(`countBinding mismatch ${countBound.key}=${countBound.count}; ${String(field).replace(/^props\./, '')} has ${value.length}`);
+      return;
+    }
+    if (countBound == null && !countBoundPaths.has(contractPath) && allowedNestedArrays.has(contractPath) && Array.isArray(defaultValue) && value.length !== defaultValue.length) {
+      errors.push(`${String(field).replace(/^props\./, '')}: fixed nested array length ${value.length} does not match default ${defaultValue.length}`);
+      return;
+    }
+    if (
+      allowedNestedArrays.has(contractPath)
+      && Array.isArray(defaultValue)
+      && value.length !== defaultValue.length
+    ) {
+      return;
+    }
+    const isTupleShape = shape.length > 1;
+    if (isTupleShape && value.length !== shape.length) {
+      errors.push(`${String(field).replace(/^props\./, '')}: expected tuple length ${shape.length}`);
+      return;
+    }
+    const itemNumberBounds = Array.isArray(defaultValue) ? numberBoundsForArrayItems(defaultValue) : new Map();
+    value.forEach((item, index) => {
+      const itemShape = isTupleShape ? shape[index] : shape[0];
+      validateFillableValueShape(
+        item,
+        itemShape,
+        `${field}[${index}]`,
+        errors,
+        Array.isArray(defaultValue) ? defaultValue[index] : undefined,
+        allowedNestedArrays,
+        countBoundLengths,
+        countBoundPaths,
+        itemNumberBounds,
+      );
+    });
+    return;
+  }
+  if (isPlainObject(shape)) {
+    if (!isPlainObject(value)) {
+      errors.push(`${field}: expected object`);
+      return;
+    }
+    const allowed = new Set(Object.keys(shape));
+    for (const [key, item] of Object.entries(value || {})) {
+      if (!allowed.has(key)) {
+        if (!isPrivatePosToneField(key) && isPrivateDefaultRoundTrip(item, defaultValue?.[key])) continue;
+        if (isAllowedNestedArrayField(field, key, item, defaultValue?.[key], allowedNestedArrays)) continue;
+        errors.push(`${field}.${key}: unknown nested prop; expected ${formatExpectedKeys(allowed)}`);
+        continue;
+      }
+      validateFillableValueShape(item, shape[key], `${field}.${key}`, errors, defaultValue?.[key], allowedNestedArrays, countBoundLengths, countBoundPaths);
+      const bounds = numberBounds.get(key);
+      if (bounds) validateNumberBounds(item, bounds, `${field}.${key}`, errors);
+    }
+    return;
+  }
+  if (shape === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) {
+    errors.push(`${field}: expected number`);
+    return;
+  }
+  if (shape === 'boolean' && typeof value !== 'boolean') {
+    errors.push(`${field}: expected boolean`);
+    return;
+  }
+  if (shape === 'string' && typeof value !== 'string') {
+    errors.push(`${field}: expected string`);
+  }
+}
+
+function containsPrivatePosToneField(value) {
+  if (Array.isArray(value)) return value.some(containsPrivatePosToneField);
+  if (!isPlainObject(value)) return false;
+  return Object.entries(value).some(([key, item]) => isPrivatePosToneField(key) || containsPrivatePosToneField(item));
+}
+
+function isPrivatePosToneField(key) {
+  return /^(pos|tone)$/i.test(String(key || ''));
+}
+
+function numberBoundsForArrayItems(items = []) {
+  const result = new Map();
+  const objects = items.filter(isPlainObject);
+  const keys = new Set(objects.flatMap(item => Object.keys(item)));
+  const bcgBubbleShape = objects.some(item => ['gx', 'gy', 'size', 'q'].every(key => Object.prototype.hasOwnProperty.call(item, key)));
+  for (const key of keys) {
+    if (bcgBubbleShape && (key === 'gx' || key === 'gy')) {
+      result.set(key, { min: 0, max: 1 });
+      continue;
+    }
+    if (bcgBubbleShape && key === 'size') {
+      result.set(key, { min: 0.2, max: 1.1 });
+      continue;
+    }
+    if (bcgBubbleShape && key === 'q') {
+      result.set(key, { min: 0, max: 3 });
+      continue;
+    }
+    if (isPercentDistributionField(key, objects)) {
+      result.set(key, { min: 0, max: 100 });
+      continue;
+    }
+    const bounds = numberBoundsForValues(objects.map(item => item?.[key]));
+    if (bounds) result.set(key, bounds);
+  }
+  return result;
+}
+
+function isPercentDistributionField(key, objects) {
+  const values = objects.map(item => item?.[key]).filter(value => typeof value === 'number' && Number.isFinite(value));
+  if (values.length < 2 || values.some(value => value < 0 || value > 100)) return false;
+  const labelKeys = ['name', 'label', 'category', 'segment', 'title'];
+  const hasLabels = objects.every(item => labelKeys.some(labelKey => typeof item?.[labelKey] === 'string'));
+  if (!hasLabels) return false;
+  const sum = values.reduce((total, value) => total + value, 0);
+  return sum >= 99 && sum <= 101;
+}
+
+function numberBoundsForValues(values = []) {
+  const numbers = values.filter(value => typeof value === 'number' && Number.isFinite(value));
+  if (numbers.length < 2) return null;
+  const min = Math.min(...numbers);
+  const max = Math.max(...numbers);
+  return {
+    min: min >= 0 ? 0 : min * 1.1,
+    max: max <= 0 ? 0 : max * 1.1,
+  };
+}
+
+function validateNumberBounds(value, bounds, field, errors) {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return;
+  if (value < bounds.min) errors.push(`${field}: expected >= ${formatNumber(bounds.min)}`);
+  if (value > bounds.max) errors.push(`${field}: expected <= ${formatNumber(bounds.max)}`);
+}
+
+function formatNumber(value) {
+  return Number.isInteger(value) ? String(value) : String(Number(value.toFixed(2)));
+}
+
+function countBoundLengthsForProps(props = {}, countBindings = []) {
+  const result = new Map();
+  for (const binding of countBindings || []) {
+    const rawCount = props?.[binding.key] ?? props?.[binding.publicKey];
+    const count = numberOrNull(rawCount);
+    if (count == null) continue;
+    for (const arrayPath of binding.arrays || []) {
+      if (isMediaArrayKey(String(arrayPath || '').split('.')[0].replace(/\[\]$/, ''))) continue;
+      result.set(arrayPath, { count, key: binding.publicKey || binding.key });
+    }
+  }
+  return result;
+}
+
+function isAllowedNestedArrayField(field, key, value, defaultValue, allowedNestedArrays) {
+  if (!Array.isArray(value) || !Array.isArray(defaultValue)) return false;
+  return allowedNestedArrays.has(contractPathForNestedField(field, key));
+}
+
+function contractPathForNestedField(field, key) {
+  return `${contractPathForField(field)}.${key}`;
+}
+
+function contractPathForField(field) {
+  return String(field || '').replace(/^props\./, '').replace(/\[\d+\]/g, '[]');
+}
+
+function formatExpectedKeys(keys) {
+  return [...keys].join(', ');
 }
 
 function visibleNeutralPlaceholderErrors(record, props = {}, authoredProps = props) {
@@ -368,7 +742,7 @@ function visibleCountBindings(record) {
     bindings.set(key, current);
   };
   for (const binding of record.countBindings || []) {
-    add({ ...binding, arrays: resolveBindingArrays(binding, record.defaultProps) });
+    add({ ...binding, arrays: resolveBindingArrays(binding, record.defaultProps, record.controls) });
   }
   for (const meta of buildArrayMeta(record.defaultProps, record.countBindings, record.controls)) {
     if (!meta.countKey) continue;
@@ -462,7 +836,11 @@ function publicControl(control) {
     default: control.default,
     min: control.min,
     max: control.max,
-    // UI 渲染提示(如 select/color):随契约暴露,否则 prop-contract-core 写入的 display 形同虚设。
+    displayOffset: control.displayOffset,
+    maxFromKey: control.maxFromKey,
+    maxFromKeyOffset: control.maxFromKeyOffset,
+    maxByKey: control.maxByKey,
+    maxByValue: control.maxByValue,
     display: control.display,
   };
 }
@@ -479,9 +857,14 @@ function compactMediaSlot(slot) {
     defaultCount: slot.defaultCount,
     defaultVisibleCount: slot.defaultVisibleCount ?? slot.defaultCount,
     max: slot.max,
+    maxFromKey: slot.maxFromKey,
+    maxFromKeyOffset: slot.maxFromKeyOffset,
+    maxByKey: slot.maxByKey,
+    maxByValue: slot.maxByValue,
     maxCount: slot.maxCount ?? mediaSlotCapacity(slot),
     accepts: slot.accepts || slot.acceptedKinds,
     acceptedKinds: slot.acceptedKinds,
+    acceptedKindsSource: slot.acceptedKindsSource,
     itemShape: slot.itemShape,
     valueShape: slot.valueShape,
     initialSrcSupported: slot.initialSrcSupported,
@@ -489,6 +872,8 @@ function compactMediaSlot(slot) {
     canPresetMedia,
     presetProp: canPresetMedia ? slot.fieldPath : null,
     emptySlotBehavior: slot.emptySlotBehavior,
+    ...(slot.countOnly ? { countOnly: true } : {}),
+    ...(slot.explicitMediaSlot ? { explicitMediaSlot: true } : {}),
   };
 }
 
@@ -500,6 +885,10 @@ function compactCountBinding(binding) {
     arrays: binding.arrays,
     min: binding.min,
     max: binding.max,
+    maxFromKey: binding.maxFromKey,
+    maxFromKeyOffset: binding.maxFromKeyOffset,
+    maxByKey: binding.maxByKey,
+    maxByValue: binding.maxByValue,
   };
 }
 
@@ -530,11 +919,7 @@ function suggestPropAlternatives(record, key) {
 
 function topLevelPropCandidates(record) {
   const details = inspectLayout(record.page.key, { compact: true });
-  const allowed = new Set([
-    ...Object.keys(record.defaultProps || {}),
-    ...record.controls.map(control => control.publicKey || control.key).filter(Boolean),
-    ...getMediaSlots(record).map(slot => slot.field).filter(Boolean),
-  ]);
+  const allowed = allowedPropKeySet(record);
   const fromContracts = (details?.fieldContracts || [])
     .filter(item => item.role !== 'decorative')
     .map(item => rootPropKey(item.key))
@@ -619,8 +1004,8 @@ export function getPreferredMediaSlot(layout, { kind = 'images', count = 1 } = {
   if (!slots.length) return null;
   const requested = Math.max(1, Number(count) || 1);
   const requestedKind = kind === 'media' ? null : 'image';
-  const fieldPattern = kind === 'media' ? /^(media|images)$/i : /^(images|photos|pictures|thumbs|logos|media)$/i;
-  return slots.find(slot => slot.initialSrcSupported === true && fieldPattern.test(slot.field || '') && (!requestedKind || slotAcceptsKind(slot, requestedKind)) && mediaSlotCapacity(slot) >= requested)
+  const preferredFields = kind === 'media' ? ['media', 'images'] : MEDIA_ARRAY_KEYS;
+  return slots.find(slot => slot.initialSrcSupported === true && preferredFields.some(field => field.toLowerCase() === String(slot.field || '').toLowerCase()) && (!requestedKind || slotAcceptsKind(slot, requestedKind)) && mediaSlotCapacity(slot) >= requested)
     || slots.find(slot => slot.initialSrcSupported === true && (!requestedKind || slotAcceptsKind(slot, requestedKind)) && mediaSlotCapacity(slot) >= requested)
     || null;
 }
@@ -644,27 +1029,74 @@ export function typedMediaItemForSource(source) {
   };
 }
 
-function mergeDefaultArrayTails(props, defaults, authoredProps = props) {
+export function isDeckLocalMediaSource(source) {
+  const text = String(source || '').trim();
+  if (!text || text.includes('\\') || path.posix.isAbsolute(text)) return false;
+  if (path.posix.normalize(text) !== text) return false;
+  if (!text.startsWith('assets/user-media/')) return false;
+  const suffix = text.slice('assets/user-media/'.length);
+  if (!suffix) return false;
+  return suffix.split('/').every(part => part && part !== '.' && part !== '..');
+}
+
+function mergeDefaultArrayTails(props, defaults, authoredProps = props, countBindings = []) {
   const next = { ...(props || {}) };
   for (const [key, value] of Object.entries(props || {})) {
     if (!Array.isArray(value) || !Array.isArray(defaults?.[key])) continue;
     if (isMediaArrayKey(key)) continue;
-    const authoredLength = Array.isArray(authoredProps?.[key]) ? authoredProps[key].length : value.length;
-    next[key] = [
-      ...value.slice(0, authoredLength),
-      ...value.slice(authoredLength).map(item => neutralizeDefaultCopy(item)),
-    ];
+    const explicitCount = explicitCountForArrayKey(authoredProps, key, countBindings);
+    const authoredLength = Array.isArray(authoredProps?.[key]) ? authoredProps[key].length : explicitCount ?? value.length;
+    next[key] = value.slice(0, authoredLength);
   }
   return next;
 }
 
+function explicitCountForArrayKey(props = {}, arrayKey, countBindings = []) {
+  for (const binding of countBindings || []) {
+    if (!(binding.arrays || []).includes(arrayKey)) continue;
+    const count = numberOrNull(props?.[binding.key] ?? props?.[binding.publicKey]);
+    if (count != null) return count;
+  }
+  return null;
+}
+
 function normalizeMediaItems(props, mediaSlots = []) {
   const next = { ...(props || {}) };
+  const errors = [];
   for (const slot of mediaSlots || []) {
     if (!slot?.field || !Array.isArray(next[slot.field])) continue;
     next[slot.field] = next[slot.field].map(normalizeMediaItem);
+    const count = next[slot.field].length;
+    const capacity = mediaSlotCapacity(slot);
+    if (count > capacity) {
+      errors.push(`props.${slot.field}: too many media items (${count} > ${capacity}); keep within media slot capacity`);
+    }
+    const explicitCount = mediaSlotExplicitCount(next, slot);
+    if (explicitCount != null && count > explicitCount) {
+      errors.push(`props.${slot.field}: too many media items (${count} > ${explicitCount}); keep within ${slot.publicCountKey || slot.countKey}`);
+    }
+  }
+  return { props: next, errors };
+}
+
+function backfillMediaCountKeys(props, mediaSlots = []) {
+  let next = props || {};
+  for (const slot of mediaSlots || []) {
+    if (!slot?.field || !slot.countKey || !Array.isArray(next[slot.field])) continue;
+    if (mediaSlotExplicitCount(next, slot) != null) continue;
+    if (next === props) next = { ...(props || {}) };
+    next[slot.countKey] = next[slot.field].length;
   }
   return next;
+}
+
+function mediaSlotExplicitCount(props, slot) {
+  for (const key of [slot.countKey, slot.publicCountKey].filter(Boolean)) {
+    if (!Object.prototype.hasOwnProperty.call(props || {}, key)) continue;
+    const count = numberOrNull(props[key]);
+    if (count != null) return count;
+  }
+  return null;
 }
 
 function normalizeMediaItem(item) {
@@ -690,9 +1122,9 @@ export function getLayoutRecord(layout) {
   if (!page) return null;
   const baseContract = contracts.get(layout);
   const manifestLayout = manifest.layouts?.[layout] || {};
-  const controls = manifestLayout.controls || baseContract?.controls || [];
+  const controls = normalizePublicControls(manifestLayout.controls || baseContract?.controls || [], { layout, themeKey: page.themeKey });
   const rawCountBindings = mergeCountBindings(manifestLayout.countBindings, baseContract?.countBindings);
-  const countBindings = resolveCountBindings(rawCountBindings, baseContract?.defaultProps || {});
+  const countBindings = resolveCountBindings(rawCountBindings, baseContract?.defaultProps || {}, controls);
   const lengthBindings = mergeLengthBindings(manifestLayout.lengthBindings, baseContract?.lengthBindings);
   const contract = {
     ...(baseContract || {}),
@@ -721,8 +1153,19 @@ function mergeCountBindings(primary = [], fallback = []) {
   return result;
 }
 
-function resolveCountBindings(bindings = [], defaultProps = {}) {
-  return (bindings || []).map(binding => ({ ...binding, arrays: resolveBindingArrays(binding, defaultProps) }));
+function resolveCountBindings(bindings = [], defaultProps = {}, controls = []) {
+  return (bindings || []).map(binding => {
+    const control = (controls || []).find(item => item.key === binding.key || item.publicKey === binding.publicKey);
+    return {
+      ...binding,
+      publicKey: control?.publicKey || binding.publicKey,
+      maxFromKey: binding.maxFromKey ?? control?.maxFromKey,
+      maxFromKeyOffset: binding.maxFromKeyOffset ?? control?.maxFromKeyOffset,
+      maxByKey: binding.maxByKey ?? control?.maxByKey,
+      maxByValue: binding.maxByValue ?? control?.maxByValue,
+      arrays: resolveBindingArrays(binding, defaultProps, controls),
+    };
+  });
 }
 
 function mergeLengthBindings(primary = [], fallback = []) {
@@ -782,24 +1225,32 @@ function isClosingLikePage(page) {
 export function getAllowedPropKeys(layout) {
   const record = getLayoutRecord(layout);
   if (!record) return new Set();
-  const mediaFields = getMediaSlots(record).map(slot => slot.field).filter(Boolean);
+  return allowedPropKeySet(record);
+}
+
+export function unknownPropKeys(record, props = {}) {
+  const allowed = allowedPropKeySet(record);
+  return Object.keys(props || {}).filter(key => !allowed.has(key));
+}
+
+function allowedPropKeySet(record, mediaSlots = getMediaSlots(record), decorativeKeys = getDecorativeKeys(record.page.key)) {
+  const defaultProps = record.defaultProps || {};
+  const controls = record.controls || [];
+  const controlKeys = controls.map(control => control.key).filter(Boolean);
+  const mediaFields = mediaSlots.map(slot => slot.field).filter(Boolean);
   return new Set([
-    ...Object.keys(record.defaultProps || {}),
-    ...record.controls.map(control => control.key).filter(Boolean),
-    ...record.controls.map(control => control.publicKey).filter(Boolean),
+    ...getCopyKeyRoots(defaultProps, controls, mediaSlots, decorativeKeys),
+    ...getArrayKeys(defaultProps, mediaSlots),
+    ...controlKeys,
+    ...controls.map(control => control.publicKey).filter(Boolean),
     ...mediaFields,
   ]);
 }
 
-export function unknownPropKeys(record, props = {}) {
-  const mediaFields = getMediaSlots(record).map(slot => slot.field).filter(Boolean);
-  const allowed = new Set([
-    ...Object.keys(record.defaultProps || {}),
-    ...record.controls.map(control => control.key).filter(Boolean),
-    ...record.controls.map(control => control.publicKey).filter(Boolean),
-    ...mediaFields,
-  ]);
-  return Object.keys(props || {}).filter(key => !allowed.has(key));
+function allowedPublicPropKeySet(record, mediaSlots = getMediaSlots(record), decorativeKeys = getDecorativeKeys(record.page.key)) {
+  const controls = record.controls || [];
+  const keyToAlias = new Map(controls.map(control => [control.key, control.publicKey || control.key]).filter(([key]) => key));
+  return new Set([...allowedPropKeySet(record, mediaSlots, decorativeKeys)].map(key => keyToAlias.get(key) || key));
 }
 
 // 顶层文案根:对象 copy 仍是单根(copy),内部路径由 expandCopyKeys/collectCopyBudgets 递归。
@@ -808,7 +1259,11 @@ function getCopyKeyRoots(defaultProps, controls, mediaSlots, decorativeKeys = []
   const mediaFields = new Set(mediaSlots.map(slot => slot.field));
   const decorative = new Set(decorativeKeys);
   return Object.entries(defaultProps || {})
-    .filter(([key, value]) => !controlKeys.has(key) && !mediaFields.has(key) && !decorative.has(key) && !isMediaArrayKey(key) && isCopyValue(value) && hasFillableCopyLeaf(value, key))
+    .filter(([key, value]) => {
+      if ((controlKeys.has(key) && key !== 'copy') || mediaFields.has(key) || decorative.has(key) || isMediaArrayKey(key)) return false;
+      const pruned = pruneContractValue(value, key);
+      return !isPrunedContractOmit(pruned) && pruned !== null && isCopyValue(pruned) && hasFillableCopyLeaf(pruned, key);
+    })
     .map(([key]) => key);
 }
 
@@ -821,6 +1276,8 @@ function expandCopyKeys(defaultProps, copyKeyRoots) {
 }
 
 function collectCopyPaths(value, pathName, out) {
+  value = pruneContractValue(value, pathName);
+  if (isPrunedContractOmit(value)) return;
   if (typeof value === 'string' || typeof value === 'number' || isSerializedReactElementLike(value)) {
     if (isFillableCopyLeaf(pathName, value)) out.push(pathName);
     return;
@@ -841,7 +1298,7 @@ function collectCopyPaths(value, pathName, out) {
 function getArrayKeys(defaultProps, mediaSlots) {
   const mediaFields = new Set(mediaSlots.map(slot => slot.field));
   return Object.entries(defaultProps || {})
-    .filter(([key, value]) => Array.isArray(value) && !mediaFields.has(key) && !isMediaArrayKey(key))
+    .filter(([key, value]) => Array.isArray(value) && !mediaFields.has(key) && !isMediaArrayKey(key) && isContractContentArray(key, value))
     .map(([key]) => key);
 }
 
@@ -855,10 +1312,78 @@ function isColorArray(value) {
   return Array.isArray(value) && value.length > 0 && value.every(isColorString);
 }
 
+function isVisualConfigValue(pathName, value) {
+  if (isVisualConfigLeaf(pathName, value)) return true;
+  if (Array.isArray(value)) return isVisualConfigArray(pathName, value);
+  if (!isPlainObject(value)) return false;
+  const entries = Object.entries(value || {});
+  const numericGroups = entries.filter(([key]) => isNumericPathSegment(key));
+  return numericGroups.length > 0
+    && numericGroups.length === entries.length
+    && numericGroups.every(([key, item]) => isVisualConfigValue(`${pathName}.${key}`, item));
+}
+
+function isVisualConfigArray(pathName, value) {
+  if (!Array.isArray(value) || !value.length) return false;
+  if (isColorArray(value)) return true;
+  const field = arrayFieldName(pathName);
+  if (value.every(item => typeof item === 'number' && Number.isFinite(item))) return isVisualArrayField(field);
+  const objects = value.filter(isPlainObject);
+  if (!objects.length || objects.length !== value.filter(item => item != null).length) return false;
+  const scalarFields = objects.flatMap(item => scalarObjectEntries(item).map(([key, itemValue]) => [key, itemValue]));
+  if (!scalarFields.some(([key, itemValue]) => isVisualConfigLeaf(key, itemValue))) return false;
+  return scalarFields.every(([key, itemValue]) => (
+    isVisualConfigLeaf(key, itemValue) || isVisualDecorationLabelField(pathFieldName(key))
+  ));
+}
+
+function scalarObjectEntries(value, prefix = '') {
+  if (!isPlainObject(value)) return [];
+  const rows = [];
+  for (const [key, item] of Object.entries(value)) {
+    const pathName = prefix ? `${prefix}.${key}` : key;
+    if (Array.isArray(item)) continue;
+    if (isPlainObject(item)) {
+      rows.push(...scalarObjectEntries(item, pathName));
+      continue;
+    }
+    rows.push([pathName, item]);
+  }
+  return rows;
+}
+
+function isVisualConfigLeaf(pathName, value) {
+  const field = pathFieldName(pathName);
+  if (isColorString(value)) return true;
+  if (typeof value === 'number' && Number.isFinite(value)) return isVisualNumericField(field);
+  if (typeof value === 'string' && isVisualStyleField(field) && (isTokenLike(value) || isCssVarLike(value))) return true;
+  return false;
+}
+
+function isVisualNumericField(field) {
+  return /^(x|y|l|t|r|w|h|cx|cy|dx|dy|box|width|height|left|top|right|bottom|ratio|rotate|rotation|angle|tilt|scale|sr|opacity|radius|z|zindex)$/i.test(String(field || ''));
+}
+
+function isVisualArrayField(field) {
+  return /^(tilts?|rotations?|angles?|offsets?|positions?|coords?|coordinates?)$/i.test(String(field || ''));
+}
+
+function isVisualStyleField(field) {
+  return /^(c|color|colour|accent|fill|stroke|background|bg|tint|hex|tone|subcolor)$/i.test(String(field || ''));
+}
+
+function isVisualDecorationLabelField(field) {
+  return /^(ph|placeholder|label|sub|caption|cap)$/i.test(String(field || ''));
+}
+
+function isCssVarLike(value) {
+  return /^var\(--[A-Za-z0-9_-]+\)$/.test(String(value || '').trim());
+}
+
 // defaultProps 中实际承载内容的数组键(排除媒体数组与纯色板数组)。
 function contentArrayKeys(defaultProps = {}) {
   return Object.keys(defaultProps || {})
-    .filter(key => Array.isArray(defaultProps[key]) && !isMediaArrayKey(key) && !isColorArray(defaultProps[key]));
+    .filter(key => Array.isArray(defaultProps[key]) && !isMediaArrayKey(key) && isContractContentArray(key, defaultProps[key]));
 }
 
 function arrayHeadExists(defaultProps, pathName) {
@@ -866,9 +1391,30 @@ function arrayHeadExists(defaultProps, pathName) {
 }
 
 // 把 count 控件解析到 defaultProps 里真实存在的数组键;命不中时只保留可由命名或长度证明的数组。
-function resolveBindingArrays(binding, defaultProps = {}) {
+function resolveBindingArrays(binding, defaultProps = {}, controls = []) {
+  const explicit = explicitCountArraysForBinding(binding, controls);
+  if (explicit.length) {
+    const kept = explicit.filter(pathName => isExplicitBindableCountArray(defaultProps, pathName));
+    if (kept.length) return [...new Set(kept)];
+    return [];
+  }
+  if (isMediaCountBinding(binding)) {
+    const declaredMedia = [
+      ...(Array.isArray(binding?.arrays) ? binding.arrays : []),
+    ].filter(pathName => isMediaArrayPath(pathName) && arrayHeadExists(defaultProps, pathName));
+    if (declaredMedia.length) return narrowCountBindingArrays(binding, [...new Set(declaredMedia)]);
+
+    const mediaArrays = Object.keys(defaultProps || {}).filter(key => Array.isArray(defaultProps[key]) && isMediaArrayKey(key));
+    const preferred = preferredMediaBindingArray(binding, mediaArrays);
+    if (preferred) return [preferred];
+  }
   const declared = Array.isArray(binding?.arrays) ? binding.arrays : [];
-  const kept = declared.filter(pathName => arrayHeadExists(defaultProps, pathName));
+  if (Array.isArray(binding?.arrays) && !declared.length) return [];
+  const kept = declared.filter(pathName => isBindableCountArray(defaultProps, pathName));
+  if (kept.length && isVisualSlotCountBinding(binding, controls)) {
+    const mediaArrays = Object.keys(defaultProps || {}).filter(key => Array.isArray(defaultProps[key]) && isMediaArrayKey(key));
+    if (mediaArrays.length) return [...new Set([...kept, ...mediaArrays])];
+  }
   if (kept.length) return narrowCountBindingArrays(binding, kept);
   const paths = discoverContentArrayPaths(defaultProps);
   const byField = declared
@@ -883,6 +1429,64 @@ function resolveBindingArrays(binding, defaultProps = {}) {
   const byDefault = Number.isFinite(fallbackDefault) ? content.filter(key => defaultProps[key].length === fallbackDefault) : [];
   if (byDefault.length === 1) return byDefault;
   return [];
+}
+
+function isBindableCountArray(defaultProps, pathName) {
+  if (!arrayHeadExists(defaultProps, pathName)) return false;
+  if (isMediaArrayPath(pathName)) return true;
+  return isContractContentArray(pathName, valueAtPath(defaultProps, pathName));
+}
+
+function isExplicitBindableCountArray(defaultProps, pathName) {
+  if (!arrayHeadExists(defaultProps, pathName)) return false;
+  if (isBindableCountArray(defaultProps, pathName)) return true;
+  const value = valueAtPath(defaultProps, pathName);
+  return Array.isArray(value) && value.length > 0 && value.every(item => typeof item === 'number' && Number.isFinite(item));
+}
+
+function explicitCountArraysForBinding(binding, controls = []) {
+  const control = (controls || []).find(item => (
+    item?.key && (item.key === binding?.key || item.key === binding?.publicKey)
+  ) || (
+    item?.publicKey && (item.publicKey === binding?.key || item.publicKey === binding?.publicKey)
+  ));
+  const value = control?.countArrays;
+  if (typeof value === 'string' && value) return [value];
+  if (Array.isArray(value)) return value.filter(item => typeof item === 'string' && item);
+  return [];
+}
+
+function isMediaArrayPath(pathName) {
+  const root = String(pathName || '').split('.')[0].replace(/\[\]$/, '');
+  return isMediaArrayKey(root) || isMediaArrayKey(arrayFieldName(pathName));
+}
+
+function isMediaCountBinding(binding) {
+  const text = `${binding?.key || ''} ${binding?.publicKey || ''} ${binding?.label || ''}`;
+  return isMediaCountText(text)
+    && /(count|数量)/i.test(text);
+}
+
+function isMediaCountText(text) {
+  return /image|media|photo|picture|video|logo|slot|图片|图像|视频|媒体|照片|徽标|标志|槽/i.test(String(text || ''));
+}
+
+function isVisualSlotCountBinding(binding, controls = []) {
+  const control = (controls || []).find(item => (
+    item?.key && (item.key === binding?.key || item.key === binding?.publicKey)
+  ) || (
+    item?.publicKey && (item.publicKey === binding?.key || item.publicKey === binding?.publicKey)
+  ));
+  const text = `${binding?.key || ''} ${binding?.publicKey || ''} ${binding?.label || ''} ${control?.label || ''}`;
+  return /(count|数量)$/i.test(String(binding?.key || control?.key || ''))
+    && /(frame|image|media|photo|picture|slot|gallery|画框|画格|图片|图像|媒体|照片|相册)/i.test(text);
+}
+
+function preferredMediaBindingArray(binding, mediaArrays = []) {
+  if (!mediaArrays.length) return null;
+  const stem = normalizeName(String(binding?.publicKey || binding?.key || '').replace(/Count$/i, ''));
+  const exact = mediaArrays.find(key => normalizeName(key).startsWith(stem));
+  return exact || mediaArrays[0];
 }
 
 function narrowCountBindingArrays(binding, arrays) {
@@ -995,10 +1599,15 @@ function buildFieldContracts({ copyKeys = [], copyRoles = {}, arrayMeta = [], de
       writableProp: slot.writableProp || slot.presetProp || null,
       accepts: slot.accepts || slot.acceptedKinds || [],
       acceptedKinds: slot.acceptedKinds || slot.accepts || [],
+      acceptedKindsSource: slot.acceptedKindsSource || null,
       defaultCount: slot.defaultCount,
       defaultVisibleCount: slot.defaultVisibleCount ?? slot.defaultCount,
       maxCount: slot.maxCount ?? mediaSlotCapacity(slot),
       countKey: slot.publicCountKey || slot.countKey || null,
+      maxFromKey: slot.maxFromKey,
+      maxFromKeyOffset: slot.maxFromKeyOffset,
+      maxByKey: slot.maxByKey,
+      maxByValue: slot.maxByValue,
       canPresetMedia: slot.canPresetMedia === true,
     });
   }
@@ -1021,10 +1630,10 @@ function dedupeFieldContracts(rows) {
   return result;
 }
 
-function buildFillPlan({ copyKeys = [], copyBudgets = {}, copyRoles = {}, arrayMeta = [], mediaSlots = [], defaultProps = {}, controls = [], lengthBindings = [] } = {}) {
+function buildFillPlan({ copyKeys = [], copyBudgets = {}, copyRoles = {}, arrayMeta = [], mediaSlots = [], defaultProps = {}, controls = [], countBindings = [], lengthBindings = [] } = {}) {
   return {
     text: buildFillPlanText(copyKeys, copyBudgets, copyRoles, defaultProps),
-    arrays: buildFillPlanArrays(arrayMeta, copyBudgets, copyRoles, defaultProps, controls, lengthBindings),
+    arrays: buildFillPlanArrays(arrayMeta, copyBudgets, copyRoles, defaultProps, controls, countBindings, lengthBindings),
     media: buildFillPlanMedia(mediaSlots),
   };
 }
@@ -1041,14 +1650,16 @@ function buildFillPlanText(copyKeys, copyBudgets, copyRoles, defaultProps) {
     .filter(item => item.type !== 'object' && item.type !== 'array');
 }
 
-function buildFillPlanArrays(arrayMeta, copyBudgets, copyRoles, defaultProps, controls, lengthBindings) {
+function buildFillPlanArrays(arrayMeta, copyBudgets, copyRoles, defaultProps, controls, countBindings, lengthBindings) {
+  const resolvedBindings = (countBindings || []).map(binding => ({ ...binding, arrays: resolveBindingArrays(binding, defaultProps, controls) }));
   return (arrayMeta || [])
     .map(meta => {
-      const items = Array.isArray(valueAtPath(defaultProps, meta.key)) ? valueAtPath(defaultProps, meta.key) : [];
-      const fieldItems = isNestedArrayPath(meta.key) ? arraysAtPath(defaultProps, meta.key).flatMap(item => item) : items;
+      const items = itemsForArrayPath(defaultProps, meta.key);
+      const fieldItems = items;
       const itemFields = fillPlanItemFields(meta.key, fieldItems.length ? fieldItems : items, copyBudgets, copyRoles);
-      const nestedArrays = fillPlanNestedArrays(meta.key, items, copyBudgets, copyRoles, defaultProps, controls, lengthBindings);
-      const itemShape = fillPlanArrayItemShape(items);
+      const nestedArrays = fillPlanNestedArrays(meta.key, items, copyBudgets, copyRoles, defaultProps, controls, resolvedBindings, lengthBindings);
+      const itemShape = fillPlanArrayItemShape(items, meta.key);
+      const itemBudget = fillPlanStringArrayItem(meta.key, itemShape, copyBudgets, copyRoles);
       const numericRange = isNestedArrayPath(meta.key) ? numericRangeForValues(valuesForPattern(defaultProps, meta.key)) : null;
       const lengthBinding = lengthBindingForPath(meta.key, lengthBindings);
       const fixedLength = fixedLengthForArrayPath(defaultProps, meta.key);
@@ -1061,12 +1672,29 @@ function buildFillPlanArrays(arrayMeta, copyBudgets, copyRoles, defaultProps, co
         ...(lengthBinding ? fillPlanLengthBinding(lengthBinding) : {}),
         ...(!meta.countKey && !lengthBinding && fixedLength ? fixedLength : {}),
         ...(itemShape ? { itemShape } : {}),
+        ...(itemBudget ? { item: itemBudget } : {}),
         ...(numericRange ? { numericRange } : {}),
         ...(Object.keys(itemFields).length ? { itemFields } : {}),
         ...(Object.keys(nestedArrays).length ? { nestedArrays } : {}),
       };
     })
     .filter(item => item.itemShape || item.itemFields || item.nestedArrays);
+}
+
+function fillPlanStringArrayItem(arrayKey, itemShape, copyBudgets, copyRoles) {
+  if (itemShape !== 'string') return null;
+  const itemKey = `${arrayKey}[]`;
+  const budget = copyBudgets[itemKey];
+  if (!budget?.maxChars) return null;
+  return {
+    role: normalizeFieldContractRole(copyRoles[itemKey] || copyRoleForField(itemKey)),
+    maxChars: budget.maxChars,
+  };
+}
+
+function itemsForArrayPath(defaultProps, pathName) {
+  if (isNestedArrayPath(pathName)) return arraysAtPath(defaultProps, pathName).flatMap(item => item);
+  return Array.isArray(valueAtPath(defaultProps, pathName)) ? valueAtPath(defaultProps, pathName) : [];
 }
 
 function buildFillPlanMedia(mediaSlots = []) {
@@ -1078,37 +1706,48 @@ function buildFillPlanMedia(mediaSlots = []) {
       visibleCount: slot.defaultVisibleCount ?? slot.defaultCount,
       maxCount: slot.maxCount ?? mediaSlotCapacity(slot),
       countKey: slot.publicCountKey || slot.countKey || null,
+      maxFromKey: slot.maxFromKey,
+      maxFromKeyOffset: slot.maxFromKeyOffset,
+      maxByKey: slot.maxByKey,
+      maxByValue: slot.maxByValue,
       accepts: slot.accepts || slot.acceptedKinds || [],
+      acceptedKindsSource: slot.acceptedKindsSource || null,
       itemShape: slot.itemShape,
     }));
 }
 
 function fillPlanItemFields(arrayKey, items, copyBudgets, copyRoles) {
-  const shape = items.find(isPlainObject);
+  const prunedItems = pruneContractItems(items, arrayKey);
+  const shape = prunedItems.find(isPlainObject);
   if (!shape) return {};
   const fields = {};
-  for (const [field, value] of Object.entries(shape)) {
-    if (Array.isArray(value) || isPlainObject(value)) continue;
-    const pathName = `${arrayKey}[].${field}`;
-    if (!isFillableCopyLeaf(pathName, value)) continue;
-    fields[field] = {
+  function collect(value, fieldPath) {
+    if (Array.isArray(value)) return;
+    if (isPlainObject(value)) {
+      for (const [field, child] of Object.entries(value)) collect(child, `${fieldPath}.${field}`);
+      return;
+    }
+    const pathName = `${arrayKey}[].${fieldPath}`;
+    if (!isFillableCopyLeaf(pathName, value)) return;
+    fields[fieldPath] = {
       role: normalizeFieldContractRole(copyRoles[pathName] || copyRoleForField(pathName)),
       type: simpleValueType(value),
-      ...(simpleValueType(value) === 'number' ? { numericRange: numericRangeForValues(items.map(item => item?.[field])) } : {}),
+      ...(simpleValueType(value) === 'number' ? { numericRange: numericRangeForValues(items.map(item => valueAtPath(item, fieldPath))) } : {}),
       ...(copyBudgets[pathName]?.maxChars ? { maxChars: copyBudgets[pathName].maxChars } : {}),
     };
   }
+  for (const [field, value] of Object.entries(shape)) collect(value, field);
   return fields;
 }
 
-function fillPlanNestedArrays(arrayKey, items, copyBudgets, copyRoles, defaultProps, controls, lengthBindings) {
-  const shape = items.find(isPlainObject);
+function fillPlanNestedArrays(arrayKey, items, copyBudgets, copyRoles, defaultProps, controls, resolvedBindings, lengthBindings) {
+  const shape = pruneContractItems(items, arrayKey).find(isPlainObject);
   if (!shape) return {};
   const nested = {};
   for (const [field, value] of Object.entries(shape)) {
-    if (!Array.isArray(value) || isMediaArrayKey(field) || isColorArray(value)) continue;
-    const countMeta = countMetaForNestedArray(field, value, defaultProps, controls);
     const pathName = `${arrayKey}[].${field}`;
+    if (!Array.isArray(value) || isMediaArrayKey(field) || !isContractContentArray(pathName, value)) continue;
+    const countMeta = countMetaForNestedArray(pathName, field, value, defaultProps, controls, resolvedBindings);
     const defaultArrays = arraysAtPath(defaultProps, pathName);
     const numericRange = numericRangeForValues(defaultArrays);
     const lengthBinding = lengthBindingForPath(pathName, lengthBindings);
@@ -1120,7 +1759,7 @@ function fillPlanNestedArrays(arrayKey, items, copyBudgets, copyRoles, defaultPr
       ...(lengthBinding ? fillPlanLengthBinding(lengthBinding) : {}),
       ...(!countMeta.countKey && !lengthBinding && fixedLength ? fixedLength : {}),
       ...(numericRange ? { numericRange } : {}),
-      itemShape: fillPlanArrayItemShape(value) || 'string',
+      itemShape: fillPlanArrayItemShape(value, pathName) || 'string',
     };
     const nestedItems = defaultArrays.flatMap(item => item);
     const nestedFields = fillPlanItemFields(pathName, nestedItems.length ? nestedItems : value, copyBudgets, copyRoles);
@@ -1204,7 +1843,15 @@ function fillPlanLengthBinding(binding) {
   };
 }
 
-function countMetaForNestedArray(field, items, defaultProps, controls) {
+function countMetaForNestedArray(pathName, field, items, defaultProps, controls, resolvedBindings = []) {
+  const bound = countMetaForArray(pathName, resolvedBindings);
+  if (bound.countKey) {
+    return {
+      countKey: bound.countKey,
+      visibleCount: defaultVisibleCountForArray(bound.countKey, items, controls, defaultProps),
+      maxCount: maxCountForArray(bound.max, items),
+    };
+  }
   const control = countControlForArrayField(field, controls);
   const value = control ? defaultProps?.[control.key] ?? control.default : null;
   const visibleCount = control ? numberOrNull(value) ?? items.length : items.length;
@@ -1236,23 +1883,67 @@ function singularFieldName(field) {
   return value;
 }
 
-function fillPlanArrayItemShape(items) {
-  if (!Array.isArray(items) || !items.length) return null;
-  const object = items.find(isPlainObject);
+function fillPlanArrayItemShape(items, pathName = '') {
+  const prunedItems = pruneContractItems(items, pathName);
+  if (!prunedItems.length) return null;
+  const object = prunedItems.find(isPlainObject);
   if (object) {
-    return Object.fromEntries(Object.entries(object).map(([key, value]) => [
-      key,
-      Array.isArray(value) ? fillPlanArrayValueShape(value) : simpleValueType(value),
-    ]));
+    const shape = {};
+    for (const [key, value] of Object.entries(object)) {
+      const childPath = pathName ? `${pathName}[].${key}` : key;
+      if (Array.isArray(value)) {
+        if (!isMediaArrayKey(key) && isContractContentArray(childPath, value)) {
+          const childShape = fillPlanArrayValueShape(value, childPath);
+          if (childShape.length) shape[key] = childShape;
+        }
+        continue;
+      }
+      if (isPlainObject(value)) {
+        const childShape = fillableObjectShape(value, childPath);
+        if (Object.keys(childShape).length) shape[key] = childShape;
+        continue;
+      }
+      if (isFillableCopyLeaf(childPath, value)) shape[key] = simpleValueType(value);
+    }
+    return Object.keys(shape).length ? shape : null;
   }
-  const tuple = fillPlanTupleShapeForArrayItems(items);
+  const tuple = fillPlanTupleShapeForArrayItems(prunedItems);
   if (tuple) return tuple;
-  return simpleValueType(items.find(item => item != null));
+  return simpleValueType(prunedItems.find(item => item != null));
 }
 
-function fillPlanArrayValueShape(items) {
-  const itemShape = fillPlanArrayItemShape(items);
+function fillableObjectShape(value, pathName = '') {
+  if (!isPlainObject(value)) return {};
+  const shape = {};
+  for (const [key, item] of Object.entries(value)) {
+    const childPath = pathName ? `${pathName}.${key}` : key;
+    if (Array.isArray(item)) {
+      if (!isMediaArrayKey(key) && isContractContentArray(childPath, item)) {
+        const childShape = fillPlanArrayValueShape(item, childPath);
+        if (childShape.length) shape[key] = childShape;
+      }
+      continue;
+    }
+    if (isPlainObject(item)) {
+      const childShape = fillableObjectShape(item, childPath);
+      if (Object.keys(childShape).length) shape[key] = childShape;
+      continue;
+    }
+    if (isFillableCopyLeaf(childPath, item)) shape[key] = simpleValueType(item);
+  }
+  return shape;
+}
+
+function fillPlanArrayValueShape(items, pathName = '') {
+  const itemShape = fillPlanArrayItemShape(items, pathName);
   return itemShape == null ? [] : [itemShape];
+}
+
+function pruneContractItems(items, pathName = '') {
+  if (!Array.isArray(items)) return [];
+  return items
+    .map(item => pruneContractValue(item, `${pathName}[]`))
+    .filter(item => !isPrunedContractOmit(item));
 }
 
 function fillPlanTupleShapeForArrayItems(items) {
@@ -1287,7 +1978,7 @@ function simpleValueType(value) {
 }
 
 function arrayItemRoles(items = [], arrayKey) {
-  const shape = items.find(isPlainObject);
+  const shape = pruneContractItems(items, arrayKey).find(isPlainObject);
   if (!shape) return undefined;
   const roles = {};
   for (const field of Object.keys(shape)) {
@@ -1361,7 +2052,17 @@ function nonMediaCountControls(controls = []) {
 // JAD-212:数组路径(顶层或 copy 内)→ count 控件。只能来自已解析 countBindings。
 function countMetaForArray(pathName, resolvedBindings) {
   const binding = (resolvedBindings || []).find(item => (item.arrays || []).includes(pathName));
-  if (binding) return { countKey: binding.publicKey || binding.key, min: binding.min ?? null, max: binding.max ?? null };
+  if (binding) {
+    return {
+      countKey: binding.publicKey || binding.key,
+      min: binding.min ?? null,
+      max: binding.max ?? null,
+      maxFromKey: binding.maxFromKey,
+      maxFromKeyOffset: binding.maxFromKeyOffset,
+      maxByKey: binding.maxByKey,
+      maxByValue: binding.maxByValue,
+    };
+  }
   return { countKey: null, min: null, max: null };
 }
 
@@ -1383,14 +2084,15 @@ function discoverContentArrayPaths(defaultProps = {}) {
   const out = [];
   for (const [key, value] of Object.entries(defaultProps || {})) {
     if (Array.isArray(value)) {
-      if (!isMediaArrayKey(key) && !isColorArray(value)) out.push(key);
+      if (!isMediaArrayKey(key) && isContractContentArray(key, value)) out.push(key);
       for (const pathName of nestedArrayPaths(value, key)) out.push(pathName);
       continue;
     }
     if (!isPlainObject(value)) continue;
     for (const [nestedKey, nestedValue] of Object.entries(value)) {
       if (isNumericPathSegment(nestedKey)) continue;
-      if (Array.isArray(nestedValue) && !isMediaArrayKey(nestedKey) && !isColorArray(nestedValue)) {
+      const pathName = `${key}.${nestedKey}`;
+      if (Array.isArray(nestedValue) && !isMediaArrayKey(nestedKey) && isContractContentArray(pathName, nestedValue)) {
         out.push(`${key}.${nestedKey}`);
       }
       if (Array.isArray(nestedValue)) {
@@ -1407,8 +2109,9 @@ function nestedArrayPaths(items, prefix) {
     if (!isPlainObject(item)) continue;
     for (const [key, value] of Object.entries(item)) {
       if (!Array.isArray(value)) continue;
-      if (!isMediaArrayKey(key) && !isColorArray(value)) out.push(`${prefix}[].${key}`);
-      for (const pathName of nestedArrayPaths(value, `${prefix}[].${key}`)) out.push(pathName);
+      const pathName = `${prefix}[].${key}`;
+      if (!isMediaArrayKey(key) && isContractContentArray(pathName, value)) out.push(pathName);
+      for (const nestedPathName of nestedArrayPaths(value, pathName)) out.push(nestedPathName);
     }
   }
   return out;
@@ -1422,16 +2125,16 @@ function valueAtPath(defaultProps, pathName) {
   let current = defaultProps;
   for (const segment of String(pathName || '').split('.')) {
     if (current == null) return undefined;
+    if (Array.isArray(current)) {
+      const arrayKey = segment.endsWith('[]') ? segment.slice(0, -2) : segment;
+      const values = current.map(item => arrayKey ? item?.[arrayKey] : item).filter(item => item !== undefined);
+      current = segment.endsWith('[]') ? values.find(Array.isArray) : values.find(item => item !== undefined);
+      continue;
+    }
     if (segment.endsWith('[]')) {
       const array = current[segment.slice(0, -2)];
       if (!Array.isArray(array)) return undefined;
       current = array;
-      continue;
-    }
-    if (Array.isArray(current)) {
-      current = current
-        .map(item => item?.[segment])
-        .find(item => item !== undefined);
       continue;
     }
     current = current[segment];
@@ -1478,10 +2181,10 @@ function collectNumbers(value) {
 // 每个内容数组的填充元数据:默认条目数、绑定的 count 控件、范围、默认配色、语义角色、字段角色。
 function buildArrayMeta(defaultProps = {}, countBindings = [], controls = [], { withItemRoles = false } = {}) {
   const paths = discoverContentArrayPaths(defaultProps);
-  const resolvedBindings = (countBindings || []).map(binding => ({ ...binding, arrays: resolveBindingArrays(binding, defaultProps) }));
+  const resolvedBindings = (countBindings || []).map(binding => ({ ...binding, arrays: resolveBindingArrays(binding, defaultProps, controls) }));
   return paths.slice(0, 8).map(pathName => {
     const items = Array.isArray(valueAtPath(defaultProps, pathName)) ? valueAtPath(defaultProps, pathName) : [];
-    const { countKey, min, max } = countMetaForArray(pathName, resolvedBindings);
+    const { countKey, min, max, maxFromKey, maxFromKeyOffset, maxByKey, maxByValue } = countMetaForArray(pathName, resolvedBindings);
     const defaultVisibleCount = defaultVisibleCountForArray(countKey, items, controls, defaultProps);
     const nested = isNestedArrayPath(pathName);
     const fixedCapacity = nested && isFixedCapacityArray(arrayFieldName(pathName), [items]);
@@ -1495,6 +2198,10 @@ function buildArrayMeta(defaultProps = {}, countBindings = [], controls = [], { 
       countKey,
       min,
       max,
+      maxFromKey,
+      maxFromKeyOffset,
+      maxByKey,
+      maxByValue,
       maxCount,
     };
     if (colors.length) meta.defaultColors = colors.slice(0, 8);
@@ -1532,6 +2239,8 @@ function getCopyBudgets(defaultProps, copyKeys) {
 }
 
 function collectCopyBudgets(value, pathName, budgets) {
+  value = pruneContractValue(value, pathName);
+  if (isPrunedContractOmit(value)) return;
   if (typeof value === 'string' || typeof value === 'number') {
     if (isFillableCopyLeaf(pathName, value)) setCopyBudget(budgets, pathName, copyBudget(pathName, value));
     return;
@@ -1595,6 +2304,8 @@ function charLength(value) {
 }
 
 function hasFillableCopyLeaf(value, pathName) {
+  value = pruneContractValue(value, pathName);
+  if (isPrunedContractOmit(value)) return false;
   if (typeof value === 'string' || typeof value === 'number' || isSerializedReactElementLike(value)) {
     return isFillableCopyLeaf(pathName, value);
   }
@@ -1607,6 +2318,8 @@ function hasFillableCopyLeaf(value, pathName) {
 
 function isFillableCopyLeaf(pathName, value) {
   const field = pathFieldName(pathName);
+  if (/axesData\[\]\.id$/i.test(String(pathName || '')) && typeof value === 'string') return true;
+  if (isNonContentContractValue(pathName, value)) return false;
   if (isColorString(value) && /^(c|color|colour|accent|fill|stroke|background|bg|tint|hex)$/i.test(field)) return false;
   if (/^(id|key|type|kind|mode|variant|style|layout|align|side|position|fit|icon|href|url|src|className)$/i.test(field)) return false;
   if (/^(theme|tone|q)$/i.test(field) && isTokenLike(value)) return false;
@@ -1637,6 +2350,13 @@ function isPlainObject(value) {
 function getMediaSlots(record) {
   const { controls, countBindings, defaultProps } = record;
   const slots = [];
+  const explicitMediaSlotControls = (controls || []).filter(control => Array.isArray(control.mediaSlots) && control.mediaSlots.length);
+  for (const control of explicitMediaSlotControls) {
+    for (const spec of control.mediaSlots) {
+      slots.push(explicitMediaSlot(spec, control, defaultProps, record));
+    }
+  }
+  const explicitCountKeys = new Set(explicitMediaSlotControls.map(control => control.key).filter(Boolean));
   for (const binding of countBindings || []) {
     const mediaArrays = (binding.arrays || []).filter(isMediaArrayKey);
     for (const field of mediaArrays) {
@@ -1649,16 +2369,55 @@ function getMediaSlots(record) {
     slots.push(mediaSlot(field, control.countKey, controls, defaultProps, control, record, { writeMode: 'initialProps' }));
   }
   for (const field of Object.keys(defaultProps || {}).filter(key => Array.isArray(defaultProps[key]) && isMediaArrayKey(key) && defaultArraySupportsInitialMedia(defaultProps[key]))) {
-    slots.push(mediaSlot(field, undefined, controls, defaultProps, {}, record, { writeMode: 'initialProps' }));
+    const countControl = mediaCountControlForArrayField(field, controls);
+    slots.push(mediaSlot(field, countControl?.key, controls, defaultProps, countControl || {}, record, { writeMode: 'initialProps' }));
   }
   for (const control of controls || []) {
+    if (explicitCountKeys.has(control.key)) continue;
     if (!isMediaCountControl(control)) continue;
     for (const field of hostMediaFields(record, control)) {
       slots.push(mediaSlot(field, control.key, controls, defaultProps, control, record, { writeMode: 'initialProps' }));
     }
-    slots.push(countOnlyMediaSlot(control, defaultProps, record));
   }
-  return dedupeSlots(slots);
+  return annotateMediaSlotSemantics(dedupeSlots(slots), record);
+}
+
+function annotateMediaSlotSemantics(slots, record) {
+  const bindingsByKey = new Map();
+  for (const binding of record.countBindings || []) {
+    if (binding.key) bindingsByKey.set(binding.key, binding);
+    if (binding.publicKey) bindingsByKey.set(binding.publicKey, binding);
+  }
+  return slots.map(slot => {
+    if (!slot.countKey || !slot.field) return slot;
+    const binding = bindingsByKey.get(slot.countKey) || bindingsByKey.get(slot.publicCountKey);
+    if (binding?.arrays?.includes(slot.field)) return slot;
+    if (slot.explicit || !Array.isArray(record.defaultProps?.[slot.field]) || !isMediaCountBinding({ ...(binding || {}), key: slot.countKey, publicKey: slot.publicCountKey, label: slot.label })) {
+      return { ...slot, explicitMediaSlot: true };
+    }
+    return slot;
+  });
+}
+
+function explicitMediaSlot(spec, control, defaultProps, record) {
+  const field = spec.field || spec.key;
+  const writeMode = spec.writeMode || 'initialProps';
+  const inferredCountKey = Object.prototype.hasOwnProperty.call(spec, 'countKey')
+    ? spec.countKey
+    : (isMediaCountControl(control) ? control.key : null);
+  const slot = mediaSlot(field, inferredCountKey, [control], defaultProps, { ...control, ...spec }, record, { writeMode });
+  return {
+    ...slot,
+    explicit: true,
+    fieldPath: spec.fieldPath || slot.fieldPath,
+    writableProp: spec.writableProp ?? slot.writableProp,
+    countKey: inferredCountKey || null,
+    publicCountKey: inferredCountKey ? slot.publicCountKey : null,
+    maxCount: spec.maxCount ?? slot.maxCount,
+    initialSrcSupported: spec.initialSrcSupported ?? slot.initialSrcSupported,
+    canPresetMedia: spec.canPresetMedia ?? slot.canPresetMedia,
+    presetProp: spec.presetProp ?? slot.presetProp,
+  };
 }
 
 function mediaSlot(field, countKey, controls, defaultProps, source, record, { writeMode = 'initialProps' } = {}) {
@@ -1668,7 +2427,8 @@ function mediaSlot(field, countKey, controls, defaultProps, source, record, { wr
   const max = source.max ?? countControl?.max ?? null;
   const defaultVisibleCount = defaultCount ?? null;
   const maxCount = mediaSlotMaxCount(max, defaultVisibleCount);
-  const acceptedKinds = acceptedMediaKinds(record, field, fieldControl);
+  const accepted = acceptedMediaKinds(record, field, fieldControl, source);
+  const acceptedKinds = accepted.kinds;
   const itemShape = acceptedKinds.includes('video') ? 'string | {src,kind,type}' : 'string | {src}';
   return {
     role: 'media',
@@ -1681,12 +2441,17 @@ function mediaSlot(field, countKey, controls, defaultProps, source, record, { wr
     defaultVisibleCount,
     min: source.min ?? countControl?.min ?? null,
     max,
+    maxFromKey: source.maxFromKey ?? countControl?.maxFromKey,
+    maxFromKeyOffset: source.maxFromKeyOffset ?? countControl?.maxFromKeyOffset,
+    maxByKey: source.maxByKey ?? countControl?.maxByKey,
+    maxByValue: source.maxByValue ?? countControl?.maxByValue,
     maxCount,
     controlKey: fieldControl?.key || null,
     publicControlKey: fieldControl?.publicKey || fieldControl?.key || null,
     label: fieldControl?.label || countControl?.label || null,
     accepts: acceptedKinds,
     acceptedKinds,
+    acceptedKindsSource: accepted.source,
     itemShape,
     valueShape: `Array<${itemShape}>`,
     initialSrcSupported: writeMode === 'initialProps',
@@ -1695,37 +2460,6 @@ function mediaSlot(field, countKey, controls, defaultProps, source, record, { wr
     canPresetMedia: writeMode === 'initialProps',
     presetProp: writeMode === 'initialProps' ? `props.${field}` : null,
     emptySlotBehavior: countKey ? 'hiddenByCount' : 'placeholder',
-  };
-}
-
-function countOnlyMediaSlot(control, defaultProps, record) {
-  const acceptedKinds = countOnlyAcceptedMediaKinds(record, control);
-  const defaultCount = defaultProps?.[control.key] ?? control.default ?? null;
-  const max = control.max ?? null;
-  return {
-    role: 'media',
-    field: null,
-    fieldPath: null,
-    writableProp: null,
-    countKey: control.key,
-    publicCountKey: control.publicKey || control.key,
-    defaultCount,
-    defaultVisibleCount: defaultCount,
-    min: control.min ?? null,
-    max,
-    maxCount: mediaSlotMaxCount(max, defaultCount),
-    controlKey: control.key,
-    publicControlKey: control.publicKey || control.key,
-    label: control.label || null,
-    accepts: acceptedKinds,
-    acceptedKinds,
-    valueShape: null,
-    initialSrcSupported: false,
-    runtimeReplaceable: true,
-    writeMode: 'countOnly',
-    canPresetMedia: false,
-    presetProp: null,
-    emptySlotBehavior: 'placeholder',
   };
 }
 
@@ -1750,6 +2484,7 @@ function dedupeSlots(slots) {
 function slotRank(slot) {
   let rank = 0;
   if (slot.initialSrcSupported) rank += 10;
+  if (slot.explicit) rank += 5;
   if (slot.countKey) rank += 2;
   if (slot.controlKey) rank += 1;
   return rank;
@@ -1763,7 +2498,7 @@ function isWritableMediaControl(control) {
   const type = String(control.type || '').toLowerCase();
   const key = String(control.key || '').toLowerCase();
   if (['images', 'image', 'media', 'picture'].includes(type)) return true;
-  if (/^(images|media|photos|pictures|logos|thumbs)$/.test(key)) return true;
+  if (isMediaArrayKey(key)) return true;
   return false;
 }
 
@@ -1774,9 +2509,42 @@ function isMediaCountControl(control) {
   const desc = String(control.desc || control.description || '');
   if (!/(count|数量)$/i.test(key)) return false;
   if (!['number', 'range', 'slider'].includes(type)) return false;
-  return /image|media|photo|picture|video|图片|图像|视频|媒体|照片/.test(`${key} ${label} ${desc}`);
+  return isMediaCountText(`${key} ${label} ${desc}`);
 }
 
+function mediaCountControlForArrayField(field, controls = []) {
+  const candidates = (controls || []).filter(isMediaCountControl);
+  const visualSlotCandidates = (controls || []).filter(isVisualSlotCountControl);
+  if (!candidates.length && visualSlotCandidates.length === 1) return visualSlotCandidates[0];
+  if (!candidates.length) return null;
+  const base = singularFieldName(field);
+  const exactKeys = new Set([
+    ...(base ? [`${base}Count`, `${base}Total`] : []),
+    `${field}Count`,
+  ].map(item => item.toLowerCase()));
+  const exact = candidates.find(control => {
+    const keys = [control.key, control.publicKey].filter(Boolean).map(item => String(item).toLowerCase());
+    return keys.some(key => exactKeys.has(key));
+  });
+  if (exact) return exact;
+  const scored = candidates
+    .map(control => ({ control, score: countArrayNameScore(control.publicKey || control.key, field) }))
+    .filter(item => item.score > 0);
+  if (scored.length) {
+    const best = Math.max(...scored.map(item => item.score));
+    return scored.find(item => item.score === best)?.control || null;
+  }
+  return candidates.length === 1 ? candidates[0] : null;
+}
+
+function isVisualSlotCountControl(control) {
+  const type = String(control?.type || '').toLowerCase();
+  const key = String(control?.key || '');
+  const text = `${key} ${control?.publicKey || ''} ${control?.label || ''} ${control?.desc || control?.description || ''}`;
+  return /(count|数量)$/i.test(key)
+    && ['number', 'range', 'slider'].includes(type)
+    && /(frame|image|media|photo|picture|slot|gallery|画框|画格|图片|图像|媒体|照片|相册)/i.test(text);
+}
 
 function defaultArraySupportsInitialMedia(value) {
   if (!Array.isArray(value)) return false;
@@ -1788,20 +2556,32 @@ function mediaObjectHasSource(value) {
   return isPlainObject(value) && ['src', 'url', 'u', 'href'].some(key => typeof value[key] === 'string' && value[key]);
 }
 
-function acceptedMediaKinds(record, field, fieldControl) {
-  return ['image', 'video'];
+function acceptedMediaKinds(record, field, fieldControl, source = {}) {
+  const explicit = normalizeAcceptedKinds(source.acceptedKinds || source.accepts || fieldControl?.acceptedKinds || fieldControl?.accepts);
+  if (explicit.length) return { kinds: explicit, source: source.acceptedKinds || source.accepts ? 'slotContract' : 'controlContract' };
+  const key = String(field || '').toLowerCase();
+  if (/videos?/.test(key)) return { kinds: ['video'], source: 'fieldName' };
+  if (isMediaArrayKey(key)) return { kinds: ['image', 'video'], source: 'mediaArrayField' };
+  return { kinds: ['image'], source: 'fieldName' };
 }
 
-function countOnlyAcceptedMediaKinds(record, control) {
-  return ['image', 'video'];
+function normalizeAcceptedKinds(value) {
+  const items = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/[,\s|]+/) : [];
+  return [...new Set(items.map(normalizeMediaKind).filter(kind => kind === 'image' || kind === 'video'))];
 }
 
 function hostMediaFields(record, control) {
   if (!HOST_MEDIA_ARRAY_THEMES.has(record?.page?.themeKey)) return [];
-  const kinds = countOnlyAcceptedMediaKinds(record, control);
+  const kinds = acceptedMediaKinds(record, firstMediaArray(record?.defaultProps || {}) || 'images', null, control).kinds;
   if (!kinds.includes('image')) return [];
-  if (['theme05', 'theme06', 'theme08'].includes(record?.page?.themeKey)) return ['images'];
-  return kinds.includes('video') ? ['images', 'media'] : ['images'];
+  const fields = ['images'];
+  if (hasRealMediaField(record, 'media')) fields.push('media');
+  return fields;
+}
+
+function hasRealMediaField(record, field) {
+  return Array.isArray(record?.defaultProps?.[field])
+    || (record?.controls || []).some(control => control.key === field && isWritableMediaControl(control));
 }
 
 function normalizeMediaKind(kind) {

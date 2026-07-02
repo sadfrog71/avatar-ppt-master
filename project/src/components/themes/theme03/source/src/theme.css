@@ -22,7 +22,7 @@
   --rd-ink-3:   #908f8a;
   --rd-line:    rgba(22,21,19,0.20);
   --rd-line-2:  rgba(22,21,19,0.10);
-  --rd-blue:    #2742ec;
+  --rd-blue:    #1834d6;
   --rd-blue-ink:#f3f5ff;
   --rd-lime:    #c2f53d;
   --rd-panel:   #1a1916;     /* dark surface */
@@ -68,6 +68,8 @@
   --rd-ink-3:  #84827c;
   --rd-line:   rgba(243,242,238,0.22);
   --rd-line-2: rgba(243,242,238,0.10);
+  --rd-blue:   #91a2ff;
+  --rd-blue-ink:#0d1330;
   --rd-panel:  #f3f2ee;
 }
 
@@ -121,7 +123,7 @@
   font-family: var(--rd-sans);
   font-weight: 900;
   font-size: var(--rd-display);
-  line-height: 1.07;
+  line-height: 1.12;
   letter-spacing: -0.02em;
   margin: 0;
   text-wrap: balance;

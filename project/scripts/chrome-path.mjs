@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 import { execFileSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+
+const require = createRequire(import.meta.url);
 
 function resolveExistingPath(candidate) {
   if (!candidate) return '';
@@ -25,49 +28,45 @@ function lookupCommand(command) {
   }
 }
 
-function platformCandidates() {
-  if (process.platform === 'win32') {
-    return [
-      process.env.CHROME_PATH,
-      process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA, 'Google', 'Chrome', 'Application', 'chrome.exe'),
-      process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES, 'Google', 'Chrome', 'Application', 'chrome.exe'),
-      process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'], 'Google', 'Chrome', 'Application', 'chrome.exe'),
-      process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES, 'Microsoft', 'Edge', 'Application', 'msedge.exe'),
-      process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'], 'Microsoft', 'Edge', 'Application', 'msedge.exe'),
-    ].filter(Boolean);
+function playwrightChromiumPath() {
+  for (const packageName of ['playwright', 'playwright-core']) {
+    try {
+      return resolveExistingPath(require(packageName).chromium.executablePath());
+    } catch {
+      continue;
+    }
   }
+  return '';
+}
 
-  if (process.platform === 'darwin') {
-    return [
-      process.env.CHROME_PATH,
-      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-      '/Applications/Chromium.app/Contents/MacOS/Chromium',
-      '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
-    ].filter(Boolean);
-  }
-
+function macChromeCandidates() {
+  if (process.platform !== 'darwin') return [];
   return [
-    process.env.CHROME_PATH,
-    '/usr/bin/google-chrome',
-    '/usr/bin/google-chrome-stable',
-    '/usr/bin/chromium',
-    '/usr/bin/chromium-browser',
-    '/usr/bin/microsoft-edge',
-  ].filter(Boolean);
+    path.join(path.sep, 'Applications', 'Google Chrome.app', 'Contents', 'MacOS', 'Google Chrome'),
+    path.join(path.sep, 'Applications', 'Chromium.app', 'Contents', 'MacOS', 'Chromium'),
+    path.join(path.sep, 'Applications', 'Microsoft Edge.app', 'Contents', 'MacOS', 'Microsoft Edge'),
+  ];
 }
 
 export function resolveChromeExecutablePath() {
-  for (const candidate of platformCandidates()) {
-    const resolved = resolveExistingPath(candidate);
-    if (resolved) return resolved;
+  if (process.env.CHROME_PATH) {
+    return resolveExistingPath(process.env.CHROME_PATH);
   }
 
+  const resolvedByPlaywright = playwrightChromiumPath();
+  if (resolvedByPlaywright) return resolvedByPlaywright;
+
   const commands = process.platform === 'win32'
-    ? ['chrome.exe', 'msedge.exe']
-    : ['google-chrome', 'google-chrome-stable', 'chromium', 'chromium-browser', 'microsoft-edge'];
+    ? ['chrome.exe', 'chromium.exe', 'msedge.exe']
+    : ['google-chrome', 'google-chrome-stable', 'chromium', 'chromium-browser', 'chrome', 'microsoft-edge'];
 
   for (const command of commands) {
     const resolved = lookupCommand(command);
+    if (resolved) return resolved;
+  }
+
+  for (const candidate of macChromeCandidates()) {
+    const resolved = resolveExistingPath(candidate);
     if (resolved) return resolved;
   }
 

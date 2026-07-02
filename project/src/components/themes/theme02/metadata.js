@@ -2009,7 +2009,7 @@ export const pages = [
         "key": "focusIndex",
         "type": "number",
         "label": "强调项",
-        "default": 7,
+        "default": 4,
         "min": 0,
         "step": 1,
         "oneBased": true,
@@ -3528,7 +3528,8 @@ export const pages = [
           "items": [
             "CoreWeave",
             "Databricks",
-            "Scale AI"
+            "Scale AI",
+            "NVIDIA"
           ]
         },
         {
@@ -3537,7 +3538,8 @@ export const pages = [
           "items": [
             "工具链",
             "安全",
-            "早期硬件"
+            "早期硬件",
+            "数据标注"
           ]
         },
         {
@@ -3545,7 +3547,9 @@ export const pages = [
           "desc": "单笔不大但落地清晰，看留存与续约。",
           "items": [
             "Glean",
-            "Perplexity"
+            "Perplexity",
+            "Harvey",
+            "Cursor"
           ]
         }
       ],
@@ -3852,7 +3856,15 @@ export const pages = [
       "aurora": true,
       "auroraSpeed": 1,
       "index": "15 / 73"
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "series[].values",
+        "anchor": "axes",
+        "relation": "same-length",
+        "countKey": "axisCount"
+      }
+    ]
   },
   {
     "key": "theme02_page017",
@@ -4346,14 +4358,24 @@ export const pages = [
               "name": "AI 芯片",
               "companies": [
                 "Cerebras",
-                "Groq"
+                "Groq",
+                "SambaNova"
               ]
             },
             {
               "name": "算力云 / 数据",
               "companies": [
                 "CoreWeave",
+                "Lambda",
                 "Scale AI"
+              ]
+            },
+            {
+              "name": "数据工具链",
+              "companies": [
+                "Scale AI",
+                "Snorkel AI",
+                "Databricks"
               ]
             }
           ]
@@ -4375,7 +4397,16 @@ export const pages = [
               "name": "开源 / 专用",
               "companies": [
                 "Mistral",
-                "SSI"
+                "SSI",
+                "Cohere"
+              ]
+            },
+            {
+              "name": "多模态 / Agent",
+              "companies": [
+                "Runway",
+                "Adept",
+                "Pika"
               ]
             }
           ]
@@ -4389,19 +4420,24 @@ export const pages = [
               "name": "企业生产力",
               "companies": [
                 "Glean",
-                "Databricks"
+                "Databricks",
+                "Harvey"
               ]
             },
             {
               "name": "消费 / 搜索",
               "companies": [
-                "Perplexity"
+                "Perplexity",
+                "Character.AI",
+                "Pika"
               ]
             },
             {
               "name": "具身智能 / 机器人",
               "companies": [
-                "Figure AI"
+                "Figure AI",
+                "Skild AI",
+                "1X"
               ]
             }
           ]
@@ -6238,9 +6274,9 @@ export const pages = [
         "label": "数据数量",
         "default": 3,
         "min": 0,
+        "max": 3,
         "step": 1,
         "describe": "底部内联数据数量",
-        "max": 3,
         "publicKey": "metaCount",
         "publicLabel": "数据数量",
         "desc": "底部内联数据数量",
@@ -6432,6 +6468,10 @@ export const pages = [
         "default": 4,
         "min": 1,
         "step": 1,
+        "countArrays": [
+          "cards",
+          "images"
+        ],
         "describe": "图文卡数量",
         "max": 4,
         "publicKey": "cardCount",
@@ -6663,6 +6703,10 @@ export const pages = [
         "default": 3,
         "min": 2,
         "step": 1,
+        "countArrays": [
+          "rows",
+          "images"
+        ],
         "describe": "图文行数（2–n）",
         "max": 3,
         "publicKey": "rowCount",
@@ -6771,7 +6815,7 @@ export const pages = [
         {
           "title": "算力是新的石油",
           "tag": "INFRA · 基础设施",
-          "copy": "超大规模训练把 GPU 集群变成稀缺资产，算力供给方率先吃到这轮红利，估值随订单一起膨胀。",
+          "copy": "训练集群成为稀缺资产，算力供给方率先兑现订单红利。",
           "stat": {
             "value": "78",
             "unit": "%"
@@ -6780,7 +6824,7 @@ export const pages = [
         {
           "title": "模型即产品",
           "tag": "MODEL · 通用大模型",
-          "copy": "头部模型公司以产品化速度构筑生态绑定，单轮融资屡破纪录，资本愿意为“下一个平台”提前下注。",
+          "copy": "模型公司用产品化速度绑定生态，资本押注下一个平台。",
           "stat": {
             "value": "10",
             "unit": "亿/笔"
@@ -6789,7 +6833,7 @@ export const pages = [
         {
           "title": "应用层在追赶",
           "tag": "APP · 应用落地",
-          "copy": "企业级场景的付费意愿与续费率双双走高，应用层公司开始用真实营收兑现资本的耐心。",
+          "copy": "企业场景付费意愿走高，应用层开始用营收兑现耐心。",
           "stat": {
             "value": "41",
             "unit": "%"
@@ -7139,6 +7183,11 @@ export const pages = [
         "min": 0,
         "max": 6,
         "step": 1,
+        "countArrays": [
+          "names",
+          "tags",
+          "images"
+        ],
         "describe": "公司瓦片数量（0 = 纯标题）",
         "publicKey": "tileCount",
         "publicLabel": "瓦片数量",
@@ -8108,9 +8157,13 @@ export const pages = [
         "label": "列数（公司）",
         "default": 4,
         "min": 2,
-        "step": 1,
-        "describe": "展示的公司列数",
         "max": 4,
+        "step": 1,
+        "countArrays": [
+          "cols",
+          "rows[].cells"
+        ],
+        "describe": "展示的公司列数",
         "publicKey": "colCount",
         "publicLabel": "列数（公司）",
         "desc": "展示的公司列数",
@@ -8727,7 +8780,14 @@ export const pages = [
       "aurora": true,
       "auroraSpeed": 1,
       "index": "35 / 73"
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "columns[].parts",
+        "anchor": "segLabels",
+        "relation": "same-length"
+      }
+    ]
   },
   {
     "key": "theme02_page037",
@@ -10244,8 +10304,12 @@ export const pages = [
         "label": "人物卡数量",
         "default": 3,
         "min": 2,
-        "max": 3,
+        "max": 4,
         "step": 1,
+        "countArrays": [
+          "voices",
+          "images"
+        ],
         "describe": "一排人物卡的数量（2–4）",
         "publicKey": "voiceCount",
         "publicLabel": "人物卡数量",
@@ -10336,6 +10400,12 @@ export const pages = [
           "name": "Analyst C",
           "role": "一级市场研究负责人",
           "caption": "研究者 · RESEARCH"
+        },
+        {
+          "quote": "真正的分化会出现在交付现场，谁能把模型变成流程资产，谁才会留下。",
+          "name": "Operator D",
+          "role": "产业数字化负责人",
+          "caption": "产业方 · OPERATOR"
         }
       ],
       "voiceCount": 3,
@@ -11562,7 +11632,15 @@ export const pages = [
       "aurora": true,
       "auroraSpeed": 1,
       "index": "47 / 73"
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "groups[].values",
+        "anchor": "series",
+        "relation": "same-length",
+        "countKey": "seriesCount"
+      }
+    ]
   },
   {
     "key": "theme02_page049",
@@ -12190,6 +12268,10 @@ export const pages = [
         "default": 3,
         "min": 2,
         "step": 1,
+        "countArrays": [
+          "leftPoints",
+          "rightPoints"
+        ],
         "describe": "每栏展示的论点条数",
         "max": 3,
         "publicKey": "pointCount",
@@ -13532,11 +13614,11 @@ export const pages = [
         "key": "focusIndex",
         "type": "number",
         "label": "强调项",
-        "default": 7,
+        "default": 4,
         "min": 0,
         "step": 1,
         "oneBased": true,
-        "max": 11,
+        "max": 5,
         "describe": "被强调月份的序号",
         "publicKey": "focusIndex",
         "publicLabel": "强调项",
@@ -13622,7 +13704,7 @@ export const pages = [
       ],
       "valueSuffix": "亿",
       "focusEnabled": true,
-      "focusIndex": 7,
+      "focusIndex": 4,
       "showValueLabels": true,
       "showAnnotation": true,
       "annotation": "5 月与 8 月形成两次峰值，与多家头部公司集中关账有关；年末回落但仍高于上半年，节奏呈「双峰脉冲」。",
@@ -14519,7 +14601,7 @@ export const pages = [
         "key": "focusIndex",
         "type": "number",
         "label": "强调项",
-        "default": 7,
+        "default": 4,
         "min": 0,
         "step": 1,
         "oneBased": true,
@@ -15952,7 +16034,7 @@ export const pages = [
         "description": "分支节点数量"
       },
       {
-        "key": "leavesCount",
+        "key": "leafCount",
         "type": "number",
         "label": "叶子数量",
         "default": 3,
@@ -15963,7 +16045,7 @@ export const pages = [
           "branches[].leaves"
         ],
         "describe": "每个分支发散的叶子卡数量",
-        "publicKey": "leavesCount",
+        "publicKey": "leafCount",
         "publicLabel": "叶子数量",
         "desc": "每个分支发散的叶子卡数量",
         "description": "每个分支发散的叶子卡数量"
@@ -16105,7 +16187,7 @@ export const pages = [
         }
       ],
       "branchCount": 3,
-      "leavesCount": 3,
+      "leafCount": 3,
       "focusEnabled": false,
       "focusIndex": 1,
       "showLeaves": true,
@@ -17246,6 +17328,8 @@ export const pages = [
         "max": 3,
         "step": 1,
         "oneBased": true,
+        "maxFromKey": "seriesCount",
+        "maxFromKeyOffset": -1,
         "describe": "被强调分项的序号",
         "publicKey": "focusIndex",
         "publicLabel": "强调项",
@@ -17447,7 +17531,15 @@ export const pages = [
       "aurora": true,
       "auroraSpeed": 1,
       "index": "71 / 73"
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "groups[].values",
+        "anchor": "series",
+        "relation": "same-length",
+        "countKey": "seriesCount"
+      }
+    ]
   },
   {
     "key": "theme02_page073",

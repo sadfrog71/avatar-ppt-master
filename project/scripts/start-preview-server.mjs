@@ -1,6 +1,7 @@
 #!/usr/bin/env node
+import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
-import { closeSync, existsSync, mkdirSync, openSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { closeSync, existsSync, mkdirSync, openSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import http from 'node:http';
 import https from 'node:https';
 import net from 'node:net';
@@ -15,76 +16,89 @@ const host = process.env.DASHI_PPT_PREVIEW_HOST || process.env.HOST || '0.0.0.0'
 const localName = process.env.DASHI_PPT_PREVIEW_NAME || os.hostname().split('.')[0] || 'localhost';
 const portScanLimit = Math.max(40, Number(process.env.DASHI_PPT_PREVIEW_PORT_SCAN || 240));
 const lockDir = process.env.DASHI_PPT_PREVIEW_LOCK_DIR || path.join(os.tmpdir(), 'dashiai-ppt-preview-ports');
+const incompleteStartLockStaleMs = 1000;
 
-if (!existsSync(path.join(serveRoot, 'index.html'))) {
-  ensureThemePreviewFresh({ serveRoot });
-}
+process.on('uncaughtException', error => exitWithError(error));
+process.on('unhandledRejection', error => exitWithError(error));
 
-if (!existsSync(path.join(serveRoot, 'index.html'))) {
-  console.error(`Preview index.html not found: ${path.join(serveRoot, 'index.html')}`);
-  process.exit(1);
-}
+main().catch(error => exitWithError(error));
 
-ensureThemePreviewFresh({ serveRoot });
+async function main() {
+  if (!existsSync(path.join(serveRoot, 'index.html'))) {
+    ensureThemePreviewFresh({ serveRoot });
+  }
 
-const reservation = await reserveAvailablePort(requestedPort, host);
-const port = reservation.port;
-const logFile = path.join(serveRoot, '.preview-server.log');
-mkdirSync(serveRoot, { recursive: true });
-const output = openSync(logFile, 'a');
-const child = spawn(process.execPath, [
-  path.join(ROOT, 'scripts/serve-preview-https.mjs'),
-  serveRoot,
-  String(port),
-], {
-  cwd: ROOT,
-  detached: true,
-  env: { ...process.env, HOST: host },
-  stdio: ['ignore', output, output],
-});
-child.unref();
-closeSync(output);
+  if (!existsSync(path.join(serveRoot, 'index.html'))) {
+    throw new Error(`Preview index.html not found: ${path.join(path.basename(serveRoot) || 'preview output', 'index.html')}`);
+  }
 
-try {
-  await waitForPreview(port);
-} catch (error) {
-  reservation.release();
+  const startLock = acquireServeRootStartLock(serveRoot);
   try {
-    process.kill(child.pid, 'SIGTERM');
-  } catch {}
-  throw error;
+    ensureThemePreviewFresh({ serveRoot });
+    await stopExistingPreviewForServeRoot(serveRoot);
+
+    const reservation = await reserveAvailablePort(requestedPort, host);
+    const port = reservation.port;
+    const logFile = previewLogFilePath(serveRoot);
+    mkdirSync(serveRoot, { recursive: true });
+    mkdirSync(path.dirname(logFile), { recursive: true });
+    const output = openSync(logFile, 'a');
+    const child = spawn(process.execPath, [
+      path.join(ROOT, 'scripts/serve-preview-https.mjs'),
+      serveRoot,
+      String(port),
+    ], {
+      cwd: ROOT,
+      detached: true,
+      env: { ...process.env, HOST: host },
+      stdio: ['ignore', output, output],
+    });
+    child.unref();
+    closeSync(output);
+
+    try {
+      await waitForPreview(port, host);
+    } catch (error) {
+      reservation.release();
+      try {
+        process.kill(child.pid, 'SIGTERM');
+      } catch {}
+      throw error;
+    }
+
+    const url = `https://${localName}.local:${port}/`;
+    const localUrl = `https://localhost:${port}/`;
+    const httpUrl = `http://127.0.0.1:${port}/`;
+    const localHttpUrl = `http://localhost:${port}/`;
+    const lanHttpUrl = `http://${localName}.local:${port}/`;
+    writeFileSync(path.join(serveRoot, '.preview-server.json'), `${JSON.stringify({
+      pid: child.pid,
+      port,
+      httpUrl,
+      url,
+      localHttpUrl,
+      localUrl,
+      lanHttpUrl,
+      displayRoot: path.basename(serveRoot),
+      startedAt: new Date().toISOString(),
+    }, null, 2)}\n`);
+    reservation.commit(child.pid, { logFile });
+
+    console.log(`HTTP export URL: ${httpUrl}`);
+    console.log(`HTTPS preview URL: ${url}`);
+    console.log(`Local HTTP URL: ${localHttpUrl}`);
+    console.log(`Local HTTPS URL: ${localUrl}`);
+    console.log(`LAN HTTP URL (browse only, not export): ${lanHttpUrl}`);
+    console.log(`PID: ${child.pid}`);
+  } finally {
+    startLock.release();
+  }
 }
-
-const url = `https://${localName}.local:${port}/`;
-const localUrl = `https://localhost:${port}/`;
-const httpUrl = `http://127.0.0.1:${port}/`;
-const localHttpUrl = `http://localhost:${port}/`;
-const jadonHttpUrl = `http://${localName}.local:${port}/`;
-writeFileSync(path.join(serveRoot, '.preview-server.json'), `${JSON.stringify({
-  pid: child.pid,
-  port,
-  httpUrl,
-  url,
-  localHttpUrl,
-  localUrl,
-  jadonHttpUrl,
-  serveRoot,
-  logFile,
-  startedAt: new Date().toISOString(),
-}, null, 2)}\n`);
-reservation.commit(child.pid);
-
-console.log(`HTTP export URL: ${httpUrl}`);
-console.log(`HTTPS preview URL: ${url}`);
-console.log(`Local HTTP URL: ${localHttpUrl}`);
-console.log(`Local HTTPS URL: ${localUrl}`);
-console.log(`LAN HTTP URL (browse only, not export): ${jadonHttpUrl}`);
-console.log(`PID: ${child.pid}`);
 
 async function reserveAvailablePort(start, bindHost) {
   const base = Number.isFinite(start) && start > 0 ? Math.trunc(start) : 4178;
   for (let port = base; port < base + portScanLimit; port += 1) {
-    const reservation = reservePortLock(port);
+    const reservation = await reservePortLock(port, bindHost);
     if (!reservation) continue;
     if (await isPortAvailable(port, bindHost)) return reservation;
     reservation.release();
@@ -92,7 +106,150 @@ async function reserveAvailablePort(start, bindHost) {
   throw new Error(`No available preview port found from ${base} to ${base + portScanLimit - 1}`);
 }
 
-function reservePortLock(port) {
+async function stopExistingPreviewForServeRoot(root) {
+  const stateFile = path.join(root, '.preview-server.json');
+  if (!existsSync(stateFile)) return;
+  let state = null;
+  try {
+    state = JSON.parse(readFileSync(stateFile, 'utf8'));
+  } catch {
+    return;
+  }
+
+  const statePid = Number.isInteger(state.pid) && state.pid > 0 ? state.pid : null;
+  const statePort = Number.isInteger(state.port) && state.port > 0 ? state.port : null;
+  if (!statePid || !statePort) return;
+
+  const lockFile = path.join(lockDir, `preview-${statePort}.lock`);
+  let lock = null;
+  try {
+    lock = JSON.parse(readFileSync(lockFile, 'utf8'));
+  } catch {
+    return;
+  }
+
+  const expectedRoot = path.resolve(root);
+  const lockRoot = lock.serveRoot ? path.resolve(String(lock.serveRoot)) : '';
+  const lockMatchesState = lock.port === statePort
+    && lock.pid === statePid
+    && lockRoot === expectedRoot;
+  if (!lockMatchesState) return;
+
+  if (isPidAlive(statePid)) {
+    try {
+      process.kill(statePid, 'SIGTERM');
+    } catch {}
+    if (!await waitForPidExit(statePid, 3000)) {
+      try {
+        process.kill(statePid, 'SIGKILL');
+      } catch {}
+      await waitForPidExit(statePid, 1000);
+    }
+  }
+
+  removePortLockIfOwner(lockFile, {
+    port: statePort,
+    pid: statePid,
+    serveRoot: expectedRoot,
+  });
+}
+
+function acquireServeRootStartLock(root) {
+  mkdirSync(lockDir, { recursive: true });
+  const lockPath = serveRootStartLockPath(root);
+  for (let attempt = 0; attempt < 600; attempt += 1) {
+    try {
+      mkdirSync(lockPath);
+      writeFileSync(path.join(lockPath, 'lock.json'), `${JSON.stringify({
+        pid: process.pid,
+        serveRoot: path.resolve(root),
+        startedAt: new Date().toISOString(),
+      })}\n`);
+      return {
+        release() {
+          rmSync(lockPath, { recursive: true, force: true });
+        },
+      };
+    } catch (error) {
+      if (error?.code !== 'EEXIST') throw error;
+      if (isStaleServeRootStartLock(lockPath)) {
+        tryRemoveStaleServeRootStartLock(lockPath);
+        continue;
+      }
+      wait(100);
+    }
+  }
+  throw new Error(`Timed out waiting for preview start lock: ${lockPath}`);
+}
+
+function serveRootStartLockPath(root) {
+  const key = createHash('sha256').update(path.resolve(root)).digest('hex').slice(0, 16);
+  return path.join(lockDir, `preview-root-${key}.lockdir`);
+}
+
+function tryRemoveStaleServeRootStartLock(lockPath) {
+  if (!isStaleServeRootStartLock(lockPath)) return false;
+  const stalePath = `${lockPath}.stale-${process.pid}`;
+  try {
+    renameSync(lockPath, stalePath);
+    rmSync(stalePath, { recursive: true, force: true });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function isStaleServeRootStartLock(lockPath) {
+  try {
+    const data = JSON.parse(readFileSync(path.join(lockPath, 'lock.json'), 'utf8'));
+    const pid = Number.isInteger(data.pid) && data.pid > 0 ? data.pid : null;
+    if (pid && isPidAlive(pid)) return false;
+    if (pid) return true;
+    const startedAt = Date.parse(data.startedAt);
+    if (Number.isFinite(startedAt) && Date.now() - startedAt > 5 * 60 * 1000) return true;
+    return false;
+  } catch {
+    try {
+      return Date.now() - statSync(lockPath).mtimeMs > incompleteStartLockStaleMs;
+    } catch {
+      return true;
+    }
+  }
+}
+
+function removePortLockIfOwner(lockFile, expected) {
+  let current = null;
+  try {
+    current = JSON.parse(readFileSync(lockFile, 'utf8'));
+  } catch {
+    return false;
+  }
+  const currentRoot = current.serveRoot ? path.resolve(String(current.serveRoot)) : '';
+  if (
+    current.port !== expected.port
+    || current.pid !== expected.pid
+    || currentRoot !== expected.serveRoot
+  ) {
+    return false;
+  }
+  try {
+    rmSync(lockFile, { force: true });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function waitForPidExit(pid, timeoutMs) {
+  const startedAt = Date.now();
+  while (Date.now() - startedAt < timeoutMs) {
+    if (!isPidAlive(pid)) return true;
+    await sleep(50);
+  }
+  return !isPidAlive(pid);
+}
+
+async function reservePortLock(port, bindHost) {
   mkdirSync(lockDir, { recursive: true });
   const lockFile = path.join(lockDir, `preview-${port}.lock`);
   for (let attempt = 0; attempt < 2; attempt += 1) {
@@ -107,12 +264,13 @@ function reservePortLock(port) {
       closeSync(fd);
       return {
         port,
-        commit(pid) {
+        commit(pid, metadata = {}) {
           writeFileSync(lockFile, `${JSON.stringify({
             port,
             pid,
             parentPid: process.pid,
             serveRoot,
+            logFile: metadata.logFile,
             startedAt: new Date().toISOString(),
           })}\n`);
         },
@@ -122,17 +280,36 @@ function reservePortLock(port) {
       };
     } catch (error) {
       if (error?.code !== 'EEXIST') throw error;
-      if (!isStalePortLock(lockFile)) return null;
-      rmSync(lockFile, { force: true });
+      if (!await tryRemoveStalePortLock(lockFile, bindHost)) return null;
     }
   }
   return null;
 }
 
-function isStalePortLock(lockFile) {
+async function tryRemoveStalePortLock(lockFile, bindHost) {
+  if (!await isStalePortLock(lockFile, bindHost)) return false;
+  const staleFile = `${lockFile}.stale-${process.pid}`;
+  try {
+    renameSync(lockFile, staleFile);
+    rmSync(staleFile, { force: true });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function isStalePortLock(lockFile, bindHost) {
   try {
     const data = JSON.parse(readFileSync(lockFile, 'utf8'));
-    return !isPidAlive(data.pid);
+    if (!isPidAlive(data.pid)) return true;
+    const port = Number.isInteger(data.port) && data.port > 0 ? data.port : null;
+    const startedAt = Date.parse(data.startedAt);
+    const hasCommittedMetadata = data.serveRoot
+      && Number.isInteger(data.parentPid)
+      && data.parentPid > 0
+      && Number.isFinite(startedAt);
+    if (!port || !hasCommittedMetadata) return false;
+    return Date.now() - startedAt > 10 * 60 * 1000 && await isPortAvailable(port, bindHost);
   } catch {
     return true;
   }
@@ -159,13 +336,14 @@ function isPortAvailable(port, bindHost) {
   });
 }
 
-async function waitForPreview(port) {
+async function waitForPreview(port, bindHost) {
+  const urlHost = hostForUrl(readyCheckHost(bindHost));
   let lastError = null;
   for (let attempt = 0; attempt < 40; attempt += 1) {
     try {
       await Promise.all([
-        fetchHttp(`http://localhost:${port}/`),
-        fetchHttps(`https://localhost:${port}/`),
+        fetchHttp(`http://${urlHost}:${port}/`),
+        fetchHttps(`https://${urlHost}:${port}/`),
       ]);
       return;
     } catch (error) {
@@ -174,6 +352,37 @@ async function waitForPreview(port) {
     }
   }
   throw new Error(`HTTPS preview did not become ready: ${lastError?.message || 'unknown error'}`);
+}
+
+function readyCheckHost(bindHost) {
+  const value = String(bindHost || '').trim();
+  if (!value || value === '0.0.0.0' || value === '::' || value === '*') return '127.0.0.1';
+  return value;
+}
+
+function hostForUrl(value) {
+  return String(value).includes(':') && !String(value).startsWith('[') ? `[${value}]` : value;
+}
+
+function previewLogFilePath(root) {
+  const key = createHash('sha256').update(path.resolve(root)).digest('hex').slice(0, 16);
+  return path.join(lockDir, `preview-${key}.log`);
+}
+
+function formatCliError(error) {
+  const message = error?.message || String(error || 'Unknown preview start error');
+  return `Could not start preview server: ${scrubLocalPath(message)}`;
+}
+
+function scrubLocalPath(value) {
+  return String(value)
+    .replace(/file:\/\/[^\s"'`<>]+/g, '<local-path>')
+    .replace(/\/(?:Users|Volumes|home|var\/folders|private\/var\/folders|tmp|private\/tmp)\/[^\s"'`<>]+/g, '<local-path>')
+    .replace(/\b[A-Za-z]:[\\/][^\s"'`<>]+/g, '<local-path>');
+}
+
+function wait(ms) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 }
 
 function fetchHttps(url) {
@@ -202,4 +411,9 @@ function fetchHttp(url) {
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function exitWithError(error) {
+  console.error(formatCliError(error));
+  process.exit(1);
 }

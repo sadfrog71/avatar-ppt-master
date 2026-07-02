@@ -428,6 +428,7 @@ export const pages = [
       "phrase": "在资本与算力的浪潮里，每一笔融资都是一次方向的押注。",
       "closing": "从资本流向，看 AI 产业下一阶段的真实重心。",
       "watermark": "CAPITAL",
+      "images": [],
       "data": [
         {
           "label": "年份 / YEAR",
@@ -1412,7 +1413,7 @@ export const pages = [
         "type": "number",
         "default": 3,
         "min": 2,
-        "max": 3,
+        "max": 6,
         "desc": "辅助指标的数量",
         "publicKey": "metricCount",
         "publicLabel": "指标数量",
@@ -1519,6 +1520,18 @@ export const pages = [
         {
           "k": "最大单笔 / MAX",
           "v": "32 亿"
+        },
+        {
+          "k": "早期轮占比 / EARLY",
+          "v": "61%"
+        },
+        {
+          "k": "新增赛道 / NEW TRACKS",
+          "v": "3 个"
+        },
+        {
+          "k": "跟投活跃 / FOLLOW-ON",
+          "v": "11 家"
         }
       ],
       "context": [
@@ -1561,7 +1574,7 @@ export const pages = [
         "key": "layout",
         "label": "指标呈现",
         "type": "select",
-        "default": "chart",
+        "default": "table",
         "options": [
           {
             "value": "chart",
@@ -1627,7 +1640,7 @@ export const pages = [
         "key": "focusIndex",
         "label": "高亮第几期",
         "type": "number",
-        "default": 0,
+        "default": 1,
         "min": 0,
         "max": 3,
         "desc": "被高亮的对照期序号",
@@ -1843,6 +1856,7 @@ export const pages = [
         "unit": "亿$",
         "label": "Q3 融资额 / FUNDING"
       },
+      "images": [],
       "metrics": [
         {
           "k": "事件数 / DEALS",
@@ -2263,13 +2277,13 @@ export const pages = [
       },
       {
         "key": "segmentCount",
+        "publicKey": "segmentCount",
         "label": "分类数量",
         "type": "number",
         "default": 5,
         "min": 3,
         "max": 5,
         "desc": "展示的分类/贡献项数量",
-        "publicKey": "categoryCount",
         "publicLabel": "分类数量",
         "description": "展示的分类/贡献项数量"
       },
@@ -2592,7 +2606,7 @@ export const pages = [
         "key": "align",
         "label": "对齐方式",
         "type": "select",
-        "default": "left",
+        "default": "center",
         "options": [
           {
             "value": "left",
@@ -2660,6 +2674,7 @@ export const pages = [
       "explain": "全年大额融资的 <b>平均单笔规模</b>——但垂直应用不应只用融资规模评价，更要看收入效率。",
       "closing": "融资规模越大，后续兑现压力越高。",
       "watermark": "TICKET",
+      "images": [],
       "metrics": [
         {
           "k": "全年融资 / TOTAL",
@@ -2910,7 +2925,7 @@ export const pages = [
         "key": "keywordCount",
         "label": "关键词数量",
         "type": "number",
-        "default": 4,
+        "default": 6,
         "min": 0,
         "max": 6,
         "desc": "底部关键词标签数量（0 隐藏）",
@@ -3237,6 +3252,14 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "mediaSlotCount",
+            "max": 2,
+            "writeMode": "initialProps"
+          }
+        ],
         "desc": "右侧自适应图片槽数量（0 改为场景占比面板；上传后按图片比例自适应，构图随数量重排）",
         "publicKey": "mediaSlotCount",
         "publicLabel": "图片槽数量",
@@ -3261,10 +3284,10 @@ export const pages = [
         "default": 3,
         "min": 2,
         "max": 3,
-        "desc": "场景占比行数（表格或 0 图片面板时生效）",
+        "desc": "场景占比行数（表格或 0 占比面板时生效）",
         "publicKey": "splitCount",
         "publicLabel": "场景档数",
-        "description": "场景占比行数（表格或 0 图片面板时生效）"
+        "description": "场景占比行数（表格或 0 占比面板时生效）"
       },
       {
         "key": "focusEnabled",
@@ -3357,23 +3380,24 @@ export const pages = [
         {
           "name": "任务执行",
           "en": "TASK EXECUTION",
-          "share": 44,
+          "value": 44,
           "unit": "%"
         },
         {
           "name": "工作流编排",
           "en": "ORCHESTRATION",
-          "share": 33,
+          "value": 33,
           "unit": "%"
         },
         {
           "name": "系统集成",
           "en": "INTEGRATION",
-          "share": 23,
+          "value": 23,
           "unit": "%"
         }
       ],
       "mediaPlaceholder": "Agent 工作流示意 / DROP IMAGE",
+      "images": [],
       "layout": "media",
       "mediaSlotCount": 1,
       "metricCount": 3,
@@ -3424,6 +3448,14 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "mediaSlotCount",
+            "max": 2,
+            "writeMode": "initialProps"
+          }
+        ],
         "desc": "右侧自适应图片槽数量（0 改为场景占比面板；上传后按图片比例自适应，构图随数量重排）",
         "publicKey": "mediaSlotCount",
         "publicLabel": "图片槽数量",
@@ -3448,10 +3480,10 @@ export const pages = [
         "default": 3,
         "min": 2,
         "max": 3,
-        "desc": "场景占比行数（表格或 0 图片面板时生效）",
+        "desc": "场景占比行数（表格或 0 占比面板时生效）",
         "publicKey": "splitCount",
         "publicLabel": "场景档数",
-        "description": "场景占比行数（表格或 0 图片面板时生效）"
+        "description": "场景占比行数（表格或 0 占比面板时生效）"
       },
       {
         "key": "focusEnabled",
@@ -3544,23 +3576,24 @@ export const pages = [
         {
           "name": "内部知识库",
           "en": "KNOWLEDGE BASE",
-          "share": 48,
+          "value": 48,
           "unit": "%"
         },
         {
           "name": "客服支持",
           "en": "SUPPORT",
-          "share": 29,
+          "value": 29,
           "unit": "%"
         },
         {
           "name": "研发文档",
           "en": "DEV DOCS",
-          "share": 23,
+          "value": 23,
           "unit": "%"
         }
       ],
       "mediaPlaceholder": "知识库入口图 / DROP IMAGE",
+      "images": [],
       "layout": "media",
       "mediaSlotCount": 1,
       "metricCount": 3,
@@ -3584,7 +3617,7 @@ export const pages = [
         "key": "layout",
         "label": "布局形式",
         "type": "select",
-        "default": "media",
+        "default": "table",
         "options": [
           {
             "value": "media",
@@ -3611,6 +3644,14 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "mediaSlotCount",
+            "max": 2,
+            "writeMode": "initialProps"
+          }
+        ],
         "desc": "右侧自适应图片槽数量（0 改为场景占比面板；上传后按图片比例自适应，构图随数量重排）",
         "publicKey": "mediaSlotCount",
         "publicLabel": "图片槽数量",
@@ -3632,13 +3673,13 @@ export const pages = [
         "key": "splitCount",
         "label": "场景档数",
         "type": "number",
-        "default": 3,
+        "default": 4,
         "min": 2,
         "max": 4,
-        "desc": "场景占比行数（表格或 0 图片面板时生效）",
+        "desc": "场景占比行数（表格或 0 占比面板时生效）",
         "publicKey": "splitCount",
         "publicLabel": "场景档数",
-        "description": "场景占比行数（表格或 0 图片面板时生效）"
+        "description": "场景占比行数（表格或 0 占比面板时生效）"
       },
       {
         "key": "focusEnabled",
@@ -3731,29 +3772,30 @@ export const pages = [
         {
           "name": "合同审查",
           "en": "CONTRACT REVIEW",
-          "share": 46,
+          "value": 46,
           "unit": "%"
         },
         {
           "name": "合规审查",
           "en": "COMPLIANCE",
-          "share": 24,
+          "value": 24,
           "unit": "%"
         },
         {
           "name": "诉讼支持",
           "en": "LITIGATION",
-          "share": 18,
+          "value": 18,
           "unit": "%"
         },
         {
           "name": "法律检索",
           "en": "LEGAL RESEARCH",
-          "share": 12,
+          "value": 12,
           "unit": "%"
         }
       ],
       "mediaPlaceholder": "法律流程图 / DROP IMAGE",
+      "images": [],
       "layout": "table",
       "mediaSlotCount": 1,
       "metricCount": 3,
@@ -4296,9 +4338,9 @@ export const pages = [
         "key": "exampleCount",
         "label": "每象限案例数",
         "type": "number",
-        "default": 3,
+        "default": 2,
         "min": 1,
-        "max": 3,
+        "max": 2,
         "countArrays": [
           "quadrants[].examples"
         ],
@@ -4429,7 +4471,7 @@ export const pages = [
           ]
         }
       ],
-      "exampleCount": 3,
+      "exampleCount": 2,
       "focusEnabled": true,
       "focusIndex": 1,
       "showAxis": true,
@@ -4549,6 +4591,7 @@ export const pages = [
       "summary": "高估值、盈利验证、监管压力、大厂竞争与算力成本，构成一条<b>互相传导的风险链条</b>。",
       "railCaption": "风险传导 / TRANSMISSION",
       "closing": "下一阶段会淘汰只会讲故事的公司。",
+      "images": [],
       "risks": [
         {
           "name": "估值泡沫",
@@ -4912,6 +4955,7 @@ export const pages = [
       "explain": "全年大额融资的 <b>平均单笔规模</b>——融资规模越大，后续兑现压力越高。",
       "closing": "融资规模越大，后续兑现压力越高。",
       "watermark": "AVG",
+      "images": [],
       "metrics": [
         {
           "k": "全年融资 / TOTAL",
@@ -5072,6 +5116,7 @@ export const pages = [
         "unit": "亿$",
         "label": "赛道融资额 / FUNDING"
       },
+      "images": [],
       "metrics": [
         {
           "k": "事件数 / DEALS",
@@ -5086,19 +5131,19 @@ export const pages = [
         {
           "name": "药物发现",
           "en": "DRUG DISCOVERY",
-          "funding": 14,
+          "value": 14,
           "unit": " 亿"
         },
         {
           "name": "影像诊断",
           "en": "MEDICAL IMAGING",
-          "funding": 11,
+          "value": 11,
           "unit": " 亿"
         },
         {
           "name": "临床文书",
           "en": "CLINICAL DOCS",
-          "funding": 9,
+          "value": 9,
           "unit": " 亿"
         }
       ],
@@ -5834,6 +5879,14 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "mediaSlotCount",
+            "max": 2,
+            "writeMode": "initialProps"
+          }
+        ],
         "desc": "右侧自适应图片槽数量（0 改为场景占比面板；上传后按图片比例自适应，构图随数量重排）",
         "publicKey": "mediaSlotCount",
         "publicLabel": "图片槽数量",
@@ -5858,10 +5911,10 @@ export const pages = [
         "default": 3,
         "min": 2,
         "max": 4,
-        "desc": "场景占比行数（表格或 0 图片面板时生效）",
+        "desc": "场景占比行数（表格或 0 占比面板时生效）",
         "publicKey": "splitCount",
         "publicLabel": "场景档数",
-        "description": "场景占比行数（表格或 0 图片面板时生效）"
+        "description": "场景占比行数（表格或 0 占比面板时生效）"
       },
       {
         "key": "focusEnabled",
@@ -5958,29 +6011,30 @@ export const pages = [
         {
           "name": "流程编排",
           "en": "ORCHESTRATION",
-          "share": 36,
+          "value": 36,
           "unit": "%"
         },
         {
           "name": "模型接入",
           "en": "MODEL CONNECT",
-          "share": 28,
+          "value": 28,
           "unit": "%"
         },
         {
           "name": "治理审计",
           "en": "GOVERNANCE",
-          "share": 21,
+          "value": 21,
           "unit": "%"
         },
         {
           "name": "应用搭建",
           "en": "APP BUILDING",
-          "share": 16,
+          "value": 16,
           "unit": "%"
         }
       ],
       "mediaPlaceholder": "流程编排图 / DROP IMAGE",
+      "images": [],
       "layout": "media",
       "mediaSlotCount": 1,
       "metricCount": 3,
@@ -6117,6 +6171,7 @@ export const pages = [
         "unit": "亿$",
         "label": "赛道融资额 / FUNDING"
       },
+      "images": [],
       "metrics": [
         {
           "k": "事件数 / DEALS",
@@ -6205,7 +6260,7 @@ export const pages = [
         "key": "metricCount",
         "label": "指标数量",
         "type": "number",
-        "default": 2,
+        "default": 3,
         "min": 2,
         "max": 3,
         "desc": "底部辅助指标卡数量",
@@ -6249,7 +6304,7 @@ export const pages = [
         "key": "showGrowth",
         "label": "增长指标",
         "type": "toggle",
-        "default": true,
+        "default": false,
         "desc": "显示/隐藏底部增长指标卡（装饰数据）",
         "publicKey": "showGrowth",
         "publicLabel": "增长指标",
@@ -6398,7 +6453,7 @@ export const pages = [
         "key": "keywordCount",
         "label": "关键词数量",
         "type": "number",
-        "default": 4,
+        "default": 6,
         "min": 0,
         "max": 6,
         "desc": "底部关键词标签数量（0 隐藏）",
@@ -6852,6 +6907,7 @@ export const pages = [
         "unit": "亿$",
         "label": "平均单笔规模 / AVG TICKET"
       },
+      "images": [],
       "metrics": [
         {
           "k": "事件数 / DEALS",
@@ -6987,7 +7043,7 @@ export const pages = [
         "key": "focusIndex",
         "label": "高亮第几项",
         "type": "number",
-        "default": 0,
+        "default": 1,
         "min": 0,
         "max": 3,
         "desc": "被突出的占比序号",
@@ -7213,6 +7269,7 @@ export const pages = [
       "closing": "AI 公司融资是在锁定未来资源。",
       "resTag": "战略资源 / RESOURCES",
       "railCaption": "资源类型 / RESOURCE TYPES",
+      "images": [],
       "resources": [
         {
           "kind": "授信",
@@ -7449,7 +7506,7 @@ export const pages = [
         "key": "branchCount",
         "label": "分支数量",
         "type": "number",
-        "default": 3,
+        "default": 4,
         "min": 2,
         "max": 4,
         "desc": "结构图的分支节点数量",
@@ -7574,6 +7631,7 @@ export const pages = [
         "unit": "亿$",
         "label": "生态融资额 / ECOSYSTEM FUNDING"
       },
+      "images": [],
       "metrics": [
         {
           "k": "GPU 云占比 / GPU CLOUD",
@@ -7588,25 +7646,25 @@ export const pages = [
         {
           "name": "GPU 云",
           "en": "GPU CLOUD",
-          "funding": 64,
+          "value": 64,
           "unit": " 亿"
         },
         {
           "name": "集群管理",
           "en": "CLUSTER OPS",
-          "funding": 12,
+          "value": 12,
           "unit": " 亿"
         },
         {
           "name": "推理优化",
           "en": "INFERENCE OPT",
-          "funding": 9,
+          "value": 9,
           "unit": " 亿"
         },
         {
           "name": "芯片互联",
           "en": "INTERCONNECT",
-          "funding": 7,
+          "value": 7,
           "unit": " 亿"
         }
       ],
@@ -7659,7 +7717,7 @@ export const pages = [
         "key": "align",
         "label": "对齐方式",
         "type": "select",
-        "default": "left",
+        "default": "center",
         "options": [
           {
             "value": "left",
@@ -7727,6 +7785,7 @@ export const pages = [
       "explain": "<b>旧金山湾区</b> 融资额占比——优势来自人才密度、资本网络、云厂商与模型实验室邻近。",
       "closing": "湾区仍是 AI 资本重力中心。",
       "watermark": "BAY",
+      "images": [],
       "metrics": [
         {
           "k": "全年融资 / TOTAL",
@@ -7789,6 +7848,14 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "mediaSlotCount",
+            "max": 2,
+            "writeMode": "initialProps"
+          }
+        ],
         "desc": "右侧自适应图片槽数量（0 改为地区分布面板；上传后按图片比例自适应，构图随数量重排）",
         "publicKey": "mediaSlotCount",
         "publicLabel": "图片槽数量",
@@ -7820,13 +7887,13 @@ export const pages = [
       },
       {
         "key": "tagCount",
+        "publicKey": "tagCount",
         "label": "分类标签数",
         "type": "number",
         "default": 4,
         "min": 0,
         "max": 4,
         "desc": "左下分类标签芯片数量（0 隐藏整行）",
-        "publicKey": "categoryCount",
         "publicLabel": "分类标签数",
         "description": "左下分类标签芯片数量（0 隐藏整行）"
       },
@@ -7854,11 +7921,11 @@ export const pages = [
       },
       {
         "key": "showShareBar",
+        "publicKey": "showShareBar",
         "label": "占比对照条",
         "type": "toggle",
         "default": true,
         "desc": "显示/隐藏占全国数值对照条（装饰数据）",
-        "publicKey": "showValueLabels",
         "publicLabel": "占比对照条",
         "description": "显示/隐藏占全国数值对照条（装饰数据）"
       },
@@ -7923,6 +7990,7 @@ export const pages = [
         "unit": "%",
         "label": "占全国融资额 / SHARE OF TOTAL"
       },
+      "images": [],
       "metrics": [
         {
           "k": "融资额 / FUNDING",
@@ -7948,27 +8016,27 @@ export const pages = [
         {
           "name": "旧金山湾区",
           "en": "BAY AREA",
-          "share": 63.9
+          "value": 63.9
         },
         {
           "name": "纽约",
           "en": "NEW YORK",
-          "share": 12.4
+          "value": 12.4
         },
         {
           "name": "西雅图",
           "en": "SEATTLE",
-          "share": 9.8
+          "value": 9.8
         },
         {
           "name": "波士顿",
           "en": "BOSTON",
-          "share": 7.7
+          "value": 7.7
         },
         {
           "name": "其他地区",
           "en": "OTHER REGIONS",
-          "share": 6.2
+          "value": 6.2
         }
       ],
       "activeRegion": 1,
@@ -8026,6 +8094,14 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "mediaSlotCount",
+            "max": 2,
+            "writeMode": "initialProps"
+          }
+        ],
         "desc": "右侧自适应图片槽数量（0 改为地区分布面板；上传后按图片比例自适应，构图随数量重排）",
         "publicKey": "mediaSlotCount",
         "publicLabel": "图片槽数量",
@@ -8057,13 +8133,13 @@ export const pages = [
       },
       {
         "key": "tagCount",
+        "publicKey": "tagCount",
         "label": "分类标签数",
         "type": "number",
         "default": 4,
         "min": 0,
         "max": 4,
         "desc": "左下分类标签芯片数量（0 隐藏整行）",
-        "publicKey": "categoryCount",
         "publicLabel": "分类标签数",
         "description": "左下分类标签芯片数量（0 隐藏整行）"
       },
@@ -8091,11 +8167,11 @@ export const pages = [
       },
       {
         "key": "showShareBar",
+        "publicKey": "showShareBar",
         "label": "占比对照条",
         "type": "toggle",
         "default": true,
         "desc": "显示/隐藏占全国数值对照条（装饰数据）",
-        "publicKey": "showValueLabels",
         "publicLabel": "占比对照条",
         "description": "显示/隐藏占全国数值对照条（装饰数据）"
       },
@@ -8160,6 +8236,7 @@ export const pages = [
         "unit": "%",
         "label": "占全国融资额 / SHARE OF TOTAL"
       },
+      "images": [],
       "metrics": [
         {
           "k": "融资额 / FUNDING",
@@ -8185,27 +8262,27 @@ export const pages = [
         {
           "name": "旧金山湾区",
           "en": "BAY AREA",
-          "share": 63.9
+          "value": 63.9
         },
         {
           "name": "纽约",
           "en": "NEW YORK",
-          "share": 12.4
+          "value": 12.4
         },
         {
           "name": "西雅图",
           "en": "SEATTLE",
-          "share": 9.8
+          "value": 9.8
         },
         {
           "name": "波士顿",
           "en": "BOSTON",
-          "share": 7.7
+          "value": 7.7
         },
         {
           "name": "其他地区",
           "en": "OTHER REGIONS",
-          "share": 6.2
+          "value": 6.2
         }
       ],
       "activeRegion": 2,
@@ -8263,6 +8340,14 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "mediaSlotCount",
+            "max": 2,
+            "writeMode": "initialProps"
+          }
+        ],
         "desc": "右侧自适应图片槽数量（0 改为地区分布面板；上传后按图片比例自适应，构图随数量重排）",
         "publicKey": "mediaSlotCount",
         "publicLabel": "图片槽数量",
@@ -8294,13 +8379,13 @@ export const pages = [
       },
       {
         "key": "tagCount",
+        "publicKey": "tagCount",
         "label": "分类标签数",
         "type": "number",
         "default": 4,
         "min": 0,
         "max": 4,
         "desc": "左下分类标签芯片数量（0 隐藏整行）",
-        "publicKey": "categoryCount",
         "publicLabel": "分类标签数",
         "description": "左下分类标签芯片数量（0 隐藏整行）"
       },
@@ -8328,11 +8413,11 @@ export const pages = [
       },
       {
         "key": "showShareBar",
+        "publicKey": "showShareBar",
         "label": "占比对照条",
         "type": "toggle",
         "default": true,
         "desc": "显示/隐藏占全国数值对照条（装饰数据）",
-        "publicKey": "showValueLabels",
         "publicLabel": "占比对照条",
         "description": "显示/隐藏占全国数值对照条（装饰数据）"
       },
@@ -8397,6 +8482,7 @@ export const pages = [
         "unit": "%",
         "label": "占全国融资额 / SHARE OF TOTAL"
       },
+      "images": [],
       "metrics": [
         {
           "k": "融资额 / FUNDING",
@@ -8422,27 +8508,27 @@ export const pages = [
         {
           "name": "旧金山湾区",
           "en": "BAY AREA",
-          "share": 63.9
+          "value": 63.9
         },
         {
           "name": "纽约",
           "en": "NEW YORK",
-          "share": 12.4
+          "value": 12.4
         },
         {
           "name": "西雅图",
           "en": "SEATTLE",
-          "share": 9.8
+          "value": 9.8
         },
         {
           "name": "波士顿",
           "en": "BOSTON",
-          "share": 7.7
+          "value": 7.7
         },
         {
           "name": "其他地区",
           "en": "OTHER REGIONS",
-          "share": 6.2
+          "value": 6.2
         }
       ],
       "activeRegion": 3,
@@ -8473,7 +8559,7 @@ export const pages = [
         "key": "layout",
         "label": "右栏形式",
         "type": "select",
-        "default": "media",
+        "default": "map",
         "options": [
           {
             "value": "media",
@@ -8500,6 +8586,14 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "mediaSlotCount",
+            "max": 2,
+            "writeMode": "initialProps"
+          }
+        ],
         "desc": "右侧自适应图片槽数量（0 改为地区分布面板；上传后按图片比例自适应，构图随数量重排）",
         "publicKey": "mediaSlotCount",
         "publicLabel": "图片槽数量",
@@ -8531,13 +8625,13 @@ export const pages = [
       },
       {
         "key": "tagCount",
+        "publicKey": "tagCount",
         "label": "分类标签数",
         "type": "number",
         "default": 3,
         "min": 0,
         "max": 3,
         "desc": "左下分类标签芯片数量（0 隐藏整行）",
-        "publicKey": "categoryCount",
         "publicLabel": "分类标签数",
         "description": "左下分类标签芯片数量（0 隐藏整行）"
       },
@@ -8565,11 +8659,11 @@ export const pages = [
       },
       {
         "key": "showShareBar",
+        "publicKey": "showShareBar",
         "label": "占比对照条",
         "type": "toggle",
         "default": true,
         "desc": "显示/隐藏占全国数值对照条（装饰数据）",
-        "publicKey": "showValueLabels",
         "publicLabel": "占比对照条",
         "description": "显示/隐藏占全国数值对照条（装饰数据）"
       },
@@ -8634,6 +8728,7 @@ export const pages = [
         "unit": "%",
         "label": "占全国融资额 / SHARE OF TOTAL"
       },
+      "images": [],
       "metrics": [
         {
           "k": "融资额 / FUNDING",
@@ -8658,27 +8753,27 @@ export const pages = [
         {
           "name": "旧金山湾区",
           "en": "BAY AREA",
-          "share": 63.9
+          "value": 63.9
         },
         {
           "name": "纽约",
           "en": "NEW YORK",
-          "share": 12.4
+          "value": 12.4
         },
         {
           "name": "西雅图",
           "en": "SEATTLE",
-          "share": 9.8
+          "value": 9.8
         },
         {
           "name": "波士顿",
           "en": "BOSTON",
-          "share": 7.7
+          "value": 7.7
         },
         {
           "name": "其他地区",
           "en": "OTHER REGIONS",
-          "share": 6.2
+          "value": 6.2
         }
       ],
       "activeRegion": 4,
@@ -8731,7 +8826,7 @@ export const pages = [
         "key": "align",
         "label": "对齐方式",
         "type": "select",
-        "default": "left",
+        "default": "center",
         "options": [
           {
             "value": "left",
@@ -8960,6 +9055,7 @@ export const pages = [
         "unit": "亿$",
         "label": "最大单笔融资 / LARGEST ROUND"
       },
+      "images": [],
       "metrics": [
         {
           "k": "企业客户 / ENTERPRISE",
@@ -9028,7 +9124,7 @@ export const pages = [
         "key": "tagCount",
         "label": "关键词数量",
         "type": "number",
-        "default": 3,
+        "default": 4,
         "min": 0,
         "max": 4,
         "desc": "左侧关键词芯片数量（0 隐藏整行）",
@@ -9050,7 +9146,7 @@ export const pages = [
         "key": "focusIndex",
         "label": "高亮第几个",
         "type": "number",
-        "default": 1,
+        "default": 0,
         "min": 0,
         "max": 3,
         "desc": "被突出的指标序号",
@@ -9133,6 +9229,7 @@ export const pages = [
         "unit": "亿$+",
         "label": "累计融资 / TOTAL RAISED"
       },
+      "images": [],
       "metrics": [
         {
           "k": "估值 / VALUATION",
@@ -9202,7 +9299,7 @@ export const pages = [
         "key": "tagCount",
         "label": "关键词数量",
         "type": "number",
-        "default": 3,
+        "default": 4,
         "min": 0,
         "max": 4,
         "desc": "左侧关键词芯片数量（0 隐藏整行）",
@@ -9307,6 +9404,7 @@ export const pages = [
         "unit": "亿$",
         "label": "单笔融资 / SINGLE ROUND"
       },
+      "images": [],
       "metrics": [
         {
           "k": "估值 / VALUATION",
@@ -9376,7 +9474,7 @@ export const pages = [
         "key": "tagCount",
         "label": "关键词数量",
         "type": "number",
-        "default": 3,
+        "default": 4,
         "min": 0,
         "max": 4,
         "desc": "左侧关键词芯片数量（0 隐藏整行）",
@@ -9481,6 +9579,7 @@ export const pages = [
         "unit": "亿$",
         "label": "融资额 / TOTAL RAISED"
       },
+      "images": [],
       "metrics": [
         {
           "k": "估值 / VALUATION",
@@ -9669,6 +9768,7 @@ export const pages = [
       "caseIndex": 5,
       "caseTotal": 9,
       "caseTag": "CASE · SCALE AI",
+      "images": [],
       "figures": [
         {
           "v": "10 亿$",
@@ -9941,6 +10041,7 @@ export const pages = [
         "unit": "亿$",
         "label": "最大单笔融资 / LARGEST ROUND"
       },
+      "images": [],
       "metrics": [
         {
           "k": "月活用户 / MAU",
@@ -9988,7 +10089,7 @@ export const pages = [
         "key": "mediaSlotCount",
         "label": "图片槽数量",
         "type": "number",
-        "default": 1,
+        "default": 0,
         "min": 0,
         "max": 2,
         "desc": "右侧自适应图片槽数量（0 改为关键数据卡阵；上传后按图片比例自适应，构图随数量重排）",
@@ -10034,7 +10135,7 @@ export const pages = [
         "key": "focusIndex",
         "label": "高亮第几个",
         "type": "number",
-        "default": 0,
+        "default": 1,
         "min": 0,
         "max": 3,
         "desc": "被突出的指标序号",
@@ -10118,6 +10219,7 @@ export const pages = [
         "unit": "亿$",
         "label": "最大单笔融资 / LARGEST ROUND"
       },
+      "images": [],
       "metrics": [
         {
           "k": "企业客户 / ENTERPRISE",
@@ -10211,7 +10313,7 @@ export const pages = [
         "key": "focusIndex",
         "label": "高亮第几个",
         "type": "number",
-        "default": 0,
+        "default": 1,
         "min": 0,
         "max": 3,
         "desc": "被突出的指标序号",
@@ -10295,6 +10397,7 @@ export const pages = [
         "unit": "亿$",
         "label": "最大单笔融资 / LARGEST ROUND"
       },
+      "images": [],
       "metrics": [
         {
           "k": "付费客户 / PAID",
@@ -10354,7 +10457,7 @@ export const pages = [
         "key": "mediaSlotCount",
         "label": "图片槽数量",
         "type": "number",
-        "default": 0,
+        "default": 1,
         "min": 0,
         "max": 2,
         "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
@@ -10366,7 +10469,7 @@ export const pages = [
         "key": "align",
         "label": "对齐方式",
         "type": "select",
-        "default": "left",
+        "default": "center",
         "options": [
           {
             "value": "left",
@@ -10434,6 +10537,7 @@ export const pages = [
       "explain": "<b>Figure AI</b> 最大单笔融资——关键不只是 demo，而是供应链、可靠性和量产成本。",
       "closing": "硬件 AI 要用量产证明自己。",
       "watermark": "FIGURE",
+      "images": [],
       "metrics": [
         {
           "k": "赛道 / SEGMENT",
@@ -10599,6 +10703,7 @@ export const pages = [
         "unit": "亿$",
         "label": "最大单笔融资 / LARGEST ROUND"
       },
+      "images": [],
       "metrics": [
         {
           "k": "产品收入 / REVENUE",
@@ -10686,7 +10791,7 @@ export const pages = [
         "key": "keywordCount",
         "label": "关键词数量",
         "type": "number",
-        "default": 4,
+        "default": 5,
         "min": 0,
         "max": 6,
         "desc": "底部关键词标签数量（0 隐藏）",
@@ -10979,6 +11084,7 @@ export const pages = [
       "maxValue": 100,
       "footRight": "4 READINGS / METERS",
       "mediaPlaceholder": "指标主视觉 / DROP IMAGE",
+      "images": [],
       "chartType": "meters",
       "meterCount": 4,
       "mediaSlotCount": 0,
@@ -11028,7 +11134,7 @@ export const pages = [
         "key": "mediaSlotCount",
         "label": "图片槽数量",
         "type": "number",
-        "default": 0,
+        "default": 1,
         "min": 0,
         "max": 2,
         "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
@@ -11050,7 +11156,7 @@ export const pages = [
         "key": "focusIndex",
         "label": "高亮第几行",
         "type": "number",
-        "default": 3,
+        "default": 2,
         "min": 0,
         "max": 4,
         "desc": "被强调的行序号",
@@ -11082,7 +11188,7 @@ export const pages = [
         "key": "showCaseIndex",
         "label": "案例编号",
         "type": "toggle",
-        "default": true,
+        "default": false,
         "desc": "显示/隐藏右上角 CASE 编号（装饰）",
         "publicKey": "showCaseIndex",
         "publicLabel": "案例编号",
@@ -11147,6 +11253,7 @@ export const pages = [
       "caseIndex": 2,
       "caseTotal": 5,
       "caseTag": "RISK · 合规",
+      "images": [],
       "figures": [
         {
           "v": "+42%",
@@ -11320,7 +11427,7 @@ export const pages = [
         "key": "mediaSlotCount",
         "label": "图片槽数量",
         "type": "number",
-        "default": 0,
+        "default": 1,
         "min": 0,
         "max": 2,
         "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
@@ -11332,7 +11439,7 @@ export const pages = [
         "key": "align",
         "label": "对齐方式",
         "type": "select",
-        "default": "left",
+        "default": "center",
         "options": [
           {
             "value": "left",
@@ -11400,6 +11507,7 @@ export const pages = [
       "explain": "头部模型公司 <b>训练预算的模拟年增幅</b>——如果推理成本降不下来，收入增长会被毛利吞掉。",
       "closing": "算力成本是模型商业化的硬约束。",
       "watermark": "COMPUTE",
+      "images": [],
       "metrics": [
         {
           "k": "毛利率中位数 / MARGIN",
@@ -11477,7 +11585,7 @@ export const pages = [
         "key": "mediaSlotCount",
         "label": "图片槽数量",
         "type": "number",
-        "default": 0,
+        "default": 1,
         "min": 0,
         "max": 2,
         "desc": "右侧自适应图片槽数量（0 隐藏；上传后按图片比例自适应，构图随数量重排）",
@@ -11621,6 +11729,7 @@ export const pages = [
       "maxValue": 100,
       "footRight": "",
       "mediaPlaceholder": "开源竞争压力主视觉 / DROP IMAGE",
+      "images": [],
       "chartType": "meters",
       "meterCount": 4,
       "mediaSlotCount": 1,
@@ -11630,7 +11739,8 @@ export const pages = [
       "showThesis": true,
       "focusEnabled": true,
       "focusIndex": 0,
-      "accent": "#c8f135"
+      "accent": "#c8f135",
+      "headerTag": "COMPETITION WATCH"
     }
   },
   {
@@ -11826,6 +11936,7 @@ export const pages = [
       ],
       "mediaPlaceholder": "基础设施示意 / DROP IMAGE",
       "footRight": "4 方向 · FULL",
+      "images": [],
       "cardCount": 4,
       "layout": "cards",
       "mediaSlotCount": 0,
@@ -11862,7 +11973,7 @@ export const pages = [
         "key": "layout",
         "label": "方向排布",
         "type": "select",
-        "default": "cards",
+        "default": "rows",
         "options": [
           {
             "value": "cards",
@@ -11886,7 +11997,7 @@ export const pages = [
         "key": "mediaSlotCount",
         "label": "图片槽数量",
         "type": "number",
-        "default": 0,
+        "default": 1,
         "min": 0,
         "max": 2,
         "desc": "右侧自适应图片槽数量（0 时方向卡占满；上传后按图片比例自适应，构图随数量重排）",
@@ -11920,7 +12031,7 @@ export const pages = [
         "key": "focusIndex",
         "label": "高亮第几个",
         "type": "number",
-        "default": 0,
+        "default": 2,
         "min": 0,
         "max": 4,
         "desc": "被突出的方向序号",
@@ -12035,6 +12146,7 @@ export const pages = [
       ],
       "mediaPlaceholder": "工作流嵌入示意 / DROP IMAGE",
       "footRight": "5 场景 · 1 IMG",
+      "images": [],
       "cardCount": 5,
       "layout": "rows",
       "mediaSlotCount": 1,
@@ -12043,7 +12155,8 @@ export const pages = [
       "focusIndex": 2,
       "showTag": true,
       "showBadge": true,
-      "accent": "#c8f135"
+      "accent": "#c8f135",
+      "headerTag": "WORKFLOW SCREEN"
     }
   },
   {
@@ -12941,6 +13054,7 @@ export const pages = [
       ],
       "caption": "超级交易画像",
       "railCaption": "MEGA TIER",
+      "images": [],
       "mediaSlotCount": 2,
       "metricCount": 3,
       "tagCount": 3,
@@ -12989,7 +13103,7 @@ export const pages = [
         "key": "align",
         "label": "对齐方式",
         "type": "select",
-        "default": "left",
+        "default": "center",
         "options": [
           {
             "value": "left",
@@ -13057,6 +13171,7 @@ export const pages = [
       "explain": "<b>头部 12 笔超级交易</b> 的平均单笔规模——合计 718 亿美元，约占全年大额融资的四分之三。",
       "closing": "市场被少数超级交易重新定价。",
       "watermark": "MEGA",
+      "images": [],
       "metrics": [
         {
           "k": "超级交易 / DEALS",
@@ -13331,7 +13446,7 @@ export const pages = [
         "key": "focusIndex",
         "label": "高亮第几行",
         "type": "number",
-        "default": 3,
+        "default": 0,
         "min": 0,
         "max": 4,
         "desc": "被强调的行序号",
@@ -13363,7 +13478,7 @@ export const pages = [
         "key": "showCaseIndex",
         "label": "案例编号",
         "type": "toggle",
-        "default": true,
+        "default": false,
         "desc": "显示/隐藏右上角 CASE 编号（装饰）",
         "publicKey": "showCaseIndex",
         "publicLabel": "案例编号",
@@ -13428,6 +13543,7 @@ export const pages = [
       "caseIndex": 1,
       "caseTotal": 4,
       "caseTag": "APPENDIX",
+      "images": [],
       "figures": [
         {
           "v": "2024",
@@ -13611,7 +13727,7 @@ export const pages = [
         "key": "align",
         "label": "对齐方式",
         "type": "select",
-        "default": "left",
+        "default": "center",
         "options": [
           {
             "value": "left",
@@ -13751,7 +13867,7 @@ export const pages = [
         "key": "keywordCount",
         "label": "关键词数量",
         "type": "number",
-        "default": 4,
+        "default": 5,
         "min": 0,
         "max": 6,
         "desc": "底部关键词标签数量（0 隐藏）",
@@ -14186,6 +14302,7 @@ export const pages = [
         }
       ],
       "mediaPlaceholder": "前瞻主视觉 / DROP IMAGE",
+      "images": [],
       "mediaSlotCount": 1,
       "statCount": 3,
       "focusEnabled": true,
@@ -14280,7 +14397,7 @@ export const pages = [
         "key": "focusIndex",
         "label": "高亮第几个",
         "type": "number",
-        "default": 2,
+        "default": 1,
         "min": 0,
         "max": 3,
         "desc": "被突出的阶段序号",

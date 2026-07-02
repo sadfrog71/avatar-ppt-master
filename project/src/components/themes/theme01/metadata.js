@@ -2125,6 +2125,15 @@ export const pages = [
                 "Lambda",
                 "Together AI"
               ]
+            },
+            {
+              "label": "数据工具",
+              "items": [
+                "Labelbox",
+                "Databricks",
+                "Pinecone",
+                "Hugging Face"
+              ]
             }
           ]
         },
@@ -2149,6 +2158,15 @@ export const pages = [
                 "Adept",
                 "Runway"
               ]
+            },
+            {
+              "label": "多模态 / Agent",
+              "items": [
+                "Inflection",
+                "Character AI",
+                "Pika",
+                "ElevenLabs"
+              ]
             }
           ]
         },
@@ -2160,7 +2178,7 @@ export const pages = [
               "label": "企业生产力",
               "items": [
                 "Glean",
-                "Databricks",
+                "Notion AI",
                 "Harvey",
                 "Writer"
               ]
@@ -2169,7 +2187,7 @@ export const pages = [
               "label": "消费 / 搜索",
               "items": [
                 "Perplexity",
-                "Character AI",
+                "You.com",
                 "Suno",
                 "Midjourney"
               ]
@@ -2271,6 +2289,11 @@ export const pages = [
         "type": "images",
         "countKey": "imageSlotCount",
         "description": "上传特写图片，槽位自适应图片比例不变形。",
+        "default": [
+          "",
+          "",
+          ""
+        ],
         "publicKey": "images",
         "publicLabel": "图片",
         "desc": "上传特写图片，槽位自适应图片比例不变形。"
@@ -2337,7 +2360,7 @@ export const pages = [
         "key": "accentColor",
         "label": "主题色",
         "type": "color",
-        "default": "#5b8def",
+        "default": "#e0a23a",
         "options": [
           {
             "value": "#5b8def",
@@ -2468,7 +2491,7 @@ export const pages = [
         "step": 1,
         "unit": " 类",
         "description": "展示的分类数量（其余并入末项）。",
-        "publicKey": "categoryCount",
+        "publicKey": "segmentCount",
         "publicLabel": "分类数量",
         "desc": "展示的分类数量（其余并入末项）。"
       },
@@ -2920,76 +2943,76 @@ export const pages = [
         }
       ],
       "flows": [
-        {
-          "from": "strategic",
-          "to": "foundation",
-          "value": 230
-        },
-        {
-          "from": "strategic",
-          "to": "infra-compute",
-          "value": 120
-        },
-        {
-          "from": "strategic",
-          "to": "hardware",
-          "value": 20
-        },
-        {
-          "from": "vc",
-          "to": "foundation",
-          "value": 120
-        },
-        {
-          "from": "vc",
-          "to": "infra-compute",
-          "value": 70
-        },
-        {
-          "from": "vc",
-          "to": "applications",
-          "value": 110
-        },
-        {
-          "from": "vc",
-          "to": "hardware",
-          "value": 30
-        },
-        {
-          "from": "sovereign-pe",
-          "to": "foundation",
-          "value": 80
-        },
-        {
-          "from": "sovereign-pe",
-          "to": "infra-compute",
-          "value": 70
-        },
-        {
-          "from": "sovereign-pe",
-          "to": "hardware",
-          "value": 25
-        },
-        {
-          "from": "cvc",
-          "to": "foundation",
-          "value": 16
-        },
-        {
-          "from": "cvc",
-          "to": "infra-compute",
-          "value": 2
-        },
-        {
-          "from": "cvc",
-          "to": "applications",
-          "value": 65
-        },
-        {
-          "from": "cvc",
-          "to": "hardware",
-          "value": 12
-        }
+        [
+          0,
+          0,
+          230
+        ],
+        [
+          0,
+          1,
+          120
+        ],
+        [
+          0,
+          3,
+          20
+        ],
+        [
+          1,
+          0,
+          120
+        ],
+        [
+          1,
+          1,
+          70
+        ],
+        [
+          1,
+          2,
+          110
+        ],
+        [
+          1,
+          3,
+          30
+        ],
+        [
+          2,
+          0,
+          80
+        ],
+        [
+          2,
+          1,
+          70
+        ],
+        [
+          2,
+          3,
+          25
+        ],
+        [
+          3,
+          0,
+          16
+        ],
+        [
+          3,
+          1,
+          2
+        ],
+        [
+          3,
+          2,
+          65
+        ],
+        [
+          3,
+          3,
+          12
+        ]
       ],
       "caption": "桑基图 · 战略资本主攻大模型，VC 更广撒于应用",
       "sourceCount": 4,
@@ -3365,7 +3388,7 @@ export const pages = [
         "key": "rowCount",
         "label": "数据行数",
         "type": "number",
-        "default": 6,
+        "default": 10,
         "min": 1,
         "max": 10,
         "step": 1,
@@ -3423,7 +3446,7 @@ export const pages = [
         "key": "highlightIndex",
         "label": "强调第几行",
         "type": "number",
-        "default": 4,
+        "default": 0,
         "min": 0,
         "max": 5,
         "step": 1,
@@ -3446,7 +3469,7 @@ export const pages = [
         "key": "showFooter",
         "label": "合计行",
         "type": "boolean",
-        "default": true,
+        "default": false,
         "description": "是否显示底部合计 / 汇总行。",
         "publicKey": "showFooter",
         "publicLabel": "合计行",
@@ -3456,7 +3479,7 @@ export const pages = [
         "key": "accentColor",
         "label": "主题色",
         "type": "color",
-        "default": "#5b8def",
+        "default": "#46b083",
         "options": [
           {
             "value": "#5b8def",
@@ -3505,58 +3528,60 @@ export const pages = [
         "主营赛道",
         "融资额 / 亿美元"
       ],
-      "textCols": [
-        1
+      "columnKeys": [
+        "label",
+        "category",
+        "value"
       ],
       "rows": [
         {
           "label": "1 · OpenAI",
-          "metric": "通用大模型",
+          "category": "通用大模型",
           "value": "66"
         },
         {
           "label": "2 · Anthropic",
-          "metric": "通用大模型",
+          "category": "通用大模型",
           "value": "65"
         },
         {
           "label": "3 · xAI",
-          "metric": "通用大模型",
+          "category": "通用大模型",
           "value": "50"
         },
         {
           "label": "5 · CoreWeave",
-          "metric": "AI 基础设施",
+          "category": "算力基础设施",
           "value": "11"
         },
         {
           "label": "7 · Scale AI",
-          "metric": "AI 基础设施",
+          "category": "数据基础设施",
           "value": "10"
         },
         {
           "label": "4 · Safe Superintelligence",
-          "metric": "通用大模型",
+          "category": "通用大模型",
           "value": "10"
         },
         {
           "label": "6 · Figure AI",
-          "metric": "AI 硬件 · 机器人",
+          "category": "AI 硬件 · 机器人",
           "value": "6.8"
         },
         {
           "label": "8 · Perplexity AI",
-          "metric": "垂直应用 · 搜索",
+          "category": "垂直应用 · 搜索",
           "value": "5.2"
         },
         {
           "label": "9 · Databricks",
-          "metric": "AI 基础设施",
+          "category": "数据 + AI 平台",
           "value": "5.0"
         },
         {
           "label": "10 · Glean",
-          "metric": "垂直应用 · 企业搜索",
+          "category": "垂直应用 · 企业搜索",
           "value": "2.6"
         }
       ],
@@ -3725,7 +3750,7 @@ export const pages = [
       "insight": {
         "stat": "24%",
         "head": "头部 10 家 = 全市场近 1/4",
-        "body": "少数独角兽反复获得巨额追加投资，单笔大额融资额高度向金字塔尖收口——“赢家通吃”格局已然确立。"
+        "body": "巨额追加不断流向少数独角兽，资金加速向金字塔尖集中。"
       },
       "caption": "漏斗图 · 资金逐层向头部集中",
       "itemCount": 4,
@@ -3868,53 +3893,56 @@ export const pages = [
           "en": "DECACORN+",
           "count": "3",
           "unit": "家",
+          "color": "#6549c2",
           "desc": "通用大模型三巨头，估值断层领先",
           "examples": [
             "OpenAI",
             "Anthropic",
-            "xAI"
-          ],
-          "color": "#7a5ae0"
+            "xAI",
+            "SSI"
+          ]
         },
         {
           "band": "100 – 1000 亿",
           "en": "GIANT",
           "count": "9",
           "unit": "家",
+          "color": "#356ed6",
           "desc": "基建与应用龙头，紧追第一梯队",
           "examples": [
             "Databricks",
             "CoreWeave",
             "SSI",
             "Perplexity"
-          ],
-          "color": "#5b8def"
+          ]
         },
         {
           "band": "10 – 100 亿",
           "en": "UNICORN",
           "count": "34",
           "unit": "家",
+          "color": "#2f7f61",
           "desc": "细分赛道独角兽，估值快速爬升",
           "examples": [
             "Figure AI",
             "Scale AI",
-            "Glean"
-          ],
-          "color": "#46b083"
+            "Glean",
+            "Harvey"
+          ]
         },
         {
           "band": "< 10 亿",
           "en": "EMERGING",
           "count": "200+",
           "unit": "家",
+          "color": "#9b6417",
           "desc": "早期种子 / A 轮新锐，长尾基本盘",
           "examples": [
             "种子轮",
             "A 轮",
-            "早期"
-          ],
-          "color": "#e0a23a"
+            "早期",
+            "天使轮"
+          ]
         }
       ],
       "caption": "金字塔 · 顶端三家公司的估值合计超过其后数十家之和",
@@ -3987,7 +4015,7 @@ export const pages = [
         "key": "accentColor",
         "label": "主题色",
         "type": "color",
-        "default": "#5b8def",
+        "default": "#7a5ae0",
         "options": [
           {
             "value": "#5b8def",
@@ -4055,6 +4083,10 @@ export const pages = [
         "type": "images",
         "countKey": "imageSlotCount",
         "description": "上传图片（数量由「图片数量」控制），槽位自适应图片比例。",
+        "default": [
+          "",
+          ""
+        ],
         "publicKey": "images",
         "publicLabel": "图片",
         "desc": "上传图片（数量由「图片数量」控制），槽位自适应图片比例。"
@@ -4127,6 +4159,10 @@ export const pages = [
         "max": 3,
         "step": 1,
         "unit": " 个",
+        "countArrays": [
+          "companies",
+          "attributes[].values"
+        ],
         "description": "参与横向对比的对象（公司）数量。",
         "publicKey": "itemCount",
         "publicLabel": "对比对象数量",
@@ -4453,7 +4489,7 @@ export const pages = [
       "kicker": "# 典型案例",
       "title": "典型案例 · Anthropic",
       "en": "From Challenger to Frontrunner",
-      "intro": "2021 年由 OpenAI 前研究副总裁 Dario Amodei 创立。2024 年连续完成三轮大额融资，累计超 650 亿美元，估值突破 9650 亿美元，超越 OpenAI 成为全球估值最高的 AI 初创企业。",
+      "intro": "前 OpenAI 高管创立 Anthropic，2024 年估值跃居头部。",
       "milestones": [
         {
           "date": "2024 · 05",
@@ -4484,7 +4520,7 @@ export const pages = [
           "color": "#7a5ae0"
         }
       ],
-      "quote": "通过 Constitutional AI 等方法构建可解释、可控的系统，比单纯追求规模更符合长远利益。",
+      "quote": "安全对齐强调可解释、可控，而非单纯追求规模。",
       "quoteBy": "Dario Amodei · CEO",
       "images": [
         "",
@@ -5764,41 +5800,46 @@ export const pages = [
         "事件笔数",
         "平均单笔 / 亿美元"
       ],
+      "columnKeys": [
+        "label",
+        "deals",
+        "value"
+      ],
       "rows": [
         {
           "label": "种子轮 Seed",
-          "metric": "8",
+          "deals": "8",
           "value": "1.2"
         },
         {
           "label": "A 轮 Series A",
-          "metric": "12",
+          "deals": "12",
           "value": "1.8"
         },
         {
           "label": "B 轮 Series B",
-          "metric": "18",
+          "deals": "18",
           "value": "3.5"
         },
         {
           "label": "C 轮 Series C",
-          "metric": "15",
+          "deals": "15",
           "value": "6.8"
         },
         {
           "label": "D 轮及以后 Series D+",
-          "metric": "22",
+          "deals": "22",
           "value": "15.2"
         },
         {
           "label": "未标明轮次 Undisclosed",
-          "metric": "22",
+          "deals": "22",
           "value": "18.6"
         }
       ],
       "footer": {
         "label": "全年合计",
-        "metric": "97",
+        "deals": "97",
         "value": "10.0"
       },
       "textCols": [],
@@ -5928,7 +5969,7 @@ export const pages = [
         "label": "旧金山湾区",
         "note": "独占六成以上 · 人才、资本、算力虹吸效应进一步强化"
       },
-      "caption": "“地理护城河”短期内难以撼动 · 旧金山湾区独占六成以上份额",
+      "caption": "“地理护城河”短期内难以撼动 · 湾区独占六成以上份额",
       "segmentCount": 5,
       "highlight": true,
       "highlightIndex": 0,
@@ -6219,7 +6260,7 @@ export const pages = [
         "key": "accentColor",
         "label": "主题色",
         "type": "color",
-        "default": "#5b8def",
+        "default": "#e8503a",
         "options": [
           {
             "value": "#5b8def",
@@ -6287,6 +6328,10 @@ export const pages = [
         "type": "images",
         "countKey": "imageSlotCount",
         "description": "上传图片（数量由「图片数量」控制），槽位自适应图片比例。",
+        "default": [
+          "",
+          ""
+        ],
         "publicKey": "images",
         "publicLabel": "图片",
         "desc": "上传图片（数量由「图片数量」控制），槽位自适应图片比例。"
@@ -6494,6 +6539,9 @@ export const pages = [
         "max": 4,
         "step": 1,
         "unit": " 张",
+        "countArrays": [
+          "risks"
+        ],
         "description": "展示的状态主题卡片数量。",
         "publicKey": "cardCount",
         "publicLabel": "状态卡数量",
@@ -6569,7 +6617,6 @@ export const pages = [
         {
           "title": "估值泡沫与盈利困境",
           "en": "VALUATION BUBBLE",
-          "tone": "red",
           "chain": [
             "高估值泡沫",
             "盈利未验证",
@@ -6581,33 +6628,33 @@ export const pages = [
         {
           "title": "监管压力加大",
           "en": "REGULATION",
-          "tone": "amber",
           "chain": [
             "监管收紧",
             "AI 安全法案",
-            "合规成本激增"
+            "合规成本激增",
+            "上线周期拉长"
           ],
           "impact": "欧盟 AI Act、美国各州隐私法相继生效，技术标准尚未统一。"
         },
         {
           "title": "大厂挤压与开源冲击",
           "en": "BIG-TECH & OSS",
-          "tone": "violet",
           "chain": [
             "大厂自研",
             "开源逼近闭源",
-            "商业壁垒降低"
+            "商业壁垒降低",
+            "价格战加剧"
           ],
-          "impact": "Google / Meta / Microsoft 降维打击，Llama / Mistral 削弱 API 收费。"
+          "impact": "Google、Meta、Microsoft 与开源模型压低 API 溢价。"
         },
         {
           "title": "算力供应链卡脖子",
           "en": "COMPUTE SUPPLY",
-          "tone": "blue",
           "chain": [
             "GPU 供应紧张",
             "出口管制加码",
-            "算力成本高企"
+            "算力成本高企",
+            "交付节奏受限"
           ],
           "impact": "NVIDIA 供应紧张叠加对华出口管制，中小公司难承受长期烧钱。"
         }
@@ -6766,7 +6813,7 @@ export const pages = [
         "key": "itemCount",
         "label": "阶段数量",
         "type": "number",
-        "default": 3,
+        "default": 4,
         "min": 2,
         "max": 4,
         "step": 1,
@@ -6881,7 +6928,7 @@ export const pages = [
     ],
     "defaultProps": {
       "kicker": "# 投资展望",
-      "title": "阶段性策略 · 三步走路线图",
+      "title": "阶段性策略 · 四步走路线图",
       "en": "Phased Strategy Roadmap",
       "cn": "从观察到优选，再到逆周期布局",
       "phases": [
@@ -6893,8 +6940,7 @@ export const pages = [
             "持续跟踪头部公司 IPO 表现",
             "若 Anthropic / OpenAI 破发，警惕全行业估值回调"
           ],
-          "verdict": "保持观望",
-          "color": "#5b8def"
+          "verdict": "保持观望"
         },
         {
           "period": "2026 — 2027",
@@ -6904,8 +6950,7 @@ export const pages = [
             "关注垂直应用的收入增长曲线",
             "优选 ARR ≥ 1 亿美元、续约率 > 120% 的标的"
           ],
-          "verdict": "精选加仓",
-          "color": "#46b083"
+          "verdict": "精选加仓"
         },
         {
           "period": "2027 年后",
@@ -6915,8 +6960,7 @@ export const pages = [
             "若 AGI 突破未兑现，行业进入洗牌期",
             "逆周期抄底被低估的优质技术资产"
           ],
-          "verdict": "逆周期布局",
-          "color": "#7a5ae0"
+          "verdict": "逆周期布局"
         },
         {
           "period": "退出窗口",
@@ -6926,12 +6970,11 @@ export const pages = [
             "跟踪监管框架与并购窗口变化",
             "在流动性改善时分批兑现头部仓位"
           ],
-          "verdict": "动态兑现",
-          "color": "#e0a23a"
+          "verdict": "动态兑现"
         }
       ],
       "caption": "路线图 · 不同阶段，资本动作各不相同",
-      "itemCount": 3,
+      "itemCount": 4,
       "pointCount": 2,
       "highlight": true,
       "highlightIndex": 1,
@@ -6966,6 +7009,7 @@ export const pages = [
           }
         ],
         "desc": "动态 shader 或自定义背景媒体",
+        "default": "unicorn",
         "publicKey": "backgroundMode",
         "publicLabel": "背景替换",
         "description": "动态 shader 或自定义背景媒体"
@@ -6996,6 +7040,7 @@ export const pages = [
         "dependsOn": "backgroundMode",
         "dependsOnValue": "unicorn",
         "desc": "选择固定 Unicorn shader 场景",
+        "default": "tech",
         "publicKey": "dynamicVisual",
         "publicLabel": "动态场景",
         "description": "选择固定 Unicorn shader 场景"
@@ -7040,6 +7085,10 @@ export const pages = [
         "type": "images",
         "countKey": "imageSlotCount",
         "description": "上传满版图片，槽位自适应图片比例不变形。",
+        "default": [
+          "",
+          ""
+        ],
         "publicKey": "images",
         "publicLabel": "图片",
         "desc": "上传满版图片，槽位自适应图片比例不变形。"
@@ -7048,7 +7097,7 @@ export const pages = [
         "key": "plate",
         "label": "信息卡位置",
         "type": "select",
-        "default": "bottom-left",
+        "default": "bottom-right",
         "options": [
           {
             "value": "bottom-left",
@@ -7096,7 +7145,7 @@ export const pages = [
         "key": "highlightIndex",
         "label": "强调第几个",
         "type": "number",
-        "default": 0,
+        "default": 2,
         "min": 0,
         "max": 2,
         "step": 1,
@@ -7119,7 +7168,7 @@ export const pages = [
         "key": "accentColor",
         "label": "主题色",
         "type": "color",
-        "default": "#7a5ae0",
+        "default": "#e8503a",
         "options": [
           {
             "value": "#7a5ae0",
@@ -7351,62 +7400,58 @@ export const pages = [
       "cn": "行业 · 赛道 · 地理 —— 资本同时向头部收口",
       "cards": [
         {
+          "chartType": "bars",
           "tag": "行业层面",
           "tagTone": "blue",
           "label": "AI 占全美风险投资",
           "en": "Share of All US VC",
           "value": 33,
           "unit": "%",
-          "chartType": "bars",
           "trend": "三分天下有其一",
-          "barItems": [
+          "bars": [
             {
-              "label": "AI",
-              "value": 33,
-              "highlight": true
+              "l": "AI",
+              "v": 33,
+              "hot": true
             },
             {
-              "label": "医药",
-              "value": 14,
-              "highlight": false
+              "l": "医药",
+              "v": 14
             },
             {
-              "label": "金融",
-              "value": 11,
-              "highlight": false
+              "l": "金融",
+              "v": 11
             },
             {
-              "label": "软件",
-              "value": 10,
-              "highlight": false
+              "l": "软件",
+              "v": 10
             },
             {
-              "label": "能源",
-              "value": 8,
-              "highlight": false
+              "l": "能源",
+              "v": 8
             }
           ]
         },
         {
+          "chartType": "radial",
           "tag": "赛道层面",
           "tagTone": "green",
           "label": "大模型独占 AI 融资",
           "en": "Foundation-Model Layer",
           "value": 43,
           "unit": "%",
-          "chartType": "radial",
           "trend": "模型层最吸金",
           "restLabel": "其余赛道",
           "restValue": 57
         },
         {
+          "chartType": "area",
           "tag": "地理层面",
           "tagTone": "violet",
           "label": "资金虹吸旧金山湾区",
           "en": "Siphoned to the Bay Area",
           "value": 64,
           "unit": "%",
-          "chartType": "area",
           "trend": "虹吸效应持续强化",
           "points": [
             {
@@ -7949,7 +7994,7 @@ export const pages = [
       "accentColor": "#5b8def",
       "title": "xAI · 马斯克的第三次创业",
       "en": "Musk's Third Venture",
-      "intro": "由埃隆·马斯克于 2023 年创立的 xAI，在 2024 年 11 月完成 50 亿美元融资，估值达 500 亿美元。体量虽不及 OpenAI / Anthropic，但增速惊人——从成立到跻身头部梯队仅用 18 个月。",
+      "intro": "xAI 2024 年完成 50 亿美元融资，18 个月跻身头部梯队。",
       "stats": [
         {
           "value": "50",
@@ -8138,7 +8183,7 @@ export const pages = [
       "accentColor": "#46b083",
       "title": "CoreWeave · 卖铲子的人也赚翻了",
       "en": "Selling Shovels in the Gold Rush",
-      "intro": "原本是一家加密货币挖矿公司，2023 年转型为 AI 算力云服务商。2024 年完成 110 亿美元融资，估值超 190 亿美元——印证了「淘金热中卖铲子」的商业逻辑。",
+      "intro": "CoreWeave 转型 AI 算力云，2024 年融资 110 亿美元。",
       "stats": [
         {
           "value": "110",
@@ -8649,8 +8694,7 @@ export const pages = [
             "OpenAI",
             "Mistral",
             "xAI"
-          ],
-          "tone": "violet"
+          ]
         },
         {
           "name": "Sequoia",
@@ -8659,9 +8703,9 @@ export const pages = [
           "metric": 24,
           "deals": [
             "OpenAI",
-            "Glean"
-          ],
-          "tone": "blue"
+            "Glean",
+            "Harvey"
+          ]
         },
         {
           "name": "Thrive",
@@ -8670,9 +8714,9 @@ export const pages = [
           "metric": 17,
           "deals": [
             "OpenAI",
-            "Anthropic"
-          ],
-          "tone": "green"
+            "Anthropic",
+            "Scale AI"
+          ]
         },
         {
           "name": "Microsoft",
@@ -8681,9 +8725,9 @@ export const pages = [
           "metric": 14,
           "deals": [
             "OpenAI",
-            "CoreWeave"
-          ],
-          "tone": "amber"
+            "CoreWeave",
+            "Mistral"
+          ]
         },
         {
           "name": "MGX",
@@ -8692,9 +8736,9 @@ export const pages = [
           "metric": 11,
           "deals": [
             "xAI",
-            "Anthropic"
-          ],
-          "tone": "red"
+            "Anthropic",
+            "OpenAI"
+          ]
         },
         {
           "name": "Nvidia",
@@ -8703,9 +8747,9 @@ export const pages = [
           "metric": 10,
           "deals": [
             "CoreWeave",
-            "Figure"
-          ],
-          "tone": "green"
+            "Figure",
+            "Runway"
+          ]
         }
       ],
       "caption": "投资机构榜 · 一线风投、战略 CVC 与主权资本三股力量主导大额融资",
@@ -9032,21 +9076,21 @@ export const pages = [
       "items": [
         {
           "name": "OpenAI",
-          "sector": "GEN-AI",
+          "sector": "FRONTIER",
           "val": 1570,
           "rev": 37,
           "tone": "blue"
         },
         {
           "name": "Anthropic",
-          "sector": "GEN-AI",
+          "sector": "SAFETY AI",
           "val": 615,
           "rev": 8,
           "tone": "violet"
         },
         {
           "name": "xAI",
-          "sector": "GEN-AI",
+          "sector": "CHALLENGER",
           "val": 500,
           "rev": 2,
           "tone": "red"
@@ -9074,7 +9118,7 @@ export const pages = [
         }
       ],
       "insightTitle": "泡沫信号",
-      "insight": "通用大模型集体悬于参考线之上，估值建立在「未来市值」；唯算力基础设施 CoreWeave 贴近合理区间。",
+      "insight": "通用大模型多在参考线之上，CoreWeave 更接近合理区间。",
       "caption": "市销率天梯 · 多数公司估值远超 20× 收入，唯算力「卖铲」贴近合理区间",
       "itemCount": 6,
       "highlight": true,
@@ -10653,7 +10697,14 @@ export const pages = [
       "accentColor": "#5b8def",
       "showCaption": true,
       "caption": "流式面积图 · 基座模型这条主河道持续拓宽"
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "series[].values",
+        "anchor": "periods",
+        "relation": "same-length"
+      }
+    ]
   },
   {
     "key": "theme01_page060",
@@ -11960,7 +12011,15 @@ export const pages = [
       "fillOpacity": 18,
       "accentColor": "#7a5ae0",
       "showCaption": true
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "series[].values",
+        "anchor": "axes",
+        "relation": "same-length",
+        "countKey": "axisCount"
+      }
+    ]
   },
   {
     "key": "theme01_page066",
@@ -13936,7 +13995,15 @@ export const pages = [
       "showLegend": true,
       "accentColor": "#46b083",
       "showCaption": true
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "categories[].values",
+        "anchor": "series",
+        "relation": "same-length",
+        "countKey": "seriesCount"
+      }
+    ]
   },
   {
     "key": "theme01_page076",
@@ -14934,19 +15001,16 @@ export const pages = [
       "panels": [
         {
           "tag": "训练集群",
-          "tagTone": "blue",
           "heading": "超大规模训练",
           "sub": "十万卡级集群，是大模型的入场券"
         },
         {
           "tag": "具身智能",
-          "tagTone": "violet",
           "heading": "走进物理世界",
           "sub": "人形机器人从演示走向量产"
         },
         {
           "tag": "算力基建",
-          "tagTone": "amber",
           "heading": "卖铲子的人",
           "sub": "数据中心与电力成为新的稀缺"
         }

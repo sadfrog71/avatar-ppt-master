@@ -76,10 +76,17 @@
 
   function load() {
     if (loadP) return loadP;
+    const saved = readSavedSlots();
+    if (!canReadSidecar()) {
+      if (saved) slots = Object.assign({}, saved, slots);
+      loaded = true;
+      subs.forEach((fn) => fn());
+      loadP = Promise.resolve();
+      return loadP;
+    }
     loadP = fetch(STATE_FILE)
       .then((r) => (r.ok ? r.json() : null))
       .then((j) => {
-        const saved = readSavedSlots();
         if (saved) j = Object.assign({}, j || {}, saved);
         // Merge: sidecar loses to any in-memory change that raced ahead of
         // the fetch (drop or clear) so neither is clobbered by hydration.
@@ -101,6 +108,10 @@
       .catch(() => {})
       .then(() => { loaded = true; subs.forEach((fn) => fn()); });
     return loadP;
+  }
+
+  function canReadSidecar() {
+    return !!(window.omelette && window.omelette.writeFile) || location.protocol === 'https:';
   }
 
   // Serialize writes so two near-simultaneous drops on different slots
@@ -151,6 +162,20 @@
     return /\.(mp4|m4v|mov|webm|ogv)(?:[?#].*)?$/i.test(s)
       ? s.replace(/\.(mp4|m4v|mov|webm|ogv)(?:[?#].*)?$/i, '.poster.jpg')
       : null;
+  }
+
+  function releaseVideo(video) {
+    if (!video) return;
+    video.pause && video.pause();
+    video.removeAttribute && video.removeAttribute('src');
+    video.querySelectorAll && video.querySelectorAll('source[src]').forEach((source) => source.removeAttribute('src'));
+    video.load && video.load();
+  }
+
+  function slideIsActive(node) {
+    const slide = node && node.closest && node.closest('.slide');
+    if (!slide) return true;
+    return slide.classList.contains('active') || slide.hasAttribute('data-deck-active');
   }
 
   // Normalize a stored slot value. Pre-reframe sidecars stored a bare
@@ -311,7 +336,10 @@
       this._depth = 0;
       this._gen = 0;
       this._view = { s: 1, x: 0, y: 0 };
+      this._propSrc = null;
       this._subFn = () => this._render();
+      this._activeSlide = null;
+      this._activeObserver = null;
       // Shadow-DOM listeners live with the shadow DOM — bound once here so
       // disconnect/reconnect (e.g. React remount) doesn't stack handlers.
       this.addEventListener('pointerdown', e => e.stopPropagation());
@@ -454,6 +482,7 @@
       // frame's clamp range.
       this._ro = new ResizeObserver(() => this._render());
       this._ro.observe(this);
+      this._watchActiveSlide();
       load();
       this._render();
     }
@@ -465,7 +494,33 @@
       this.removeEventListener('dragleave', this);
       this.removeEventListener('drop', this);
       if (this._ro) { this._ro.disconnect(); this._ro = null; }
+      if (this._activeObserver) { this._activeObserver.disconnect(); this._activeObserver = null; }
+      this._activeSlide = null;
       this._exitReframe(false);
+      releaseVideo(this._video);
+    }
+
+    get src() {
+      return this._propSrc ?? this.getAttribute('src') ?? '';
+    }
+
+    set src(value) {
+      this._propSrc = value == null ? null : String(value);
+      if (this.shadowRoot) this._render();
+    }
+
+    _watchActiveSlide() {
+      const slide = this.closest && this.closest('.slide');
+      if (slide === this._activeSlide) return;
+      if (this._activeObserver) this._activeObserver.disconnect();
+      this._activeSlide = slide || null;
+      if (!slide || typeof MutationObserver === 'undefined') return;
+      this._activeObserver = new MutationObserver(() => this._render());
+      this._activeObserver.observe(slide, { attributes: true, attributeFilter: ['class', 'data-deck-active'] });
+      const deck = slide.parentElement || document.body;
+      if (deck && deck !== slide) {
+        this._activeObserver.observe(deck, { subtree: true, attributes: true, attributeFilter: ['class', 'data-deck-active'] });
+      }
     }
 
     _enterReframe() {
@@ -661,7 +716,7 @@
       // (Claude wrote it into the HTML) so it passes through unchanged.
       let stored = this.id ? getSlot(this.id) : this._local;
       if (stored && stored.u && !/^data:(image|video)\//i.test(stored.u)) stored = null;
-      const srcAttr = this.getAttribute('src') || '';
+      const srcAttr = this.src || '';
       this._userUrl = (stored && stored.u) || null;
       const url = this._userUrl || srcAttr;
       const kind = (stored && stored.kind) || (String(url).startsWith('data:video/') || /\.(mp4|webm|mov)(\?|#|$)/i.test(String(url)) ? 'video' : 'image');
@@ -680,27 +735,54 @@
       if (url) {
         if (kind === 'video') {
           this._exitReframe(false);
-          if (this._video.getAttribute('src') !== url) this._video.src = url;
           const poster = videoPoster(url);
-          if (poster) this._video.setAttribute('poster', poster);
-          else this._video.removeAttribute('poster');
-          this._img.style.display = 'none';
-          this._img.removeAttribute('src');
-          this._ghost.removeAttribute('src');
-          this._video.style.display = 'block';
-          this._video.style.width = '100%';
-          this._video.style.height = '100%';
-          this._video.style.left = '50%';
-          this._video.style.top = '50%';
-          this._video.style.objectFit = this.getAttribute('fit') || 'cover';
-          this._video.style.objectPosition = this.getAttribute('position') || '50% 50%';
+          if (slideIsActive(this)) {
+            if (this._video.getAttribute('src') !== url) {
+              releaseVideo(this._video);
+              this._video.src = url;
+            }
+            if (poster) this._video.setAttribute('poster', poster);
+            else this._video.removeAttribute('poster');
+            this._img.style.display = 'none';
+            this._img.removeAttribute('src');
+            this._ghost.removeAttribute('src');
+            this._video.style.display = 'block';
+            this._video.style.width = '100%';
+            this._video.style.height = '100%';
+            this._video.style.left = '50%';
+            this._video.style.top = '50%';
+            this._video.style.objectFit = this.getAttribute('fit') || 'cover';
+            this._video.style.objectPosition = this.getAttribute('position') || '50% 50%';
+          } else {
+            this._video.style.display = 'none';
+            releaseVideo(this._video);
+            this._ghost.removeAttribute('src');
+            if (poster) {
+              if (this._img.getAttribute('src') !== poster) this._img.setAttribute('src', poster);
+              this._img.setAttribute('data-video-poster', 'true');
+              this._img.style.display = 'block';
+              this._img.style.width = '100%';
+              this._img.style.height = '100%';
+              this._img.style.left = '50%';
+              this._img.style.top = '50%';
+              this._img.style.objectFit = this.getAttribute('fit') || 'cover';
+              this._img.style.objectPosition = this.getAttribute('position') || '50% 50%';
+              this._empty.style.display = 'none';
+            } else {
+              this._img.style.display = 'none';
+              this._img.removeAttribute('src');
+              this._img.removeAttribute('data-video-poster');
+              this._empty.style.display = 'flex';
+            }
+          }
         } else {
           if (this._img.getAttribute('src') !== url) {
             this._img.src = url;
             this._ghost.src = url;
           }
+          this._img.removeAttribute('data-video-poster');
           this._video.style.display = 'none';
-          this._video.removeAttribute('src');
+          releaseVideo(this._video);
           this._img.style.display = 'block';
           this._clampView();
           this._applyView();
@@ -711,7 +793,7 @@
         this._img.style.display = 'none';
         this._img.removeAttribute('src');
         this._video.style.display = 'none';
-        this._video.removeAttribute('src');
+        releaseVideo(this._video);
         this._ghost.removeAttribute('src');
         this._empty.style.display = 'flex';
         this.removeAttribute('data-filled');

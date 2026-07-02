@@ -498,9 +498,15 @@
 
   const STORE = 'dashi-ppt-view-model';
   const URL_STATE_PARAM = 'deckState';
-  const URL_STATE_MAX_LENGTH = 60000;
+  const URL_STATE_MAX_LENGTH = 12000;
   const URL_STATE_DEBOUNCE_MS = 260;
   const RESTORED_EMPHASIS_INDEX_KEYS = new Set(['activeIndex', 'currentIndex', 'emphasisIndex', 'featureIndex', 'focusCol', 'focusIndex', 'highlightCol', 'highlightIndex', 'highlightRowIndex']);
+  const OMIT_AUTHORED_PROP = Symbol('omit-authored-prop');
+  const PRIVATE_NESTED_PROP_KEYS = new Set([
+    'tone', 'color', 'colors', 'palette', 'dark', 'light',
+    'pos', 'position', 'x', 'y', 'top', 'right', 'bottom', 'left',
+    'rotate', 'rotation', 'angle', 'z', 'zIndex',
+  ]);
   const vm = readJson(vmEl, {});
   vm.state = vm.state || {};
   const embeddedText = readJson(textEl, {});
@@ -513,6 +519,7 @@
     text: {...(vm.state.text || {}), ...embeddedText},
     props: {...(vm.state.props || {})},
   };
+  const baseSlideOrderIndex = new Map(baseState.slideOrder.map((id, index) => [id, index]));
   const urlStateStatus = {param:URL_STATE_PARAM, limit:URL_STATE_MAX_LENGTH, loaded:false, tooLarge:false, lastError:''};
   const deckSignature = createDeckSignature(vm, baseState.text);
   const urlState = readUrlEditState(deckSignature);
@@ -554,7 +561,10 @@
   window.__writeDeckUrlStateNow = writeUrlStateNow;
 
   function getState(){
-    return JSON.parse(JSON.stringify(vm.state || {}));
+    return JSON.parse(JSON.stringify({
+      ...(vm.state || {}),
+      props: vm.state?.props || {},
+    }));
   }
 
 
@@ -585,7 +595,9 @@
 
   function setProps(slideId, props){
     if(!slideId) return;
-    vm.state.props[slideId] = {...(props || {})};
+    const authored = compactStatePropsFromRender(slideId, props || {});
+    if(Object.keys(authored).length) vm.state.props[slideId] = authored;
+    else delete vm.state.props[slideId];
     writeVm();
     persist();
   }
@@ -704,7 +716,7 @@
     const state = getState();
     const compact = {};
     const slideOrder = uniqueIds(state.slideOrder || []);
-    if(!arraysEqual(slideOrder, baseState.slideOrder)) compact.slideOrder = slideOrder;
+    if(!arraysEqual(slideOrder, baseState.slideOrder)) compact.slideOrder = compactSlideOrderForUrl(slideOrder);
     const skippedSlides = uniqueIds(state.skippedSlides || []);
     if(skippedSlides.length) compact.skippedSlides = skippedSlides;
     const deletedSlides = uniqueIds(state.deletedSlides || []);
@@ -713,7 +725,7 @@
     if(duplicatedSlides.length) compact.duplicatedSlides = duplicatedSlides;
     const text = diffFlatState(state.text || {}, getDefaultTextState());
     if(Object.keys(text).length) compact.text = text;
-    const props = compactPropsState(state.props || {});
+    const props = compactPropsState(state.props || {}, {forUrl:true});
     if(Object.keys(props).length) compact.props = props;
     const hasEditState = Object.keys(compact).length > 0;
     const view = readUrlViewState();
@@ -778,7 +790,7 @@
       v:1,
       sig:payload.sig || '',
       state:{
-        ...(hasOwn(state, 'slideOrder') ? {slideOrder:uniqueIds(state.slideOrder)} : {}),
+        ...(hasOwn(state, 'slideOrder') ? {slideOrder:restoreSlideOrderFromUrl(state.slideOrder)} : {}),
         ...(hasOwn(state, 'skippedSlides') ? {skippedSlides:uniqueIds(state.skippedSlides)} : {}),
         ...(hasOwn(state, 'deletedSlides') ? {deletedSlides:uniqueIds(state.deletedSlides)} : {}),
         ...(hasOwn(state, 'duplicatedSlides') ? {duplicatedSlides:sanitizeDuplicatedSlides(state.duplicatedSlides)} : {}),
@@ -830,16 +842,72 @@
     );
   }
 
-  function compactPropsState(props){
+  function compactPropsState(props, opts = {}){
     const out = {};
     Object.entries(props || {}).forEach(([slideId, values]) => {
-      const current = sanitizeForUrl(values);
+      const merged = {...getDefaultSlideProps(slideId), ...(values || {})};
+      const current = opts.forUrl ? sanitizeForUrl(merged) : merged;
       if(!current || typeof current !== 'object' || Array.isArray(current)) return;
-      const base = sanitizeForUrl(getDefaultSlideProps(slideId)) || {};
-      const diff = diffObject(current, base);
+      const diff = compactStatePropsFromRender(slideId, current);
       if(diff && Object.keys(diff).length) out[slideId] = diff;
     });
     return out;
+  }
+
+  function materializePropsState(props){
+    const out = {};
+    Object.entries(props || {}).forEach(([slideId, values]) => {
+      const materialized = materializeSlideProps(slideId, values);
+      if(materialized && typeof materialized === 'object' && !Array.isArray(materialized) && Object.keys(materialized).length){
+        out[slideId] = materialized;
+      }
+    });
+    return out;
+  }
+
+  function materializeSlideProps(slideId, values){
+    const defaults = getComponentDefaultSlideProps(slideId);
+    const source = getSlideSourceProps(slideId);
+    const baseProps = baseState.props?.[slideId] || {};
+    const base = mergeRenderablePropValue(mergeRenderablePropValue(defaults, source), baseProps);
+    return mergeCompactPropValue(base, values || {});
+  }
+
+  function mergeRenderablePropValue(base, override){
+    if(override === undefined) return cloneJsonValue(base);
+    if(Array.isArray(override)){
+      const baseItems = Array.isArray(base) ? base : [];
+      return override.map((item, index) => mergeRenderablePropValue(baseItems[index], item));
+    }
+    if(override && typeof override === 'object'){
+      const out = base && typeof base === 'object' && !Array.isArray(base) ? cloneJsonValue(base) : {};
+      Object.entries(override).forEach(([key, value]) => {
+        out[key] = mergeRenderablePropValue(out[key], value);
+      });
+      return out;
+    }
+    return override;
+  }
+
+  function mergeCompactPropValue(base, override){
+    if(override === undefined) return cloneJsonValue(base);
+    if(Array.isArray(override)){
+      const baseItems = Array.isArray(base) ? base : [];
+      const length = Math.max(baseItems.length, override.length);
+      return Array.from({length}, (_, index) => (
+        index < override.length
+          ? mergeCompactPropValue(baseItems[index], override[index])
+          : cloneJsonValue(baseItems[index])
+      ));
+    }
+    if(override && typeof override === 'object'){
+      const out = base && typeof base === 'object' && !Array.isArray(base) ? cloneJsonValue(base) : {};
+      Object.entries(override).forEach(([key, value]) => {
+        out[key] = mergeCompactPropValue(out[key], value);
+      });
+      return out;
+    }
+    return override;
   }
 
   function sanitizePropsState(props){
@@ -873,7 +941,7 @@
   function sanitizeForUrl(value){
     if(value == null) return value;
     if(typeof value === 'string'){
-      return /^data:(image|video)\//i.test(value) ? undefined : value;
+      return /^data:(image|video)\//i.test(value) ? undefined : sanitizeRichText(value);
     }
     if(['number','boolean'].includes(typeof value)) return value;
     if(Array.isArray(value)){
@@ -888,6 +956,19 @@
       if(sanitized !== undefined) out[key] = sanitized;
     });
     return Object.keys(out).length ? out : undefined;
+  }
+
+  function compactSlideOrderForUrl(order){
+    return uniqueIds(order).map(id => baseSlideOrderIndex.has(id) ? baseSlideOrderIndex.get(id) : id);
+  }
+
+  function restoreSlideOrderFromUrl(order){
+    if(!Array.isArray(order)) return [];
+    const ids = order.map(item => {
+      if(Number.isInteger(item)) return baseState.slideOrder[item] || '';
+      return typeof item === 'string' ? item : '';
+    });
+    return uniqueIds(ids);
   }
 
   function diffFlatState(current, base){
@@ -911,10 +992,75 @@
     return out;
   }
 
-  function getDefaultSlideProps(slideId){
-    const source = (vm.slides || []).find(slide => slide.id === slideId)?.props || {};
+  function compactStatePropsFromRender(slideId, renderProps){
+    const defaults = getComponentDefaultSlideProps(slideId);
+    const source = getSlideSourceProps(slideId);
+    const authored = compactAuthoredPropValue(renderProps || {}, defaults, source, '');
+    if(!authored || typeof authored !== 'object' || Array.isArray(authored)) return {};
+    return diffAuthoredRootForState(authored, source);
+  }
+
+  function compactAuthoredPropValue(current, defaults, source, path){
+    if(Array.isArray(current)){
+      const items = current.map((item, index) => compactAuthoredPropValue(
+        item,
+        Array.isArray(defaults) ? defaults[index] : undefined,
+        Array.isArray(source) ? source[index] : undefined,
+        `${path}[]`,
+      ));
+      let end = items.length;
+      while(end > 0 && isOmittedAuthoredProp(items[end - 1])) end -= 1;
+      if(end === 0 && !Array.isArray(source)) return OMIT_AUTHORED_PROP;
+      return items.slice(0, end).map(item => isOmittedAuthoredProp(item) ? {} : item);
+    }
+    if(current && typeof current === 'object'){
+      const out = {};
+      Object.entries(current).forEach(([key, value]) => {
+        if(path && isPrivateNestedPropKey(key)) return;
+        const child = compactAuthoredPropValue(
+          value,
+          defaults && typeof defaults === 'object' ? defaults[key] : undefined,
+          source && typeof source === 'object' ? source[key] : undefined,
+          path ? `${path}.${key}` : key,
+        );
+        if(!isOmittedAuthoredProp(child)) out[key] = child;
+      });
+      if(Object.keys(out).length) return out;
+      return source && typeof source === 'object' ? out : OMIT_AUTHORED_PROP;
+    }
+    const hasSource = source !== undefined;
+    if(hasSource || JSON.stringify(current) !== JSON.stringify(defaults)) return current;
+    return OMIT_AUTHORED_PROP;
+  }
+
+  function diffAuthoredRootForState(authored, source){
+    const out = {};
+    Object.entries(authored || {}).forEach(([key, value]) => {
+      if(JSON.stringify(value) !== JSON.stringify(source?.[key])) out[key] = value;
+    });
+    return out;
+  }
+
+  function isOmittedAuthoredProp(value){
+    return value === OMIT_AUTHORED_PROP;
+  }
+
+  function isPrivateNestedPropKey(key){
+    return PRIVATE_NESTED_PROP_KEYS.has(String(key || ''));
+  }
+
+  function getComponentDefaultSlideProps(slideId){
     const slideEl = [...document.querySelectorAll('#deck > .slide')].find(slide => slide.dataset.vmSlideId === slideId);
-    const defaults = readDatasetJson(slideEl?.querySelector('[data-prop-controls]')?.dataset.propDefaults, {});
+    return readDatasetJson(slideEl?.querySelector('[data-prop-controls]')?.dataset.propDefaults, {});
+  }
+
+  function getSlideSourceProps(slideId){
+    return (vm.slides || []).find(slide => slide.id === slideId)?.props || {};
+  }
+
+  function getDefaultSlideProps(slideId){
+    const source = getSlideSourceProps(slideId);
+    const defaults = getComponentDefaultSlideProps(slideId);
     return {...defaults, ...source, ...(baseState.props?.[slideId] || {})};
   }
 
@@ -954,7 +1100,7 @@
         : current;
       values[control.key] = Math.min(bounds.max, Math.max(bounds.min, migrated));
     });
-    return diffObject(values, defaults);
+    return compactStatePropsFromRender(slideId, values);
   }
 
   function shouldMigrateLegacyEmphasisValue(control, rawValues, values, bounds){
@@ -978,7 +1124,11 @@
     let max = Number(control.max ?? 10);
     if(control.maxFromKey && RESTORED_EMPHASIS_INDEX_KEYS.has(control.key)){
       const linkedValue = Number(values?.[control.maxFromKey]);
-      if(Number.isFinite(linkedValue)) max = Math.min(max, Math.max(min, linkedValue - (min === 0 ? 1 : 0)));
+      if(Number.isFinite(linkedValue)) {
+        const explicitOffset = Number(control?.maxFromKeyOffset);
+        const offset = Number.isFinite(explicitOffset) ? explicitOffset : (min === 0 ? -1 : 0);
+        max = Math.min(max, Math.max(min, linkedValue + offset));
+      }
     }
     if(max < min) max = min;
     return {min, max};
@@ -1366,6 +1516,25 @@ function uniquifySvgCloneIds(root, label='clone'){
   return root;
 }
 
+function releaseTemplateVideoElements(root){
+  const videos = [];
+  const visit = node => {
+    if(!node) return;
+    if(node.matches?.('video')) videos.push(node);
+    node.querySelectorAll?.('video')?.forEach(video => videos.push(video));
+    node.querySelectorAll?.('*')?.forEach(el => {
+      if(el.shadowRoot) visit(el.shadowRoot);
+    });
+  };
+  visit(root);
+  videos.forEach(video => {
+    video.pause?.();
+    if(video.getAttribute?.('src')) video.removeAttribute('src');
+    video.querySelectorAll?.('source[src]')?.forEach(source => source.removeAttribute('src'));
+    video.load?.();
+  });
+}
+
 function isDuplicatedRuntimeSlide(slide){
   const id = getSlideVmId(slide, allSlides.indexOf(slide));
   return slide?.dataset?.duplicatedSlide === 'true' || /__copy_/.test(id || '');
@@ -1386,6 +1555,7 @@ function restorePersistedCatalogSlides(){
     const source = slideById.get(record.sourceId);
     if(!source) return;
     const clone = source.cloneNode(true);
+    releaseTemplateVideoElements(clone);
     uniquifySvgCloneIds(clone, 'duplicated-slide');
     prepareDuplicatedSlideClone(clone, source, record.copyId);
     deck.insertBefore(clone, source.nextSibling);
@@ -1394,6 +1564,7 @@ function restorePersistedCatalogSlides(){
     window.__deckViewModel?.restoreDuplicatedSlide?.(record, sourceModel);
   });
 }
+window.__restorePersistedCatalogSlides = restorePersistedCatalogSlides;
 
 function applyPersistedSlideOrder(){
   const order = window.__deckViewModel?.getState?.().slideOrder || [];
@@ -1548,6 +1719,7 @@ function preloadAdjacentSlides(activeIndex=idx, opts={}){
       isolated:true,
       context:'adjacent preload',
     }));
+    window.__releaseInactiveRuntimeSlides?.(slides[activeIndex], {adjacentPreload:true});
   };
   if(opts.immediate){
     run();
@@ -2148,6 +2320,8 @@ function deleteCatalogSlide(catalogIndex){
   skipped.delete(slideId);
   window.__deckViewModel?.setDeletedSlides?.([...deleted]);
   window.__deckViewModel?.setSkippedSlides?.([...skipped]);
+  releaseTemplateVideoElements(slide);
+  window.__releaseRuntimeSlide?.(slide);
   slide.remove();
   updateAfterCatalogMutation(previousActiveSlide === slide ? null : previousActiveSlide, preferredIndex, {type:'delete', slideId});
   return true;
@@ -2162,6 +2336,7 @@ function duplicateCatalogSlide(catalogIndex){
   const sourceId = getSlideVmId(source, allSlides.indexOf(source));
   const copyId = `${sourceId}__copy_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
   const clone = source.cloneNode(true);
+  releaseTemplateVideoElements(clone);
   uniquifySvgCloneIds(clone, 'duplicated-slide');
   prepareDuplicatedSlideClone(clone, source, copyId);
   deck.insertBefore(clone, source.nextSibling);
@@ -2756,6 +2931,7 @@ function createOverviewDomPreview(slide){
   if(shouldUseLiteOverviewPreview(slide) && !slide.firstElementChild) return createOverviewLitePreview(slide);
   const {width, height} = getOverviewSourceSize();
   const clone = slide.cloneNode(true);
+  releaseTemplateVideoElements(clone);
   uniquifySvgCloneIds(clone, 'overview');
   clone.dataset.overviewThumbPreview='true';
   clone.hidden=false;
@@ -3784,6 +3960,7 @@ refreshRailCatalog();
   const saved = readSaved();
   const transitionModes = window.__pageTransitionModes || ['none', 'liquidMorph'];
   const themePacks = options.themePacks || {};
+  const defaultThemePack = Object.keys(themePacks).find(key => /^theme\d{2}$/.test(key)) || '';
   const previewCountButtonLimit = normalizePreviewCountButtonLimit(
     options.previewControls?.countButtonMaxValue ?? options.previewCountButtonLimit,
   );
@@ -3791,7 +3968,7 @@ refreshRailCatalog();
     || normalizeThemePack(saved.themePack)
     || normalizeThemePack(options.current?.themePack)
     || normalizeThemePack(document.documentElement.dataset.themePack)
-    || '';
+    || defaultThemePack;
   const state = {
     themePack: initialThemePack,
     pageTransition: transitionModes.includes(saved.pageTransition)
@@ -3806,7 +3983,7 @@ refreshRailCatalog();
   const count = document.getElementById('preview-slide-count');
   renderThemePackControl();
   refreshDeckSlides();
-  window.__setActiveThemePack?.(state.themePack || document.documentElement.dataset.themePack || 'theme3', {navigate:false});
+  window.__setActiveThemePack?.(state.themePack || defaultThemePack || '', {navigate:false});
   refreshDeckSlides();
   const TX_COLOR_STOPS = [
     [0, [0,0,0]],
@@ -4102,9 +4279,6 @@ refreshRailCatalog();
     const values = {...defaults, ...sourceProps, ...savedProps};
     controls.forEach(control => {
       values[control.key] = coercePropValue(control, values[control.key]);
-      if(slide?.dataset.themePack === 'theme03' && control.key === 'forceDark'){
-        values[control.key] = readTheme03GlobalDark(values[control.key]);
-      }
     });
     return values;
   }
@@ -4453,7 +4627,9 @@ refreshRailCatalog();
   }
 
   function resolveEmphasisLinkedMax(control, linkedValue, min){
-    return Math.max(min, linkedValue - (min === 0 ? 1 : 0));
+    const explicitOffset = Number(control?.maxFromKeyOffset);
+    const offset = Number.isFinite(explicitOffset) ? explicitOffset : (min === 0 ? -1 : 0);
+    return Math.max(min, linkedValue + offset);
   }
 
   function resolveRangeBounds(control, values){
@@ -4533,104 +4709,8 @@ refreshRailCatalog();
     }
     Object.assign(values, opts.extra || {});
     const unicornRefresh = control.key === 'backgroundMode' || control.key === 'unicornScene';
-    if(slide.dataset.themePack === 'theme03' && control.key === 'forceDark'){
-      applyTheme03GlobalDark(values[control.key], opts);
-      if(opts.render !== false) renderPropControls();
-      return;
-    }
-    if(slide.dataset.themePack === 'theme03' && control.key === 'accent'){
-      applyTheme03GlobalAccent(values[control.key], opts);
-      if(opts.render !== false) renderPropControls();
-      return;
-    }
-    if(slide.dataset.themePack === 'theme02' && control.key === 'scheme'){
-      applyTheme02GlobalScheme(values[control.key], opts);
-      if(opts.render !== false) renderPropControls();
-      return;
-    }
     applyPropValues(slide, values, {unicornRefresh});
     if(opts.render !== false) renderPropControls();
-  }
-
-  function readTheme03GlobalDark(fallback = true){
-    const runtimeValue = window.__getTheme03GlobalDark?.();
-    if(typeof runtimeValue === 'boolean') return runtimeValue;
-    try {
-      const stored = localStorage.getItem('rd-theme');
-      if(stored === 'light') return false;
-      if(stored === 'dark') return true;
-    } catch {}
-    if(document.body.classList.contains('rd-force-dark')) return true;
-    return fallback !== false;
-  }
-
-  function applyTheme03GlobalDark(forceDark, opts = {}){
-    const dark = !!forceDark;
-    window.__setTheme03GlobalDark?.(dark, { syncProps: false });
-    document.body.classList.toggle('rd-force-dark', dark);
-    try {
-      localStorage.setItem('rd-theme', dark ? 'dark' : 'light');
-    } catch {}
-    syncTheme03ForceDarkProps(dark, opts);
-  }
-
-  function syncTheme03ForceDarkProps(forceDark, opts = {}){
-    const dark = !!forceDark;
-    const vmState = viewModel?.getState?.() || {};
-    document.querySelectorAll('#deck > .slide[data-theme-pack="theme03"]').forEach(target => {
-      const root = target.querySelector('[data-prop-controls]');
-      const controls = parsePropControls(root);
-      if(!controls.some(item => item.key === 'forceDark')) return;
-      const values = getSlidePropValues(target, vmState);
-      values.forceDark = dark;
-      if(target === getCurrentSlide()){
-        applyPropValues(target, values);
-      } else {
-        const next = {...parsePropDefaults(root), ...getSlideSourceProps(target), ...values};
-        viewModel?.setProps?.(target.dataset.vmSlideId, next);
-        if(opts.renderAll) applyPropValues(target, values);
-      }
-    });
-  }
-  window.__syncTheme03ForceDarkProps = syncTheme03ForceDarkProps;
-
-  function applyTheme03GlobalAccent(accent, opts = {}){
-    const vmState = viewModel?.getState?.() || {};
-    document.querySelectorAll('#deck > .slide[data-theme-pack="theme03"]').forEach(target => {
-      const root = target.querySelector('[data-prop-controls]');
-      const controls = parsePropControls(root);
-      if(!controls.some(item => item.key === 'accent')) return;
-      const values = getSlidePropValues(target, vmState);
-      values.accent = accent;
-      if(target === getCurrentSlide()){
-        applyPropValues(target, values);
-      } else {
-        const next = {...parsePropDefaults(root), ...getSlideSourceProps(target), ...values};
-        viewModel?.setProps?.(target.dataset.vmSlideId, next);
-        if(opts.renderAll) applyPropValues(target, values);
-      }
-    });
-    window.dispatchEvent(new CustomEvent('rd-accentchange', { detail: { accent } }));
-  }
-
-  function applyTheme02GlobalScheme(scheme, opts = {}){
-    const nextScheme = String(scheme) === 'violet' ? 'violet' : 'green';
-    const vmState = viewModel?.getState?.() || {};
-    document.querySelectorAll('#deck > .slide[data-theme-pack="theme02"]').forEach(target => {
-      const root = target.querySelector('[data-prop-controls]');
-      const controls = parsePropControls(root);
-      if(!controls.some(item => item.key === 'scheme')) return;
-      const values = getSlidePropValues(target, vmState);
-      values.scheme = nextScheme;
-      if(target === getCurrentSlide()){
-        applyPropValues(target, values);
-      } else {
-        const next = {...parsePropDefaults(root), ...getSlideSourceProps(target), ...values};
-        viewModel?.setProps?.(target.dataset.vmSlideId, next);
-        window.__markOverviewThumbDirty?.(target);
-        if(opts.renderAll) applyPropValues(target, values);
-      }
-    });
   }
 
   function normalizePropOptions(options){
@@ -4898,7 +4978,7 @@ refreshRailCatalog();
           body: JSON.stringify({
             title: document.title || 'Presentation',
             fileName: getDeckFileName(),
-            sourcePath: location.pathname + location.search,
+            sourcePath: getServerExportSourcePath(),
             progressId,
             snapshot: buildPdfExportSnapshot(),
           }),
@@ -4911,7 +4991,7 @@ refreshRailCatalog();
       throwIfDeckExportCancelled(exportUi);
       // No export service reachable (e.g. preview server without export support).
       if(!response || response.status === 404){
-        throw new Error('导出需要 HTTP 服务模式：未连接到导出服务,请用 `npm run preview:start` 启动本地预览服务后再导出。');
+        throw new Error('导出需要 HTTP 服务模式：未连接到导出服务,请用 `npm --prefix <skill-root>/project run preview:start -- <输出 ppt 目录> <port>` 启动本地预览服务后再导出。');
       }
       if(!response.ok){
         let detail = '';
@@ -4919,12 +4999,12 @@ refreshRailCatalog();
         throw new Error(detail || `PDF export endpoint failed (${response.status})`);
       }
       const result = await response.json();
-      if(!result?.filePath) throw new Error('PDF export did not return a saved file path.');
+      if(!result?.downloadUrl) throw new Error('PDF export did not return a download URL.');
       window.__lastPdfExportResult = result;
-      const downloadStarted = startServerExportDownload(result.downloadUrl, result.downloadName || `${getDeckFileName()}.pdf`);
+      const downloadStarted = startServerExportDownload(result.downloadUrl, 'PDF');
       window.__lastPdfExportResult.downloadStarted = downloadStarted;
-      updateDeckExport(exportUi, slides.length, slides.length, downloadStarted ? 'PDF 已开始下载' : `PDF 已保存：${result.relativePath || result.filePath}`);
-      if(!downloadStarted) alert(`PDF 已保存到：\n${result.filePath}`);
+      updateDeckExport(exportUi, slides.length, slides.length, downloadStarted ? 'PDF 已开始下载' : `PDF 已生成：${result.relativePath || result.downloadName || 'download'}`);
+      if(!downloadStarted) alert(`PDF 已生成：\n${result.downloadName || result.relativePath || 'download'}`);
     } catch (error) {
       if(isDeckExportCancelledError(error)) return;
       console.error('[export pdf]', error);
@@ -5010,7 +5090,7 @@ refreshRailCatalog();
           body: JSON.stringify({
             title: document.title || 'Presentation',
             fileName: getDeckFileName(),
-            sourcePath: location.pathname + location.search,
+            sourcePath: getServerExportSourcePath(),
             progressId,
             snapshot: buildEditablePptxExportSnapshot(),
           }),
@@ -5023,7 +5103,7 @@ refreshRailCatalog();
       throwIfDeckExportCancelled(exportUi);
       // No export service reachable.
       if(!response || response.status === 404){
-        throw new Error('导出需要 HTTP 服务模式：未连接到导出服务,请用 `npm run preview:start` 启动本地预览服务后再导出。');
+        throw new Error('导出需要 HTTP 服务模式：未连接到导出服务,请用 `npm --prefix <skill-root>/project run preview:start -- <输出 ppt 目录> <port>` 启动本地预览服务后再导出。');
       }
       if(!response.ok){
         let detail = '';
@@ -5031,18 +5111,18 @@ refreshRailCatalog();
         throw new Error(detail || `Editable PPTX export endpoint failed (${response.status})`);
       }
       const result = await response.json();
-      if(!result?.filePath) throw new Error('Editable PPTX export did not return a saved file path.');
+      if(!result?.downloadUrl) throw new Error('Editable PPTX export did not return a download URL.');
       window.__lastPptxExportResult = result;
       throwIfDeckExportCancelled(exportUi);
-      const downloadStarted = startServerExportDownload(result.downloadUrl, result.downloadName || `${getDeckFileName()}.pptx`);
+      const downloadStarted = startServerExportDownload(result.downloadUrl, 'PPTX');
       window.__lastPptxExportResult.downloadStarted = downloadStarted;
-      updateDeckExport(exportUi, slides.length, slides.length, downloadStarted ? 'PPTX 已开始下载' : `PPTX 已保存：${result.relativePath || result.filePath}`);
-      if(!downloadStarted) alert(`PPTX 已保存到：\n${result.filePath}`);
+      updateDeckExport(exportUi, slides.length, slides.length, downloadStarted ? 'PPTX 已开始下载' : `PPTX 已生成：${result.relativePath || result.downloadName || 'download'}`);
+      if(!downloadStarted) alert(`PPTX 已生成：\n${result.downloadName || result.relativePath || 'download'}`);
     } catch (error) {
       if(isDeckExportCancelledError(error)) return;
       console.error('[export pptx]', error);
       const message = location.protocol === 'http:' || location.protocol === 'https:'
-        ? `可编辑 PPTX 导出失败：当前页面是 HTTP/HTTPS 地址,但没有连到本地预览导出服务、服务目录不匹配，或使用了会影响下载的 HTTP LAN/jadon.local 地址。请确认用 npm run preview:start -- <输出 ppt 目录> <port> 启动，并优先打开本机 HTTP 地址 http://127.0.0.1:<port>/ 或 http://localhost:<port>/ 后导出。错误：${error?.message || '未知错误'}`
+        ? `可编辑 PPTX 导出失败：当前页面是 HTTP/HTTPS 地址,但没有连到本地预览导出服务、服务目录不匹配，或使用了会影响下载的 HTTP LAN 地址。请确认用 npm --prefix <skill-root>/project run preview:start -- <输出 ppt 目录> <port> 启动，并优先打开本机 HTTP 地址 http://127.0.0.1:<port>/ 或 http://localhost:<port>/ 后导出。错误：${error?.message || '未知错误'}`
         : '可编辑 PPTX 导出失败，请通过本地 HTTP/HTTPS 预览服务打开。直接打开本地 HTML/file:// 不能导出可编辑 PPTX。';
       window.__lastPptxExportErrorMessage = message;
       alert(message);
@@ -5106,11 +5186,26 @@ refreshRailCatalog();
     };
   }
 
-  function startServerExportDownload(downloadUrl, filename){
+  function getServerExportSourcePath() {
+    const url = new URL(location.href);
+    url.searchParams.delete('deckState');
+    return url.pathname + url.search;
+  }
+
+  function startServerExportDownload(downloadUrl, exportType){
     if(!downloadUrl) return false;
     try {
       const url = new URL(downloadUrl, location.href);
       if(url.origin !== location.origin) return false;
+      const file = url.searchParams.get('file') || '';
+      const expected = exportType === 'PDF'
+        ? {path:'/api/export-pdf-download', ext:'.pdf'}
+        : exportType === 'PPTX'
+          ? {path:'/api/export-editable-pptx-download', ext:'.pptx'}
+          : null;
+      if(!expected) return false;
+      if(url.pathname !== expected.path) return false;
+      if(!file.toLowerCase().endsWith(expected.ext)) return false;
       location.assign(url.href);
       return true;
     } catch {
@@ -5264,8 +5359,8 @@ refreshRailCatalog();
   function materializeHtmlExportViewModel(clone, visibleSlides){
     const vmEl = clone.querySelector('#deck-view-model');
     if(!vmEl || !window.__deckViewModel?.model) return;
-    const state = window.__deckViewModel.getState?.() || {};
     const liveModel = window.__deckViewModel.model;
+    const state = liveModel.state || {};
     const sourceSlides = new Map((liveModel.slides || []).map(slide => [slide.id, slide]));
     const slides = (visibleSlides || []).map(slide => {
       const id = slide.dataset.vmSlideId;
@@ -5430,6 +5525,7 @@ refreshRailCatalog();
   function staticUnicornRuntime(){
     const DEFAULT_SDK_URL = 'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.1.12/dist/unicornStudio.umd.js';
     let sdkPromise = null;
+    let sdkPromiseUrl = '';
     let embeddedAssetMap = null;
     const embeddedAssetUrls = new Map();
 
@@ -5465,7 +5561,7 @@ refreshRailCatalog();
       return loadSdk(sdkUrl)
         .then(() => Promise.allSettled(pending.map(initFrame)))
         .catch(error => {
-          console.warn('[unicorn] failed to load scene runtime', error);
+          pending.forEach(frame => markFrameFallback(frame, 'runtime-load'));
           return [];
         });
     }
@@ -5477,20 +5573,23 @@ refreshRailCatalog();
 
     function loadSdk(sdkUrl){
       if(window.UnicornStudio?.addScene) return Promise.resolve();
-      if(sdkPromise) return sdkPromise;
+      if(sdkPromise && sdkPromiseUrl === sdkUrl) return sdkPromise;
+      sdkPromiseUrl = sdkUrl;
       sdkPromise = new Promise((resolve, reject) => {
-        const existing = document.querySelector(`script[src="${sdkUrl}"]`);
-        const script = existing || document.createElement('script');
-        script.addEventListener('load', resolve, {once:true});
-        script.addEventListener('error', reject, {once:true});
-        if(!existing){
-          script.src = sdkUrl;
-          script.async = true;
-          document.head.appendChild(script);
-        }
-      }).then(() => {
-        if(!window.UnicornStudio?.addScene) throw new Error('UnicornStudio.addScene not found');
-      });
+        const script = document.createElement('script');
+        script.src = sdkUrl;
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error(`Failed to load Unicorn SDK ${sdkUrl}`));
+        document.head.appendChild(script);
+      })
+        .then(() => {
+          if(!window.UnicornStudio?.addScene) throw new Error('UnicornStudio.addScene not found');
+        }).catch(error => {
+          sdkPromise = null;
+          sdkPromiseUrl = '';
+          throw error;
+        });
       return sdkPromise;
     }
 
@@ -5523,12 +5622,20 @@ refreshRailCatalog();
       });
     }
 
+    function markFrameFallback(frame, reason){
+      if(!frame) return;
+      frame.dataset.unicornFallback = reason || 'runtime';
+      frame.removeAttribute('data-unicorn-ready');
+      frame.removeAttribute('data-unicorn-active-source');
+    }
+
     function resetFrame(frame){
       if(!frame) return;
       frame.__unicornScene?.destroy?.();
       frame.__unicornScene = null;
       frame.removeAttribute('data-unicorn-ready');
       frame.removeAttribute('data-unicorn-active-source');
+      frame.removeAttribute('data-unicorn-fallback');
       const scene = frame.querySelector('.bt-unicorn-scene');
       if(scene){
         scene.innerHTML = '';
@@ -5832,7 +5939,7 @@ refreshRailCatalog();
     return location.protocol === 'http:' || location.protocol === 'https:';
   }
   function showExportServiceRequired(){
-    alert('仅支持 HTTP 服务模式下导出。\n\n直接打开本地 HTML(file://)不能导出可编辑 PPTX。请用 `npm run preview:start -- <输出 ppt 目录> <port>` 启动本地预览服务,再用 http://127.0.0.1:<port>/ 打开并导出 PDF / PPTX。');
+    alert('仅支持 HTTP 服务模式下导出。\n\n直接打开本地 HTML(file://)不能导出可编辑 PPTX。请用 `npm --prefix <skill-root>/project run preview:start -- <输出 ppt 目录> <port>` 启动本地预览服务,再用 http://127.0.0.1:<port>/ 打开并导出 PDF / PPTX。');
   }
 
   staticUnicornRuntime();
@@ -6139,10 +6246,11 @@ refreshRailCatalog();
     slide.setAttribute('data-deck-active', '');
     window.__syncTheme10Motion?.(slide);
 	  };
-		  function prepareTransitionClone(sourceSlide, role, opts={}){
-		    const clone = sourceSlide.cloneNode(true);
-		    uniquifySvgCloneIds(clone, `transition-${role}`);
-		    clone.classList.add('active');
+			  function prepareTransitionClone(sourceSlide, role, opts={}){
+			    const clone = sourceSlide.cloneNode(true);
+			    releaseTemplateVideoElements(clone);
+			    uniquifySvgCloneIds(clone, `transition-${role}`);
+			    clone.classList.add('active');
 		    clone.dataset.transitionRole = role;
 		    clone.setAttribute('data-deck-active', '');
 	    return clone;
@@ -6182,14 +6290,15 @@ refreshRailCatalog();
 	  function prefersReducedMotion(){
 	    return window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
 	  }
-	  function cleanupTransitionStages(){
-	    document.querySelectorAll('.page-transition-stage').forEach(stage => {
-	      stage.__transitionCancel?.();
-	      stage.__transitionTimeline?.kill?.();
-	      stage.__transitionResolve?.();
-	      stage.remove();
-	    });
-	  }
+		  function cleanupTransitionStages(){
+		    document.querySelectorAll('.page-transition-stage').forEach(stage => {
+		      stage.__transitionCancel?.();
+		      stage.__transitionTimeline?.kill?.();
+		      stage.__transitionResolve?.();
+		      releaseTemplateVideoElements(stage);
+		      stage.remove();
+		    });
+		  }
 	  function createTransitionContext(mode, currentSlide, nextSlide, direction, commit, opts){
 	    const nonBlocking = !!opts.nonBlocking || document.body.dataset.mode === 'edit';
 	    cleanupTransitionStages();
@@ -6224,19 +6333,21 @@ refreshRailCatalog();
 	      },
 	      finish(){
 	        if(ctx.done) return;
-	        ctx.done = true;
-	        ctx.startTargetEnter();
-	        commit?.();
-	        stage.remove();
-	        ctx.resolve?.();
-	      },
+		        ctx.done = true;
+		        ctx.startTargetEnter();
+		        commit?.();
+		        releaseTemplateVideoElements(stage);
+		        stage.remove();
+		        ctx.resolve?.();
+		      },
 	      cancel(){
 	        if(ctx.done) return;
-	        ctx.done = true;
-	        ctx.timeline?.kill?.();
-	        stage.remove();
-	        ctx.resolve?.();
-	      },
+		        ctx.done = true;
+		        ctx.timeline?.kill?.();
+		        releaseTemplateVideoElements(stage);
+		        stage.remove();
+		        ctx.resolve?.();
+		      },
 	    };
 	    stage.__transitionCancel = ctx.cancel;
 	    return ctx;

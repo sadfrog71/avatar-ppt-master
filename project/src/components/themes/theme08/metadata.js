@@ -309,6 +309,9 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "images"
+        ],
         "label": "图片数量",
         "desc": "四周漂浮照片卡数量（0–4）",
         "publicKey": "mediaCount",
@@ -329,6 +332,7 @@ export const pages = [
     "defaultProps": {
       "backgroundTheme": "muted",
       "mediaCount": 4,
+      "images": [],
       "showDecor": true,
       "eyebrow": "XX 集团供应链 · STRATEGY 2026–2028",
       "kickerPre": "链通全国",
@@ -392,6 +396,9 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "images"
+        ],
         "label": "图片数量",
         "desc": "拼贴照片槽数量；布局随数量自动平衡，每个槽按上传图片比例自适应",
         "publicKey": "mediaCount",
@@ -422,6 +429,7 @@ export const pages = [
     "defaultProps": {
       "backgroundTheme": "primary",
       "mediaCount": 3,
+      "images": [],
       "showDecor": true,
       "showMeta": true,
       "eyebrow": "AI CAPITAL LAB · 2024",
@@ -1101,7 +1109,7 @@ export const pages = [
         "step": 1,
         "label": "分段数量",
         "desc": "占比分段(分类)的数量",
-        "publicKey": "categoryCount",
+        "publicKey": "segmentCount",
         "publicLabel": "分段数量",
         "description": "占比分段(分类)的数量"
       },
@@ -1258,9 +1266,9 @@ export const pages = [
       {
         "key": "itemCount",
         "type": "number",
-        "default": 3,
+        "default": 2,
         "min": 1,
-        "max": 3,
+        "max": 2,
         "step": 1,
         "countArrays": [
           "layers[].items"
@@ -1331,7 +1339,7 @@ export const pages = [
     "defaultProps": {
       "backgroundTheme": "primary",
       "layerCount": 3,
-      "itemCount": 3,
+      "itemCount": 2,
       "focusEnabled": true,
       "focusIndex": 1,
       "showRegion": true,
@@ -1534,7 +1542,7 @@ export const pages = [
       "eyebrow": "Case Studies",
       "headline": "典型案例深度剖析",
       "subheadline": "三类资本逻辑的代表公司",
-      "summary": "Anthropic、xAI 与 CoreWeave 分别代表<b>安全模型、实时数据生态与算力基础设施</b>三类资本逻辑。",
+      "summary": "三家代表公司分别对应<b>安全模型、实时数据生态与算力基础设施</b>三类资本逻辑。",
       "cases": [
         {
           "company": "Anthropic",
@@ -2095,7 +2103,7 @@ export const pages = [
         "type": "number",
         "default": 2,
         "min": 1,
-        "max": 3,
+        "max": 2,
         "step": 1,
         "countArrays": [
           "quadrants[].items"
@@ -8159,7 +8167,7 @@ export const pages = [
           "unit": "亿"
         }
       ],
-      "strataTitle": "流程编排",
+      "strataTitle": "编排层级",
       "layers": [
         {
           "k": "数据接入",
@@ -8897,9 +8905,9 @@ export const pages = [
       {
         "key": "themeCount",
         "type": "number",
-        "default": 2,
+        "default": 1,
         "min": 1,
-        "max": 2,
+        "max": 1,
         "step": 1,
         "countArrays": [
           "rows[].themes"
@@ -8989,7 +8997,7 @@ export const pages = [
     "defaultProps": {
       "backgroundTheme": "muted",
       "rowCount": 3,
-      "themeCount": 2,
+      "themeCount": 1,
       "showCountDots": true,
       "showBars": true,
       "showRating": true,
@@ -9122,7 +9130,7 @@ export const pages = [
         "step": 1,
         "label": "分段数量",
         "desc": "分类类型分段的数量(3–4)",
-        "publicKey": "categoryCount",
+        "publicKey": "segmentCount",
         "publicLabel": "分段数量",
         "description": "分类类型分段的数量(3–4)"
       },
@@ -10004,7 +10012,7 @@ export const pages = [
         "step": 1,
         "label": "标签数量",
         "desc": "分类方向标签数量(2–5)",
-        "publicKey": "categoryCount",
+        "publicKey": "tagCount",
         "publicLabel": "标签数量",
         "description": "分类方向标签数量(2–5)"
       },
@@ -11433,12 +11441,12 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 0,
       "showDecor": true,
-      "eyebrow": "CoreWeave Case",
+      "eyebrow": "Infrastructure Case",
       "kicker": "案例卡",
       "headline": "算力基础设施",
       "company": "CoreWeave",
       "tag": "GPU 云",
-      "caption": "CoreWeave 代表算力基础设施的 <b>确定性机会</b>——当模型公司都在抢 GPU，算力供应商获得资本溢价。",
+      "caption": "算力基础设施代表 <b>确定性机会</b>——当模型公司都在抢 GPU，算力供应商获得资本溢价。",
       "meterLabel": "GPU 资源储备",
       "meterValue": "7.8",
       "meterUnit": "万张",
@@ -11467,6 +11475,12 @@ export const pages = [
         "生成式内容",
         "企业推理",
         "研究机构"
+      ],
+      "rackLabels": [
+        "GPU 集群",
+        "云机房",
+        "网络互联",
+        "液冷设施"
       ],
       "closingLine": "卖铲子的人，也能成为核心资产。"
     }
@@ -11605,7 +11619,7 @@ export const pages = [
       "kicker": "案例卡",
       "headline": "数据基础设施",
       "company": "Scale AI",
-      "tag": "数据标注",
+      "tag": "数据底座",
       "summary": "Scale AI 代表标注、RLHF 与评测数据需求——<b>数据质量是模型竞争的底层变量</b>。",
       "metrics": [
         {
@@ -11805,12 +11819,13 @@ export const pages = [
       "focusEnabled": true,
       "focusIndex": 2,
       "showDecor": true,
-      "eyebrow": "Perplexity Case",
+      "eyebrow": "Search Case",
       "kicker": "案例卡",
       "headline": "AI 搜索入口",
       "company": "Perplexity",
       "tag": "AI 搜索",
-      "caption": "Perplexity 代表 AI 搜索与答案引擎方向——机会在于 <b>重构信息入口</b>，挑战是内容版权与用户留存。",
+      "caption": "AI 搜索与答案引擎的机会在于 <b>重构信息入口</b>，挑战是内容版权与用户留存。",
+      "heroLabel": "答案引擎界面",
       "funnelTitle": "从流量到订阅的转化漏斗",
       "badgeValue": "4800万",
       "badgeLabel": "Monthly Active Users",
@@ -12518,11 +12533,12 @@ export const pages = [
         "default": 2,
         "min": 0,
         "maxFrom": "gaugeCount",
+        "maxFromKey": "gaugeCount",
+        "maxFromKeyOffset": -1,
         "step": 1,
         "label": "重点对象",
         "desc": "被突出的量表序号(从 0 起)",
-        "max": 1,
-        "maxFromKey": "mediaCount",
+        "max": 3,
         "publicKey": "focusIndex",
         "publicLabel": "重点对象",
         "description": "被突出的量表序号(从 0 起)"
@@ -12545,7 +12561,7 @@ export const pages = [
       "metricCount": 3,
       "showValueLabels": true,
       "focusEnabled": true,
-      "focusIndex": 1,
+      "focusIndex": 2,
       "showDecor": true,
       "eyebrow": "SSI Case",
       "kicker": "案例卡",
@@ -14393,7 +14409,7 @@ export const pages = [
         "step": 1,
         "label": "条目数量",
         "desc": "参与排名迁移的分类数量(3–6)",
-        "publicKey": "categoryCount",
+        "publicKey": "segmentCount",
         "publicLabel": "条目数量",
         "description": "参与排名迁移的分类数量(3–6)"
       },
@@ -15066,7 +15082,7 @@ export const pages = [
         "step": 1,
         "label": "条目数量",
         "desc": "参与对比的分类(行)数量(3–6)",
-        "publicKey": "categoryCount",
+        "publicKey": "segmentCount",
         "publicLabel": "条目数量",
         "description": "参与对比的分类(行)数量(3–6)"
       },

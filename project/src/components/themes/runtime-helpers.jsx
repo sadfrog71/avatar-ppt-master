@@ -3,7 +3,7 @@ import {
   normalizePublicControls,
 } from '../../control-naming.mjs';
 
-export function normalizeRuntimePages(rawPages, { themeKey, layoutPrefix }) {
+export function normalizeRuntimePages(rawPages, { themeKey, layoutPrefix, keepTextControls = false }) {
   return (rawPages || []).map((entry, index) => {
     const pageNumber = index + 1;
     const meta = entry.meta || {};
@@ -20,7 +20,7 @@ export function normalizeRuntimePages(rawPages, { themeKey, layoutPrefix }) {
       slot,
       label: entry.label || entry.name || entry.title || meta.label || meta.title || slot,
       Component: entry.Component || entry.component || entry.Comp || entry.C,
-      controls: normalizeControls(entry.controls || entry.spec?.controls || meta.controls || [], defaultProps),
+      controls: normalizeControls(entry.controls || entry.spec?.controls || meta.controls || [], defaultProps, { keepTextControls }),
       defaultProps,
       staticHtml: entry.staticHtml || false,
       bgClass: entry.bgClass || entry.backgroundClass || '',
@@ -96,9 +96,9 @@ const EMPHASIS_CONTROL_KEYS = new Set([
   'highlightRowIndex',
 ]);
 
-function normalizeControls(controls, defaults = {}) {
+function normalizeControls(controls, defaults = {}, options = {}) {
   const baseControls = (controls || [])
-    .filter(control => !isRemovedControl(control))
+    .filter(control => !isRemovedControl(control, options))
     .map(control => ({
       ...control,
       min: resolveControlValue(control?.min, defaults),
@@ -109,8 +109,9 @@ function normalizeControls(controls, defaults = {}) {
   return normalizePublicControls(normalizedControls);
 }
 
-function isRemovedControl(control) {
+function isRemovedControl(control, options = {}) {
   const type = String(control?.type || '').toLowerCase();
+  if (options.keepTextControls && TEXT_CONTROL_TYPES.has(type)) return false;
   return TEXT_CONTROL_TYPES.has(type) || REMOVED_CONTROL_TYPES.has(type);
 }
 

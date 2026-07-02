@@ -1046,7 +1046,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -1170,7 +1170,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -1322,7 +1322,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -1529,7 +1529,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -1668,7 +1668,14 @@ export const pages = [
           ]
         }
       ]
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "series[].vals",
+        "anchor": "periods",
+        "relation": "same-length"
+      }
+    ]
   },
   {
     "key": "theme09_page014",
@@ -1718,7 +1725,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -1850,7 +1857,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -1999,7 +2006,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -2209,7 +2216,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -2402,7 +2409,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -2601,7 +2608,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -2734,7 +2741,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -2860,7 +2867,7 @@ export const pages = [
         "label": "每层数量",
         "default": 4,
         "min": 1,
-        "max": 5,
+        "max": 4,
         "step": 1,
         "countArrays": [
           "tiers[].companies"
@@ -2891,7 +2898,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -3063,7 +3070,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -3119,7 +3126,9 @@ export const pages = [
           "cn": "Anthropic",
           "en": "从追赶到反超",
           "val": "9650",
+          "valueLabel": "投后估值 · 亿美元",
           "fund": "650+",
+          "fundLabel": "累计融资",
           "meta": "三轮 · 5/8/11月",
           "tags": [
             "Constitutional AI",
@@ -3134,7 +3143,9 @@ export const pages = [
           "cn": "xAI",
           "en": "马斯克的第三次创业",
           "val": "500",
+          "valueLabel": "估值规模 · 亿美元",
           "fund": "50",
+          "fundLabel": "本轮融资",
           "meta": "18 个月跻身头部",
           "tags": [
             "实时数据",
@@ -3149,7 +3160,9 @@ export const pages = [
           "cn": "CoreWeave",
           "en": "卖铲子的人也赚翻了",
           "val": "190",
+          "valueLabel": "账面估值 · 亿美元",
           "fund": "110",
+          "fundLabel": "云算力融资",
           "meta": "加密挖矿转型算力云",
           "tags": [
             "卖铲子",
@@ -3218,7 +3231,6 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -3338,7 +3350,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -3451,11 +3463,15 @@ export const pages = [
         "options": [
           {
             "value": "左",
-            "label": "左"
+            "label": "左",
+            "image": "",
+            "color": ""
           },
           {
             "value": "右",
-            "label": "右"
+            "label": "右",
+            "image": "",
+            "color": ""
           }
         ],
         "key": "imgSide",
@@ -3491,7 +3507,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -3537,7 +3553,7 @@ export const pages = [
     ],
     "defaultProps": {
       "imgCount": 1,
-      "imgSide": "left",
+      "imgSide": "左",
       "pointCount": 3,
       "focus": true,
       "focusIndex": 0,
@@ -3547,7 +3563,7 @@ export const pages = [
       "kicker": "IN FOCUS · 特写",
       "title": "Anthropic",
       "titleEN": "从追赶者到反超者",
-      "paragraph": "以「可解释、可控」的安全路线切入，三轮密集融资把估值推上新台阶 —— 在头部大模型的竞速里，叙事与对齐能力同样是稀缺资产。",
+      "paragraph": "以安全路线切入，Anthropic 用对齐叙事把估值推上新台阶。",
       "points": [
         {
           "label": "累计融资",
@@ -3617,7 +3633,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -3672,6 +3688,7 @@ export const pages = [
       "kicker": "FIELD NOTES · 影像速写",
       "title": "一年间的影像速写",
       "titleEN": "Snapshots · 2024",
+      "images": [],
       "shots": [
         {
           "caption": "路演现场 · 资本与团队的初次握手"
@@ -3747,7 +3764,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -3779,7 +3796,7 @@ export const pages = [
         "prop": "focusIndex",
         "type": "slider",
         "label": "焦点序号",
-        "default": 1,
+        "default": 0,
         "min": 0,
         "max": 3,
         "maxFromKey": "itemCount",
@@ -3885,7 +3902,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "symbol",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -3936,14 +3953,13 @@ export const pages = [
     "defaultProps": {
       "itemCount": 3,
       "focus": true,
-      "focusIndex": 0,
+      "focusIndex": "左侧",
       "labelType": "symbol",
       "showAside": true,
       "groups": [
         {
           "title": "看好方向",
           "en": "Bullish",
-          "tone": "positive",
           "sign": "✓",
           "items": [
             {
@@ -3963,7 +3979,6 @@ export const pages = [
         {
           "title": "谨慎对待",
           "en": "Caution",
-          "tone": "caution",
           "sign": "!",
           "items": [
             {
@@ -4031,7 +4046,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -4164,7 +4179,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -4408,7 +4423,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -4565,15 +4580,19 @@ export const pages = [
         "prop": "textPos",
         "type": "radio",
         "label": "文字位置",
-        "default": "左",
+        "default": "left",
         "options": [
           {
-            "value": "左",
-            "label": "左"
+            "value": "left",
+            "label": "左",
+            "image": "",
+            "color": ""
           },
           {
-            "value": "右",
-            "label": "右"
+            "value": "right",
+            "label": "右",
+            "image": "",
+            "color": ""
           }
         ],
         "key": "textPos",
@@ -4607,7 +4626,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -4742,7 +4761,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -4915,7 +4934,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -4972,14 +4991,14 @@ export const pages = [
       "items": [
         {
           "name": "OpenAI",
-          "en": "Foundation Model",
+          "en": "Frontier Model",
           "value": 118,
           "meta": "未披露轮",
           "tag": "大模型"
         },
         {
           "name": "xAI",
-          "en": "Foundation Model",
+          "en": "Real-time Model",
           "value": 110,
           "meta": "B 轮",
           "tag": "大模型"
@@ -4993,7 +5012,7 @@ export const pages = [
         },
         {
           "name": "Anthropic",
-          "en": "Foundation Model",
+          "en": "Safety Model",
           "value": 95,
           "meta": "D 轮+",
           "tag": "大模型"
@@ -5090,7 +5109,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -5315,7 +5334,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -5472,7 +5491,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -5584,7 +5603,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -5736,7 +5755,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -5822,7 +5841,7 @@ export const pages = [
       "rows": [
         {
           "name": "OpenAI",
-          "en": "Foundation",
+          "en": "Frontier",
           "value": 118,
           "valuation": 1570,
           "round": "未披露",
@@ -5833,7 +5852,7 @@ export const pages = [
         },
         {
           "name": "Anthropic",
-          "en": "Foundation",
+          "en": "Safety",
           "value": 95,
           "valuation": 600,
           "round": "D 轮+",
@@ -5844,7 +5863,7 @@ export const pages = [
         },
         {
           "name": "xAI",
-          "en": "Foundation",
+          "en": "Real-time",
           "value": 110,
           "valuation": 500,
           "round": "B 轮",
@@ -6186,7 +6205,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -6355,7 +6374,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -6511,7 +6530,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -6742,7 +6761,7 @@ export const pages = [
       "items": [
         {
           "label": "OpenAI",
-          "sub": "Foundation",
+          "sub": "Frontier",
           "value": 157,
           "tone": "acc"
         },
@@ -6754,13 +6773,13 @@ export const pages = [
         },
         {
           "label": "xAI",
-          "sub": "Foundation",
+          "sub": "Real-time",
           "value": 50,
           "tone": "violet"
         },
         {
           "label": "Anthropic",
-          "sub": "Foundation",
+          "sub": "Safety",
           "value": 40,
           "tone": "acc"
         },
@@ -6855,7 +6874,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -6999,7 +7018,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -7126,7 +7145,15 @@ export const pages = [
           ]
         }
       ]
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "cats[].vals",
+        "anchor": "segs",
+        "relation": "same-length",
+        "countKey": "segCount"
+      }
+    ]
   },
   {
     "key": "theme09_page049",
@@ -7173,7 +7200,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -7348,7 +7375,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -7570,7 +7597,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -7700,7 +7727,15 @@ export const pages = [
           ]
         }
       ]
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "rows[].values",
+        "anchor": "columns",
+        "relation": "same-length",
+        "countKey": "colCount"
+      }
+    ]
   },
   {
     "key": "theme09_page052",
@@ -7757,7 +7792,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "symbol",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -7812,7 +7847,7 @@ export const pages = [
       "badge": "09",
       "quotes": [
         {
-          "text": "2024 是 AI 的「资本大年」—— 资金以前所未有的密度涌向少数能讲好 AGI 故事的团队，赢家通吃成为常态。",
+          "text": "2024 是 AI 的资本大年，资金密集涌向少数 AGI 叙事团队，赢家通吃成常态。",
           "name": "某顶级 VC",
           "role": "成长期基金 合伙人",
           "tone": "看好"
@@ -7982,7 +8017,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -8106,9 +8141,6 @@ export const pages = [
         "max": 4,
         "step": 1,
         "desc": "来源数",
-        "countArrays": [
-          "sources"
-        ],
         "key": "itemCount",
         "publicKey": "itemCount",
         "publicLabel": "数量",
@@ -8127,7 +8159,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -8180,127 +8212,119 @@ export const pages = [
       "badge": "10",
       "sources": [
         {
-          "id": "venture",
           "name": "风险资本",
           "en": "Venture Capital"
         },
         {
-          "id": "corporate",
           "name": "企业战投",
           "en": "Corp. Strategic"
         },
         {
-          "id": "sovereign-pension",
           "name": "主权 / 养老",
           "en": "Sovereign & Pension"
         },
         {
-          "id": "hedge-mutual",
           "name": "对冲 / 共同",
           "en": "Hedge & Mutual"
         }
       ],
       "sectors": [
         {
-          "id": "foundation",
           "name": "基础大模型",
           "en": "Foundation"
         },
         {
-          "id": "infrastructure",
           "name": "AI 基础设施",
           "en": "Infrastructure"
         },
         {
-          "id": "applications",
           "name": "应用层",
           "en": "Applications"
         },
         {
-          "id": "data-safety",
           "name": "数据与安全",
           "en": "Data & Safety"
         }
       ],
       "flows": [
         {
-          "from": "venture",
-          "to": "foundation",
+          "from": "风险资本",
+          "to": "基础大模型",
           "value": 186
         },
         {
-          "from": "venture",
-          "to": "infrastructure",
+          "from": "风险资本",
+          "to": "AI 基础设施",
           "value": 98
         },
         {
-          "from": "venture",
-          "to": "applications",
+          "from": "风险资本",
+          "to": "应用层",
           "value": 126
         },
         {
-          "from": "venture",
-          "to": "data-safety",
+          "from": "风险资本",
+          "to": "数据与安全",
           "value": 60
         },
         {
-          "from": "corporate",
-          "to": "foundation",
+          "from": "企业战投",
+          "to": "基础大模型",
           "value": 120
         },
         {
-          "from": "corporate",
-          "to": "infrastructure",
+          "from": "企业战投",
+          "to": "AI 基础设施",
           "value": 72
         },
         {
-          "from": "corporate",
-          "to": "applications",
+          "from": "企业战投",
+          "to": "应用层",
           "value": 18
         },
         {
-          "from": "corporate",
-          "to": "data-safety",
+          "from": "企业战投",
+          "to": "数据与安全",
           "value": 10
         },
         {
-          "from": "sovereign-pension",
-          "to": "foundation",
+          "from": "主权 / 养老",
+          "to": "基础大模型",
           "value": 86
         },
         {
-          "from": "sovereign-pension",
-          "to": "infrastructure",
+          "from": "主权 / 养老",
+          "to": "AI 基础设施",
           "value": 62
         },
         {
-          "from": "sovereign-pension",
-          "to": "applications",
+          "from": "主权 / 养老",
+          "to": "应用层",
           "value": 6
         },
         {
-          "from": "sovereign-pension",
-          "to": "data-safety",
+          "from": "主权 / 养老",
+          "to": "数据与安全",
           "value": 6
         },
         {
-          "from": "hedge-mutual",
-          "to": "foundation",
+          "from": "对冲 / 共同",
+          "to": "基础大模型",
           "value": 38
         },
         {
-          "from": "hedge-mutual",
-          "to": "infrastructure",
+          "from": "对冲 / 共同",
+          "to": "AI 基础设施",
           "value": 46
         },
         {
-          "from": "hedge-mutual",
-          "to": "applications",
+          "from": "对冲 / 共同",
+          "to": "应用层",
           "value": 24
         },
         {
-          "from": "hedge-mutual",
-          "to": "data-safety",
+          "from": "对冲 / 共同",
+          "to": "数据与安全",
           "value": 12
         }
       ]
@@ -8362,7 +8386,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -8572,7 +8596,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -8735,6 +8759,23 @@ export const pages = [
         "description": "梯队层数"
       },
       {
+        "prop": "repCount",
+        "type": "slider",
+        "label": "代表数量",
+        "default": 2,
+        "min": 1,
+        "max": 2,
+        "step": 1,
+        "countArrays": [
+          "tiers[].reps"
+        ],
+        "desc": "每个梯队展示的代表公司数量",
+        "key": "repCount",
+        "publicKey": "repCount",
+        "publicLabel": "代表数量",
+        "description": "每个梯队展示的代表公司数量"
+      },
+      {
         "prop": "showAside",
         "type": "toggle",
         "label": "装饰文案",
@@ -8747,7 +8788,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -8793,6 +8834,7 @@ export const pages = [
     ],
     "defaultProps": {
       "itemCount": 5,
+      "repCount": 2,
       "focus": true,
       "focusIndex": 0,
       "labelType": "number",
@@ -8950,7 +8992,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -9115,7 +9157,15 @@ export const pages = [
           ]
         }
       ]
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "rows[].vals",
+        "anchor": "columns",
+        "relation": "same-length",
+        "countKey": "colCount"
+      }
+    ]
   },
   {
     "key": "theme09_page060",
@@ -9191,7 +9241,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -9309,7 +9359,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -9452,7 +9502,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -9620,7 +9670,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -9858,7 +9908,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -9921,6 +9971,7 @@ export const pages = [
         {
           "name": "美国",
           "en": "United States",
+          "scoreLabel": "全球中枢",
           "color": "#46e3c6",
           "scores": [
             98,
@@ -9934,6 +9985,7 @@ export const pages = [
         {
           "name": "中国",
           "en": "China",
+          "scoreLabel": "应用纵深",
           "color": "#ffb27a",
           "scores": [
             62,
@@ -9947,6 +9999,7 @@ export const pages = [
         {
           "name": "欧洲",
           "en": "Europe",
+          "scoreLabel": "治理优势",
           "color": "#9f7bff",
           "scores": [
             44,
@@ -10021,7 +10074,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -10177,7 +10230,15 @@ export const pages = [
           ]
         }
       ]
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "objects[].vals",
+        "anchor": "axes",
+        "relation": "same-length",
+        "countKey": "axisCount"
+      }
+    ]
   },
   {
     "key": "theme09_page067",
@@ -10208,6 +10269,9 @@ export const pages = [
         "min": 2,
         "max": 6,
         "step": 1,
+        "countArrays": [
+          "criteria"
+        ],
         "key": "colCount",
         "publicKey": "colCount",
         "publicLabel": "列数量"
@@ -10250,7 +10314,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -10588,7 +10652,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -10908,7 +10972,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -11046,7 +11110,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -11114,7 +11178,7 @@ export const pages = [
           "name": "xAI",
           "sector": "基础模型",
           "val": 500,
-          "round": "Series C"
+          "round": "Series C · xAI"
         },
         {
           "name": "Databricks",
@@ -11130,15 +11194,15 @@ export const pages = [
         },
         {
           "name": "Perplexity",
-          "sector": "应用层",
+          "sector": "搜索应用",
           "val": 90,
           "round": "Series · 后期"
         },
         {
           "name": "Anysphere",
-          "sector": "应用层",
+          "sector": "开发工具",
           "val": 96,
-          "round": "Series C"
+          "round": "Series C · Cursor"
         },
         {
           "name": "Glean",
@@ -11150,7 +11214,7 @@ export const pages = [
           "name": "Figure AI",
           "sector": "机器人",
           "val": 260,
-          "round": "Series C"
+          "round": "Series C · Figure"
         },
         {
           "name": "Scale AI",
@@ -11160,9 +11224,9 @@ export const pages = [
         },
         {
           "name": "ElevenLabs",
-          "sector": "应用层",
+          "sector": "语音应用",
           "val": 66,
-          "round": "Series C"
+          "round": "Series C · Voice"
         },
         {
           "name": "Sierra",
@@ -11229,7 +11293,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -11443,7 +11507,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -11672,7 +11736,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -11829,7 +11893,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -12170,7 +12234,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -12340,7 +12404,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -12498,7 +12562,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -12667,7 +12731,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -12793,7 +12857,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -12960,7 +13024,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -13121,7 +13185,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -13250,7 +13314,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -13387,7 +13451,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -13521,7 +13585,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -13658,7 +13722,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -13776,7 +13840,14 @@ export const pages = [
           ]
         }
       ]
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "series[].vals",
+        "anchor": "xLabels",
+        "relation": "same-length"
+      }
+    ]
   },
   {
     "key": "theme09_page090",
@@ -13851,7 +13922,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -14126,6 +14197,9 @@ export const pages = [
         "min": 2,
         "max": 6,
         "step": 1,
+        "countArrays": [
+          "attributes"
+        ],
         "desc": "维度数",
         "key": "rowCount",
         "publicKey": "rowCount",
@@ -14327,7 +14401,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -14483,7 +14557,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -14596,7 +14670,15 @@ export const pages = [
           ]
         }
       ]
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "periods[].vals",
+        "anchor": "segs",
+        "relation": "same-length",
+        "countKey": "segCount"
+      }
+    ]
   },
   {
     "key": "theme09_page095",
@@ -14622,6 +14704,23 @@ export const pages = [
         "description": "分期数"
       },
       {
+        "prop": "eventCount",
+        "type": "slider",
+        "label": "事件数量",
+        "default": 1,
+        "min": 1,
+        "max": 1,
+        "step": 1,
+        "countArrays": [
+          "eras[].events"
+        ],
+        "desc": "每个分期展示的事件数量",
+        "key": "eventCount",
+        "publicKey": "eventCount",
+        "publicLabel": "事件数量",
+        "description": "每个分期展示的事件数量"
+      },
+      {
         "prop": "showConnector",
         "type": "toggle",
         "label": "脊柱连线",
@@ -14645,7 +14744,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -14691,6 +14790,7 @@ export const pages = [
     ],
     "defaultProps": {
       "itemCount": 4,
+      "eventCount": 1,
       "showConnector": true,
       "showAside": true,
       "focus": true,
@@ -14714,7 +14814,7 @@ export const pages = [
             },
             {
               "date": "02",
-              "text": "OpenAI 要约收购，估值约 860 亿$"
+              "text": "OpenAI 要约估值 860亿"
             }
           ]
         },
@@ -14725,11 +14825,11 @@ export const pages = [
           "events": [
             {
               "date": "05",
-              "text": "xAI B 轮 60 亿$，投后 240 亿"
+              "text": "xAI B轮60亿，投后240亿"
             },
             {
               "date": "06",
-              "text": "Anthropic 获亚马逊追加战略投资"
+              "text": "Anthropic 获亚马逊追投"
             }
           ]
         },
@@ -14740,7 +14840,7 @@ export const pages = [
           "events": [
             {
               "date": "09",
-              "text": "Databricks J 轮约 100 亿$，估值 620 亿"
+              "text": "Databricks J轮100亿"
             },
             {
               "date": "09",
@@ -14755,11 +14855,11 @@ export const pages = [
           "events": [
             {
               "date": "10",
-              "text": "OpenAI 新一轮 66 亿$，估值 1570 亿"
+              "text": "OpenAI 66亿，估值1570亿"
             },
             {
               "date": "12",
-              "text": "Safe SI 种子轮即募 10 亿$"
+              "text": "Safe SI 种子轮 10 亿$"
             }
           ]
         },
@@ -14770,7 +14870,7 @@ export const pages = [
           "events": [
             {
               "date": "2024",
-              "text": "≥1 亿$ 事件 97 笔，总额 970 亿$"
+              "text": "亿元级事件97笔，总额970亿"
             }
           ]
         }
@@ -14848,8 +14948,8 @@ export const pages = [
       "headline": "钱、算力与叙事的合流",
       "headlineEN": "Money, Compute & Narrative",
       "body": [
-        "2024 年，资本以前所未有的密度涌向少数能讲好 AGI 故事的团队 —— 单笔金额节节攀升，年末进入白热化。",
-        "与此同时，算力与数据的中游率先兑现现金流，成为更稳的下注；垂直应用则在「能否拿到续约」中被重新定价。"
+        "资本集中涌向能讲清 AGI 路径的团队，大额融资推高全年叙事。",
+        "算力与数据先兑现现金流，垂直应用在续约能力中重新定价。"
       ],
       "pull": "在这一年，每一笔大额融资，都是一次对方向的押注。",
       "captions": [
@@ -15010,7 +15110,7 @@ export const pages = [
       "kicker": "CHAPTER · 视觉",
       "title": "资本与算力的浪潮",
       "titleEN": "Capital × Compute",
-      "paragraph": "在这一年，资金以前所未有的密度涌向少数团队 —— 每一笔大额融资，都是一次对方向的押注。",
+      "paragraph": "资金密集涌向少数团队，每笔大额融资都是对方向的押注。",
       "tags": [
         "2024 · 资本大年",
         "湾区 63.9%",
@@ -15048,9 +15148,27 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
+        "countArrays": [
+          "phases"
+        ],
         "key": "phaseCount",
         "publicKey": "phaseCount",
         "publicLabel": "列数量"
+      },
+      {
+        "prop": "itemCount",
+        "type": "slider",
+        "label": "单元数量",
+        "default": 6,
+        "min": 3,
+        "max": 6,
+        "step": 1,
+        "countArrays": [
+          "lanes[].items"
+        ],
+        "key": "itemCount",
+        "publicKey": "itemCount",
+        "publicLabel": "单元数量"
       },
       {
         "prop": "showMilestone",
@@ -15074,7 +15192,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -15121,6 +15239,7 @@ export const pages = [
     "defaultProps": {
       "laneCount": 4,
       "phaseCount": 6,
+      "itemCount": 6,
       "showMilestone": true,
       "focus": true,
       "focusIndex": 0,
@@ -15271,7 +15390,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -15410,15 +15529,19 @@ export const pages = [
         "prop": "imgSide",
         "type": "radio",
         "label": "图片位置",
-        "default": "左",
+        "default": "left",
         "options": [
           {
-            "value": "左",
-            "label": "左"
+            "value": "left",
+            "label": "左",
+            "image": "",
+            "color": ""
           },
           {
-            "value": "右",
-            "label": "右"
+            "value": "right",
+            "label": "右",
+            "image": "",
+            "color": ""
           }
         ],
         "key": "imgSide",
@@ -15534,7 +15657,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -15650,7 +15773,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -15762,7 +15885,7 @@ export const pages = [
         "prop": "columnCount",
         "type": "slider",
         "label": "列数量",
-        "default": 5,
+        "default": 4,
         "min": 2,
         "max": 5,
         "step": 1,
@@ -15797,7 +15920,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -15985,7 +16108,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -16118,7 +16241,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",
@@ -16493,7 +16616,7 @@ export const pages = [
         "prop": "labelType",
         "type": "labelType",
         "label": "标签类型",
-        "default": "数字",
+        "default": "number",
         "key": "labelType",
         "publicKey": "labelType",
         "publicLabel": "标签类型",

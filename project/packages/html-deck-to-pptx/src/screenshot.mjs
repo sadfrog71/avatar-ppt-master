@@ -109,6 +109,10 @@ async function applyDeckSnapshot(page, snapshot) {
   await page.evaluate(async snapshot => {
     const state = snapshot?.state || {};
     if (snapshot?.themePack !== undefined) window.__setActiveThemePack?.(snapshot.themePack || '', { navigate: false });
+    if (Array.isArray(state.duplicatedSlides)) {
+      state.duplicatedSlides.forEach(record => window.__deckViewModel?.restoreDuplicatedSlide?.(record));
+      window.__restorePersistedCatalogSlides?.();
+    }
     if (Array.isArray(state.slideOrder)) window.__deckViewModel?.setSlideOrder?.(state.slideOrder);
     if (Array.isArray(state.skippedSlides)) window.__deckViewModel?.setSkippedSlides?.(state.skippedSlides);
     if (Array.isArray(state.deletedSlides)) window.__deckViewModel?.setDeletedSlides?.(state.deletedSlides);

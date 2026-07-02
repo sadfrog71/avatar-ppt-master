@@ -8,15 +8,15 @@
 
 export const THEME = {
   ink: '#2b2b30',
-  ink2: '#56565c',
-  ink3: '#9a9ba4',
-  red: '#e8503a',
-  blue: '#5b8def',
-  green: '#46b083',
-  amber: '#e0a23a',
-  violet: '#7a5ae0',
+  ink2: '#4f5058',
+  ink3: '#62636d',
+  red: '#d13f2f',
+  blue: '#356ed6',
+  green: '#2f7f61',
+  amber: '#9b6417',
+  violet: '#6549c2',
   // shared accent ordering used by charts / palettes
-  series: ['#5b8def', '#46b083', '#e0a23a', '#e8503a', '#7a5ae0'],
+  series: ['#356ed6', '#2f7f61', '#9b6417', '#d13f2f', '#6549c2'],
 };
 
 export const FONT_HREF =
@@ -36,8 +36,8 @@ export const THEME_CSS = `
   --aip-type-display:128px; --aip-type-title:78px; --aip-type-subtitle:42px;
   --aip-type-en:28px; --aip-type-body:30px; --aip-type-small:24px; --aip-type-mono:24px;
   --aip-pad-x:108px; --aip-pad-top:92px; --aip-pad-bottom:84px; --aip-gap:40px;
-  --aip-ink:#2b2b30; --aip-ink-2:#56565c; --aip-ink-3:#9a9ba4;
-  --aip-red:#e8503a; --aip-blue:#5b8def; --aip-green:#46b083; --aip-amber:#e0a23a; --aip-violet:#7a5ae0;
+  --aip-ink:#2b2b30; --aip-ink-2:#4f5058; --aip-ink-3:#62636d;
+  --aip-red:#d13f2f; --aip-blue:#356ed6; --aip-green:#2f7f61; --aip-amber:#9b6417; --aip-violet:#6549c2;
   position:relative; width:100%; height:100%; overflow:hidden;
   font-family:'Noto Sans SC',system-ui,sans-serif; color:var(--aip-ink);
   -webkit-font-smoothing:antialiased;
@@ -75,7 +75,7 @@ export const THEME_CSS = `
 .aip-mono{font-family:'Space Mono',monospace;color:var(--aip-ink-3);
   font-size:var(--aip-type-mono);letter-spacing:.02em;margin-top:34px;}
 .aip-en{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.16em;
-  color:#aaabb4;font-size:var(--aip-type-en);}
+  color:var(--aip-ink-3);font-size:var(--aip-type-en);}
 
 /* slide head block */
 .aip-head{display:flex;flex-direction:column;gap:14px;}
@@ -83,7 +83,7 @@ export const THEME_CSS = `
 .aip-head h2{margin:0;font-size:var(--aip-type-title);font-weight:900;color:var(--aip-ink);
   letter-spacing:.012em;line-height:1.05;}
 .aip-head .aip-sub{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;}
-.aip-head .aip-sub .aip-cn{font-size:var(--aip-type-subtitle);font-weight:700;color:#7e7f8a;}
+.aip-head .aip-sub .aip-cn{font-size:var(--aip-type-subtitle);font-weight:700;color:#5f606a;}
 
 .aip-glass{background:rgba(255,255,255,.5);backdrop-filter:blur(28px) saturate(140%);
   -webkit-backdrop-filter:blur(28px) saturate(140%);

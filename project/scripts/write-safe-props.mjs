@@ -2,11 +2,17 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import {
   compactJson,
+  getLayoutRecord,
   getPreferredMediaSlot,
+  isDeckLocalMediaSource,
   normalizeProps,
   typedMediaItemForSource,
+  unknownPropKeys,
 } from './skill-workflow-utils.mjs';
-import { validateGoalSpec } from './validate-goal-spec.mjs';
+import { validateGoalSpec, validateHtmlStringBoundaries } from './validate-goal-spec.mjs';
+import { isMediaArrayKey } from '../src/prop-contract-core.mjs';
+
+const ALLOWED_MEDIA_ITEM_FIELDS = new Set(['src', 'kind', 'type', 'ar', 'ratio', 'poster']);
 
 const argv = process.argv.slice(2);
 
@@ -40,6 +46,17 @@ function runSingle(args) {
   }
 
   const mediaInput = parseMediaInput(extraArgs);
+  const mediaInputErrors = validateMediaInput(mediaInput);
+  if (mediaInputErrors.length) {
+    process.stdout.write(compactJson({
+      layout,
+      props,
+      warnings: [],
+      errors: mediaInputErrors,
+    }));
+    process.exit(1);
+  }
+
   let mediaIntent = null;
   let mediaMapping = null;
 
@@ -54,28 +71,56 @@ function runSingle(args) {
       }));
       process.exit(1);
     }
+    const writeKey = mediaSlotWriteKey(slot);
     props = {
       ...props,
-      [slot.field]: mediaInput.items,
+      [writeKey]: mediaInput.items,
       ...(slot.countKey ? { [slot.countKey]: mediaInput.items.length } : {}),
     };
     mediaIntent = mediaInput.kind === 'media' ? 'provided-media' : 'provided-images';
     mediaMapping = {
       field: slot.field,
+      fieldPath: slot.fieldPath,
+      writableProp: slot.writableProp,
+      presetProp: slot.presetProp,
       countKey: slot.countKey,
       count: mediaInput.items.length,
     };
   }
 
+  const record = getLayoutRecord(layout);
+  const unknownKeys = record ? unknownPropKeys(record, props) : [];
   const result = normalizeProps(layout, props);
+  const unknownErrors = unknownKeys.map(key => `Unknown prop "${key}" for layout "${layout}"`);
+  const htmlErrors = [];
+  validateHtmlStringBoundaries(props, 'single-layout', layout, 'props', htmlErrors);
+  const mediaErrors = validateMediaProps(result.props || props);
+  const contractErrors = validateGoalSpec({
+    slides: [{
+      layout,
+      props: result.props || props,
+    }],
+  }, {
+    authoredSpec: {
+      slides: [{
+        layout,
+        props,
+      }],
+    },
+  }).filter(error => error.includes(' field props'));
+  const errors = [...new Set([...(result.errors || []), ...unknownErrors, ...htmlErrors, ...mediaErrors, ...contractErrors])];
   process.stdout.write(compactJson({
     layout,
     mediaIntent,
     mediaMapping,
     ...result,
+    warnings: result.warnings || [],
+    props: unknownKeys.length ? stripKeys(result.props || props, unknownKeys) : result.props,
+    publicProps: unknownKeys.length ? stripKeys(result.publicProps || {}, unknownKeys) : result.publicProps,
+    errors,
   }));
 
-  if (result.errors?.length) process.exit(1);
+  if (errors.length) process.exit(1);
 }
 
 function runGoal(goalArg, options = {}) {
@@ -155,4 +200,53 @@ function parseGoalOptions(args) {
   return {
     write: args.includes('--write'),
   };
+}
+
+function mediaSlotWriteKey(slot) {
+  const path = slot.presetProp || slot.writableProp || slot.fieldPath || (slot.field ? `props.${slot.field}` : '');
+  const match = /^props\.([A-Za-z_$][\w$]*)$/.exec(String(path || ''));
+  return match?.[1] || slot.field;
+}
+
+function validateMediaInput(mediaInput) {
+  const errors = [];
+  for (const [index, item] of mediaInput.items.entries()) {
+    const src = typeof item === 'string' ? item : item?.src;
+    pushMediaSourceError(src, `--${mediaInput.kind}[${index}]`, errors);
+  }
+  return errors;
+}
+
+function validateMediaProps(props = {}) {
+  const errors = [];
+  for (const [key, value] of Object.entries(props || {})) {
+    if (!isMediaArrayKey(key) || !Array.isArray(value)) continue;
+    value.forEach((item, index) => validateMediaItem(item, `props.${key}[${index}]`, errors));
+  }
+  return errors;
+}
+
+function validateMediaItem(item, field, errors) {
+  if (typeof item === 'string') {
+    pushMediaSourceError(item, field, errors);
+    return;
+  }
+  if (!item || typeof item !== 'object' || Array.isArray(item)) return;
+  const unknownFields = Object.keys(item).filter(key => !ALLOWED_MEDIA_ITEM_FIELDS.has(key));
+  if (unknownFields.length) {
+    errors.push(`${field}: unknown media item field(s): ${unknownFields.join(', ')}; allowed fields: ${[...ALLOWED_MEDIA_ITEM_FIELDS].join(', ')}`);
+  }
+  pushMediaSourceError(item.src, `${field}.src`, errors);
+  if (typeof item.poster === 'string') pushMediaSourceError(item.poster, `${field}.poster`, errors);
+}
+
+function pushMediaSourceError(src, field, errors) {
+  const text = String(src || '').trim();
+  if (!text || isDeckLocalMediaSource(text)) return;
+  errors.push(`${field}: media source "${text}" must be staged into the deck under assets/user-media/ and referenced by normalized POSIX relative path; traversal, loose relative paths, absolute local paths, file:// URLs, remote http(s) URLs, and data: media are not allowed`);
+}
+
+function stripKeys(value, keys) {
+  const blocked = new Set(keys);
+  return Object.fromEntries(Object.entries(value || {}).filter(([key]) => !blocked.has(key)));
 }

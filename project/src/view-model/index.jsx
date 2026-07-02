@@ -1,5 +1,7 @@
 import React from 'react';
 import { SlideViewModelProvider } from './context.jsx';
+import { getLayoutContract, normalizeSlidePropsForLayout } from '../propContracts.jsx';
+import { isMediaArrayKey } from '../prop-contract-core.mjs';
 
 const SLIDE_MODEL_TYPE = 'dashi.slide-model';
 
@@ -85,7 +87,6 @@ export function serializeDeckViewModel(viewModel) {
       label: slide.label,
       logicalIndex: slide.logicalIndex,
       props: toJson(slide.sourceProps),
-      copy: toJson(slide.copy),
       media: toJson(slide.media),
     })),
     state: {
@@ -142,15 +143,11 @@ function normalizeSlideModel(slide, index) {
     };
   }
   const layout = slide.layout || slide.layoutName;
-  const props = {
-    ...(slide.copy || {}),
-    ...(slide.props || {}),
-  };
   return {
     ...slide,
     id: slide.id || `${layout}-${index + 1}`,
     layout,
-    props,
+    props: slide.props || {},
   };
 }
 
@@ -180,6 +177,11 @@ function buildSlideViewModel(slide, index, layoutOptions, themePacks, slideKey, 
   }
   const slideThemePack = findLayoutThemePack(resolvedLayout, themePacks) || defaultThemePack;
   const label = slide.label || inferSlideLabel(slide, index) || option.label;
+  const sourceProps = slide.props || {};
+  const renderProps = mergeSparsePropsForRender(
+    getLayoutContract(resolvedLayout)?.defaultProps || {},
+    normalizeSlidePropsForLayout(resolvedLayout, sourceProps),
+  );
   return {
     id: slide.id,
     key: slideKey,
@@ -189,9 +191,8 @@ function buildSlideViewModel(slide, index, layoutOptions, themePacks, slideKey, 
     dataLayout: option.dataLayout,
     themePack: slideThemePack,
     component: option.component,
-    props: slide.props || {},
-    sourceProps: slide.props || {},
-    copy: slide.copy || {},
+    props: renderProps,
+    sourceProps,
     media: slide.media || {},
     logicalIndex: slide.logicalIndex,
     context: {
@@ -203,11 +204,44 @@ function buildSlideViewModel(slide, index, layoutOptions, themePacks, slideKey, 
       dataLayout: option.dataLayout,
       themePack: slideThemePack,
       logicalIndex: slide.logicalIndex,
-      copy: slide.copy || {},
       media: slide.media || {},
       textKeyPrefix: `text:${slideKey}:`,
     },
   };
+}
+
+function mergeSparsePropsForRender(defaultProps, sparseProps) {
+  const next = { ...(defaultProps || {}) };
+  for (const [key, value] of Object.entries(sparseProps || {})) {
+    next[key] = mergeSparseValueForRender(next[key], value, key);
+  }
+  return next;
+}
+
+function mergeSparseValueForRender(defaultValue, sparseValue, key) {
+  if (Array.isArray(defaultValue) && Array.isArray(sparseValue)) {
+    if (isMediaArrayKey(key)) return sparseValue;
+    const defaultItem = defaultValue.find(isPlainObject);
+    const sparseHasObjects = sparseValue.some(isPlainObject);
+    if (!defaultItem || !sparseHasObjects) return sparseValue;
+    return sparseValue.map((item, index) => {
+      return isPlainObject(item)
+        ? mergeSparseValueForRender(defaultValue[index], item, key)
+        : item;
+    });
+  }
+  if (isPlainObject(defaultValue) && isPlainObject(sparseValue)) {
+    const next = { ...defaultValue };
+    for (const [key, value] of Object.entries(sparseValue)) {
+      next[key] = mergeSparseValueForRender(next[key], value, key);
+    }
+    return next;
+  }
+  return sparseValue;
+}
+
+function isPlainObject(value) {
+  return !!value && typeof value === 'object' && !Array.isArray(value);
 }
 
 function filterThemePacksForSlides(themePacks, slides) {

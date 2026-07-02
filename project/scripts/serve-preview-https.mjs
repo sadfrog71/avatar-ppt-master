@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, writeFileSync, statSync, createReadStream } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync, statSync, realpathSync, createReadStream } from 'node:fs';
 import http from 'node:http';
 import net from 'node:net';
 import os from 'node:os';
@@ -24,13 +24,19 @@ const CERT_KEY = path.join(CERT_DIR, 'localhost-key.pem');
 const CERT_FILE = path.join(CERT_DIR, 'localhost-cert.pem');
 const EXPORT_DIR = path.join(ROOT, 'output/exports');
 const EXPORT_PROGRESS = new Map();
+const INTERNAL_PREVIEW_FILES = new Set(['.preview-server.json', '.preview-server.log']);
+const LEXICAL_SERVE_ROOT = path.resolve(SERVE_ROOT);
+const LEXICAL_EXPORT_DIR = path.resolve(EXPORT_DIR);
 
 ensureThemePreviewFresh({ serveRoot: SERVE_ROOT });
 
 if (!existsSync(path.join(SERVE_ROOT, 'index.html'))) {
-  console.error(`Preview index.html not found: ${path.join(SERVE_ROOT, 'index.html')}`);
+  console.error(`Preview index.html not found: ${displayPath(path.join(SERVE_ROOT, 'index.html'))}`);
   process.exit(1);
 }
+const REAL_SERVE_ROOT = realpathSync(SERVE_ROOT);
+mkdirSync(EXPORT_DIR, { recursive: true });
+const REAL_EXPORT_DIR = realpathSync(EXPORT_DIR);
 
 ensureCertificate();
 
@@ -65,6 +71,31 @@ const serveRequest = async (req, res) => {
   if (pathname === null) {
     res.writeHead(400, { 'content-type': 'text/plain;charset=utf-8' });
     res.end('Bad request');
+    return;
+  }
+  if (pathname === '.image-slots.state.json') {
+    const requested = path.join(SERVE_ROOT, '.image-slots.state.json');
+    const file = resolveFile(requested);
+    if (file) {
+      res.writeHead(200, {
+        'content-type': contentType(file),
+        'cache-control': 'no-store',
+      });
+      createReadStream(file).pipe(res);
+      return;
+    }
+    if (existsSync(requested)) {
+      res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8', 'cache-control': 'no-store' });
+      res.end('Not found');
+      return;
+    }
+    res.writeHead(200, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
+    res.end('{}');
+    return;
+  }
+  if (hasBlockedDotSegment(pathname)) {
+    res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8', 'cache-control': 'no-store' });
+    res.end('Not found');
     return;
   }
   const requested = path.join(SERVE_ROOT, pathname === '/' ? 'index.html' : pathname);
@@ -109,7 +140,7 @@ server.listen(PORT, HOST, () => {
   const httpPrimary = `http://${LOCAL_HOSTNAME}.local:${PORT}/`;
   const httpsPrimary = `https://${LOCAL_HOSTNAME}.local:${PORT}/`;
   const urls = [httpPrimary, httpsPrimary, ...LAN_IPS.flatMap((ip) => [`http://${ip}:${PORT}/`, `https://${ip}:${PORT}/`])];
-  console.log(`HTTP/HTTPS preview serving ${SERVE_ROOT}`);
+  console.log(`HTTP/HTTPS preview serving ${displayPath(SERVE_ROOT)}`);
   console.log(`Open: ${urls.join(' or ')}`);
   if (!isLoopbackHost(HOST)) {
     console.warn(`[preview] 警告:绑定在 ${HOST}(非回环),预览/导出对局域网可达。导出端点要求请求带允许的 Origin。`);
@@ -207,13 +238,27 @@ ${altNames.join('\n')}
 
 function resolveFile(file) {
   const resolved = path.resolve(file);
-  if (!resolved.startsWith(SERVE_ROOT + path.sep) && resolved !== SERVE_ROOT) return null;
+  if (!isPathInside(LEXICAL_SERVE_ROOT, resolved) && !isPathInside(REAL_SERVE_ROOT, resolved)) return null;
   try {
-    const stat = statSync(resolved);
-    if (stat.isDirectory()) return resolveFile(path.join(resolved, 'index.html'));
-    if (stat.isFile()) return resolved;
+    const real = realpathSync(resolved);
+    if (!isPathInside(REAL_SERVE_ROOT, real)) return null;
+    const stat = statSync(real);
+    if (stat.isDirectory()) return resolveFile(path.join(real, 'index.html'));
+    if (stat.isFile()) return real;
   } catch {}
   return null;
+}
+
+function hasBlockedDotSegment(pathname) {
+  return String(pathname || '')
+    .split(/[\\/]+/)
+    .filter(Boolean)
+    .some(segment => segment.startsWith('.') || INTERNAL_PREVIEW_FILES.has(segment.toLowerCase()));
+}
+
+function isPathInside(root, file) {
+  const relative = path.relative(root, file);
+  return !relative || (!relative.startsWith('..') && !path.isAbsolute(relative));
 }
 
 function contentType(file) {
@@ -256,8 +301,7 @@ async function handleEditablePptxExport(req, res) {
     const outFile = path.join(EXPORT_DIR, `${baseName}.pptx`);
     const reportFile = path.join(EXPORT_DIR, `${baseName}.json`);
     try {
-      const sourcePath = typeof payload.sourcePath === 'string' && payload.sourcePath.startsWith('/') ? payload.sourcePath : '/';
-      const url = `https://localhost:${PORT}${sourcePath}`;
+      const url = buildInternalPreviewUrl(req, payload.sourcePath);
       await exportEditablePptxFromUrl(browser, url, {
         outFile,
         reportFile,
@@ -276,17 +320,17 @@ async function handleEditablePptxExport(req, res) {
     });
     res.end(JSON.stringify({
       ok: true,
-      filePath: outFile,
-      reportPath: reportFile,
       relativePath: path.relative(ROOT, outFile),
+      reportRelativePath: path.relative(ROOT, reportFile),
       downloadUrl: `/api/export-editable-pptx-download?file=${encodeURIComponent(path.basename(outFile))}`,
       downloadName: path.basename(outFile),
     }));
   } catch (error) {
-    updateExportProgress(progressId, { stage: 'failed', detail: error.message || 'Editable PPTX export failed', percent: 100, done: true, error: true });
+    const message = publicErrorMessage(error, 'Editable PPTX export failed');
+    updateExportProgress(progressId, { stage: 'failed', detail: message, percent: 100, done: true, error: true });
     console.error('[editable pptx export]', error);
     res.writeHead(500, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
-    res.end(JSON.stringify({ error: error.message || 'Editable PPTX export failed' }));
+    res.end(JSON.stringify({ error: message }));
   }
 }
 
@@ -312,8 +356,7 @@ async function handlePdfExport(req, res) {
     const reportFile = path.join(EXPORT_DIR, `${baseName}.pdf.json`);
     let result;
     try {
-      const sourcePath = typeof payload.sourcePath === 'string' && payload.sourcePath.startsWith('/') ? payload.sourcePath : '/';
-      const url = `https://localhost:${PORT}${sourcePath}`;
+      const url = buildInternalPreviewUrl(req, payload.sourcePath);
       result = await exportScreenshotPdfFromUrl(browser, url, {
         outFile,
         reportFile,
@@ -334,9 +377,8 @@ async function handlePdfExport(req, res) {
     res.end(JSON.stringify({
       ok: true,
       screenshot: true,
-      filePath: outFile,
-      reportPath: reportFile,
       relativePath: path.relative(ROOT, outFile),
+      reportRelativePath: path.relative(ROOT, reportFile),
       downloadUrl: `/api/export-pdf-download?file=${encodeURIComponent(path.basename(outFile))}`,
       downloadName: path.basename(outFile),
       pages: result.pages,
@@ -345,10 +387,11 @@ async function handlePdfExport(req, res) {
       slideReports: result.slideReports,
     }));
   } catch (error) {
-    updateExportProgress(progressId, { stage: 'failed', detail: error.message || 'PDF export failed', percent: 100, done: true, error: true });
+    const message = publicErrorMessage(error, 'PDF export failed');
+    updateExportProgress(progressId, { stage: 'failed', detail: message, percent: 100, done: true, error: true });
     console.error('[pdf export]', error);
     res.writeHead(500, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
-    res.end(JSON.stringify({ error: error.message || 'PDF export failed' }));
+    res.end(JSON.stringify({ error: message }));
   }
 }
 
@@ -368,14 +411,19 @@ function handlePdfProgress(req, res, requestUrl) {
 }
 
 function handlePdfDownload(req, res, requestUrl) {
+  if (!isAllowedExportRequest(req)) {
+    res.writeHead(403, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
+    res.end(JSON.stringify({ error: 'Forbidden export origin' }));
+    return;
+  }
   const name = path.basename(requestUrl.searchParams.get('file') || '');
   if (!name || !/\.pdf$/i.test(name)) {
     res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8', 'cache-control': 'no-store' });
     res.end('Not found');
     return;
   }
-  const file = path.resolve(EXPORT_DIR, name);
-  if (!file.startsWith(EXPORT_DIR + path.sep)) {
+  const file = resolveExportFile(name, '.pdf');
+  if (!file) {
     res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8', 'cache-control': 'no-store' });
     res.end('Not found');
     return;
@@ -419,14 +467,19 @@ function handleEditablePptxProgress(req, res, requestUrl) {
 }
 
 function handleEditablePptxDownload(req, res, requestUrl) {
+  if (!isAllowedExportRequest(req)) {
+    res.writeHead(403, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
+    res.end(JSON.stringify({ error: 'Forbidden export origin' }));
+    return;
+  }
   const name = path.basename(requestUrl.searchParams.get('file') || '');
   if (!name || !/\.pptx$/i.test(name)) {
     res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8', 'cache-control': 'no-store' });
     res.end('Not found');
     return;
   }
-  const file = path.resolve(EXPORT_DIR, name);
-  if (!file.startsWith(EXPORT_DIR + path.sep)) {
+  const file = resolveExportFile(name, '.pptx');
+  if (!file) {
     res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8', 'cache-control': 'no-store' });
     res.end('Not found');
     return;
@@ -462,13 +515,108 @@ function encodeRFC5987(value) {
   return encodeURIComponent(value).replace(/['()*]/g, char => `%${char.charCodeAt(0).toString(16).toUpperCase()}`);
 }
 
+function resolveExportFile(name, ext) {
+  if (!name || path.basename(name) !== name || path.extname(name).toLowerCase() !== ext) return null;
+  const resolved = path.resolve(EXPORT_DIR, name);
+  if (!isPathInside(LEXICAL_EXPORT_DIR, resolved) && !isPathInside(REAL_EXPORT_DIR, resolved)) return null;
+  try {
+    const real = realpathSync(resolved);
+    return isPathInside(REAL_EXPORT_DIR, real) ? real : null;
+  } catch {
+    return null;
+  }
+}
+
 function isAllowedExportRequest(req) {
-  const allowedHosts = ['localhost', '127.0.0.1', `${LOCAL_HOSTNAME}.local`, ...LAN_IPS];
+  const allowedHosts = ['localhost', '127.0.0.1', '[::1]', `${LOCAL_HOSTNAME}.local`, ...LAN_IPS];
   const allowed = new Set(allowedHosts.flatMap(host => [
     `http://${host}:${PORT}`,
     `https://${host}:${PORT}`,
   ]));
   return isExportRequestAllowed({ origin: req.headers.origin, host: HOST, allowedOrigins: allowed });
+}
+
+function buildInternalPreviewUrl(req, sourcePath, config = {}) {
+  const origin = resolveInternalPreviewOrigin(req, config);
+  return new URL(normalizeInternalPreviewPath(sourcePath), origin).href;
+}
+
+function normalizeInternalPreviewPath(sourcePath) {
+  if (typeof sourcePath !== 'string') return '/';
+  try {
+    const base = 'https://preview.local';
+    const url = new URL(sourcePath, base);
+    if (url.origin !== base) return '/';
+    return `${url.pathname}${url.search}` || '/';
+  } catch {
+    return '/';
+  }
+}
+
+function resolveInternalPreviewOrigin(req, config = {}) {
+  const port = Number(config.port || PORT);
+  const boundHost = config.boundHost || HOST;
+  const localHostname = config.localHostname || LOCAL_HOSTNAME;
+  const lanIps = config.lanIps || LAN_IPS;
+  const origin = originFromHeader(req?.headers?.origin);
+  if (origin && isAllowedInternalPreviewHost(origin.host, { port, boundHost, localHostname, lanIps })) return origin.origin;
+
+  const host = String(req?.headers?.host || '').trim();
+  if (host && isAllowedInternalPreviewHost(host, { port, boundHost, localHostname, lanIps })) {
+    const protocol = req?.socket?.encrypted ? 'https:' : (origin?.protocol || 'https:');
+    return `${protocol}//${host}`;
+  }
+  throw new Error('Export request host is not reachable by the preview server.');
+}
+
+function allowedInternalPreviewHosts(config = {}) {
+  const port = Number(config.port || PORT);
+  const boundHost = config.boundHost || HOST;
+  const localHostname = config.localHostname || LOCAL_HOSTNAME;
+  const lanIps = config.lanIps || LAN_IPS;
+  return new Set(['localhost', '127.0.0.1', '::1', `${localHostname}.local`, boundHost, ...lanIps]
+    .filter(Boolean)
+    .flatMap(host => {
+      const normalized = hostWithoutPort(host);
+      if (!normalized || normalized === '0.0.0.0' || normalized === '::') return [];
+      return [`${normalized}:${port}`];
+    }));
+}
+
+function originFromHeader(value) {
+  if (!value) return null;
+  try {
+    const origin = new URL(value);
+    return origin.protocol === 'http:' || origin.protocol === 'https:' ? origin : null;
+  } catch {
+    return null;
+  }
+}
+
+function hostWithoutPort(value) {
+  const host = String(value || '').trim().toLowerCase();
+  if (!host) return '';
+  if (host.startsWith('[')) return host.slice(1, host.indexOf(']'));
+  const parts = host.split(':');
+  return parts.length > 2 ? host : parts[0];
+}
+
+function hostWithPort(value, port) {
+  const host = String(value || '').trim().toLowerCase();
+  const normalized = hostWithoutPort(host);
+  if (!normalized) return '';
+  if (host.startsWith('[')) {
+    const suffix = host.slice(host.indexOf(']') + 1);
+    return `${normalized}:${suffix.startsWith(':') ? suffix.slice(1) : port}`;
+  }
+  const parts = host.split(':');
+  return parts.length === 2 ? `${normalized}:${parts[1]}` : `${normalized}:${port}`;
+}
+
+function isAllowedInternalPreviewHost(host, config = {}) {
+  const port = Number(config.port || PORT);
+  const withPort = hostWithPort(host, port);
+  return Boolean(withPort) && allowedInternalPreviewHosts(config).has(withPort);
 }
 
 function readJsonBody(req) {
@@ -513,7 +661,7 @@ function updateExportProgress(id, update = {}) {
   const previous = EXPORT_PROGRESS.get(id) || {};
   const next = {
     stage: update.stage || previous.stage || 'working',
-    detail: update.detail || previous.detail || '正在生成可编辑 PPTX',
+    detail: scrubLocalPaths(update.detail || previous.detail || '正在生成可编辑 PPTX'),
     percent: Math.max(0, Math.min(100, Math.round(Number(update.percent ?? previous.percent ?? 0)))),
     done: Boolean(update.done || false),
     error: Boolean(update.error || false),
@@ -523,6 +671,29 @@ function updateExportProgress(id, update = {}) {
   if (next.done) {
     setTimeout(() => EXPORT_PROGRESS.delete(id), 15 * 60 * 1000).unref?.();
   }
+}
+
+function publicErrorMessage(error, fallback) {
+  return scrubLocalPaths(error?.message || fallback);
+}
+
+function scrubLocalPaths(value) {
+  return String(value || '')
+    .replace(/file:\/\/\/?[^\s"'`<>),;]*/gi, '<local-path>')
+    .replace(new RegExp(escapeRegExp(ROOT), 'g'), '<repo>')
+    .replace(/\/Users\/[^/\\"'`<>),;\r\n]+(?:\/[^/\\"'`<>),;\r\n]+)*/g, '<local-path>')
+    .replace(/\/Volumes\/[^/\\"'`<>),;\r\n]+(?:\/[^/\\"'`<>),;\r\n]+)*/g, '<local-path>')
+    .replace(/\/home\/[^/\\"'`<>),;\r\n]+(?:\/[^/\\"'`<>),;\r\n]+)*/g, '<local-path>')
+    .replace(/(?<![A-Za-z])[A-Za-z]:[\\/][^\s"'`<>),;]+(?:[\\/][^\s"'`<>),;]+)*/g, '<local-path>');
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function displayPath(file) {
+  const relative = path.relative(process.cwd(), file);
+  return relative && !relative.startsWith('..') && !path.isAbsolute(relative) ? relative : path.basename(file);
 }
 
 function timestampForFile() {

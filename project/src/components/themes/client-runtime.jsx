@@ -1,6 +1,13 @@
 import React from 'react';
 import { flushSync } from 'react-dom';
 import { createRoot } from 'react-dom/client';
+import {
+  createLayoutContracts,
+  isMediaArrayKey,
+  isPrunedContractOmit,
+  normalizeSlidePropsForContract,
+  pruneContractValue,
+} from '../../prop-contract-core.mjs';
 // JAD-201:主题注册表(runtimePages + 图片槽 Provider 包裹)从可注入模块取。
 // renderDeck 打包时把 `@dashi/theme-registry` 别名指向「全主题」或「按 deck 实际用到的主题裁剪版」。
 import { runtimePages, wrapThemeImageProviders } from '@dashi/theme-registry';
@@ -11,6 +18,8 @@ const IMAGE_UPLOAD_MAX_DIM = 1400;
 const IMAGE_UPLOAD_QUALITY = 0.78;
 const releaseInactiveThemeKeys = new Set(['theme03', 'theme10']);
 const entriesByKey = new Map(runtimePages.map(page => [page.key, page]));
+const UNCHANGED_EXTERNAL_VALUE = Symbol('unchanged-external-value');
+const CONTRACT_VALUE_OMIT = Symbol('contract-value-omit');
 
 function readJson(value, fallback) {
   try {
@@ -93,7 +102,13 @@ function readMediaFile(file) {
         const video = document.createElement('video');
         video.preload = 'metadata';
         video.muted = true;
-        video.onloadedmetadata = () => resolve({
+        const finish = data => {
+          video.onloadedmetadata = null;
+          video.onerror = null;
+          releaseVideoElement(video);
+          resolve(data);
+        };
+        video.onloadedmetadata = () => finish({
           src,
           type: file.type,
           kind: 'video',
@@ -101,7 +116,7 @@ function readMediaFile(file) {
           height: video.videoHeight || null,
           ratio: video.videoWidth && video.videoHeight ? video.videoWidth / video.videoHeight : null,
         });
-        video.onerror = () => resolve({ src, type: file.type, kind: 'video', ratio: null });
+        video.onerror = () => finish({ src, type: file.type, kind: 'video', ratio: null });
         video.src = src;
         return;
       }
@@ -207,9 +222,26 @@ function isRuntimeSlideActive(slide) {
 
 function releaseVideoElement(video) {
   video.pause?.();
-  if (video.getAttribute('src')) video.removeAttribute('src');
+  video.removeAttribute?.('src');
   video.querySelectorAll?.('source[src]')?.forEach(source => source.removeAttribute('src'));
   video.load?.();
+}
+
+function collectVideoElements(root) {
+  const videos = [];
+  const visit = node => {
+    if (!node?.querySelectorAll) return;
+    videos.push(...node.querySelectorAll('video'));
+    node.querySelectorAll('*').forEach(element => {
+      if (element.shadowRoot) visit(element.shadowRoot);
+    });
+  };
+  visit(root);
+  return videos;
+}
+
+function hasLiveVideoElement(root) {
+  return collectVideoElements(root).some(video => video.getAttribute('src') || video.querySelector?.('source[src]'));
 }
 
 function renderMedia(value, props = {}) {
@@ -238,22 +270,23 @@ function renderMedia(value, props = {}) {
   return <img src={item.src} alt="" loading="lazy" decoding="async" {...mediaProps} />;
 }
 
-function createMediaApi(slide, baseProps) {
+function createMediaApi(slide, baseProps, entry, defaults) {
   function updateList(key, index, value) {
     const slideId = slide.dataset.vmSlideId;
     const currentProps = window.__deckViewModel?.getState?.().props?.[slideId] || {};
-    const sourceProps = { ...baseProps, ...currentProps };
+    const safeCurrentProps = sanitizeExternalStateValues(entry, defaults, currentProps);
+    const sourceProps = { ...baseProps, ...safeCurrentProps };
     const nextList = toArray(sourceProps[key]);
     const previousValue = nextList[index] || null;
     nextList[index] = value || null;
-    const nextProps = stripRuntimeProps({ ...sourceProps, [key]: nextList });
+    const nextProps = sanitizeExternalStateValues(entry, defaults, stripRuntimeProps({ ...safeCurrentProps, [key]: nextList }));
     window.__dashiUndo?.push?.({
       label: 'media',
       undo: () => updateList(key, index, previousValue),
     });
     window.__deckViewModel?.setProps?.(slideId, nextProps);
     window.__markOverviewThumbDirty?.(slide);
-    renderImportedThemeSlide(slide, nextProps);
+    renderRuntimeThemeSlide(slide, nextProps);
     window.__initEditableText?.(slide);
     window.__syncActiveEffects?.(slide, { skipMotion: true });
   }
@@ -416,8 +449,8 @@ function HostImageSlot({ mediaApi, index, options = {} }) {
   );
 }
 
-function withMediaHostProps(slide, baseProps) {
-  const mediaApi = createMediaApi(slide, baseProps);
+function withMediaHostProps(slide, baseProps, entry, defaults) {
+  const mediaApi = createMediaApi(slide, baseProps, entry, defaults);
   return {
     ...baseProps,
     images: toArray(baseProps.images),
@@ -461,6 +494,7 @@ function createTheme11ImageBridge(mediaApi) {
     return indexes.get(key);
   };
   return {
+    isActive: () => mediaApi.isActive?.() !== false,
     resolve,
     get: index => mediaApi.get('images', index),
     set: (index, value) => mediaApi.set('images', index, value),
@@ -581,19 +615,271 @@ function applyImageSlotSources(root, mediaApi) {
   });
 }
 
-function renderImportedThemeSlide(slide, values = {}) {
+function normalizeExternalValues(entry, defaults, values) {
+  const baselineValues = stripRuntimeProps({
+    ...(entry.defaultProps || {}),
+    ...(defaults || {}),
+  });
+  const authoredValues = stripRuntimeProps(values || {});
+  const externalValues = changedExternalValues(baselineValues, authoredValues);
+  if (!Object.keys(externalValues).length) return externalValues;
+  const contractValues = {};
+  const passthroughValues = {};
+  for (const [key, value] of Object.entries(externalValues)) {
+    const hasDefaultValue = hasRuntimeDefaultKey(entry, defaults, key);
+    if (!hasDefaultValue) {
+      if (isAuthoredMediaArrayValue(entry, defaults, key, authoredValues[key])) {
+        passthroughValues[key] = authoredValues[key];
+      } else if (isAllowedPrunedControlValue(entry, key, value)) {
+        passthroughValues[key] = value;
+      }
+      continue;
+    }
+    const defaultValue = Object.prototype.hasOwnProperty.call(defaults || {}, key)
+      ? defaults[key]
+      : entry.defaultProps?.[key];
+    if (isPrunedContractOmit(pruneContractValue(defaultValue, key))) {
+      if (isAuthoredMediaArrayValue(entry, defaults, key, authoredValues[key])) {
+        passthroughValues[key] = authoredValues[key];
+      } else if (isAllowedPrunedControlValue(entry, key, value)) {
+        passthroughValues[key] = value;
+      }
+    } else {
+      contractValues[key] = value;
+    }
+  }
+  if (!Object.keys(contractValues).length) return passthroughValues;
+  const contract = createLayoutContracts([{
+    ...entry,
+    defaultProps: {
+      ...(entry.defaultProps || {}),
+      ...(defaults || {}),
+    },
+  }]).get(entry.key);
+  const normalizedValues = contract
+    ? normalizeSlidePropsForContract(entry.key, contractValues, contract)
+    : contractValues;
+  return { ...normalizedValues, ...passthroughValues };
+}
+
+function isAuthoredMediaArrayValue(entry, defaults, key, value) {
+  return Array.isArray(value) && isMediaArrayKey(key) && isDeclaredMediaArrayProp(entry, defaults, key);
+}
+
+function isDeclaredMediaArrayProp(entry, defaults, key) {
+  return hasRuntimeDefaultKey(entry, defaults, key)
+    || (entry.controls || []).some(control => {
+      return control?.key === key || control?.publicKey === key || control?.prop === key;
+    });
+}
+
+function hasRuntimeDefaultKey(entry, defaults, key) {
+  return Object.prototype.hasOwnProperty.call(defaults || {}, key)
+    || Object.prototype.hasOwnProperty.call(entry?.defaultProps || {}, key);
+}
+
+function runtimeDefaultValue(entry, defaults, key) {
+  return Object.prototype.hasOwnProperty.call(defaults || {}, key)
+    ? defaults[key]
+    : entry?.defaultProps?.[key];
+}
+
+function sanitizeExternalStateValues(entry, defaults, values) {
+  const next = {};
+  for (const [key, value] of Object.entries(stripRuntimeProps(values || {}))) {
+    if (isAuthoredMediaArrayValue(entry, defaults, key, value)) {
+      next[key] = value;
+      continue;
+    }
+    if (!hasRuntimeDefaultKey(entry, defaults, key)) {
+      if (isAllowedPrunedControlValue(entry, key, value)) next[key] = value;
+      continue;
+    }
+    if (isAllowedPrunedControlValue(entry, key, value)) {
+      next[key] = value;
+      continue;
+    }
+    const defaultValue = runtimeDefaultValue(entry, defaults, key);
+    const shape = pruneContractValue(defaultValue, key);
+    if (isPrunedContractOmit(shape)) continue;
+    const pruned = pruneExternalValueToContractShape(value, shape);
+    if (pruned !== CONTRACT_VALUE_OMIT) next[key] = pruned;
+  }
+  return next;
+}
+
+function pruneExternalValueToContractShape(value, shape) {
+  if (Array.isArray(shape)) {
+    if (!Array.isArray(value)) return CONTRACT_VALUE_OMIT;
+    const itemShape = shape.find(isPlainObject) || shape.find(item => item != null);
+    if (isPlainObject(itemShape)) {
+      return value.map(item => pruneExternalObjectToContractShape(item, itemShape))
+        .filter(item => item !== CONTRACT_VALUE_OMIT);
+    }
+    if (Array.isArray(itemShape)) {
+      return value.map(item => pruneExternalValueToContractShape(item, itemShape))
+        .filter(item => item !== CONTRACT_VALUE_OMIT);
+    }
+    const primitive = primitiveContractType(itemShape);
+    return primitive
+      ? value.filter(item => contractPrimitiveMatches(item, primitive))
+      : value;
+  }
+  if (isPlainObject(shape)) return pruneExternalObjectToContractShape(value, shape);
+  const primitive = primitiveContractType(shape);
+  if (primitive) return contractPrimitiveMatches(value, primitive) ? value : CONTRACT_VALUE_OMIT;
+  return CONTRACT_VALUE_OMIT;
+}
+
+function pruneExternalObjectToContractShape(value, shape) {
+  if (!isPlainObject(value)) return CONTRACT_VALUE_OMIT;
+  const entries = Object.entries(value)
+    .filter(([key]) => Object.prototype.hasOwnProperty.call(shape, key))
+    .map(([key, item]) => [key, pruneExternalValueToContractShape(item, shape[key])])
+    .filter(([, item]) => item !== CONTRACT_VALUE_OMIT);
+  if (!entries.length) return CONTRACT_VALUE_OMIT;
+  return Object.fromEntries(entries);
+}
+
+function primitiveContractType(value) {
+  if (value == null || Array.isArray(value) || isPlainObject(value)) return null;
+  const type = typeof value;
+  return ['string', 'number', 'boolean'].includes(type) ? type : null;
+}
+
+function contractPrimitiveMatches(value, type) {
+  if (type === 'number') return typeof value === 'number' && Number.isFinite(value);
+  return typeof value === type;
+}
+
+function isAllowedPrunedControlValue(entry, key, value) {
+  const control = (entry.controls || []).find(item => {
+    return item?.key === key || item?.publicKey === key || item?.prop === key;
+  });
+  if (!control) return false;
+  const options = Array.isArray(control.options) ? control.options : [];
+  if (options.length) return options.some(option => controlOptionValuesEqual(controlOptionValue(option), value));
+  const type = String(control.type || '').toLowerCase();
+  if (['toggle', 'boolean', 'checkbox'].includes(type)) return typeof value === 'boolean';
+  if (['slider', 'range', 'number', 'stepper'].includes(type)) return typeof value === 'number' && Number.isFinite(value);
+  if (type === 'color') return isRuntimeCssColorLike(value);
+  return false;
+}
+
+function controlOptionValuesEqual(optionValue, value) {
+  if (Object.is(optionValue, value)) return true;
+  if (Array.isArray(optionValue) && Array.isArray(value)) return externalValuesEqual(optionValue, value);
+  return false;
+}
+
+function controlOptionValue(option) {
+  if (Array.isArray(option)) return option[0];
+  if (option && typeof option === 'object') return option.value ?? option.key ?? option.id;
+  return option;
+}
+
+function isRuntimeCssColorLike(value) {
+  if (typeof value !== 'string') return false;
+  const text = value.trim();
+  return /^#[0-9a-fA-F]{3,8}$/.test(text)
+    || /^(rgb|rgba|hsl|hsla)\(/i.test(text)
+    || /^var\(--[A-Za-z0-9_-]+\)$/.test(text)
+    || /^(transparent|currentColor|black|white)$/i.test(text);
+}
+
+function changedExternalValues(baseline, values) {
+  const next = {};
+  for (const [key, value] of Object.entries(values || {})) {
+    const changed = externalValueDiff(baseline?.[key], value);
+    if (changed !== UNCHANGED_EXTERNAL_VALUE) next[key] = changed;
+  }
+  return next;
+}
+
+function externalValueDiff(baseline, value) {
+  if (externalValuesEqual(baseline, value)) return UNCHANGED_EXTERNAL_VALUE;
+  if (Array.isArray(baseline) && Array.isArray(value)) {
+    return value.map((item, index) => {
+      const changed = externalValueDiff(baseline[index], item);
+      if (changed !== UNCHANGED_EXTERNAL_VALUE) return changed;
+      if (isPlainObject(item)) return {};
+      if (Array.isArray(item)) return [];
+      return item;
+    });
+  }
+  if (isPlainObject(baseline) && isPlainObject(value)) {
+    return Object.fromEntries(Object.entries(value)
+      .map(([key, item]) => [key, externalValueDiff(baseline[key], item)])
+      .filter(([, item]) => item !== UNCHANGED_EXTERNAL_VALUE));
+  }
+  return value;
+}
+
+function externalValuesEqual(left, right) {
+  if (Object.is(left, right)) return true;
+  if (Array.isArray(left) || Array.isArray(right)) {
+    if (!Array.isArray(left) || !Array.isArray(right) || left.length !== right.length) return false;
+    return left.every((item, index) => externalValuesEqual(item, right[index]));
+  }
+  if (isPlainObject(left) || isPlainObject(right)) {
+    if (!isPlainObject(left) || !isPlainObject(right)) return false;
+    const leftKeys = Object.keys(left);
+    const rightKeys = Object.keys(right);
+    if (leftKeys.length !== rightKeys.length) return false;
+    return leftKeys.every(key => Object.prototype.hasOwnProperty.call(right, key) && externalValuesEqual(left[key], right[key]));
+  }
+  return false;
+}
+
+function mergeExternalPropsForRender(defaultProps, externalProps) {
+  const next = { ...(defaultProps || {}) };
+  for (const [key, value] of Object.entries(externalProps || {})) {
+    next[key] = mergeExternalValueForRender(next[key], value, key);
+  }
+  return next;
+}
+
+function mergeExternalValueForRender(defaultValue, externalValue, key) {
+  if (Array.isArray(defaultValue) && Array.isArray(externalValue)) {
+    if (isMediaArrayKey(key)) return externalValue;
+    const defaultItem = defaultValue.find(isPlainObject);
+    const externalHasObjects = externalValue.some(isPlainObject);
+    if (!defaultItem || !externalHasObjects) return externalValue;
+    return externalValue.map((item, index) => {
+      return isPlainObject(item)
+        ? mergeExternalValueForRender(defaultValue[index], item, key)
+        : item;
+    });
+  }
+  if (isPlainObject(defaultValue) && isPlainObject(externalValue)) {
+    const next = { ...defaultValue };
+    for (const [key, value] of Object.entries(externalValue)) {
+      next[key] = mergeExternalValueForRender(next[key], value, key);
+    }
+    return next;
+  }
+  return externalValue;
+}
+
+function isPlainObject(value) {
+  return !!value && typeof value === 'object' && !Array.isArray(value);
+}
+
+function renderRuntimeThemeSlide(slide, values = {}, options = {}) {
   const root = slide?.querySelector?.('.imported-theme-root');
   if (!root) return false;
   const entry = entriesByKey.get(root.dataset.pageKey);
   if (!entry?.Component) return false;
   const defaults = readJson(root.dataset.propDefaults, {});
-  const baseProps = {
+  const externalProps = options.trusted
+    ? stripRuntimeProps(values || {})
+    : normalizeExternalValues(entry, defaults, values);
+  const baseProps = mergeExternalPropsForRender({
     ...(entry.defaultProps || {}),
     ...defaults,
-    ...(values || {}),
-  };
+  }, externalProps);
   const pageProps = withDeckPageProps(slide, entry, stripRuntimeProps(baseProps));
-  const componentProps = withMediaHostProps(slide, pageProps);
+  const componentProps = withMediaHostProps(slide, pageProps, entry, defaults);
   flushSync(() => {
     getRootApi(root).render(withImageProviders(
       React.createElement(entry.Component, componentProps),
@@ -609,11 +895,11 @@ function renderImportedThemeSlide(slide, values = {}) {
   return true;
 }
 
-function releaseImportedThemeSlide(slide) {
+function releaseRuntimeThemeSlide(slide) {
   const root = slide?.querySelector?.('.imported-theme-root');
   const api = root && mountedRoots.get(root);
   if (!root || !api) return false;
-  root.querySelectorAll('video').forEach(releaseVideoElement);
+  releaseRuntimeSlideVideos(root);
   try {
     api.unmount();
   } catch {}
@@ -624,33 +910,42 @@ function releaseImportedThemeSlide(slide) {
   return true;
 }
 
+function releaseRuntimeSlideVideos(root) {
+  root.querySelectorAll?.('image-slot[src]')?.forEach(slot => {
+    if (mediaKind(slot.getAttribute('src')) === 'video') slot.removeAttribute('src');
+  });
+  collectVideoElements(root).forEach(releaseVideoElement);
+}
+
 function releaseInactiveRuntimeSlides(activeSlide, options = {}) {
   const keys = options.themeKeys ? new Set(options.themeKeys) : releaseInactiveThemeKeys;
   document.querySelectorAll?.('.slide.imported-theme-slide').forEach(slide => {
     if (slide === activeSlide) return;
     const root = slide.querySelector?.('.imported-theme-root');
-    if (!root || !keys.has(root.dataset.themeKey)) return;
-    releaseImportedThemeSlide(slide);
+    if (!root || (!keys.has(root.dataset.themeKey) && !hasLiveVideoElement(root))) return;
+    if (options.adjacentPreload === true && slide.classList?.contains('cv-near')) {
+      releaseRuntimeSlideVideos(root);
+      return;
+    }
+    releaseRuntimeThemeSlide(slide);
   });
 }
 
-function renderImportedThemeSlides(scope = document) {
+function renderRuntimeThemeSlides(scope = document) {
   scope.querySelectorAll?.('.slide.imported-theme-slide').forEach(slide => {
-    renderImportedThemeSlide(slide);
+    renderRuntimeThemeSlide(slide);
   });
 }
 
-function renderRuntimeSlide(slide, values = {}) {
-  return renderImportedThemeSlide(slide, values);
+function renderRuntimeSlide(slide, values = {}, options = {}) {
+  return renderRuntimeThemeSlide(slide, values, options);
 }
 
 function renderRuntimeSlides(scope = document) {
-  renderImportedThemeSlides(scope);
+  renderRuntimeThemeSlides(scope);
 }
 
-window.__renderImportedThemeSlide = renderImportedThemeSlide;
-window.__renderImportedThemeSlides = renderImportedThemeSlides;
 window.__renderRuntimeSlide = renderRuntimeSlide;
 window.__renderRuntimeSlides = renderRuntimeSlides;
-window.__releaseRuntimeSlide = releaseImportedThemeSlide;
+window.__releaseRuntimeSlide = releaseRuntimeThemeSlide;
 window.__releaseInactiveRuntimeSlides = releaseInactiveRuntimeSlides;

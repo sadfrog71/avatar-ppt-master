@@ -203,6 +203,12 @@ export const pages = [
       "panelWidth": 46,
       "showRule": true,
       "showFooter": true,
+      "wordmark": "AUTONOMOUS INDEX",
+      "kicker": "自主指数 · 年度财富报告",
+      "title": "财富，\n自主增长",
+      "sub": "一套为长期主义者设计的智能资产配置系统，让每一笔结余都在为你工作。",
+      "footL": "2025 ANNUAL REVIEW",
+      "footR": "01 / 05",
       "idPrefix": "coverfield"
     }
   },
@@ -1267,6 +1273,9 @@ export const pages = [
         "min": 1,
         "max": 6,
         "step": 1,
+        "countArrays": [
+          "rows"
+        ],
         "description": "权重条与明细清单的行数。",
         "publicKey": "itemCount",
         "publicLabel": "配置条目",
@@ -1324,6 +1333,14 @@ export const pages = [
             "label": "无"
           }
         ],
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 1,
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "左侧竖栏：品牌渐变、可上传图片槽，或隐藏让信息满幅。",
         "publicKey": "mediaMode",
         "publicLabel": "侧栏模式",
@@ -1344,6 +1361,7 @@ export const pages = [
         "acct": "招商银行 ···2248",
         "amt": "¥75,000"
       },
+      "images": [],
       "rows": [
         {
           "name": "核心增长底仓",
@@ -1570,7 +1588,14 @@ export const pages = [
       ],
       "idPrefix": "stacked",
       "tone": "dark"
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "bars[].parts",
+        "anchor": "segLabels",
+        "relation": "same-length"
+      }
+    ]
   },
   {
     "key": "theme10_page013",
@@ -2080,7 +2105,14 @@ export const pages = [
       ],
       "idPrefix": "grouped",
       "tone": "light"
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "groups[].values",
+        "anchor": "seriesNames",
+        "relation": "same-length"
+      }
+    ]
   },
   {
     "key": "theme10_page016",
@@ -2594,6 +2626,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "columns",
+          "rows[].cells"
+        ],
         "description": "参与对照的方案列数。",
         "publicKey": "colCount",
         "publicLabel": "方案列数",
@@ -3222,6 +3258,14 @@ export const pages = [
           }
         ],
         "desc": "动态 shader 或自定义背景媒体",
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 1,
+            "writeMode": "initialProps"
+          }
+        ],
         "publicKey": "backgroundMode",
         "publicLabel": "背景替换",
         "description": "动态 shader 或自定义背景媒体"
@@ -3303,6 +3347,16 @@ export const pages = [
       "showCreds": true,
       "backgroundMode": "unicorn",
       "unicornScene": "automations",
+      "overline": "团队 · WHO RUNS IT",
+      "name": "林彦",
+      "role": "首席投资官 · Chief Investment Officer",
+      "quote": "我不预测市场，我只确保无论市场怎样，纪律都在执行。",
+      "creds": [
+        "前量化对冲基金合伙人",
+        "CFA · 15 年跨周期实盘",
+        "主导自主再平衡引擎设计"
+      ],
+      "images": [],
       "idPrefix": "profile"
     }
   },
@@ -3347,6 +3401,17 @@ export const pages = [
         "min": 2,
         "max": 6,
         "step": 1,
+        "countArrays": [
+          "members",
+          "images"
+        ],
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "memberCount",
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "内容卡片数量（自动分列填满版面）。",
         "publicKey": "memberCount",
         "publicLabel": "内容数量",
@@ -3419,6 +3484,9 @@ export const pages = [
           "name": "叶霖",
           "role": "合规与税务"
         }
+      ],
+      "images": [
+        ""
       ],
       "idPrefix": "team",
       "tone": "light"
@@ -4433,22 +4501,6 @@ export const pages = [
         "desc": "整页深色或浅色底。"
       },
       {
-        "key": "pointCount",
-        "type": "slider",
-        "label": "时间点数",
-        "default": 16,
-        "min": 2,
-        "max": 16,
-        "step": 1,
-        "countArrays": [
-          "points"
-        ],
-        "description": "曲线横轴标签与净值点的共同数量。",
-        "publicKey": "pointCount",
-        "publicLabel": "时间点数",
-        "desc": "曲线横轴标签与净值点的共同数量。"
-      },
-      {
         "key": "annotationCount",
         "type": "slider",
         "label": "标注数量",
@@ -4505,72 +4557,41 @@ export const pages = [
     "defaultProps": {
       "overline": "净值曲线 · GROWTH CURVE",
       "title": "一条线，看完这些年的复利",
-      "pointCount": 16,
-      "points": [
-        {
-          "label": "第1年",
-          "value": 100
-        },
-        {
-          "label": "",
-          "value": 108
-        },
-        {
-          "label": "",
-          "value": 102
-        },
-        {
-          "label": "第4年",
-          "value": 121
-        },
-        {
-          "label": "",
-          "value": 134
-        },
-        {
-          "label": "",
-          "value": 128
-        },
-        {
-          "label": "第7年",
-          "value": 152
-        },
-        {
-          "label": "",
-          "value": 176
-        },
-        {
-          "label": "",
-          "value": 169
-        },
-        {
-          "label": "第10年",
-          "value": 205
-        },
-        {
-          "label": "",
-          "value": 246
-        },
-        {
-          "label": "",
-          "value": 233
-        },
-        {
-          "label": "第13年",
-          "value": 288
-        },
-        {
-          "label": "",
-          "value": 342
-        },
-        {
-          "label": "",
-          "value": 372
-        },
-        {
-          "label": "今天",
-          "value": 430
-        }
+      "data": [
+        100,
+        108,
+        102,
+        121,
+        134,
+        128,
+        152,
+        176,
+        169,
+        205,
+        246,
+        233,
+        288,
+        342,
+        372,
+        430
+      ],
+      "xLabels": [
+        "第1年",
+        "",
+        "",
+        "第4年",
+        "",
+        "",
+        "第7年",
+        "",
+        "",
+        "第10年",
+        "",
+        "",
+        "第13年",
+        "",
+        "",
+        "今天"
       ],
       "endLabel": "¥1.25M",
       "annotations": [
@@ -4772,7 +4793,14 @@ export const pages = [
       ],
       "idPrefix": "areastack",
       "tone": "dark"
-    }
+    },
+    "lengthBindings": [
+      {
+        "dependent": "series[].data",
+        "anchor": "xLabels",
+        "relation": "same-length"
+      }
+    ]
   },
   {
     "key": "theme10_page029",
@@ -5126,6 +5154,9 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
+        "countArrays": [
+          "nodes"
+        ],
         "description": "时间轴上的里程碑节点数量。",
         "publicKey": "nodeCount",
         "publicLabel": "节点数量",
@@ -5191,6 +5222,40 @@ export const pages = [
       "focus": false,
       "focusIndex": 1,
       "showConnector": true,
+      "overline": "发展历程 · TIMELINE",
+      "title": "一条始终自主的曲线",
+      "nodes": [
+        {
+          "year": "2018",
+          "label": "引擎成型",
+          "note": "自主再平衡算法首次实盘验证。"
+        },
+        {
+          "year": "2020",
+          "label": "穿越波动",
+          "note": "在剧烈震荡中保持纪律，回撤可控。"
+        },
+        {
+          "year": "2022",
+          "label": "税务感知",
+          "note": "交易引擎接入税务优化，净收益抬升。"
+        },
+        {
+          "year": "2024",
+          "label": "全面开放",
+          "note": "面向所有持有人开放透明账本。"
+        },
+        {
+          "year": "2026",
+          "label": "当下",
+          "note": "管理规模与跑赢基准同步创新高。"
+        },
+        {
+          "year": "2028",
+          "label": "路线图",
+          "note": "跨市场对冲与自动化覆盖再扩张。"
+        }
+      ],
       "idPrefix": "timeline",
       "tone": "dark"
     }
@@ -5853,7 +5918,7 @@ export const pages = [
         "key": "laneCount",
         "type": "slider",
         "label": "泳道数量",
-        "default": 3,
+        "default": 4,
         "min": 2,
         "max": 4,
         "step": 1,
@@ -5866,7 +5931,7 @@ export const pages = [
         "key": "phaseCount",
         "type": "slider",
         "label": "阶段列数",
-        "default": 4,
+        "default": 5,
         "min": 3,
         "max": 5,
         "step": 1,
@@ -6073,27 +6138,27 @@ export const pages = [
       "items": [
         {
           "head": "只承担有补偿的风险",
-          "body": "每一份波动都应换回预期回报。无补偿的敞口被系统性剔除，风险预算只留给真正的定价错误。"
+          "body": "只把风险预算留给被充分补偿的敞口。"
         },
         {
           "head": "让纪律跑赢情绪",
-          "body": "规则在平静时写好，在动荡时执行。再平衡、止盈与对冲由系统触发，而不是临场的直觉判断。"
+          "body": "规则在平静时写好，在动荡时照章执行。"
         },
         {
           "head": "把成本当作收益",
-          "body": "省下的每个基点都会被复利放大。我们以税务感知的方式交易，持续压低显性与隐性成本。"
+          "body": "用税务感知交易压低每一个显性与隐性成本。"
         },
         {
           "head": "透明胜过承诺",
-          "body": "账本对持有人完全开放。我们不靠预测取信，而是让每一笔操作都可被复核、可被追溯。"
+          "body": "账本完全开放，每一笔操作都可复核、可追溯。"
         },
         {
           "head": "时间是唯一的杠杆",
-          "body": "我们不追逐短期排名，而是把复利的主动权交还给时间，并尽可能减少对它的干扰。"
+          "body": "不追短期排名，把复利主动权交还给时间。"
         },
         {
           "head": "简单优先于花哨",
-          "body": "能用更简单的结构达成同样目标，就不引入复杂性。复杂只在它带来真实补偿时才被保留。"
+          "body": "能用简单结构达成目标，就不引入复杂性。"
         }
       ],
       "idPrefix": "principles",
@@ -6292,6 +6357,9 @@ export const pages = [
       "align": "left",
       "showQuoteMark": true,
       "showAttribution": true,
+      "quote": "真正的复利，不来自一次正确的预测，而来自一套能被反复执行的纪律。",
+      "author": "林彦",
+      "role": "首席投资官",
       "idPrefix": "quote"
     }
   },
@@ -6336,6 +6404,12 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "右侧图片槽位数量（0 即纯文字编排版式）；每个槽位自适应所传图片的比例并自动排布。",
         "publicKey": "imageCount",
         "publicLabel": "图片数量",
@@ -6387,6 +6461,7 @@ export const pages = [
       "imageSide": "right",
       "showPlates": true,
       "showLead": true,
+      "images": [],
       "idPrefix": "editorial",
       "tone": "light"
     }
@@ -6449,6 +6524,14 @@ export const pages = [
         "type": "toggle",
         "label": "显示图片",
         "default": true,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 1,
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "显示或隐藏主图。图片随上传比例自适应裁切。",
         "publicKey": "imageCount",
         "publicLabel": "显示图片",
@@ -6462,6 +6545,9 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
+        "countArrays": [
+          "facts"
+        ],
         "description": "正文下方的关键数据条数量。",
         "publicKey": "factCount",
         "publicLabel": "数据条数",
@@ -6494,6 +6580,24 @@ export const pages = [
       "factCount": 2,
       "panelGlass": true,
       "showKicker": true,
+      "kicker": "专栏 · IN PRACTICE",
+      "headline": "把纪律，过成一种习惯",
+      "lede": "真正改变结果的，不是某一次聪明的择时，而是日复一日、不被情绪干扰的执行。引擎把这件最难坚持的事，变成默认发生。",
+      "facts": [
+        {
+          "value": "0 次",
+          "label": "需要你手动盯盘"
+        },
+        {
+          "value": "每 14 天",
+          "label": "自动检查再平衡"
+        },
+        {
+          "value": "100%",
+          "label": "决策可回溯"
+        }
+      ],
+      "images": [],
       "idPrefix": "magazine",
       "tone": "light"
     }
@@ -6539,6 +6643,16 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "images"
+        ],
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "panelCount",
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "并排影像面板数量。各面板等宽，图片随上传比例自适应裁切填满。",
         "publicKey": "panelCount",
         "publicLabel": "面板数量",
@@ -6605,6 +6719,7 @@ export const pages = [
       "showIndex": true,
       "captionPos": "bottom",
       "radius": 12,
+      "images": [],
       "idPrefix": "triptych",
       "tone": "dark"
     }
@@ -6650,6 +6765,17 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "bands",
+          "images"
+        ],
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "tileCount",
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "纵向堆叠的横向图片带数量（0 图时显示占位）。",
         "publicKey": "tileCount",
         "publicLabel": "影像带数量",
@@ -6723,6 +6849,7 @@ export const pages = [
           "caption": "不预测、不择时、不漂移"
         }
       ],
+      "images": [],
       "idPrefix": "strata",
       "tone": "dark"
     }
@@ -6764,7 +6891,7 @@ export const pages = [
         "key": "cardCount",
         "type": "slider",
         "label": "卡片数量",
-        "default": 6,
+        "default": 8,
         "min": 3,
         "max": 8,
         "step": 1,
@@ -6811,7 +6938,7 @@ export const pages = [
         "key": "focus",
         "type": "toggle",
         "label": "重点聚焦",
-        "default": false,
+        "default": true,
         "description": "高亮某一张卡片，其余弱化。",
         "publicKey": "focus",
         "publicLabel": "重点聚焦",
@@ -7156,7 +7283,7 @@ export const pages = [
           ]
         }
       ],
-      "cardCount": 6,
+      "cardCount": 8,
       "trendStyle": "area",
       "showDelta": true,
       "focus": true,
@@ -7206,6 +7333,17 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "cards",
+          "images"
+        ],
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "cardCount",
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "条目总数（1 条放大，其余进入右侧清单）。",
         "publicKey": "itemCount",
         "publicLabel": "内容数量",
@@ -7263,6 +7401,7 @@ export const pages = [
           "role": "持有人 · 3 年"
         }
       ],
+      "images": [],
       "idPrefix": "testimonials",
       "tone": "dark"
     }
@@ -7315,6 +7454,14 @@ export const pages = [
         "type": "radio",
         "label": "图片位置",
         "default": "right",
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 1,
+            "writeMode": "initialProps"
+          }
+        ],
         "options": [
           {
             "value": "left",
@@ -7356,6 +7503,21 @@ export const pages = [
       "showStats": true,
       "showCaption": false,
       "split": true,
+      "overline": "产品理念",
+      "title": "一个会自己思考的组合",
+      "body": "自主指数持续运行，读懂你的目标，并在市场波动中把组合调回最优。",
+      "stats": [
+        {
+          "value": "7×24",
+          "label": "不间断监控"
+        },
+        {
+          "value": "<1ms",
+          "label": "信号到执行"
+        }
+      ],
+      "caption": "产品界面示意",
+      "images": [],
       "idPrefix": "feature",
       "tone": "light"
     }
@@ -7402,6 +7564,14 @@ export const pages = [
         "max": 65,
         "step": 5,
         "unit": "%",
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 2,
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "左侧画面所占的宽度比例。",
         "publicKey": "split",
         "publicLabel": "左右占比",
@@ -7449,6 +7619,7 @@ export const pages = [
       "rightLabel": "自主指数",
       "leftCaption": "人工、滞后、被情绪左右。",
       "rightCaption": "自动、实时、由纪律驱动。",
+      "images": [],
       "idPrefix": "compareimg",
       "tone": "dark"
     }
@@ -7494,6 +7665,14 @@ export const pages = [
         "min": 2,
         "max": 5,
         "step": 1,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "cardCount",
+            "maxCount": 5,
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "贴墙上的照片卡数量；每张随上传图片比例自适应。",
         "publicKey": "cardCount",
         "publicLabel": "照片数量",
@@ -7535,6 +7714,7 @@ export const pages = [
       "showCaption": true,
       "scatter": true,
       "showPin": true,
+      "images": [],
       "overline": "影像 · FIELD NOTES",
       "title": "组合背后的人与现场",
       "cards": [
@@ -7599,6 +7779,12 @@ export const pages = [
         "min": 0,
         "max": 5,
         "step": 1,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "横排影像框数量（0 为留空提示态）。各框按数量均分宽度，图片在槽内裁切填满。",
         "publicKey": "imageCount",
         "publicLabel": "影像数量",
@@ -7654,6 +7840,7 @@ export const pages = [
         "陪家人的整段时间",
         "从容的退休"
       ],
+      "images": [],
       "idPrefix": "filmstrip",
       "tone": "dark"
     }
@@ -7683,6 +7870,14 @@ export const pages = [
           }
         ],
         "desc": "动态 shader 或自定义背景媒体",
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 2,
+            "writeMode": "initialProps"
+          }
+        ],
         "publicKey": "backgroundMode",
         "publicLabel": "背景替换",
         "description": "动态 shader 或自定义背景媒体"
@@ -7783,6 +7978,11 @@ export const pages = [
       "showNote": true,
       "backgroundMode": "unicorn",
       "unicornScene": "goey",
+      "overline": "现场 · ON LOCATION",
+      "title": "把纪律，建在看得见的地方",
+      "note": "从配置台到风控屏，每一次再平衡都留痕、可回溯、可复盘。",
+      "insetCaption": "配置控制台 · 实时",
+      "images": [],
       "idPrefix": "inset"
     }
   },
@@ -7824,6 +8024,14 @@ export const pages = [
         "type": "toggle",
         "label": "使用照片",
         "default": false,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 1,
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "用上传照片替换主卡片的渐变（照片自适应填充）。",
         "publicKey": "showImage",
         "publicLabel": "使用照片",
@@ -7883,6 +8091,7 @@ export const pages = [
           "note": "智能现金"
         }
       ],
+      "images": [],
       "footL": "AUTONOMOUS INDEX · 2025",
       "footR": "01 / 05",
       "idPrefix": "coverdawn"
@@ -8098,6 +8307,22 @@ export const pages = [
       "align": "left",
       "accent": true,
       "showMeta": true,
+      "kicker": "一句话 · ONE LINE",
+      "statement": [
+        {
+          "t": "真正的复利，来自一套"
+        },
+        {
+          "t": "能被反复执行",
+          "mark": true
+        },
+        {
+          "t": "的纪律，而不是一次正确的预测。"
+        }
+      ],
+      "figure": "0.34%",
+      "figureCaption": "全包年费率 —— 我们用最低的成本，换来全天候的安心。",
+      "attribution": "林彦 · 首席投资官",
       "idPrefix": "statement"
     }
   },
@@ -8142,6 +8367,12 @@ export const pages = [
         "min": 0,
         "max": 6,
         "step": 1,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "图片槽位的数量（0 即纯文字版式）；每个槽位自适应所传图片的比例。",
         "publicKey": "imageCount",
         "publicLabel": "图片数量",
@@ -8187,6 +8418,7 @@ export const pages = [
       "imageCount": 3,
       "layout": "grid",
       "showCaption": true,
+      "images": [],
       "idPrefix": "gallery2",
       "tone": "dark"
     }
@@ -8386,6 +8618,29 @@ export const pages = [
       "showDelta": true,
       "showStats": true,
       "showAction": true,
+      "kicker": "预测 · 总净值 · 2055",
+      "value": "¥1,250,096",
+      "valueSup": ".05",
+      "label": "以每周 ¥500 定投，交给自主指数复利。这是耐心带你抵达的位置。",
+      "delta": "+38% 同比",
+      "stats": [
+        {
+          "label": "周定投",
+          "value": "¥500"
+        },
+        {
+          "label": "年初至今",
+          "value": "+10%"
+        },
+        {
+          "label": "外部账户",
+          "value": "7"
+        },
+        {
+          "label": "投资年限",
+          "value": "29 年"
+        }
+      ],
       "idPrefix": "bigstat"
     }
   },
@@ -9218,6 +9473,10 @@ export const pages = [
         "min": 4,
         "max": 7,
         "step": 1,
+        "countArrays": [
+          "rows",
+          "rows[].cells"
+        ],
         "description": "矩阵维度 N（行列同时变化）。",
         "publicKey": "categoryCount",
         "publicLabel": "资产数量",
@@ -9282,79 +9541,238 @@ export const pages = [
       "legendNote": "暖色＝同涨同跌，冷色＝走势相反。越冷，分散对冲越强。",
       "overline": "分散度 · CORRELATION",
       "title": "它们彼此独立吗",
-      "labels": [
-        "全球股票",
-        "科技成长",
-        "投资级债",
-        "另类对冲",
-        "黄金",
-        "现金",
-        "新兴市场"
-      ],
-      "matrix": [
-        [
-          1,
-          0.82,
-          0.1,
-          0.34,
-          -0.12,
-          -0.05,
-          0.68
-        ],
-        [
-          0.82,
-          1,
-          0.04,
-          0.28,
-          -0.18,
-          -0.08,
-          0.6
-        ],
-        [
-          0.1,
-          0.04,
-          1,
-          0.22,
-          0.3,
-          0.46,
-          0.08
-        ],
-        [
-          0.34,
-          0.28,
-          0.22,
-          1,
-          0.16,
-          0.12,
-          0.3
-        ],
-        [
-          -0.12,
-          -0.18,
-          0.3,
-          0.16,
-          1,
-          0.24,
-          -0.02
-        ],
-        [
-          -0.05,
-          -0.08,
-          0.46,
-          0.12,
-          0.24,
-          1,
-          -0.1
-        ],
-        [
-          0.68,
-          0.6,
-          0.08,
-          0.3,
-          -0.02,
-          -0.1,
-          1
-        ]
+      "rows": [
+        {
+          "label": "全球股票",
+          "cells": [
+            {
+              "col": "全球股票",
+              "value": 1
+            },
+            {
+              "col": "科技成长",
+              "value": 0.82
+            },
+            {
+              "col": "投资级债",
+              "value": 0.1
+            },
+            {
+              "col": "另类对冲",
+              "value": 0.34
+            },
+            {
+              "col": "黄金",
+              "value": -0.12
+            },
+            {
+              "col": "现金",
+              "value": -0.05
+            },
+            {
+              "col": "新兴市场",
+              "value": 0.68
+            }
+          ]
+        },
+        {
+          "label": "科技成长",
+          "cells": [
+            {
+              "col": "全球股票",
+              "value": 0.82
+            },
+            {
+              "col": "科技成长",
+              "value": 1
+            },
+            {
+              "col": "投资级债",
+              "value": 0.04
+            },
+            {
+              "col": "另类对冲",
+              "value": 0.28
+            },
+            {
+              "col": "黄金",
+              "value": -0.18
+            },
+            {
+              "col": "现金",
+              "value": -0.08
+            },
+            {
+              "col": "新兴市场",
+              "value": 0.6
+            }
+          ]
+        },
+        {
+          "label": "投资级债",
+          "cells": [
+            {
+              "col": "全球股票",
+              "value": 0.1
+            },
+            {
+              "col": "科技成长",
+              "value": 0.04
+            },
+            {
+              "col": "投资级债",
+              "value": 1
+            },
+            {
+              "col": "另类对冲",
+              "value": 0.22
+            },
+            {
+              "col": "黄金",
+              "value": 0.3
+            },
+            {
+              "col": "现金",
+              "value": 0.46
+            },
+            {
+              "col": "新兴市场",
+              "value": 0.08
+            }
+          ]
+        },
+        {
+          "label": "另类对冲",
+          "cells": [
+            {
+              "col": "全球股票",
+              "value": 0.34
+            },
+            {
+              "col": "科技成长",
+              "value": 0.28
+            },
+            {
+              "col": "投资级债",
+              "value": 0.22
+            },
+            {
+              "col": "另类对冲",
+              "value": 1
+            },
+            {
+              "col": "黄金",
+              "value": 0.16
+            },
+            {
+              "col": "现金",
+              "value": 0.12
+            },
+            {
+              "col": "新兴市场",
+              "value": 0.3
+            }
+          ]
+        },
+        {
+          "label": "黄金",
+          "cells": [
+            {
+              "col": "全球股票",
+              "value": -0.12
+            },
+            {
+              "col": "科技成长",
+              "value": -0.18
+            },
+            {
+              "col": "投资级债",
+              "value": 0.3
+            },
+            {
+              "col": "另类对冲",
+              "value": 0.16
+            },
+            {
+              "col": "黄金",
+              "value": 1
+            },
+            {
+              "col": "现金",
+              "value": 0.24
+            },
+            {
+              "col": "新兴市场",
+              "value": -0.02
+            }
+          ]
+        },
+        {
+          "label": "现金",
+          "cells": [
+            {
+              "col": "全球股票",
+              "value": -0.05
+            },
+            {
+              "col": "科技成长",
+              "value": -0.08
+            },
+            {
+              "col": "投资级债",
+              "value": 0.46
+            },
+            {
+              "col": "另类对冲",
+              "value": 0.12
+            },
+            {
+              "col": "黄金",
+              "value": 0.24
+            },
+            {
+              "col": "现金",
+              "value": 1
+            },
+            {
+              "col": "新兴市场",
+              "value": -0.1
+            }
+          ]
+        },
+        {
+          "label": "新兴市场",
+          "cells": [
+            {
+              "col": "全球股票",
+              "value": 0.68
+            },
+            {
+              "col": "科技成长",
+              "value": 0.6
+            },
+            {
+              "col": "投资级债",
+              "value": 0.08
+            },
+            {
+              "col": "另类对冲",
+              "value": 0.3
+            },
+            {
+              "col": "黄金",
+              "value": -0.02
+            },
+            {
+              "col": "现金",
+              "value": -0.1
+            },
+            {
+              "col": "新兴市场",
+              "value": 1
+            }
+          ]
+        }
       ],
       "idPrefix": "heatmap",
       "tone": "light"
@@ -10215,6 +10633,9 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
+        "countArrays": [
+          "stages"
+        ],
         "description": "旅程上的里程碑节点数量。",
         "publicKey": "stageCount",
         "publicLabel": "里程碑数",
@@ -10280,6 +10701,40 @@ export const pages = [
       "layout": "alternate",
       "showTargets": true,
       "showProgress": true,
+      "overline": "你的旅程 · THE PATH",
+      "title": "你正走到这一步",
+      "stages": [
+        {
+          "label": "起步建仓",
+          "target": "¥0",
+          "note": "开户 · 设定目标"
+        },
+        {
+          "label": "稳定积累",
+          "target": "¥250K",
+          "note": "定投 · 自动再平衡"
+        },
+        {
+          "label": "复利加速",
+          "target": "¥600K",
+          "note": "雪球开始滚动"
+        },
+        {
+          "label": "资产多元",
+          "target": "¥1.2M",
+          "note": "加入卫星策略"
+        },
+        {
+          "label": "从容自由",
+          "target": "¥3M+",
+          "note": "被动收入覆盖开支"
+        },
+        {
+          "label": "财富传承",
+          "target": "¥5M+",
+          "note": "信托 · 跨代规划"
+        }
+      ],
       "idPrefix": "journey",
       "tone": "light"
     }
@@ -10468,10 +10923,21 @@ export const pages = [
         "min": 0,
         "max": 6,
         "step": 1,
-        "description": "马赛克的图片块数量（0 为纯文字，版式按数量自动重排）。",
+        "countArrays": [
+          "captions",
+          "images"
+        ],
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": "tileCount",
+            "writeMode": "initialProps"
+          }
+        ],
+        "description": "马赛克的图片块数量（0 为纯文字，图注容量 6 条，默认显示 4 条）。",
         "publicKey": "tileCount",
         "publicLabel": "图片数量",
-        "desc": "马赛克的图片块数量（0 为纯文字，版式按数量自动重排）。"
+        "desc": "马赛克的图片块数量（0 为纯文字，图注容量 6 条，默认显示 4 条）。"
       },
       {
         "key": "railSide",
@@ -10525,7 +10991,7 @@ export const pages = [
       "gap": 16,
       "overline": "影像档案 · FIELD NOTES",
       "title": "把回报，放回真实的生活",
-      "body": "数字之外，是一个个具体的人和场景。把属于你的照片拖进来，让这份报告有温度。",
+      "body": "把你的照片拖进来，让这份报告拥有具体的人和场景。",
       "captions": [
         "清晨的港口",
         "工作室一角",
@@ -10534,6 +11000,7 @@ export const pages = [
         "退休的海岸",
         "传承的礼物"
       ],
+      "images": [],
       "idPrefix": "mosaic",
       "tone": "light"
     }
@@ -11343,6 +11810,12 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "拼贴中的照片框数量；各框按上传图片真实比例自适应宽度。",
         "publicKey": "imageCount",
         "publicLabel": "图片数量",
@@ -11394,6 +11867,7 @@ export const pages = [
         "团队复盘",
         "颁奖之夜"
       ],
+      "images": [],
       "idPrefix": "collage",
       "tone": "dark"
     }
@@ -11436,6 +11910,14 @@ export const pages = [
         "type": "radio",
         "label": "图片位置",
         "default": "left",
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 1,
+            "writeMode": "initialProps"
+          }
+        ],
         "options": [
           {
             "value": "left",
@@ -11524,6 +12006,7 @@ export const pages = [
           "body": "虚线为基准指数，便于即时比较超额。"
         }
       ],
+      "images": [],
       "idPrefix": "captioned",
       "tone": "dark"
     }
@@ -11553,6 +12036,14 @@ export const pages = [
           }
         ],
         "desc": "动态 shader 或自定义背景媒体",
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 1,
+            "writeMode": "initialProps"
+          }
+        ],
         "publicKey": "backgroundMode",
         "publicLabel": "背景替换",
         "description": "动态 shader 或自定义背景媒体"
@@ -11639,6 +12130,9 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "ticks"
+        ],
         "description": "走马条中的指标数量。",
         "publicKey": "tickerCount",
         "publicLabel": "指标条数",
@@ -11663,6 +12157,27 @@ export const pages = [
       "showOverline": true,
       "backgroundMode": "unicorn",
       "unicornScene": "moving",
+      "overline": "年度影像 · COVER",
+      "title": "让财富，安静地生长",
+      "ticks": [
+        {
+          "value": "+182%",
+          "label": "十年累计回报"
+        },
+        {
+          "value": "0.62%",
+          "label": "综合年化成本"
+        },
+        {
+          "value": "14,200",
+          "label": "同行的投资者"
+        },
+        {
+          "value": "4.9 / 5",
+          "label": "客户满意度"
+        }
+      ],
+      "images": [],
       "idPrefix": "showcase"
     }
   },
@@ -11691,6 +12206,14 @@ export const pages = [
           }
         ],
         "desc": "动态 shader 或自定义背景媒体",
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 1,
+            "writeMode": "initialProps"
+          }
+        ],
         "publicKey": "backgroundMode",
         "publicLabel": "背景替换",
         "description": "动态 shader 或自定义背景媒体"
@@ -11802,6 +12325,11 @@ export const pages = [
       "showRule": true,
       "backgroundMode": "unicorn",
       "unicornScene": "tech",
+      "kicker": "第三章 · 长期主义",
+      "headline": "时间，是\n最被低估的\n复利",
+      "footL": "自主指数 · 2025 年度报告",
+      "footR": "03 / 05",
+      "images": [],
       "idPrefix": "poster"
     }
   },
@@ -12151,8 +12679,11 @@ export const pages = [
         "label": "层级数量",
         "default": 4,
         "min": 3,
-        "max": 5,
+        "max": 4,
         "step": 1,
+        "countArrays": [
+          "tiers"
+        ],
         "description": "金字塔的层数（顶=机会、底=安全垫）。",
         "publicKey": "tierCount",
         "publicLabel": "层级数量",
@@ -12229,6 +12760,30 @@ export const pages = [
       "side": "right",
       "focus": false,
       "focusIndex": 1,
+      "overline": "财富金字塔 · BUILD FROM THE BASE",
+      "title": "先稳住地基，再追逐高度",
+      "tiers": [
+        {
+          "label": "机会增长",
+          "note": "少量、可承受损失的高赔率敞口",
+          "value": "8%"
+        },
+        {
+          "label": "主动增值",
+          "note": "精选权益与另类，争取超额回报",
+          "value": "24%"
+        },
+        {
+          "label": "稳健配置",
+          "note": "分散的核心资产，承接组合波动",
+          "value": "40%"
+        },
+        {
+          "label": "安全垫",
+          "note": "现金 + 高等级债，覆盖 24 个月支出",
+          "value": "28%"
+        }
+      ],
       "idPrefix": "pyramid",
       "tone": "light"
     }
@@ -12428,6 +12983,14 @@ export const pages = [
         "type": "radio",
         "label": "图片位置",
         "default": "left",
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 1,
+            "writeMode": "initialProps"
+          }
+        ],
         "options": [
           {
             "value": "left",
@@ -12543,6 +13106,7 @@ export const pages = [
           "note": "触发阈值后自动校准各腿权重。"
         }
       ],
+      "images": [],
       "idPrefix": "annotated",
       "tone": "dark"
     }
@@ -12585,6 +13149,14 @@ export const pages = [
         "type": "radio",
         "label": "图片位置",
         "default": "left",
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 1,
+            "writeMode": "initialProps"
+          }
+        ],
         "options": [
           {
             "value": "left",
@@ -12659,6 +13231,7 @@ export const pages = [
       "quote": "我们不预测市场，我们设计一套无论市场怎么走，你都能睡得着觉的结构。",
       "name": "林知远",
       "role": "首席投资官 · 自主指数",
+      "images": [],
       "idPrefix": "quoteimg",
       "tone": "dark"
     }
@@ -13305,6 +13878,14 @@ export const pages = [
     "defaultProps": {
       "overline": "区间收益 · WHO LED EACH YEAR",
       "title": "没有谁能连年领先",
+      "periods": [
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "YTD"
+      ],
       "assets": [
         {
           "key": "eq",
@@ -13347,277 +13928,67 @@ export const pages = [
           "color": "#9aa0a8"
         }
       ],
-      "rankedPeriods": [
-        {
-          "period": "2021",
-          "entries": [
-            {
-              "rank": 1,
-              "assetKey": "cm",
-              "returnLabel": "+28%"
-            },
-            {
-              "rank": 2,
-              "assetKey": "eq",
-              "returnLabel": "+22%"
-            },
-            {
-              "rank": 3,
-              "assetKey": "reit",
-              "returnLabel": "+15%"
-            },
-            {
-              "rank": 4,
-              "assetKey": "cn",
-              "returnLabel": "+9%"
-            },
-            {
-              "rank": 5,
-              "assetKey": "au",
-              "returnLabel": "-2%"
-            },
-            {
-              "rank": 6,
-              "assetKey": "cr",
-              "returnLabel": "-8%"
-            },
-            {
-              "rank": 7,
-              "assetKey": "bd",
-              "returnLabel": "-15%"
-            },
-            {
-              "rank": 8,
-              "assetKey": "csh",
-              "returnLabel": "-22%"
-            }
-          ]
-        },
-        {
-          "period": "2022",
-          "entries": [
-            {
-              "rank": 1,
-              "assetKey": "cm",
-              "returnLabel": "+28%"
-            },
-            {
-              "rank": 2,
-              "assetKey": "au",
-              "returnLabel": "+22%"
-            },
-            {
-              "rank": 3,
-              "assetKey": "csh",
-              "returnLabel": "+15%"
-            },
-            {
-              "rank": 4,
-              "assetKey": "bd",
-              "returnLabel": "+9%"
-            },
-            {
-              "rank": 5,
-              "assetKey": "cr",
-              "returnLabel": "-2%"
-            },
-            {
-              "rank": 6,
-              "assetKey": "reit",
-              "returnLabel": "-8%"
-            },
-            {
-              "rank": 7,
-              "assetKey": "eq",
-              "returnLabel": "-15%"
-            },
-            {
-              "rank": 8,
-              "assetKey": "cn",
-              "returnLabel": "-22%"
-            }
-          ]
-        },
-        {
-          "period": "2023",
-          "entries": [
-            {
-              "rank": 1,
-              "assetKey": "eq",
-              "returnLabel": "+28%"
-            },
-            {
-              "rank": 2,
-              "assetKey": "cn",
-              "returnLabel": "+22%"
-            },
-            {
-              "rank": 3,
-              "assetKey": "reit",
-              "returnLabel": "+15%"
-            },
-            {
-              "rank": 4,
-              "assetKey": "cr",
-              "returnLabel": "+9%"
-            },
-            {
-              "rank": 5,
-              "assetKey": "au",
-              "returnLabel": "-2%"
-            },
-            {
-              "rank": 6,
-              "assetKey": "cm",
-              "returnLabel": "-8%"
-            },
-            {
-              "rank": 7,
-              "assetKey": "bd",
-              "returnLabel": "-15%"
-            },
-            {
-              "rank": 8,
-              "assetKey": "csh",
-              "returnLabel": "-22%"
-            }
-          ]
-        },
-        {
-          "period": "2024",
-          "entries": [
-            {
-              "rank": 1,
-              "assetKey": "au",
-              "returnLabel": "+28%"
-            },
-            {
-              "rank": 2,
-              "assetKey": "eq",
-              "returnLabel": "+22%"
-            },
-            {
-              "rank": 3,
-              "assetKey": "cm",
-              "returnLabel": "+15%"
-            },
-            {
-              "rank": 4,
-              "assetKey": "cn",
-              "returnLabel": "+9%"
-            },
-            {
-              "rank": 5,
-              "assetKey": "reit",
-              "returnLabel": "-2%"
-            },
-            {
-              "rank": 6,
-              "assetKey": "cr",
-              "returnLabel": "-8%"
-            },
-            {
-              "rank": 7,
-              "assetKey": "csh",
-              "returnLabel": "-15%"
-            },
-            {
-              "rank": 8,
-              "assetKey": "bd",
-              "returnLabel": "-22%"
-            }
-          ]
-        },
-        {
-          "period": "2025",
-          "entries": [
-            {
-              "rank": 1,
-              "assetKey": "cn",
-              "returnLabel": "+28%"
-            },
-            {
-              "rank": 2,
-              "assetKey": "eq",
-              "returnLabel": "+22%"
-            },
-            {
-              "rank": 3,
-              "assetKey": "au",
-              "returnLabel": "+15%"
-            },
-            {
-              "rank": 4,
-              "assetKey": "reit",
-              "returnLabel": "+9%"
-            },
-            {
-              "rank": 5,
-              "assetKey": "cr",
-              "returnLabel": "-2%"
-            },
-            {
-              "rank": 6,
-              "assetKey": "bd",
-              "returnLabel": "-8%"
-            },
-            {
-              "rank": 7,
-              "assetKey": "cm",
-              "returnLabel": "-15%"
-            },
-            {
-              "rank": 8,
-              "assetKey": "csh",
-              "returnLabel": "-22%"
-            }
-          ]
-        },
-        {
-          "period": "YTD",
-          "entries": [
-            {
-              "rank": 1,
-              "assetKey": "au",
-              "returnLabel": "+28%"
-            },
-            {
-              "rank": 2,
-              "assetKey": "cn",
-              "returnLabel": "+22%"
-            },
-            {
-              "rank": 3,
-              "assetKey": "eq",
-              "returnLabel": "+15%"
-            },
-            {
-              "rank": 4,
-              "assetKey": "cr",
-              "returnLabel": "+9%"
-            },
-            {
-              "rank": 5,
-              "assetKey": "bd",
-              "returnLabel": "-2%"
-            },
-            {
-              "rank": 6,
-              "assetKey": "reit",
-              "returnLabel": "-8%"
-            },
-            {
-              "rank": 7,
-              "assetKey": "csh",
-              "returnLabel": "-15%"
-            },
-            {
-              "rank": 8,
-              "assetKey": "cm",
-              "returnLabel": "-22%"
-            }
-          ]
-        }
+      "matrix": [
+        [
+          "cm",
+          "eq",
+          "reit",
+          "cn",
+          "au",
+          "cr",
+          "bd",
+          "csh"
+        ],
+        [
+          "cm",
+          "au",
+          "csh",
+          "bd",
+          "cr",
+          "reit",
+          "eq",
+          "cn"
+        ],
+        [
+          "eq",
+          "cn",
+          "reit",
+          "cr",
+          "au",
+          "cm",
+          "bd",
+          "csh"
+        ],
+        [
+          "au",
+          "eq",
+          "cm",
+          "cn",
+          "reit",
+          "cr",
+          "csh",
+          "bd"
+        ],
+        [
+          "cn",
+          "eq",
+          "au",
+          "reit",
+          "cr",
+          "bd",
+          "cm",
+          "csh"
+        ],
+        [
+          "au",
+          "cn",
+          "eq",
+          "cr",
+          "bd",
+          "reit",
+          "csh",
+          "cm"
+        ]
       ],
       "colCount": 5,
       "assetCount": 7,
@@ -13809,6 +14180,14 @@ export const pages = [
         "type": "radio",
         "label": "图片位置",
         "default": "left",
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 1,
+            "writeMode": "initialProps"
+          }
+        ],
         "options": [
           {
             "value": "left",
@@ -13915,6 +14294,7 @@ export const pages = [
         "高股息",
         "类债"
       ],
+      "images": [],
       "idPrefix": "exhibit",
       "tone": "light"
     }
@@ -13960,6 +14340,12 @@ export const pages = [
         "min": 0,
         "max": 6,
         "step": 1,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "圆形内容项的数量（0 为空态提示）；数量越少单项越大。",
         "publicKey": "imageCount",
         "publicLabel": "内容数量",
@@ -14031,6 +14417,7 @@ export const pages = [
           "role": "能源 · 周期对冲"
         }
       ],
+      "images": [],
       "idPrefix": "medallions",
       "tone": "dark"
     }
@@ -14258,6 +14645,14 @@ export const pages = [
         "type": "toggle",
         "label": "二维码",
         "default": false,
+        "mediaSlots": [
+          {
+            "field": "images",
+            "countKey": null,
+            "maxCount": 1,
+            "writeMode": "initialProps"
+          }
+        ],
         "description": "可上传二维码图片槽。",
         "publicKey": "showQR",
         "publicLabel": "二维码",
@@ -14276,6 +14671,7 @@ export const pages = [
         "autonomous.fund",
         "400-820-0000"
       ],
+      "images": [],
       "idPrefix": "closing"
     }
   }

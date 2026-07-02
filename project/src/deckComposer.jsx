@@ -177,8 +177,12 @@ function fallbackRoleLayouts(role, layouts) {
 }
 
 function getRequestedMediaCount(page = {}) {
+  const explicit = countMediaItems(page.mediaCount);
+  if (explicit) return explicit;
   const provided = countMediaItems(page.providedImages);
   if (provided) return provided;
+  const providedMedia = countMediaItems(page.providedMedia);
+  if (providedMedia) return providedMedia;
   const planned = countMediaItems(page.plannedImages);
   if (planned) return planned;
   if (page.needsVisual === true || page.needsImageGen === true || page.imageGen === true) return 1;
@@ -221,24 +225,37 @@ function getMediaSlotCapacities(page) {
 }
 
 function mediaArrayCapacity(key, props, controls) {
-  const countControl = controls.find(control => {
-    const prop = control.prop || control.key;
-    return prop && prop.endsWith('Count') && prop.toLowerCase().includes(key.replace(/s$/i, '').toLowerCase());
-  });
+  const countControl = mediaCountControlForArrayField(key, controls);
   const max = Number(countControl?.max);
   if (Number.isFinite(max) && max > 0) return max;
   return props[key].length || 1;
 }
 
 function mediaControlCapacity(key, props, controls) {
-  const countControl = controls.find(control => {
-    const prop = control.prop || control.key;
-    return prop && prop.endsWith('Count') && prop.toLowerCase().includes(key.replace(/s$/i, '').toLowerCase());
-  });
+  const countControl = mediaCountControlForArrayField(key, controls);
   const max = Number(countControl?.max);
   if (Number.isFinite(max) && max > 0) return max;
   const value = props[key];
   return Array.isArray(value) ? Math.max(1, value.length) : 1;
+}
+
+function mediaCountControlForArrayField(key, controls = []) {
+  const countControls = controls.filter(control => {
+    const prop = control.prop || control.key;
+    return prop && prop.endsWith('Count') && prop.toLowerCase().includes(key.replace(/s$/i, '').toLowerCase());
+  });
+  if (countControls.length) return countControls[0];
+  const visualSlotControls = controls.filter(isVisualSlotCountControl);
+  return visualSlotControls.length === 1 ? visualSlotControls[0] : null;
+}
+
+function isVisualSlotCountControl(control) {
+  const type = String(control.type || '').toLowerCase();
+  const key = String(control.prop || control.key || '');
+  const text = `${key} ${control.label || ''} ${control.desc || control.description || ''}`;
+  return /(count|数量)$/i.test(key)
+    && ['number', 'range', 'slider'].includes(type)
+    && /(frame|image|media|photo|picture|slot|gallery|画框|画格|图片|图像|媒体|照片|相册)/i.test(text);
 }
 
 function isMediaControl(control) {
@@ -246,7 +263,7 @@ function isMediaControl(control) {
   const key = String(control.prop || control.key || '').toLowerCase();
   const label = String(control.label || '').toLowerCase();
   if (['images', 'image', 'media', 'picture'].includes(type)) return true;
-  if (/^(images|media|photos|pictures|logos|thumbs)$/.test(key)) return true;
+  if (isMediaArrayKey(key)) return true;
   return /图片|图像|视频|媒体/.test(label) && !/^show/.test(key);
 }
 

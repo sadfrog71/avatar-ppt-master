@@ -107,10 +107,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -118,7 +118,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -133,7 +133,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "showCoverLines": true,
       "lineCount": 3,
@@ -288,15 +288,15 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
-            "value": "#baf04f",
+            "value": "#5f7f00",
             "label": "颜色 4"
           }
         ],
@@ -489,10 +489,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -500,11 +500,11 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
-            "value": "#baf04f",
+            "value": "#5f7f00",
             "label": "颜色 4"
           }
         ],
@@ -515,7 +515,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "backgroundMode": "unicorn",
       "unicornScene": "tech",
       "mediaFit": "cover",
@@ -547,7 +547,7 @@ export const pages = [
         }
       ],
       "creditLabel": "封面人物 / Cover:",
-      "creditName": "＿＿＿＿",
+      "creditName": "Nova Lin",
       "barcodeLabel": "SW 01 · 2026",
       "mediaPlaceholder": "拖入封面大图 / Cover image",
       "page": "03",
@@ -685,11 +685,11 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -816,10 +816,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -827,7 +827,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -933,7 +933,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "showDecorations": true,
       "showKicker": true,
@@ -958,13 +958,13 @@ export const pages = [
           "t": "宣言",
           "e": "Manifesto",
           "d": "主权，为何比流量更重要。",
-          "c": "#f15a29"
+          "c": "#d44718"
         },
         {
           "n": "02",
           "t": "产品矩阵",
           "e": "The Stack",
-          "d": "发行 · 直连 · 结算 · 护盾。",
+          "d": "发行·直连·结算·护盾。",
           "c": "#d61fb5"
         },
         {
@@ -972,7 +972,7 @@ export const pages = [
           "t": "为什么是现在",
           "e": "Why Now",
           "d": "独立发行的拐点已到来。",
-          "c": "#3bb6ec"
+          "c": "#0077a8"
         },
         {
           "n": "04",
@@ -982,8 +982,8 @@ export const pages = [
           "c": "#1f6b2a"
         }
       ],
-      "page": "01",
-      "total": "82"
+      "page": "05",
+      "total": "86"
     }
   },
   {
@@ -1069,10 +1069,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -1080,7 +1080,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -1095,7 +1095,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "align": "left",
       "showMark": true,
@@ -1106,8 +1106,8 @@ export const pages = [
       "quote": "把发行权[[还给创作者]]，不是行业的让步——\n而是它[[本该有]]的默认。",
       "authorName": "李声 · 声浪创始人",
       "authorEn": "Li Sheng — Founder, SoundWave",
-      "page": "02",
-      "total": "82"
+      "page": "06",
+      "total": "86"
     }
   },
   {
@@ -1210,10 +1210,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -1221,7 +1221,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -1236,7 +1236,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "chapterCount": 6,
       "columns": 2,
@@ -1278,8 +1278,8 @@ export const pages = [
           "s": "轮到你，发出声浪。"
         }
       ],
-      "page": "03",
-      "total": "82"
+      "page": "07",
+      "total": "86"
     }
   },
   {
@@ -1369,10 +1369,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -1380,7 +1380,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -1396,7 +1396,7 @@ export const pages = [
     ],
     "defaultProps": {
       "theme": "accent",
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "align": "left",
       "showGhost": true,
       "showShapes": true,
@@ -1405,8 +1405,8 @@ export const pages = [
       "kicker": "我们的主张 / What We Stand For",
       "title": "创作者，\n理应[[掌握]]自己的\n声浪。",
       "lede": "发行、结算、版权与听众——本该握在做音乐的人手里，而不是散落在十几个看不懂的后台。",
-      "page": "04",
-      "total": "82"
+      "page": "08",
+      "total": "86"
     }
   },
   {
@@ -1523,10 +1523,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -1534,7 +1534,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -1549,7 +1549,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "cardCount": 4,
       "columns": 2,
@@ -1589,8 +1589,8 @@ export const pages = [
           "tag": "全网监测"
         }
       ],
-      "page": "05",
-      "total": "82"
+      "page": "09",
+      "total": "86"
     }
   },
   {
@@ -1673,10 +1673,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -1684,7 +1684,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -1699,7 +1699,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "tileCount": 6,
       "focus": false,
@@ -1717,7 +1717,7 @@ export const pages = [
         {
           "cn": "一键发行",
           "en": "Release",
-          "d": "一次上传，自动分发到全球 30+ 流媒体平台，元数据代为校验。",
+          "d": "一次上传，全球分发，自动校验元数据。",
           "kind": "hero"
         },
         {
@@ -1752,8 +1752,8 @@ export const pages = [
           "kind": "plain"
         }
       ],
-      "page": "06",
-      "total": "82"
+      "page": "10",
+      "total": "86"
     }
   },
   {
@@ -1846,10 +1846,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -1857,7 +1857,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -1872,7 +1872,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "stepCount": 4,
       "focus": true,
@@ -1909,8 +1909,8 @@ export const pages = [
           "d": "全网监测盗用，一键存证与维权。"
         }
       ],
-      "page": "07",
-      "total": "82"
+      "page": "11",
+      "total": "86"
     }
   },
   {
@@ -1989,10 +1989,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -2000,7 +2000,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -2015,7 +2015,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "nodeCount": 6,
       "showConnectors": true,
@@ -2055,8 +2055,8 @@ export const pages = [
           "en": "Live"
         }
       ],
-      "page": "08",
-      "total": "82"
+      "page": "12",
+      "total": "86"
     }
   },
   {
@@ -2152,11 +2152,11 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -2186,7 +2186,7 @@ export const pages = [
         {
           "t": "创作者中台",
           "s": "CREATORS",
-          "c": "#3bb6ec",
+          "c": "#0077a8",
           "leaves": [
             {
               "label": "发行",
@@ -2216,7 +2216,7 @@ export const pages = [
         {
           "t": "听众网络",
           "s": "AUDIENCE",
-          "c": "#f15a29",
+          "c": "#d44718",
           "leaves": [
             {
               "label": "订阅",
@@ -2244,8 +2244,8 @@ export const pages = [
           ]
         }
       ],
-      "page": "09",
-      "total": "82"
+      "page": "13",
+      "total": "86"
     }
   },
   {
@@ -2335,10 +2335,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -2346,7 +2346,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -2361,7 +2361,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "dark",
       "imageSide": "left",
       "showCaption": true,
@@ -2385,8 +2385,8 @@ export const pages = [
           "lb": "已发版税"
         }
       ],
-      "page": "10",
-      "total": "82"
+      "page": "14",
+      "total": "86"
     }
   },
   {
@@ -2406,6 +2406,9 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "media"
+        ],
         "desc": "竖向人像画框的数量",
         "publicKey": "frameCount",
         "publicLabel": "画框数量",
@@ -2495,10 +2498,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -2506,7 +2509,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -2521,7 +2524,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "frameCount": 3,
       "panelSide": "left",
@@ -2553,8 +2556,8 @@ export const pages = [
           "en": "Backstage · Live"
         }
       ],
-      "page": "11",
-      "total": "82"
+      "page": "15",
+      "total": "86"
     }
   },
   {
@@ -2671,10 +2674,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -2682,7 +2685,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -2697,7 +2700,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "dark",
       "mediaCount": 3,
       "spread": 64,
@@ -2713,8 +2716,8 @@ export const pages = [
       "hint": "Drag to fill",
       "frameBrand": "SOUNDWAVE",
       "mediaPlaceholder": "拖入图片",
-      "page": "12",
-      "total": "82"
+      "page": "16",
+      "total": "86"
     }
   },
   {
@@ -2810,10 +2813,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -2821,7 +2824,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -2836,7 +2839,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "imageSide": "left",
       "showDropCap": true,
@@ -2848,11 +2851,11 @@ export const pages = [
       "kicker": "封面故事 / Cover Story",
       "title": "一个人，\n也能撑起\n一座厂牌。",
       "dropCap": "声",
-      "body": "浪把发行、结算、版权与粉丝运营收拢进同一块工作台。曾经需要一整个团队、十几个后台才能跑通的事，如今一个人、一块屏幕就能完成——而且每一分收益的来处，都看得见。",
+      "body": "浪把发行、结算、版权和粉丝运营收进同一块工作台。",
       "pullQuote": "“工具退场，创作者才是主角。”",
       "mediaPlaceholder": "拖入特写大图 / Feature image",
-      "page": "13",
-      "total": "82"
+      "page": "17",
+      "total": "86"
     }
   },
   {
@@ -2941,10 +2944,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -2952,7 +2955,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -2967,7 +2970,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "rowCount": 3,
       "imageSide": "left",
@@ -2994,8 +2997,8 @@ export const pages = [
           "d": "全网版税 72 小时透明到账，每一分钱都能追溯到那一首歌、那一场演出。"
         }
       ],
-      "page": "14",
-      "total": "82"
+      "page": "18",
+      "total": "86"
     }
   },
   {
@@ -3085,10 +3088,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -3096,7 +3099,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -3111,7 +3114,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "mediaCount": 3,
       "mediaFit": "cover",
@@ -3125,8 +3128,8 @@ export const pages = [
       "hint": "/ Frames · drag to fill",
       "mediaPlaceholderHero": "拖入主图 / Hero image",
       "mediaPlaceholder": "拖入图片",
-      "page": "15",
-      "total": "82"
+      "page": "19",
+      "total": "86"
     }
   },
   {
@@ -3280,10 +3283,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -3291,7 +3294,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -3306,7 +3309,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "backgroundMode": "unicorn",
       "unicornScene": "automations",
       "mediaFit": "cover",
@@ -3335,8 +3338,8 @@ export const pages = [
           "lb": "首季分成"
         }
       ],
-      "page": "16",
-      "total": "82"
+      "page": "20",
+      "total": "86"
     }
   },
   {
@@ -3452,10 +3455,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -3463,11 +3466,11 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
-            "value": "#baf04f",
+            "value": "#5f7f00",
             "label": "颜色 4"
           }
         ],
@@ -3478,7 +3481,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "backgroundMode": "unicorn",
       "unicornScene": "moving",
       "mediaFit": "cover",
@@ -3507,8 +3510,8 @@ export const pages = [
           "small": "小场地里，正在发生的大事"
         }
       ],
-      "page": "17",
-      "total": "82"
+      "page": "21",
+      "total": "86"
     }
   },
   {
@@ -3642,10 +3645,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -3653,7 +3656,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -3668,7 +3671,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "cardCorner": "bl",
       "showScrim": true,
       "showCaption": true,
@@ -3682,8 +3685,8 @@ export const pages = [
       "title": "声音发生的\n[[地方]]。",
       "caption": "每一张照片背后，是一个正在用声浪经营自己事业的创作者。",
       "mediaPlaceholder": "拖入整版大图 / Full-bleed image",
-      "page": "18",
-      "total": "82"
+      "page": "22",
+      "total": "86"
     }
   },
   {
@@ -3769,10 +3772,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -3780,7 +3783,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -3795,7 +3798,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "dark",
       "mediaFit": "cover",
       "showSpotlights": true,
@@ -3807,8 +3810,8 @@ export const pages = [
       "brandTag": "NOW PLAYING · 2026",
       "caption": "城市中心 · 户外灯箱 6m × 3m · OUT-OF-HOME",
       "mediaPlaceholder": "拖入投放主视觉 / Campaign key visual",
-      "page": "19",
-      "total": "82"
+      "page": "23",
+      "total": "86"
     }
   },
   {
@@ -3911,14 +3914,14 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#3bb6ec",
+        "def": "#0077a8",
         "options": [
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
@@ -3937,7 +3940,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#3bb6ec",
+      "accent": "#0077a8",
       "theme": "dark",
       "mediaCount": 1,
       "mediaFit": "cover",
@@ -3964,8 +3967,8 @@ export const pages = [
           "u": "场地抽成 Venue cut"
         }
       ],
-      "page": "20",
-      "total": "82"
+      "page": "24",
+      "total": "86"
     }
   },
   {
@@ -4054,10 +4057,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -4065,7 +4068,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -4080,7 +4083,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "photoCount": 4,
       "scatter": true,
@@ -4100,8 +4103,8 @@ export const pages = [
         "排练室"
       ],
       "mediaPlaceholder": "拖入",
-      "page": "21",
-      "total": "82"
+      "page": "25",
+      "total": "86"
     }
   },
   {
@@ -4208,10 +4211,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -4219,7 +4222,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -4234,7 +4237,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "imageSide": "left",
       "showStamp": true,
@@ -4259,8 +4262,8 @@ export const pages = [
         "声浪邮局 · 独立音乐 OS",
         "中国 · 任何有现场的地方"
       ],
-      "page": "22",
-      "total": "82"
+      "page": "26",
+      "total": "86"
     }
   },
   {
@@ -4336,10 +4339,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -4347,7 +4350,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -4362,7 +4365,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "dark",
       "mediaFit": "cover",
       "showPerforation": true,
@@ -4397,8 +4400,8 @@ export const pages = [
           "v": "GA — STANDING"
         }
       ],
-      "page": "23",
-      "total": "82"
+      "page": "27",
+      "total": "86"
     }
   },
   {
@@ -4418,6 +4421,10 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
+        "countArrays": [
+          "captions",
+          "media"
+        ],
         "desc": "胶片中的画格数量",
         "publicKey": "mediaCount",
         "publicLabel": "画格数量",
@@ -4487,10 +4494,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -4498,7 +4505,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -4513,7 +4520,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "mediaCount": 4,
       "mediaFit": "cover",
@@ -4548,8 +4555,8 @@ export const pages = [
           "s": "CROWD"
         }
       ],
-      "page": "24",
-      "total": "82"
+      "page": "28",
+      "total": "86"
     }
   },
   {
@@ -4569,6 +4576,12 @@ export const pages = [
         "min": 4,
         "max": 8,
         "step": 1,
+        "countArrays": [
+          "media",
+          "postLabels",
+          "denoms",
+          "stampTint"
+        ],
         "desc": "邮票张上的邮票数量",
         "publicKey": "mediaCount",
         "publicLabel": "邮票数量",
@@ -4641,10 +4654,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -4652,7 +4665,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -4667,7 +4680,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "mediaCount": 6,
       "mediaFit": "cover",
@@ -4678,20 +4691,17 @@ export const pages = [
       "kicker": "邮票张 / Stamps",
       "title": "每张作品，[[值得收藏]]。",
       "intro": "把现场、封面与样带，做成一枚枚可寄出的邮票——独立音乐，也能盖上自己的邮戳。",
-      "postLabel": "声浪邮政",
-      "metaPrefix": "声浪邮政 ·",
-      "mediaPlaceholder": "拖入",
-      "stampTint": [
-        "#f15a29",
-        "#3bb6ec",
-        "#c44ee0",
-        "#1f6b2a",
-        "#fbb24d",
-        "#d61fb5",
-        "#74d2f0",
-        "#baf04f"
+      "postLabels": [
+        "首枚邮政",
+        "二枚邮政",
+        "三枚邮政",
+        "四枚邮政",
+        "五枚邮政",
+        "六枚邮政",
+        "七枚邮政",
+        "八枚邮政"
       ],
-      "denom": [
+      "denoms": [
         "¥1.2",
         "¥2.0",
         "¥0.8",
@@ -4701,8 +4711,20 @@ export const pages = [
         "¥2.4",
         "¥1.0"
       ],
-      "page": "25",
-      "total": "82"
+      "metaPrefix": "声浪邮政 ·",
+      "mediaPlaceholder": "拖入",
+      "stampTint": [
+        "#d44718",
+        "#0077a8",
+        "#c44ee0",
+        "#1f6b2a",
+        "#b56000",
+        "#d61fb5",
+        "#0077a8",
+        "#5f7f00"
+      ],
+      "page": "29",
+      "total": "86"
     }
   },
   {
@@ -4804,14 +4826,14 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#3bb6ec",
+        "def": "#0077a8",
         "options": [
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
@@ -4830,7 +4852,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#3bb6ec",
+      "accent": "#0077a8",
       "theme": "dark",
       "mediaCount": 5,
       "focusIndex": 3,
@@ -4873,8 +4895,8 @@ export const pages = [
           "s": "NIGHT TRAIN"
         }
       ],
-      "page": "26",
-      "total": "82"
+      "page": "30",
+      "total": "86"
     }
   },
   {
@@ -4980,10 +5002,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -4991,7 +5013,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -5006,7 +5028,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "dark",
       "orientation": "horizontal",
       "showLabels": true,
@@ -5039,8 +5061,8 @@ export const pages = [
           "e": "Middlemen"
         }
       ],
-      "page": "27",
-      "total": "82"
+      "page": "31",
+      "total": "86"
     }
   },
   {
@@ -5060,6 +5082,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "plans",
+          "rows[].vals"
+        ],
         "desc": "参与对比的方案列数",
         "publicKey": "columnCount",
         "publicLabel": "对比列数",
@@ -5146,10 +5172,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -5157,7 +5183,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -5172,7 +5198,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "columnCount": 3,
       "rowCount": 6,
@@ -5263,8 +5289,8 @@ export const pages = [
           ]
         }
       ],
-      "page": "28",
-      "total": "82"
+      "page": "32",
+      "total": "86"
     }
   },
   {
@@ -5369,11 +5395,11 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -5485,8 +5511,8 @@ export const pages = [
           ]
         }
       ],
-      "page": "29",
-      "total": "82"
+      "page": "33",
+      "total": "86"
     }
   },
   {
@@ -5579,14 +5605,14 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#3bb6ec",
+        "def": "#0077a8",
         "options": [
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
@@ -5605,7 +5631,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#3bb6ec",
+      "accent": "#0077a8",
       "theme": "light",
       "rowCount": 6,
       "showRank": true,
@@ -5678,8 +5704,8 @@ export const pages = [
           "s": "2.8M"
         }
       ],
-      "page": "30",
-      "total": "82"
+      "page": "34",
+      "total": "86"
     }
   },
   {
@@ -5758,10 +5784,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -5769,7 +5795,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -5784,7 +5810,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "eventCount": 4,
       "showWeekdays": true,
@@ -5839,8 +5865,8 @@ export const pages = [
           "ci": 0
         }
       ],
-      "page": "31",
-      "total": "82"
+      "page": "35",
+      "total": "86"
     }
   },
   {
@@ -5936,14 +5962,14 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#3bb6ec",
+        "def": "#0077a8",
         "options": [
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
@@ -5962,7 +5988,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#3bb6ec",
+      "accent": "#0077a8",
       "theme": "light",
       "laneCount": 3,
       "quarterCount": 4,
@@ -5986,7 +6012,7 @@ export const pages = [
         {
           "t": "平台 Platform",
           "s": "CORE",
-          "c": "#3bb6ec",
+          "c": "#0077a8",
           "workItems": [
             {
               "startQuarter": 0,
@@ -6004,7 +6030,7 @@ export const pages = [
         {
           "t": "创作者 Creators",
           "s": "GROWTH",
-          "c": "#f15a29",
+          "c": "#d44718",
           "workItems": [
             {
               "startQuarter": 0,
@@ -6056,8 +6082,8 @@ export const pages = [
           "milestoneQuarter": 5
         }
       ],
-      "page": "32",
-      "total": "82"
+      "page": "36",
+      "total": "86"
     }
   },
   {
@@ -6126,10 +6152,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -6141,7 +6167,7 @@ export const pages = [
             "label": "颜色 3"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 4"
           }
         ],
@@ -6152,7 +6178,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "weeks": 14,
       "showLegend": true,
@@ -6182,8 +6208,8 @@ export const pages = [
       "sidebarLabel": "近 {weeks} 周 · 发行总量",
       "sidebarText": "颜色越深、那天越热闹。周末（{peak}）是上新与开演的高峰。",
       "sidebarFoot": "峰值 +38% · 周末效应",
-      "page": "33",
-      "total": "82"
+      "page": "37",
+      "total": "86"
     }
   },
   {
@@ -6265,10 +6291,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -6276,7 +6302,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -6291,7 +6317,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "rowCount": 6,
       "columnCount": 3,
@@ -6384,8 +6410,8 @@ export const pages = [
           ]
         }
       ],
-      "page": "34",
-      "total": "82"
+      "page": "38",
+      "total": "86"
     }
   },
   {
@@ -6454,10 +6480,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -6465,7 +6491,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -6480,7 +6506,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "pointCount": 4,
       "showStat": true,
@@ -6509,8 +6535,8 @@ export const pages = [
           "全网监测，一键维权"
         ]
       },
-      "page": "35",
-      "total": "82"
+      "page": "39",
+      "total": "86"
     }
   },
   {
@@ -6613,10 +6639,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -6624,7 +6650,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -6639,7 +6665,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "itemCount": 4,
       "columns": 2,
@@ -6676,8 +6702,8 @@ export const pages = [
           "a": "不需要。复杂留给系统，你只管做音乐。"
         }
       ],
-      "page": "36",
-      "total": "82"
+      "page": "40",
+      "total": "86"
     }
   },
   {
@@ -6785,10 +6811,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -6796,7 +6822,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -6811,7 +6837,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "planCount": 3,
       "itemCount": 4,
@@ -6884,8 +6910,8 @@ export const pages = [
           ]
         }
       ],
-      "page": "37",
-      "total": "82"
+      "page": "41",
+      "total": "86"
     }
   },
   {
@@ -6971,10 +6997,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -6982,7 +7008,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -6997,7 +7023,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "dark",
       "numeral": "arabic",
       "showIndex": true,
@@ -7008,8 +7034,8 @@ export const pages = [
       "kicker": "第二幕 / Act",
       "title": "光有热爱不够，\n还得[[算得清]]。",
       "tag": "接下来 · 用数据说话 / By the numbers",
-      "page": "38",
-      "total": "82"
+      "page": "42",
+      "total": "86"
     }
   },
   {
@@ -7126,10 +7152,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -7137,7 +7163,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -7152,7 +7178,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "statCount": 4,
       "chartType": "number",
@@ -7198,8 +7224,8 @@ export const pages = [
           "pct": 0.92
         }
       ],
-      "page": "39",
-      "total": "82"
+      "page": "43",
+      "total": "86"
     }
   },
   {
@@ -7303,10 +7329,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -7314,7 +7340,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -7329,7 +7355,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "segmentCount": 5,
       "chartType": "donut",
@@ -7369,8 +7395,8 @@ export const pages = [
           "v": 6
         }
       ],
-      "page": "40",
-      "total": "82"
+      "page": "44",
+      "total": "86"
     }
   },
   {
@@ -7460,7 +7486,7 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
@@ -7468,7 +7494,7 @@ export const pages = [
             "label": "颜色 3"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 4"
           }
         ],
@@ -7504,9 +7530,9 @@ export const pages = [
           "t": "现场演出",
           "s": "Live Shows",
           "v": 23,
-          "c": "#3bb6ec",
-          "fg": "#143049",
-          "sub": "#1c5b82"
+          "c": "#0077a8",
+          "fg": "#fff",
+          "sub": "#d8f0fa"
         },
         {
           "t": "周边电商",
@@ -7514,23 +7540,23 @@ export const pages = [
           "v": 16,
           "c": "#1f6b2a",
           "fg": "#fff",
-          "sub": "#baf04f"
+          "sub": "#d7ff84"
         },
         {
           "t": "粉丝订阅",
           "s": "Memberships",
           "v": 12,
-          "c": "#f15a29",
+          "c": "#d44718",
           "fg": "#fff",
-          "sub": "#fdddc6"
+          "sub": "#fff2e8"
         },
         {
           "t": "版权授权",
           "s": "Sync / License",
           "v": 7,
-          "c": "#fbb24d",
-          "fg": "#3a2607",
-          "sub": "#7a3a18"
+          "c": "#b56000",
+          "fg": "#fff",
+          "sub": "#fff2d2"
         },
         {
           "t": "众筹预售",
@@ -7538,11 +7564,11 @@ export const pages = [
           "v": 5,
           "c": "#c44ee0",
           "fg": "#fff",
-          "sub": "#f3b8ec"
+          "sub": "#fff2ff"
         }
       ],
-      "page": "41",
-      "total": "82"
+      "page": "45",
+      "total": "86"
     }
   },
   {
@@ -7632,11 +7658,11 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -7675,7 +7701,7 @@ export const pages = [
           "t": "平台运营",
           "s": "Platform",
           "v": 14,
-          "c": "#3bb6ec"
+          "c": "#0077a8"
         },
         {
           "t": "版权清算",
@@ -7687,17 +7713,17 @@ export const pages = [
           "t": "生态再投资",
           "s": "Reinvest",
           "v": 5,
-          "c": "#f15a29"
+          "c": "#d44718"
         },
         {
           "t": "公益基金",
           "s": "Fund",
           "v": 2,
-          "c": "#fbb24d"
+          "c": "#b56000"
         }
       ],
-      "page": "42",
-      "total": "82"
+      "page": "46",
+      "total": "86"
     }
   },
   {
@@ -7790,10 +7816,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -7801,7 +7827,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -7816,7 +7842,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "stepCount": 4,
       "showConnectors": true,
@@ -7862,8 +7888,8 @@ export const pages = [
           "d": 3
         }
       ],
-      "page": "43",
-      "total": "82"
+      "page": "47",
+      "total": "86"
     }
   },
   {
@@ -7913,7 +7939,7 @@ export const pages = [
         "description": "同时展示的数据系列数（指标 / 成员）"
       },
       {
-        "key": "pointCount",
+        "key": "quarterCount",
         "label": "时间点数",
         "type": "slider",
         "def": 8,
@@ -7921,10 +7947,12 @@ export const pages = [
         "max": 8,
         "step": 1,
         "countArrays": [
-          "points"
+          "quarters",
+          "seriesA",
+          "seriesB"
         ],
         "desc": "横轴时间段与两组数值的共同点数",
-        "publicKey": "pointCount",
+        "publicKey": "timeColumnCount",
         "publicLabel": "时间点数",
         "description": "横轴时间段与两组数值的共同点数"
       },
@@ -7982,10 +8010,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -7993,7 +8021,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -8008,58 +8036,46 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "chartType": "area",
       "seriesCount": 2,
-      "pointCount": 8,
+      "quarterCount": 8,
       "showGrid": true,
       "showLegend": true,
       "showCallout": true,
       "barMeta": "44 — Growth",
       "kicker": "增长曲线 / Growth",
       "title": "八个季度，[[指数级]]放大。",
-      "points": [
-        {
-          "quarter": "24·Q3",
-          "primary": 0.16,
-          "secondary": 0.1
-        },
-        {
-          "quarter": "24·Q4",
-          "primary": 0.25,
-          "secondary": 0.15
-        },
-        {
-          "quarter": "25·Q1",
-          "primary": 0.33,
-          "secondary": 0.22
-        },
-        {
-          "quarter": "25·Q2",
-          "primary": 0.44,
-          "secondary": 0.3
-        },
-        {
-          "quarter": "25·Q3",
-          "primary": 0.55,
-          "secondary": 0.42
-        },
-        {
-          "quarter": "25·Q4",
-          "primary": 0.7,
-          "secondary": 0.55
-        },
-        {
-          "quarter": "26·Q1",
-          "primary": 0.85,
-          "secondary": 0.72
-        },
-        {
-          "quarter": "26·Q2",
-          "primary": 1,
-          "secondary": 0.9
-        }
+      "quarters": [
+        "24·Q3",
+        "24·Q4",
+        "25·Q1",
+        "25·Q2",
+        "25·Q3",
+        "25·Q4",
+        "26·Q1",
+        "26·Q2"
+      ],
+      "seriesA": [
+        0.16,
+        0.25,
+        0.33,
+        0.44,
+        0.55,
+        0.7,
+        0.85,
+        1
+      ],
+      "seriesB": [
+        0.1,
+        0.15,
+        0.22,
+        0.3,
+        0.42,
+        0.55,
+        0.72,
+        0.9
       ],
       "calloutPeriod": "26 · Q2",
       "calloutValue": "¥2.4亿",
@@ -8069,8 +8085,8 @@ export const pages = [
       "railText": "发放给独立音乐人的版税，在过去一年里增长超三倍。",
       "legendA": "累计版税 Royalties",
       "legendB": "入驻音乐人 Artists",
-      "page": "44",
-      "total": "82"
+      "page": "48",
+      "total": "86"
     }
   },
   {
@@ -8149,10 +8165,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -8160,7 +8176,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -8175,7 +8191,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "seriesCount": 3,
       "showGrid": true,
@@ -8199,7 +8215,7 @@ export const pages = [
         {
           "t": "流媒体版税",
           "s": "Streaming",
-          "c": "#f15a29",
+          "c": "#d44718",
           "v": [
             22,
             28,
@@ -8214,7 +8230,7 @@ export const pages = [
         {
           "t": "现场演出",
           "s": "Live",
-          "c": "#3bb6ec",
+          "c": "#0077a8",
           "v": [
             8,
             10,
@@ -8229,7 +8245,7 @@ export const pages = [
         {
           "t": "周边电商",
           "s": "Merch",
-          "c": "#baf04f",
+          "c": "#5f7f00",
           "v": [
             3,
             4,
@@ -8242,8 +8258,8 @@ export const pages = [
           ]
         }
       ],
-      "page": "45",
-      "total": "82"
+      "page": "49",
+      "total": "86"
     }
   },
   {
@@ -8336,10 +8352,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -8347,7 +8363,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -8362,7 +8378,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "lineCount": 5,
       "focus": true,
@@ -8413,8 +8429,8 @@ export const pages = [
           "b": 63
         }
       ],
-      "page": "46",
-      "total": "82"
+      "page": "50",
+      "total": "86"
     }
   },
   {
@@ -8507,10 +8523,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -8518,7 +8534,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -8533,7 +8549,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "stageCount": 4,
       "showRates": true,
@@ -8584,8 +8600,8 @@ export const pages = [
         "22%",
         "41%"
       ],
-      "page": "47",
-      "total": "82"
+      "page": "51",
+      "total": "86"
     }
   },
   {
@@ -8682,10 +8698,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -8693,7 +8709,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -8708,7 +8724,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "categoryCount": 4,
       "dotValue": 20,
@@ -8741,8 +8757,8 @@ export const pages = [
           "value": 90
         }
       ],
-      "page": "48",
-      "total": "82"
+      "page": "52",
+      "total": "86"
     }
   },
   {
@@ -8842,11 +8858,11 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -8929,8 +8945,8 @@ export const pages = [
           "r": 0.4
         }
       ],
-      "page": "49",
-      "total": "82"
+      "page": "53",
+      "total": "86"
     }
   },
   {
@@ -9056,10 +9072,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -9067,7 +9083,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -9082,7 +9098,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "periodCount": 6,
       "seriesCount": 3,
@@ -9160,8 +9176,8 @@ export const pages = [
           30
         ]
       ],
-      "page": "50",
-      "total": "82"
+      "page": "54",
+      "total": "86"
     }
   },
   {
@@ -9254,10 +9270,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -9265,7 +9281,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -9280,7 +9296,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "barCount": 6,
       "showValue": true,
@@ -9336,8 +9352,8 @@ export const pages = [
           "share": "1%"
         }
       ],
-      "page": "51",
-      "total": "82"
+      "page": "55",
+      "total": "86"
     }
   },
   {
@@ -9406,10 +9422,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -9417,7 +9433,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -9432,7 +9448,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "gaugeCount": 3,
       "showTrack": true,
       "showLede": true,
@@ -9467,8 +9483,8 @@ export const pages = [
           "note": "多币种实时"
         }
       ],
-      "page": "52",
-      "total": "82"
+      "page": "56",
+      "total": "86"
     }
   },
   {
@@ -9568,11 +9584,11 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -9643,8 +9659,8 @@ export const pages = [
           "good": false
         }
       ],
-      "page": "53",
-      "total": "82"
+      "page": "57",
+      "total": "86"
     }
   },
   {
@@ -9737,10 +9753,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -9748,7 +9764,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -9763,7 +9779,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "tierCount": 5,
       "showValues": true,
@@ -9814,8 +9830,8 @@ export const pages = [
           "r": 2
         }
       ],
-      "page": "54",
-      "total": "82"
+      "page": "58",
+      "total": "86"
     }
   },
   {
@@ -9904,11 +9920,11 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -9973,8 +9989,8 @@ export const pages = [
           "b": 0.5
         }
       ],
-      "page": "55",
-      "total": "82"
+      "page": "59",
+      "total": "86"
     }
   },
   {
@@ -10053,10 +10069,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -10064,7 +10080,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -10079,7 +10095,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "pointCount": 5,
       "showQuadrants": true,
@@ -10139,8 +10155,8 @@ export const pages = [
           "y": 48
         }
       ],
-      "page": "56",
-      "total": "82"
+      "page": "60",
+      "total": "86"
     }
   },
   {
@@ -10160,6 +10176,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "cols",
+          "rows[].v"
+        ],
         "desc": "参与对比的方案（列）数量",
         "publicKey": "columnCount",
         "publicLabel": "方案数量",
@@ -10232,11 +10252,11 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -10342,8 +10362,8 @@ export const pages = [
           ]
         }
       ],
-      "page": "57",
-      "total": "82"
+      "page": "61",
+      "total": "86"
     }
   },
   {
@@ -10386,6 +10406,23 @@ export const pages = [
         "description": "显示/隐藏主数字旁的小条形趋势"
       },
       {
+        "key": "trendCount",
+        "label": "趋势数量",
+        "type": "slider",
+        "def": 6,
+        "min": 3,
+        "max": 6,
+        "step": 1,
+        "countArrays": [
+          "trend"
+        ],
+        "dependsOn": "showTrend",
+        "desc": "趋势图展示的数据点数量",
+        "publicKey": "trendCount",
+        "publicLabel": "趋势数量",
+        "description": "趋势图展示的数据点数量"
+      },
+      {
         "key": "showSupporting",
         "label": "辅助指标",
         "type": "toggle",
@@ -10423,14 +10460,14 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#3bb6ec",
+        "def": "#0077a8",
         "options": [
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
@@ -10449,9 +10486,10 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#3bb6ec",
+      "accent": "#0077a8",
       "theme": "dark",
       "showTrend": true,
+      "trendCount": 6,
       "showSupporting": true,
       "supportingCount": 3,
       "showDecorations": true,
@@ -10487,8 +10525,8 @@ export const pages = [
           "ds": "版税平均到账"
         }
       ],
-      "page": "58",
-      "total": "82"
+      "page": "62",
+      "total": "86"
     }
   },
   {
@@ -10557,10 +10595,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -10568,7 +10606,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -10583,7 +10621,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "statCount": 3,
       "showDividers": true,
@@ -10608,8 +10646,8 @@ export const pages = [
           "s": "Average payout time"
         }
       ],
-      "page": "59",
-      "total": "82"
+      "page": "63",
+      "total": "86"
     }
   },
   {
@@ -10708,10 +10746,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -10719,7 +10757,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -10734,7 +10772,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "statCount": 4,
       "columns": 2,
@@ -10811,8 +10849,8 @@ export const pages = [
           ]
         }
       ],
-      "page": "60",
-      "total": "82"
+      "page": "64",
+      "total": "86"
     }
   },
   {
@@ -10916,11 +10954,11 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 3"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 4"
           }
         ],
@@ -10942,8 +10980,8 @@ export const pages = [
       "title": "一帧一帧，\n都是[[现场]]。",
       "hint": "Gallery — drag to fill",
       "mediaPlaceholder": "拖入图片",
-      "page": "61",
-      "total": "82"
+      "page": "65",
+      "total": "86"
     }
   },
   {
@@ -10963,6 +11001,9 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
+        "countArrays": [
+          "media"
+        ],
         "desc": "拼贴中的照片碎片数量",
         "publicKey": "scrapCount",
         "publicLabel": "拼贴张数",
@@ -11036,18 +11077,18 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#baf04f",
+        "def": "#5f7f00",
         "options": [
           {
-            "value": "#baf04f",
+            "value": "#5f7f00",
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -11062,7 +11103,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#baf04f",
+      "accent": "#5f7f00",
       "theme": "dark",
       "scrapCount": 3,
       "mediaFit": "cover",
@@ -11077,13 +11118,13 @@ export const pages = [
       "intro": "独立不是风格，是方法。把现场、样带、手写歌词一把抓起，钉成一张属于自己的海报。",
       "mediaPlaceholder": "拖入碎片",
       "scrapTint": [
-        "#3bb6ec",
-        "#f15a29",
-        "#baf04f",
+        "#0077a8",
+        "#d44718",
+        "#5f7f00",
         "#c44ee0"
       ],
-      "page": "62",
-      "total": "82"
+      "page": "66",
+      "total": "86"
     }
   },
   {
@@ -11172,10 +11213,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -11183,7 +11224,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -11198,7 +11239,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "mediaCount": 4,
       "mediaFit": "cover",
@@ -11214,11 +11255,11 @@ export const pages = [
       "noteSign": "— 视觉备忘",
       "mediaPlaceholder": "拖入灵感",
       "pin": [
-        "#f15a29",
-        "#3bb6ec",
+        "#d44718",
+        "#0077a8",
         "#c44ee0",
         "#1f6b2a",
-        "#fbb24d",
+        "#b56000",
         "#d61fb5"
       ],
       "tilt": [
@@ -11230,15 +11271,15 @@ export const pages = [
         1.2
       ],
       "swatches": [
-        "#f15a29",
+        "#d44718",
         "#1c1416",
-        "#3bb6ec",
-        "#baf04f",
+        "#0077a8",
+        "#5f7f00",
         "#f5e1e3",
         "#c44ee0"
       ],
-      "page": "63",
-      "total": "82"
+      "page": "67",
+      "total": "86"
     }
   },
   {
@@ -11361,10 +11402,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -11372,7 +11413,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -11387,7 +11428,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "dark",
       "trackCount": 8,
       "showDuration": true,
@@ -11456,8 +11497,8 @@ export const pages = [
           "d": "2:05"
         }
       ],
-      "page": "64",
-      "total": "82"
+      "page": "68",
+      "total": "86"
     }
   },
   {
@@ -11574,11 +11615,11 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -11642,8 +11683,8 @@ export const pages = [
           "d": "3:29"
         }
       ],
-      "page": "65",
-      "total": "82"
+      "page": "69",
+      "total": "86"
     }
   },
   {
@@ -11759,7 +11800,7 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
@@ -11767,7 +11808,7 @@ export const pages = [
             "label": "颜色 3"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 4"
           }
         ],
@@ -11801,8 +11842,8 @@ export const pages = [
         "签售 Signing"
       ],
       "mediaPlaceholder": "拖入",
-      "page": "66",
-      "total": "82"
+      "page": "70",
+      "total": "86"
     }
   },
   {
@@ -11898,7 +11939,7 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
@@ -11961,8 +12002,8 @@ export const pages = [
           "y": "2026"
         }
       ],
-      "page": "67",
-      "total": "82"
+      "page": "71",
+      "total": "86"
     }
   },
   {
@@ -12051,18 +12092,18 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#baf04f",
+        "def": "#5f7f00",
         "options": [
           {
-            "value": "#baf04f",
+            "value": "#5f7f00",
             "label": "颜色 1"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 2"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 3"
           },
           {
@@ -12077,7 +12118,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#baf04f",
+      "accent": "#5f7f00",
       "theme": "light",
       "mediaCount": 7,
       "mediaFit": "cover",
@@ -12088,8 +12129,8 @@ export const pages = [
       "kicker": "声波画廊 / Waveform",
       "title": "每一张图，都是一段[[声浪]]。",
       "hint": "Frames",
-      "page": "68",
-      "total": "82"
+      "page": "72",
+      "total": "86"
     }
   },
   {
@@ -12109,6 +12150,10 @@ export const pages = [
         "min": 6,
         "max": 12,
         "step": 1,
+        "countArrays": [
+          "media",
+          "names"
+        ],
         "desc": "伙伴墙的 logo 格数量",
         "publicKey": "logoCount",
         "publicLabel": "品牌数量",
@@ -12202,10 +12247,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -12213,7 +12258,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -12228,7 +12273,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "logoCount": 10,
       "columns": 5,
@@ -12255,8 +12300,8 @@ export const pages = [
         "Pandora"
       ],
       "mediaPlaceholder": "拖入 Logo",
-      "page": "69",
-      "total": "82"
+      "page": "73",
+      "total": "86"
     }
   },
   {
@@ -12326,7 +12371,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 3"
           },
           {
@@ -12349,11 +12394,11 @@ export const pages = [
       "ghost": "声",
       "kicker": "创作者群像 / Faces",
       "title": "每一张脸，\n都是一条[[声浪]]。",
-      "body": "从地下室的第一支 demo，到登上更大的舞台——我们把发行、结算与版权交给系统，让更多人能只为创作而活。",
+      "body": "从第一支 demo 到更大舞台，系统处理发行、结算与版权。",
       "footLabel": "12,000+ 独立音乐人 · 声浪",
       "mediaPlaceholder": "拖入人像",
-      "page": "70",
-      "total": "82"
+      "page": "74",
+      "total": "86"
     }
   },
   {
@@ -12452,10 +12497,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -12463,7 +12508,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -12478,7 +12523,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "imageSide": "right",
       "calloutCount": 4,
@@ -12528,8 +12573,8 @@ export const pages = [
           }
         }
       ],
-      "page": "71",
-      "total": "82"
+      "page": "75",
+      "total": "86"
     }
   },
   {
@@ -12622,10 +12667,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -12633,7 +12678,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -12648,7 +12693,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "stepCount": 5,
       "focus": true,
@@ -12687,8 +12732,8 @@ export const pages = [
           "d": "多币种实时透明分账，正式上线。"
         }
       ],
-      "page": "72",
-      "total": "82"
+      "page": "76",
+      "total": "86"
     }
   },
   {
@@ -12814,10 +12859,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -12825,7 +12870,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -12840,7 +12885,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "backgroundMode": "unicorn",
       "unicornScene": "tech",
       "tint": "dark",
@@ -12854,8 +12899,8 @@ export const pages = [
       "authorEn": "Chen Yu — Indie Artist, 4 yrs on SoundWave",
       "footLabel": "声浪 SOUNDWAVE — Independent Music OS",
       "mediaPlaceholder": "拖入整幅现场 / 人物大图",
-      "page": "73",
-      "total": "82"
+      "page": "77",
+      "total": "86"
     }
   },
   {
@@ -12938,15 +12983,15 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#fbb24d",
+            "value": "#b56000",
             "label": "颜色 2"
           },
           {
-            "value": "#74d2f0",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
-            "value": "#bcee54",
+            "value": "#5f7f00",
             "label": "颜色 4"
           }
         ],
@@ -12983,8 +13028,8 @@ export const pages = [
         }
       ],
       "credit": "— 词 / 曲 林夏 · 声浪原创",
-      "page": "74",
-      "total": "82"
+      "page": "78",
+      "total": "86"
     }
   },
   {
@@ -13081,11 +13126,11 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -13118,8 +13163,8 @@ export const pages = [
         "路线图 Roadmap",
         "加入声浪 Join Us"
       ],
-      "page": "75",
-      "total": "82"
+      "page": "79",
+      "total": "86"
     }
   },
   {
@@ -13195,10 +13240,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -13206,7 +13251,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -13221,7 +13266,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "accent",
       "sectionLabel": "03",
       "align": "left",
@@ -13231,8 +13276,8 @@ export const pages = [
       "chapterLabel": "CHAPTER",
       "title": "分发与结算，\n一块工作台搞定。",
       "intro": "从上传母带到版税到账——这一章，拆解声浪如何把一整条链路收进同一块屏幕。",
-      "page": "76",
-      "total": "82"
+      "page": "80",
+      "total": "86"
     }
   },
   {
@@ -13335,10 +13380,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -13346,7 +13391,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -13361,7 +13406,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "milestoneCount": 5,
       "focus": true,
@@ -13400,8 +13445,8 @@ export const pages = [
           "d": "多币种实时透明分账。"
         }
       ],
-      "page": "77",
-      "total": "82"
+      "page": "81",
+      "total": "86"
     }
   },
   {
@@ -13490,10 +13535,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -13501,7 +13546,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -13516,7 +13561,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "principleCount": 4,
       "columns": 2,
       "theme": "light",
@@ -13558,8 +13603,8 @@ export const pages = [
           "s": "可迁出、可接入，绝不把你锁进围墙。"
         }
       ],
-      "page": "78",
-      "total": "82"
+      "page": "82",
+      "total": "86"
     }
   },
   {
@@ -13648,10 +13693,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -13659,7 +13704,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -13674,7 +13719,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "memberCount": 4,
       "showRole": true,
@@ -13718,8 +13763,8 @@ export const pages = [
           "role": "设计负责人"
         }
       ],
-      "page": "79",
-      "total": "82"
+      "page": "83",
+      "total": "86"
     }
   },
   {
@@ -13812,7 +13857,7 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
@@ -13861,8 +13906,8 @@ export const pages = [
         24,
         42
       ],
-      "page": "80",
-      "total": "82"
+      "page": "84",
+      "total": "86"
     }
   },
   {
@@ -13952,11 +13997,11 @@ export const pages = [
             "label": "颜色 1"
           },
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -13996,7 +14041,7 @@ export const pages = [
           "n": "阿特拉斯乐队",
           "r": "后摇乐队 / 成都",
           "m": "A",
-          "c": "#3bb6ec",
+          "c": "#0077a8",
           "fg": "#143049",
           "sub": "#1c5b82"
         },
@@ -14007,20 +14052,20 @@ export const pages = [
           "m": "M",
           "c": "#1f6b2a",
           "fg": "#fff",
-          "sub": "#baf04f"
+          "sub": "#5f7f00"
         },
         {
           "q": "版权上链之后，合作再也不用靠口头承诺。",
           "n": "老周",
           "r": "厂牌主理人 / 北京",
           "m": "周",
-          "c": "#f15a29",
+          "c": "#d44718",
           "fg": "#fff",
           "sub": "#fdddc6"
         }
       ],
-      "page": "81",
-      "total": "82"
+      "page": "85",
+      "total": "86"
     }
   },
   {
@@ -14135,10 +14180,10 @@ export const pages = [
         "key": "accent",
         "label": "强调色",
         "type": "color",
-        "def": "#f15a29",
+        "def": "#d44718",
         "options": [
           {
-            "value": "#f15a29",
+            "value": "#d44718",
             "label": "颜色 1"
           },
           {
@@ -14146,7 +14191,7 @@ export const pages = [
             "label": "颜色 2"
           },
           {
-            "value": "#3bb6ec",
+            "value": "#0077a8",
             "label": "颜色 3"
           },
           {
@@ -14161,7 +14206,7 @@ export const pages = [
       }
     ],
     "defaultProps": {
-      "accent": "#f15a29",
+      "accent": "#d44718",
       "theme": "light",
       "showDirectory": true,
       "directoryColumns": 4,
@@ -14169,7 +14214,7 @@ export const pages = [
       "showMarquee": true,
       "marqueeSpeed": 20,
       "showDecorations": true,
-      "barMeta": "82 — Join Us",
+      "barMeta": "86 — Join Us",
       "kicker": "加入声浪 / Join Us",
       "title": "现在，轮到你\n发出[[声浪]]。",
       "subtitle": "Now — make some noise.",

@@ -17,7 +17,7 @@ const LIGHT = {
   ink3:    "#908f8a",
   line:    "rgba(22,21,19,0.20)",
   line2:   "rgba(22,21,19,0.10)",
-  blue:    "#2742ec",
+  blue:    "#1834d6",
   blueInk: "#f3f5ff",
   lime:    "#c2f53d",
   panel:   "#1a1916",
@@ -32,7 +32,7 @@ const DARK = {
   ink3:    "#84827c",
   line:    "rgba(243,242,238,0.22)",
   line2:   "rgba(243,242,238,0.10)",
-  blue:    "#6e85ff",   // brightened so blue-as-text reads on the dark field
+  blue:    "#91a2ff",   // brightened so blue-as-text reads on the dark field
   blueInk: "#0d1330",   // ink reads on the brighter blue fill
   lime:    "#c2f53d",
   panel:   "#f3f2ee",

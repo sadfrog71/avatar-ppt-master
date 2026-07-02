@@ -6,13 +6,14 @@ import { normalizePublicControls } from './control-naming.mjs';
 import {
   clampCountControlLimits,
   clampDefaultCountProps,
+  createContract,
   serializeValue,
 } from './prop-contract-core.mjs';
 
 export function serializePage(page) {
   const defaultProps = serializeValue(page.defaultProps || page.defaults || {}) || {};
   const controls = normalizePageControls(page, defaultProps);
-  return {
+  const serialized = {
     key: page.key,
     themeKey: page.themeKey,
     pageNumber: page.pageNumber,
@@ -24,6 +25,9 @@ export function serializePage(page) {
     controls,
     defaultProps: clampDefaultCountProps(defaultProps, controls),
   };
+  const contract = createContract(serialized, page.themeKey);
+  if (contract.lengthBindings?.length) serialized.lengthBindings = contract.lengthBindings;
+  return serialized;
 }
 
 export function normalizePageControls(page, defaultProps) {
