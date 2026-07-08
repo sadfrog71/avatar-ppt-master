@@ -124,13 +124,24 @@ Page-by-page comparison between the HTML deck and the exported PPTX:
 
 ## Installation
 
-### Option 1: One-liner (recommended)
+### Option 1: Claude Code official plugin (recommended, auto-updates)
+
+Inside Claude Code, run:
+
+```
+/plugin marketplace add chuspeeism/dashiAI-ppt-skill
+/plugin install dashiai-ppt@dashiai-ppt-skill
+```
+
+To update later, just run `/plugin marketplace update dashiai-ppt-skill`.
+
+### Option 2: One-liner (Codex / Cursor / other agents)
 
 ```bash
 npx skills add https://github.com/chuspeeism/dashiAI-ppt-skill --skill dashiai-ppt
 ```
 
-### Option 2: Paste this straight to your AI
+### Option 3: Paste this straight to your AI
 
 > Install the `dashiai-ppt` skill for me. Follow these steps:
 >
@@ -142,7 +153,7 @@ npx skills add https://github.com/chuspeeism/dashiAI-ppt-skill --skill dashiai-p
 
 Copy-paste this to Claude Code / Codex / any AI agent with shell access, and it will handle the installation on its own.
 
-### Option 3: Manual command line
+### Option 4: Manual command line
 
 The skill content lives in the repo's `skills/dashiai-ppt/` subdirectory — clone, then copy that subdirectory:
 

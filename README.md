@@ -120,13 +120,24 @@ HTML 版与导出 PPTX 版的逐页对比：
 
 ## 安装
 
-### 方式一：一行命令安装（推荐）
+### 方式一：Claude Code 官方插件（推荐，支持自动更新）
+
+在 Claude Code 里执行：
+
+```
+/plugin marketplace add chuspeeism/dashiAI-ppt-skill
+/plugin install dashiai-ppt@dashiai-ppt-skill
+```
+
+以后更新只需 `/plugin marketplace update dashiai-ppt-skill`。
+
+### 方式二：一行命令安装（Codex / Cursor 等其他 Agent）
 
 ```bash
 npx skills add https://github.com/chuspeeism/dashiAI-ppt-skill --skill dashiai-ppt
 ```
 
-### 方式二：把下面这段话直接发给 AI
+### 方式三：把下面这段话直接发给 AI
 
 > 帮我安装 `dashiai-ppt` 这个 skill。请按下面步骤做：
 >
@@ -138,7 +149,7 @@ npx skills add https://github.com/chuspeeism/dashiAI-ppt-skill --skill dashiai-p
 
 把这段话复制粘贴给 Claude Code / Codex / 任何有 shell 权限的 AI Agent，它会自动完成安装。
 
-### 方式三：手动命令行
+### 方式四：手动命令行
 
 skill 内容位于仓库的 `skills/dashiai-ppt/` 子目录，克隆后拷贝该子目录即可：
 
