@@ -44,13 +44,13 @@ npx skills add https://github.com/chuspeeism/dashiAI-ppt-skill --skill dashiai-p
 Or paste this straight to any AI agent with shell access:
 
 ```text
-Install the dashiai-ppt skill for me. Clone https://github.com/chuspeeism/dashiAI-ppt-skill into ~/.claude/skills/dashiai-ppt (Codex users: ~/.codex/skills/dashiai-ppt), then verify that SKILL.md, project/, references/, and scripts/ all exist.
+Install the dashiai-ppt skill for me. Clone https://github.com/chuspeeism/dashiAI-ppt-skill into a temporary directory, copy its skills/dashiai-ppt folder to ~/.claude/skills/dashiai-ppt (Codex users: ~/.codex/skills/dashiai-ppt), remove the temporary directory, then verify that SKILL.md, project/, references/, and scripts/ all exist in the installed directory.
 ```
 
 Already installed? Use this to update:
 
 ```text
-Update dashiai-ppt for me. Go to ~/.claude/skills/dashiai-ppt, run git pull, and tell me the latest commit.
+Update the dashiai-ppt skill for me. Clone https://github.com/chuspeeism/dashiAI-ppt-skill into a temporary directory, replace ~/.claude/skills/dashiai-ppt with its skills/dashiai-ppt folder (Codex users: ~/.codex/skills/dashiai-ppt), remove the temporary directory, then tell me the "当前版本" line from SKILL.md.
 ```
 
 Once installed, just tell your agent:

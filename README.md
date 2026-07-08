@@ -44,13 +44,13 @@ npx skills add https://github.com/chuspeeism/dashiAI-ppt-skill --skill dashiai-p
 也可以直接把这段话发给有 shell 权限的 AI Agent：
 
 ```text
-帮我安装 dashiai-ppt 这个 skill。请把 https://github.com/chuspeeism/dashiAI-ppt-skill 克隆到 ~/.claude/skills/dashiai-ppt（Codex 用户放到 ~/.codex/skills/dashiai-ppt），安装完成后检查 SKILL.md、project/、references/、scripts/ 是否存在。
+帮我安装 dashiai-ppt 这个 skill。请把 https://github.com/chuspeeism/dashiAI-ppt-skill 克隆到一个临时目录，把其中的 skills/dashiai-ppt 文件夹复制到 ~/.claude/skills/dashiai-ppt（Codex 用户放到 ~/.codex/skills/dashiai-ppt），删掉临时目录，最后检查安装目录里 SKILL.md、project/、references/、scripts/ 是否存在。
 ```
 
 已经安装过的话，用这段话更新：
 
 ```text
-帮我更新 dashiai-ppt。请进入 ~/.claude/skills/dashiai-ppt 执行 git pull，然后告诉我当前最新 commit。
+帮我更新 dashiai-ppt 这个 skill。请把 https://github.com/chuspeeism/dashiAI-ppt-skill 克隆到一个临时目录，用其中的 skills/dashiai-ppt 覆盖 ~/.claude/skills/dashiai-ppt（Codex 用户为 ~/.codex/skills/dashiai-ppt），删掉临时目录，然后告诉我 SKILL.md 里的「当前版本」。
 ```
 
 安装后直接对 Agent 说：
