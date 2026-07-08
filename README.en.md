@@ -106,7 +106,7 @@ Or try these:
 - **More expressive**: entrance animations, page transitions, interactive controls, dark/light mode — experiences static formats simply can't deliver.
 - **The output is itself the editor**: what you get isn't a stack of pasted images, it's a web-based PPT editor — flip pages, edit text, swap images, tune layouts, ready the moment you open it.
 - **Lighter to deliver**: bundle into a single offline HTML file with one click; the local preview server allows LAN access by default, so phones and tablets on the same WiFi can open it directly.
-- **It doesn't lock you into the web**: if you're tired of the AI era's "fake PPTs dressed up as web pages", export a real PPTX with one click — reconstructed node by node, with text kept editable. The export engine, [html-deck-to-pptx](project/packages/html-deck-to-pptx), is open-sourced under MIT.
+- **It doesn't lock you into the web**: if you're tired of the AI era's "fake PPTs dressed up as web pages", export a real PPTX with one click — reconstructed node by node, with text kept editable. The export engine, [html-deck-to-pptx](skills/dashiai-ppt/project/packages/html-deck-to-pptx), is open-sourced under MIT.
 
 Page-by-page comparison between the HTML deck and the exported PPTX:
 
@@ -135,20 +135,27 @@ npx skills add https://github.com/chuspeeism/dashiAI-ppt-skill --skill dashiai-p
 > Install the `dashiai-ppt` skill for me. Follow these steps:
 >
 > 1. Make sure the `~/.claude/skills/` directory exists (create it if not; Codex users: `~/.codex/skills/`)
-> 2. Run `git clone https://github.com/chuspeeism/dashiAI-ppt-skill.git ~/.claude/skills/dashiai-ppt`
-> 3. Verify: `ls ~/.claude/skills/dashiai-ppt/` should show `SKILL.md`, `project/`, `references/`, `scripts/`
-> 4. Tell me once it's done — from then on, saying things like "make me a deck" will trigger this skill
+> 2. Run `git clone --depth=1 https://github.com/chuspeeism/dashiAI-ppt-skill.git /tmp/dashiai-ppt-skill`
+> 3. Run `cp -R /tmp/dashiai-ppt-skill/skills/dashiai-ppt ~/.claude/skills/dashiai-ppt`, then `rm -rf /tmp/dashiai-ppt-skill`
+> 4. Verify: `ls ~/.claude/skills/dashiai-ppt/` should show `SKILL.md`, `project/`, `references/`, `scripts/`
+> 5. Tell me once it's done — from then on, saying things like "make me a deck" will trigger this skill
 
 Copy-paste this to Claude Code / Codex / any AI agent with shell access, and it will handle the installation on its own.
 
 ### Option 3: Manual command line
 
+The skill content lives in the repo's `skills/dashiai-ppt/` subdirectory — clone, then copy that subdirectory:
+
 ```bash
+git clone --depth=1 https://github.com/chuspeeism/dashiAI-ppt-skill.git /tmp/dashiai-ppt-skill
+
 # Claude Code
-git clone https://github.com/chuspeeism/dashiAI-ppt-skill.git ~/.claude/skills/dashiai-ppt
+mkdir -p ~/.claude/skills && cp -R /tmp/dashiai-ppt-skill/skills/dashiai-ppt ~/.claude/skills/dashiai-ppt
 
 # Codex
-git clone https://github.com/chuspeeism/dashiAI-ppt-skill.git ~/.codex/skills/dashiai-ppt
+mkdir -p ~/.codex/skills && cp -R /tmp/dashiai-ppt-skill/skills/dashiai-ppt ~/.codex/skills/dashiai-ppt
+
+rm -rf /tmp/dashiai-ppt-skill
 ```
 
 Requirements: a machine that runs **Node.js 18+ and npm** (dependencies auto-install on first generation); exporting PPTX / PDF requires Chrome / Chromium / Edge installed locally.
@@ -334,6 +341,6 @@ If something's clunky, come yell at us in an Issue; if you like it, drop a Star.
 
 This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)** — the strongest copyleft license among OSI-approved open source licenses. You are free to use, modify, and distribute this project, including for commercial purposes. However, if you distribute a modified version, or offer this software (or a modified version) to users over a network (e.g. as a SaaS), you must make the complete corresponding source code available under AGPL-3.0.
 
-**Exception:** the subpackage [`project/packages/html-deck-to-pptx`](project/packages/html-deck-to-pptx) is independently licensed under the **MIT License** (see the LICENSE file in that directory) and may be freely used in closed-source or commercial projects.
+**Exception:** the subpackage [`project/packages/html-deck-to-pptx`](skills/dashiai-ppt/project/packages/html-deck-to-pptx) is independently licensed under the **MIT License** (see the LICENSE file in that directory) and may be freely used in closed-source or commercial projects.
 
 Copyright (c) 2026 [chuspeeism](https://github.com/chuspeeism). See the [LICENSE](LICENSE) file for the full text. For commercial licensing beyond AGPL-3.0, please contact the author.
