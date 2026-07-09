@@ -49,6 +49,24 @@ function macChromeCandidates() {
   ];
 }
 
+// Windows 的 Chrome/Edge 默认不在 PATH 里(issue #12:用户装着 Edge 却报
+// "Chrome executable not found"),按固定安装位置探测;Edge 是系统自带,几乎必中。
+function windowsChromeCandidates() {
+  if (process.platform !== 'win32') return [];
+  const programFiles = process.env.ProgramFiles || 'C:\\Program Files';
+  const programFilesX86 = process.env['ProgramFiles(x86)'] || 'C:\\Program Files (x86)';
+  const localAppData = process.env.LOCALAPPDATA || '';
+  const candidates = [
+    path.join(programFiles, 'Google', 'Chrome', 'Application', 'chrome.exe'),
+    path.join(programFilesX86, 'Google', 'Chrome', 'Application', 'chrome.exe'),
+    localAppData && path.join(localAppData, 'Google', 'Chrome', 'Application', 'chrome.exe'),
+    path.join(programFilesX86, 'Microsoft', 'Edge', 'Application', 'msedge.exe'),
+    path.join(programFiles, 'Microsoft', 'Edge', 'Application', 'msedge.exe'),
+    path.join(programFiles, 'Chromium', 'Application', 'chrome.exe'),
+  ];
+  return candidates.filter(Boolean);
+}
+
 export function resolveChromeExecutablePath() {
   if (process.env.CHROME_PATH) {
     return resolveExistingPath(process.env.CHROME_PATH);
@@ -66,7 +84,7 @@ export function resolveChromeExecutablePath() {
     if (resolved) return resolved;
   }
 
-  for (const candidate of macChromeCandidates()) {
+  for (const candidate of [...macChromeCandidates(), ...windowsChromeCandidates()]) {
     const resolved = resolveExistingPath(candidate);
     if (resolved) return resolved;
   }
