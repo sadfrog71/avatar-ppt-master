@@ -1,4 +1,10 @@
 {
+  "water-environment": {
+    "summary": "Generic water utility, environmental operations, sustainability reporting, AI operations, and project proposal decks.",
+    "canvas_format": "ppt169",
+    "page_count": 5,
+    "primary_color": "#00467F"
+  },
   "中国电信": {
     "summary": "China Telecom related briefings, 政企数字化方案, 转型规划, 内部汇报.",
     "canvas_format": "ppt169",

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="header" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00467F"/>
+      <stop offset="100%" stop-color="#19A7CE"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="#F7FBFD"/>
+  <rect x="0" y="0" width="1280" height="64" fill="url(#header)"/>
+  <text x="76" y="42" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="19" font-weight="700" fill="#FFFFFF">{{PAGE_TITLE}}</text>
+  <text x="1050" y="42" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="13" fill="#D8F3F8">{{DATE}}</text>
+  <rect x="72" y="104" width="250" height="116" rx="8" fill="#FFFFFF" stroke="#D6E2E8"/>
+  <rect x="348" y="104" width="250" height="116" rx="8" fill="#FFFFFF" stroke="#D6E2E8"/>
+  <rect x="624" y="104" width="250" height="116" rx="8" fill="#FFFFFF" stroke="#D6E2E8"/>
+  <rect x="900" y="104" width="250" height="116" rx="8" fill="#FFFFFF" stroke="#D6E2E8"/>
+  <text x="96" y="158" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#00467F">{{STAT_1}}</text>
+  <text x="372" y="158" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#19A7CE">{{STAT_2}}</text>
+  <text x="648" y="158" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#46B36B">{{STAT_3}}</text>
+  <text x="924" y="158" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#00467F">{{STAT_4}}</text>
+  <text x="96" y="194" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="15" fill="#5A6B75">{{STAT_1_LABEL}}</text>
+  <text x="372" y="194" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="15" fill="#5A6B75">{{STAT_2_LABEL}}</text>
+  <text x="648" y="194" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="15" fill="#5A6B75">{{STAT_3_LABEL}}</text>
+  <text x="924" y="194" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="15" fill="#5A6B75">{{STAT_4_LABEL}}</text>
+  <rect x="72" y="252" width="520" height="330" rx="8" fill="#FFFFFF" stroke="#D6E2E8"/>
+  <text x="104" y="304" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="23" font-weight="700" fill="#1B2B34">{{CONTENT_AREA}}</text>
+  <line x1="104" y1="326" x2="548" y2="326" stroke="#D6E2E8"/>
+  <circle cx="116" cy="372" r="6" fill="#19A7CE"/>
+  <circle cx="116" cy="424" r="6" fill="#46B36B"/>
+  <circle cx="116" cy="476" r="6" fill="#19A7CE"/>
+  <text x="138" y="378" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" fill="#1B2B34">{{POINT_1}}</text>
+  <text x="138" y="430" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" fill="#1B2B34">{{POINT_2}}</text>
+  <text x="138" y="482" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" fill="#1B2B34">{{POINT_3}}</text>
+  <rect x="632" y="252" width="548" height="330" rx="8" fill="#FFFFFF" stroke="#D6E2E8"/>
+  <text x="664" y="304" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="21" font-weight="700" fill="#1B2B34">Operations View</text>
+  <line x1="688" y1="512" x2="1124" y2="512" stroke="#D6E2E8"/>
+  <line x1="688" y1="348" x2="688" y2="512" stroke="#D6E2E8"/>
+  <rect x="730" y="430" width="54" height="82" fill="#19A7CE" fill-opacity="0.78"/>
+  <rect x="828" y="388" width="54" height="124" fill="#00467F" fill-opacity="0.82"/>
+  <rect x="926" y="404" width="54" height="108" fill="#46B36B" fill-opacity="0.82"/>
+  <rect x="1024" y="356" width="54" height="156" fill="#19A7CE" fill-opacity="0.78"/>
+  <path d="M716 390C798 350 856 360 918 398C980 436 1044 396 1092 342" fill="none" stroke="#46B36B" stroke-width="4" stroke-linecap="round"/>
+  <text x="664" y="552" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="14" fill="#5A6B75">{{TAKEAWAY}}</text>
+  <text x="76" y="664" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="13" fill="#5A6B75">{{AUTHOR}}</text>
+  <text x="1160" y="664" font-family="Arial, sans-serif" font-size="13" fill="#5A6B75">04</text>
+</svg>

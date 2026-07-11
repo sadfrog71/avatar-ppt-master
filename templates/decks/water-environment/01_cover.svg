@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#062A45"/>
+      <stop offset="52%" stop-color="#00467F"/>
+      <stop offset="100%" stop-color="#0A6E91"/>
+    </linearGradient>
+    <linearGradient id="waterArc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#19A7CE"/>
+      <stop offset="100%" stop-color="#46B36B"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect width="1280" height="720" fill="url(#grid)"/>
+  <path d="M710 0C870 78 928 198 900 360C866 552 1006 668 1280 720V0Z" fill="#FFFFFF" fill-opacity="0.08"/>
+  <path d="M780 0C930 96 990 230 948 396C916 522 1028 640 1280 700V0Z" fill="url(#waterArc)" fill-opacity="0.28"/>
+  <path d="M880 0C1010 130 1038 284 962 462C924 550 1018 640 1280 684V0Z" fill="#FFFFFF" fill-opacity="0.12"/>
+  <path d="M92 94H250" stroke="#19A7CE" stroke-width="6" stroke-linecap="round"/>
+  <text x="92" y="132" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="14" font-weight="700" fill="#BFEAF3" letter-spacing="0">WATER ENVIRONMENT REPORT</text>
+  <text x="92" y="284" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="58" font-weight="700" fill="#FFFFFF">{{TITLE}}</text>
+  <text x="96" y="334" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="24" fill="#D8F3F8">{{SUBTITLE}}</text>
+  <rect x="96" y="404" width="520" height="1" fill="#FFFFFF" fill-opacity="0.25"/>
+  <text x="96" y="450" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="18" fill="#FFFFFF">{{AUTHOR}}</text>
+  <text x="96" y="486" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="16" fill="#CDE6EE">{{PRESENTER}}  |  {{DATE}}</text>
+  <circle cx="1060" cy="222" r="74" fill="#FFFFFF" fill-opacity="0.12"/>
+  <path d="M1006 232C1034 198 1064 198 1094 232C1122 264 1154 264 1180 232" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-opacity="0.78"/>
+  <text x="1010" y="322" font-family="Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="15" fill="#FFFFFF" fill-opacity="0.84">clean water · resilient operations · sustainable growth</text>
+</svg>
