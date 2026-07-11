@@ -6363,17 +6363,6 @@ refreshRailCatalog();
     vendorScriptPromises.set(src, promise);
     return promise;
   }
-  function downloadBlobAsFile(blob, fileName){
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 30000);
-  }
-
   function ensureHtmlToImageLoaded(){
     return ensureVendorScript('assets/vendor/html-to-image.js', () => window.htmlToImage);
   }
@@ -6563,7 +6552,7 @@ refreshRailCatalog();
         if(!downloadStarted) alert(`PPTX 已生成:\n${result.downloadName || result.relativePath || 'download'}`);
         return result;
       }
-      downloadBlobAsFile(blob, downloadName);
+      downloadBlob(blob, downloadName);
       result = { ok: true, browserCapture: true, blobDownload: true, downloadName, ...report, downloadStarted: true };
       window.__lastPptxExportResult = result;
       updateDeckExport(exportUi, slides.length, slides.length, 'PPTX 已开始下载(浏览器内导出)');
@@ -6610,7 +6599,7 @@ refreshRailCatalog();
       }
       const blob = await assemblePdfInBrowser(pages, document.title || 'Presentation');
       const downloadName = `${getDeckFileName()}.pdf`;
-      downloadBlobAsFile(blob, downloadName);
+      downloadBlob(blob, downloadName);
       result = { ok: true, browserCapture: true, blobDownload: true, generationMode: 'browser-capture', pages: pages.length, downloadName, downloadStarted: true };
       window.__lastPdfExportResult = result;
       updateDeckExport(exportUi, pages.length, pages.length, 'PDF 已开始下载(浏览器内导出)');
