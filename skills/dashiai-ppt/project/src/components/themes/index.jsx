@@ -10,7 +10,7 @@ import {
   clampDefaultCountProps,
   serializeValue,
 } from '../../prop-contract-core.mjs';
-import { GENERATED_THEME_PAGES, GENERATED_THEME_PACKS } from './generated-metadata.js';
+import { THEME_PAGES as CATALOG_THEME_PAGES, THEME_PACKS as CATALOG_THEME_PACKS } from './theme-catalog.mjs';
 import { overrides as theme02Overrides } from './theme02/overrides.js';
 import { overrides as theme03Overrides } from './theme03/overrides.js';
 import { overrides as theme04Overrides } from './theme04/overrides.js';
@@ -24,9 +24,9 @@ const THEME_OVERRIDES = {
 
 const REMOVED_CONTROL_TYPES = new Set(['text', 'string', 'input', 'url', 'email', 'textarea', 'multiline']);
 
-export const THEME_PAGES = GENERATED_THEME_PAGES.map(applyThemePageDefaults);
+export const THEME_PAGES = CATALOG_THEME_PAGES.map(applyThemePageDefaults);
 export const THEME_PACK_OPTIONS = Object.fromEntries(
-  GENERATED_THEME_PACKS.map(theme => [
+  CATALOG_THEME_PACKS.map(theme => [
     theme.key,
     {
       label: theme.label,

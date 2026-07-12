@@ -176,7 +176,11 @@ async function prepareDeckForScreenshotPdf(page) {
     if (!document.getElementById('dashi-export-no-radius')) {
       const style = document.createElement('style');
       style.id = 'dashi-export-no-radius';
-      style.textContent = '#deck-viewport,#deck,#deck>.slide{border-radius:0!important}';
+      style.textContent = [
+        ':root{--deck-scale:1!important}',
+        '#deck-viewport,#deck,#deck>.slide{border-radius:0!important}',
+        '#deck>.slide>.imported-theme-root{width:1920px!important;height:1080px!important;transform:none!important}',
+      ].join('');
       document.head.appendChild(style);
     }
     document.body.classList.remove('preview-panel-open');
@@ -229,6 +233,10 @@ async function prepareSlideForScreenshot(page, index) {
       else item.removeAttribute('data-deck-active');
     });
     window.__ensureRuntimeSlideRendered?.(slide);
+    // A runtime theme mounts through React. Let its first commit and layout
+    // complete before the PDF capture path decides that the slide is stable.
+    await waitFrame();
+    await waitFrame();
     window.__restoreEffectIframes?.(slide);
     window.__syncDeckPageNumbers?.(slide);
     window.__layoutDeck?.();

@@ -1,6 +1,6 @@
-import { GENERATED_THEME_PACKS } from './components/themes/generated-metadata.js';
+import { THEME_PACKS } from './components/themes/theme-catalog.mjs';
 
-export const ACCEPTED_THEME_KEYS = GENERATED_THEME_PACKS.map(theme => theme.key);
+export const ACCEPTED_THEME_KEYS = THEME_PACKS.map(theme => theme.key);
 
 const ACCEPTED_THEME_KEY_SET = new Set(ACCEPTED_THEME_KEYS);
 

@@ -9,6 +9,7 @@
     "media:stage": "node scripts/stage-media.mjs",
     "props:safe": "node scripts/write-safe-props.mjs",
     "goal:scaffold": "node scripts/goal-scaffold.mjs",
+    "build:theme": "node scripts/build-theme-runtime.mjs",
     "validate:goal-spec": "node scripts/validate-goal-spec.mjs",
     "render:goal": "tsx scripts/render-goal-deck.jsx",
     "preview:https": "node scripts/serve-preview-https.mjs",

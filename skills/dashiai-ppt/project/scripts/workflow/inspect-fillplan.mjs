@@ -56,6 +56,13 @@ export const ROLE_KEYWORDS = {
   // 模糊意图词(批测高频):宽命中到所有数据/汇报类版式。
   data: ['metric', 'stat', 'number', 'chart', 'trend', 'curve', 'rank', 'waterfall', 'donut', 'heatmap', 'matrix', 'funnel', 'monthly', 'deal', 'ticket', '指标', '数据', '图表', '排行', '走势', '占比'],
   report: ['market', 'context', 'industry', 'metric', 'stat', 'overview', 'summary', 'monthly', 'outlook', '全景', '背景', '行业', '指标', '汇报', '总览', '展望'],
+  overview: ['overview', 'summary', 'executive', 'finding', '概览', '摘要', '总览', '发现'],
+  evidence: ['evidence', 'proof', 'spotlight', 'metric', 'stat', '证据', '数据', '指标', '实证'],
+  diagnosis: ['diagnosis', 'root-cause', 'root cause', 'problem', 'pain', '诊断', '根因', '问题', '痛点'],
+  explanation: ['explanation', 'mechanism', 'logic', 'flow', '解释', '机制', '逻辑', '原理'],
+  model: ['model', 'architecture', 'governance', 'framework', 'network', '模型', '架构', '治理', '框架'],
+  timeline: ['timeline', 'roadmap', 'phase', 'milestone', '时间', '路线', '阶段', '里程碑'],
+  decision: ['decision', 'priority', 'option', 'matrix', '决策', '优先级', '方案', '选择'],
   cover: ['cover', '封面', '首页'],
   statement: ['statement', 'summary', 'overview', 'manifesto', 'quote', '摘要', '主张', '观点', '结论'],
   breakdown: ['contents', 'agenda', 'index', 'directory', '目录', '结构', '纲目'],

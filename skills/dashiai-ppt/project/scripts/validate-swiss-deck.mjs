@@ -5,6 +5,7 @@ import {
   LOCAL_OUTPUT_ASSET_ROOTS,
   REQUIRED_OUTPUT_ASSETS,
 } from '../src/runtime-assets.mjs';
+import { THEME_PAGES } from '../src/components/themes/theme-catalog.mjs';
 
 // 相对路径按调用方目录解析:npm run(含 --prefix)会把脚本 cwd 切到项目根,INIT_CWD 才是用户所在目录。
 const CALLER_CWD = process.env.INIT_CWD || process.cwd();
@@ -131,6 +132,7 @@ function decodeHtmlEntities(value) {
 const manifestFile = 'layout-manifest.json';
 const optionsFile = 'src/options.jsx';
 const registeredLayouts = [
+  ...THEME_PAGES.map(page => page.layout).filter(Boolean),
   ...(existsSync(manifestFile)
     ? Object.values(JSON.parse(readFileSync(manifestFile, 'utf8')).layouts || {}).map((layout) => layout.dataLayout).filter(Boolean)
     : []),

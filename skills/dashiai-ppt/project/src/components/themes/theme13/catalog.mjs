@@ -1,0 +1,56 @@
+const palette = {
+  key: 'palette', label: '配色', type: 'select', def: 'ocean', publicKey: 'palette',
+  options: [
+    { value: 'ocean', label: '深海蓝' },
+    { value: 'spruce', label: '青松绿' },
+    { value: 'violet', label: '暮光紫' },
+  ],
+};
+
+const common = [
+  palette,
+  { key: 'showBrand', label: '品牌标识', type: 'toggle', def: true, publicKey: 'showBrand' },
+  { key: 'showPage', label: '页码', type: 'toggle', def: true, publicKey: 'showPage' },
+];
+
+const count = (key, label, def, min, max) => ({ key, label, type: 'slider', def, min, max, step: 1, publicKey: key });
+const page = (number, slot, label, roles, defaultProps, controls = []) => ({
+  key: `theme13_page${String(number).padStart(3, '0')}`,
+  themeKey: 'theme13', pageNumber: number, layout: `THEME13-${String(number).padStart(3, '0')}`,
+  slot, label, roles, bgClass: '', controls: [...common, ...controls], defaultProps,
+});
+const base = (pageNo, kicker, title) => ({
+  brand: 'ORBIT OPS', brandEn: 'OPERATIONS STUDIO', page: String(pageNo).padStart(2, '0'), total: '24', kicker, title,
+});
+
+export const theme = {
+  key: 'theme13', displayName: '青蓝运营风', label: '青蓝运营风', name: '青蓝运营风',
+  scenario: '运营管理、项目提案、公共服务、数据复盘', audience: '运营团队、项目负责人、管理层、咨询顾问', mode: 'new',
+};
+
+export const pages = [
+  page(1, 'cover', '封面 · 轨道留白', ['cover'], { ...base(1, 'OPERATIONS BRIEF', '让复杂运营更清晰'), subtitle: '面向项目与管理层的结构化表达', owner: '项目团队', date: '2026' }),
+  page(2, 'agenda', '目录 · 三段议程', ['breakdown'], { ...base(2, 'AGENDA', '本次讨论聚焦三件事'), items: ['现状判断', '关键选择', '下一步行动'], itemCount: 3 }, [count('itemCount', '议程数量', 3, 2, 3)]),
+  page(3, 'statement', '主张 · 单页判断', ['statement', 'observation'], { ...base(3, 'CORE VIEW', '先解决真实问题，再扩大建设范围'), body: '把资源投向已被业务验证的关键环节。', quote: '价值要在现场被看见。' }),
+  page(4, 'cards', '卡片 · 三项发现', ['overview', 'report'], { ...base(4, 'KEY FINDINGS', '三个发现决定推进顺序'), items: [{ tag: '01', title: '目标清晰', desc: '先明确真正要改善的业务结果。' }, { tag: '02', title: '边界清楚', desc: '对风险、责任和协作方式达成共识。' }, { tag: '03', title: '持续验证', desc: '用小步交付积累可靠证据。' }], itemCount: 3 }, [count('itemCount', '发现数量', 3, 2, 3)]),
+  page(5, 'hero-metric', '指标 · 关键数字', ['evidence', 'metrics'], { ...base(5, 'SIGNAL', '一个关键数字，说明现在应行动'), value: '72%', unit: '完成度', body: '用于承载一项最需要被关注的经营信号。', supporting: [{ label: '影响范围', value: '3 个团队' }, { label: '验证周期', value: '4 周' }, { label: '建议动作', value: '立即复盘' }], itemCount: 3, insight: '数字本身不是结论，关键在于它改变了什么决策。' }, [count('itemCount', '辅助信息', 3, 2, 3)]),
+  page(6, 'trend', '趋势 · 阶段变化', ['evidence', 'trend'], { ...base(6, 'TREND', '变化已经出现，下一步要验证能否持续'), series: [{ label: 'Q1', value: 42 }, { label: 'Q2', value: 55 }, { label: 'Q3', value: 68 }, { label: 'Q4', value: 76 }], insight: '趋势页应解释变化的业务含义，而非只展示曲线。' }),
+  page(7, 'comparison', '对比 · 两种路径', ['comparison', 'decision'], { ...base(7, 'OPTION REVIEW', '选择取决于价值、风险与组织条件'), left: { title: '稳健路径', desc: '先验证基础能力与使用习惯。', points: ['风险低', '反馈快', '范围可控'] }, right: { title: '跃迁路径', desc: '直接攻克高价值、复杂度高的难题。', points: ['价值高', '周期长', '依赖多'] }, insight: '没有通用最优解，只有与当前条件匹配的选择。' }),
+  page(8, 'metrics', '指标 · 四项总览', ['evidence', 'metrics'], { ...base(8, 'METRICS', '四项指标让讨论回到共同事实'), metrics: [{ value: '24', label: '活跃场景', delta: '+6' }, { value: '18', label: '协作成员', delta: '+3' }, { value: '8', label: '验证周期', delta: '-2 周' }, { value: '92%', label: '反馈闭环', delta: '+7 pp' }], itemCount: 4 }, [count('itemCount', '指标数量', 4, 2, 4)]),
+  page(9, 'overview', '概览 · 三个板块', ['overview', 'report'], { ...base(9, 'OVERVIEW', '一张图看清业务、能力与治理'), items: [{ no: '01', title: '业务目标', desc: '明确需要改善的结果', value: '价值' }, { no: '02', title: '交付能力', desc: '形成可复制的方法', value: '效率' }, { no: '03', title: '治理机制', desc: '守住质量与边界', value: '信任' }], itemCount: 3 }, [count('itemCount', '板块数量', 3, 2, 3)]),
+  page(10, 'process', '流程 · 四步推进', ['process', 'explanation'], { ...base(10, 'PROCESS', '把复杂事项拆成可验证的四个动作'), steps: [{ no: '01', title: '定义', desc: '界定问题与边界' }, { no: '02', title: '准备', desc: '补齐数据与协作' }, { no: '03', title: '验证', desc: '小范围检验效果' }, { no: '04', title: '扩展', desc: '沉淀为标准能力' }], itemCount: 4 }, [count('itemCount', '步骤数量', 4, 3, 4)]),
+  page(11, 'dual-case', '案例 · 双栏说明', ['case', 'comparison'], { ...base(11, 'CASE REVIEW', '用对照方式说明取舍与收益'), left: { title: '当前做法', desc: '依赖分散经验与人工衔接。', points: ['信息断点', '反馈滞后', '难以复用'] }, right: { title: '目标做法', desc: '围绕标准和反馈形成闭环。', points: ['统一入口', '过程可见', '经验沉淀'] }, insight: '案例的价值在于让抽象原则落到可讨论的差异。' }),
+  page(12, 'timeline', '时间线 · 关键节点', ['timeline', 'process'], { ...base(12, 'MILESTONES', '每个节点都应形成可以复核的成果'), phases: [{ no: 'A', title: '启动', desc: '确定范围与负责人' }, { no: 'B', title: '试行', desc: '验证效果与风险' }, { no: 'C', title: '固化', desc: '形成标准与复盘' }], itemCount: 3 }, [count('itemCount', '节点数量', 3, 2, 3)]),
+  page(13, 'projects', '项目 · 进度管理', ['timeline', 'report'], { ...base(13, 'PROJECTS', '透明的进度信息才能支持及时决策'), projects: [{ status: '进行中', title: '场景验证', progress: 72, owner: '运营组', date: '本月' }, { status: '准备中', title: '能力建设', progress: 45, owner: '项目组', date: '下月' }, { status: '规划中', title: '规模推广', progress: 18, owner: '管理组', date: '下季度' }], itemCount: 3 }, [count('itemCount', '项目数量', 3, 2, 3)]),
+  page(14, 'narrative', '叙事 · 观点展开', ['explanation', 'content'], { ...base(14, 'PERSPECTIVE', '清晰的机制解释，才能让建议被执行'), body: '将内容、流程和责任连接起来，避免只停留在概念层。', callout: '从一次成功走向持续可用。' }),
+  page(15, 'risk-actions', '风险 · 事项与行动', ['risks', 'actions'], { ...base(15, 'RISK CONTROL', '风险应被转化为可执行的控制动作'), items: [{ level: '高', title: '目标漂移', owner: '负责人', action: '每周复核优先级' }, { level: '中', title: '协作断点', owner: '项目组', action: '建立问题闭环' }, { level: '低', title: '采用不足', owner: '运营组', action: '持续收集反馈' }], itemCount: 3 }, [count('itemCount', '风险数量', 3, 2, 3)]),
+  page(16, 'closing', '结尾 · 行动收束', ['closing', 'actions'], { ...base(16, 'NEXT STEP', '把共识转化为下一次可验证的行动'), subtitle: '明确负责人、时间点与完成标准。', contact: 'OPERATIONS STUDIO' }),
+  page(17, 'executive-summary', '摘要 · 执行发现卡片', ['overview', 'statement'], { ...base(17, 'EXECUTIVE SUMMARY', '四项判断为下一轮决策提供起点'), items: [{ title: '方向', desc: '优先聚焦真实任务', tag: 'FOCUS' }, { title: '条件', desc: '同步审视能力与边界', tag: 'READINESS' }, { title: '方法', desc: '小范围验证再扩展', tag: 'METHOD' }, { title: '决策', desc: '用证据替代直觉', tag: 'DECISION' }], itemCount: 4, insight: '摘要页只呈现需要管理层带走的判断。' }, [count('itemCount', '发现数量', 4, 3, 4)]),
+  page(18, 'data-spotlight', '数据 · 单一指标证据', ['evidence', 'case'], { ...base(18, 'EVIDENCE', '一个数字的价值，在于揭示需要解决的问题'), value: '68%', unit: '达成率', headline: '关键任务已进入可规模化验证阶段', body: '用一项核心指标和三条辅助信息解释当前判断。', supporting: [{ value: '42', label: '参与任务' }, { value: '6', label: '协作单元' }, { value: '3.4×', label: '复用次数' }], itemCount: 3, insight: '数字应指向下一项决策，而不是停留在报表里。' }, [count('itemCount', '辅助信息', 3, 2, 3)]),
+  page(19, 'comparison-matrix', '对比 · 多维决策矩阵', ['comparison', 'decision'], { ...base(19, 'DECISION MATRIX', '在同一把尺子下比较选项，才能形成共识'), leftTitle: '方案 A', rightTitle: '方案 B', recommended: '推荐组合', rows: [{ dimension: '价值速度', left: '快速见效', right: '长期收益', verdict: '先快后深' }, { dimension: '组织条件', left: '协作要求低', right: '协作要求高', verdict: '分阶段推进' }, { dimension: '风险边界', left: '容易控制', right: '需要治理', verdict: '预设兜底' }, { dimension: '资源投入', left: '较轻', right: '较重', verdict: '按收益配置' }], itemCount: 4, insight: '矩阵的目的不是选唯一答案，而是明确取舍。' }, [count('itemCount', '对比维度', 4, 3, 4)]),
+  page(20, 'diagnosis-model', '诊断 · 根因关系模型', ['diagnosis', 'model'], { ...base(20, 'ROOT CAUSE', '表象问题背后，往往是机制与协作尚未形成闭环'), layers: [{ level: '表象', title: '结果不稳定', desc: '同类任务反复出现不同质量的输出', signal: '体验波动' }, { level: '运营原因', title: '过程不可见', desc: '输入、判断与反馈没有形成统一记录', signal: '难以复盘' }, { level: '结构根因', title: '规则未共建', desc: '责任、标准与例外处理没有共同定义', signal: '难以持续' }], insight: '先修复机制，再讨论扩大范围。' }),
+  page(21, 'architecture-model', '架构 · 分层关系模型', ['model', 'architecture'], { ...base(21, 'OPERATING MODEL', '四层结构把目标、能力、协作与治理连成闭环'), layers: [{ no: '01', title: '目标层', desc: '明确价值与优先级', tag: 'WHY' }, { no: '02', title: '能力层', desc: '形成工具与方法', tag: 'HOW' }, { no: '03', title: '协作层', desc: '连接角色与流程', tag: 'WHO' }, { no: '04', title: '治理层', desc: '守住标准与边界', tag: 'GUARDRAIL' }], itemCount: 4, insight: '统一的是规则与接口，不是每个团队的执行方式。' }, [count('itemCount', '层级数量', 4, 3, 4)]),
+  page(22, 'governance-network', '关系 · 多方协作模型', ['model', 'governance'], { ...base(22, 'COLLABORATION', '多方协作需要共同规则，而不是单点指令'), center: { title: '协作中枢', subtitle: '目标 · 标准 · 反馈 · 复盘' }, actors: [{ title: '业务团队', scope: '提出真实需求', rule: '定义结果与边界' }, { title: '交付团队', scope: '组织方案与验证', rule: '对过程与质量负责' }, { title: '运营团队', scope: '持续使用与反馈', rule: '沉淀可复用经验' }, { title: '治理团队', scope: '监督风险与合规', rule: '维护共同规则' }], itemCount: 4, insight: '每个参与方都应有清晰的责任、反馈和价值回报。' }, [count('itemCount', '参与方数量', 4, 3, 4)]),
+  page(23, 'roadmap-timeline', '路线 · 三阶段 Roadmap', ['timeline', 'actions'], { ...base(23, 'ROADMAP', '先验证，再沉淀，最后规模化'), phases: [{ no: '01', period: '0–3 月', title: '定义与试点', objective: '锁定高价值任务和边界', actions: '访谈 · 选择试点 · 建评估集', result: '可验证问题' }, { no: '02', period: '4–6 月', title: '迭代与固化', objective: '形成协作和质量闭环', actions: '灰度 · 反馈 · 复盘', result: '可复用方法' }, { no: '03', period: '7–12 月', title: '推广与运营', objective: '把经验变成组织能力', actions: '标准化 · 培训 · 运营', result: '可持续能力' }], itemCount: 3, insight: '每个阶段都应有可复核的结果，而不是只增加建设清单。' }, [count('itemCount', '阶段数量', 3, 2, 3)]),
+  page(24, 'decision-actions', '决策 · 优先级行动建议', ['decision', 'actions', 'closing'], { ...base(24, 'PRIORITY ACTIONS', '先完成三项基础决策，再扩大建设范围'), items: [{ priority: 'P0', title: '确认目标边界', desc: '明确要改善的结果与不可触碰的红线', owner: '管理层', timing: '立即' }, { priority: 'P1', title: '选择验证单元', desc: '以真实任务验证机制是否可运行', owner: '项目组', timing: '本月' }, { priority: 'P1', title: '建立反馈规则', desc: '定义质量、复盘与持续改进方式', owner: '运营组', timing: '试点同步' }], itemCount: 3, insight: '当前最重要的不是增加功能，而是尽快验证规则能否运行。' }, [count('itemCount', '行动数量', 3, 2, 3)]),
+];
