@@ -57,6 +57,7 @@ node <skill-root>/scripts/check_latest_version.mjs
 - 当前可选风格: `theme01` 轻拟态风、`theme02` 炫光紫绿风、`theme03` 深浅代码风、`theme04` 玻璃糖果风、`theme05` 色谱图表风、`theme06` 深色图谱风、`theme07` 冷白调研风、`theme08` 黑金实验风、`theme09` 深蓝杂志风、`theme10` 金色指数风、`theme11` 高能增长风、`theme12` 声波霓虹风、`theme13` 青蓝运营风。
 - 选版式前先按 `references/page-composition.md` 为每页定义 `pageJob`、结论式 `messageTitle`、`visualTranslation`、唯一 `primaryFocus`、`insightStrip` 和 `imagePolicy`;规划写入本次输出目录的 `composition-plan.json`,不要把这些规划字段写进 `goal.json`。
 - 页面标题应直接表达结论;图表、矩阵、模型和对比页必须包含读图结论或 `insight`;同一页同时承担两个主要任务时优先拆页。
+- 使用 `theme13` 时，`composition-plan.json` 顶层还要声明统一的 `deckDesign`：背景基调、是否显示左侧章节导航、短 deck 的内嵌章节标识和单页主视觉策略。风险色阶只用于明确的风险/优先级内容，不能用于普通并列信息。
 - 普通自动选择不选 `theme10`;只有用户明确指定,或金融/投资指数内容强相关且 inspect 确认可填时才用。
 <!-- theme-choice-hints:start -->
   - `theme01` 轻拟态风 | 适合: 产品介绍 / 企业汇报 | 人群: 创业团队 / 产品经理
