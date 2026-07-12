@@ -35,8 +35,8 @@ const base = (pageNo, kicker, title) => ({
 });
 
 export const theme = {
-  key: 'theme13', displayName: '青蓝运营风', label: '青蓝运营风', name: '青蓝运营风',
-  scenario: '运营管理、项目提案、公共服务、数据复盘', audience: '运营团队、项目负责人、管理层、咨询顾问', mode: 'new',
+  key: 'theme13', displayName: '水务环境风', label: '水务环境风', name: '水务环境风',
+  scenario: '水务运营、环境管理、项目提案、数据复盘', audience: '运营团队、项目负责人、管理层、咨询顾问', mode: 'new',
 };
 
 export const pages = [

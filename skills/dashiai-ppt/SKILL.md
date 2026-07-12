@@ -54,7 +54,7 @@ node <skill-root>/scripts/check_latest_version.mjs
 - Deck 语言跟随用户沟通语言:非中文用户在 `goal.json` 顶层加 `"language": "en"`(编辑器界面随之切英文);全部文案字段用目标语言撰写,页面自带的默认中文文案(含结尾页“感谢阅读”类装饰字段)一律覆盖,不得残留中文。
 - 交付格式:默认 HTML;“生成 PPT”“做 PPT”“做一个 PPT”“制作 ppt”表示 PPT 呈现形态。只有明确 `PPTX`、`PowerPoint`、`可编辑 PPTX`、`导出 PPTX`、`PPT 格式` 或“格式/文件类型为 PPT/PPTX”时才交付 PPTX 文件。
 - PPTX 文件:仍先生成 HTML 并启动本机预览服务,再调用本机 HTTP 导出服务;最终只给 PPTX 文件路径或下载结果。
-- 当前可选风格: `theme01` 轻拟态风、`theme02` 炫光紫绿风、`theme03` 深浅代码风、`theme04` 玻璃糖果风、`theme05` 色谱图表风、`theme06` 深色图谱风、`theme07` 冷白调研风、`theme08` 黑金实验风、`theme09` 深蓝杂志风、`theme10` 金色指数风、`theme11` 高能增长风、`theme12` 声波霓虹风、`theme13` 青蓝运营风。
+- 当前可选风格: `theme01` 轻拟态风、`theme02` 炫光紫绿风、`theme03` 深浅代码风、`theme04` 玻璃糖果风、`theme05` 色谱图表风、`theme06` 深色图谱风、`theme07` 冷白调研风、`theme08` 黑金实验风、`theme09` 深蓝杂志风、`theme10` 金色指数风、`theme11` 高能增长风、`theme12` 声波霓虹风、`theme13` 水务环境风。
 - 选版式前先按 `references/page-composition.md` 为每页定义 `pageJob`、结论式 `messageTitle`、`visualTranslation`、唯一 `primaryFocus`、`insightStrip` 和 `imagePolicy`;规划写入本次输出目录的 `composition-plan.json`,不要把这些规划字段写进 `goal.json`。
 - 页面标题应直接表达结论;图表、矩阵、模型和对比页必须包含读图结论或 `insight`;同一页同时承担两个主要任务时优先拆页。
 - 使用 `theme13` 时，`composition-plan.json` 顶层还要声明统一的 `deckDesign`：背景基调、是否显示左侧章节导航、短 deck 的内嵌章节标识和单页主视觉策略。风险色阶只用于明确的风险/优先级内容，不能用于普通并列信息。
@@ -72,7 +72,7 @@ node <skill-root>/scripts/check_latest_version.mjs
   - `theme10` 金色指数风 | 适合: 金融数据 / 投资报告 | 人群: 投资机构 / 金融分析师
   - `theme11` 高能增长风 | 适合: 增长复盘 / 商业计划 | 人群: 创业者 / 增长团队
   - `theme12` 声波霓虹风 | 适合: 音乐娱乐 / 潮流活动 | 人群: 娱乐品牌 / 活动策划
-  - `theme13` 青蓝运营风 | 适合: 运营管理 / 项目提案 / 公共服务 | 人群: 运营团队 / 项目负责人
+  - `theme13` 水务环境风 | 适合: 水务运营 / 环境管理 / 项目提案 | 人群: 运营团队 / 项目负责人
 <!-- theme-choice-hints:end -->
 - 不使用旧 token、旧主题、旧媒体槽、旧风格分支或旧入场动画控制。
 - 选页先用 `npm --prefix <skill-root>/project run layout:query -- --theme <themePack> --role <role> --limit 8`;需要媒体槽时加 `--needs-media`、`--planned-images <n>`、`--provided-images <n>` 或 `--image-gen`。候选顺序每次随机,从中任选合适的即可,不要固定只用列表第一条。

@@ -17,27 +17,20 @@
 
 A PPT skill built for people who actually present at work. Throw a document at your AI agent and get back, minutes later, a web-based deck that **opens offline, flips through horizontally, and puts an editing console on every single page** — fix whatever you don't like right in the browser, then **export a real, editable PPTX with one click**.
 
-- **12 visual themes**: Soft Neumorphic, Neon Glow, Code Mono, Glass Candy, Spectrum Charts, Dark Atlas, Cool White Research, Black Gold Lab, Deep Blue Editorial, Golden Index, High-Energy Growth, Soundwave Neon
-- **1,020 layout pages**: from dozens of chart types and analysis frameworks like SWOT / Porter's Five Forces / Business Model Canvas, to architecture diagrams, timelines, and photo galleries — every page you'd actually need in a real presentation comes as a ready-made layout
-- **8,576 tunable controls**: 2,372 sliders, 4,276 toggles, 1,825 dropdowns, plus a hundred-odd image / icon pickers — drag a slider to add or remove page modules
+- **13 visual themes**: Soft Neumorphic, Neon Glow, Code Mono, Glass Candy, Spectrum Charts, Dark Atlas, Cool White Research, Black Gold Lab, Deep Blue Editorial, Golden Index, High-Energy Growth, Soundwave Neon, and the new Water Environment style
+- **1,044 layout pages**: from dozens of chart types and analysis frameworks like SWOT / Porter's Five Forces / Business Model Canvas, to architecture diagrams, timelines, and photo galleries — every page you'd actually need in a real presentation comes as a ready-made layout
+- **8,712 tunable controls**: sliders, toggles, dropdowns, and image / icon pickers for adjusting modules and page expression
 - **Generation ≠ done**: edit text, swap layouts, switch charts, change palettes, restyle the whole deck — all in the browser, with every edit written back to the file automatically
 
 > We spent over two months polishing this skill together with the best designers on our team. The rich visuals are just the surface — the real problem we set out to solve: **Making a deck editable after generation matters more than the generation itself.**
 
-![Generated deck demo](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/hero-result.gif)
+## 13 Built-in Visual Themes
 
-## 12 Built-in Visual Themes
+Themes can be selected at generation time and replaced for the full deck later. The README intentionally does not embed theme previews or demo media, avoiding visual assets with unclear provenance.
 
-At generation time the skill shows you previews to choose from, and you can ask the agent to swap the whole theme at any point. Each preview below shows 4 body layouts picked from that theme's own layout library (charts, analysis frameworks, cards, table of contents, etc.) — **all actually rendered by this skill, not mockups**:
+### theme13 Water Environment Style (new)
 
-|  |  |
-|---|---|
-| <img src="https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/theme01.jpg" width="440" alt="theme01 Soft Neumorphic body layouts preview"><br>**theme01 Soft Neumorphic (轻拟态风)**<br>Best for: product intros, corporate reports, proposal walkthroughs, lightweight launches<br>Made for: startup teams, product managers, sales consultants | <img src="https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/theme02.jpg" width="440" alt="theme02 Neon Glow body layouts preview"><br>**theme02 Neon Glow (炫光紫绿风)**<br>Best for: tech launch events, AI / autonomous driving / robotics topics, growth stories<br>Made for: tech founders, engineering leads |
-| <img src="https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/theme03.jpg" width="440" alt="theme03 Code Mono body layouts preview"><br>**theme03 Code Mono (深浅代码风)**<br>Best for: technical proposals, developer conferences, system architecture, AI engineering practice<br>Made for: engineers, architects, developer communities | <img src="https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/theme04.jpg" width="440" alt="theme04 Glass Candy body layouts preview"><br>**theme04 Glass Candy (玻璃糖果风)**<br>Best for: youthful brands, consumer products, creative pitches, social-media-flavored content<br>Made for: brand teams, designers, content creators |
-| <img src="https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/theme05.jpg" width="440" alt="theme05 Spectrum Charts body layouts preview"><br>**theme05 Spectrum Charts (色谱图表风)**<br>Best for: data reports, market analysis, KPI reviews, industry research<br>Made for: data analysts, consultants, researchers | <img src="https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/theme06.jpg" width="440" alt="theme06 Dark Atlas body layouts preview"><br>**theme06 Dark Atlas (深色图谱风)**<br>Best for: dense data displays, strategic analysis, tech / finance / industry reports<br>Made for: strategy teams, investors, executive presenters |
-| <img src="https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/theme07.jpg" width="440" alt="theme07 Cool White Research body layouts preview"><br>**theme07 Cool White Research (冷白调研风)**<br>Best for: research reports, whitepapers, competitive analysis, academic / policy communication<br>Made for: research institutes, consulting teams, think tanks | <img src="https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/theme08.jpg" width="440" alt="theme08 Black Gold Lab body layouts preview"><br>**theme08 Black Gold Lab (黑金实验风)**<br>Best for: premium launches, brand pitches, experimental concepts, luxury-tech storytelling<br>Made for: high-end brands, creative directors |
-| <img src="https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/theme09.jpg" width="440" alt="theme09 Deep Blue Editorial body layouts preview"><br>**theme09 Deep Blue Editorial (深蓝杂志风)**<br>Best for: brand stories, interviews, corporate profiles, long-form features<br>Made for: PR teams, media editors, founders | <img src="https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/theme10.jpg" width="440" alt="theme10 Golden Index body layouts preview"><br>**theme10 Golden Index (金色指数风)**<br>Best for: financial data, investment reports, business indices, annual rankings<br>Made for: investment firms, financial analysts, business media |
-| <img src="https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/theme11.jpg" width="440" alt="theme11 High-Energy Growth body layouts preview"><br>**theme11 High-Energy Growth (高能增长风)**<br>Best for: growth reviews, business plans, fundraising pitches, market expansion plans<br>Made for: founders, growth teams, VC/PE roadshows | <img src="https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/theme12.jpg" width="440" alt="theme12 Soundwave Neon body layouts preview"><br>**theme12 Soundwave Neon (声波霓虹风)**<br>Best for: music and entertainment, trend events, livestream content, youth-oriented launches<br>Made for: entertainment brands, event planners, trend-driven consumer brands |
+Built for water operations, environmental management, public-utility proposals, and data reviews. Its 24 layouts cover executive summaries, KPIs, trends, comparisons, root-cause diagnosis, layered architecture, governance, roadmaps, risk control, and priority actions. It supports cool blue and warm paper backgrounds, optional section navigation, and risk tiers that pair each item with an owner and a control action.
 
 ## Get Started in 30 Seconds
 
@@ -90,13 +83,13 @@ Or try these:
 
 ## Highlights
 
-- 🎨 **12 visual themes**: from Soft Neumorphic to Soundwave Neon, covering product intros, technical proposals, data reports, brand stories, fundraising pitches, and more
-- 🧩 **1,020 layout pages**: each theme has its own page structures and visual language, spanning 20 page roles (cover, table of contents, metrics, trends, comparison, process, risk, closing...)
+- 🎨 **13 visual themes**: from Soft Neumorphic to Soundwave Neon, plus Water Environment style for management-focused reporting
+- 🧩 **1,044 layout pages**: each theme has its own page structures and visual language, spanning 20 page roles (cover, table of contents, metrics, trends, comparison, process, risk, closing...)
 - 📊 **Charts and analysis frameworks out of the box**: radar, waterfall, treemap, funnel, heatmap, Sankey, and Gantt charts, plus framework layouts for SWOT, Porter's Five Forces, PEST, Business Model Canvas, Double Diamond, and more
 - 🎛 **A console on every page**: sliders, toggles, dropdowns — switch layouts, tune module counts, change palettes, shift the page's focus, all with a single drag
 - ✏️ **All text is editable**: click any text to edit it in place; decorated text auto-adapts as the length changes
 - 🖼 **Click-to-swap images / videos**: click or drag onto a media slot to replace it, with automatic image compression; text-only source material gets image placeholders reserved automatically
-- 🔄 **One-click restyling**: reskin the same content across all 12 themes in real time, with 9 page-transition animations to choose from
+- 🔄 **One-click restyling**: reskin the same content across all 13 themes in real time, with 9 page-transition animations to choose from
 - 📄 **Three export formats**: single-file offline HTML / PDF / editable PPTX — or ask for PPTX from the very start
 - 💾 **Fully local**: generation, editing, and export all happen on your machine; edits write back to the file automatically, and the finished deck doesn't depend on the original asset paths
 
@@ -125,10 +118,6 @@ Or try these:
 - **Lighter to deliver**: bundle into a single offline HTML file with one click; the local preview server allows LAN access by default, so phones and tablets on the same WiFi can open it directly.
 - **It doesn't lock you into the web**: if you're tired of the AI era's "fake PPTs dressed up as web pages", export a real PPTX with one click — reconstructed node by node, with text kept editable. The export engine, [html-deck-to-pptx](skills/dashiai-ppt/project/packages/html-deck-to-pptx), is open-sourced under MIT.
 
-Page-by-page comparison between the HTML deck and the exported PPTX:
-
-![Page-by-page comparison of HTML deck and exported PPTX](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/html-vs-pptx.gif)
-
 ## Platform Support
 
 > **This skill is agent-agnostic.** The real bar is capability, not brand — any AI agent that can **read/write local files, run shell commands, and has a local Node.js environment** can use it to generate and export decks. The table below only lists platforms we've tested; it does not mean "these only".
@@ -147,15 +136,13 @@ Page-by-page comparison between the HTML deck and the exported PPTX:
 Drop in whatever document you have and say you want a deck (the agent discovers this skill on its own — or name `dashiai-ppt` to force it), then wait a few minutes for a complete deck:
 
 1. **Describe what you need** — topic, audience, page count, the takeaways you want to land (a bare topic is fine too; the AI will draft the content)
-2. **Pick a style** — if you haven't specified one, the skill shows previews of all 12 themes and lets you choose (it never decides for you), and confirms whether you need images / video
+2. **Pick a style** — if you haven't specified one, the skill lists all 13 themes and lets you choose, and confirms whether you need images / video
 3. **Auto-drafting** — the skill distills your request into a structured `goal.json`, picks pages from the layout library, fills in the copy, and renders after multiple validation passes
 4. **Get a link** — generation ends with a local URL; open it and you're inside the web deck editor
 5. **Edit as you go** — every page has a console: edit text, swap images, tune module counts, change palettes; every change saves back to the file automatically
 6. **Deliver** — not happy? Ask the agent to restyle and redo. Happy? Export offline HTML / PDF / editable PPTX
 
-If your source material is text-only, the skill reserves image slots on the right pages as appropriate; click a placeholder later to fill it in:
-
-![One-click image fill for placeholders](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/image-placeholder.gif)
+If source material is text-only, the skill reserves image slots on suitable pages so that self-owned media can be added later.
 
 ## Editing After Generation: Every Page Has Its Own Console
 
@@ -165,27 +152,13 @@ The single most important design decision in this skill: **how you edit after ge
 
 Click any text anywhere to edit it; decorated text auto-adapts to its length. Click or drag onto image and video slots to replace them; uploaded images are compressed automatically.
 
-| Click any text to edit in place | Add an image |
-|---|---|
-| ![Click text to edit in place; decorative elements adapt to text length](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/text-edit.gif) | ![Insert an image into a page](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/add-image.gif) |
-
 ### Console edits: layout, module count, charts, palettes
 
 TOC pages, table pages, multi-item pages (layouts with several parallel entries), and image-text pages — drag the slider on the right of the console to set how many modules a page shows; you can also shift the page's logical emphasis with a slider to control the pacing of your talk.
 
-| Drag a slider to add or remove modules | Switch layouts |
-|---|---|
-| ![Drag sliders to adjust TOC, table, multi-item, and image counts](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/slider-edit.gif) | ![Switch a page layout in one sentence](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/layout-switch.gif) |
-
-| Swap charts | Palette switching within a theme |
-|---|---|
-| ![Swap chart types in one sentence](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/chart-switch.gif) | ![Each theme supports local palette swaps](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/palette-switch.gif) |
-
 ### Page transitions
 
-9 built-in transition animations: liquid morph, cut-in, horizontal slide, line sweep, zoom, vertical bars, blend, horizontal cut, gallery (you can also switch animations off entirely with one click). Pick the one you like in the console and switch instantly:
-
-![Page transition animations](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/transitions.gif)
+9 built-in transition animations: liquid morph, cut-in, horizontal slide, line sweep, zoom, vertical bars, blend, horizontal cut, and gallery. They can also be disabled with one click.
 
 ### And more
 
@@ -195,25 +168,13 @@ TOC pages, table pages, multi-item pages (layouts with several parallel entries)
 
 ## What's in the Layout Library
 
-While writing this README, we rendered all 12 themes for real and went through the full list of 1,020 layouts. Just about every page you'd actually use in a report has a ready-made layout:
+The 13 themes provide 1,044 layouts. Just about every page you'd actually use in a report has a ready-made layout:
 
 - **Chart pages**: line, bar, waterfall, radar, treemap, funnel, heatmap, Sankey, dumbbell, bubble, scatter, rose, Pareto, sunburst, waffle, slope... dozens of chart forms as ready-made pages — the AI rewrites both the data and the takeaway copy to fit your content
 - **Analysis frameworks**: SWOT, Porter's Five Forces, PEST, Business Model Canvas, BCG Matrix, Double Diamond, AARRR, RFM, flywheel, technology hype cycle, swimlane diagrams, Gantt scheduling
 - **Architecture and relationships**: industry chain tiers, hierarchies, radial relationships, network graphs, mind maps, org charts, ecosystems
 - **Image-text pages**: galleries, filmstrips, mosaic collages, polaroids, diptychs/triptychs, mood boards, photo walls
 - **Narrative pacing pages**: pull quotes, manifestos, chapter dividers, TOC, timelines, milestones, FAQ, team intros, closing pages
-
-A pass through the chart layouts (at 2x speed):
-
-![Tour of chart layouts](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/layouts-tour.gif)
-
-Built-in analysis frameworks and specialized layouts (SWOT, Porter's Five Forces, PEST, Business Model Canvas, Double Diamond, capital-flow Sankey...):
-
-![Built-in analysis framework layouts](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/analysis-models.png)
-
-The high-frequency staples — TOC, table, big-number poster, and image-text pages:
-
-![Common layouts](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/common-layouts.png)
 
 How the library is organized:
 
@@ -228,8 +189,6 @@ The export menu in the top-right corner of the browser has three options:
 - **HTML**: bundled fully client-side into a single offline file — double-click to open, share with anyone
 - **PDF**: for archiving and printing
 - **PPTX**: **editable export** — layouts reconstructed node by node, all text kept editable; perfectly fine to hand off to your boss / professor / teammates for further edits
-
-![One-click export to editable PPT](https://github.com/chuspeeism/dashiAI-ppt-skill/releases/download/readme-assets-v1/export-pptx.gif)
 
 You can even skip the HTML intermediate entirely — tell the agent "use this skill to generate a PPT file" and go from prompt straight to PPTX.
 
@@ -251,13 +210,13 @@ dashiAI-ppt-skill/
 ├── agents/
 │   └── openai.yaml       ← Codex / OpenAI agent interface config
 ├── assets/               ← Theme previews, icons, README images
-├── project/              ← Built-in generator (React rendering, 12 themes, export engines)
-│   ├── layout-manifest.json  ← Field contracts for all 1,020 layouts
+├── project/              ← Built-in generator (React rendering, 13 themes, export engines)
+│   ├── layout-manifest.json  ← Field contracts for all 1,044 layouts
 │   ├── scripts/              ← Render / validate / preview / export scripts
 │   └── packages/html-deck-to-pptx  ← Editable PPTX export engine (MIT)
 ├── references/
 │   ├── options.md            ← Theme catalog and generation options
-│   ├── layout-pool.md        ← Layout pools for the 12 themes
+│   ├── layout-pool.md        ← Layout pools for the 13 themes
 │   ├── layout-roles.md       ← The 20 page roles explained
 │   ├── goal-spec.schema.json ← JSON Schema for goal.json
 │   └── examples/             ← Two sample specs: product portfolio strategy, fundraising annual review
@@ -316,13 +275,3 @@ This project is licensed under the **GNU Affero General Public License v3.0 (AGP
 **Exception:** the subpackage [`project/packages/html-deck-to-pptx`](skills/dashiai-ppt/project/packages/html-deck-to-pptx) is independently licensed under the **MIT License** (see the LICENSE file in that directory) and may be freely used in closed-source or commercial projects.
 
 Copyright (c) 2026 [chuspeeism](https://github.com/chuspeeism). See the [LICENSE](LICENSE) file for the full text. For commercial licensing beyond AGPL-3.0, please contact the author.
-
-## Star History
-
-<a href="https://www.star-history.com/#chuspeeism/dashiAI-ppt-skill&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=chuspeeism/dashiAI-ppt-skill&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=chuspeeism/dashiAI-ppt-skill&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=chuspeeism/dashiAI-ppt-skill&type=Date" />
- </picture>
-</a>

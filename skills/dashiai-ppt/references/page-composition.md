@@ -31,7 +31,7 @@
 {"pages":[{"page":3,"pageJob":"decision","messageTitle":"先完成三项基础决策，再扩大建设范围","visualTranslation":"priority action cards","primaryFocus":"三项决策","insightStrip":"先验证规则，再扩大投入","imagePolicy":"CSS/SVG only"}]}
 ```
 
-## 青蓝运营风的视觉决策
+## 水务环境风的视觉决策
 
 使用 `theme13` 时，在构图计划顶层补充一个 `deckDesign` 对象；它只约束视觉选择，不写入 `goal.json`。这样页面不会因为逐页临时换底色、换装饰而失去整体感。
 
