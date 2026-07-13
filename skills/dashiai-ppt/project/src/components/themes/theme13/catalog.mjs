@@ -7,20 +7,10 @@ const palette = {
   ],
 };
 
-const backgroundVariant = {
-  key: 'backgroundVariant', label: '页面底色', type: 'select', def: 'cool', publicKey: 'backgroundVariant',
-  options: [
-    { value: 'cool', label: '浅青蓝' },
-    { value: 'paper', label: '暖白纸感' },
-  ],
-};
-
 const common = [
   palette,
-  backgroundVariant,
   { key: 'showBrand', label: '品牌标识', type: 'toggle', def: true, publicKey: 'showBrand' },
   { key: 'showPage', label: '页码', type: 'toggle', def: true, publicKey: 'showPage' },
-  { key: 'showRail', label: '左侧章节导航', type: 'toggle', def: false, publicKey: 'showRail' },
 ];
 
 const count = (key, label, def, min, max) => ({ key, label, type: 'slider', def, min, max, step: 1, publicKey: key });
@@ -31,12 +21,11 @@ const page = (number, slot, label, roles, defaultProps, controls = []) => ({
 });
 const base = (pageNo, kicker, title) => ({
   brand: 'ORBIT OPS', brandEn: 'OPERATIONS STUDIO', page: String(pageNo).padStart(2, '0'), total: '24', kicker, title,
-  backgroundVariant: 'cool', showRail: false, section: '运营判断',
 });
 
 export const theme = {
   key: 'theme13', displayName: '水务环境风', label: '水务环境风', name: '水务环境风',
-  scenario: '水务运营、环境管理、项目提案、数据复盘', audience: '运营团队、项目负责人、管理层、咨询顾问', mode: 'new',
+  scenario: '运营管理、项目提案、公共服务、数据复盘', audience: '运营团队、项目负责人、管理层、咨询顾问', mode: 'new',
 };
 
 export const pages = [
@@ -54,7 +43,7 @@ export const pages = [
   page(12, 'timeline', '时间线 · 关键节点', ['timeline', 'process'], { ...base(12, 'MILESTONES', '每个节点都应形成可以复核的成果'), phases: [{ no: 'A', title: '启动', desc: '确定范围与负责人' }, { no: 'B', title: '试行', desc: '验证效果与风险' }, { no: 'C', title: '固化', desc: '形成标准与复盘' }], itemCount: 3 }, [count('itemCount', '节点数量', 3, 2, 3)]),
   page(13, 'projects', '项目 · 进度管理', ['timeline', 'report'], { ...base(13, 'PROJECTS', '透明的进度信息才能支持及时决策'), projects: [{ status: '进行中', title: '场景验证', progress: 72, owner: '运营组', date: '本月' }, { status: '准备中', title: '能力建设', progress: 45, owner: '项目组', date: '下月' }, { status: '规划中', title: '规模推广', progress: 18, owner: '管理组', date: '下季度' }], itemCount: 3 }, [count('itemCount', '项目数量', 3, 2, 3)]),
   page(14, 'narrative', '叙事 · 观点展开', ['explanation', 'content'], { ...base(14, 'PERSPECTIVE', '清晰的机制解释，才能让建议被执行'), body: '将内容、流程和责任连接起来，避免只停留在概念层。', callout: '从一次成功走向持续可用。' }),
-  page(15, 'risk-actions', '风险 · 事项与行动', ['risks', 'actions'], { ...base(15, 'RISK CONTROL', '风险应被转化为可执行的控制动作'), items: [{ level: '高', title: '目标漂移', owner: '负责人', action: '每周复核优先级' }, { level: '中', title: '协作断点', owner: '项目组', action: '建立问题闭环' }, { level: '低', title: '采用不足', owner: '运营组', action: '持续收集反馈' }], itemCount: 3, insight: '风险色阶只表达优先级，需同步给出责任人与控制动作。' }, [count('itemCount', '风险数量', 3, 2, 3)]),
+  page(15, 'risk-actions', '风险 · 事项与行动', ['risks', 'actions'], { ...base(15, 'RISK CONTROL', '风险应被转化为可执行的控制动作'), items: [{ level: '高', title: '目标漂移', owner: '负责人', action: '每周复核优先级' }, { level: '中', title: '协作断点', owner: '项目组', action: '建立问题闭环' }, { level: '低', title: '采用不足', owner: '运营组', action: '持续收集反馈' }], itemCount: 3 }, [count('itemCount', '风险数量', 3, 2, 3)]),
   page(16, 'closing', '结尾 · 行动收束', ['closing', 'actions'], { ...base(16, 'NEXT STEP', '把共识转化为下一次可验证的行动'), subtitle: '明确负责人、时间点与完成标准。', contact: 'OPERATIONS STUDIO' }),
   page(17, 'executive-summary', '摘要 · 执行发现卡片', ['overview', 'statement'], { ...base(17, 'EXECUTIVE SUMMARY', '四项判断为下一轮决策提供起点'), items: [{ title: '方向', desc: '优先聚焦真实任务', tag: 'FOCUS' }, { title: '条件', desc: '同步审视能力与边界', tag: 'READINESS' }, { title: '方法', desc: '小范围验证再扩展', tag: 'METHOD' }, { title: '决策', desc: '用证据替代直觉', tag: 'DECISION' }], itemCount: 4, insight: '摘要页只呈现需要管理层带走的判断。' }, [count('itemCount', '发现数量', 4, 3, 4)]),
   page(18, 'data-spotlight', '数据 · 单一指标证据', ['evidence', 'case'], { ...base(18, 'EVIDENCE', '一个数字的价值，在于揭示需要解决的问题'), value: '68%', unit: '达成率', headline: '关键任务已进入可规模化验证阶段', body: '用一项核心指标和三条辅助信息解释当前判断。', supporting: [{ value: '42', label: '参与任务' }, { value: '6', label: '协作单元' }, { value: '3.4×', label: '复用次数' }], itemCount: 3, insight: '数字应指向下一项决策，而不是停留在报表里。' }, [count('itemCount', '辅助信息', 3, 2, 3)]),

@@ -30,7 +30,7 @@ Themes can be selected at generation time and replaced for the full deck later. 
 
 ### theme13 Water Environment Style (new)
 
-Built for water operations, environmental management, public-utility proposals, and data reviews. Its 24 layouts cover executive summaries, KPIs, trends, comparisons, root-cause diagnosis, layered architecture, governance, roadmaps, risk control, and priority actions. It supports cool blue and warm paper backgrounds, optional section navigation, and risk tiers that pair each item with an owner and a control action.
+Built for water operations, environmental management, public-utility proposals, and data reviews. Its 24 layouts cover executive summaries, KPIs, trends, comparisons, root-cause diagnosis, layered architecture, governance, roadmaps, risk control, and priority actions. It keeps the original blue-cyan palette, ring accents, card structure, and page footer treatment.
 
 ## Get Started in 30 Seconds
 

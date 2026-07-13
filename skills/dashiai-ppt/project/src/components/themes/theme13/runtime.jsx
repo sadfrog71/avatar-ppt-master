@@ -2,30 +2,21 @@ import React from 'react';
 import { pages } from './catalog.mjs';
 
 const PALETTES = {
-  ocean: { ink: '#17324D', primary: '#00467F', accent: '#0099CC', glow: '#8DD7E8', paper: '#EAF7FB', mist: '#F7FCFA', line: '#C7E1E6', warm: '#D6812B', muted: '#607482', positive: '#1C9853', danger: '#C0392B', caution: '#D6A21A' },
+  ocean: { ink: '#102A43', primary: '#1565A9', accent: '#10A6A5', glow: '#8DD7E8', paper: '#F8FBFD', mist: '#E8F2F7', line: '#B9D4E2', warm: '#F2B84B', muted: '#60758A' },
   spruce: { ink: '#183B35', primary: '#116B5D', accent: '#57AF7C', glow: '#A6DDD2', paper: '#F8FCFA', mist: '#E9F5F0', line: '#B9DDD0', warm: '#E9B64A', muted: '#627A72' },
   violet: { ink: '#292449', primary: '#5742A6', accent: '#8A67D7', glow: '#B5B5EE', paper: '#FAFAFE', mist: '#EFEFFC', line: '#CAC8EF', warm: '#E8B64B', muted: '#706D8D' },
 };
 const FONT = "'Microsoft YaHei','PingFang SC',Arial,sans-serif";
 const c = key => PALETTES[key] || PALETTES.ocean;
 
-function Root({ children, palette, dark = false, backgroundVariant, showRail, section, showBrand, brand, brandEn, showPage, page, total }) {
+function Root({ children, palette, dark = false, showBrand, brand, brandEn, showPage, page, total }) {
   const x = c(palette);
-  const background = dark ? x.ink : backgroundVariant === 'paper' ? '#F7F5F0' : x.paper;
-  return <section style={{ position: 'relative', width: 1920, height: 1080, overflow: 'hidden', fontFamily: FONT, background, color: dark ? '#fff' : x.ink }}>
+  return <section style={{ position: 'relative', width: 1920, height: 1080, overflow: 'hidden', fontFamily: FONT, background: dark ? x.ink : x.paper, color: dark ? '#fff' : x.ink }}>
     <CornerArt x={x} dark={dark} />
-    {showRail && !dark && <LeftRail x={x} section={section} />}
     {showBrand !== false && <Brand x={x} dark={dark} name={brand} sub={brandEn} />}
     {children}
     <Footer x={x} dark={dark} show={showPage} page={page} total={total} />
   </section>;
-}
-
-function LeftRail({ x }) {
-  return <div aria-hidden="true" style={{ position: 'absolute', left: 42, top: 88, bottom: 70, width: 2, background: x.line }}>
-    <div style={{ position: 'absolute', top: 0, left: -5, width: 12, height: 12, borderRadius: '50%', background: x.primary }} />
-    <div style={{ position: 'absolute', bottom: 0, left: -4, width: 10, height: 10, borderRadius: '50%', background: x.accent }} />
-  </div>;
 }
 
 function CornerArt({ x, dark }) {
@@ -47,8 +38,8 @@ function Footer({ x, dark, show, page, total }) {
   return <><div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 18, display: 'flex' }}><div style={{ flex: 5, background: x.primary }} /><div style={{ flex: 1.2, background: x.glow }} /><div style={{ flex: .7, background: x.accent }} /></div>{show !== false && <div style={{ position: 'absolute', right: 72, bottom: 40, fontSize: 17, fontWeight: 800, letterSpacing: 2, color: dark ? '#fff' : x.primary }}>{page} / {total}</div>}</>;
 }
 
-function Header({ x, kicker, title, section, wide = false }) {
-  return <div style={{ position: 'absolute', left: 78, top: 148, width: wide ? 1620 : 1480 }}>{section && <div style={{ color: x.muted, fontSize: 14, fontWeight: 800, letterSpacing: 2, marginBottom: 14 }}>{section}</div>}<div style={{ color: x.accent, fontSize: 18, fontWeight: 850, letterSpacing: 4 }}>{kicker}</div><div style={{ marginTop: 22, fontSize: 58, lineHeight: 1.16, fontWeight: 800, letterSpacing: -2 }}>{title}</div></div>;
+function Header({ x, kicker, title, wide = false }) {
+  return <div style={{ position: 'absolute', left: 78, top: 160, width: wide ? 1620 : 1480 }}><div style={{ color: x.accent, fontSize: 18, fontWeight: 850, letterSpacing: 4 }}>{kicker}</div><div style={{ marginTop: 22, fontSize: 58, lineHeight: 1.16, fontWeight: 800, letterSpacing: -2 }}>{title}</div></div>;
 }
 function Insight({ x, children }) { return <div style={{ position: 'absolute', left: 76, bottom: 58, width: 1510, minHeight: 46, padding: '12px 22px', borderLeft: `8px solid ${x.accent}`, background: x.mist, color: x.primary, fontSize: 18, lineHeight: 1.35, fontWeight: 700 }}>{children}</div>; }
 const Cell = ({ x, children, dark = false, style = {} }) => <div style={{ background: dark ? x.primary : '#fff', color: dark ? '#fff' : x.ink, borderTop: `8px solid ${dark ? x.warm : x.accent}`, ...style }}>{children}</div>;
@@ -65,7 +56,7 @@ function Overview(props) { const x=c(props.palette), items=(props.items||[]).sli
 function Steps(props) { const x=c(props.palette), steps=(props.steps||props.phases||[]).slice(0,props.itemCount||4); return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:110,right:110,top:450,display:'flex',alignItems:'stretch'}}>{steps.map((v,i)=><React.Fragment key={v.no}><Cell x={x} dark={i===0} style={{flex:1,padding:'28px',minHeight:280}}><div style={{fontSize:22,fontWeight:850,color:i===0?x.glow:x.accent}}>{v.no}</div><div style={{fontSize:30,fontWeight:850,marginTop:36}}>{v.title}</div><div style={{fontSize:19,lineHeight:1.5,marginTop:18,opacity:.75}}>{v.desc}</div></Cell>{i<steps.length-1&&<div style={{width:38,display:'grid',placeItems:'center',fontSize:30,color:x.accent}}>→</div>}</React.Fragment>)}</div></Root>; }
 function Projects(props) { const x=c(props.palette), items=(props.projects||[]).slice(0,props.itemCount||3); return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:92,right:92,top:410,display:'grid',gap:20}}>{items.map((v,i)=><div key={v.title} style={{display:'grid',gridTemplateColumns:'140px 1fr 170px 150px',gap:28,alignItems:'center',padding:'26px 30px',background:i===0?x.primary:x.mist,color:i===0?'#fff':x.ink}}><div style={{fontWeight:850,color:i===0?x.glow:x.accent}}>{v.status}</div><div><div style={{fontSize:29,fontWeight:850}}>{v.title}</div><div style={{height:10,background:i===0?'rgba(255,255,255,.2)':x.line,marginTop:16}}><div style={{height:'100%',width:`${v.progress}%`,background:i===0?x.warm:x.accent}}/></div></div><div style={{fontSize:19}}>{v.owner}</div><div style={{fontWeight:800}}>{v.date}</div></div>)}</div></Root>; }
 function Narrative(props) { const x=c(props.palette); return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:150,top:430,width:1120,fontSize:28,lineHeight:1.65,color:x.muted}}>{props.body}</div><div style={{position:'absolute',left:150,top:650,width:940,padding:'30px 38px',background:x.primary,color:'#fff',fontSize:26,fontWeight:750,borderLeft:`10px solid ${x.warm}`}}>{props.callout}</div></Root>; }
-function Risks(props) { const x=c(props.palette), items=(props.items||[]).slice(0,props.itemCount||3), tone=v=>v.level==='高'?{bg:'#FFEEEF',mark:x.danger,label:'高风险'}:v.level==='中'?{bg:'#FFF8E1',mark:x.caution,label:'需关注'}:{bg:'#E8F5E9',mark:x.positive,label:'可控'}; return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:92,right:92,top:420,display:'grid',gap:18}}>{items.map(v=>{const t=tone(v); return <div key={v.title} style={{display:'grid',gridTemplateColumns:'142px 340px 220px 1fr',gap:26,alignItems:'center',padding:'26px 34px',background:t.bg,color:x.ink,borderLeft:`12px solid ${t.mark}`}}><div style={{fontWeight:900,color:t.mark}}><span style={{display:'inline-block',width:10,height:10,borderRadius:'50%',background:t.mark,marginRight:10}}/>{t.label}</div><div style={{fontSize:29,fontWeight:850}}>{v.title}</div><div>{v.owner}</div><div style={{fontSize:20,fontWeight:700}}>{v.action}</div></div>})}</div><Insight x={x}>{props.insight||'风险色阶只表达优先级，需同步给出责任人与控制动作。'}</Insight></Root>; }
+function Risks(props) { const x=c(props.palette), items=(props.items||[]).slice(0,props.itemCount||3); return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:92,right:92,top:420,display:'grid',gap:18}}>{items.map((v,i)=><div key={v.title} style={{display:'grid',gridTemplateColumns:'110px 340px 220px 1fr',gap:26,alignItems:'center',padding:'26px 34px',background:i===0?x.primary:x.mist,color:i===0?'#fff':x.ink}}><div style={{fontWeight:900,color:i===0?x.warm:x.accent}}>{v.level}</div><div style={{fontSize:29,fontWeight:850}}>{v.title}</div><div>{v.owner}</div><div style={{fontSize:20,fontWeight:700}}>{v.action}</div></div>)}</div></Root>; }
 function Closing(props) { const x=c(props.palette); return <Root {...props} dark><div style={{position:'absolute',left:150,top:360,width:1180}}><div style={{fontSize:20,color:x.glow,fontWeight:850,letterSpacing:4}}>{props.kicker}</div><div style={{fontSize:78,fontWeight:850,marginTop:26}}>{props.title}</div><div style={{fontSize:30,color:'rgba(255,255,255,.72)',marginTop:32}}>{props.subtitle}</div><div style={{marginTop:84,fontSize:20,color:x.glow}}>{props.contact}</div></div></Root>; }
 function ExecutiveSummary(props) { return <Cards {...props} />; }
 function DataSpotlight(props) { return <HeroMetric {...props} />; }

@@ -31,34 +31,6 @@
 {"pages":[{"page":3,"pageJob":"decision","messageTitle":"先完成三项基础决策，再扩大建设范围","visualTranslation":"priority action cards","primaryFocus":"三项决策","insightStrip":"先验证规则，再扩大投入","imagePolicy":"CSS/SVG only"}]}
 ```
 
-## 水务环境风的视觉决策
-
-使用 `theme13` 时，在构图计划顶层补充一个 `deckDesign` 对象；它只约束视觉选择，不写入 `goal.json`。这样页面不会因为逐页临时换底色、换装饰而失去整体感。
-
-```json
-{
-  "deckDesign": {
-    "backgroundVariant": "cool",
-    "showRail": true,
-    "chapterPattern": "inline",
-    "focalPolicy": "one-per-page"
-  }
-}
-```
-
-- `backgroundVariant`：运营、技术、数据复盘选 `cool`；管理层提案、白皮书选 `paper`。全 deck 只能选一种。
-- `showRail`：8 页以上启用左侧章节导航；5 页以内关闭，避免装饰挤占内容区。
-- `chapterPattern`：5–10 页使用 `inline`（内容页顶部的小章节标识）；15 页以上才插入独立章节页。
-- `focalPolicy`：每页最多一个主视觉。大表格、大图表、现场照片、架构图、KPI 组只能选一个作为焦点。
-
-### 风险与优先级表达
-
-风险页只在内容存在明确的优先级、问题或边界时使用色阶。高风险用红、中风险用黄、可控项用绿；每项同时写清责任人与控制动作。并列信息仍使用中性对比或卡片，不能因为排版方便而人为制造风险层级。
-
-### 内容页最低要求
-
-内容页不能只放段落。每页至少选择一个业务视觉：KPI、趋势、对比、决策三件套、30/60/90 行动表、流程、架构、进度、风险清单或证据图片。标题要先给判断，再让视觉证明它。
-
 ## 检查清单
 
 - 标题是否直接表达判断。
