@@ -1,20 +1,20 @@
 {
-  "name": "dashiai-ppt-skill",
+  "name": "avatar-ppt-master",
   "owner": {
-    "name": "大师的AI小灶"
+    "name": "Avatar PPT Master"
   },
   "metadata": {
-    "description": "DashiAI PPT skill marketplace",
+    "description": "面向内部汇报与方案材料的 Avatar PPT Master Skill",
     "version": "0.2.0"
   },
   "plugins": [
     {
-      "name": "dashiai-ppt",
-      "description": "制作 PPT、演示文稿、幻灯片、汇报材料时使用。DashiAI PPT 基于预置视觉主题组合页面,生成可离线打开、可在浏览器编辑的 HTML 演示,支持导出 PPTX / PDF 文件。",
+      "name": "avatar-ppt-master",
+      "description": "面向内部汇报、方案提案、项目复盘和研究材料生成 PPT。先规划内容结构，再组合预置主题页面，支持 HTML、PDF 和可编辑 PPTX。",
       "source": "./",
       "strict": false,
       "skills": [
-        "./skills/dashiai-ppt"
+        "./skills/avatar-ppt-master"
       ]
     }
   ]
