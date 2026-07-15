@@ -2,51 +2,71 @@ import React from 'react';
 import { pages } from './catalog.mjs';
 
 const PALETTES = {
-  ocean: { ink: '#102A43', primary: '#1565A9', accent: '#10A6A5', glow: '#8DD7E8', paper: '#F8FBFD', mist: '#E8F2F7', line: '#B9D4E2', warm: '#F2B84B', muted: '#60758A' },
-  spruce: { ink: '#183B35', primary: '#116B5D', accent: '#57AF7C', glow: '#A6DDD2', paper: '#F8FCFA', mist: '#E9F5F0', line: '#B9DDD0', warm: '#E9B64A', muted: '#627A72' },
-  violet: { ink: '#292449', primary: '#5742A6', accent: '#8A67D7', glow: '#B5B5EE', paper: '#FAFAFE', mist: '#EFEFFC', line: '#CAC8EF', warm: '#E8B64B', muted: '#706D8D' },
+  ocean: { ink: '#003F7D', primary: '#0092D7', accent: '#1D9B54', glow: '#7CCEF4', paper: '#FFFFFF', mist: '#EAF6FC', line: '#C9E8F6', warm: '#1D9B54', muted: '#496D8C' },
+  spruce: { ink: '#003F7D', primary: '#1D9B54', accent: '#0092D7', glow: '#7CCEF4', paper: '#FFFFFF', mist: '#EAF7F1', line: '#BDE3CF', warm: '#0092D7', muted: '#496D70' },
+  violet: { ink: '#003F7D', primary: '#003F7D', accent: '#0092D7', glow: '#7CCEF4', paper: '#FFFFFF', mist: '#EAF2F8', line: '#C9D6E3', warm: '#1D9B54', muted: '#496D8C' },
 };
-const FONT = "'Microsoft YaHei','PingFang SC',Arial,sans-serif";
+const FONT = "'PingFang SC','Microsoft YaHei',Arial,sans-serif";
 const c = key => PALETTES[key] || PALETTES.ocean;
 
-function Root({ children, palette, dark = false, showBrand, brand, brandEn, showPage, page, total }) {
+function Root({ children, palette, dark = false, cover = false, showBrand, brand, brandEn, showPage, page, total }) {
   const x = c(palette);
-  return <section style={{ position: 'relative', width: 1920, height: 1080, overflow: 'hidden', fontFamily: FONT, background: dark ? x.ink : x.paper, color: dark ? '#fff' : x.ink }}>
-    <CornerArt x={x} dark={dark} />
-    {showBrand !== false && <Brand x={x} dark={dark} name={brand} sub={brandEn} />}
+  return <section style={{ position: 'relative', width: 1920, height: 1080, overflow: 'hidden', fontFamily: FONT, background: dark ? '#003F7D' : '#FFFFFF', color: dark ? '#fff' : x.ink }}>
+    {cover && <WaterLeaves x={x} />}
+    {!cover && showBrand !== false && <DropBadge x={x} dark={dark} />}
+    {cover && showBrand !== false && <Brand x={x} name={brand} sub={brandEn} />}
     {children}
     <Footer x={x} dark={dark} show={showPage} page={page} total={total} />
   </section>;
 }
 
-function CornerArt({ x, dark }) {
-  return <div aria-hidden="true" style={{ position: 'absolute', right: -90, top: -105, width: 480, height: 480, opacity: dark ? .78 : .9 }}>
-    <div style={{ position: 'absolute', inset: 0, border: `28px solid ${x.glow}`, borderRadius: '50%' }} />
-    <div style={{ position: 'absolute', inset: 72, border: `20px solid ${x.accent}`, borderRadius: '50%' }} />
-    <div style={{ position: 'absolute', inset: 154, background: x.warm, borderRadius: '50%' }} />
+function WaterLeaves({ x }) {
+  return <div aria-hidden="true" style={{ position: 'absolute', inset: 0 }}>
+    <div style={{ position: 'absolute', right: 250, top: -330, width: 780, height: 1740, borderRadius: '50%', background: x.glow }} />
+    <div style={{ position: 'absolute', right: 40, top: -285, width: 610, height: 1650, borderRadius: '50%', background: '#0092D7' }} />
+    <div style={{ position: 'absolute', right: -330, top: -310, width: 760, height: 1700, borderRadius: '50%', background: '#1D9B54' }} />
   </div>;
 }
 
-function Brand({ x, dark, name, sub }) {
-  return <div style={{ position: 'absolute', left: 76, top: 54, display: 'flex', gap: 16, alignItems: 'center', color: dark ? '#fff' : x.ink }}>
-    <div style={{ width: 54, height: 54, borderRadius: 14, background: x.primary, position: 'relative', overflow: 'hidden' }}><div style={{ position: 'absolute', width: 66, height: 12, left: -8, top: 21, background: x.warm, transform: 'rotate(-32deg)' }} /></div>
-    <div><div style={{ fontSize: 26, fontWeight: 850, letterSpacing: 1.4 }}>{name}</div><div style={{ fontSize: 13, letterSpacing: 2.4, opacity: .7, marginTop: 3 }}>{sub}</div></div>
+function DropBadge({ x, dark, size = 92, inline = false }) {
+  const shell = inline
+    ? { position: 'relative', width: size, height: size, flex: `0 0 ${size}px` }
+    : { position: 'absolute', right: 74, top: 54, width: size, height: size, zIndex: 3 };
+  const ring = dark ? '#FFFFFF' : '#0092D7';
+  return <div style={shell}>
+    <div style={{ position: 'absolute', inset: size * .06, border: `${Math.max(3, size * .05)}px solid ${ring}`, borderRadius: '50%', boxSizing: 'border-box' }} />
+    <div style={{ position: 'absolute', left: size * .02, top: size * .09, width: size * .88, height: size * .88, border: `${Math.max(3, size * .04)}px solid ${x.glow}`, borderRadius: '50%', boxSizing: 'border-box', opacity: .8 }} />
+    <div style={{ position: 'absolute', left: size * .31, top: size * .20, width: size * .40, height: size * .58, background: dark ? '#FFFFFF' : '#0092D7', clipPath: 'polygon(50% 0,68% 27%,88% 53%,100% 72%,92% 88%,73% 100%,29% 100%,9% 87%,0 70%,13% 50%,32% 25%)' }} />
+  </div>;
+}
+
+function Brand({ x, name, sub }) {
+  return <div style={{ position: 'absolute', left: 92, top: 74, display: 'flex', gap: 22, alignItems: 'center', color: x.ink, zIndex: 2 }}>
+    <DropBadge x={x} size={82} inline />
+    <div><div style={{ fontSize: 34, fontWeight: 850, letterSpacing: 2 }}>{name}</div><div style={{ fontSize: 17, letterSpacing: 1.2, marginTop: 3 }}>{sub}</div></div>
   </div>;
 }
 
 function Footer({ x, dark, show, page, total }) {
-  return <><div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 18, display: 'flex' }}><div style={{ flex: 5, background: x.primary }} /><div style={{ flex: 1.2, background: x.glow }} /><div style={{ flex: .7, background: x.accent }} /></div>{show !== false && <div style={{ position: 'absolute', right: 72, bottom: 40, fontSize: 17, fontWeight: 800, letterSpacing: 2, color: dark ? '#fff' : x.primary }}>{page} / {total}</div>}</>;
+  return <>
+    <div aria-hidden="true" style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 34, background: dark ? '#0092D7' : 'linear-gradient(90deg,#0092D7 0 78%,#003F7D 78% 100%)' }}>
+      <div style={{ position: 'absolute', left: '78%', top: -14, width: 52, height: 62, borderRadius: '50%', background: '#7CCEF4', transform: 'translateX(-24px)' }} />
+      <div style={{ position: 'absolute', left: '80%', top: -14, width: 44, height: 62, borderRadius: '50%', background: '#0092D7', transform: 'translateX(-20px)' }} />
+      <div style={{ position: 'absolute', left: '82%', top: -14, width: 52, height: 62, borderRadius: '50%', background: '#1D9B54', transform: 'translateX(-24px)' }} />
+    </div>
+    {show !== false && <div style={{ position: 'absolute', left: 1660, bottom: 48, width: 180, textAlign: 'right', fontSize: 16, fontWeight: 800, letterSpacing: 1, color: dark ? '#fff' : x.ink }}>{page} / {total}</div>}
+  </>;
 }
 
 function Header({ x, kicker, title, wide = false }) {
-  return <div style={{ position: 'absolute', left: 78, top: 160, width: wide ? 1620 : 1480 }}><div style={{ color: x.accent, fontSize: 18, fontWeight: 850, letterSpacing: 4 }}>{kicker}</div><div style={{ marginTop: 22, fontSize: 58, lineHeight: 1.16, fontWeight: 800, letterSpacing: -2 }}>{title}</div></div>;
+  return <div style={{ position: 'absolute', left: 74, top: 110, width: wide ? 1608 : 1468 }}><div style={{ width: 720, paddingLeft: 8, color: x.primary, fontSize: 17, fontWeight: 850, letterSpacing: 3.4 }}>{kicker}</div><div style={{ marginTop: 18, paddingLeft: 8, fontSize: 52, lineHeight: 1.16, fontWeight: 800, letterSpacing: -1.4 }}>{title}</div><div style={{ width: 94, height: 6, background: x.accent, marginTop: 22, marginLeft: 8 }} /></div>;
 }
-function Insight({ x, children }) { return <div style={{ position: 'absolute', left: 76, bottom: 58, width: 1510, minHeight: 46, padding: '12px 22px', borderLeft: `8px solid ${x.accent}`, background: x.mist, color: x.primary, fontSize: 18, lineHeight: 1.35, fontWeight: 700 }}>{children}</div>; }
-const Cell = ({ x, children, dark = false, style = {} }) => <div style={{ background: dark ? x.primary : '#fff', color: dark ? '#fff' : x.ink, borderTop: `8px solid ${dark ? x.warm : x.accent}`, ...style }}>{children}</div>;
+function Insight({ x, children }) { return <div style={{ position: 'absolute', left: 82, bottom: 68, width: 1460, minHeight: 44, padding: '12px 22px', borderLeft: `7px solid ${x.accent}`, background: x.mist, color: x.ink, fontSize: 18, lineHeight: 1.35, fontWeight: 700 }}>{children}</div>; }
+const Cell = ({ x, children, dark = false, style = {} }) => <div style={{ background: dark ? x.ink : '#fff', color: dark ? '#fff' : x.ink, borderTop: `7px solid ${dark ? x.primary : x.accent}`, boxShadow: dark ? 'none' : '0 10px 26px rgba(0,63,125,.06)', ...style }}>{children}</div>;
 
-function Cover(props) { const x = c(props.palette); return <Root {...props}><div style={{ position: 'absolute', left: 94, top: 360, width: 1040 }}><div style={{ color: x.accent, fontSize: 20, fontWeight: 850, letterSpacing: 4 }}>{props.kicker}</div><div style={{ marginTop: 26, fontSize: 88, fontWeight: 850, letterSpacing: -5 }}>{props.title}</div><div style={{ marginTop: 28, width: 840, fontSize: 29, lineHeight: 1.45, color: x.muted }}>{props.subtitle}</div><div style={{ width: 118, height: 8, background: x.primary, marginTop: 72 }} /><div style={{ marginTop: 24, display: 'flex', gap: 38, fontSize: 20, color: x.muted }}><span>{props.owner}</span><span>{props.date}</span></div></div></Root>; }
-function Agenda(props) { const x=c(props.palette), items=(props.items||[]).slice(0, props.itemCount||3); return <Root {...props}><Header x={x} {...props}/><div style={{ position:'absolute',left:150,right:150,top:400,display:'grid',gridTemplateColumns:`repeat(${items.length},1fr)`,gap:30 }}>{items.map((v,i)=><Cell key={v} x={x} dark={i===0} style={{minHeight:300,padding:'38px'}}><div style={{fontSize:22,color:i===0?x.glow:x.accent,fontWeight:850}}>0{i+1}</div><div style={{fontSize:38,fontWeight:800,marginTop:78}}>{v}</div></Cell>)}</div></Root>; }
-function Statement(props) { const x=c(props.palette); return <Root {...props} dark><div style={{position:'absolute',left:150,top:300,width:1320}}><div style={{fontSize:20,color:x.glow,letterSpacing:4,fontWeight:850}}>{props.kicker}</div><div style={{fontSize:76,lineHeight:1.17,fontWeight:850,marginTop:30}}>{props.title}</div><div style={{fontSize:30,lineHeight:1.5,color:'rgba(255,255,255,.72)',marginTop:38,width:980}}>{props.body}</div><div style={{marginTop:86,padding:'24px 32px',width:770,borderLeft:`8px solid ${x.warm}`,fontSize:28,fontWeight:750,color:x.glow}}>{props.quote}</div></div></Root>; }
+function Cover(props) { const x = c(props.palette); return <Root {...props} cover><div style={{ position: 'absolute', left: 100, top: 330, width: 720, zIndex: 2 }}><div style={{ color: x.primary, fontSize: 20, fontWeight: 850, letterSpacing: 4 }}>{props.kicker}</div><div style={{ marginTop: 24, fontSize: 88, lineHeight: 1.08, fontWeight: 850, letterSpacing: -4 }}>{props.title}</div><div style={{ marginTop: 28, width: 680, fontSize: 28, lineHeight: 1.5, color: x.muted }}>{props.subtitle}</div><div style={{ width: 150, height: 7, background: x.ink, marginTop: 58 }} /><div style={{ marginTop: 24, display: 'flex', gap: 34, fontSize: 20, color: x.ink }}><span>{props.owner}</span><span>{props.date}</span></div></div></Root>; }
+function Agenda(props) { const x=c(props.palette), items=(props.items||[]).slice(0, props.itemCount||3); return <Root {...props} dark><WaterLeaves x={x}/><div style={{position:'absolute',left:105,top:105,zIndex:2,color:'#fff'}}><div style={{fontSize:66,fontWeight:850,letterSpacing:1}}>CONTENTS</div><div style={{width:110,height:6,background:x.glow,marginTop:18}}/></div><div style={{position:'absolute',left:105,top:360,width:1120,display:'grid',gridTemplateColumns:'1fr 1fr',gap:'52px 74px',zIndex:2}}>{items.map((v,i)=><div key={v} style={{display:'grid',gridTemplateColumns:'82px 1fr',gap:20,alignItems:'center',color:'#fff'}}><div style={{fontFamily:'Georgia,serif',fontSize:52,fontWeight:800,borderRight:'2px solid rgba(255,255,255,.8)'}}>{String.fromCharCode(65+i)}</div><div><div style={{fontSize:28,fontWeight:800}}>{v}</div><div style={{fontSize:16,opacity:.7,marginTop:7,letterSpacing:1.2}}>WATER ENVIRONMENT</div></div></div>)}</div></Root>; }
+function Statement(props) { const x=c(props.palette); return <Root {...props} dark><div style={{position:'absolute',left:130,top:300,width:1500}}><div style={{display:'flex',alignItems:'baseline',gap:44}}><div style={{fontFamily:'Georgia,serif',fontSize:160,fontWeight:850,lineHeight:.8}}>{props.sectionNo||props.page}</div><div style={{fontSize:68,lineHeight:1.18,fontWeight:850,maxWidth:1200}}>{props.title}</div></div><div style={{fontSize:28,lineHeight:1.55,color:'rgba(255,255,255,.78)',marginTop:48,width:1080}}>{props.body}</div><div style={{marginTop:70,padding:'20px 28px',width:780,borderLeft:`8px solid ${x.glow}`,fontSize:26,fontWeight:750,color:x.glow}}>{props.quote}</div></div></Root>; }
 function Cards(props) { const x=c(props.palette), items=(props.items||[]).slice(0,props.itemCount||3); return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:78,right:78,top:405,display:'grid',gridTemplateColumns:`repeat(${items.length},1fr)`,gap:26}}>{items.map((v,i)=><Cell key={v.tag} x={x} dark={i===0} style={{minHeight:380,padding:'36px'}}><div style={{fontSize:18,fontWeight:850,color:i===0?x.glow:x.accent}}>{v.tag}</div><div style={{fontSize:36,fontWeight:850,marginTop:42}}>{v.title}</div><div style={{fontSize:22,lineHeight:1.55,marginTop:26,opacity:.75}}>{v.desc}</div></Cell>)}</div></Root>; }
 function HeroMetric(props) { const x=c(props.palette), support=(props.supporting||[]).slice(0,props.itemCount||3); return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:92,top:405,width:660}}><div style={{fontSize:118,fontWeight:900,color:x.primary,letterSpacing:-6}}>{props.value}<span style={{fontSize:34,marginLeft:14,letterSpacing:0}}>{props.unit}</span></div><div style={{fontSize:29,fontWeight:800,marginTop:26}}>{props.headline||props.body}</div><div style={{fontSize:20,lineHeight:1.6,color:x.muted,marginTop:20}}>{props.body}</div></div><div style={{position:'absolute',left:940,top:410,width:760,display:'grid',gap:16}}>{support.map((v,i)=><div key={v.label} style={{display:'grid',gridTemplateColumns:'150px 1fr',alignItems:'center',padding:'25px 30px',background:i===0?x.primary:x.mist,color:i===0?'#fff':x.ink}}><div style={{fontSize:34,fontWeight:850}}>{v.value}</div><div style={{fontSize:20,fontWeight:700}}>{v.label}</div></div>)}</div><Insight x={x}>{props.insight}</Insight></Root>; }
 function Trend(props) { const x=c(props.palette), series=props.series||[], max=Math.max(...series.map(v=>v.value),1); return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:150,top:440,width:1120,height:360,borderLeft:`2px solid ${x.line}`,borderBottom:`2px solid ${x.line}`,display:'flex',alignItems:'end',gap:42,padding:'0 42px'}}>{series.map((v,i)=><div key={v.label} style={{flex:1,textAlign:'center'}}><div style={{fontSize:20,fontWeight:800,color:x.primary,marginBottom:12}}>{v.value}</div><div style={{height:`${Math.max(10,(v.value/max)*82)}%`,background:i===series.length-1?x.warm:x.accent,borderRadius:'10px 10px 0 0'}}/><div style={{marginTop:16,fontSize:18,color:x.muted}}>{v.label}</div></div>)}</div><Insight x={x}>{props.insight}</Insight></Root>; }
@@ -57,7 +77,7 @@ function Steps(props) { const x=c(props.palette), steps=(props.steps||props.phas
 function Projects(props) { const x=c(props.palette), items=(props.projects||[]).slice(0,props.itemCount||3); return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:92,right:92,top:410,display:'grid',gap:20}}>{items.map((v,i)=><div key={v.title} style={{display:'grid',gridTemplateColumns:'140px 1fr 170px 150px',gap:28,alignItems:'center',padding:'26px 30px',background:i===0?x.primary:x.mist,color:i===0?'#fff':x.ink}}><div style={{fontWeight:850,color:i===0?x.glow:x.accent}}>{v.status}</div><div><div style={{fontSize:29,fontWeight:850}}>{v.title}</div><div style={{height:10,background:i===0?'rgba(255,255,255,.2)':x.line,marginTop:16}}><div style={{height:'100%',width:`${v.progress}%`,background:i===0?x.warm:x.accent}}/></div></div><div style={{fontSize:19}}>{v.owner}</div><div style={{fontWeight:800}}>{v.date}</div></div>)}</div></Root>; }
 function Narrative(props) { const x=c(props.palette); return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:150,top:430,width:1120,fontSize:28,lineHeight:1.65,color:x.muted}}>{props.body}</div><div style={{position:'absolute',left:150,top:650,width:940,padding:'30px 38px',background:x.primary,color:'#fff',fontSize:26,fontWeight:750,borderLeft:`10px solid ${x.warm}`}}>{props.callout}</div></Root>; }
 function Risks(props) { const x=c(props.palette), items=(props.items||[]).slice(0,props.itemCount||3); return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:92,right:92,top:420,display:'grid',gap:18}}>{items.map((v,i)=><div key={v.title} style={{display:'grid',gridTemplateColumns:'110px 340px 220px 1fr',gap:26,alignItems:'center',padding:'26px 34px',background:i===0?x.primary:x.mist,color:i===0?'#fff':x.ink}}><div style={{fontWeight:900,color:i===0?x.warm:x.accent}}>{v.level}</div><div style={{fontSize:29,fontWeight:850}}>{v.title}</div><div>{v.owner}</div><div style={{fontSize:20,fontWeight:700}}>{v.action}</div></div>)}</div></Root>; }
-function Closing(props) { const x=c(props.palette); return <Root {...props} dark><div style={{position:'absolute',left:150,top:360,width:1180}}><div style={{fontSize:20,color:x.glow,fontWeight:850,letterSpacing:4}}>{props.kicker}</div><div style={{fontSize:78,fontWeight:850,marginTop:26}}>{props.title}</div><div style={{fontSize:30,color:'rgba(255,255,255,.72)',marginTop:32}}>{props.subtitle}</div><div style={{marginTop:84,fontSize:20,color:x.glow}}>{props.contact}</div></div></Root>; }
+function Closing(props) { const x=c(props.palette); return <Root {...props} dark><div style={{position:'absolute',left:130,top:315,width:1320}}><div style={{fontSize:20,color:x.glow,fontWeight:850,letterSpacing:4}}>{props.kicker}</div><div style={{fontSize:78,lineHeight:1.16,fontWeight:850,marginTop:24}}>{props.title}</div><div style={{fontSize:30,color:'rgba(255,255,255,.76)',marginTop:32}}>{props.subtitle}</div><div style={{marginTop:78,fontSize:20,color:x.glow}}>{props.contact}</div></div></Root>; }
 function ExecutiveSummary(props) { return <Cards {...props} />; }
 function DataSpotlight(props) { return <HeroMetric {...props} />; }
 function Matrix(props) { const x=c(props.palette), rows=(props.rows||[]).slice(0,props.itemCount||4); return <Root {...props}><Header x={x} {...props} wide/><div style={{position:'absolute',left:76,right:76,top:365}}><div style={{display:'grid',gridTemplateColumns:'260px 1fr 1fr 1fr',padding:'22px 28px',background:x.primary,color:'#fff',fontSize:20,fontWeight:850}}><div>决策维度</div><div>{props.leftTitle}</div><div>{props.rightTitle}</div><div style={{color:x.glow}}>{props.recommended}</div></div>{rows.map((v,i)=><div key={v.dimension} style={{display:'grid',gridTemplateColumns:'260px 1fr 1fr 1fr',padding:'26px 28px',background:i%2?x.mist:'#fff',borderBottom:`1px solid ${x.line}`,fontSize:20}}><div style={{fontWeight:850,color:x.primary}}>{v.dimension}</div><div>{v.left}</div><div>{v.right}</div><div style={{fontWeight:850,color:x.accent}}>{v.verdict}</div></div>)}</div><Insight x={x}>{props.insight}</Insight></Root>; }
@@ -67,5 +87,74 @@ function Governance(props) { const x=c(props.palette), actors=(props.actors||[])
 function Roadmap(props) { const x=c(props.palette), phases=(props.phases||[]).slice(0,props.itemCount||3); return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:100,right:100,top:385,display:'grid',gridTemplateColumns:`repeat(${phases.length},1fr)`,gap:24}}>{phases.map((v,i)=><Cell key={v.no} x={x} dark={i===0} style={{minHeight:445,padding:'30px'}}><div style={{display:'flex',justifyContent:'space-between'}}><div style={{fontSize:34,fontWeight:900,color:i===0?x.glow:x.accent}}>{v.no}</div><div style={{fontSize:17,opacity:.7}}>{v.period}</div></div><div style={{marginTop:26,fontSize:31,fontWeight:850}}>{v.title}</div><div style={{marginTop:22,fontSize:20,lineHeight:1.5}}>{v.objective}</div><div style={{height:1,background:i===0?'rgba(255,255,255,.25)':x.line,margin:'26px 0'}}/><div style={{fontSize:18,opacity:.68}}>关键动作</div><div style={{fontSize:18,lineHeight:1.5,marginTop:10}}>{v.actions}</div><div style={{display:'inline-block',padding:'8px 12px',background:i===0?x.warm:'#fff',color:i===0?x.ink:x.primary,fontWeight:850,marginTop:24}}>{v.result}</div></Cell>)}</div><Insight x={x}>{props.insight}</Insight></Root>; }
 function Actions(props) { const x=c(props.palette), items=(props.items||[]).slice(0,props.itemCount||3); return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:92,right:92,top:400,display:'grid',gridTemplateColumns:`repeat(${items.length},1fr)`,gap:24}}>{items.map((v,i)=><Cell key={v.title} x={x} dark={i===0} style={{padding:'32px',minHeight:400}}><div style={{display:'grid',placeItems:'center',width:70,height:70,background:i===0?x.warm:x.glow,color:x.ink,fontSize:24,fontWeight:900}}>{v.priority}</div><div style={{fontSize:33,fontWeight:850,marginTop:32}}>{v.title}</div><div style={{fontSize:20,lineHeight:1.55,marginTop:20,opacity:.78}}>{v.desc}</div><div style={{height:1,background:i===0?'rgba(255,255,255,.25)':x.line,margin:'28px 0 18px'}}/><div style={{display:'flex',justifyContent:'space-between',fontSize:18}}><span>{v.owner}</span><span style={{fontWeight:850,color:i===0?x.warm:x.accent}}>{v.timing}</span></div></Cell>)}</div><Insight x={x}>{props.insight}</Insight></Root>; }
 
-const components = [Cover, Agenda, Statement, Cards, HeroMetric, Trend, Comparison, Metrics, Overview, Steps, Comparison, Steps, Projects, Narrative, Risks, Closing, ExecutiveSummary, DataSpotlight, Matrix, Diagnosis, Architecture, Governance, Roadmap, Actions];
+function LineChart(props) {
+  const x = c(props.palette);
+  const points = (props.points || []).slice(0, props.itemCount || 6);
+  const max = Math.max(...points.map(item => item.value), 1);
+  const coords = points.map((item, index) => ({
+    ...item,
+    px: 95 + index * (1320 / Math.max(points.length - 1, 1)),
+    py: 430 - (item.value / max) * 330,
+  }));
+  const segments = coords.slice(0, -1).map((point, index) => {
+    const next = coords[index + 1];
+    const dx = next.px - point.px;
+    const dy = next.py - point.py;
+    return { left: point.px, top: point.py, width: Math.sqrt(dx * dx + dy * dy), angle: Math.atan2(dy, dx) * 180 / Math.PI };
+  });
+  return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:150,top:350,width:1500,height:500}}>
+    {props.showGrid !== false && [0,1,2,3,4].map(i => <div key={i} style={{position:'absolute',left:80,top:100+i*82,width:1360,height:2,background:x.line}} />)}
+    <div style={{position:'absolute',left:80,top:430,width:1360,height:3,background:x.ink}} />
+    {segments.map((segment,index)=><React.Fragment key={index}><div style={{position:'absolute',left:segment.left,top:segment.top+16,width:segment.width,height:3,background:x.glow,transform:`rotate(${segment.angle}deg)`,transformOrigin:'0 50%',opacity:.8}}/><div style={{position:'absolute',left:segment.left,top:segment.top,width:segment.width,height:10,background:x.primary,borderRadius:5,transform:`rotate(${segment.angle}deg)`,transformOrigin:'0 50%'}}/></React.Fragment>)}
+    {coords.map((point,index)=><React.Fragment key={point.label}><div style={{position:'absolute',left:point.px-16,top:point.py-16,width:32,height:32,borderRadius:'50%',background:index===coords.length-1?x.accent:'#fff',border:`6px solid ${index===coords.length-1?x.accent:x.primary}`}}/><div style={{position:'absolute',left:point.px-70,top:point.py-58,width:140,textAlign:'center',color:x.ink,fontSize:24,fontWeight:800}}>{point.value}</div><div style={{position:'absolute',left:point.px-85,top:460,width:170,textAlign:'center',color:x.muted,fontSize:20}}>{point.label}</div></React.Fragment>)}
+    <div style={{position:'absolute',right:60,top:48,width:220,textAlign:'right',color:x.muted,fontSize:18}}>{props.unit}</div>
+  </div><Insight x={x}>{props.insight}</Insight></Root>;
+}
+
+function DonutChart(props) {
+  const x = c(props.palette);
+  const segments = (props.segments || []).slice(0, props.itemCount || 4);
+  const total = Math.max(segments.reduce((sum,item)=>sum+Number(item.value||0),0),1);
+  const colors = [x.ink, x.primary, x.glow, x.accent, x.muted];
+  let offset = 0;
+  const arcs = segments.map((item,index)=>{ const value=(Number(item.value||0)/total)*100; const arc={...item,valuePct:value,offset,color:colors[index%colors.length]}; offset+=value; return arc; });
+  return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:150,top:340,width:660,height:560}}><svg viewBox="0 0 520 520" style={{width:520,height:520,transform:'rotate(-90deg)'}}><circle cx="260" cy="260" r="176" fill="none" stroke={x.mist} strokeWidth="86"/>{arcs.map(arc=><circle key={arc.label} cx="260" cy="260" r="176" fill="none" stroke={arc.color} strokeWidth="86" pathLength="100" strokeDasharray={`${arc.valuePct} ${100-arc.valuePct}`} strokeDashoffset={-arc.offset}/>)}</svg><div style={{position:'absolute',left:128,top:190,width:264,textAlign:'center'}}><div style={{fontSize:62,fontWeight:900,color:x.ink}}>{props.centerValue}</div><div style={{fontSize:20,color:x.muted,marginTop:8}}>{props.centerLabel}</div></div></div>{props.showLegend!==false&&<div style={{position:'absolute',left:920,top:400,width:760,display:'grid',gap:24}}>{arcs.map((item,index)=><div key={item.label} style={{display:'grid',gridTemplateColumns:'24px 1fr 110px',alignItems:'center',gap:18,paddingBottom:18,borderBottom:`1px solid ${x.line}`}}><div style={{width:18,height:18,borderRadius:'50%',background:item.color}}/><div style={{fontSize:24,fontWeight:750}}>{item.label}</div><div style={{fontSize:30,fontWeight:900,color:index===0?x.ink:x.primary,textAlign:'right'}}>{item.value}</div></div>)}</div>}<Insight x={x}>{props.insight}</Insight></Root>;
+}
+
+function StackedBar(props) {
+  const x = c(props.palette);
+  const bars = (props.bars || []).slice(0, props.itemCount || 4);
+  const legend = props.legend || {};
+  const colors = [x.ink, x.primary, x.accent];
+  const keys = ['base','flow','guard'];
+  return <Root {...props}><Header x={x} {...props}/>{props.showLegend!==false&&<div style={{position:'absolute',right:180,top:265,display:'flex',gap:30}}>{keys.map((key,i)=><div key={key} style={{display:'flex',alignItems:'center',gap:10,fontSize:18}}><span style={{width:16,height:16,background:colors[i]}}/>{legend[key]}</div>)}</div>}<div style={{position:'absolute',left:180,right:180,top:390,display:'grid',gap:42}}>{bars.map(bar=>{const total=Math.max(keys.reduce((sum,key)=>sum+Number(bar[key]||0),0),1);return <div key={bar.label} style={{display:'grid',gridTemplateColumns:'150px 1fr',alignItems:'center',gap:28}}><div style={{fontSize:24,fontWeight:850,color:x.ink}}>{bar.label}</div><div style={{height:68,display:'flex',overflow:'hidden',background:x.mist}}>{keys.map((key,i)=><div key={key} style={{width:`${(Number(bar[key])/total)*100}%`,background:colors[i],display:'grid',placeItems:'center',color:'#fff',fontSize:20,fontWeight:850}}>{bar[key]}</div>)}</div></div>})}</div><Insight x={x}>{props.insight}</Insight></Root>;
+}
+
+function WaterfallChart(props) {
+  const x = c(props.palette);
+  const steps = (props.steps || []).slice(0, props.itemCount || 5);
+  let running = 0;
+  const values = steps.map((step,index)=>{const type=step.type||(index===0||index===steps.length-1?'total':Number(step.value)<0?'loss':'gain');const start=type==='total'?0:running;const end=type==='total'?Number(step.value):running+Number(step.value);running=end;return {...step,type,start,end};});
+  const max = Math.max(...values.flatMap(v=>[v.start,v.end]),1);
+  const y = value => 430 - (value/max)*330;
+  const colors = {total:x.ink,gain:x.primary,loss:x.accent};
+  return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:150,top:350,width:1500,height:500}}>{props.showGrid!==false&&[0,1,2,3,4].map(i=><div key={i} style={{position:'absolute',left:65,top:100+i*82,width:1385,height:2,background:x.line}}/>)}<div style={{position:'absolute',left:65,top:430,width:1385,height:3,background:x.ink}}/>{values.map((step,index)=>{const px=100+index*(1320/Math.max(values.length,1));const width=150;const top=Math.min(y(step.start),y(step.end));const height=Math.max(8,Math.abs(y(step.end)-y(step.start)));const barTop=step.type==='total'?y(step.end):top;const barHeight=step.type==='total'?430-y(step.end):height;return <React.Fragment key={step.label}>{index>0&&<div style={{position:'absolute',left:px-114,top:y(values[index-1].end),width:114,height:2,borderTop:`2px dashed ${x.muted}`}}/>}<div style={{position:'absolute',left:px,top:barTop,width,height:barHeight,background:colors[step.type]||x.primary}}/><div style={{position:'absolute',left:px-25,top:top-44,width:200,textAlign:'center',color:x.ink,fontSize:23,fontWeight:850}}>{step.value>0&&step.type!=='total'?'+':''}{step.value}</div><div style={{position:'absolute',left:px-25,top:458,width:200,textAlign:'center',color:x.muted,fontSize:19}}>{step.label}</div></React.Fragment>})}<div style={{position:'absolute',right:50,top:43,width:220,textAlign:'right',color:x.muted,fontSize:18}}>{props.unit}</div></div><Insight x={x}>{props.insight}</Insight></Root>;
+}
+
+function QuadrantChart(props) {
+  const x = c(props.palette);
+  const items = (props.items || []).slice(0, props.itemCount || 5);
+  const colors = [x.primary,x.accent,x.ink,x.glow,x.muted];
+  return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:230,top:340,width:1320,height:540,borderLeft:`4px solid ${x.ink}`,borderBottom:`4px solid ${x.ink}`,background:`linear-gradient(90deg,transparent 49.8%,${x.line} 50%,transparent 50.2%),linear-gradient(0deg,transparent 49.8%,${x.line} 50%,transparent 50.2%)`}}><div style={{position:'absolute',left:22,top:18,fontSize:20,color:x.muted}}>重点攻坚</div><div style={{position:'absolute',right:22,top:18,fontSize:20,color:x.primary,fontWeight:850}}>优先推进</div><div style={{position:'absolute',left:22,bottom:18,fontSize:20,color:x.muted}}>谨慎投入</div><div style={{position:'absolute',right:22,bottom:18,fontSize:20,color:x.muted}}>持续优化</div>{items.map((item,index)=><div key={item.label} style={{position:'absolute',left:`${item.scoreX}%`,bottom:`${item.scoreY}%`,width:item.size*2.4,height:item.size*2.4,borderRadius:'50%',background:colors[index%colors.length],color:index===3?'#003F7D':'#fff',transform:'translate(-50%,50%)',display:'grid',placeItems:'center',fontSize:17,fontWeight:850,textAlign:'center',padding:8,boxShadow:'0 8px 20px rgba(0,63,125,.16)'}}>{item.label}</div>)}<div style={{position:'absolute',right:0,bottom:-48,fontSize:20,fontWeight:750}}>{props.axes?.x} →</div><div style={{position:'absolute',left:-95,top:0,fontSize:20,fontWeight:750,writingMode:'vertical-rl',transform:'rotate(180deg)'}}>{props.axes?.y} →</div></div><Insight x={x}>{props.insight}</Insight></Root>;
+}
+
+function FunnelChart(props) {
+  const x = c(props.palette);
+  const stages = (props.stages || []).slice(0, props.itemCount || 5);
+  const max = Math.max(...stages.map(stage=>Number(stage.value)),1);
+  const colors = [x.ink,x.primary,'#42B4E6',x.glow,x.accent];
+  return <Root {...props}><Header x={x} {...props}/><div style={{position:'absolute',left:220,right:220,top:350,height:520,display:'flex',flexDirection:'column',alignItems:'center',gap:10}}>{stages.map((stage,index)=>{const width=560+(Number(stage.value)/max)*700;return <div key={stage.label} style={{width,height:82,clipPath:'polygon(4% 0,96% 0,91% 100%,9% 100%)',background:colors[index%colors.length],color:index===3?x.ink:'#fff',display:'grid',gridTemplateColumns:'1fr 120px 1fr',alignItems:'center',padding:'0 80px',fontWeight:800}}><div style={{fontSize:22}}>{stage.label}</div><div style={{fontSize:32,textAlign:'center'}}>{stage.value}</div><div style={{fontSize:18,textAlign:'right',opacity:.85}}>{stage.note}</div></div>})}</div><Insight x={x}>{props.insight}</Insight></Root>;
+}
+
+const components = [Cover, Agenda, Statement, Cards, HeroMetric, Trend, Comparison, Metrics, Overview, Steps, Comparison, Steps, Projects, Narrative, Risks, Closing, ExecutiveSummary, DataSpotlight, Matrix, Diagnosis, Architecture, Governance, Roadmap, Actions, LineChart, DonutChart, StackedBar, WaterfallChart, QuadrantChart, FunnelChart];
 export const runtimePages = pages.map((entry, index) => ({ ...entry, Component: components[index], controls: entry.controls, defaultProps: entry.defaultProps, meta: { key: entry.slot, label: entry.label } }));

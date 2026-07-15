@@ -4,6 +4,8 @@ import path from 'node:path';
 import {
 
   compactJson,
+  getLayoutRecord,
+  isBodyContentCandidate,
   isCoverCandidate,
   isCoverLikeLayout,
   inspectLayout,
@@ -11,7 +13,7 @@ import {
   parseArgs,
 } from './skill-workflow-utils.mjs';
 import { hashSeed } from './workflow/layout-query.mjs';
-import { validateGoalSpec } from './validate-goal-spec.mjs';
+import { isCardDominantLayout, validateGoalSpec } from './validate-goal-spec.mjs';
 
 // 相对路径按调用方目录解析:npm run(含 --prefix)会把脚本 cwd 切到项目根,INIT_CWD 才是用户所在目录。
 const CALLER_CWD = process.env.INIT_CWD || process.cwd();
@@ -89,7 +91,8 @@ function run() {
 }
 
 function buildSlides({ themePack, pageCount, roles, mediaIntent, seed = null }) {
-  const used = new Set();
+  const used = new Map();
+  const history = [];
   let mediaAssigned = false;
   const slides = Array.from({ length: pageCount }, (_, index) => {
     const role = index === 0
@@ -105,8 +108,10 @@ function buildSlides({ themePack, pageCount, roles, mediaIntent, seed = null }) 
       body: index > 0,
       mediaIntent: useMediaIntent ? mediaIntent : null,
       seed,
+      history,
     });
-    used.add(layout);
+    used.set(layout, (used.get(layout) || 0) + 1);
+    history.push(layout);
     const slide = { layout, props: {} };
     if (useMediaIntent) {
       slide[mediaIntent.field] = mediaIntent.value;
@@ -120,28 +125,63 @@ function buildSlides({ themePack, pageCount, roles, mediaIntent, seed = null }) 
   return slides;
 }
 
-function pickLayout({ themePack, role, used, body, mediaIntent = null, seed = null }) {
+function pickLayout({ themePack, role, used, body, mediaIntent = null, seed = null, history = [] }) {
   const mediaQuery = mediaIntent ? mediaIntentQuery(mediaIntent) : {};
   const roleCandidates = listLayouts({ theme: themePack, role, ...mediaQuery, limit: 80, seed });
-  const fallbackCandidates = listLayouts({ theme: themePack, ...mediaQuery, limit: 200, seed });
-  const seen = new Set();
-  const candidates = [...roleCandidates, ...fallbackCandidates]
-    .map(item => item.layout)
-    .filter(Boolean)
-    .filter(layout => {
-      if (seen.has(layout)) return false;
-      seen.add(layout);
-      return true;
-    })
-    .filter(layout => !used.has(layout))
-    .filter(layout => !body || (!isCoverCandidate(layout) && !isCoverLikeLayout(layout)));
-  if (!candidates.length) throw new Error(`No unused ${body ? 'body' : 'cover'} layout available for role "${role}" in ${themePack}`);
+  const fallbackCandidates = listLayouts({
+    theme: themePack,
+    ...(body && role !== 'closing' ? { role: 'content' } : {}),
+    ...mediaQuery,
+    limit: 200,
+    seed,
+  });
+  const eligibleLayouts = (rows, maxUses = 0) => {
+    const seen = new Set();
+    return rows
+      .map(item => item.layout)
+      .filter(Boolean)
+      .filter(layout => {
+        if (seen.has(layout)) return false;
+        seen.add(layout);
+        return true;
+      })
+      .filter(layout => (used.get(layout) || 0) <= maxUses)
+      .filter(layout => {
+        if (!body) return isCoverCandidate(layout);
+        const record = getLayoutRecord(layout);
+        const slot = record?.page?.slot;
+        if (role === 'closing') return slot === 'closing';
+        if (['agenda', 'closing', 'cover'].includes(slot)) return false;
+        return Boolean(record && isBodyContentCandidate(record.page));
+      });
+  };
+  const roleUnused = eligibleLayouts(roleCandidates, 0);
+  const roleReusable = eligibleLayouts(roleCandidates, 1);
+  const fallbackUnused = eligibleLayouts(fallbackCandidates, 0);
+  const fallbackReusable = eligibleLayouts(fallbackCandidates, 1);
+  const tiers = [roleUnused, roleReusable, fallbackUnused, fallbackReusable];
+  const candidates = tiers
+    .map(rows => rows.filter(layout => keepsVisualRhythm(layout, history)))
+    .find(rows => rows.length)
+    || tiers.find(rows => rows.length)
+    || [];
+  if (!candidates.length) throw new Error(`No semantically suitable ${body ? 'body' : 'cover'} layout available for role "${role}" in ${themePack}; each layout may be used at most twice`);
   // 从前 5 名合格候选里 seeded 随机挑:打分只有一两个精确命中时,永远取第一会让
   // 不同用户的骨架在这些 role 上完全一致;候选都已通过过滤(均"符合"),前几名之间
   // 的分差只是相关性排序,随机采样是多样性与相关性的折衷。
   const pool = candidates.slice(0, 5);
-  const layout = pool[hashSeed(`${seed}:${role}:${used.size}`) % pool.length];
+  const usageCount = [...used.values()].reduce((sum, value) => sum + value, 0);
+  const layout = pool[hashSeed(`${seed}:${role}:${usageCount}`) % pool.length];
   return layout;
+}
+
+function keepsVisualRhythm(layout, history) {
+  if (!isCardDominantLayout(layout)) return true;
+  const bodyHistory = history.slice(1);
+  const cardCount = bodyHistory.filter(isCardDominantLayout).length;
+  const allowedCards = Math.max(1, Math.ceil((bodyHistory.length + 1) / 3));
+  if (cardCount + 1 > allowedCards) return false;
+  return !bodyHistory.slice(-2).every(isCardDominantLayout);
 }
 
 function parseMediaIntent(args) {

@@ -120,6 +120,7 @@ export function validateGoalSpec(spec, options = {}) {
     validateCopyBudgets(layout, props, slideNumber, layoutLabel, errors);
     validateRepeatedVisibleCopy(layout, props, slideNumber, layoutLabel, errors);
     collectDeckCoreCopy(layout, normalized.props || props, authoredProps, slideNumber, layoutLabel, deckCoreCopyUsages);
+    validateSlideDataSemantics(record, normalized.props || props, slideNumber, layoutLabel, errors);
     validateObjectStrings(slide?.copy, `slide ${slideNumber}`, layoutLabel, 'copy', errors);
 
     if (isCoverCandidate(layout)) coverCandidates.push(layout);
@@ -131,10 +132,11 @@ export function validateGoalSpec(spec, options = {}) {
   }
 
   for (const item of nonCandidateCoverLikes) {
-    errors.push(`slide ${item.slideNumber} layout ${item.layout} field layout: cover-like layouts must use themeXX_page001-page005`);
+    errors.push(`slide ${item.slideNumber} layout ${item.layout} field layout: cover-like layouts must be registered as cover candidates in theme metadata`);
   }
 
   validateUniqueLayouts(layoutUsages, errors);
+  validateDeckVisualRhythm(slides, errors);
   validateDeckRepeatedCoreCopy(deckCoreCopyUsages, errors);
 
   if (spec?.allowMediaReuse !== true) validateUniqueMediaUsages(mediaUsages, errors);
@@ -151,8 +153,185 @@ function pushUniqueErrors(errors, candidates) {
 function validateUniqueLayouts(layoutUsages, errors) {
   for (const [layout, slides] of layoutUsages.entries()) {
     if (slides.length <= 1) continue;
-    errors.push(`deck field slides: duplicate layout ${layout} used on slides ${slides.join(', ')}; choose a unique layout for each slide`);
+    if (slides.length > 2) {
+      errors.push(`deck field slides: layout ${layout} is used ${slides.length} times on slides ${slides.join(', ')}; use one layout at most twice`);
+    }
+    for (let index = 1; index < slides.length; index += 1) {
+      if (slides[index] === slides[index - 1] + 1) {
+        errors.push(`deck field slides: layout ${layout} is repeated on adjacent slides ${slides[index - 1]} and ${slides[index]}; separate repeated layouts with another visual family`);
+      }
+    }
   }
+}
+
+const CARD_DOMINANT_SLOTS = new Set([
+  'cards',
+  'executive-summary',
+  'overview',
+  'metrics',
+  'process',
+  'projects',
+  'risk-actions',
+  'decision-actions',
+  'roadmap-timeline',
+  'hero-metric',
+  'data-spotlight',
+]);
+
+export function isCardDominantLayout(layout) {
+  const slot = getLayoutRecord(layout)?.page?.slot;
+  return CARD_DOMINANT_SLOTS.has(slot);
+}
+
+function validateDeckVisualRhythm(slides, errors) {
+  const body = slides
+    .map((slide, index) => ({ slide, slideNumber: index + 1, page: getLayoutRecord(slide?.layout)?.page }))
+    .filter(item => item.page && !['cover', 'closing', 'agenda'].includes(item.page.slot));
+  const theme13Body = body.filter(item => item.page.themeKey === 'theme13');
+  if (theme13Body.length < 6) return;
+
+  const cardSlides = theme13Body.filter(item => CARD_DOMINANT_SLOTS.has(item.page.slot));
+  const ratio = cardSlides.length / theme13Body.length;
+  if (cardSlides.length >= 4 && ratio > 0.35) {
+    errors.push(`deck visual rhythm: theme13 card-dominant slides occupy ${cardSlides.length}/${theme13Body.length} body slides (${Math.round(ratio * 100)}%); keep cards near one third and convert causal, temporal or hierarchical content to model/chart/timeline structures`);
+  }
+
+  let run = [];
+  for (const item of theme13Body) {
+    if (CARD_DOMINANT_SLOTS.has(item.page.slot)) {
+      if (run.length && item.slideNumber !== run.at(-1) + 1) run = [];
+      run.push(item.slideNumber);
+      if (run.length === 3) {
+        errors.push(`deck visual rhythm: card-dominant layouts run for 3 consecutive body slides (${run.join(', ')}); vary the information structure before rendering`);
+      }
+    } else {
+      run = [];
+    }
+  }
+}
+
+function validateSlideDataSemantics(record, props, slideNumber, layout, errors) {
+  if (!props || Object.keys(props).length === 0) return;
+  const slot = record?.page?.slot || '';
+  const kicker = String(props?.kicker || '').trim();
+  if (/^(?:PART|SECTION)\b|^章节\s*\d*/i.test(kicker) && !['cover', 'statement'].includes(slot)) {
+    errors.push(`slide ${slideNumber} layout ${layout} field props.kicker: section marker "${kicker}" requires a section/statement layout, not ${slot || 'a body layout'}`);
+  }
+
+  if (slot === 'line-chart') validateLineChartSemantics(props, slideNumber, layout, errors);
+  if (slot === 'donut-chart') validateDonutSemantics(props, slideNumber, layout, errors);
+  if (slot === 'waterfall-chart') validateWaterfallSemantics(props, slideNumber, layout, errors);
+  if (slot === 'quadrant-chart') validateQuadrantSemantics(props, slideNumber, layout, errors);
+  if (slot === 'funnel-chart') validateFunnelSemantics(props, slideNumber, layout, errors);
+}
+
+function validateLineChartSemantics(props, slideNumber, layout, errors) {
+  const points = visibleItems(props?.points, props?.itemCount);
+  if (points.length < 3) return;
+  const last = points.at(-1);
+  const previous = points.slice(0, -1).map(item => finiteNumber(item?.value));
+  const lastValue = finiteNumber(last?.value);
+  if (previous.every(value => value != null) && lastValue != null && /合计|总计|综合|总量|overall|total/i.test(String(last?.label || ''))) {
+    const sum = previous.reduce((total, value) => total + value, 0);
+    if (nearlyEqual(lastValue, sum)) {
+      errors.push(`slide ${slideNumber} layout ${layout} field props.points: line chart ends with aggregate "${last.label}" equal to the sum of previous categories; show the total as a headline and use bars for categorical counts`);
+    }
+  }
+}
+
+function validateDonutSemantics(props, slideNumber, layout, errors) {
+  const segments = visibleItems(props?.segments, props?.itemCount);
+  const values = segments.map(item => finiteNumber(item?.value));
+  if (!segments.length || values.some(value => value == null || value < 0)) {
+    errors.push(`slide ${slideNumber} layout ${layout} field props.segments: donut segments must be non-negative numeric parts of one whole`);
+    return;
+  }
+  const sum = values.reduce((total, value) => total + value, 0);
+  const centerText = String(props?.centerValue || '').trim();
+  const centerValue = finiteNumber(centerText.replace(/[%％]/g, ''));
+  if (centerValue == null) {
+    errors.push(`slide ${slideNumber} layout ${layout} field props.centerValue: donut center must state a verifiable whole such as 100% or the segment total; decorative symbols are not valid totals`);
+    return;
+  }
+  const expected = /[%％]/.test(centerText) ? 100 : centerValue;
+  if (!nearlyEqual(sum, expected, 0.02)) {
+    errors.push(`slide ${slideNumber} layout ${layout} field props.segments: donut parts sum to ${roundNumber(sum)} but center whole is ${centerText}; use a bar/KPI layout unless all segments share one whole and unit`);
+  }
+}
+
+function validateWaterfallSemantics(props, slideNumber, layout, errors) {
+  const steps = visibleItems(props?.steps, props?.itemCount);
+  if (!String(props?.unit || '').trim()) {
+    errors.push(`slide ${slideNumber} layout ${layout} field props.unit: waterfall requires one explicit shared unit for every step`);
+  }
+  if (steps.length < 3) return;
+  const middle = steps.slice(1, -1);
+  const first = finiteNumber(steps[0]?.value);
+  const last = finiteNumber(steps.at(-1)?.value);
+  const deltas = middle.map(step => finiteNumber(step?.value));
+  if (first == null || last == null || deltas.some(value => value == null)) return;
+  const expected = first + deltas.reduce((total, value) => total + value, 0);
+  if (!nearlyEqual(last, expected)) {
+    errors.push(`slide ${slideNumber} layout ${layout} field props.steps: final total ${last} does not equal base ${first} plus intermediate changes (${roundNumber(expected)})`);
+  }
+}
+
+function validateQuadrantSemantics(props, slideNumber, layout, errors) {
+  const items = visibleItems(props?.items, props?.itemCount);
+  if (!items.length) return;
+  const xs = items.map(item => finiteNumber(item?.scoreX));
+  const ys = items.map(item => finiteNumber(item?.scoreY));
+  const sizes = items.map(item => finiteNumber(item?.size));
+  if ([...xs, ...ys].some(value => value == null || value < 0 || value > 100)) {
+    errors.push(`slide ${slideNumber} layout ${layout} field props.items: quadrant scoreX/scoreY must use normalized 0-100 coordinates`);
+  }
+  if (sizes.some(value => value == null || value < 12 || value > 40)) {
+    errors.push(`slide ${slideNumber} layout ${layout} field props.items: quadrant bubble size must stay within 12-40; do not pass raw 1-5 ratings as pixel size`);
+  }
+  const finiteXs = xs.filter(value => value != null);
+  const finiteYs = ys.filter(value => value != null);
+  if (finiteXs.length > 1 && finiteYs.length > 1) {
+    const spanX = Math.max(...finiteXs) - Math.min(...finiteXs);
+    const spanY = Math.max(...finiteYs) - Math.min(...finiteYs);
+    if (spanX < 15 && spanY < 15) {
+      errors.push(`slide ${slideNumber} layout ${layout} field props.items: quadrant points span only ${roundNumber(spanX)}×${roundNumber(spanY)} on a 0-100 canvas and will cluster; normalize the rating scale or use a matrix`);
+    }
+  }
+}
+
+function validateFunnelSemantics(props, slideNumber, layout, errors) {
+  const stages = visibleItems(props?.stages, props?.itemCount);
+  const values = stages.map(item => finiteNumber(item?.value));
+  if (values.some(value => value == null || value < 0)) {
+    errors.push(`slide ${slideNumber} layout ${layout} field props.stages: funnel stages must use non-negative numeric values from one metric`);
+    return;
+  }
+  for (let index = 1; index < values.length; index += 1) {
+    if (values[index] > values[index - 1]) {
+      errors.push(`slide ${slideNumber} layout ${layout} field props.stages: funnel values must be monotonically non-increasing; increasing checkpoints belong in a process or timeline`);
+      break;
+    }
+  }
+}
+
+function visibleItems(items, count) {
+  if (!Array.isArray(items)) return [];
+  const visible = Number(count);
+  return items.slice(0, Number.isFinite(visible) && visible > 0 ? Math.round(visible) : items.length);
+}
+
+function finiteNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function nearlyEqual(left, right, relativeTolerance = 0.005) {
+  const scale = Math.max(1, Math.abs(left), Math.abs(right));
+  return Math.abs(left - right) <= scale * relativeTolerance;
+}
+
+function roundNumber(value) {
+  return Math.round(value * 100) / 100;
 }
 
 function validateMediaIntent(slide, slideNumber, layout, props, errors, options = {}) {

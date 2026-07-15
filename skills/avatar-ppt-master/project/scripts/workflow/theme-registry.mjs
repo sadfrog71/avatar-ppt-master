@@ -135,6 +135,9 @@ export function themeDisplayName(theme, fallback) {
 }
 
 export function isCoverCandidate(layout) {
+  const page = pagesByKey.get(layout);
+  const declaredRoles = normalizedDeclaredRoles(page);
+  if (declaredRoles.length) return declaredRoles.includes('cover');
   return /^theme\d+_page00[1-5]$/.test(layout);
 }
 
@@ -153,6 +156,7 @@ export function isBodyContentCandidate(page) {
 }
 
 function isClosingLikePage(page) {
+  if (normalizedDeclaredRoles(page).includes('closing')) return true;
   const slot = String(page.slot || '').toLowerCase();
   const label = String(page.label || '').toLowerCase();
   const text = `${slot} ${label}`;
@@ -161,6 +165,12 @@ function isClosingLikePage(page) {
     || label.startsWith('结语')
     || label.startsWith('致谢')
     || label.startsWith('谢谢');
+}
+
+export function normalizedDeclaredRoles(page) {
+  return [...new Set((Array.isArray(page?.roles) ? page.roles : [])
+    .map(role => String(role || '').trim().toLowerCase())
+    .filter(Boolean))];
 }
 
 // defaultProps 中实际承载内容的数组键(排除媒体数组与纯色板数组)。

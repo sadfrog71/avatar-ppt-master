@@ -38,7 +38,7 @@ const SERVE_ROOT_ARG = process.argv[2];
 const SERVE_ROOT = SERVE_ROOT_ARG
   ? path.resolve(CALLER_CWD, SERVE_ROOT_ARG)
   : path.resolve(ROOT, 'output/theme-preview/ppt');
-const PORT = Number(process.env.PORT || process.argv[3] || 4178);
+const PORT = Number(process.env.PORT || process.argv[3] || 5280);
 const HOST = process.env.HOST || '0.0.0.0';
 const LOCAL_HOSTNAME = getLocalHostname();
 const LAN_IPS = getLanIps();

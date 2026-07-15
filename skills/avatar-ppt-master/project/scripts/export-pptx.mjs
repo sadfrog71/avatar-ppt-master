@@ -17,7 +17,7 @@
 // <deck-ppt-dir> is the directory that contains the rendered deck's index.html
 // (e.g. output/<deck>/ppt). Relative paths resolve against the caller's cwd.
 import { spawn } from 'node:child_process';
-import { existsSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import net from 'node:net';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -25,6 +25,7 @@ import { chromium } from 'playwright-core';
 import { launchExportBrowser } from './preview/launch-export-browser.mjs';
 import { exportEditablePptxFromUrl } from '../packages/html-deck-to-pptx/src/editable.mjs';
 import { exportScreenshotPdfFromUrl } from '../packages/html-deck-to-pptx/src/screenshot.mjs';
+import { validatePptxStructure } from './validate-pptx-structure.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
@@ -91,6 +92,11 @@ async function main() {
       if (result.warnings?.length) {
         console.log(`${result.warnings.length} export warning(s); see report for detail if one was requested.`);
       }
+      const qa = await validatePptxStructure(outFile, { expectedPages: result.slideCount, visualReview: 'pending' });
+      const qaFile = `${outFile}.qa.json`;
+      writeFileSync(qaFile, `${JSON.stringify(qa, null, 2)}\n`);
+      console.log(`PPTX QA report: ${path.relative(CALLER_CWD, qaFile)}`);
+      if (qa.errors.length) throw new Error(`PPTX structure QA failed: ${qa.errors.join('; ')}`);
     }
   } finally {
     if (browser) await browser.close().catch(() => {});

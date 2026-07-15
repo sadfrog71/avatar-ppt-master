@@ -10,7 +10,7 @@ Avatar PPT Master 是面向内部同事使用的 PPT 生成 Skill。使用本 Sk
 
 ## 版本
 
-当前版本: `0.2.0`
+当前版本: `0.4.0`
 
 每次完成用户请求、准备最终回复前,运行:
 
@@ -32,17 +32,13 @@ node <skill-root>/scripts/check_latest_version.mjs
 
 `<skill-root>/scripts/render_goal_deck.sh`
 
-版本检查脚本:
-
-`<skill-root>/scripts/check_latest_version.mjs`
-
 ## 生成原则
 
 本 Skill 是模板编排器。默认目标是快速、稳定地把用户需求套入已登记页面组件,输出可离线打开的 HTML PPT。
 
-默认模式是“锁模板填文案”:保留所选页面组件的原始视觉、结构、数量、显隐、强调、配色、图表类型和图片槽位,只替换可见文字内容。除非用户明确要求调整页面属性,不要改任何非文案 props。
+默认模式是“先匹配语义,再锁模板填内容”:先确认页面任务、信息关系和版式语义一致,再保留所选组件的原始视觉、结构、强调、配色和图片槽位。不要为了版式多样、图表比例或避免重复而选择语义不匹配的页面。
 
-默认不做视觉精修,不做截图审美判断,不因为普通断行或局部排版不完美反复返工。只有用户明确要求“视觉精修”“100% 检查”“帮我调到满意”时,才进入视觉 QA 流程。
+普通文字型 deck 默认走 `standard` 模式,做结构与文案校验。出现公式、派生数字、图表、15 页以上长 deck 或 `theme13` 数据页时,自动进入 `evidence` 模式:建立证据底表、增强构图计划和内容锁定,再检查单位、图表语义、标题孤行、标签聚集和卡片密度。只有用户明确要求“视觉精修”“100% 检查”“帮我调到满意”时,才做逐页审美精修。
 
 ## 使用规则
 
@@ -54,9 +50,12 @@ node <skill-root>/scripts/check_latest_version.mjs
 - Deck 语言跟随用户沟通语言:非中文用户在 `goal.json` 顶层加 `"language": "en"`(编辑器界面随之切英文);全部文案字段用目标语言撰写,页面自带的默认中文文案(含结尾页“感谢阅读”类装饰字段)一律覆盖,不得残留中文。
 - 交付格式:默认 HTML;“生成 PPT”“做 PPT”“做一个 PPT”“制作 ppt”表示 PPT 呈现形态。只有明确 `PPTX`、`PowerPoint`、`可编辑 PPTX`、`导出 PPTX`、`PPT 格式` 或“格式/文件类型为 PPT/PPTX”时才交付 PPTX 文件。
 - PPTX 文件:仍先生成 HTML 并启动本机预览服务,再调用本机 HTTP 导出服务;最终只给 PPTX 文件路径或下载结果。
-- 当前可选风格: `theme01` 轻拟态风、`theme02` 炫光紫绿风、`theme03` 深浅代码风、`theme04` 玻璃糖果风、`theme05` 色谱图表风、`theme06` 深色图谱风、`theme07` 冷白调研风、`theme08` 黑金实验风、`theme09` 深蓝杂志风、`theme10` 金色指数风、`theme11` 高能增长风、`theme12` 声波霓虹风、`theme13` 水务环境风。
 - 选版式前先按 `references/page-composition.md` 为每页定义 `pageJob`、结论式 `messageTitle`、`visualTranslation`、唯一 `primaryFocus`、`insightStrip` 和 `imagePolicy`;规划写入本次输出目录的 `composition-plan.json`,不要把这些规划字段写进 `goal.json`。
+- 内容含公式、派生数字、数据图表、15 页以上长 deck 或需要审计的正式结论时,必须同时阅读 `references/evidence-and-storyline.md` 与 `references/data-visual-quality.md`,先建立 `evidence-ledger.json`,在构图计划中关联 `evidenceIds`,最后生成 `content-lock.json`。SCR 只用于复杂问题叙事,不要强套到普通 deck。
 - 页面标题应直接表达结论;图表、矩阵、模型和对比页必须包含读图结论或 `insight`;同一页同时承担两个主要任务时优先拆页。
+- 卡片只用于相互独立、同层级、可并列扫描的信息。因果、过程、时间、层级、空间关系和连续数据不得先拆成卡片再填充。正文中卡片主导页原则上不超过三分之一,连续卡片主导页不超过 2 页。
+- 使用 `theme13` 时,底板必须遵循水务环境模板:封面使用右侧蓝—青—绿叠色水滴形,章节页使用深海蓝整页底色,正文页使用白底和右上水滴徽标,所有页面保留底部蓝—青—绿品牌带。不要替换为圆环、渐变光球或通用科技卡片背景。
+- `theme13_page025` 到 `theme13_page030` 只在数据关系满足图表语义时使用。不要设置图表页占比目标;没有合适数据时宁可使用模型、流程、矩阵、对比或结论页。缺少真实数据时只能使用明确标注的概念指数或结构示意,不能虚构经营数据。
 - 普通自动选择不选 `theme10`;只有用户明确指定,或金融/投资指数内容强相关且 inspect 确认可填时才用。
 <!-- theme-choice-hints:start -->
   - `theme01` 轻拟态风 | 适合: 产品介绍 / 企业汇报 | 人群: 创业团队 / 产品经理
@@ -73,20 +72,17 @@ node <skill-root>/scripts/check_latest_version.mjs
   - `theme12` 声波霓虹风 | 适合: 音乐娱乐 / 潮流活动 | 人群: 娱乐品牌 / 活动策划
   - `theme13` 水务环境风 | 适合: 水务运营 / 环境管理 / 项目提案 | 人群: 运营团队 / 项目负责人
 <!-- theme-choice-hints:end -->
-- 不使用旧 token、旧主题、旧媒体槽、旧风格分支或旧入场动画控制。
 - 选页先用 `npm --prefix <skill-root>/project run layout:query -- --theme <themePack> --role <role> --limit 8`;需要媒体槽时加 `--needs-media`、`--planned-images <n>`、`--provided-images <n>` 或 `--image-gen`。候选顺序每次随机,从中任选合适的即可,不要固定只用列表第一条。
 - 字段不清楚、对象/数组/count、图片/媒体:先运行 `npm --prefix <skill-root>/project run inspect:layout -- --compact <layout...>`;写对象、数组、数量或图片 props:运行 `props:safe`,整份 goal 用 `props:safe -- --goal <file> --write`。
 - 把 `layout:query` / `inspect:layout` 的 JSON 管道给程序解析时,改用 `node <skill-root>/project/scripts/layout-query.mjs` / `node <skill-root>/project/scripts/inspect-layout.mjs`:`npm run` 会在 stdout 前打印生命周期 banner,污染 JSON。
-- 长 deck:先用 `npm --prefix <skill-root>/project run goal:scaffold -- --title <title> --goal <goal> --theme <themePack> --pages <n> --chunk-size 5 --out output/<deck-name>/goal.json` 生成唯一 layout 骨架和 `goal.fill-plan.json`,再按 `fillPlan` 分段补 props。
+- 长 deck:先用 `npm --prefix <skill-root>/project run goal:scaffold -- --title <title> --goal <goal> --theme <themePack> --pages <n> --chunk-size 5 --out output/<deck-name>/goal.json` 生成语义优先、受控复用的 layout 骨架和 `goal.fill-plan.json`,再按 `fillPlan` 分段补 props。
 - 文案长度和数组数量:优先按 `fillPlan.text[].maxChars`、`fillPlan.arrays[].visibleCount`、`fillPlan.arrays[].nestedArrays` 写;`display` / `metric` 字段只写短词、短句或数字。
 - Html 字段(如 `headlineHtml` / `quoteHtml`)写文案只用 `<br>` 换行加 `<b>` / `<em>` 行内强调,禁止 `<span>` 等自由 HTML;主题默认值里的 `<span class>` 依赖主题 CSS,只是占位,不要照抄。`validate:goal-spec` 会拦截自由 HTML。
 - 可见数组项必须写实文案;被 count/显隐控制隐藏的尾项可保留“请输入文本”占位。
-- 元素出现动画使用页面组件自带的原生效果。
-- 页面切换动画可以在预览控制面板里调整。
 - 面向用户交付的 deck 默认不显示风格/主题切换选项;风格切换只保留在内部调试 demo 页面。用户明确要求保留主题切换时,在 goal 顶层写 `preview: {"themeSwitcher": true}`。
 - 不手写自由 HTML slide;面向用户交付的每页必须写 `layout` + `props`。`role` 只允许在草稿阶段辅助选页,渲染前必须换成具体 `layout`。
-- 每套主题的前 5 页 `themeXX_page001` 到 `themeXX_page005` 都是封面候选。一个 deck 只能从前 5 页中选择 1 页作为封面,不要同时使用多个封面页;正文页从第 6 页以后选择。
-- 同一套 PPT 中不要出现重复的页面组件:最终 `slides[].layout` 必须唯一。选页时记录已用 `layout`,不同内容页要换同主题其它候选,不要通过改文案复用同一个 layout。
+- 封面候选以主题 metadata 中声明的 `cover` 角色为准;未声明角色的旧主题兼容使用 `themeXX_page001` 到 `themeXX_page005`。一个 deck 只能选择 1 个封面候选;正文页由 `content` 查询返回,不要依赖固定页码范围。
+- 优先保持视觉变化,但语义正确性高于 layout 唯一性。同一 layout 最多使用 2 次且不得相邻;章节页或同类证据页允许受控复用。不要为了“每页不重复”改用错误的图表或章节版式。
 - 面向用户交付的 deck 不能只写 `role` 后依赖页面默认文案。除非用户明确要默认 demo,每一页可见内容都必须写和用户主题对应的 `props` 文案。
 - 优先只写 `layout:query` / `inspect:layout` 暴露的文案字段。字段是对象或数组时按 `fillPlan` 和 `propShapes` 填内部 key。`copyKeys` 已展开嵌套路径(如 `copy.quote`、`items[].label`),按列出的路径直接填。
 - `inspect:layout` 标 `contentLocked: true` 的页正文由组件固定、props 填不进:换一页能填正文的布局,或仅当用户接受其默认正文时使用。数组按 `fillPlan.arrays[].visibleCount` 填满可见项;`decorativeKeys` 是装饰位,不要填。
@@ -95,7 +91,7 @@ node <skill-root>/scripts/check_latest_version.mjs
 - 禁止复用 `output/` 里已有的旧 `goal.json` 或旧 HTML。每次请求都新建本次输出目录和本次 JSON 计划。
 - 输出目录写在当前会话工作目录,不要写入 `<skill-root>/project/output`。
 - HTML 交付:给用户的预览地址只给 `http://127.0.0.1:<port>/`(不给 https 或 .local 变体);本机 HTTP 可导出 HTML/PDF/PPTX,本地 HTML 或 `file://` 不能导出可编辑 PPTX。不要返回 `theme-preview`。在自带浏览器的 Agent APP(如 Codex)里生成时,提醒用户导出 PDF/PPTX 前把该地址在系统浏览器中打开。
-- PPTX 交付:调用 `/api/export-editable-pptx`;最终只给 PPTX 文件路径或下载结果。
+- PPTX 交付:调用 `/api/export-editable-pptx` 或 `export:pptx`;导出后运行 `validate:pptx-structure`,先验证可编辑信息层,再通过渲染检查确认视觉语义。两个门禁都通过后,最终只给 PPTX 文件路径或下载结果。
 - 无浏览器会话、脚本直调、或预览导出接口返回 403/5xx 时:改用 `npm run export:pptx -- <deck>/ppt <out.pptx>`(PDF 用 `export:pdf`)直接产出文件,不需要先起浏览器会话。
 - 如果输出正文里出现与用户主题无关的默认文案,例如 AI Capital / 投融资 / SoundWave / 声浪 / Key Metrics / Roadmap / End of Report 等,必须重写 JSON 后重新渲染,不能交付。
 
@@ -111,28 +107,27 @@ node <skill-root>/scripts/check_latest_version.mjs
 
 1. 提炼用户目标: `title`、`goal`、`audience`、`owner`、页数、内容重点和最终产物格式。用户未指定页数时默认 10 页左右,不少于 8 页。
 2. 确认 `themePack`。用户未指定时先询问风格;用户选定后生成 `randomSeed`,例如 `<主题>-<日期>-<3位随机词>`,保证随机选页可复现。
-3. 按 `references/page-composition.md` 创建 `composition-plan.json`，为每页明确页面任务、结论标题、视觉结构与读图结论。
-4. 判断图片意图:无图但需要视觉素材时先问是否预留图片槽;用户给本地素材先 `media:stage`;明确生图时用 image-gen。
-5. 用 `layout:query` 选候选;对象/数组/count/图片 props 用 `inspect:layout` + `props:safe`。可用 `overview`、`evidence`、`diagnosis`、`explanation`、`model`、`timeline`、`decision` 和 `actions` 查询角色。
-6. 每页只承载一个主要信息角色。无法安全覆盖的页面优先换 layout,不要改样式字段硬凑。
-7. 把 JSON 写入本次工作目录的 `output/<deck-name>/goal.json`;渲染前运行 `npm --prefix <skill-root>/project run props:safe -- --goal output/<deck-name>/goal.json --write` 和 goal spec 校验。`--write` 后核对输出的 `layoutChanges`;不认可替换就改回并换页。
-8. 图表页填入自己的数据后,页内 insight/读图/结论类文案字段必须据新数据一并改写,不保留默认结论。
-9. 运行渲染脚本输出 `output/<deck-name>/ppt/index.html`;脚本会使用 Skill 内置生成器,不要切回外部项目目录。
-10. 渲染后核对素材路径,缺失时补最终 `ppt/assets`。
-11. 确认脚本完成 `validate:swiss` 和 `validate:goal-copy` 校验。
-12. 运行 `node <skill-root>/scripts/check_latest_version.mjs` 做静默版本检查。
-13. 渲染脚本会启动本地 HTTP 预览服务并输出 `http://127.0.0.1:<port>/`;需要指定端口时设置 `DASHI_PPT_PREVIEW_PORT` 后再运行脚本(端口用 5200-5999 段,4178/4300/4400 为用户保留端口不可用)。只能用该预览服务,不得用 `python -m http.server`、`npx serve` 等静态服务器替代:静态服务器没有导出和自动保存接口。预览服务下编辑自动保存到 `index.html` 本体;`file://` 打开的本地文件不自动保存,交付前需导出。
-14. 按交付格式回复:HTML 只给 `http://127.0.0.1:<port>/`;PPTX 调用 `/api/export-editable-pptx` 后只给文件路径或下载结果。
+3. 按 `references/page-composition.md` 创建 `composition-plan.json`,为每页明确页面任务、信息关系、结论标题、视觉结构与读图结论;先检查全篇视觉家族分布,避免连续卡片化。
+4. 判断是否进入 `evidence` 模式。命中风险条件时,按 `references/evidence-and-storyline.md` 创建并校验 `evidence-ledger.json`;构图计划增加 `scrRole`、`evidenceIds`、`caveat`、`soWhat`、`densityTarget` 和 `componentInventory`。
+5. 判断图片意图:无图但需要视觉素材时先问是否预留图片槽;用户给本地素材先 `media:stage`;明确生图时用 image-gen。
+6. 用 `layout:query` 选候选;对象/数组/count/图片 props 用 `inspect:layout` + `props:safe`。可用 `overview`、`evidence`、`diagnosis`、`explanation`、`model`、`timeline`、`decision` 和 `actions` 查询角色。
+7. 每页只承载一个主要信息角色。无法安全覆盖的页面优先换 layout,不要改样式字段硬凑。
+8. 把 JSON 写入本次工作目录的 `output/<deck-name>/goal.json`;运行 `props:safe --write` 后核对 `layoutChanges`;不认可替换就改回并换页。风险型 deck 在最终内容复核后运行 `content:lock`,不要在后续步骤自动刷新锁文件。
+9. 图表页填入自己的数据后,按 `references/data-visual-quality.md` 检查图表准入、单位、基线、来源和派生关系;页内 insight/读图/结论类文案必须据新数据一并改写,不保留默认结论。
+10. 运行渲染脚本输出 `output/<deck-name>/ppt/index.html`;脚本会依次校验 goal、构图计划、证据底表和内容锁,再使用 Skill 内置生成器渲染。
+11. 渲染后核对素材路径,缺失时补最终 `ppt/assets`;确认 `validate:swiss` 和 `validate:goal-copy` 已通过。
+12. 渲染脚本会启动本地 HTTP 预览服务并输出 `http://127.0.0.1:<port>/`;需要指定端口时设置 `DASHI_PPT_PREVIEW_PORT` 后再运行脚本(端口用 5200-5999 段,4178/4300/4400 为用户保留端口不可用)。只能用该预览服务,不得用 `python -m http.server`、`npx serve` 等静态服务器替代:静态服务器没有导出和自动保存接口。预览服务下编辑自动保存到 `index.html` 本体;`file://` 打开的本地文件不自动保存,交付前需导出。
+13. PPTX 导出会生成同名 `.qa.json`;渲染检查通过后用 `validate:pptx-structure --visual-review passed --strict` 完成双门禁。HTML 只给本机预览地址;PPTX 只给文件路径或下载结果。最终回复前按「版本」章节做静默版本检查。
 
 ## 返工与浏览器检查
 
-只在以下情况返工:渲染失败、`validate:swiss` 失败、`validate:goal-copy` 失败、输出中出现明显不属于用户主题的模板文案、用户明确指出某页内容有问题。
+以下情况必须返工:渲染或校验失败、图表语义不成立、公式/单位前后矛盾、连续卡片化超过规则、标题出现单字孤行、输出中出现无关模板文案,或用户明确指出页面问题。
 
 默认最多修复 2 轮。仍失败时说明阻塞原因,不要继续无边界尝试。
 
-默认不打开浏览器,不创建 Chrome profile,不抽取全量文本槽位。只有修改了生成器/预览模板/导出逻辑、用户明确要求检查页面效果,或上一轮出现过运行后 props 被默认值覆盖的问题时,才做一次浏览器 smoke check。
+默认不创建 Chrome profile,不抽取全量文本槽位。普通文字型 deck 可只做 smoke check;公式、图表、15 页以上长 deck 和 `theme13` 数据型 deck 必须渲染缩略图检查高风险页面。
 
-浏览器 smoke check 只确认页面能打开、页数正确、首尾页不是空白。不要默认截图精修,不要因为普通换行问题反复改稿。
+风险型 QA 至少检查:首尾页非空、标题无单字孤行、图表标签不聚集、图表类型与数据关系一致、结果数字带单位和证据上下文。不要因为不影响阅读的普通断行反复改稿。
 
 示例命令:
 
@@ -169,7 +164,7 @@ node <skill-root>/scripts/check_latest_version.mjs
 
 `role` 只用于草稿选页,最终 JSON 必须落成具体 `layout`。角色说明见 `references/layout-roles.md`;真实候选以 `layout:query` 输出为准。
 
-`cover` 只能从当前主题前 5 页选择。`image` / `media` 候选基于真实 `mediaSlots`,不是页面标题关键词。动态背景页可用 `ambient` 作为氛围页或章节页。
+`cover` 只能从当前主题登记的封面候选中选择。`image` / `media` 候选基于真实 `mediaSlots`,不是页面标题关键词。动态背景页可用 `ambient` 作为氛围页或章节页。
 
 可以直接指定页面:
 
@@ -198,4 +193,6 @@ node <skill-root>/scripts/check_latest_version.mjs
 - 渲染前必须运行 `validate:goal-spec`。
 - 输出后必须运行 `validate:swiss`。
 - 输出后必须运行 `validate:goal-copy`。
+- 所有 deck 渲染前必须运行 `validate:quality-inputs`;风险型 deck 缺少证据底表或内容锁时不得继续。
+- PPTX 导出后必须运行 `validate:pptx-structure`;结构校验不能替代渲染审查。
 - 改动展示 demo 后运行 `npm run showcase:update`。

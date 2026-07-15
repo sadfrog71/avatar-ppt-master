@@ -2,6 +2,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { isMediaArrayKey } from '../src/prop-contract-core.mjs';
+import { isCoverCandidate } from './skill-workflow-utils.mjs';
 
 // 相对路径按调用方目录解析:npm run(含 --prefix)会把脚本 cwd 切到项目根,INIT_CWD 才是用户所在目录。
 const CALLER_CWD = process.env.INIT_CWD || process.cwd();
@@ -328,7 +329,7 @@ function validateCountControls(html, errors) {
 function validateCoverCandidateUsage(html, errors) {
   const model = readJsonScript(html, 'deck-view-model');
   if (!model?.slides?.length) return;
-  const coverSlides = model.slides.filter(slide => /^theme\d+_page00[1-5]$/.test(slide.layout));
+  const coverSlides = model.slides.filter(slide => isCoverCandidate(slide.layout));
   if (coverSlides.length > 1) {
     errors.push(`同一个 deck 只能使用 1 个封面候选页,当前使用了 ${coverSlides.length} 个: ${coverSlides.map(slide => slide.layout).join(', ')}`);
   }

@@ -4,6 +4,7 @@ import {
   THEME_PAGES,
   isBodyContentCandidate,
   isCoverCandidate,
+  normalizedDeclaredRoles,
 } from './theme-registry.mjs';
 import {
   isWritableMediaSlot,
@@ -104,7 +105,10 @@ function listLayoutsForMediaCount({ theme, normalizedRole, keywords, keywordText
       if (normalizedRole === 'content') return isBodyContentCandidate(page);
       if (normalizedRole === 'image') return inspectLayout(page.key, { compact: true })?.mediaSlots.some(slot => slot.canPresetMedia);
       if (normalizedRole === 'ambient') return hasAmbientBackground(page);
-      return pageMatches(page, keywords);
+      const declaredRoles = normalizedDeclaredRoles(page);
+      return declaredRoles.length
+        ? declaredRoles.includes(normalizedRole)
+        : pageMatches(page, keywords);
     })
     .filter(page => !keywordText || pageSearchText(page).includes(keywordText))
     .map(page => compactLayoutCandidate(inspectLayout(page.key, { compact: true })))

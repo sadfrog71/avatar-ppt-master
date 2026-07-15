@@ -1,6 +1,6 @@
 {
   "name": "avatar-ppt-master-runtime",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,12 +16,20 @@
     "preview:start": "node scripts/start-preview-server.mjs",
     "validate:swiss": "node scripts/validate-swiss-deck.mjs",
     "validate:goal-copy": "node scripts/validate-goal-copy.mjs",
+    "validate:evidence": "node scripts/validate-evidence-ledger.mjs",
+    "content:lock": "node scripts/content-lock.mjs",
+    "validate:content-lock": "node scripts/validate-content-lock.mjs",
+    "validate:quality-inputs": "node scripts/validate-quality-inputs.mjs",
+    "validate:pptx-structure": "node scripts/validate-pptx-structure.mjs",
+    "test:content-quality": "node scripts/test-content-quality.mjs",
+    "test:quality-pipeline": "node scripts/test-quality-pipeline.mjs",
     "export:pptx": "node scripts/export-pptx.mjs",
     "export:pdf": "node scripts/export-pptx.mjs --pdf"
   },
   "dependencies": {
     "gsap": "^3.15.0",
     "html-to-image": "^1.11.13",
+    "jszip": "^3.10.1",
     "pptxgenjs": "^4.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

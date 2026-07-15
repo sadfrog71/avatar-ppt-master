@@ -16,37 +16,25 @@
 | `theme10` | 金色指数风 | 金融数据、投资报告、商业指数、年度榜单 | 投资机构、金融分析师、咨询公司、商业媒体 |
 | `theme11` | 高能增长风 | 增长复盘、商业计划、融资路演、市场扩张方案 | 创业者、增长团队、销售团队、VC/PE 路演团队 |
 | `theme12` | 声波霓虹风 | 音乐娱乐、潮流活动、直播内容、年轻化发布 | 娱乐品牌、活动策划、内容团队、潮流消费品牌 |
+| `theme13` | 水务环境风 | 水务运营、环境管理、项目提案、公共服务 | 运营团队、项目负责人、管理层、咨询顾问 |
 
 用户没有明确指定风格时,先列出以上风格并询问。
 
-默认风格选择回复只给极简适配提示:
-
-- `theme01` 轻拟态风: 适合 产品介绍 / 企业汇报; 人群 创业团队 / 产品经理
-- `theme02` 炫光紫绿风: 适合 科技发布会 / AI/自动驾驶/机器人主题; 人群 科技公司创始人 / 技术负责人
-- `theme03` 深浅代码风: 适合 技术方案 / 开发者大会; 人群 工程师 / 技术管理者
-- `theme04` 玻璃糖果风: 适合 年轻化品牌 / 消费产品; 人群 品牌团队 / 设计师
-- `theme05` 色谱图表风: 适合 数据报告 / 市场分析; 人群 数据分析师 / 咨询顾问
-- `theme06` 深色图谱风: 适合 高密度数据展示 / 战略分析; 人群 战略团队 / 投资人
-- `theme07` 冷白调研风: 适合 调研报告 / 白皮书; 人群 研究机构 / 咨询团队
-- `theme08` 黑金实验风: 适合 高端发布 / 品牌提案; 人群 高端品牌 / 创意总监
-- `theme09` 深蓝杂志风: 适合 品牌故事 / 人物访谈; 人群 公关团队 / 媒体编辑
-- `theme10` 金色指数风: 适合 金融数据 / 投资报告; 人群 投资机构 / 金融分析师
-- `theme11` 高能增长风: 适合 增长复盘 / 商业计划; 人群 创业者 / 增长团队
-- `theme12` 声波霓虹风: 适合 音乐娱乐 / 潮流活动; 人群 娱乐品牌 / 活动策划
+默认风格选择回复从上表提取极简「适合/人群」提示,不要再维护第二份重复清单。
 
 ## slide
 
 面向用户交付的每页使用 `layout` + `props`:
 
 - `layout`: 直接指定页面 key,例如 `theme01_page001` 或 `theme12_page001`。
-- `props`: 只填写可见文案/数据内容字段。普通生成不要写样式、结构、数量、显隐、强调、配色、图表或图片槽位控制字段。
+- `props`: 只填写 `inspect:layout` 允许的文案、数据、数组和 count 字段。普通生成不要写样式、布局、配色或未登记的结构控制字段。
 - `role`: 只允许草稿阶段辅助选页,渲染前必须换成具体 `layout`。
 
-每套主题的前 5 页都是封面候选。一个 deck 只能使用其中 1 页作为封面,正文页从第 6 页以后选择。
+封面候选以主题 metadata 中声明的 `cover` 角色为准;未声明角色的旧主题兼容使用前 5 页。一个 deck 只能使用其中 1 页作为封面,正文页以 `content` 查询结果为准。
 
 选页先使用 `npm --prefix <skill-root>/project run layout:query -- --theme <themePack> --role <role> --limit 8`。动态背景页用 `--role ambient`。需要图片槽时加 `--needs-media`、`--planned-images <n>`、`--provided-images <n>` 或 `--image-gen`,候选会基于真实 `mediaSlots`;用户给素材时只用 `canPresetMedia: true` 的槽,按 `presetProp` 写路径。
 
-长 deck 先用 `npm --prefix <skill-root>/project run goal:scaffold -- --title <title> --goal <goal> --theme <themePack> --pages <n> --chunk-size 5 --out output/<deck-name>/goal.json` 生成唯一 layout 骨架和 `goal.fill-plan.json`,再按 `fillPlan` 分段补 `props`。输出目录写在当前会话工作目录,不要写入 `<skill-root>/project/output`。
+长 deck 先用 `npm --prefix <skill-root>/project run goal:scaffold -- --title <title> --goal <goal> --theme <themePack> --pages <n> --chunk-size 5 --out output/<deck-name>/goal.json` 生成语义优先、同一 layout 最多复用 2 次且不相邻的骨架和 `goal.fill-plan.json`,再按 `fillPlan` 分段补 `props`。输出目录写在当前会话工作目录,不要写入 `<skill-root>/project/output`。
 
 单页契约优先使用 `npm --prefix <skill-root>/project run inspect:layout -- --compact <layout...>`,一次传多个 layout 或多次 `--layout`。`fillPlan` 给出标题/正文长度、可见数组数量、嵌套数组数量和媒体写入字段;`propShapes` 给出 `copy`、对象数组和嵌套数组的内部 key。写 `copy`、`cells`、`items`、`rows` 等对象字段时只使用 `fillPlan` / `propShapes` 列出的 key,不要凭字段名猜测。写数组、数量或图片时使用 `npm --prefix <skill-root>/project run props:safe -- <layout> '<props-json>' [--images <path...>]`;写完整 `goal.json` 后使用 `npm --prefix <skill-root>/project run props:safe -- --goal <goal-json> --write` 做整份 props 规范化。
 

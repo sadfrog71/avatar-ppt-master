@@ -17,6 +17,7 @@ export {
   layoutExists,
   isCoverCandidate,
   isCoverLikeLayout,
+  isBodyContentCandidate,
 } from './workflow/theme-registry.mjs';
 
 export {

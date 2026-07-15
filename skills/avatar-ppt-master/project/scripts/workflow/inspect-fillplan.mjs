@@ -24,6 +24,7 @@ import {
   getThemePackMetadata,
   isCoverCandidate,
   isPlainObject,
+  normalizedDeclaredRoles,
   normalizeName,
   resolveBindingArrays,
   singularFieldName,
@@ -1541,6 +1542,12 @@ function detectContentLocked({ copyKeys, copyRoles, arrayMeta, resolvedBindings,
 }
 
 function inferRoles(page, mediaSlots = []) {
+  const declared = normalizedDeclaredRoles(page);
+  if (declared.length) {
+    if (mediaSlots.length > 0 && !declared.includes('image')) declared.push('image');
+    if (hasAmbientBackground(page) && !declared.includes('ambient')) declared.push('ambient');
+    return declared;
+  }
   return Object.entries(ROLE_KEYWORDS)
     .filter(([role, keywords]) => {
       if (role === 'cover') return isCoverCandidate(page.key);

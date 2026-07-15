@@ -17,7 +17,7 @@ const serveRootArg = process.argv[2];
 const serveRoot = serveRootArg
   ? path.resolve(CALLER_CWD, serveRootArg)
   : path.resolve(ROOT, 'output/theme-preview/ppt');
-const requestedPort = Number(process.env.DASHI_PPT_PREVIEW_PORT || process.argv[3] || 4178);
+const requestedPort = Number(process.env.DASHI_PPT_PREVIEW_PORT || process.argv[3] || 5280);
 const host = process.env.DASHI_PPT_PREVIEW_HOST || process.env.HOST || '0.0.0.0';
 const localName = process.env.DASHI_PPT_PREVIEW_NAME || os.hostname().split('.')[0] || 'localhost';
 const portScanLimit = Math.max(40, Number(process.env.DASHI_PPT_PREVIEW_PORT_SCAN || 240));
@@ -115,7 +115,7 @@ async function main() {
 }
 
 async function reserveAvailablePort(start, bindHost) {
-  const base = Number.isFinite(start) && start > 0 ? Math.trunc(start) : 4178;
+  const base = Number.isFinite(start) && start > 0 ? Math.trunc(start) : 5280;
   for (let port = base; port < base + portScanLimit; port += 1) {
     const reservation = await reservePortLock(port, bindHost);
     if (!reservation) continue;

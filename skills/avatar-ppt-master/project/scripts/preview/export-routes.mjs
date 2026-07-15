@@ -8,6 +8,7 @@ import { launchExportBrowser } from './launch-export-browser.mjs';
 import { isExportRequestAllowed } from '../preview-export-auth.mjs';
 import { atomicWriteFileSync, extractDataUrlMedia, isValidDeckState, mergeStateIntoIndexHtml } from '../persist-deck-state.mjs';
 import { isPathInside } from './static-serve.mjs';
+import { validatePptxStructure } from '../validate-pptx-structure.mjs';
 
 let ROOT;
 let SERVE_ROOT;
@@ -63,9 +64,11 @@ export async function handleEditablePptxExport(req, res) {
     const baseName = `${timestampForFile()}-${safeDownloadName(payload.fileName || 'presentation')}`;
     const outFile = path.join(EXPORT_DIR, `${baseName}.pptx`);
     const reportFile = path.join(EXPORT_DIR, `${baseName}.json`);
+    const qaFile = path.join(EXPORT_DIR, `${baseName}.qa.json`);
+    let exportResult;
     try {
       const url = buildInternalPreviewUrl(req, payload.sourcePath);
-      await exportEditablePptxFromUrl(browser, url, {
+      exportResult = await exportEditablePptxFromUrl(browser, url, {
         outFile,
         reportFile,
         title: payload.title || 'Editable Deck Export',
@@ -75,6 +78,9 @@ export async function handleEditablePptxExport(req, res) {
     } finally {
       await closeBrowser(browser);
     }
+    const qa = await validatePptxStructure(outFile, { expectedPages: exportResult?.slideCount, visualReview: 'pending' });
+    writeFileSync(qaFile, `${JSON.stringify(qa, null, 2)}\n`);
+    if (qa.errors.length) throw new Error(`PPTX structure QA failed: ${qa.errors.join('; ')}`);
     updateExportProgress(progressId, { stage: 'download-ready', detail: '准备浏览器下载', percent: 100, done: true });
 
     res.writeHead(200, {
@@ -85,6 +91,7 @@ export async function handleEditablePptxExport(req, res) {
       ok: true,
       relativePath: path.relative(ROOT, outFile),
       reportRelativePath: path.relative(ROOT, reportFile),
+      qaRelativePath: path.relative(ROOT, qaFile),
       downloadUrl: `/api/export-editable-pptx-download?file=${encodeURIComponent(path.basename(outFile))}`,
       downloadName: path.basename(outFile),
     }));
@@ -228,13 +235,18 @@ export async function handlePptxStore(req, res, requestUrl) {
     const fileName = requestUrl.searchParams.get('fileName') || 'presentation';
     const baseName = `${timestampForFile()}-${safeDownloadName(fileName)}`;
     const outFile = path.join(EXPORT_DIR, `${baseName}.pptx`);
+    const qaFile = path.join(EXPORT_DIR, `${baseName}.qa.json`);
     mkdirSync(path.dirname(outFile), { recursive: true });
     writeFileSync(outFile, bytes);
+    const qa = await validatePptxStructure(outFile, { visualReview: 'pending' });
+    writeFileSync(qaFile, `${JSON.stringify(qa, null, 2)}\n`);
+    if (qa.errors.length) throw new Error(`PPTX structure QA failed: ${qa.errors.join('; ')}`);
     res.writeHead(200, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
     res.end(JSON.stringify({
       ok: true,
       browserCapture: true,
       relativePath: path.relative(ROOT, outFile),
+      qaRelativePath: path.relative(ROOT, qaFile),
       downloadUrl: `/api/export-editable-pptx-download?file=${encodeURIComponent(path.basename(outFile))}`,
       downloadName: path.basename(outFile),
     }));

@@ -32,9 +32,10 @@ npx --no-install playwright-core install chromium-headless-shell >/dev/null 2>&1
 mkdir -p "$(dirname "$OUT_PATH")"
 npm run props:safe -- --goal "$SPEC_PATH" --write
 npm run validate:goal-spec -- "$SPEC_PATH"
+npm run validate:quality-inputs -- --goal "$SPEC_PATH"
 npm run render:goal -- "$SPEC_PATH" "$OUT_PATH"
 npm run validate:swiss -- "$OUT_PATH"
 npm run validate:goal-copy -- "$SPEC_PATH" "$OUT_PATH"
 OUT_DIR="$(dirname "$OUT_PATH")"
-PREVIEW_PORT="${DASHI_PPT_PREVIEW_PORT:-4178}"
+PREVIEW_PORT="${DASHI_PPT_PREVIEW_PORT:-5280}"
 npm run preview:start -- "$OUT_DIR" "$PREVIEW_PORT"
